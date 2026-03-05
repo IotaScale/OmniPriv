@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import TechMarquee from "@/components/layout/TechMarquee";
 import {
   ArrowRight,
   Shield,
@@ -465,26 +466,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── TRUSTED BY ────────────────────────── */}
-      <section className="py-16 border-b border-white/[0.04]">
-        <div className="container-xl mb-8">
-          <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest">
-            Trusted by Global Enterprise Leaders
-          </p>
-        </div>
-        <div className="marquee-wrapper">
-          <div className="marquee-track">
-            {[...trustedBrands, ...trustedBrands].map((brand, i) => (
-              <div
-                key={`${brand}-${i}`}
-                className="flex-shrink-0 px-10 py-2 text-slate-500 font-bold text-sm uppercase tracking-widest hover:text-[#00B8FF] transition-colors cursor-default select-none"
-              >
-                {brand}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ─── TECH MARQUEE (SVG logos) ─────────── */}
+      <TechMarquee />
 
       {/* ─── ARCHITECTURE DIAGRAM ────────────────── */}
       <section className="section-padding-lg">
@@ -685,6 +668,32 @@ export default function HomePage() {
               View All Features <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+
+          {/* Security Dashboard Mockup */}
+          <div className="mt-14 relative rounded-2xl border border-[#00B8FF]/15 overflow-hidden bg-[#0A1628]/60 group">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative p-4">
+              <Image
+                src="/security-dashboard.png"
+                alt="OmniPriv security monitoring dashboard with session activity, threat maps, and compliance scores"
+                width={1200}
+                height={600}
+                className="w-full h-auto rounded-xl"
+              />
+            </div>
+            <div className="px-6 pb-6 text-center">
+              <h3
+                className="text-lg font-bold text-white mb-2"
+                style={{ fontFamily: "var(--font-syne)" }}
+              >
+                Unified Security Command Center
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                Monitor every privileged session, track compliance posture, and respond to threats
+                in real time — all from a single, intuitive dashboard.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -744,6 +753,32 @@ export default function HomePage() {
               See It in Action — Request a Demo
               <ArrowRight className="w-5 h-5" />
             </Link>
+          </div>
+
+          {/* Zero-Trust Flow Diagram */}
+          <div className="mt-16 relative rounded-2xl border border-[#00B8FF]/15 overflow-hidden bg-[#0A1628]/60 group">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative p-4">
+              <Image
+                src="/zero-trust-flow.png"
+                alt="OmniPriv zero-trust privileged access flow — from identity verification through policy check, access grant, to session monitoring"
+                width={1200}
+                height={400}
+                className="w-full h-auto rounded-xl"
+              />
+            </div>
+            <div className="px-6 pb-6 text-center">
+              <h3
+                className="text-lg font-bold text-white mb-2"
+                style={{ fontFamily: "var(--font-syne)" }}
+              >
+                Zero-Trust Access Flow
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                Every privileged access request passes through identity verification, policy evaluation, time-limited access granting,
+                and continuous session monitoring — ensuring zero standing privileges.
+              </p>
+            </div>
           </div>
         </div>
       </section>
