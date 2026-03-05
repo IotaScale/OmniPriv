@@ -28,7 +28,7 @@ const useCases = [
 ];
 
 const trustStats = [
-  { icon: Users, value: "3,000+", label: "Enterprise Customers" },
+  { icon: Users, value: "100+", label: "Enterprise Customers" },
   { icon: Shield, value: "SOC 2 Type II", label: "Certified Security" },
   { icon: Star, value: "99.99%", label: "Uptime SLA" },
   { icon: Clock, value: "< 1 hr", label: "Support Response Time" },

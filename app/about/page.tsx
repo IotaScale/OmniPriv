@@ -87,8 +87,8 @@ const team = [
 
 const stats = [
   { value: "500+", label: "Employees Worldwide" },
-  { value: "50+", label: "Countries Served" },
-  { value: "3,000+", label: "Enterprise Customers" },
+  { value: "10+", label: "Countries Served" },
+  { value: "100+", label: "Enterprise Customers" },
 ];
 
 const investors = [
@@ -303,7 +303,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-10 items-center p-10 rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-[#0A1628] to-[#030711]">
             <div>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
-                Join 3,000+ Enterprises Securing Their Infrastructure
+                Join 100+ Enterprises Securing Their Infrastructure
               </h2>
               <p className="text-slate-400">
                 Talk to our team and discover how OmniPriv can protect your most sensitive systems.

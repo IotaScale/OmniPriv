@@ -36,14 +36,14 @@ import {
 export const metadata: Metadata = {
   title: "OmniPriv — Enterprise Privileged Access Management (PAM)",
   description:
-    "OmniPriv is the enterprise PAM platform trusted by 3,000+ organizations. Secure every privileged session with bastion host, credential vaulting, MFA, and real-time audit trails.",
+    "OmniPriv is the enterprise PAM platform trusted by 100+ organizations. Secure every privileged session with bastion host, credential vaulting, MFA, and real-time audit trails.",
 };
 
 /* ─── Data ─────────────────────────────────── */
 
 const stats = [
   { value: "500,000+", label: "Global Deployments", icon: Globe },
-  { value: "3,000+", label: "Enterprise Customers", icon: Building2 },
+  { value: "100+", label: "Enterprise Customers", icon: Building2 },
   { value: "99.99%", label: "Platform Uptime SLA", icon: Activity },
   { value: "250+", label: "Integrations", icon: Zap },
 ];
@@ -376,7 +376,7 @@ export default function HomePage() {
             <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
               OmniPriv secures your most critical systems with comprehensive privileged access controls,
               automated credential management, full session auditing, and real-time threat detection.
-              Trusted by 3,000+ enterprises worldwide.
+              Trusted by 100+ enterprises worldwide.
             </p>
 
             {/* CTAs */}

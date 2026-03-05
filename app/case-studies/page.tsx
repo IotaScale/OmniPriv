@@ -231,7 +231,7 @@ export default function CaseStudiesPage() {
             Ready to Write Your <span className="text-gradient">Own Success Story?</span>
           </h2>
           <p className="text-slate-400 mb-8">
-            Join 3,000+ enterprises that have transformed their privileged access management with OmniPriv.
+            Join 100+ enterprises that have transformed their privileged access management with OmniPriv.
           </p>
           <Link href="/demo" className="btn-primary">
             Request a Demo <ArrowRight className="w-4 h-4" />

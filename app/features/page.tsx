@@ -161,19 +161,53 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Protocol Support */}
-      <section className="py-12 border-b border-white/[0.04] bg-[#0A1628]/30">
-        <div className="container-xl">
-          <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest mb-6">
-            Supported Protocols & Asset Types
+      {/* Protocol Support — Scrolling Marquee */}
+      <section className="py-14 border-b border-white/[0.04] bg-[#0A1628]/30 overflow-hidden">
+        <div className="container-xl mb-8">
+          <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest">
+            Supported Protocols &amp; Asset Types
           </p>
-          <div className="flex flex-wrap gap-2.5 justify-center">
-            {protocolSupport.map((p) => (
-              <span key={p.protocol} className={`px-3.5 py-1.5 rounded-full border text-xs font-semibold ${p.color}`}>
-                {p.protocol}
-                <span className="ml-1.5 opacity-60">({p.category})</span>
-              </span>
-            ))}
+        </div>
+
+        {/* Row 1 */}
+        <div className="marquee-wrapper mb-3">
+          <div className="marquee-track">
+            {[...Array(3)].flatMap((_, rep) => [
+              { name: "SSH / SFTP", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><rect x="4" y="7" width="24" height="18" rx="3" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.08" /><path d="M8 21h4M8 18h8M8 15h6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" /></svg> },
+              { name: "Windows RDP", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M4 10L14.5 8.5V16H4V10Z" fill="currentColor" opacity="0.7" /><path d="M16 8L28 6V16H16V8Z" fill="currentColor" opacity="0.7" /><path d="M4 17H14.5V25.5L4 24V17Z" fill="currentColor" opacity="0.7" /><path d="M16 17H28V28L16 26V17Z" fill="currentColor" opacity="0.7" /></svg> },
+              { name: "VNC", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><rect x="5" y="6" width="22" height="16" rx="2" stroke="currentColor" strokeWidth="1.3" fill="currentColor" fillOpacity="0.06" /><path d="M13 22H19V25H13Z" fill="currentColor" opacity="0.3" /><rect x="10" y="25" width="12" height="2" rx="1" fill="currentColor" opacity="0.4" /><circle cx="16" cy="14" r="3" stroke="currentColor" strokeWidth="1" fill="none" /></svg> },
+              { name: "Kubernetes", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M16 4L27 10.5V21.5L16 28L5 21.5V10.5L16 4Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><circle cx="16" cy="16" r="3" stroke="currentColor" strokeWidth="1.2" fill="none" /><path d="M16 13V8M16 19V24M13 14.5L9 12M19 17.5L23 20M13 17.5L9 20M19 14.5L23 12" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" /></svg> },
+              { name: "MySQL", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><ellipse cx="16" cy="9" rx="9" ry="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><path d="M7 9V23C7 25.2 11 27 16 27C21 27 25 25.2 25 23V9" stroke="currentColor" strokeWidth="1.2" fill="none" /><path d="M7 16C7 18.2 11 20 16 20C21 20 25 18.2 25 16" stroke="currentColor" strokeWidth="0.8" opacity="0.4" /></svg> },
+              { name: "PostgreSQL", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><ellipse cx="16" cy="9" rx="9" ry="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><path d="M7 9V23C7 25.2 11 27 16 27C21 27 25 25.2 25 23V9" stroke="currentColor" strokeWidth="1.2" fill="none" /><path d="M7 16C7 18.2 11 20 16 20C21 20 25 18.2 25 16" stroke="currentColor" strokeWidth="0.8" opacity="0.4" /><circle cx="16" cy="22" r="2" stroke="currentColor" strokeWidth="0.8" fill="currentColor" fillOpacity="0.2" /></svg> },
+              { name: "Oracle DB", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><rect x="5" y="11" width="22" height="10" rx="5" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><rect x="9" y="14" width="14" height="4" rx="2" stroke="currentColor" strokeWidth="0.8" fill="none" /></svg> },
+              { name: "MongoDB", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M16 4C16 4 11 10 11 18C11 23 13 27 16 29C19 27 21 23 21 18C21 10 16 4 16 4Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><line x1="16" y1="12" x2="16" y2="24" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" /></svg> },
+            ].map((item, j) => (
+              <div key={`r1-${rep}-${j}`} className="flex-shrink-0 flex items-center gap-3 px-7 py-3.5 mx-2 rounded-xl border border-white/[0.06] bg-[#0A1628]/50 hover:border-[#00B8FF]/25 hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none">
+                <div className="text-[#00B8FF]/70 group-hover:text-[#00B8FF] transition-colors">{item.svg}</div>
+                <span className="text-slate-400 group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">{item.name}</span>
+              </div>
+            )))}
+          </div>
+        </div>
+
+        {/* Row 2 — reverse */}
+        <div className="marquee-wrapper">
+          <div className="marquee-track-reverse">
+            {[...Array(3)].flatMap((_, rep) => [
+              { name: "Redis", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M16 7L28 13L16 19L4 13L16 7Z" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" /><path d="M4 18L16 24L28 18" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" /><path d="M4 23L16 29L28 23" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.25" /></svg> },
+              { name: "SQL Server", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><ellipse cx="16" cy="9" rx="9" ry="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><path d="M7 9V23C7 25.2 11 27 16 27C21 27 25 25.2 25 23V9" stroke="currentColor" strokeWidth="1.2" fill="none" /><path d="M12 15L15 18L21 12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg> },
+              { name: "Telnet / Serial", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><rect x="5" y="8" width="22" height="16" rx="2" stroke="currentColor" strokeWidth="1.2" fill="currentColor" fillOpacity="0.06" /><path d="M9 20h4M9 17h8M9 14h6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" /><circle cx="23" cy="14" r="1.5" fill="currentColor" opacity="0.4" /></svg> },
+              { name: "Web Apps", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="1.2" fill="currentColor" fillOpacity="0.06" /><ellipse cx="16" cy="16" rx="4" ry="10" stroke="currentColor" strokeWidth="0.8" fill="none" /><path d="M6 16H26M7 11H25M7 21H25" stroke="currentColor" strokeWidth="0.6" opacity="0.4" /></svg> },
+              { name: "RemoteApp", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><rect x="6" y="6" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.2" fill="currentColor" fillOpacity="0.06" /><path d="M13 20H19V23H13Z" fill="currentColor" opacity="0.3" /><rect x="10" y="23" width="12" height="1.5" rx="0.75" fill="currentColor" opacity="0.4" /><rect x="10" y="10" width="6" height="4" rx="1" fill="currentColor" opacity="0.2" /></svg> },
+              { name: "AWS", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M7 20C10 22 13 23 16 23C19 23 22 22 25 20" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /><path d="M23 21L26 19L24 23" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /><path d="M11 9L16 18L21 9" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg> },
+              { name: "Azure", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M10 25L17 7H14L7 22L10 25Z" fill="currentColor" opacity="0.5" /><path d="M17 7L23 22L17 25H27L17 7Z" fill="currentColor" opacity="0.7" /></svg> },
+              { name: "GCP", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M20 8H12L6 16L12 24H20L26 16L20 8Z" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.2" /><circle cx="16" cy="16" r="4" stroke="currentColor" strokeWidth="1.2" fill="none" /><path d="M19 11L22 8M13 11L10 8M13 21L10 24M19 21L22 24" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" /></svg> },
+            ].map((item, j) => (
+              <div key={`r2-${rep}-${j}`} className="flex-shrink-0 flex items-center gap-3 px-7 py-3.5 mx-2 rounded-xl border border-white/[0.06] bg-[#0A1628]/50 hover:border-[#00B8FF]/25 hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none">
+                <div className="text-[#00B8FF]/70 group-hover:text-[#00B8FF] transition-colors">{item.svg}</div>
+                <span className="text-slate-400 group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">{item.name}</span>
+              </div>
+            )))}
           </div>
         </div>
       </section>
