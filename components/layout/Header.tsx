@@ -14,13 +14,9 @@ import {
   Key,
   UserCheck,
   Building2,
-  Cpu,
-  Heart,
-  Landmark,
   Globe,
   FileText,
   BookOpen,
-  LayoutGrid,
   Users,
   Zap,
 } from "lucide-react";
@@ -66,39 +62,39 @@ const platformLinks = [
 
 const solutionLinks = [
   {
-    label: "Financial Services",
-    description: "PCI-DSS, SOX compliance",
-    href: "/solutions#finance",
-    icon: Landmark,
+    label: "Infrastructure & Deployment",
+    description: "On-premise, HA, agentless",
+    href: "/solutions/infrastructure-deployment",
+    icon: Lock,
   },
   {
-    label: "Healthcare",
-    description: "HIPAA-compliant PAM",
-    href: "/solutions#healthcare",
-    icon: Heart,
+    label: "Credential Management",
+    description: "Rotation, vault, SSH keys",
+    href: "/solutions/password-credential-management",
+    icon: Key,
   },
   {
-    label: "Manufacturing",
-    description: "OT/IT network security",
-    href: "/solutions#manufacturing",
-    icon: Cpu,
+    label: "Application Security",
+    description: "MFA, encryption, HSM",
+    href: "/solutions/application-security",
+    icon: Shield,
   },
   {
-    label: "Technology",
-    description: "DevOps & cloud security",
-    href: "/solutions#technology",
-    icon: LayoutGrid,
-  },
-  {
-    label: "Government",
-    description: "FedRAMP-ready, FISMA compliant",
-    href: "/solutions#government",
+    label: "Enterprise Integration",
+    description: "SIEM, LDAP/AD, ticketing",
+    href: "/solutions/enterprise-integration",
     icon: Building2,
   },
   {
-    label: "Global Enterprise",
-    description: "Multi-region, multi-tenant",
-    href: "/solutions#enterprise",
+    label: "Session Management",
+    description: "Recording, isolation, controls",
+    href: "/solutions/session-management",
+    icon: Eye,
+  },
+  {
+    label: "Workflow & Access Control",
+    description: "Approvals, JIT, policies",
+    href: "/solutions/workflow-access-control",
     icon: Globe,
   },
 ];
@@ -136,8 +132,8 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-[#030711]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,184,255,0.06)]"
-          : "bg-transparent"
+        ? "bg-[#030711]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,184,255,0.06)]"
+        : "bg-transparent"
         }`}
     >
       <div className="container-xl">
@@ -214,6 +210,14 @@ export default function Header() {
                       </div>
                     </Link>
                   ))}
+                </div>
+                <div className="mt-2 pt-2 border-t border-white/[0.05] px-2">
+                  <Link
+                    href="/solutions"
+                    className="flex items-center gap-2 text-xs text-[#00B8FF] font-medium hover:underline"
+                  >
+                    View all solutions <ArrowRight className="w-3 h-3" />
+                  </Link>
                 </div>
               </div>
             </div>
