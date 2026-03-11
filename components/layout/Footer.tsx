@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, Linkedin, Twitter, Youtube, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 const productLinks = [
   { label: "Infrastructure Deployment", href: "/platform/infrastructure-deployment" },
@@ -30,6 +31,16 @@ const companyLinks = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "success">("idle");
+
+  function handleSubscribe(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("success");
+    setEmail("");
+  }
+
   return (
     <footer className="relative bg-[#030711] border-t border-white/[0.06] overflow-hidden">
       {/* Top glow */}
@@ -47,17 +58,26 @@ export default function Footer() {
                 Get PAM insights, security advisories, and best practices from our team.
               </p>
             </div>
-            <form className="flex gap-3 w-full md:w-auto" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Work email address"
-                className="input-dark w-full md:w-72"
-                autoComplete="email"
-              />
-              <button type="submit" className="btn-primary whitespace-nowrap">
-                Subscribe
-              </button>
-            </form>
+            {status === "success" ? (
+              <p className="text-[#00B8FF] font-medium text-sm flex items-center gap-2">
+                <span className="text-lg">✓</span> You&apos;re subscribed! Welcome aboard.
+              </p>
+            ) : (
+              <form className="flex gap-3 w-full md:w-auto" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  placeholder="Work email address"
+                  className="input-dark w-full md:w-72"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <button type="submit" className="btn-primary whitespace-nowrap">
+                  Subscribe
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
