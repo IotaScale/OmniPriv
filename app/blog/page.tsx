@@ -297,12 +297,6 @@ export default function BlogPage() {
               </Link>
             ))}
           </div>
-
-          <div className="flex justify-center mt-12">
-            <button className="btn-secondary">
-              Load More Articles <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
       </section>
 

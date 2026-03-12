@@ -378,14 +378,6 @@ export default function DemoPage() {
                     <Mail className="w-4 h-4 text-[#00B8FF]" />
                     info@omnipriv.com
                   </a>
-                  <a href="https://linkedin.com" className="flex items-center gap-3 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors">
-                    <Linkedin className="w-4 h-4 text-[#00B8FF]" />
-                    linkedin.com/company/OmniPriv
-                  </a>
-                  <a href="https://twitter.com" className="flex items-center gap-3 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors">
-                    <Twitter className="w-4 h-4 text-[#00B8FF]" />
-                    @OmniPriv
-                  </a>
                 </div>
               </div>
             </div>
