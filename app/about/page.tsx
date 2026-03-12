@@ -4,7 +4,7 @@ import {
   Shield, Target, Eye, Users, Award, Globe, ArrowRight,
   CheckCircle2, Mail,
 } from "lucide-react";
-
+// 
 export const metadata: Metadata = {
   title: "About — Our Mission to Secure Privileged Access",
   description:
