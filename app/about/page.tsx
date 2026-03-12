@@ -122,7 +122,7 @@ export default function AboutPage() {
               OmniPriv was founded by security professionals who were tired of watching enterprises suffer breaches caused by uncontrolled privileged access. We set out to build the PAM platform we always wished existed — one that's powerful enough for the world's most demanding environments, yet practical enough to actually deploy.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/features" className="btn-primary">
+              <Link href="/platform" className="btn-primary">
                 Learn More <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/demo" className="btn-secondary">

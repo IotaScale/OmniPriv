@@ -393,7 +393,7 @@ export default function HomePage() {
                 Get Started
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href="/features" className="btn-secondary text-base px-8 py-3.5">
+              <Link href="/platform" className="btn-secondary text-base px-8 py-3.5">
                 Explore Features
               </Link>
             </div>
@@ -475,7 +475,7 @@ export default function HomePage() {
                         {pillar.description}
                       </p>
                       <Link
-                        href={`/features#${pillar.id}`}
+                        href={`/platform#${pillar.id}`}
                         className="inline-flex items-center gap-2 text-[#00B8FF] text-sm font-semibold hover:underline"
                       >
                         Learn more <ArrowRight className="w-4 h-4" />
@@ -547,7 +547,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/features" className="btn-secondary">
+            <Link href="/platform" className="btn-secondary">
               View All Features <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -660,7 +660,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/features" className="btn-primary text-base px-8 py-3.5">
+            <Link href="/platform" className="btn-primary text-base px-8 py-3.5">
               Explore the Platform
               <ArrowRight className="w-5 h-5" />
             </Link>
