@@ -127,9 +127,6 @@ export default function FeaturesPage() {
             <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
               Talk to Sales <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="#comparison" className="btn-secondary text-base px-8 py-3.5">
-              Compare Plans
-            </Link>
           </div>
         </div>
       </section>
