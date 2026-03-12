@@ -79,6 +79,25 @@ const resourceLinks = [
   { label: "Case Studies", href: "/case-studies", icon: Users },
 ];
 
+const datasheetFiles: { url: string; downloadName: string }[] = [
+  { url: "/OmniPriv_PAM_Datasheet.pdf", downloadName: "OmniPriv PAM Datasheet.pdf" },
+  { url: "/OmniPriv_PAM_Product_Specification.pdf", downloadName: "OmniPriv PAM Product Specification.pdf" },
+];
+
+function downloadDatasheets() {
+  datasheetFiles.forEach((file, i) => {
+    setTimeout(() => {
+      const a = document.createElement("a");
+      a.href = file.url;
+      a.download = file.downloadName;
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }, i * 200);
+  });
+}
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -216,11 +235,13 @@ export default function Header() {
                       <span className="text-sm font-medium text-white">{item.label}</span>
                     </Link>
                   ))}
-                  <a
-                    href="/OmniPriv_PAM_datasheet.pdf"
-                    download
-                    onClick={() => setResourceOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#00B8FF]/[0.08] transition-all duration-200"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      downloadDatasheets();
+                      setResourceOpen(false);
+                    }}
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#00B8FF]/[0.08] transition-all duration-200 w-full text-left"
                   >
                     <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center flex-shrink-0">
                       <Download className="w-3.5 h-3.5 text-[#00B8FF]" />
@@ -229,7 +250,7 @@ export default function Header() {
                       <span className="text-sm font-medium text-white block">Data Sheet</span>
                       <span className="text-[11px] text-slate-500">Download PDF</span>
                     </div>
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
@@ -325,16 +346,18 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-                <a
-                  href="/OmniPriv_PAM_datasheet.pdf"
-                  download
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all"
+                <button
+                  type="button"
+                  onClick={() => {
+                    downloadDatasheets();
+                    setMobileOpen(false);
+                  }}
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all w-full"
                 >
                   <Download className="w-4 h-4 text-[#00B8FF]" />
                   <span>Data Sheet</span>
-                  <span className="ml-auto text-[10px] text-slate-600">PDF</span>
-                </a>
+                  <span className="ml-auto text-[10px] text-slate-600">Download PDF</span>
+                </button>
               </div>
             )}
 
