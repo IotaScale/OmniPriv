@@ -790,36 +790,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div
-                key={t.author}
-                className="relative p-8 rounded-2xl border border-white/[0.07] bg-gradient-to-b from-[#0A1628]/60 to-[#060d1f]/60 hover:border-white/[0.14] hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 flex flex-col group overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/20 to-transparent group-hover:via-[#00B8FF]/50 transition-all duration-300" />
-                {/* Decorative quote */}
-                <div className="absolute top-4 right-6 text-7xl font-serif leading-none text-[#00B8FF]/[0.07] select-none pointer-events-none group-hover:text-[#00B8FF]/[0.12] transition-colors">&ldquo;</div>
-                {/* Rating */}
-                <div className="flex items-center gap-0.5 mb-5">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5">
-                  <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-[#00B8FF]/20 flex-shrink-0">
-                    <Image src={t.avatar} alt={t.author} width={40} height={40} className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-sm leading-tight">{t.author}</div>
-                    <div className="text-slate-500 text-xs mt-0.5">{t.title} · {t.company}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          
 
           <div className="text-center mt-10">
             <Link href="/case-studies" className="btn-secondary">
