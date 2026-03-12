@@ -1,13 +1,17 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Shield, Mail, ArrowRight, Lock, Info } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "OmniPriv Partner Portal",
-  description: "Sign in to the OmniPriv Partner Portal. Access credentials are provisioned by the OmniPriv sales team.",
-};
+import { useState } from "react";
+import Link from "next/link";
+import { Shield, Mail, ArrowRight, Lock, Info, AlertCircle } from "lucide-react";
 
 export default function SignInPage() {
+  const [error, setError] = useState<string | null>(null);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError("Invalid username/password.");
+  }
+
   return (
     <section className="relative min-h-screen flex items-center justify-center py-16 overflow-hidden">
       {/* Background */}
@@ -60,7 +64,13 @@ export default function SignInPage() {
             </div>
 
             {/* Form */}
-            <form className="space-y-4" action="#" method="post">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              {error && (
+                <div className="flex items-center gap-2.5 p-3 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  {error}
+                </div>
+              )}
               <div>
                 <label
                   htmlFor="email"

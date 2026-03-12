@@ -22,7 +22,7 @@ const posts: Record<string, {
     date: "February 24, 2026",
     readTime: "18 min read",
     author: "OmniPriv Team",
-    authorTitle: "Chief Security Architect, OmniPriv",
+    authorTitle: "",
     tags: ["Zero Trust", "PAM Architecture", "Enterprise Security", "Compliance"],
     excerpt: "Privileged access management has evolved dramatically. This comprehensive guide covers everything your organisation needs to know about deploying enterprise PAM in 2026.",
     content: `
@@ -89,7 +89,7 @@ OmniPriv is designed specifically for hybrid enterprise environments where all f
     date: "February 18, 2026",
     readTime: "12 min read",
     author: "OmniPriv Team",
-    authorTitle: "Threat Intelligence Lead",
+    authorTitle: "",
     tags: ["Threat Analysis", "Incident Response"],
     excerpt: "We analysed 47 major enterprise security breaches from 2025. In 89% of cases, compromised privileged credentials played a central role.",
     content: `
@@ -181,7 +181,7 @@ The security operations team also reported a significant improvement in incident
     date: "January 30, 2026",
     readTime: "10 min read",
     author: "OmniPriv Team",
-    authorTitle: "Chief Security Architect",
+    authorTitle: "",
     tags: ["JIT Access", "Zero Trust", "Architecture"],
     excerpt: "Standing privileges are the enemy of security. Just-In-Time access provisioning eliminates standing privileges by granting access only when needed, for exactly as long as needed.",
     content: `
@@ -223,7 +223,7 @@ JIT also reduces the blast radius of credential compromise significantly. An att
     date: "January 22, 2026",
     readTime: "14 min read",
     author: "OmniPriv Team",
-    authorTitle: "Compliance Strategy Lead",
+    authorTitle: "",
     tags: ["HIPAA", "Healthcare", "Compliance"],
     excerpt: "Healthcare organisations face unique PAM challenges: HIPAA requirements, clinical workflow constraints, legacy systems, and 24/7 availability needs. This guide addresses all of them.",
     content: `
@@ -265,7 +265,7 @@ Ensure your HIPAA-covered workforce training addresses the new access procedures
     date: "January 15, 2026",
     readTime: "9 min read",
     author: "OmniPriv Team",
-    authorTitle: "DevSecOps Engineer",
+    authorTitle: "",
     tags: ["CI/CD", "DevOps", "Secrets Management"],
     excerpt: "Secrets in code, hardcoded credentials in pipelines, and production access with no audit trail — DevOps environments often have severe PAM gaps. Here's how to close them.",
     content: `
@@ -355,7 +355,7 @@ Detailed upgrade instructions are available in the documentation. Customers requ
     date: "December 20, 2025",
     readTime: "11 min read",
     author: "OmniPriv Team",
-    authorTitle: "Threat Intelligence Lead",
+    authorTitle: "",
     tags: ["SSH Keys", "Credential Management", "Security"],
     excerpt: "SSH keys grant persistent, often root-level access to your entire infrastructure. Yet most enterprises have no idea how many SSH keys exist, who owns them, or when they were last rotated.",
     content: `
@@ -401,7 +401,7 @@ OmniPriv's SSH key management module addresses all five components, integrating 
     date: "December 12, 2025",
     readTime: "7 min read",
     author: "OmniPriv Team",
-    authorTitle: "Enterprise Strategy",
+    authorTitle: "",
     tags: ["Strategy", "Risk Management", "CISO"],
     excerpt: "Security leaders often struggle to translate technical PAM requirements into business language that resonates with the C-suite and board. Here is a battle-tested framework for making the PAM business case.",
     content: `
@@ -447,7 +447,7 @@ Keep technical detail in appendices for follow-up questions. The main narrative 
     date: "December 5, 2025",
     readTime: "9 min read",
     author: "OmniPriv Team",
-    authorTitle: "Compliance Strategy Lead",
+    authorTitle: "",
     tags: ["SOC 2", "Audit", "Compliance"],
     excerpt: "SOC 2 auditors are increasingly focused on privileged access controls as a trust service criterion. Learn exactly what evidence they want and how OmniPriv makes audit preparation effortless.",
     content: `
@@ -497,7 +497,7 @@ Customers have reported that their SOC 2 audit preparation time for the access m
     date: "February 18, 2026",
     readTime: "12 min read",
     author: "OmniPriv Team",
-    authorTitle: "Chief Security Architect, OmniPriv",
+    authorTitle: "",
     tags: ["Zero Trust", "PAM Architecture", "Implementation"],
     excerpt: "Zero-trust architecture requires that every privileged access request is verified, regardless of network location. Learn how to implement a comprehensive zero-trust PAM framework across your enterprise.",
     content: `
@@ -553,7 +553,7 @@ Integrate your PAM platform with your SIEM to ensure that privileged session eve
     date: "January 30, 2026",
     readTime: "8 min read",
     author: "OmniPriv Team",
-    authorTitle: "Threat Intelligence Lead",
+    authorTitle: "",
     tags: ["Credential Management", "Risk Reduction", "Account Hygiene"],
     excerpt: "Dormant privileged accounts represent one of the most exploited attack vectors in modern enterprise breaches. Here's how OmniPriv's automated discovery and credential rotation close the gap.",
     content: `
