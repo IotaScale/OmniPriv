@@ -5,7 +5,6 @@ import {
   AlertTriangle, CheckCircle2, ArrowRight, ShieldCheck, Globe,
   Key, Layers, Cpu, FileSearch, BarChart3, RefreshCw, UserCheck,
 } from "lucide-react";
-
 export const metadata: Metadata = {
   title: "Security: Zero-Trust Architecture & Compliance",
   description:
@@ -178,8 +177,8 @@ export default function SecurityPage() {
     <>
       {/* Hero */}
       <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711] pointer-events-none" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Security & Trust</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
@@ -189,12 +188,9 @@ export default function SecurityPage() {
             OmniPriv is built with security at its core, from zero-trust architecture and end-to-end encryption to independent penetration testing and comprehensive compliance certifications.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
+            <Link href="/demo" className="btn-primary text-base px-8 py-3.5 inline-flex items-center gap-2">
               Request a Security Briefing <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="mailto:security@OmniPriv.com" className="btn-secondary text-base px-8 py-3.5">
-              Report a Vulnerability
-            </a>
           </div>
         </div>
       </section>
@@ -323,12 +319,10 @@ export default function SecurityPage() {
           <h2 className="text-3xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Found a Security Vulnerability?
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto mb-8">
-            We take all security reports seriously. Contact our security team directly and we'll respond within 24 hours. Responsible disclosures are rewarded through our bug bounty program.
+          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+            We take all security reports seriously. Contact our security team at{" "}
+            <span className="text-white font-medium">security@omnipriv.com</span> and we&apos;ll respond within 24 hours. Responsible disclosures are rewarded through our bug bounty program.
           </p>
-          <a href="mailto:security@OmniPriv.com" className="btn-primary text-base px-8 py-3.5">
-            Report to security@OmniPriv.com
-          </a>
         </div>
       </section>
     </>
