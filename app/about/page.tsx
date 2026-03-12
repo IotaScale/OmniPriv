@@ -196,7 +196,7 @@ export default function AboutPage() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Our Values</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              What We Stand For
+              What We Stands For
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
