@@ -217,7 +217,7 @@ export default function Footer() {
         <div className="container-xl py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-slate-500">
-              © {new Date().getFullYear()} OmniPriv Inc. All rights reserved.
+              © {new Date().getFullYear()} OmniPriv Inc. 
             </p>
             <div className="flex items-center gap-5">
               <Link href="/privacy-policy" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
