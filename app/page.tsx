@@ -53,7 +53,7 @@ const pillars = [
     title: "Authentication",
     subtitle: "Verify every identity, every time",
     description:
-      "Prevent identity spoofing and credential reuse with enterprise-grade authentication controls. OmniPriv integrates with every major identity provider and enforces MFA at every access point.",
+      "Prevent identity spoofing and credential reuse with an enterprise-grade privileged identity management solution. OmniPriv integrates with every major identity provider and enforces MFA at every access point.",
     features: [
       "Built-in CAPTCHA & brute-force protection",
       "LDAP / Active Directory integration & sync",
@@ -107,7 +107,7 @@ const pillars = [
     title: "Audit & Compliance",
     subtitle: "Full session visibility & traceability",
     description:
-      "Maintain an unbreakable chain of evidence for every privileged action. OmniPriv records, indexes, and replays every session, giving compliance teams everything they need for audits.",
+      "Maintain an unbreakable chain of evidence for every privileged action. OmniPriv's advanced PAM solutions record, index, and replay every session, giving compliance teams everything they need for audits.",
     features: [
       "HD session recording & indexed playback",
       "Real-time session monitoring & termination",
@@ -383,8 +383,7 @@ export default function HomePage() {
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
-              OmniPriv secures your most critical systems with comprehensive privileged access controls,
-              automated credential management, full session auditing, and real-time threat detection.
+              Omnipriv secures your most critical systems with industry-leading PAM solutions. As a comprehensive privileged identity management solution, we provide automated credential management, full session auditing, and real-time threat detection.
             </p>
 
             {/* CTAs */}
@@ -431,12 +430,12 @@ export default function HomePage() {
               style={{ fontFamily: "var(--font-syne)" }}
             >
               The Four Pillars of{" "}
-              <span className="text-gradient">Privileged Access Security</span>
+              <span className="text-gradient">Privileged Access Management</span>
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed">
               OmniPriv is built on the 4A framework — Authentication, Authorization, Account
               Management, and Audit — providing end-to-end coverage of every privileged access scenario
-              in your enterprise.
+              in your enterprise. Built around the best practices for privileged access management, it helps organizations enforce least-privilege access, secure critical accounts, and monitor privileged activity in real time.
             </p>
           </div>
 
@@ -511,12 +510,11 @@ export default function HomePage() {
               className="text-4xl md:text-5xl font-extrabold text-white mb-5"
               style={{ fontFamily: "var(--font-syne)" }}
             >
-              Everything You Need to{" "}
-              <span className="text-gradient">Secure Privileged Access</span>
+              The Ultimate{" "}
+              <span className="text-gradient">Privileged Identity Management Solution</span>
             </h2>
             <p className="text-slate-400 text-lg">
-              OmniPriv packs enterprise-grade security into a single, unified platform — no
-              bolt-ons, no complexity.
+              Simplify your security stack with our comprehensive PAM platform. OmniPriv delivers enterprise-grade protection in one unified interface, making it a powerful Privileged Identity Management Solution for modern enterprises. It eliminates the need for complex, bolt-on tools while helping organizations secure privileged access with greater control and efficiency.
             </p>
           </div>
 
@@ -614,8 +612,7 @@ export default function HomePage() {
               <span className="text-gradient">Three Steps</span>
             </h2>
             <p className="text-slate-400 text-lg">
-              OmniPriv is designed for fast deployment without sacrificing enterprise-grade controls.
-              Most organizations are fully operational within 48 hours.
+              OmniPriv is designed for fast deployment without sacrificing enterprise-grade controls, built around privileged access management best practices that help organizations secure critical systems with confidence. Most organizations are fully operational within 48 hours, making it easier to strengthen privileged access security without added complexity.
             </p>
           </div>
 
@@ -895,8 +892,7 @@ export default function HomePage() {
 
               <p className="text-slate-400 text-xl mb-10 max-w-2xl mx-auto">
                 See OmniPriv in a live, personalized demo tailored to your environment.
-                Our PAM experts will walk you through exactly how OmniPriv solves your
-                specific security challenges.
+                Our PAM experts will walk you through how our PAM solutions solve your specific security challenges and strengthen privileged access security across your organization.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
