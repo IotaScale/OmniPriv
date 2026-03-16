@@ -3,9 +3,9 @@ import Link from "next/link";
 import { ArrowRight, TrendingDown, Clock, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Case Studies: Real Results from Real Enterprises",
+  title: "Omnipriv Case Studies | Proven PAM Solutions in Action",
   description:
-    "Explore how OmniPriv helps Fortune 500 companies, financial institutions, healthcare systems, and government agencies eliminate privileged access risk and achieve compliance.",
+    "Discover real-world success stories. Learn how Omnipriv delivers scalable PAM solutions to solve complex cybersecurity challenges for leading businesses.",
 };
 
 const industries = ["All Industries", "Financial Services", "Healthcare", "Manufacturing", "Technology", "Government", "Energy"];

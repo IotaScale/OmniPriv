@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -78,6 +79,9 @@ export const metadata: Metadata = {
       "Enterprise Privileged Access Management. Zero-trust. Always-on audit. Request a demo.",
     images: ["/og-image.png"],
   },
+  verification: {
+    google: "c24c76f27b101fa8",
+  },
   robots: {
     index: true,
     follow: true,
@@ -124,6 +128,18 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-dark text-slate-200 antialiased" suppressHydrationWarning>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-W5FJSLJRGE"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-W5FJSLJRGE');
+          `}
+        </Script>
         <Header />
         <main className="pt-[72px]">{children}</main>
         <Footer />

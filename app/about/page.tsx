@@ -6,9 +6,9 @@ import {
 } from "lucide-react";
 // 
 export const metadata: Metadata = {
-  title: "About — Our Mission to Secure Privileged Access",
+  title: "About Omnipriv | Advanced PAM Solutions",
   description:
-    "OmniPriv was founded on the belief that every enterprise deserves world-class privileged access management. Learn about our mission, values, leadership, and commitment to enterprise security.",
+    "Learn about Omnipriv's mission to secure digital assets. As experts in enterprise PAM solutions, we protect your business from modern cyber threats.",
 };
 
 const values = [

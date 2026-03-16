@@ -32,9 +32,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "OmniPriv — Enterprise Privileged Access Management (PAM)",
+  title: "Omnipriv|Top Privileged Access Management & PAM Solutions",
   description:
-    "OmniPriv is the enterprise PAM platform trusted by 100+ organizations. Secure every privileged session with bastion host, credential vaulting, MFA, and real-time audit trails.",
+    "Protect your enterprise with Omnipriv advanced PAM solutions. Discover seamless privileged access management to secure critical data and reduce risk.",
 };
 
 
