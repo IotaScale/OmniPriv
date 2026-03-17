@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 360" width="820" height="360">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="leftPanel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00B8FF;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#0060FF;stop-opacity:0.06"/>
+    </linearGradient>
+    <linearGradient id="rightPanel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#818cf8;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0.14"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="360" fill="url(#bg2)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">PAM vs. Privileged Identity Management (PIM)</text>
+  <text x="410" y="64" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Closely related but distinct — PIM governs identities, PAM secures how that access is actually used</text>
+
+  <!-- Divider line in center -->
+  <line x1="410" y1="80" x2="410" y2="346" stroke="#ffffff" stroke-width="1" stroke-opacity="0.07"/>
+
+  <!-- "VS" badge in center -->
+  <circle cx="410" cy="192" r="22" fill="#0A1628" stroke="#334155" stroke-width="1.5"/>
+  <text x="410" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#64748b">VS</text>
+
+  <!-- ── LEFT PANEL: PAM ── -->
+  <rect x="22" y="80" width="374" height="268" rx="12" fill="url(#leftPanel)" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.45"/>
+  <!-- Top accent -->
+  <rect x="22" y="80" width="374" height="4" rx="2" fill="#00B8FF" fill-opacity="0.6"/>
+
+  <text x="209" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#00B8FF">Privileged Access Management</text>
+  <text x="209" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Controls HOW privileged access is used</text>
+
+  <line x1="42" y1="140" x2="376" y2="140" stroke="#00B8FF" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- PAM items -->
+  <circle cx="58" cy="165" r="6" fill="#00B8FF" fill-opacity="0.2" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="58" cy="165" r="2.5" fill="#00B8FF"/>
+  <text x="74" y="169" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Vaults and rotates privileged credentials</text>
+
+  <circle cx="58" cy="193" r="6" fill="#00B8FF" fill-opacity="0.2" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="58" cy="193" r="2.5" fill="#00B8FF"/>
+  <text x="74" y="197" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Records and monitors active sessions</text>
+
+  <circle cx="58" cy="221" r="6" fill="#00B8FF" fill-opacity="0.2" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="58" cy="221" r="2.5" fill="#00B8FF"/>
+  <text x="74" y="225" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Enforces MFA at login time</text>
+
+  <circle cx="58" cy="249" r="6" fill="#00B8FF" fill-opacity="0.2" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="58" cy="249" r="2.5" fill="#00B8FF"/>
+  <text x="74" y="253" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Issues and revokes Just-In-Time access</text>
+
+  <circle cx="58" cy="277" r="6" fill="#00B8FF" fill-opacity="0.2" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="58" cy="277" r="2.5" fill="#00B8FF"/>
+  <text x="74" y="281" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Generates tamper-proof audit logs</text>
+
+  <circle cx="58" cy="305" r="6" fill="#00B8FF" fill-opacity="0.2" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="58" cy="305" r="2.5" fill="#00B8FF"/>
+  <text x="74" y="309" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Proxies sessions through secure gateway</text>
+
+  <rect x="42" y="326" width="220" height="13" rx="6" fill="#00B8FF" fill-opacity="0.1"/>
+  <text x="152" y="336" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#00B8FF">Focus: Credential &amp; Session Security</text>
+
+  <!-- ── RIGHT PANEL: PIM ── -->
+  <rect x="424" y="80" width="374" height="268" rx="12" fill="url(#rightPanel)" stroke="#818cf8" stroke-width="1.5" stroke-opacity="0.45"/>
+  <!-- Top accent -->
+  <rect x="424" y="80" width="374" height="4" rx="2" fill="#818cf8" fill-opacity="0.6"/>
+
+  <text x="611" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#818cf8">Privileged Identity Management</text>
+  <text x="611" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Governs WHO gets privileged access</text>
+
+  <line x1="444" y1="140" x2="778" y2="140" stroke="#818cf8" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- PIM items -->
+  <circle cx="460" cy="165" r="6" fill="#818cf8" fill-opacity="0.2" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="460" cy="165" r="2.5" fill="#818cf8"/>
+  <text x="476" y="169" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Defines roles and entitlements for users</text>
+
+  <circle cx="460" cy="193" r="6" fill="#818cf8" fill-opacity="0.2" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="460" cy="193" r="2.5" fill="#818cf8"/>
+  <text x="476" y="197" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Manages lifecycle of privileged identities</text>
+
+  <circle cx="460" cy="221" r="6" fill="#818cf8" fill-opacity="0.2" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="460" cy="221" r="2.5" fill="#818cf8"/>
+  <text x="476" y="225" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Enforces access request and approval flows</text>
+
+  <circle cx="460" cy="249" r="6" fill="#818cf8" fill-opacity="0.2" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="460" cy="249" r="2.5" fill="#818cf8"/>
+  <text x="476" y="253" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Governs role assignments and reviews</text>
+
+  <circle cx="460" cy="277" r="6" fill="#818cf8" fill-opacity="0.2" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="460" cy="277" r="2.5" fill="#818cf8"/>
+  <text x="476" y="281" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Integrates with IAM and directory services</text>
+
+  <circle cx="460" cy="305" r="6" fill="#818cf8" fill-opacity="0.2" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="460" cy="305" r="2.5" fill="#818cf8"/>
+  <text x="476" y="309" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1">Maps entitlements to business roles</text>
+
+  <rect x="444" y="326" width="210" height="13" rx="6" fill="#818cf8" fill-opacity="0.1"/>
+  <text x="549" y="336" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#818cf8">Focus: Identity Governance</text>
+</svg>

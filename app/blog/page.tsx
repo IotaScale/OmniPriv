@@ -27,6 +27,17 @@ const featuredPost = {
 
 const posts = [
   {
+    category: "Best Practices",
+    title: "What Is Privileged Access Management? A Complete Guide",
+    excerpt: "Learn what privileged access management is, how PAM solutions work, and the best practices to secure critical accounts, sessions, and identities — including PAM vs PIM, PAM as a service, and Zero Trust.",
+    date: "March 16, 2026",
+    readTime: "12 min read",
+    author: "OmniPriv Team",
+    authorTitle: "",
+    href: "/blog/what-is-privileged-access-management",
+    tags: ["PAM Guide", "Best Practices", "Zero Trust", "PIM"],
+  },
+  {
     category: "Security Research",
     title: "The Anatomy of a Privileged Account Compromise: 2025's Biggest Breaches Analyzed",
     excerpt: "We analyzed 47 major enterprise security breaches from 2025. In 89% of cases, compromised privileged credentials played a central role. Here's what happened, and how PAM controls would have prevented each incident.",

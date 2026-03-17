@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 280" width="820" height="280">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <marker id="arrowZT" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#00B8FF" opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="280" fill="url(#bg4)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PAM and Zero Trust: Every Request Verified</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">No implicit trust — every access request is authenticated, authorized against policy, and continuously monitored</text>
+
+  <!-- STEP 1: Request -->
+  <rect x="22" y="82" width="166" height="152" rx="12" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <rect x="22" y="82" width="166" height="5" rx="2.5" fill="#00B8FF" fill-opacity="0.45"/>
+  <circle cx="105" cy="122" r="22" fill="#00B8FF" fill-opacity="0.1" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.35"/>
+  <text x="105" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#00B8FF">1</text>
+  <text x="105" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Request</text>
+  <text x="105" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">User submits access</text>
+  <text x="105" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">request with task</text>
+  <text x="105" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">justification</text>
+  <rect x="44" y="220" width="122" height="7" rx="3.5" fill="#00B8FF" fill-opacity="0.1"/>
+  <text x="105" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#00B8FF">Always required</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="188" y1="158" x2="218" y2="158" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.45" stroke-dasharray="4,3" marker-end="url(#arrowZT)"/>
+
+  <!-- STEP 2: Verify -->
+  <rect x="218" y="82" width="166" height="152" rx="12" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <rect x="218" y="82" width="166" height="5" rx="2.5" fill="#818cf8" fill-opacity="0.45"/>
+  <circle cx="301" cy="122" r="22" fill="#818cf8" fill-opacity="0.1" stroke="#818cf8" stroke-width="1.5" stroke-opacity="0.35"/>
+  <text x="301" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#818cf8">2</text>
+  <text x="301" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Verify</text>
+  <text x="301" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">MFA + device health</text>
+  <text x="301" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">check confirms the</text>
+  <text x="301" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">identity is legitimate</text>
+  <rect x="240" y="220" width="122" height="7" rx="3.5" fill="#818cf8" fill-opacity="0.1"/>
+  <text x="301" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#818cf8">FIDO2 / hardware token</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="384" y1="158" x2="414" y2="158" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.45" stroke-dasharray="4,3" marker-end="url(#arrowZT)"/>
+
+  <!-- STEP 3: Authorize -->
+  <rect x="414" y="82" width="166" height="152" rx="12" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <rect x="414" y="82" width="166" height="5" rx="2.5" fill="#34d399" fill-opacity="0.45"/>
+  <circle cx="497" cy="122" r="22" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-width="1.5" stroke-opacity="0.35"/>
+  <text x="497" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#34d399">3</text>
+  <text x="497" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Authorize</text>
+  <text x="497" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Policy engine grants</text>
+  <text x="497" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">scoped, time-bounded</text>
+  <text x="497" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">access to target system</text>
+  <rect x="436" y="220" width="122" height="7" rx="3.5" fill="#34d399" fill-opacity="0.1"/>
+  <text x="497" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#34d399">Least privilege enforced</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="580" y1="158" x2="610" y2="158" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.45" stroke-dasharray="4,3" marker-end="url(#arrowZT)"/>
+
+  <!-- STEP 4: Monitor -->
+  <rect x="610" y="82" width="188" height="152" rx="12" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <rect x="610" y="82" width="188" height="5" rx="2.5" fill="#f59e0b" fill-opacity="0.45"/>
+  <circle cx="704" cy="122" r="22" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.35"/>
+  <text x="704" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#f59e0b">4</text>
+  <text x="704" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Monitor</text>
+  <text x="704" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Session is recorded</text>
+  <text x="704" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">and anomaly detection</text>
+  <text x="704" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">runs continuously</text>
+  <rect x="630" y="220" width="148" height="7" rx="3.5" fill="#f59e0b" fill-opacity="0.1"/>
+  <text x="704" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#f59e0b">Access auto-revoked on expiry</text>
+
+  <!-- Bottom principle banner -->
+  <rect x="22" y="246" width="776" height="22" rx="6" fill="#00B8FF" fill-opacity="0.06" stroke="#00B8FF" stroke-width="0.5" stroke-opacity="0.15"/>
+  <text x="410" y="261" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Zero Trust Principle: Never trust, always verify — no account is trusted by default regardless of network location</text>
+</svg>
