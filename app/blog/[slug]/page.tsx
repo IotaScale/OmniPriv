@@ -8,6 +8,8 @@ import { ArrowLeft, Clock, Calendar, Tag, ArrowRight } from "lucide-react";
 
 const posts: Record<string, {
   title: string;
+  metaTitle?: string;
+  metaDescription?: string;
   category: string;
   date: string;
   readTime: string;
@@ -19,6 +21,8 @@ const posts: Record<string, {
 }> = {
   "what-is-privileged-access-management": {
     title: "What Is Privileged Access Management? A Complete Guide",
+    metaTitle: "What Is Privileged Access Management | OmniPriv Guide",
+    metaDescription: "Learn what privileged access management is, how PAM solutions work, and the best practices to secure critical accounts, sessions, and identities.",
     category: "Best Practices",
     date: "March 16, 2026",
     readTime: "12 min read",
@@ -778,8 +782,10 @@ export async function generateMetadata(
   const post = posts[params.slug];
   if (!post) return { title: "Post Not Found" };
   return {
-    title: `${post.title} — OmniPriv Blog`,
-    description: post.excerpt,
+    title: post.metaTitle
+      ? { absolute: post.metaTitle }
+      : { absolute: `${post.title} — OmniPriv Blog` },
+    description: post.metaDescription ?? post.excerpt,
   };
 }
 

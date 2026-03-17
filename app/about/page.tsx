@@ -6,7 +6,9 @@ import {
 } from "lucide-react";
 // 
 export const metadata: Metadata = {
-  title: "About Omnipriv | Advanced PAM Solutions",
+  title: {
+    absolute: "About Omnipriv | Advanced PAM Solutions",
+  },
   description:
     "Learn about Omnipriv's mission to secure digital assets. As experts in enterprise PAM solutions, we protect your business from modern cyber threats.",
 };
@@ -116,10 +118,13 @@ export default function AboutPage() {
           <div className="max-w-3xl">
             <div className="badge-cyan mb-6">About OmniPriv</div>
             <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-              We Exist to <span className="text-gradient">Eliminate Privilege-Based Risk</span>
+              We Exist to <span className="text-gradient">Eliminate Privilege-Based Risk</span> – PAM Solutions
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              OmniPriv was founded by security professionals who were tired of watching enterprises suffer breaches caused by uncontrolled privileged access. We set out to build the PAM platform we always wished existed — one that's powerful enough for the world's most demanding environments, yet practical enough to actually deploy.
+              OmniPriv was founded by security professionals focused on delivering advanced PAM solutions to prevent breaches caused by uncontrolled privileged access. Our privileged access management solution was built to be powerful enough for the world's most demanding environments, yet practical enough to actually deploy.
+            </p>
+            <p className="text-xl text-slate-400 leading-relaxed mb-8">
+              We set out to build the PAM platform we always wished existed — one that helps organizations take full control of sensitive accounts, reduce security risks, and ensure compliance with modern cybersecurity standards. OmniPriv combines advanced security capabilities with ease of use, helping businesses manage and monitor privileged access efficiently.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/platform" className="btn-primary">
@@ -160,10 +165,10 @@ export default function AboutPage() {
                 The security industry has a dirty secret: the best privileged access management tools were historically so complex and expensive that only the largest enterprises could afford them. Meanwhile, thousands of mid-market companies were left exposed with inadequate controls.
               </p>
               <p className="text-slate-400 leading-relaxed mb-5">
-                OmniPriv changes that. We've built enterprise-grade PAM that's accessible to organizations of all sizes — without sacrificing the depth and rigor that Fortune 500 companies demand.
+                OmniPriv changes that. We've built modern privileged access management (PAM) that is accessible to organizations of all sizes — without sacrificing the depth and rigor that Fortune 500 companies demand.
               </p>
               <p className="text-slate-400 leading-relaxed">
-                Today, OmniPriv secures the privileged access for over 3,000 organizations across six continents — from 50-person technology startups to 200,000-employee global enterprises and government agencies.
+                Today, OmniPriv secures privileged access for over 3,000 organizations across six continents — from 50-person technology startups to 200,000-employee global enterprises and government agencies.
               </p>
             </div>
             <div className="space-y-4">
@@ -217,7 +222,7 @@ export default function AboutPage() {
               Led by Security Veterans
             </h2>
             <p className="text-slate-400 text-lg">
-              Our leadership team brings together decades of experience from the world's top security organizations, intelligence agencies, and enterprise software companies.
+              Our leadership team brings together decades of experience from the world's top security organizations, intelligence agencies, and enterprise software companies. Together, they are dedicated to building PAM solutions that redefine how organizations deploy modern privileged access management to protect their most critical assets.
             </p>
           </div>
 

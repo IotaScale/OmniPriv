@@ -155,9 +155,10 @@ export default function BlogPage() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const filteredPosts = activeCategory === "All"
+  const filteredPosts = (activeCategory === "All"
     ? posts
-    : posts.filter((p) => p.category === activeCategory);
+    : posts.filter((p) => p.category === activeCategory)
+  ).slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   async function handleNewsletter(e: React.FormEvent) {
     e.preventDefault();
@@ -188,7 +189,7 @@ export default function BlogPage() {
             PAM Security <span className="text-gradient">Insights</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-xl mx-auto">
-            Best practices, security research, compliance guidance, and product updates from the OmniPriv team.
+            Best practices, security research, compliance guidance, and product updates from the OmniPriv team. Discover how to leverage our Privileged Access Management Solution to secure your enterprise.
           </p>
         </div>
       </section>

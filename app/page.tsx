@@ -32,7 +32,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Omnipriv|Top Privileged Access Management & PAM Solutions",
+  title: {
+    absolute: "Omnipriv|Top Privileged Access Management & PAM Solutions",
+  },
   description:
     "Protect your enterprise with Omnipriv advanced PAM solutions. Discover seamless privileged access management to secure critical data and reduce risk.",
 };
