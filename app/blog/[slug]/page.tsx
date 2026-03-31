@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -861,6 +862,25 @@ The database proxy capability was particularly valuable. Oracle database access 
   },
 };
 
+/* ─── INLINE MARKDOWN RENDERER ─────────────────────── */
+
+function renderInline(text: string): React.ReactNode {
+  // Split on [text](url) patterns
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) => {
+    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (match) {
+      return (
+        <Link key={i} href={match[2]} className="text-[#00B8FF] hover:underline">
+          {match[1]}
+        </Link>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
+
 /* ─── STATIC PARAMS ─────────────────────────────────── */
 
 export function generateStaticParams() {
@@ -1003,7 +1023,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                             {listLines.map((item, k) => (
                               <li key={k} className="flex items-start gap-3 text-slate-400 leading-relaxed">
                                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#00B8FF] flex-shrink-0" />
-                                {item.trim().slice(2)}
+                                {renderInline(item.trim().slice(2))}
                               </li>
                             ))}
                           </ul>
@@ -1015,13 +1035,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         return (
                           <p key={j} className="text-slate-300 leading-relaxed">
                             <strong className="text-white font-semibold">{boldMatch[1]}</strong>
-                            {boldMatch[2] ? " " + boldMatch[2] : ""}
+                            {boldMatch[2] ? <> {renderInline(boldMatch[2])}</> : ""}
                           </p>
                         );
                       }
                       return (
                         <p key={j} className="text-slate-400 leading-relaxed">
-                          {para}
+                          {renderInline(para)}
                         </p>
                       );
                     })}
