@@ -28,6 +28,17 @@ const featuredPost = {
 const posts = [
   {
     category: "Best Practices",
+    title: "Top 5 Privileged Access Management Best Practices for 2026",
+    excerpt: "Discover the top 5 privileged access management best practices every enterprise must adopt in 2026 — from least privilege enforcement and credential rotation to session monitoring, Zero Trust, and regular access reviews.",
+    date: "March 31, 2026",
+    readTime: "10 min read",
+    author: "OmniPriv Team",
+    authorTitle: "Chief Security Architect, OmniPriv",
+    href: "/blog/privileged-access-management-best-practices-2026",
+    tags: ["PAM Best Practices", "Zero Trust", "Least Privilege"],
+  },
+  {
+    category: "Best Practices",
     title: "What Is Privileged Access Management? A Complete Guide",
     excerpt: "Learn what privileged access management is, how PAM solutions work, and the best practices to secure critical accounts, sessions, and identities — including PAM vs PIM, PAM as a service, and Zero Trust.",
     date: "March 16, 2026",

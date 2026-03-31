@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-lp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="glow-lp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B8FF;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#00B8FF;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-lp)" rx="14"/>
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="140" x2="820" y2="140" stroke="#1e3a5f" stroke-width="0.5" stroke-opacity="0.4"/>
+  <line x1="0" y1="280" x2="820" y2="280" stroke="#1e3a5f" stroke-width="0.5" stroke-opacity="0.4"/>
+  <line x1="273" y1="0" x2="273" y2="420" stroke="#1e3a5f" stroke-width="0.5" stroke-opacity="0.4"/>
+  <line x1="547" y1="0" x2="547" y2="420" stroke="#1e3a5f" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Principle of Least Privilege (PoLP)</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Each role receives only the minimum permissions required — nothing more</text>
+
+  <!-- Central "Access Policy" node -->
+  <rect x="335" y="170" width="150" height="60" rx="10" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.6"/>
+  <rect x="335" y="170" width="150" height="4" rx="2" fill="#00B8FF" fill-opacity="0.7"/>
+  <text x="410" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#00B8FF">Access Policy</text>
+  <text x="410" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Least Privilege Engine</text>
+
+  <!-- Role 1: Standard User (left) -->
+  <rect x="40" y="100" width="160" height="80" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <circle cx="70" cy="130" r="14" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="70" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#818cf8">👤</text>
+  <text x="96" y="126" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Standard User</text>
+  <text x="50" y="158" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Read-only access</text>
+  <text x="50" y="171" font-family="Arial, sans-serif" font-size="10" fill="#64748b">to assigned apps only</text>
+
+  <!-- Role 2: Dev Team (centre-left) -->
+  <rect x="40" y="220" width="160" height="80" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <circle cx="70" cy="250" r="14" fill="#0ea5e9" fill-opacity="0.15" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="70" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#38bdf8">⚙</text>
+  <text x="96" y="246" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Dev Team</text>
+  <text x="50" y="278" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Dev + staging access</text>
+  <text x="50" y="291" font-family="Arial, sans-serif" font-size="10" fill="#64748b">no production write</text>
+
+  <!-- Role 3: Sysadmin (right) -->
+  <rect x="620" y="100" width="160" height="80" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <circle cx="650" cy="130" r="14" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="650" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fbbf24">🛡</text>
+  <text x="676" y="126" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">SysAdmin</text>
+  <text x="630" y="158" font-family="Arial, sans-serif" font-size="10" fill="#64748b">JIT admin access</text>
+  <text x="630" y="171" font-family="Arial, sans-serif" font-size="10" fill="#64748b">time-bounded only</text>
+
+  <!-- Role 4: Vendor (centre-right) -->
+  <rect x="620" y="220" width="160" height="80" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <circle cx="650" cy="250" r="14" fill="#ef4444" fill-opacity="0.15" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="650" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#f87171">🔒</text>
+  <text x="676" y="246" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">3rd-Party Vendor</text>
+  <text x="630" y="278" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Scoped temp access</text>
+  <text x="630" y="291" font-family="Arial, sans-serif" font-size="10" fill="#64748b">session-recorded</text>
+
+  <!-- Connector lines to policy engine -->
+  <line x1="200" y1="140" x2="335" y2="193" stroke="#6366f1" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+  <line x1="200" y1="260" x2="335" y2="207" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+  <line x1="620" y1="140" x2="485" y2="193" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+  <line x1="620" y1="260" x2="485" y2="207" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+
+  <!-- Approved / Denied badges -->
+  <rect x="240" y="156" width="68" height="22" rx="11" fill="#22c55e" fill-opacity="0.15" stroke="#22c55e" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="274" y="171" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#4ade80">✓ Allowed</text>
+
+  <rect x="240" y="232" width="68" height="22" rx="11" fill="#22c55e" fill-opacity="0.15" stroke="#22c55e" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="274" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#4ade80">✓ Allowed</text>
+
+  <rect x="512" y="156" width="68" height="22" rx="11" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="546" y="171" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#fbbf24">⏱ JIT Only</text>
+
+  <rect x="512" y="232" width="68" height="22" rx="11" fill="#ef4444" fill-opacity="0.15" stroke="#ef4444" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="546" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#f87171">⚡ Scoped</text>
+
+  <!-- Bottom insight strip -->
+  <rect x="22" y="330" width="776" height="64" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1"/>
+  <rect x="22" y="330" width="776" height="3" rx="2" fill="#00B8FF" fill-opacity="0.4"/>
+  <text x="410" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Key Result: 70% reduction in attack surface by removing standing admin rights</text>
+  <text x="410" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Revoke access immediately after the task is complete — zero standing privilege is the goal</text>
+</svg>

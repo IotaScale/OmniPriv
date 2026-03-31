@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-ar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-ar)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Regular Access Reviews: Stop Privilege Creep</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Quarterly reviews ensure permissions align with current business roles — no accumulation of excess rights</text>
+
+  <!-- Cycle ring -->
+  <circle cx="410" cy="210" r="110" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+
+  <!-- Q1 node -->
+  <circle cx="410" cy="100" r="28" fill="#0D1F35" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <text x="410" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#00B8FF">Q1</text>
+  <text x="410" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Review</text>
+  <!-- Q1 arc segment -->
+  <path d="M410,100 A110,110 0 0,1 520,210" fill="none" stroke="#00B8FF" stroke-width="3" stroke-opacity="0.5"/>
+
+  <!-- Q2 node -->
+  <circle cx="520" cy="210" r="28" fill="#0D1F35" stroke="#22c55e" stroke-width="2" stroke-opacity="0.6"/>
+  <text x="520" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#22c55e">Q2</text>
+  <text x="520" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Audit</text>
+  <!-- Q2 arc segment -->
+  <path d="M520,210 A110,110 0 0,1 410,320" fill="none" stroke="#22c55e" stroke-width="3" stroke-opacity="0.5"/>
+
+  <!-- Q3 node -->
+  <circle cx="410" cy="320" r="28" fill="#0D1F35" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.6"/>
+  <text x="410" y="316" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#fbbf24">Q3</text>
+  <text x="410" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Revoke</text>
+  <!-- Q3 arc segment -->
+  <path d="M410,320 A110,110 0 0,1 300,210" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="0.5"/>
+
+  <!-- Q4 node -->
+  <circle cx="300" cy="210" r="28" fill="#0D1F35" stroke="#6366f1" stroke-width="2" stroke-opacity="0.6"/>
+  <text x="300" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#818cf8">Q4</text>
+  <text x="300" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Report</text>
+  <!-- Q4 arc segment -->
+  <path d="M300,210 A110,110 0 0,1 410,100" fill="none" stroke="#6366f1" stroke-width="3" stroke-opacity="0.5"/>
+
+  <!-- Centre label -->
+  <circle cx="410" cy="210" r="50" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="410" y="204" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Access</text>
+  <text x="410" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Review</text>
+  <text x="410" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Cycle</text>
+
+  <!-- Side panels -->
+  <!-- Left side: Privilege Creep warning -->
+  <rect x="30" y="120" width="190" height="170" rx="10" fill="#0D1F35" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.35"/>
+  <rect x="30" y="120" width="190" height="4" rx="2" fill="#ef4444" fill-opacity="0.45"/>
+  <text x="125" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#f87171">⚠ Privilege Creep</text>
+  <text x="125" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Without reviews, users</text>
+  <text x="125" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">accumulate excess rights</text>
+
+  <rect x="44" y="188" width="162" height="22" rx="5" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="125" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fca5a5">Role change — old rights kept</text>
+
+  <rect x="44" y="216" width="162" height="22" rx="5" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="125" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fca5a5">Project ended — access live</text>
+
+  <rect x="44" y="244" width="162" height="22" rx="5" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="125" y="259" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fca5a5">Dormant admin — never removed</text>
+
+  <!-- Right side: Review outcomes -->
+  <rect x="600" y="120" width="190" height="170" rx="10" fill="#0D1F35" stroke="#22c55e" stroke-width="1.5" stroke-opacity="0.35"/>
+  <rect x="600" y="120" width="190" height="4" rx="2" fill="#22c55e" fill-opacity="0.45"/>
+  <text x="695" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#4ade80">✓ Review Outcomes</text>
+  <text x="695" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">After each cycle, permissions</text>
+  <text x="695" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">match current job roles</text>
+
+  <rect x="614" y="188" width="162" height="22" rx="5" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="695" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">Unneeded rights revoked</text>
+
+  <rect x="614" y="216" width="162" height="22" rx="5" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="695" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">Stale accounts removed</text>
+
+  <rect x="614" y="244" width="162" height="22" rx="5" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="695" y="259" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">Audit evidence generated</text>
+
+  <!-- Bottom strip -->
+  <rect x="22" y="360" width="776" height="44" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1"/>
+  <rect x="22" y="360" width="776" height="3" rx="2" fill="#00B8FF" fill-opacity="0.4"/>
+  <text x="410" y="381" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Regulated industries (HIPAA, PCI-DSS) should review admin permissions monthly — minimum quarterly for all others</text>
+  <text x="410" y="397" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">OmniPriv automates access review workflows and generates compliance-ready evidence reports on demand</text>
+</svg>

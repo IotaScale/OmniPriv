@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-sm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-sm)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Privileged Session Monitoring &amp; Recording</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Every admin session is recorded, logged, and can be terminated in real-time</text>
+
+  <!-- Admin connects via PAM -->
+  <!-- User box -->
+  <rect x="30" y="100" width="140" height="70" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="100" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#94a3b8">👤</text>
+  <text x="100" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Admin User</text>
+  <text x="100" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">MFA Verified</text>
+
+  <!-- Arrow user -> PAM gateway -->
+  <line x1="170" y1="135" x2="230" y2="135" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <polygon points="230,130 242,135 230,140" fill="#00B8FF" fill-opacity="0.6"/>
+
+  <!-- PAM Gateway / Session Proxy -->
+  <rect x="242" y="78" width="170" height="170" rx="12" fill="#0D1F35" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <rect x="242" y="78" width="170" height="5" rx="3" fill="#00B8FF" fill-opacity="0.7"/>
+  <text x="327" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#00B8FF">PAM Gateway</text>
+  <text x="327" y="126" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Session Proxy</text>
+
+  <!-- Gateway features -->
+  <rect x="258" y="136" width="138" height="24" rx="5" fill="#0A1628" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="327" y="152" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">● Keystroke Logging</text>
+
+  <rect x="258" y="166" width="138" height="24" rx="5" fill="#0A1628" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="327" y="182" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">● Screen Recording</text>
+
+  <rect x="258" y="196" width="138" height="24" rx="5" fill="#0A1628" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="327" y="212" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">● Real-time Termination</text>
+
+  <rect x="258" y="226" width="138" height="14" rx="5" fill="#00B8FF" fill-opacity="0.08"/>
+  <text x="327" y="237" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#38bdf8">Tamper-proof Audit Log</text>
+
+  <!-- Arrow gateway -> servers -->
+  <line x1="412" y1="135" x2="468" y2="135" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <polygon points="468,130 480,135 468,140" fill="#00B8FF" fill-opacity="0.6"/>
+
+  <!-- Target servers stacked -->
+  <rect x="480" y="90" width="130" height="50" rx="8" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="545" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">🖥  Linux Server</text>
+  <text x="545" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">SSH Session</text>
+
+  <rect x="480" y="153" width="130" height="50" rx="8" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="545" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">🗄  Database</text>
+  <text x="545" y="191" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">DB Proxy Session</text>
+
+  <rect x="480" y="216" width="130" height="50" rx="8" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="545" y="237" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">☁  Cloud Console</text>
+  <text x="545" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Web App Session</text>
+
+  <!-- Side connectors gateway to each server -->
+  <line x1="412" y1="115" x2="480" y2="115" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,3"/>
+  <line x1="412" y1="178" x2="480" y2="178" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,3"/>
+  <line x1="412" y1="241" x2="480" y2="241" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,3"/>
+
+  <!-- Security team / alerts panel -->
+  <rect x="635" y="90" width="158" height="180" rx="10" fill="#0D1F35" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="635" y="90" width="158" height="4" rx="2" fill="#ef4444" fill-opacity="0.5"/>
+  <text x="714" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#f87171">Security Team</text>
+  <text x="714" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Live Alert Dashboard</text>
+
+  <!-- Alert items -->
+  <rect x="649" y="142" width="130" height="26" rx="5" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="714" y="159" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fca5a5">⚠  Anomaly Detected</text>
+
+  <rect x="649" y="175" width="130" height="26" rx="5" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="714" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fcd34d">⚡  Bulk Data Access</text>
+
+  <rect x="649" y="208" width="130" height="26" rx="5" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="714" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓  Session Normal</text>
+
+  <!-- Terminate button -->
+  <rect x="649" y="244" width="130" height="22" rx="11" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="714" y="259" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#f87171">⏹  Terminate Session</text>
+
+  <!-- Dotted line gateway -> security team -->
+  <line x1="610" y1="163" x2="633" y2="163" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="4,3"/>
+
+  <!-- Bottom strip -->
+  <rect x="22" y="312" width="776" height="82" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1"/>
+  <rect x="22" y="312" width="776" height="3" rx="2" fill="#00B8FF" fill-opacity="0.4"/>
+
+  <text x="220" y="348" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#00B8FF">100%</text>
+  <text x="220" y="366" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Session Coverage</text>
+
+  <text x="410" y="348" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#22c55e">&lt;3 sec</text>
+  <text x="410" y="366" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Alert-to-Terminate Time</text>
+
+  <text x="600" y="348" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#818cf8">365 days</text>
+  <text x="600" y="366" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Immutable Log Retention</text>
+
+  <line x1="316" y1="326" x2="316" y2="386" stroke="#1e3a5f" stroke-width="1"/>
+  <line x1="505" y1="326" x2="505" y2="386" stroke="#1e3a5f" stroke-width="1"/>
+</svg>
