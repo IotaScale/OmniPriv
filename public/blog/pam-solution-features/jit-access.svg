@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-jit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-jit)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Just-in-Time (JIT) Access: Right Access at the Right Time</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Privileges granted only when needed and automatically revoked when the task window closes</text>
+
+  <!-- Timeline bar -->
+  <rect x="60" y="195" width="700" height="10" rx="5" fill="#1e3a5f"/>
+
+  <!-- No Access zone -->
+  <rect x="60" y="175" width="140" height="50" rx="0" fill="none"/>
+  <text x="130" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">No Access</text>
+  <line x1="130" y1="178" x2="130" y2="195" stroke="#64748b" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Request marker -->
+  <circle cx="200" cy="200" r="8" fill="#f59e0b"/>
+  <text x="200" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Request</text>
+  <text x="200" y="181" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Submitted</text>
+  <line x1="200" y1="185" x2="200" y2="192" stroke="#f59e0b" stroke-width="1.5"/>
+
+  <!-- Approval marker -->
+  <circle cx="280" cy="200" r="8" fill="#4ade80"/>
+  <text x="280" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">Access</text>
+  <text x="280" y="181" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">Approved</text>
+  <line x1="280" y1="185" x2="280" y2="192" stroke="#4ade80" stroke-width="1.5"/>
+
+  <!-- Active window highlight -->
+  <rect x="280" y="190" width="300" height="20" rx="5" fill="#00B8FF" fill-opacity="0.2"/>
+  <text x="430" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#00B8FF">Active JIT Access Window</text>
+  <text x="430" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Time-bound · Monitored · Recorded</text>
+
+  <!-- Expiry marker -->
+  <circle cx="580" cy="200" r="8" fill="#ef4444"/>
+  <text x="580" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Access</text>
+  <text x="580" y="181" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Expired</text>
+  <line x1="580" y1="185" x2="580" y2="192" stroke="#ef4444" stroke-width="1.5"/>
+
+  <!-- No access again -->
+  <text x="670" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">No Access</text>
+  <line x1="670" y1="178" x2="670" y2="195" stroke="#64748b" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Benefits panel left -->
+  <rect x="32" y="290" width="220" height="100" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="142" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fbbf24">Without JIT</text>
+  <text x="38" y="332" font-family="Arial, sans-serif" font-size="10" fill="#f87171">✗  Standing admin rights 24/7</text>
+  <text x="38" y="350" font-family="Arial, sans-serif" font-size="10" fill="#f87171">✗  Wide attack surface at all times</text>
+  <text x="38" y="368" font-family="Arial, sans-serif" font-size="10" fill="#f87171">✗  Compromised cred = full access</text>
+  <text x="38" y="386" font-family="Arial, sans-serif" font-size="10" fill="#f87171">✗  Hard to pass least-privilege audit</text>
+
+  <!-- Benefits panel right -->
+  <rect x="568" y="290" width="220" height="100" rx="10" fill="#0D1F35" stroke="#4ade80" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="678" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#4ade80">With JIT Access</text>
+  <text x="574" y="332" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓  Access only when justified</text>
+  <text x="574" y="350" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓  Minimal standing privilege</text>
+  <text x="574" y="368" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓  Limited blast radius on breach</text>
+  <text x="574" y="386" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓  Built-in compliance evidence</text>
+
+  <!-- Center: JIT workflow steps -->
+  <rect x="290" y="290" width="240" height="100" rx="10" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="410" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#00B8FF">JIT Workflow</text>
+  <text x="296" y="332" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">1. Request access with justification</text>
+  <text x="296" y="350" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">2. Policy auto-approve or human review</text>
+  <text x="296" y="368" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">3. Credential issued for session window</text>
+  <text x="296" y="386" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">4. Access revoked &amp; credential rotated</text>
+</svg>

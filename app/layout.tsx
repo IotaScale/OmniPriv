@@ -89,12 +89,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
       { url: "/omnipriv-icon.svg", type: "image/svg+xml" },
       { url: "/omnipriv-icon.png", type: "image/png" },
+      { url: "/omnipriv-icon.webp", type: "image/webp" },
     ],
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: "/omnipriv-icon.png",
+    apple: "/omnipriv-icon.png",
   },
 };
 

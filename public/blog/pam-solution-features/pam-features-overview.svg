@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-pfo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-pfo)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Key Features to Look for in a PAM Solution</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Seven critical capabilities every enterprise PAM platform must deliver</text>
+
+  <!-- Center hub -->
+  <circle cx="410" cy="230" r="52" fill="#00B8FF" fill-opacity="0.08" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <text x="410" y="222" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#00B8FF">🛡</text>
+  <text x="410" y="244" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">PAM</text>
+  <text x="410" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Solution</text>
+
+  <!-- Feature 1: Credential Management (top-left) -->
+  <rect x="60" y="82" width="160" height="58" rx="9" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="140" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#00B8FF">🔐</text>
+  <text x="140" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Credential Management</text>
+  <text x="140" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Vault · Rotation · Encryption</text>
+  <line x1="220" y1="130" x2="362" y2="195" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+
+  <!-- Feature 2: MFA (top-center) -->
+  <rect x="315" y="78" width="190" height="58" rx="9" fill="#0D1F35" stroke="#7c3aed" stroke-width="1.2" stroke-opacity="0.6"/>
+  <text x="410" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#a78bfa">🔒</text>
+  <text x="410" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Multi-Factor Authentication</text>
+  <text x="410" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Extra layer · Stops credential theft</text>
+  <line x1="410" y1="136" x2="410" y2="178" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+
+  <!-- Feature 3: Session Monitoring (top-right) -->
+  <rect x="600" y="82" width="155" height="58" rx="9" fill="#0D1F35" stroke="#4ade80" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="677" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4ade80">📹</text>
+  <text x="677" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Session Monitoring</text>
+  <text x="677" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Record · Audit · Detect threats</text>
+  <line x1="600" y1="130" x2="458" y2="195" stroke="#4ade80" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+
+  <!-- Feature 4: JIT Access (left) -->
+  <rect x="32" y="210" width="155" height="58" rx="9" fill="#0D1F35" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="109" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f59e0b">⏱</text>
+  <text x="109" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Just-in-Time Access</text>
+  <text x="109" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Time-bound · No standing privilege</text>
+  <line x1="187" y1="239" x2="358" y2="230" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+
+  <!-- Feature 5: Automated Access Control (right) -->
+  <rect x="633" y="210" width="157" height="58" rx="9" fill="#0D1F35" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="711" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#38bdf8">⚙️</text>
+  <text x="711" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Automated Access Control</text>
+  <text x="711" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Policy-driven · No manual errors</text>
+  <line x1="633" y1="239" x2="462" y2="230" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+
+  <!-- Feature 6: Reporting & Analytics (bottom-left) -->
+  <rect x="90" y="330" width="166" height="58" rx="9" fill="#0D1F35" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="173" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#fb7185">📊</text>
+  <text x="173" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Reporting &amp; Analytics</text>
+  <text x="173" y="383" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Insights · Behaviour · Compliance</text>
+  <line x1="222" y1="330" x2="375" y2="278" stroke="#fb7185" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+
+  <!-- Feature 7: Cloud & Hybrid (bottom-right) -->
+  <rect x="564" y="330" width="166" height="58" rx="9" fill="#0D1F35" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="647" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#34d399">☁</text>
+  <text x="647" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Cloud &amp; Hybrid Support</text>
+  <text x="647" y="383" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">On-prem · Cloud · Multi-cloud</text>
+  <line x1="600" y1="330" x2="450" y2="278" stroke="#34d399" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="5,4"/>
+</svg>

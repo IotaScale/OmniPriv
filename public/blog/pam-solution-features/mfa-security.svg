@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-mfa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-mfa)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Multi-Factor Authentication for Privileged Access</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Even if credentials are stolen, MFA blocks unauthorised access every time</text>
+
+  <!-- Step 1: User -->
+  <rect x="32" y="155" width="140" height="100" rx="10" fill="#0D1F35" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="102" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8">👤</text>
+  <text x="102" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Admin User</text>
+  <text x="102" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Enters password</text>
+  <text x="32" y="142" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Step 1</text>
+
+  <!-- Arrow 1 -->
+  <line x1="172" y1="205" x2="208" y2="205" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <polygon points="208,200 220,205 208,210" fill="#00B8FF" fill-opacity="0.6"/>
+
+  <!-- Step 2: MFA Challenge -->
+  <rect x="220" y="140" width="160" height="130" rx="10" fill="#0D1F35" stroke="#7c3aed" stroke-width="2" stroke-opacity="0.7"/>
+  <rect x="220" y="140" width="160" height="5" rx="3" fill="#7c3aed" fill-opacity="0.7"/>
+  <text x="300" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#a78bfa">MFA Challenge</text>
+  <rect x="236" y="180" width="128" height="22" rx="5" fill="#0A1628" stroke="#1e3a5f"/>
+  <text x="300" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ TOTP / Authenticator</text>
+  <rect x="236" y="208" width="128" height="22" rx="5" fill="#0A1628" stroke="#1e3a5f"/>
+  <text x="300" y="223" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ FIDO2 Hardware Token</text>
+  <rect x="236" y="236" width="128" height="22" rx="5" fill="#0A1628" stroke="#1e3a5f"/>
+  <text x="300" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Push Notification</text>
+  <text x="220" y="127" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Step 2</text>
+
+  <!-- Arrow 2 -->
+  <line x1="380" y1="205" x2="416" y2="205" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <polygon points="416,200 428,205 416,210" fill="#00B8FF" fill-opacity="0.6"/>
+
+  <!-- Step 3: Context Evaluation -->
+  <rect x="428" y="140" width="160" height="130" rx="10" fill="#0D1F35" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.7"/>
+  <rect x="428" y="140" width="160" height="5" rx="3" fill="#f59e0b" fill-opacity="0.7"/>
+  <text x="508" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fbbf24">Context Check</text>
+  <rect x="444" y="180" width="128" height="22" rx="5" fill="#0A1628" stroke="#1e3a5f"/>
+  <text x="508" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Device Compliance</text>
+  <rect x="444" y="208" width="128" height="22" rx="5" fill="#0A1628" stroke="#1e3a5f"/>
+  <text x="508" y="223" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Location / IP Check</text>
+  <rect x="444" y="236" width="128" height="22" rx="5" fill="#0A1628" stroke="#1e3a5f"/>
+  <text x="508" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Time-of-Day Policy</text>
+  <text x="428" y="127" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Step 3</text>
+
+  <!-- Arrow 3 -->
+  <line x1="588" y1="205" x2="624" y2="205" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <polygon points="624,200 636,205 624,210" fill="#00B8FF" fill-opacity="0.6"/>
+
+  <!-- Step 4: Access Granted -->
+  <rect x="636" y="155" width="150" height="100" rx="10" fill="#0D1F35" stroke="#4ade80" stroke-width="2" stroke-opacity="0.7"/>
+  <text x="711" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#4ade80">✅</text>
+  <text x="711" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Access Granted</text>
+  <text x="711" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Verified &amp; Monitored</text>
+  <text x="636" y="142" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Step 4</text>
+
+  <!-- Block scenario -->
+  <rect x="430" y="317" width="156" height="48" rx="9" fill="#1a0a0a" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="508" y="337" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#ef4444">🚫</text>
+  <text x="508" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">MFA Fails → Blocked</text>
+  <line x1="508" y1="270" x2="508" y2="317" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+
+  <!-- Bottom note -->
+  <text x="410" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#38bdf8">MFA is a core element of privileged access management best practices — enforced on every privileged session</text>
+</svg>
