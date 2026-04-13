@@ -28,6 +28,17 @@ const featuredPost = {
 const posts = [
   {
     category: "Best Practices",
+    title: "Features to Look for in a PAM Solution for Secure Access",
+    excerpt: "Discover the key features to look for in a PAM solution, privileged access management best practices, and how to choose the best PAM solution for your organisation.",
+    date: "April 10, 2026",
+    readTime: "10 min read",
+    author: "OmniPriv Team",
+    authorTitle: "",
+    href: "/blog/pam-solution-features",
+    tags: ["PAM Solution", "Best Practices", "Secure Access"],
+  },
+  {
+    category: "Best Practices",
     title: "Top 5 Privileged Access Management Best Practices for 2026",
     excerpt: "Discover the top 5 privileged access management best practices every enterprise must adopt in 2026 — from least privilege enforcement and credential rotation to session monitoring, Zero Trust, and regular access reviews.",
     date: "March 31, 2026",

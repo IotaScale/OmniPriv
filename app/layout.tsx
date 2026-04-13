@@ -106,6 +106,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jakartaSans.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/omnipriv-icon.png" type="image/png" />
+        <link rel="shortcut icon" href="/omnipriv-icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/omnipriv-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
