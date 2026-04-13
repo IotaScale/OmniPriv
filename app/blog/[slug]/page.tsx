@@ -174,6 +174,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                           </ul>
                         );
                       }
+                      // H3 sub-heading pattern: ### text
+                      if (para.trim().startsWith("### ")) {
+                        return (
+                          <h3
+                            key={j}
+                            className="text-lg md:text-xl font-bold text-white mt-2 mb-1"
+                            style={{ fontFamily: "var(--font-syne)" }}
+                          >
+                            {para.trim().replace(/^###\s*/, "")}
+                          </h3>
+                        );
+                      }
                       // Bold intro pattern: **Label** rest
                       const boldMatch = para.match(/^\*\*(.+?)\*\*\s*([\s\S]*)/);
                       if (boldMatch) {
