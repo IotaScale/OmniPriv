@@ -91,7 +91,6 @@ export const metadata: Metadata = {
     icon: [
       { url: "/omnipriv-icon.svg", type: "image/svg+xml" },
       { url: "/omnipriv-icon.png", type: "image/png" },
-      { url: "/omnipriv-icon.webp", type: "image/webp" },
     ],
     shortcut: "/omnipriv-icon.png",
     apple: "/omnipriv-icon.png",
