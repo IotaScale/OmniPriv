@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-bpg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-bpg)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">PAM Best Practices: Reducing Attack Surface</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Essential controls for privileged access management programs in 2026</text>
+
+  <!-- Row 1: 3 cards -->
+  <!-- Card 1: Least Privilege -->
+  <rect x="40" y="80" width="230" height="100" rx="10" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.4" stroke-opacity="0.7"/>
+  <text x="65" y="108" font-family="Arial, sans-serif" font-size="22" fill="#00B8FF">🔒</text>
+  <text x="100" y="105" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Least Privilege (PoLP)</text>
+  <text x="60" y="128" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Grant users only the exact access</text>
+  <text x="60" y="143" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">required for their task — nothing more.</text>
+  <text x="60" y="162" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Shrinks attack surface instantly</text>
+
+  <!-- Card 2: MFA -->
+  <rect x="295" y="80" width="230" height="100" rx="10" fill="#0D1F35" stroke="#a78bfa" stroke-width="1.4" stroke-opacity="0.7"/>
+  <text x="320" y="108" font-family="Arial, sans-serif" font-size="22" fill="#a78bfa">🔐</text>
+  <text x="355" y="105" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Enforce MFA Always</text>
+  <text x="315" y="128" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Mandate multi-factor authentication</text>
+  <text x="315" y="143" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">for every privileged account login.</text>
+  <text x="315" y="162" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Stops credential theft attacks</text>
+
+  <!-- Card 3: JIT -->
+  <rect x="550" y="80" width="230" height="100" rx="10" fill="#0D1F35" stroke="#f59e0b" stroke-width="1.4" stroke-opacity="0.7"/>
+  <text x="575" y="108" font-family="Arial, sans-serif" font-size="22" fill="#f59e0b">⏱</text>
+  <text x="610" y="105" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Just-in-Time Access (JIT)</text>
+  <text x="570" y="128" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Provision access only when needed,</text>
+  <text x="570" y="143" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">auto-revoke when the task is done.</text>
+  <text x="570" y="162" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Eliminates standing privilege</text>
+
+  <!-- Row 2: 3 cards -->
+  <!-- Card 4: Password Rotation -->
+  <rect x="40" y="200" width="230" height="100" rx="10" fill="#0D1F35" stroke="#4ade80" stroke-width="1.4" stroke-opacity="0.7"/>
+  <text x="65" y="228" font-family="Arial, sans-serif" font-size="22" fill="#4ade80">🔄</text>
+  <text x="100" y="225" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Auto Password Rotation</text>
+  <text x="60" y="248" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Rotate privileged credentials on a</text>
+  <text x="60" y="263" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">defined schedule or after every use.</text>
+  <text x="60" y="282" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Limits credential exposure window</text>
+
+  <!-- Card 5: Session Recording -->
+  <rect x="295" y="200" width="230" height="100" rx="10" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.4" stroke-opacity="0.7"/>
+  <text x="320" y="228" font-family="Arial, sans-serif" font-size="22" fill="#00B8FF">📹</text>
+  <text x="355" y="225" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Session Recording</text>
+  <text x="315" y="248" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Record all privileged sessions with</text>
+  <text x="315" y="263" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">tamper-proof keystroke &amp; video logs.</text>
+  <text x="315" y="282" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Full audit trail for compliance</text>
+
+  <!-- Card 6: Regular Audits -->
+  <rect x="550" y="200" width="230" height="100" rx="10" fill="#0D1F35" stroke="#ef4444" stroke-width="1.4" stroke-opacity="0.7"/>
+  <text x="575" y="228" font-family="Arial, sans-serif" font-size="22" fill="#ef4444">📋</text>
+  <text x="610" y="225" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Regular Access Audits</text>
+  <text x="570" y="248" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Review and revoke unused access</text>
+  <text x="570" y="263" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">regularly across all privileged roles.</text>
+  <text x="570" y="282" font-family="Arial, sans-serif" font-size="10" fill="#4ade80">✓ Removes stale &amp; orphaned accounts</text>
+
+  <!-- Bottom Banner -->
+  <rect x="40" y="320" width="740" height="56" rx="10" fill="#0D2A1A" stroke="#4ade80" stroke-width="1.2" stroke-opacity="0.5"/>
+  <text x="66" y="346" font-family="Arial, sans-serif" font-size="14" fill="#4ade80">📌</text>
+  <text x="92" y="342" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">OmniPriv automates all six best practices</text>
+  <text x="92" y="360" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">— from least-privilege enforcement to real-time session analytics — in a single cloud-delivered platform.</text>
+
+  <!-- Footer -->
+  <text x="410" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#475569">Best Practices for Privileged Access Management · OmniPriv 2026</text>
+</svg>
