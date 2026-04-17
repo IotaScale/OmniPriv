@@ -9,167 +9,44 @@ import {
   EMAILJS_SERVICE_ID,
   EMAILJS_NEWSLETTER_TEMPLATE_ID,
 } from "@/lib/emailjs";
+import { posts as blogData } from "@/lib/blog-data";
 
 const categories = ["All", "Best Practices", "Security Research", "Case Studies", "Product Updates", "Compliance", "DevSecOps"];
 
+// ── Auto-derived from lib/blog-data.ts ──────────────────────────────────────
+// The featured post is pinned by slug. Change FEATURED_SLUG to pin a different post.
+const FEATURED_SLUG = "complete-pam-guide-2026";
+
+const _fp = blogData[FEATURED_SLUG];
 const featuredPost = {
-  category: "Best Practices",
-  title: "The Complete 2026 Guide to Privileged Access Management: Architecture, Implementation & Compliance",
-  excerpt:
-    "Privileged access management has evolved dramatically. Gone are the days of simple password vaults and basic session recording. In 2026, enterprise PAM requires a zero-trust architecture, behavioral analytics, cloud-native deployment, and compliance automation. This comprehensive guide covers everything your organization needs to know.",
-  date: "February 24, 2026",
-  readTime: "18 min read",
-  author: "OmniPriv Team",
-  authorTitle: "Chief Security Architect, OmniPriv",
-  href: "/blog/complete-pam-guide-2026",
-  tags: ["Zero Trust", "PAM Architecture", "Enterprise Security", "Compliance"],
+  category: _fp.category,
+  title: _fp.title,
+  excerpt: _fp.excerpt,
+  date: _fp.date,
+  readTime: _fp.readTime,
+  author: _fp.author,
+  authorTitle: _fp.authorTitle,
+  href: `/blog/${FEATURED_SLUG}`,
+  tags: _fp.tags,
 };
 
-const posts = [
-  {
-    category: "Best Practices",
-    title: "PAM as a Service: Modern Security for Privileged Access",
-    excerpt: "Discover how PAM as a service secures enterprise networks with top privileged access management solutions like OmniPriv, expert PAM services & best practices for 2026.",
-    date: "April 16, 2026",
-    readTime: "10 min read",
-    author: "OmniPriv Team",
-    authorTitle: "",
-    href: "/blog/pam-as-a-service",
-    tags: ["PAM as a Service", "PAM Best Practices", "Cloud Security", "Zero Trust"],
-  },
-  {
-    category: "Best Practices",
-    title: "Features to Look for in a PAM Solution for Secure Access",
-    excerpt: "Discover the key features to look for in a PAM solution, privileged access management best practices, and how to choose the best PAM solution for your organisation.",
-    date: "April 10, 2026",
-    readTime: "10 min read",
-    author: "OmniPriv Team",
-    authorTitle: "",
-    href: "/blog/pam-solution-features",
-    tags: ["PAM Solution", "Best Practices", "Secure Access"],
-  },
-  {
-    category: "Best Practices",
-    title: "Top 5 Privileged Access Management Best Practices for 2026",
-    excerpt: "Discover the top 5 privileged access management best practices every enterprise must adopt in 2026 — from least privilege enforcement and credential rotation to session monitoring, Zero Trust, and regular access reviews.",
-    date: "March 31, 2026",
-    readTime: "10 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Chief Security Architect, OmniPriv",
-    href: "/blog/privileged-access-management-best-practices-2026",
-    tags: ["PAM Best Practices", "Zero Trust", "Least Privilege"],
-  },
-  {
-    category: "Best Practices",
-    title: "What Is Privileged Access Management? A Complete Guide",
-    excerpt: "Learn what privileged access management is, how PAM solutions work, and the best practices to secure critical accounts, sessions, and identities — including PAM vs PIM, PAM as a service, and Zero Trust.",
-    date: "March 16, 2026",
-    readTime: "12 min read",
-    author: "OmniPriv Team",
-    authorTitle: "",
-    href: "/blog/what-is-privileged-access-management",
-    tags: ["PAM Guide", "Best Practices", "Zero Trust", "PIM"],
-  },
-  {
-    category: "Security Research",
-    title: "The Anatomy of a Privileged Account Compromise: 2025's Biggest Breaches Analyzed",
-    excerpt: "We analyzed 47 major enterprise security breaches from 2025. In 89% of cases, compromised privileged credentials played a central role. Here's what happened, and how PAM controls would have prevented each incident.",
-    date: "February 18, 2026",
-    readTime: "12 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Threat Intelligence Lead",
-    href: "/blog/privileged-account-breaches-2025",
-    tags: ["Threat Analysis", "Incident Response"],
-  },
-  {
-    category: "Case Study",
-    title: "How Meridian Bank Achieved PCI-DSS Compliance & Reduced Privileged Access Risk by 94%",
-    excerpt: "Meridian Bank had 12,000+ privileged accounts across their infrastructure with minimal controls. After deploying OmniPriv, they achieved full PCI-DSS compliance and dramatically reduced their attack surface.",
-    date: "February 10, 2026",
-    readTime: "8 min read",
-    author: "OmniPriv Team",
-    authorTitle: "",
-    href: "/blog/meridian-bank-case-study",
-    tags: ["PCI-DSS", "Banking", "Case Study"],
-  },
-  {
-    category: "Best Practices",
-    title: "Just-In-Time Access: Why JIT Is Replacing Traditional Privileged Access Models",
-    excerpt: "Standing privileges are the enemy of security. Just-In-Time access provisioning eliminates standing privileges by granting access only when needed, for exactly as long as needed. Here's how to implement JIT in your organization.",
-    date: "January 30, 2026",
-    readTime: "10 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Chief Security Architect",
-    href: "/blog/jit-access-guide",
-    tags: ["JIT Access", "Zero Trust", "Architecture"],
-  },
-  {
-    category: "Compliance",
-    title: "HIPAA & PAM: A Practical Guide for Healthcare IT and Security Teams",
-    excerpt: "Healthcare organizations face unique PAM challenges: HIPAA requirements, clinical workflow constraints, legacy systems, and 24/7 availability needs. This guide addresses all of them.",
-    date: "January 22, 2026",
-    readTime: "14 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Compliance Strategy Lead",
-    href: "/blog/hipaa-pam-guide",
-    tags: ["HIPAA", "Healthcare", "Compliance"],
-  },
-  {
-    category: "DevSecOps",
-    title: "Securing CI/CD Pipelines: How to Manage Privileged Access in DevOps Environments",
-    excerpt: "Secrets in code, hardcoded credentials in pipelines, and production access with no audit trail — DevOps environments often have severe PAM gaps. Here's how to close them without slowing development velocity.",
-    date: "January 15, 2026",
-    readTime: "9 min read",
-    author: "OmniPriv Team",
-    authorTitle: "DevSecOps Engineer",
-    href: "/blog/cicd-privileged-access",
-    tags: ["CI/CD", "DevOps", "Secrets Management"],
-  },
-  {
-    category: "Product Updates",
-    title: "OmniPriv 4.0 Release: AI-Powered Anomaly Detection, Enhanced JIT, and More",
-    excerpt: "OmniPriv 4.0 introduces machine learning-based session anomaly detection, a redesigned JIT access engine, expanded cloud asset sync, and 12 new integration connectors. See what's new.",
-    date: "January 8, 2026",
-    readTime: "6 min read",
-    author: "OmniPriv Team",
-    authorTitle: "",
-    href: "/blog/OmniPriv-4-release",
-    tags: ["Product Update", "AI", "New Features"],
-  },
-  {
-    category: "Security Research",
-    title: "SSH Key Management at Scale: Why Most Enterprises Get It Wrong",
-    excerpt: "SSH keys grant persistent, often root-level access to your entire infrastructure. Yet most enterprises have no idea how many SSH keys exist on their systems, who owns them, or when they were last rotated.",
-    date: "December 20, 2025",
-    readTime: "11 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Threat Intelligence Lead",
-    href: "/blog/ssh-key-management",
-    tags: ["SSH Keys", "Credential Management", "Security"],
-  },
-  {
-    category: "Best Practices",
-    title: "Building a PAM Business Case: How to Get Executive Buy-In for PAM Investment",
-    excerpt: "Security leaders often struggle to translate technical PAM requirements into business language that resonates with the C-suite and board. Here's a battle-tested framework for making the PAM business case.",
-    date: "December 12, 2025",
-    readTime: "7 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Enterprise Strategy",
-    href: "/blog/pam-business-case",
-    tags: ["Strategy", "Risk Management", "CISO"],
-  },
-  {
-    category: "Compliance",
-    title: "SOC 2 Type II & PAM: What Auditors Are Looking For in 2026",
-    excerpt: "SOC 2 auditors are increasingly focused on privileged access controls as a trust service criterion. Learn exactly what evidence they want to see and how OmniPriv makes your audit preparation effortless.",
-    date: "December 5, 2025",
-    readTime: "9 min read",
-    author: "OmniPriv Team",
-    authorTitle: "Compliance Strategy Lead",
-    href: "/blog/soc2-pam-audit",
-    tags: ["SOC 2", "Audit", "Compliance"],
-  },
-];
+// All posts except the featured one, newest first.
+// Adding a new post to lib/blog-data.ts automatically appears here.
+const posts = Object.entries(blogData)
+  .filter(([slug]) => slug !== FEATURED_SLUG)
+  .map(([slug, post]) => ({
+    category: post.category,
+    title: post.title,
+    excerpt: post.excerpt,
+    date: post.date,
+    readTime: post.readTime,
+    author: post.author,
+    authorTitle: post.authorTitle,
+    href: `/blog/${slug}`,
+    tags: post.tags,
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+// ─────────────────────────────────────────────────────────────────────────────
 
 function getTagColor(tag: string) {
   const colors: Record<string, string> = {
@@ -188,10 +65,9 @@ export default function BlogPage() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const filteredPosts = (activeCategory === "All"
+  const filteredPosts = activeCategory === "All"
     ? posts
-    : posts.filter((p) => p.category === activeCategory)
-  ).slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    : posts.filter((p) => p.category === activeCategory);
 
   async function handleNewsletter(e: React.FormEvent) {
     e.preventDefault();
