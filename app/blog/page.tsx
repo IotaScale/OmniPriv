@@ -28,6 +28,17 @@ const featuredPost = {
 const posts = [
   {
     category: "Best Practices",
+    title: "PAM as a Service: Modern Security for Privileged Access",
+    excerpt: "Discover how PAM as a service secures enterprise networks with top privileged access management solutions like OmniPriv, expert PAM services & best practices for 2026.",
+    date: "April 16, 2026",
+    readTime: "10 min read",
+    author: "OmniPriv Team",
+    authorTitle: "",
+    href: "/blog/pam-as-a-service",
+    tags: ["PAM as a Service", "PAM Best Practices", "Cloud Security", "Zero Trust"],
+  },
+  {
+    category: "Best Practices",
     title: "Features to Look for in a PAM Solution for Secure Access",
     excerpt: "Discover the key features to look for in a PAM solution, privileged access management best practices, and how to choose the best PAM solution for your organisation.",
     date: "April 10, 2026",
