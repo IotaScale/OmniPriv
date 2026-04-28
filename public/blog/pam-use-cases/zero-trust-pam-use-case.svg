@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-zt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="zt-ring" cx="50%" cy="50%" r="50%" fx="50%" fy="50%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" style="stop-color:#00B8FF;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#00B8FF;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-zt)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Zero Trust + PAM Integration</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Verify every identity, every time — no implicit trust granted</text>
+
+  <!-- Center: Zero Trust shield -->
+  <circle cx="410" cy="228" r="70" fill="#00B8FF" fill-opacity="0.05" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.4"/>
+  <circle cx="410" cy="228" r="48" fill="#00B8FF" fill-opacity="0.08" stroke="#00B8FF" stroke-width="2" stroke-opacity="0.6"/>
+  <text x="410" y="216" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#00B8FF">🛡</text>
+  <text x="410" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Zero Trust</text>
+  <text x="410" y="256" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">PAM Core</text>
+
+  <!-- Left pillar: Identity Verification -->
+  <rect x="28" y="92" width="192" height="72" rx="10" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="52" y="122" font-family="Arial, sans-serif" font-size="20" fill="#00B8FF">🪪</text>
+  <text x="82" y="116" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Identity Verification</text>
+  <text x="82" y="132" font-family="Arial, sans-serif" font-size="9" fill="#64748b">MFA + certificate auth</text>
+  <text x="82" y="147" font-family="Arial, sans-serif" font-size="9" fill="#64748b">on every request</text>
+  <!-- Arrow right -->
+  <path d="M220 128 L340 200" stroke="#00B8FF" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="5,4" marker-end="url(#arr-zt)"/>
+
+  <!-- Left pillar: Least Privilege -->
+  <rect x="28" y="198" width="192" height="72" rx="10" fill="#0D1F35" stroke="#4ade80" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="52" y="228" font-family="Arial, sans-serif" font-size="20" fill="#4ade80">🔒</text>
+  <text x="82" y="222" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Least Privilege</text>
+  <text x="82" y="238" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Minimum access only,</text>
+  <text x="82" y="253" font-family="Arial, sans-serif" font-size="9" fill="#64748b">revoked after use</text>
+  <!-- Arrow right -->
+  <path d="M220 234 L342 234" stroke="#4ade80" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="5,4" marker-end="url(#arr-zt-g)"/>
+
+  <!-- Left pillar: JIT Access -->
+  <rect x="28" y="304" width="192" height="72" rx="10" fill="#0D1F35" stroke="#f59e0b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="52" y="334" font-family="Arial, sans-serif" font-size="20" fill="#f59e0b">⏱</text>
+  <text x="82" y="328" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Just-in-Time Access</text>
+  <text x="82" y="344" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Temporary, task-scoped</text>
+  <text x="82" y="359" font-family="Arial, sans-serif" font-size="9" fill="#64748b">privileges only</text>
+  <!-- Arrow right -->
+  <path d="M220 340 L340 260" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="5,4" marker-end="url(#arr-zt-y)"/>
+
+  <!-- Right pillar: Session Monitoring -->
+  <rect x="600" y="92" width="192" height="72" rx="10" fill="#0D1F35" stroke="#a78bfa" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="624" y="122" font-family="Arial, sans-serif" font-size="20" fill="#a78bfa">📹</text>
+  <text x="654" y="116" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Session Monitoring</text>
+  <text x="654" y="132" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Record all activity,</text>
+  <text x="654" y="147" font-family="Arial, sans-serif" font-size="9" fill="#64748b">detect anomalies live</text>
+  <path d="M600 128 L480 200" stroke="#a78bfa" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+
+  <!-- Right pillar: Continuous Verification -->
+  <rect x="600" y="198" width="192" height="72" rx="10" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="624" y="228" font-family="Arial, sans-serif" font-size="20" fill="#00B8FF">🔁</text>
+  <text x="654" y="222" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Continuous Verification</text>
+  <text x="654" y="238" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Re-verify throughout</text>
+  <text x="654" y="253" font-family="Arial, sans-serif" font-size="9" fill="#64748b">every session</text>
+  <path d="M600 234 L478 234" stroke="#00B8FF" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+
+  <!-- Right pillar: Threat Response -->
+  <rect x="600" y="304" width="192" height="72" rx="10" fill="#0D1F35" stroke="#ef4444" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="624" y="334" font-family="Arial, sans-serif" font-size="20" fill="#ef4444">⚡</text>
+  <text x="654" y="328" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#e2e8f0">Automated Response</text>
+  <text x="654" y="344" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Instant session kill on</text>
+  <text x="654" y="359" font-family="Arial, sans-serif" font-size="9" fill="#64748b">detected threats</text>
+  <path d="M600 340 L480 260" stroke="#ef4444" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="5,4"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arr-zt" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#00B8FF" fill-opacity="0.5"/>
+    </marker>
+    <marker id="arr-zt-g" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#4ade80" fill-opacity="0.5"/>
+    </marker>
+    <marker id="arr-zt-y" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#f59e0b" fill-opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <!-- Footer -->
+  <text x="410" y="406" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#475569">OmniPriv enforces Zero Trust PAM across hybrid, cloud, and on-premises environments</text>
+</svg>
