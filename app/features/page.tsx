@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   UserCheck, Lock, Key, Eye, ArrowRight,
-  Shield, Fingerprint, Wifi, RefreshCw, Database, Server,
-  Monitor, Globe, Layers, Clock, Workflow, BarChart3,
-  FileSearch, Network, AlertTriangle, Zap, Cpu, Building2,
+  Shield, Fingerprint, Building2,
+  ShieldCheck, Link2, Radio, GitBranch,
+  Users, Timer, Ban, ClipboardCheck, Terminal,
+  ScanSearch, RotateCcw, KeyRound, Upload, ShieldAlert, UserPlus,
+  Video, Activity, TrendingUp, ScrollText, Share2, FileCheck2,
+  Network, BarChart3,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -14,39 +17,39 @@ export const metadata: Metadata = {
 };
 
 const authFeatures = [
-  { icon: Shield, title: "Built-in CAPTCHA", desc: "Configurable CAPTCHA protects login pages from automated brute-force attacks." },
-  { icon: Wifi, title: "LDAP / AD Integration", desc: "Bidirectional sync with Active Directory and LDAP directories. Automatic user and group provisioning." },
-  { icon: Zap, title: "Single Sign-On (SSO)", desc: "SAML 2.0, OAuth 2.0, and OpenID Connect support for seamless enterprise identity integration." },
-  { icon: Fingerprint, title: "Multi-Factor Authentication", desc: "TOTP (Google Authenticator), FIDO2/WebAuthn hardware keys, SMS/email OTP, and push notifications." },
-  { icon: Globe, title: "RADIUS Support", desc: "Manage network device authentication through the industry-standard RADIUS protocol." },
-  { icon: Clock, title: "Conditional Access", desc: "Context-aware policies based on user location, device posture, time of day, and risk score." },
+  { icon: ShieldCheck,  title: "Built-in CAPTCHA",             desc: "Configurable CAPTCHA protects login pages from automated brute-force attacks." },
+  { icon: Network,      title: "LDAP / AD Integration",        desc: "Bidirectional sync with Active Directory and LDAP directories. Automatic user and group provisioning." },
+  { icon: Link2,        title: "Single Sign-On (SSO)",         desc: "SAML 2.0, OAuth 2.0, and OpenID Connect support for seamless enterprise identity integration." },
+  { icon: Fingerprint,  title: "Multi-Factor Authentication",  desc: "TOTP (Google Authenticator), FIDO2/WebAuthn hardware keys, SMS/email OTP, and push notifications." },
+  { icon: Radio,        title: "RADIUS Support",               desc: "Manage network device authentication through the industry-standard RADIUS protocol." },
+  { icon: GitBranch,    title: "Conditional Access",           desc: "Context-aware policies based on user location, device posture, time of day, and risk score." },
 ];
 
 const authzFeatures = [
-  { icon: Lock, title: "Role-Based Access Control (RBAC)", desc: "Fine-grained permission model with custom roles, assignable at the organization, project, or asset level." },
-  { icon: Clock, title: "Just-In-Time (JIT) Access", desc: "Provision time-limited access for specific tasks. Access expires automatically—no standing privileges." },
-  { icon: Globe, title: "IP & Time-Based ACLs", desc: "Restrict access by source IP range, day of week, and time window to enforce least-privilege policies." },
-  { icon: Building2, title: "Multi-Tenant Architecture", desc: "Full resource isolation with per-organization policies, users, and assets. Ideal for MSSPs and enterprises with subsidiaries." },
-  { icon: Workflow, title: "Approval Workflows", desc: "Require manager or peer approval before sensitive access is granted. Integrate with ITSM platforms." },
-  { icon: AlertTriangle, title: "Command-Level Controls", desc: "Whitelist or blacklist specific shell commands for SSH sessions. Block dangerous operations in real time." },
+  { icon: Users,           title: "Role-Based Access Control (RBAC)", desc: "Fine-grained permission model with custom roles, assignable at the organization, project, or asset level." },
+  { icon: Timer,           title: "Just-In-Time (JIT) Access",        desc: "Provision time-limited access for specific tasks. Access expires automatically—no standing privileges." },
+  { icon: Ban,             title: "IP & Time-Based ACLs",             desc: "Restrict access by source IP range, day of week, and time window to enforce least-privilege policies." },
+  { icon: Building2,       title: "Multi-Tenant Architecture",        desc: "Full resource isolation with per-organization policies, users, and assets. Ideal for MSSPs and enterprises with subsidiaries." },
+  { icon: ClipboardCheck,  title: "Approval Workflows",               desc: "Require manager or peer approval before sensitive access is granted. Integrate with ITSM platforms." },
+  { icon: Terminal,        title: "Command-Level Controls",           desc: "Whitelist or blacklist specific shell commands for SSH sessions. Block dangerous operations in real time." },
 ];
 
 const accountFeatures = [
-  { icon: FileSearch, title: "Asset & Account Discovery", desc: "Automatically discover privileged accounts across your entire infrastructure — on-prem, cloud, and hybrid." },
-  { icon: RefreshCw, title: "Credential Rotation", desc: "Rotate passwords, SSH keys, and API tokens on a schedule or on-demand, for thousands of assets simultaneously." },
-  { icon: Database, title: "Encrypted Credential Vault", desc: "Store credentials with AES-256 encryption. No user ever sees raw passwords — they authenticate through OmniPriv." },
-  { icon: Server, title: "Credential Push", desc: "Push updated credentials directly to target assets after rotation. No manual steps, no outages." },
-  { icon: Key, title: "Break-Glass Access", desc: "Emergency access procedures with mandatory approval, time limits, and full session recording." },
-  { icon: Layers, title: "Account Lifecycle Management", desc: "Provision, deprovision, and modify privileged accounts across all systems from a single control plane." },
+  { icon: ScanSearch,  title: "Asset & Account Discovery",     desc: "Automatically discover privileged accounts across your entire infrastructure — on-prem, cloud, and hybrid." },
+  { icon: RotateCcw,   title: "Credential Rotation",           desc: "Rotate passwords, SSH keys, and API tokens on a schedule or on-demand, for thousands of assets simultaneously." },
+  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials with AES-256 encryption. No user ever sees raw passwords — they authenticate through OmniPriv." },
+  { icon: Upload,      title: "Credential Push",               desc: "Push updated credentials directly to target assets after rotation. No manual steps, no outages." },
+  { icon: ShieldAlert, title: "Break-Glass Access",            desc: "Emergency access procedures with mandatory approval, time limits, and full session recording." },
+  { icon: UserPlus,    title: "Account Lifecycle Management",  desc: "Provision, deprovision, and modify privileged accounts across all systems from a single control plane." },
 ];
 
 const auditFeatures = [
-  { icon: Monitor, title: "HD Session Recording", desc: "Record every privileged session in text (searchable) or video format. Replay any session from any point in time." },
-  { icon: Eye, title: "Real-Time Session Monitoring", desc: "Watch live sessions, send notifications to users, or terminate suspicious sessions in one click." },
-  { icon: BarChart3, title: "Analytics Dashboards", desc: "Executive-level risk dashboards showing access patterns, anomalies, and compliance status." },
-  { icon: FileSearch, title: "Command History", desc: "Full keystroke logging and command execution history for every SSH and terminal session." },
-  { icon: Network, title: "SIEM Integration", desc: "Stream all events to Splunk, IBM QRadar, Elastic SIEM, or any syslog-compatible system." },
-  { icon: Shield, title: "Compliance Reports", desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, PCI-DSS, HIPAA, and more." },
+  { icon: Video,       title: "HD Session Recording",        desc: "Record every privileged session in text (searchable) or video format. Replay any session from any point in time." },
+  { icon: Activity,    title: "Real-Time Session Monitoring", desc: "Watch live sessions, send notifications to users, or terminate suspicious sessions in one click." },
+  { icon: TrendingUp,  title: "Analytics Dashboards",        desc: "Executive-level risk dashboards showing access patterns, anomalies, and compliance status." },
+  { icon: ScrollText,  title: "Command History",             desc: "Full keystroke logging and command execution history for every SSH and terminal session." },
+  { icon: Share2,      title: "SIEM Integration",            desc: "Stream all events to Splunk, IBM QRadar, Elastic SIEM, or any syslog-compatible system." },
+  { icon: FileCheck2,  title: "Compliance Reports",          desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, PCI-DSS, HIPAA, and more." },
 ];
 
 const protocolSupport = [
@@ -93,12 +96,14 @@ function FeatureSection({
           </div>
           <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`}>
             {features.map((f) => (
-              <div key={f.title} className="p-5 rounded-xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group card-shine">
-                <div className="icon-wrapper w-10 h-10 rounded-lg mb-3">
-                  <f.icon className="w-4 h-4" />
+              <div key={f.title} className="feature-card group">
+                <div className="feature-card-body p-5 flex flex-col">
+                  <div className="icon-wrapper w-11 h-11 rounded-xl mb-4">
+                    <f.icon className="w-5 h-5" />
+                  </div>
+                  <div className="text-sm font-bold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{f.title}</div>
+                  <div className="text-xs text-slate-400 leading-relaxed">{f.desc}</div>
                 </div>
-                <div className="text-sm font-bold text-white mb-1.5" style={{ fontFamily: "var(--font-syne)" }}>{f.title}</div>
-                <div className="text-xs text-slate-400 leading-relaxed">{f.desc}</div>
               </div>
             ))}
           </div>
@@ -226,4 +231,4 @@ export default function FeaturesPage() {
 
     </>  
   );
-}
+} 

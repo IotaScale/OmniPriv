@@ -599,6 +599,57 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ──────────────────────────────────────────────
+   Animated Border Feature Cards
+────────────────────────────────────────────── */
+.feature-card {
+  position: relative;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  padding: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(0, 184, 255, 0.95) 48%,
+    rgba(139, 92, 246, 0.85) 57%,
+    transparent 66%
+  );
+  animation: feature-card-spin 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card-body {
+  position: relative;
+  z-index: 1;
+  background: #090f1e;
+  border-radius: calc(0.875rem - 1px);
+  height: 100%;
+  transition: background 0.35s ease;
+}
+
+.feature-card:hover .feature-card-body {
+  background: #0a1322;
+}
+
+@keyframes feature-card-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ──────────────────────────────────────────────
    Table Styles
 ────────────────────────────────────────────── */
 .comparison-table {

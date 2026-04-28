@@ -316,19 +316,19 @@ export default function HomePage() {
     <>
       {/* ─── HERO ──────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background image — subtle depth layer */}
+        {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=50"
+            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=60"
             alt=""
             fill
-            className="object-cover opacity-[0.07]"
+            className="object-cover opacity-[0.18]"
             priority
           />
         </div>
         {/* Background layers */}
         <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/60 via-[#030711]/85 to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/50 via-[#030711]/75 to-[#030711]" />
         {/* Cyan primary orb */}
         <div
           className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full"
