@@ -15,7 +15,7 @@ const categories = ["All", "Best Practices", "Security Research", "Case Studies"
 
 // ── Auto-derived from lib/blog-data.ts ──────────────────────────────────────
 // The featured post is pinned by slug. Change FEATURED_SLUG to pin a different post.
-const FEATURED_SLUG = "complete-pam-guide-2026";
+const FEATURED_SLUG = "privileged-access-management-solutions-guide-2026";
 
 const _fp = blogData[FEATURED_SLUG];
 const featuredPost = {

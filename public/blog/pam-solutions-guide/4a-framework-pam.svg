@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-4a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="420" fill="url(#bg-4a)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="36" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff">The 4A Framework for Best Privileged Access Management Solutions</text>
+  <text x="410" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#64748b">Authentication · Authorisation · Account Management · Audit</text>
+
+  <!-- Card 1: Authentication -->
+  <rect x="40" y="80" width="170" height="290" rx="12" fill="#0D1F35" stroke="#00B8FF" stroke-width="1.6" stroke-opacity="0.8"/>
+  <text x="125" y="114" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#00B8FF">🪪</text>
+  <text x="125" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Authentication</text>
+  <line x1="60" y1="154" x2="190" y2="154" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="125" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Multi-Factor Auth</text>
+  <text x="125" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Hardware Tokens</text>
+  <text x="125" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Biometrics</text>
+  <text x="125" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Certificate-Based</text>
+  <text x="125" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Auth for Non-Human</text>
+  <text x="125" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Identities</text>
+  <rect x="68" y="308" width="114" height="40" rx="8" fill="#00B8FF" fill-opacity="0.1" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="125" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#00B8FF">Verify</text>
+  <text x="125" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Who you are</text>
+
+  <!-- Connector 1→2 -->
+  <path d="M210 228 L232 228" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="228,222 238,228 228,234" fill="#475569"/>
+
+  <!-- Card 2: Authorisation -->
+  <rect x="238" y="80" width="170" height="290" rx="12" fill="#0D1F35" stroke="#a78bfa" stroke-width="1.6" stroke-opacity="0.8"/>
+  <text x="323" y="114" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#a78bfa">🔒</text>
+  <text x="323" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Authorisation</text>
+  <line x1="258" y1="154" x2="388" y2="154" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="323" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Role-Based Policies</text>
+  <text x="323" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Attribute Controls</text>
+  <text x="323" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Approval Workflows</text>
+  <text x="323" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Time-Boxed Access</text>
+  <text x="323" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Command Filtering</text>
+  <text x="323" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Least Privilege</text>
+  <rect x="266" y="308" width="114" height="40" rx="8" fill="#a78bfa" fill-opacity="0.1" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="323" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#a78bfa">Control</text>
+  <text x="323" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">What you can do</text>
+
+  <!-- Connector 2→3 -->
+  <path d="M408 228 L430 228" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="426,222 436,228 426,234" fill="#475569"/>
+
+  <!-- Card 3: Account Management -->
+  <rect x="436" y="80" width="170" height="290" rx="12" fill="#0D1F35" stroke="#4ade80" stroke-width="1.6" stroke-opacity="0.8"/>
+  <text x="521" y="114" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#4ade80">🔑</text>
+  <text x="521" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Account Mgmt</text>
+  <line x1="456" y1="154" x2="586" y2="154" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="521" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Credential Vaulting</text>
+  <text x="521" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">SSH Key Management</text>
+  <text x="521" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Auto-Rotation</text>
+  <text x="521" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Just-in-Time Access</text>
+  <text x="521" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Secrets Management</text>
+  <text x="521" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Lifecycle Controls</text>
+  <rect x="464" y="308" width="114" height="40" rx="8" fill="#4ade80" fill-opacity="0.1" stroke="#4ade80" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="521" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#4ade80">Manage</text>
+  <text x="521" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Credential lifecycle</text>
+
+  <!-- Connector 3→4 -->
+  <path d="M606 228 L628 228" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="624,222 634,228 624,234" fill="#475569"/>
+
+  <!-- Card 4: Audit -->
+  <rect x="634" y="80" width="146" height="290" rx="12" fill="#0D1F35" stroke="#f59e0b" stroke-width="1.6" stroke-opacity="0.8"/>
+  <text x="707" y="114" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#f59e0b">📋</text>
+  <text x="707" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Audit</text>
+  <line x1="654" y1="154" x2="760" y2="154" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="707" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Session Recording</text>
+  <text x="707" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Keystroke Logging</text>
+  <text x="707" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Video Playback</text>
+  <text x="707" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Tamper-Proof Logs</text>
+  <text x="707" y="258" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Compliance Reports</text>
+  <text x="707" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Forensic Evidence</text>
+  <rect x="650" y="308" width="114" height="40" rx="8" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="707" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#f59e0b">Prove</text>
+  <text x="707" y="337" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">What happened</text>
+
+  <text x="410" y="406" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">OmniPriv — Best Privileged Access Management Solution 2026 · All 4A pillars in one platform</text>
+</svg>
