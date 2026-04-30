@@ -45,7 +45,7 @@ export default function HeroDashboard() {
           <span className="w-3 h-3 rounded-full bg-[#F59E0B]" />
           <span className="w-3 h-3 rounded-full bg-[#22C55E]" />
           <div className="flex-1 mx-3 h-5 rounded bg-[#1A1A38] flex items-center px-3">
-            <span className="text-[10px] text-slate-500 font-mono">omnipriv.io / console / sessions</span>
+            <span className="text-[10px] text-slate-500 font-mono">omnipriv.com/console / sessions</span>
           </div>
           <div className="flex items-center gap-1.5">
             <motion.span
