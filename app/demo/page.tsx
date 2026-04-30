@@ -1,4 +1,6 @@
-"use client";
+﻿"use client";
+
+import Image from "next/image";
 
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -14,11 +16,11 @@ import {
 } from "@/lib/emailjs";
 
 const companySizes = [
-  "1–50 employees",
-  "51–200 employees",
-  "201–1,000 employees",
-  "1,001–5,000 employees",
-  "5,001–10,000 employees",
+  "1â€“50 employees",
+  "51â€“200 employees",
+  "201â€“1,000 employees",
+  "1,001â€“5,000 employees",
+  "5,001â€“10,000 employees",
   "10,000+ employees",
 ];
 
@@ -118,13 +120,17 @@ export default function DemoPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-32 pb-24 border-b border-white/[0.04] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=50" alt="" fill className="object-cover" priority sizes="100vw" />
+          <div className="absolute inset-0 bg-[#07070E]/85" />
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#07070E]" />
+        </div>
         <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
         <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
           <div className="badge-cyan mb-6">Request a Demo</div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-            See OmniPriv in Your <span className="text-gradient">Environment</span>
+            See OmniPriv in Your <span className="text-[#6366F1]">Environment</span>
           </h1>
           <p className="text-lg text-slate-400 leading-relaxed">
             Get a personalized, no-commitment walkthrough tailored to your infrastructure and compliance requirements. Our PAM specialists will show you exactly how OmniPriv eliminates privilege-based risk at your scale.
@@ -140,9 +146,9 @@ export default function DemoPage() {
             {/* LEFT: Form */}
             <div className="lg:col-span-3">
               {submitted ? (
-                <div className="p-12 rounded-3xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.04] text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#00B8FF]/15 flex items-center justify-center mx-auto mb-5">
-                    <CheckCircle2 className="w-8 h-8 text-[#00B8FF]" />
+                <div className="p-12 rounded-3xl border border-[#6366F1]/25 bg-[#6366F1]/[0.04] text-center">
+                  <div className="w-16 h-16 rounded-full bg-[#6366F1]/15 flex items-center justify-center mx-auto mb-5">
+                    <CheckCircle2 className="w-8 h-8 text-[#6366F1]" />
                   </div>
                   <h2 className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>Demo Request Received!</h2>
                   <p className="text-slate-400 mb-8 max-w-md mx-auto">
@@ -153,7 +159,7 @@ export default function DemoPage() {
                   </Link>
                 </div>
               ) : (
-                <div className="p-8 rounded-3xl border border-white/[0.06] bg-[#0A1628]/60">
+                <div className="p-8 rounded-3xl border border-white/[0.06] bg-[#0E0E1C]/60">
                   <h2 className="text-xl font-bold text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
                     Tell Us About Your Needs
                   </h2>
@@ -290,13 +296,13 @@ export default function DemoPage() {
                         name="agree"
                         checked={formData.agree}
                         onChange={handleChange}
-                        className="mt-1 w-4 h-4 rounded border-white/20 bg-[#0F1E35] accent-[#00B8FF]"
+                        className="mt-1 w-4 h-4 rounded border-white/20 bg-[#0F1E35] accent-[#6366F1]"
                       />
                       <label htmlFor="agree" className="text-sm text-slate-400 leading-relaxed">
                         I agree to OmniPriv&apos;s{" "}
-                        <Link href="/privacy-policy" className="text-[#00B8FF] hover:underline">Privacy Policy</Link>{" "}
+                        <Link href="/privacy-policy" className="text-[#6366F1] hover:underline">Privacy Policy</Link>{" "}
                         and{" "}
-                        <Link href="/terms" className="text-[#00B8FF] hover:underline">Terms of Service</Link>.
+                        <Link href="/terms" className="text-[#6366F1] hover:underline">Terms of Service</Link>.
                         I agree to receive communications from OmniPriv about products and services.
                       </label>
                     </div>
@@ -337,13 +343,13 @@ export default function DemoPage() {
             <div className="lg:col-span-2 space-y-8">
 
               {/* Trust stats */}
-              {/* <div className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60">
+              {/* <div className="p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60">
                 <h3 className="text-sm font-bold text-white mb-5 uppercase tracking-wider" style={{ fontFamily: "var(--font-syne)" }}>Trusted By Security Leaders</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {trustStats.map((t) => (
                     <div key={t.label} className="text-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                      <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center mx-auto mb-2">
-                        <t.icon className="w-4 h-4 text-[#00B8FF]" />
+                      <div className="w-8 h-8 rounded-lg bg-[#6366F1]/10 flex items-center justify-center mx-auto mb-2">
+                        <t.icon className="w-4 h-4 text-[#6366F1]" />
                       </div>
                       <div className="text-sm font-bold text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{t.value}</div>
                       <div className="text-[10px] text-slate-500">{t.label}</div>
@@ -357,8 +363,8 @@ export default function DemoPage() {
                 <h3 className="text-base font-bold text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>What to Expect</h3>
                 <div className="space-y-4">
                   {whatToExpect.map((step) => (
-                    <div key={step.step} className="flex gap-4 p-4 rounded-xl border border-white/[0.04] bg-[#0A1628]/40">
-                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-[#00B8FF] font-bold text-xs" style={{ fontFamily: "var(--font-syne)" }}>
+                    <div key={step.step} className="flex gap-4 p-4 rounded-xl border border-white/[0.04] bg-[#0E0E1C]/40">
+                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-[#6366F1]/10 flex items-center justify-center text-[#6366F1] font-bold text-xs" style={{ fontFamily: "var(--font-syne)" }}>
                         {step.step}
                       </div>
                       <div>
@@ -371,11 +377,11 @@ export default function DemoPage() {
               </div>
 
               {/* Contact */}
-              <div className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60">
+              <div className="p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60">
                 <h3 className="text-sm font-bold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>Prefer to Talk Directly?</h3>
                 <div className="space-y-3">
-                  <a href="mailto:info@omnipriv.com" className="flex items-center gap-3 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors">
-                    <Mail className="w-4 h-4 text-[#00B8FF]" />
+                  <a href="mailto:info@omnipriv.com" className="flex items-center gap-3 text-sm text-slate-400 hover:text-[#6366F1] transition-colors">
+                    <Mail className="w-4 h-4 text-[#6366F1]" />
                     info@omnipriv.com
                   </a>
                 </div>
@@ -387,3 +393,4 @@ export default function DemoPage() {
     </>
   );
 }
+

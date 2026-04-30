@@ -17,7 +17,7 @@ function renderInline(text: string): React.ReactNode {
     const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (match) {
       return (
-        <Link key={i} href={match[2]} className="text-[#00B8FF] hover:underline">
+        <Link key={i} href={match[2]} className="text-[#6366F1] hover:underline">
           {match[1]}
         </Link>
       );
@@ -61,7 +61,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* Hero */}
       <section className="relative pt-16 pb-14 border-b border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/40 via-[#030711]/80 to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07070E]/40 via-[#07070E]/80 to-[#07070E]" />
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse at top, rgba(0,184,255,0.08) 0%, transparent 60%)" }}
@@ -69,7 +69,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="container-xl relative z-10 max-w-3xl mx-auto">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#6366F1] transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
@@ -89,7 +89,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           <div className="flex flex-wrap items-center gap-5 text-sm text-slate-500">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#6366f1]/20 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6366F1]/30 to-[#6366f1]/20 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                 {post.author.charAt(0)}
               </div>
               <div>
@@ -167,7 +167,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                           <ul key={j} className="space-y-2.5 ml-1">
                             {listLines.map((item, k) => (
                               <li key={k} className="flex items-start gap-3 text-slate-400 leading-relaxed">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#00B8FF] flex-shrink-0" />
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#6366F1] flex-shrink-0" />
                                 {renderInline(item.trim().slice(2))}
                               </li>
                             ))}
@@ -209,7 +209,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* CTA */}
-          <div className="mt-16 p-8 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-br from-[#0A1628] to-[#030711]">
+          <div className="mt-16 p-8 rounded-2xl border border-[#6366F1]/15 bg-gradient-to-br from-[#0E0E1C] to-[#07070E]">
             <h3
               className="text-lg font-extrabold text-white mb-3"
               style={{ fontFamily: "var(--font-syne)" }}
@@ -233,7 +233,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="mt-10 pt-8 border-t border-white/[0.06]">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#6366F1] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" /> Back to all articles
             </Link>

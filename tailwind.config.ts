@@ -9,85 +9,65 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /* ── Brand ── */
         primary: {
-          DEFAULT: "#00B8FF",
-          50: "#E6F9FF",
-          100: "#CCF2FF",
-          200: "#99E5FF",
-          300: "#66D9FF",
-          400: "#33CCFF",
-          500: "#00B8FF",
-          600: "#0090CC",
-          700: "#006899",
-          800: "#004066",
-          900: "#001833",
+          DEFAULT: "#6366F1",
+          50:  "#EEEEFF",
+          100: "#D8D9FE",
+          200: "#B4B5FD",
+          300: "#8F91FC",
+          400: "#7476F9",
+          500: "#6366F1",
+          600: "#4446D4",
+          700: "#3032A8",
+          800: "#1F207C",
+          900: "#111250",
         },
+        accent: {
+          DEFAULT: "#A78BFA",
+          dark:    "#7C3AED",
+        },
+        success: "#22C55E",
+        warning: "#F59E0B",
+        danger:  "#EF4444",
+        /* ── Neutrals ── */
         dark: {
-          DEFAULT: "#030711",
-          50: "#0A1628",
-          100: "#0D1E36",
-          200: "#102644",
-          300: "#133052",
+          DEFAULT: "#07070E",
+          50:  "#0E0E1C",
+          100: "#13132A",
+          200: "#1A1A38",
+          300: "#222244",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans:    ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-syne)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
-      },
-      backgroundImage: {
-        "hero-grid":
-          "linear-gradient(rgba(0,184,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,184,255,0.05) 1px, transparent 1px)",
-        "card-glow":
-          "radial-gradient(ellipse at top left, rgba(0,184,255,0.12) 0%, transparent 60%)",
-        "cyan-radial":
-          "radial-gradient(ellipse at center, rgba(0,184,255,0.15) 0%, transparent 70%)",
-        "page-gradient":
-          "linear-gradient(180deg, #030711 0%, #0A1628 30%, #030711 100%)",
+        mono:    ["var(--font-jetbrains)", "monospace"],
       },
       animation: {
-        "fade-up": "fadeUp 0.6s ease-out forwards",
-        "fade-in": "fadeIn 0.5s ease-out forwards",
-        "slide-up": "slideUp 0.5s ease-out forwards",
-        "glow-pulse": "glowPulse 3s ease-in-out infinite",
-        "marquee": "marquee 35s linear infinite",
-        "float": "float 4s ease-in-out infinite",
-        "spin-slow": "spin 8s linear infinite",
-        "border-anim": "borderAnim 4s linear infinite",
+        "marquee":    "marquee 35s linear infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4,0,0.6,1) infinite",
+        "blink":      "blink 1.2s step-start infinite",
       },
       keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(40px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        glowPulse: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(0,184,255,0.25)" },
-          "50%": { boxShadow: "0 0 50px rgba(0,184,255,0.6)" },
-        },
         marquee: {
-          "0%": { transform: "translateX(0)" },
+          "0%":   { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
-        borderAnim: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%":      { opacity: "0" },
         },
       },
       transitionTimingFunction: {
         smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+      },
+      boxShadow: {
+        "card":         "0 1px 3px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)",
+        "card-hover":   "0 4px 20px rgba(0,0,0,0.8), 0 0 0 1px rgba(99,102,241,0.25)",
+        "primary":      "0 0 0 3px rgba(99,102,241,0.3)",
+        "inset-top":    "inset 0 1px 0 rgba(255,255,255,0.06)",
       },
     },
   },

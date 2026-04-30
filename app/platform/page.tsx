@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { solutions } from "./data";
@@ -13,16 +14,20 @@ export default function SolutionsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+      <section className="relative pt-32 pb-24 border-b border-white/[0.04] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1920&q=50" alt="" fill className="object-cover" priority sizes="100vw" />
+          <div className="absolute inset-0 bg-[#07070E]/80" />
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#07070E]" />
+        </div>
+        <div className="absolute inset-0 bg-grid opacity-40" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">PAM Capabilities</div>
           <h1
             className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto"
             style={{ fontFamily: "var(--font-syne)" }}
           >
-            Enterprise-Grade <span className="text-gradient">PAM Platform</span>
+            Enterprise-Grade <span className="text-[#6366F1]">PAM Platform</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
             From infrastructure deployment to threat detection, OmniPriv covers every dimension of
@@ -56,7 +61,7 @@ export default function SolutionsPage() {
               <Link
                 key={solution.slug}
                 href={`/platform/${solution.slug}`}
-                className="group p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/25 hover:bg-[#0A1628]/80 transition-all duration-300 card-shine flex flex-col"
+                className="group p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 hover:border-[#6366F1]/25 hover:bg-[#0E0E1C]/80 transition-all duration-300 card-shine flex flex-col"
               >
                 <div className="icon-wrapper w-12 h-12 rounded-xl mb-5 group-hover:scale-110 transition-transform duration-300">
                   <solution.icon className="w-6 h-6" />
@@ -70,7 +75,7 @@ export default function SolutionsPage() {
                 <p className="text-sm text-slate-400 leading-relaxed mb-5 flex-1">
                   {solution.tagline}
                 </p>
-                <div className="flex items-center gap-1.5 text-sm font-semibold text-[#00B8FF] group-hover:gap-2.5 transition-all duration-300">
+                <div className="flex items-center gap-1.5 text-sm font-semibold text-[#6366F1] group-hover:gap-2.5 transition-all duration-300">
                   Learn More <ArrowRight className="w-4 h-4" />
                 </div>
               </Link>
@@ -82,10 +87,10 @@ export default function SolutionsPage() {
       {/* CTA */}
       <section className="section-padding">
         <div className="container-xl">
-          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-16 text-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] to-[#030711]" />
+          <div className="relative rounded-3xl overflow-hidden border border-[#6366F1]/15 p-10 md:p-16 text-center">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0E0E1C] to-[#07070E]" />
             <div className="absolute inset-0 bg-grid opacity-20" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#6366F1]/40 to-transparent" />
             <div className="relative z-10">
               <h2
                 className="text-3xl md:text-4xl font-extrabold text-white mb-4"
@@ -107,3 +112,4 @@ export default function SolutionsPage() {
     </>
   );
 }
+

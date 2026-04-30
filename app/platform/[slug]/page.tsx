@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
@@ -39,14 +40,18 @@ export default async function SolutionPage({
     return (
         <>
             {/* Hero */}
-            <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
-                <div className="absolute inset-0 bg-grid opacity-50" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+            <section className="relative pt-32 pb-24 border-b border-white/[0.04] overflow-hidden">
+                <div className="absolute inset-0">
+                    <Image src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=50" alt="" fill className="object-cover" sizes="100vw" />
+                    <div className="absolute inset-0 bg-[#07070E]/85" />
+                    <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#07070E]" />
+                </div>
+                <div className="absolute inset-0 bg-grid opacity-40" />
                 <div className="container-xl relative z-10">
                     {/* Breadcrumb */}
                     <Link
                         href="/platform"
-                        className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#00B8FF] transition-colors mb-8"
+                        className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#6366F1] transition-colors mb-8"
                     >
                         <ArrowLeft className="w-3.5 h-3.5" />
                         All Capabilities
@@ -81,7 +86,7 @@ export default async function SolutionPage({
                             className="text-3xl md:text-4xl font-extrabold text-white mb-4"
                             style={{ fontFamily: "var(--font-syne)" }}
                         >
-                            Key <span className="text-gradient">Features</span>
+                            Key <span className="text-[#6366F1]">Features</span>
                         </h2>
                         <p className="text-slate-400 text-lg">{solution.tagline}</p>
                     </div>
@@ -90,7 +95,7 @@ export default async function SolutionPage({
                         {solution.features.map((feature) => (
                             <div
                                 key={feature.name}
-                                className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all duration-300 group card-shine"
+                                className="p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 hover:border-[#6366F1]/20 transition-all duration-300 group card-shine"
                             >
                                 <div className="icon-wrapper w-10 h-10 rounded-lg mb-4 group-hover:scale-110 transition-transform duration-300">
                                     <feature.icon className="w-4.5 h-4.5" />
@@ -113,10 +118,10 @@ export default async function SolutionPage({
             {/* CTA */}
             <section className="section-padding">
                 <div className="container-xl">
-                    <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-16 text-center">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] to-[#030711]" />
+                    <div className="relative rounded-3xl overflow-hidden border border-[#6366F1]/15 p-10 md:p-16 text-center">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#0E0E1C] to-[#07070E]" />
                         <div className="absolute inset-0 bg-grid opacity-20" />
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#6366F1]/40 to-transparent" />
                         <div className="relative z-10">
                             <h2
                                 className="text-3xl md:text-4xl font-extrabold text-white mb-4"

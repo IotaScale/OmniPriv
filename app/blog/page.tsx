@@ -1,7 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, Calendar, ChevronRight } from "lucide-react";
 import {
@@ -13,7 +14,7 @@ import { posts as blogData } from "@/lib/blog-data";
 
 const categories = ["All", "Best Practices", "Security Research", "Case Studies", "Product Updates", "Compliance", "DevSecOps"];
 
-// ── Auto-derived from lib/blog-data.ts ──────────────────────────────────────
+// â”€â”€ Auto-derived from lib/blog-data.ts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // The featured post is pinned by slug. Change FEATURED_SLUG to pin a different post.
 const FEATURED_SLUG = "privileged-access-management-solutions-guide-2026";
 
@@ -46,7 +47,7 @@ const posts = Object.entries(blogData)
     tags: post.tags,
   }))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-// ─────────────────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function getTagColor(tag: string) {
   const colors: Record<string, string> = {
@@ -89,13 +90,25 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+      <section className="relative pt-32 pb-24 border-b border-white/[0.04] overflow-hidden">
+        {/* Background image — data / code */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=50"
+            alt=""
+            fill
+            className="object-cover opacity-30"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-[#07070E]/80" />
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#07070E]" />
+        </div>
+        <div className="absolute inset-0 bg-grid opacity-40" />
         <div className="container-xl relative z-10 text-center">
-          <div className="badge-cyan mb-6 inline-flex mx-auto">Blog & Insights</div>
+          <div className="badge-cyan mb-6 inline-flex mx-auto">Blog &amp; Insights</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
-            PAM Security <span className="text-gradient">Insights</span>
+            PAM Security <span className="text-[#6366F1]">Insights</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-xl mx-auto">
             Best practices, security research, compliance guidance, and product updates from the OmniPriv team. Discover how to leverage our Privileged Access Management Solution to secure your enterprise.
@@ -104,7 +117,7 @@ export default function BlogPage() {
       </section>
 
       {/* Categories */}
-      <section className="py-5 border-b border-white/[0.04] bg-[#0A1628]/30 sticky top-[72px] z-30 backdrop-blur-xl">
+      <section className="py-5 border-b border-white/[0.04] bg-[#0E0E1C]/30 sticky top-[72px] z-30 backdrop-blur-xl">
         <div className="container-xl">
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             {categories.map((cat) => (
@@ -113,8 +126,8 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border ${
                   cat === activeCategory
-                    ? "bg-[#00B8FF]/15 border-[#00B8FF]/30 text-[#00B8FF]"
-                    : "bg-transparent border-white/[0.06] text-slate-400 hover:border-[#00B8FF]/20 hover:text-white"
+                    ? "bg-[#6366F1]/15 border-[#6366F1]/30 text-[#6366F1]"
+                    : "bg-transparent border-white/[0.06] text-slate-400 hover:border-[#6366F1]/20 hover:text-white"
                 }`}
               >
                 {cat}
@@ -129,10 +142,10 @@ export default function BlogPage() {
         <div className="container-xl">
           <Link
             href={featuredPost.href}
-            className="group block relative rounded-2xl border border-white/[0.07] bg-gradient-to-br from-[#0A1628]/80 to-[#0F1E35]/60 overflow-hidden hover:border-[#00B8FF]/20 transition-all duration-300 card-shine"
+            className="group block relative rounded-2xl border border-white/[0.07] bg-gradient-to-br from-[#0E0E1C]/80 to-[#0F1E35]/60 overflow-hidden hover:border-[#6366F1]/20 transition-all duration-300 card-shine"
           >
             <div className="absolute inset-0 bg-grid opacity-20" />
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10" style={{ background: "radial-gradient(circle, #00B8FF 0%, transparent 60%)" }} />
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10" style={{ background: "radial-gradient(circle, #6366F1 0%, transparent 60%)" }} />
             <div className="relative z-10 p-8 md:p-12">
               <div className="flex items-center gap-3 mb-5">
                 <span className={`px-3 py-1 rounded-full border text-xs font-semibold ${getTagColor(featuredPost.category)}`}>
@@ -140,7 +153,7 @@ export default function BlogPage() {
                 </span>
                 <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Featured</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl" style={{ fontFamily: "var(--font-syne)" }}>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight group-hover:text-[#6366F1] transition-colors max-w-3xl" style={{ fontFamily: "var(--font-syne)" }}>
                 {featuredPost.title}
               </h2>
               <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-2xl">
@@ -153,7 +166,7 @@ export default function BlogPage() {
               </div>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-white text-sm font-bold" style={{ fontFamily: "var(--font-syne)" }}>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#6366F1]/40 to-[#0060FF]/40 flex items-center justify-center text-white text-sm font-bold" style={{ fontFamily: "var(--font-syne)" }}>
                     {featuredPost.author.charAt(0)}
                   </div>
                   <div>
@@ -164,7 +177,7 @@ export default function BlogPage() {
                 <div className="flex items-center gap-4 text-xs text-slate-500">
                   <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{featuredPost.date}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{featuredPost.readTime}</span>
-                  <span className="text-[#00B8FF] font-semibold flex items-center gap-1">
+                  <span className="text-[#6366F1] font-semibold flex items-center gap-1">
                     Read Article <ChevronRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -182,14 +195,14 @@ export default function BlogPage() {
               <Link
                 key={post.title}
                 href={post.href}
-                className="group flex flex-col p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 hover:bg-[#0A1628]/90 transition-all duration-300 card-shine"
+                className="group flex flex-col p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 hover:border-[#6366F1]/20 hover:bg-[#0E0E1C]/90 transition-all duration-300 card-shine"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className={`px-2.5 py-1 rounded-full border text-xs font-semibold ${getTagColor(post.category)}`}>
                     {post.category}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-white mb-3 group-hover:text-[#00B8FF] transition-colors line-clamp-2 flex-1" style={{ fontFamily: "var(--font-syne)" }}>
+                <h3 className="text-base font-bold text-white mb-3 group-hover:text-[#6366F1] transition-colors line-clamp-2 flex-1" style={{ fontFamily: "var(--font-syne)" }}>
                   {post.title}
                 </h3>
                 <p className="text-sm text-slate-400 leading-relaxed line-clamp-3 mb-4">
@@ -202,7 +215,7 @@ export default function BlogPage() {
                 </div>
                 <div className="flex items-center justify-between border-t border-white/[0.05] pt-4 mt-auto">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/30 flex items-center justify-center text-white text-xs font-bold" style={{ fontFamily: "var(--font-syne)" }}>
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#6366F1]/30 to-[#0060FF]/30 flex items-center justify-center text-white text-xs font-bold" style={{ fontFamily: "var(--font-syne)" }}>
                       {post.author.charAt(0)}
                     </div>
                     <div>
@@ -222,7 +235,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="section-padding border-t border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-t border-white/[0.04] bg-[#0E0E1C]/30">
         <div className="container-xl">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl font-extrabold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
@@ -232,8 +245,8 @@ export default function BlogPage() {
               Weekly security insights, PAM best practices, and OmniPriv product updates. No spam, unsubscribe anytime.
             </p>
             {newsletterStatus === "success" ? (
-              <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] text-[#00B8FF] text-sm font-medium">
-                ✓ You&apos;re subscribed! Welcome aboard.
+              <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[#6366F1]/25 bg-[#6366F1]/[0.08] text-[#6366F1] text-sm font-medium">
+                âœ“ You&apos;re subscribed! Welcome aboard.
               </div>
             ) : (
               <>
@@ -266,3 +279,4 @@ export default function BlogPage() {
     </>
   );
 }
+

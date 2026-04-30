@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Shield, Lock, Eye, Fingerprint, Network, Server, Database,
@@ -178,11 +178,11 @@ export default function SecurityPage() {
       {/* Hero */}
       <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070E] pointer-events-none" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Security & Trust</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
-            Security is Our <span className="text-gradient">Foundation</span>
+            Security is Our <span className="text-accent">Foundation</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
             OmniPriv is built with security at its core, from zero-trust architecture and end-to-end encryption to independent penetration testing and comprehensive compliance certifications.
@@ -201,13 +201,13 @@ export default function SecurityPage() {
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Architecture</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              Security Principles That <span className="text-gradient">Never Compromise</span>
+              Security Principles That <span className="text-accent">Never Compromise</span>
             </h2>
           </div>
 
           <div className="space-y-6">
             {securityPrinciples.map((p, idx) => (
-              <div key={p.title} className={`p-8 md:p-10 rounded-2xl border border-white/[0.07] bg-[#0A1628]/60 grid md:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? "md:grid-flow-dense" : ""}`}>
+              <div key={p.title} className={`p-8 md:p-10 rounded-2xl border border-white/[0.07] bg-[#0E0E1C]/60 grid md:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? "md:grid-flow-dense" : ""}`}>
                 <div className={idx % 2 === 1 ? "md:col-start-2" : ""}>
                   <div className="icon-wrapper mb-5">
                     <p.icon className="w-6 h-6" />
@@ -219,7 +219,7 @@ export default function SecurityPage() {
                   <div className="space-y-3">
                     {p.details.map((d) => (
                       <div key={d} className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                        <CheckCircle2 className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#6366F1] flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-slate-300">{d}</span>
                       </div>
                     ))}
@@ -232,7 +232,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Security Features Grid */}
-      <section className="section-padding border-y border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-y border-white/[0.04] bg-[#0E0E1C]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -244,7 +244,7 @@ export default function SecurityPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {securityFeatures.map((f) => (
-              <div key={f.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine group">
+              <div key={f.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 hover:border-[#6366F1]/20 transition-all card-shine group">
                 <div className="icon-wrapper mb-4 w-10 h-10 rounded-lg">
                   <f.icon className="w-4 h-4" />
                 </div>
@@ -288,13 +288,13 @@ export default function SecurityPage() {
       </section>
 
       {/* Pen Testing */}
-      <section className="section-padding border-y border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-y border-white/[0.04] bg-[#0E0E1C]/30">
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
               <div className="badge-cyan mb-6">Independent Testing</div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-                Penetration Testing & <span className="text-gradient">Vulnerability Research</span>
+                Penetration Testing & <span className="text-accent">Vulnerability Research</span>
               </h2>
               <p className="text-slate-400 leading-relaxed">
                 Security cannot be assumed; it must be continuously verified. OmniPriv undergoes rigorous, independent security testing including white-box penetration testing, red team exercises, and bug bounty programs with the world's leading security researchers.
@@ -303,7 +303,7 @@ export default function SecurityPage() {
             <div className="space-y-3">
               {penTestFacts.map((f) => (
                 <div key={f.label} className="flex gap-4 p-4 rounded-xl border border-white/[0.05] bg-white/[0.02]">
-                  <div className="text-xs font-bold text-[#00B8FF] uppercase w-24 flex-shrink-0 pt-0.5">{f.label}</div>
+                  <div className="text-xs font-bold text-[#6366F1] uppercase w-24 flex-shrink-0 pt-0.5">{f.label}</div>
                   <div className="text-sm text-slate-300">{f.value}</div>
                 </div>
               ))}
@@ -328,3 +328,4 @@ export default function SecurityPage() {
     </>
   );
 }
+

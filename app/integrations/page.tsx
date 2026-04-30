@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Plug, CheckCircle2 } from "lucide-react";
 
@@ -112,14 +112,14 @@ export default function IntegrationsPage() {
       {/* Hero */}
       <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070E]" />
         <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
           <div className="badge-cyan mb-6">Integrations</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-            Fits Seamlessly Into <span className="text-gradient">Your Stack</span>
+            Fits Seamlessly Into <span className="text-accent">Your Stack</span>
           </h1>
           <p className="text-xl text-slate-400 leading-relaxed mb-8">
-            OmniPriv connects natively with 250+ enterprise tools — identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them.
+            OmniPriv connects natively with 250+ enterprise tools â€” identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them.
           </p>
           <Link href="/demo" className="btn-primary">
             See a Live Integration Demo <ArrowRight className="w-4 h-4" />
@@ -128,16 +128,16 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Featured logos */}
-      <section className="py-12 border-b border-white/[0.04] bg-[#0A1628]/30">
+      <section className="py-12 border-b border-white/[0.04] bg-[#0E0E1C]/30">
         <div className="container-xl">
           <p className="text-xs text-slate-500 text-center uppercase tracking-widest mb-8">Certified Integrations Include</p>
           <div className="flex flex-wrap justify-center gap-3">
             {featuredLogos.map((logo) => (
-              <div key={logo} className="px-6 py-2.5 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 text-sm font-medium text-slate-300 hover:border-[#00B8FF]/20 transition-all">
+              <div key={logo} className="px-6 py-2.5 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/40 text-sm font-medium text-slate-300 hover:border-[#6366F1]/20 transition-all">
                 {logo}
               </div>
             ))}
-            <div className="px-6 py-2.5 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 text-sm font-medium text-slate-500">
+            <div className="px-6 py-2.5 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/40 text-sm font-medium text-slate-500">
               + 238 more
             </div>
           </div>
@@ -150,10 +150,10 @@ export default function IntegrationsPage() {
           <div className="grid lg:grid-cols-3 gap-5">
             {[
               { icon: Plug, title: "REST API", desc: "Fully documented REST API for custom integrations, automation, and SIEM data streaming. Every platform action is API-accessible." },
-              { icon: CheckCircle2, title: "Certified Partner Program", desc: "OmniPriv maintains certified integrations with 100+ partners — tested and validated with each platform release." },
+              { icon: CheckCircle2, title: "Certified Partner Program", desc: "OmniPriv maintains certified integrations with 100+ partners â€” tested and validated with each platform release." },
               { icon: ArrowRight, title: "Custom Connectors", desc: "Build custom connectors using our open SDK or request a connector from our engineering team. No vendor lock-in." },
             ].map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 flex items-start gap-4">
+              <div key={item.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 flex items-start gap-4">
                 <div className="icon-wrapper w-10 h-10 rounded-lg flex-shrink-0">
                   <item.icon className="w-4 h-4" />
                 </div>
@@ -178,9 +178,9 @@ export default function IntegrationsPage() {
               </div>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cat.integrations.map((intg) => (
-                  <div key={intg.name} className="p-5 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 hover:border-[#00B8FF]/20 transition-all group card-shine">
+                  <div key={intg.name} className="p-5 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/40 hover:border-[#6366F1]/20 transition-all group card-shine">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-[8px] font-bold text-[#00B8FF] leading-none text-center" style={{ fontFamily: "var(--font-syne)" }}>
+                      <div className="w-8 h-8 rounded-lg bg-[#6366F1]/10 flex items-center justify-center text-[8px] font-bold text-[#6366F1] leading-none text-center" style={{ fontFamily: "var(--font-syne)" }}>
                         {intg.name.substring(0, 3).toUpperCase()}
                       </div>
                       <div>
@@ -219,3 +219,4 @@ export default function IntegrationsPage() {
     </>
   );
 }
+

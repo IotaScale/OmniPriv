@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -74,7 +74,7 @@ All third-party service providers are evaluated for security practices and contr
     content: `We retain your personal information for as long as necessary to provide our services, fulfill the purposes described in this Privacy Policy, and meet our legal obligations. Specific retention periods:
 
 - Account data: Retained for the duration of your contract and up to 5 years afterward for legal purposes.
-- Session logs and audit records: Retained for the period required by your applicable compliance framework (typically 1–7 years), configurable per your deployment.
+- Session logs and audit records: Retained for the period required by your applicable compliance framework (typically 1â€“7 years), configurable per your deployment.
 - Marketing data: Retained until you opt out or request deletion.
 - Cookie data: See cookie-specific retention in our Cookie Policy.
 
@@ -100,8 +100,8 @@ No method of transmission over the Internet or electronic storage is 100% secure
     content: `We use cookies and similar tracking technologies to:
 
 - Keep you signed in and remember your preferences (essential cookies)
-- Analyze website usage and performance (analytics cookies — providers: Google Analytics, Mixpanel)
-- Personalize content and advertising (marketing cookies — providers: HubSpot, LinkedIn Insight Tag)
+- Analyze website usage and performance (analytics cookies â€” providers: Google Analytics, Mixpanel)
+- Personalize content and advertising (marketing cookies â€” providers: HubSpot, LinkedIn Insight Tag)
 
 You can control cookies through your browser settings or opt out of analytics tracking via our consent banner. Disabling certain cookies may affect website functionality.`,
   },
@@ -174,7 +174,7 @@ export default function PrivacyPolicyPage() {
               <div className="sticky top-28 space-y-1">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
                 {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-400 hover:text-[#00B8FF] transition-colors py-1 border-l border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
+                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-400 hover:text-[#6366F1] transition-colors py-1 border-l border-white/[0.06] hover:border-[#6366F1]/40 pl-3">
                     {s.title}
                   </a>
                 ))}
@@ -183,7 +183,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Main Content */}
             <article className="lg:col-span-3 space-y-12">
-              <div className="p-5 rounded-xl border border-[#00B8FF]/15 bg-[#00B8FF]/[0.03] text-sm text-slate-300 leading-relaxed">
+              <div className="p-5 rounded-xl border border-[#6366F1]/15 bg-[#6366F1]/[0.03] text-sm text-slate-300 leading-relaxed">
                 <strong className="text-white">Summary:</strong> OmniPriv is a B2B enterprise security company. We collect contact information when you interact with us, use it to provide our services, don&apos;t sell it, protect it with SOC 2 / ISO 27001 certified infrastructure, and honor your data rights. Questions? Email privacy@OmniPriv.com.
               </div>
 
@@ -201,7 +201,7 @@ export default function PrivacyPolicyPage() {
 
               <div className="text-sm text-slate-500 mt-8">
                 <p>Need to exercise a data right or have a privacy question?</p>
-                <a href="mailto:privacy@OmniPriv.com" className="text-[#00B8FF] hover:underline">privacy@OmniPriv.com</a>
+                <a href="mailto:privacy@OmniPriv.com" className="text-[#6366F1] hover:underline">privacy@OmniPriv.com</a>
               </div>
             </article>
           </div>
@@ -210,3 +210,4 @@ export default function PrivacyPolicyPage() {
     </>
   );
 }
+

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service | OmniPriv",
@@ -174,7 +174,7 @@ export default function TermsPage() {
               <div className="sticky top-28 space-y-1">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
                 {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-400 hover:text-[#00B8FF] transition-colors py-0.5 border-l border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
+                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-400 hover:text-[#6366F1] transition-colors py-0.5 border-l border-white/[0.06] hover:border-[#6366F1]/40 pl-3">
                     {s.title}
                   </a>
                 ))}
@@ -201,7 +201,7 @@ export default function TermsPage() {
 
               <p className="text-xs text-slate-500 mt-6">
                 For legal inquiries:{" "}
-                <a href="mailto:legal@OmniPriv.com" className="text-[#00B8FF] hover:underline">legal@OmniPriv.com</a>
+                <a href="mailto:legal@OmniPriv.com" className="text-[#6366F1] hover:underline">legal@OmniPriv.com</a>
               </p>
             </article>
           </div>
@@ -210,3 +210,4 @@ export default function TermsPage() {
     </>
   );
 }
+

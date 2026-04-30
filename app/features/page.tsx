@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import {
   UserCheck, Lock, Key, Eye, ArrowRight,
@@ -27,7 +27,7 @@ const authFeatures = [
 
 const authzFeatures = [
   { icon: Users,           title: "Role-Based Access Control (RBAC)", desc: "Fine-grained permission model with custom roles, assignable at the organization, project, or asset level." },
-  { icon: Timer,           title: "Just-In-Time (JIT) Access",        desc: "Provision time-limited access for specific tasks. Access expires automatically—no standing privileges." },
+  { icon: Timer,           title: "Just-In-Time (JIT) Access",        desc: "Provision time-limited access for specific tasks. Access expires automaticallyâ€”no standing privileges." },
   { icon: Ban,             title: "IP & Time-Based ACLs",             desc: "Restrict access by source IP range, day of week, and time window to enforce least-privilege policies." },
   { icon: Building2,       title: "Multi-Tenant Architecture",        desc: "Full resource isolation with per-organization policies, users, and assets. Ideal for MSSPs and enterprises with subsidiaries." },
   { icon: ClipboardCheck,  title: "Approval Workflows",               desc: "Require manager or peer approval before sensitive access is granted. Integrate with ITSM platforms." },
@@ -35,9 +35,9 @@ const authzFeatures = [
 ];
 
 const accountFeatures = [
-  { icon: ScanSearch,  title: "Asset & Account Discovery",     desc: "Automatically discover privileged accounts across your entire infrastructure — on-prem, cloud, and hybrid." },
+  { icon: ScanSearch,  title: "Asset & Account Discovery",     desc: "Automatically discover privileged accounts across your entire infrastructure â€” on-prem, cloud, and hybrid." },
   { icon: RotateCcw,   title: "Credential Rotation",           desc: "Rotate passwords, SSH keys, and API tokens on a schedule or on-demand, for thousands of assets simultaneously." },
-  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials with AES-256 encryption. No user ever sees raw passwords — they authenticate through OmniPriv." },
+  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials with AES-256 encryption. No user ever sees raw passwords â€” they authenticate through OmniPriv." },
   { icon: Upload,      title: "Credential Push",               desc: "Push updated credentials directly to target assets after rotation. No manual steps, no outages." },
   { icon: ShieldAlert, title: "Break-Glass Access",            desc: "Emergency access procedures with mandatory approval, time limits, and full session recording." },
   { icon: UserPlus,    title: "Account Lifecycle Management",  desc: "Provision, deprovision, and modify privileged accounts across all systems from a single control plane." },
@@ -119,14 +119,14 @@ export default function FeaturesPage() {
       {/* Hero */}
       <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070E]" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Platform Features</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
-            Complete <span className="text-gradient">PAM Feature Set</span> for Modern Enterprises
+            Complete <span className="text-accent">PAM Feature Set</span> for Modern Enterprises
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-            Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance — in one unified platform.
+            Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance â€” in one unified platform.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
@@ -136,8 +136,8 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Protocol Support — Scrolling Marquee */}
-      <section className="py-14 border-b border-white/[0.04] bg-[#0A1628]/30 overflow-hidden">
+      {/* Protocol Support â€” Scrolling Marquee */}
+      <section className="py-14 border-b border-white/[0.04] bg-[#0E0E1C]/30 overflow-hidden">
         <div className="container-xl mb-8">
           <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest">
             Supported Protocols &amp; Asset Types
@@ -157,15 +157,15 @@ export default function FeaturesPage() {
               { name: "Oracle DB", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><rect x="5" y="11" width="22" height="10" rx="5" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><rect x="9" y="14" width="14" height="4" rx="2" stroke="currentColor" strokeWidth="0.8" fill="none" /></svg> },
               { name: "MongoDB", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M16 4C16 4 11 10 11 18C11 23 13 27 16 29C19 27 21 23 21 18C21 10 16 4 16 4Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.2" /><line x1="16" y1="12" x2="16" y2="24" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" /></svg> },
             ].map((item, j) => (
-              <div key={`r1-${rep}-${j}`} className="flex-shrink-0 flex items-center gap-3 px-7 py-3.5 mx-2 rounded-xl border border-white/[0.06] bg-[#0A1628]/50 hover:border-[#00B8FF]/25 hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none">
-                <div className="text-[#00B8FF]/70 group-hover:text-[#00B8FF] transition-colors">{item.svg}</div>
+              <div key={`r1-${rep}-${j}`} className="flex-shrink-0 flex items-center gap-3 px-7 py-3.5 mx-2 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/50 hover:border-[#6366F1]/25 hover:bg-[#0E0E1C]/80 transition-all duration-300 group cursor-default select-none">
+                <div className="text-[#6366F1]/70 group-hover:text-[#6366F1] transition-colors">{item.svg}</div>
                 <span className="text-slate-400 group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">{item.name}</span>
               </div>
             )))}
           </div>
         </div>
 
-        {/* Row 2 — reverse */}
+        {/* Row 2 â€” reverse */}
         <div className="marquee-wrapper">
           <div className="marquee-track-reverse">
             {[...Array(3)].flatMap((_, rep) => [
@@ -178,8 +178,8 @@ export default function FeaturesPage() {
               { name: "Azure", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M10 25L17 7H14L7 22L10 25Z" fill="currentColor" opacity="0.5" /><path d="M17 7L23 22L17 25H27L17 7Z" fill="currentColor" opacity="0.7" /></svg> },
               { name: "GCP", svg: <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7"><path d="M20 8H12L6 16L12 24H20L26 16L20 8Z" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.2" /><circle cx="16" cy="16" r="4" stroke="currentColor" strokeWidth="1.2" fill="none" /><path d="M19 11L22 8M13 11L10 8M13 21L10 24M19 21L22 24" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" /></svg> },
             ].map((item, j) => (
-              <div key={`r2-${rep}-${j}`} className="flex-shrink-0 flex items-center gap-3 px-7 py-3.5 mx-2 rounded-xl border border-white/[0.06] bg-[#0A1628]/50 hover:border-[#00B8FF]/25 hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none">
-                <div className="text-[#00B8FF]/70 group-hover:text-[#00B8FF] transition-colors">{item.svg}</div>
+              <div key={`r2-${rep}-${j}`} className="flex-shrink-0 flex items-center gap-3 px-7 py-3.5 mx-2 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/50 hover:border-[#6366F1]/25 hover:bg-[#0E0E1C]/80 transition-all duration-300 group cursor-default select-none">
+                <div className="text-[#6366F1]/70 group-hover:text-[#6366F1] transition-colors">{item.svg}</div>
                 <span className="text-slate-400 group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">{item.name}</span>
               </div>
             )))}
@@ -203,7 +203,7 @@ export default function FeaturesPage() {
         icon={Lock}
         title="Authorization: Enforce Least Privilege"
         subtitle="02: Authorization"
-        description="Prevent internal misuse and privilege escalation with granular access controls. Every access decision is policy-driven, time-limited, and fully logged — giving your security team complete control over who can do what, where, and when."
+        description="Prevent internal misuse and privilege escalation with granular access controls. Every access decision is policy-driven, time-limited, and fully logged â€” giving your security team complete control over who can do what, where, and when."
         features={authzFeatures}
         reverse
       />
@@ -214,7 +214,7 @@ export default function FeaturesPage() {
         icon={Key}
         title="Account Management: Full Credential Lifecycle"
         subtitle="03: Account Management"
-        description="Eliminate the credential hygiene problem that plagues enterprise IT. OmniPriv automates every aspect of privileged account management — from discovery to rotation to deprovisioning — so your team focuses on security, not manual credential tasks."
+        description="Eliminate the credential hygiene problem that plagues enterprise IT. OmniPriv automates every aspect of privileged account management â€” from discovery to rotation to deprovisioning â€” so your team focuses on security, not manual credential tasks."
         features={accountFeatures}
       />
 

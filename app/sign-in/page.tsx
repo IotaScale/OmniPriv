@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -16,7 +16,7 @@ export default function SignInPage() {
     <section className="relative min-h-screen flex items-center justify-center py-16 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/60 via-[#030711]/85 to-[#030711]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#07070E]/60 via-[#07070E]/85 to-[#07070E]" />
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(ellipse, rgba(0,184,255,0.09) 0%, transparent 65%)" }}
@@ -38,7 +38,7 @@ export default function SignInPage() {
 
         <div className="w-full max-w-md">
           {/* Card */}
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0A1628]/80 backdrop-blur-xl p-8 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+          <div className="rounded-2xl border border-white/[0.08] bg-[#0E0E1C]/80 backdrop-blur-xl p-8 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
             <div className="text-center mb-6">
               <div className="badge-cyan mx-auto mb-3">Partner Portal</div>
               <h1
@@ -53,8 +53,8 @@ export default function SignInPage() {
             </div>
 
             {/* Info banner */}
-            <div className="flex items-start gap-3 p-4 rounded-xl border border-[#00B8FF]/20 bg-[#00B8FF]/[0.07] mb-7">
-              <Info className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 rounded-xl border border-[#6366F1]/20 bg-[#6366F1]/[0.07] mb-7">
+              <Info className="w-4 h-4 text-[#6366F1] flex-shrink-0 mt-0.5" />
               <p className="text-xs text-slate-300 leading-relaxed">
                 OmniPriv is an enterprise platform. Sign-in credentials are
                 issued exclusively by our sales team after your account is
@@ -87,7 +87,7 @@ export default function SignInPage() {
                     autoComplete="email"
                     required
                     placeholder="you@company.com"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-[#00B8FF]/50 focus:bg-white/[0.07] transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-[#6366F1]/50 focus:bg-white/[0.07] transition-all"
                   />
                 </div>
               </div>
@@ -107,8 +107,8 @@ export default function SignInPage() {
                     type="password"
                     autoComplete="current-password"
                     required
-                    placeholder="••••••••••••"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-[#00B8FF]/50 focus:bg-white/[0.07] transition-all"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-slate-600 text-sm focus:outline-none focus:border-[#6366F1]/50 focus:bg-white/[0.07] transition-all"
                   />
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function SignInPage() {
           </div>
 
           {/* Sales CTA card */}
-          <div className="rounded-2xl border border-white/[0.07] bg-[#0A1628]/60 p-7 text-center">
+          <div className="rounded-2xl border border-white/[0.07] bg-[#0E0E1C]/60 p-7 text-center">
             <div className="icon-wrapper w-11 h-11 rounded-xl mx-auto mb-4">
               <Mail className="w-5 h-5" />
             </div>
@@ -163,3 +163,4 @@ export default function SignInPage() {
     </section>
   );
 }
+

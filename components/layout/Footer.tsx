@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const productLinks = [
   { label: "Infrastructure Deployment", href: "/platform/infrastructure-deployment" },
@@ -40,12 +41,12 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#030711] border-t border-white/[0.06] overflow-hidden">
-      {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
+    <footer className="relative bg-[#07070E] border-t border-white/[0.06] overflow-hidden">
+      {/* Accent top rule */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#6366F1]/40" />
 
       {/* Newsletter bar */}
-      <div className="border-b border-white/[0.06] bg-[#0A1628]/50">
+      <div className="border-b border-white/[0.06] bg-[#0E0E1C]/50">
         <div className="container-xl py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
@@ -57,9 +58,13 @@ export default function Footer() {
               </p>
             </div>
             {status === "success" ? (
-              <p className="text-[#00B8FF] font-medium text-sm flex items-center gap-2">
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-[#A78BFA] font-medium text-sm flex items-center gap-2"
+              >
                 <span className="text-lg">✓</span> You&apos;re subscribed! Welcome aboard.
-              </p>
+              </motion.p>
             ) : (
               <form className="flex gap-3 w-full md:w-auto" onSubmit={handleSubscribe}>
                 <input
@@ -86,15 +91,8 @@ export default function Footer() {
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-2">
             <Link href="/" className="inline-flex mb-5">
-              <Image
-                src="/omnipriv-logo-white.webp"
-                alt="OmniPriv"
-                width={160}
-                height={40}
-                className="h-9 w-auto object-contain"
-              />
+              <Image src="/omnipriv-logo-white.webp" alt="OmniPriv" width={160} height={40} className="h-9 w-auto object-contain" />
             </Link>
-
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
               Enterprise Privileged Access Management. Secure, audit, and control every privileged session across your hybrid infrastructure.
             </p>
@@ -103,13 +101,13 @@ export default function Footer() {
             <div className="space-y-4">
               <a
                 href="mailto:info@omnipriv.com"
-                className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors group/contact"
+                className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-[#A78BFA] transition-colors group/contact"
               >
-                <Mail className="w-3.5 h-3.5 text-[#00B8FF]/60 group-hover/contact:text-[#00B8FF] transition-colors flex-shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#6366F1]/60 group-hover/contact:text-[#A78BFA] transition-colors flex-shrink-0" />
                 info@omnipriv.com
               </a>
               <div className="flex items-start gap-2.5 text-sm text-slate-400">
-                <MapPin className="w-3.5 h-3.5 text-[#00B8FF]/60 transition-colors flex-shrink-0 mt-0.5" />
+                <MapPin className="w-3.5 h-3.5 text-[#6366F1]/60 flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white/70 font-medium text-xs mb-0.5">Omnipriv Global</div>
                   <div>10 Mead Road, Abbeymead</div>
@@ -118,7 +116,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-2.5 text-sm text-slate-400">
-                <MapPin className="w-3.5 h-3.5 text-[#00B8FF]/60 transition-colors flex-shrink-0 mt-0.5" />
+                <MapPin className="w-3.5 h-3.5 text-[#6366F1]/60 flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white/70 font-medium text-xs mb-0.5">Omnipriv Middle East</div>
                   <div>Compass Building</div>
@@ -129,19 +127,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Products */}
+          {/* Capabilities */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
-              Capabilities
-            </h4>
+            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Capabilities</h4>
             <ul className="space-y-3">
               {productLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
+                  <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5 group/link">
+                    <span className="w-1 h-1 rounded-full bg-[#6366F1]/40 group-hover/link:bg-[#6366F1] transition-colors flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -149,21 +142,14 @@ export default function Footer() {
             </ul>
           </div>
 
-
-
           {/* Resources */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
-              Resources
-            </h4>
+            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Resources</h4>
             <ul className="space-y-3">
               {resourceLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
+                  <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5 group/link">
+                    <span className="w-1 h-1 rounded-full bg-[#6366F1]/40 group-hover/link:bg-[#6366F1] transition-colors flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -173,17 +159,12 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
-              Company
-            </h4>
+            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Company</h4>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
+                  <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5 group/link">
+                    <span className="w-1 h-1 rounded-full bg-[#6366F1]/40 group-hover/link:bg-[#6366F1] transition-colors flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -192,43 +173,29 @@ export default function Footer() {
           </div>
         </div>
 
-
         {/* CTA Banner */}
-        <div className="mt-10 p-6 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-r from-[#00B8FF]/[0.06] to-[#0060FF]/[0.04] flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-10 p-6 rounded-2xl border border-[#6366F1]/20 bg-[#0E0E1C] flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-white font-semibold text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
               Ready to secure your privileged access?
             </p>
-            <p className="text-slate-400 text-sm">
-              Talk to our PAM experts and get a personalized demo.
-            </p>
+            <p className="text-slate-400 text-sm">Talk to our PAM experts and get a personalized demo.</p>
           </div>
-          <Link
-            href="/demo"
-            className="btn-primary whitespace-nowrap flex-shrink-0"
-          >
+          <Link href="/demo" className="btn-primary whitespace-nowrap flex-shrink-0">
             Contact Sales <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/[0.05] bg-[#020609]/60">
+      <div className="border-t border-white/[0.05]">
         <div className="container-xl py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-slate-500">
-              © {new Date().getFullYear()} OmniPriv Inc. 
-            </p>
+            <p className="text-sm text-slate-500">© {new Date().getFullYear()} OmniPriv Inc.</p>
             <div className="flex items-center gap-5">
-              <Link href="/privacy-policy" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="/security" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
-                Security
-              </Link>
+              <Link href="/privacy-policy" className="text-xs text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-xs text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="/security" className="text-xs text-slate-500 hover:text-white transition-colors">Security</Link>
             </div>
           </div>
         </div>

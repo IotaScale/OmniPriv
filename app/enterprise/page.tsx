@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight, CheckCircle2, Shield, Zap, Users, Clock,
@@ -155,11 +155,11 @@ export default function EnterprisePage() {
       {/* Hero */}
       <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07070E]" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Enterprise Plans</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
-            Secure Your Enterprise with <span className="text-gradient">OmniPriv</span>
+            Secure Your Enterprise with <span className="text-accent">OmniPriv</span>
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
             OmniPriv is a premium, enterprise-grade PAM solution. All plans include our complete security platform; pricing is tailored to your organization's size, deployment requirements, and support needs.
@@ -192,8 +192,8 @@ export default function EnterprisePage() {
               <div
                 key={plan.name}
                 className={`relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 ${plan.highlight
-                    ? "border-[#00B8FF]/40 bg-gradient-to-b from-[#00B8FF]/[0.08] to-[#0A1628]/80 shadow-[0_0_40px_rgba(0,184,255,0.15)]"
-                    : "border-white/[0.07] bg-[#0A1628]/60"
+                    ? "border-[#6366F1]/40 bg-gradient-to-b from-[#6366F1]/[0.08] to-[#0E0E1C]/80 shadow-[0_0_40px_rgba(0,184,255,0.15)]"
+                    : "border-white/[0.07] bg-[#0E0E1C]/60"
                   }`}
               >
                 {plan.badge && (
@@ -208,20 +208,20 @@ export default function EnterprisePage() {
                   <p className="text-sm text-slate-400 mb-4">{plan.description}</p>
                   <div className="space-y-2 text-xs">
                     <div className="flex items-center gap-2 text-slate-400">
-                      <Users className="w-3.5 h-3.5 text-[#00B8FF]" />
+                      <Users className="w-3.5 h-3.5 text-[#6366F1]" />
                       {plan.seats}
                     </div>
                     <div className="flex items-center gap-2 text-slate-400">
-                      <Server className="w-3.5 h-3.5 text-[#00B8FF]" />
+                      <Server className="w-3.5 h-3.5 text-[#6366F1]" />
                       {plan.assets}
                     </div>
                     <div className="flex items-center gap-2 text-slate-400">
-                      <Zap className="w-3.5 h-3.5 text-[#00B8FF]" />
+                      <Zap className="w-3.5 h-3.5 text-[#6366F1]" />
                       HA: {plan.ha}
                     </div>
                   </div>
                   <div className="mt-5">
-                    <div className="text-sm font-semibold text-[#00B8FF] mb-1">Custom Pricing</div>
+                    <div className="text-sm font-semibold text-[#6366F1] mb-1">Custom Pricing</div>
                     <p className="text-xs text-slate-500">Contact us for a quote tailored to your needs.</p>
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export default function EnterprisePage() {
                   <ul className="space-y-3">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#6366F1] flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-slate-300">{f}</span>
                       </li>
                     ))}
@@ -254,23 +254,23 @@ export default function EnterprisePage() {
 
           <p className="text-center text-sm text-slate-500 mt-6">
             All prices are quoted annually. Multi-year discounts available.{" "}
-            <Link href="/demo" className="text-[#00B8FF] hover:underline">Contact sales</Link> for volume licensing.
+            <Link href="/demo" className="text-[#6366F1] hover:underline">Contact sales</Link> for volume licensing.
           </p>
         </div>
       </section>
 
       {/* Enterprise features */}
-      <section className="section-padding border-y border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-y border-white/[0.04] bg-[#0E0E1C]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Enterprise Platform</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              Built for Enterprise <span className="text-gradient">Scale & Complexity</span>
+              Built for Enterprise <span className="text-accent">Scale & Complexity</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {enterpriseFeatures.map((f) => (
-              <div key={f.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine">
+              <div key={f.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 hover:border-[#6366F1]/20 transition-all card-shine">
                 <div className="icon-wrapper mb-5">
                   <f.icon className="w-5 h-5" />
                 </div>
@@ -296,7 +296,7 @@ export default function EnterprisePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {slaHighlights.map((s) => (
-              <div key={s.metric} className="text-center p-7 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all">
+              <div key={s.metric} className="text-center p-7 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60 hover:border-[#6366F1]/20 transition-all">
                 <div className="stat-number mb-2">{s.metric}</div>
                 <div className="text-white font-semibold text-sm mb-2" style={{ fontFamily: "var(--font-syne)" }}>{s.label}</div>
                 <p className="text-xs text-slate-400">{s.desc}</p>
@@ -307,14 +307,14 @@ export default function EnterprisePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding border-t border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-t border-white/[0.04] bg-[#0E0E1C]/30">
         <div className="container-xl">
           <h2 className="text-3xl font-extrabold text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }}>
             What Enterprise Customers Say
           </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {testimonials.map((t) => (
-              <div key={t.author} className="relative p-8 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60">
+              <div key={t.author} className="relative p-8 rounded-2xl border border-white/[0.06] bg-[#0E0E1C]/60">
                 <span className="quote-mark">"</span>
                 <div className="flex items-center gap-0.5 mb-4 mt-4">
                   {Array.from({ length: t.rating }).map((_, i) => (
@@ -332,8 +332,8 @@ export default function EnterprisePage() {
       {/* Contact CTA */}
       <section className="section-padding">
         <div className="container-xl">
-          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-14">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] to-[#030711]" />
+          <div className="relative rounded-3xl overflow-hidden border border-[#6366F1]/15 p-10 md:p-14">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0E0E1C] to-[#07070E]" />
             <div className="absolute inset-0 bg-grid opacity-20" />
             <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
               <div>
@@ -358,7 +358,7 @@ export default function EnterprisePage() {
                   { icon: BarChart3, text: "ROI analysis and compliance gap report" },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3 p-4 rounded-xl border border-white/[0.05] bg-white/[0.02]">
-                    <Icon className="w-5 h-5 text-[#00B8FF] flex-shrink-0" />
+                    <Icon className="w-5 h-5 text-[#6366F1] flex-shrink-0" />
                     <span className="text-sm text-slate-300">{text}</span>
                   </div>
                 ))}
@@ -370,3 +370,4 @@ export default function EnterprisePage() {
     </>
   );
 }
+

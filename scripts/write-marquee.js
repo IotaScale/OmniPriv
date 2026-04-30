@@ -1,4 +1,6 @@
-"use client";
+const fs = require("fs");
+
+const newContent = `"use client";
 
 /* ── TechMarquee — brand-coloured logos ──────────────────────────────────────
    Each logo uses authentic brand colours so they look like real product icons.
@@ -151,7 +153,7 @@ export default function TechMarquee() {
         <div className="marquee-track">
           {[...logos, ...logos, ...logos].map((logo, i) => (
             <div
-              key={`${logo.name}-${i}`}
+              key={\`\${logo.name}-\${i}\`}
               className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/40 hover:border-white/[0.14] hover:bg-[#0E0E1C]/80 transition-all duration-300 group cursor-default select-none"
             >
               <div className="transition-transform duration-300 group-hover:scale-110">
@@ -170,7 +172,7 @@ export default function TechMarquee() {
         <div className="marquee-track-reverse">
           {[...logos, ...logos, ...logos].reverse().map((logo, i) => (
             <div
-              key={`rev-${logo.name}-${i}`}
+              key={\`rev-\${logo.name}-\${i}\`}
               className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-white/[0.06] bg-[#0E0E1C]/40 hover:border-white/[0.14] hover:bg-[#0E0E1C]/80 transition-all duration-300 group cursor-default select-none"
             >
               <div className="transition-transform duration-300 group-hover:scale-110">
@@ -186,3 +188,7 @@ export default function TechMarquee() {
     </section>
   );
 }
+`;
+
+fs.writeFileSync("C:/Users/bilal.abbasi/Desktop/Webomnipriv/components/layout/TechMarquee.tsx", newContent, "utf8");
+console.log("Done");
