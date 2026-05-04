@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TechMarquee from "@/components/layout/TechMarquee";
+import HeroDashboard from "@/components/ui/HeroDashboard";
 import {
   ArrowRight,
   Shield,
@@ -359,7 +360,9 @@ export default function HomePage() {
         <div className="absolute top-[60%] left-[8%] w-1 h-1 rounded-full bg-purple-400/30 animate-pulse" style={{ animationDelay: "3s" }} />
 
         <div className="container-xl relative z-10 py-16 sm:py-24">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
+            {/* Left: text */}
+            <div className="text-center lg:text-left">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
@@ -370,7 +373,7 @@ export default function HomePage() {
 
             {/* Heading */}
             <h1
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               Zero-Trust{" "}
@@ -384,12 +387,12 @@ export default function HomePage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl lg:mx-0 mx-auto">
               Omnipriv secures your most critical systems with industry-leading PAM solutions. As a comprehensive privileged identity management solution, we provide automated credential management, full session auditing, and real-time threat detection.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
               <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
                 Get Started
                 <ArrowRight className="w-5 h-5" />
@@ -400,7 +403,7 @@ export default function HomePage() {
             </div>
 
             {/* Protocol tags — hidden on mobile */}
-            <div className="hidden sm:flex flex-wrap justify-center gap-2 mb-8">
+            <div className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-2">
               {protocols.map((p) => (
                 <span
                   key={p.name}
@@ -409,6 +412,12 @@ export default function HomePage() {
                   {p.name}
                 </span>
               ))}
+            </div>
+            </div>
+
+            {/* Right: hero visual */}
+            <div className="hidden lg:block">
+              <HeroDashboard />
             </div>
           </div>
         </div>
