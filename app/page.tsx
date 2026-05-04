@@ -322,7 +322,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=60"
             alt=""
             fill
-            className="object-cover opacity-[0.18]"
+            className="object-cover opacity-[0.22]"
             priority
           />
         </div>
@@ -331,16 +331,16 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/50 via-[#030711]/75 to-[#030711]" />
         {/* Cyan primary orb */}
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[680px] rounded-full"
           style={{
-            background: "radial-gradient(ellipse, rgba(0,184,255,0.12) 0%, transparent 65%)",
+            background: "radial-gradient(ellipse, rgba(0,184,255,0.18) 0%, transparent 65%)",
           }}
         />
         {/* Purple depth orb — top right */}
         <div
-          className="absolute top-0 right-0 w-[700px] h-[500px]"
+          className="absolute top-0 right-0 w-[750px] h-[550px]"
           style={{
-            background: "radial-gradient(ellipse at top right, rgba(124,58,237,0.12) 0%, transparent 65%)",
+            background: "radial-gradient(ellipse at top right, rgba(124,58,237,0.17) 0%, transparent 65%)",
           }}
         />
         {/* Indigo accent — bottom left */}
@@ -413,7 +413,7 @@ export default function HomePage() {
           </div>
         </div>
         {/* Bottom fade line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00B8FF]/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00B8FF]/50 to-transparent" />
       </section>
 
       {/* ─── TECH MARQUEE (SVG logos) ─────────── */}
@@ -449,7 +449,7 @@ export default function HomePage() {
                 id={pillar.id}
                 className={`group relative rounded-2xl border ${pillar.borderColor} overflow-hidden card-glass card-shine`}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} opacity-40`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} opacity-55`} />
                 <div className="relative z-10 p-8 md:p-10">
                   <div className="grid md:grid-cols-2 gap-10 items-center">
                     <div className={idx % 2 === 1 ? "md:order-2" : ""}>
@@ -524,10 +524,10 @@ export default function HomePage() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group relative p-6 rounded-2xl border border-white/[0.07] bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-[#0A1628]/80 transition-all duration-300 card-shine cursor-default overflow-hidden"
+                className="group relative p-6 rounded-2xl border border-white/[0.07] bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.08)] transition-all duration-300 card-shine cursor-default overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.04] via-transparent to-violet-500/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/50 transition-all duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.07] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
                 <div className="relative">
                   <div className="icon-wrapper mb-5">
                     <feature.icon className="w-5 h-5" />
@@ -625,7 +625,7 @@ export default function HomePage() {
             {steps.map((step, i) => (
               <div
                 key={step.step}
-                className="relative p-8 rounded-2xl border border-white/[0.07] bg-gradient-to-b from-[#0A1628]/80 to-[#060d1f]/60 hover:border-[#00B8FF]/25 transition-all duration-300 group overflow-hidden"
+                className="relative p-8 rounded-2xl border border-white/[0.08] bg-gradient-to-b from-[#0C1A30]/90 to-[#07101e]/70 hover:border-[#00B8FF]/35 hover:shadow-[0_0_40px_rgba(0,184,255,0.08)] transition-all duration-300 group overflow-hidden"
                 style={{ animationDelay: `${i * 150}ms` }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.03] to-violet-500/[0.03] opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -634,7 +634,7 @@ export default function HomePage() {
                   className="text-6xl font-extrabold leading-none select-none mb-5"
                   style={{
                     fontFamily: "var(--font-syne)",
-                    background: "linear-gradient(135deg, rgba(56,189,248,0.25) 0%, rgba(139,92,246,0.15) 100%)",
+                    background: "linear-gradient(135deg, rgba(56,189,248,0.45) 0%, rgba(139,92,246,0.28) 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -757,7 +757,7 @@ export default function HomePage() {
               {certs.map((cert) => (
                 <div
                   key={cert.name}
-                  className="flex flex-col items-center justify-center p-6 rounded-2xl border border-[#00B8FF]/15 bg-[#00B8FF]/[0.05] hover:bg-[#00B8FF]/[0.1] hover:border-[#00B8FF]/30 transition-all group"
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl border border-[#00B8FF]/18 bg-[#00B8FF]/[0.05] hover:bg-[#00B8FF]/[0.14] hover:border-[#00B8FF]/45 hover:shadow-[0_0_30px_rgba(0,184,255,0.12)] transition-all duration-300 group"
                 >
                   <cert.icon className="w-8 h-8 text-[#00B8FF] mb-3 group-hover:scale-110 transition-transform" />
                   <div className="text-xs font-bold text-white text-center whitespace-pre-line leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
@@ -822,7 +822,7 @@ export default function HomePage() {
               <Link
                 key={post.title}
                 href={post.href}
-                className="group flex flex-col rounded-2xl border border-white/[0.07] bg-[#0A1628]/50 hover:border-white/[0.14] hover:bg-[#0A1628]/80 transition-all duration-300 overflow-hidden"
+                className="group flex flex-col rounded-2xl border border-white/[0.07] bg-[#0A1628]/50 hover:border-[#00B8FF]/[0.28] hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.07)] transition-all duration-300 overflow-hidden"
               >
                 {/* Cover image */}
                 <div className="relative h-44 overflow-hidden bg-[#0F1E35]">
