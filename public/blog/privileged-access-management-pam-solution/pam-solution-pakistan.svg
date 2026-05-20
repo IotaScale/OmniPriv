@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380">
+  <defs>
+    <linearGradient id="bg-pk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="accent-pk" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00B8FF" stop-opacity="0.8"/>
+      <stop offset="100%" style="stop-color:#6366f1" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="380" fill="url(#bg-pk)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="36" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif" font-size="17" font-weight="700" fill="#ffffff">OmniPriv PAM Solutions — Pakistan Enterprise Coverage</text>
+  <text x="410" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#64748b">privileged access management pam solution · Local Deployment &amp; Support</text>
+
+  <!-- Divider -->
+  <rect x="40" y="70" width="740" height="1" fill="url(#accent-pk)"/>
+
+  <!-- Left: Challenge panel -->
+  <rect x="40" y="88" width="355" height="248" rx="12" fill="#0d1f35" stroke="#ef4444" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="218" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#fca5a5">⚠️  PAM Challenges in Pakistan</text>
+  <line x1="60" y1="125" x2="376" y2="125" stroke="#1e293b" stroke-width="1"/>
+
+  <rect x="60" y="136" width="316" height="34" rx="7" fill="#1a0808" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="78" y="149" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">●</text>
+  <text x="90" y="149" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Shared admin credentials across teams</text>
+  <text x="90" y="163" font-family="Arial,sans-serif" font-size="9" fill="#64748b">High-risk exposure from unmanaged shared accounts</text>
+
+  <rect x="60" y="180" width="316" height="34" rx="7" fill="#1a0808" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="78" y="193" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">●</text>
+  <text x="90" y="193" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Manual access reviews &amp; no audit trails</text>
+  <text x="90" y="207" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Regulatory penalties for banking, telecom &amp; govt</text>
+
+  <rect x="60" y="224" width="316" height="34" rx="7" fill="#1a0808" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="78" y="237" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">●</text>
+  <text x="90" y="237" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Distributed hybrid infrastructure growth</text>
+  <text x="90" y="251" font-family="Arial,sans-serif" font-size="9" fill="#64748b">More privileged accounts, no centralized governance</text>
+
+  <rect x="60" y="268" width="316" height="34" rx="7" fill="#1a0808" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="78" y="281" font-family="Arial,sans-serif" font-size="10" fill="#fca5a5">●</text>
+  <text x="90" y="281" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Insider threat &amp; breach risk rising with digitization</text>
+  <text x="90" y="295" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Limited visibility into privileged session activity</text>
+
+  <!-- Right: OmniPriv solution panel -->
+  <rect x="425" y="88" width="355" height="248" rx="12" fill="#071525" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="603" y="116" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#00B8FF">✅  OmniPriv PAM in Pakistan</text>
+  <line x1="445" y1="125" x2="761" y2="125" stroke="#1e293b" stroke-width="1"/>
+
+  <rect x="445" y="136" width="316" height="34" rx="7" fill="#071e2e" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="463" y="149" font-family="Arial,sans-serif" font-size="10" fill="#00B8FF">✓</text>
+  <text x="475" y="149" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Local implementation &amp; configuration support</text>
+  <text x="475" y="163" font-family="Arial,sans-serif" font-size="9" fill="#64748b">On-site engineers · Urdu/English documentation</text>
+
+  <rect x="445" y="180" width="316" height="34" rx="7" fill="#071e2e" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="463" y="193" font-family="Arial,sans-serif" font-size="10" fill="#00B8FF">✓</text>
+  <text x="475" y="193" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Meets global + local compliance requirements</text>
+  <text x="475" y="207" font-family="Arial,sans-serif" font-size="9" fill="#64748b">SBP · SECP · PTA aligned security controls</text>
+
+  <rect x="445" y="224" width="316" height="34" rx="7" fill="#071e2e" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="463" y="237" font-family="Arial,sans-serif" font-size="10" fill="#00B8FF">✓</text>
+  <text x="475" y="237" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Centralized vault for all privileged accounts</text>
+  <text x="475" y="251" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Banking · Telecom · Govt · Critical Infrastructure</text>
+
+  <rect x="445" y="268" width="316" height="34" rx="7" fill="#071e2e" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="463" y="281" font-family="Arial,sans-serif" font-size="10" fill="#00B8FF">✓</text>
+  <text x="475" y="281" font-family="Arial,sans-serif" font-size="10" fill="#e2e8f0">Managed oversight &amp; 24/7 PAM IT security support</text>
+  <text x="475" y="295" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Ongoing monitoring · Incident response · Training</text>
+
+  <!-- Footer -->
+  <text x="410" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">privileged access management solutions in Pakistan · pam it security · omnipriv.com</text>
+</svg>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" width="820" height="400">
+  <defs>
+    <linearGradient id="bg-hv" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="bar-red" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#991b1b"/>
+    </linearGradient>
+    <linearGradient id="bar-cyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B8FF"/>
+      <stop offset="100%" style="stop-color:#0369a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="400" fill="url(#bg-hv)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="36" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif" font-size="17" font-weight="700" fill="#ffffff">Why Privileged Accounts Are High-Value Targets</text>
+  <text x="410" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#64748b">Privileged Access Management PAM Solution — Threat Exposure Overview</text>
+
+  <!-- Left: attack vector cards -->
+  <rect x="40" y="78" width="340" height="285" rx="12" fill="#0d1f35" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="210" y="106" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Common Attack Vectors</text>
+
+  <!-- Row 1 -->
+  <rect x="58" y="120" width="145" height="66" rx="8" fill="#1a0a0a" stroke="#ef4444" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="130" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#ef4444">🎣</text>
+  <text x="130" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">Phishing</text>
+  <text x="130" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Credential harvest</text>
+
+  <rect x="218" y="120" width="145" height="66" rx="8" fill="#1a0a0a" stroke="#ef4444" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="290" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#ef4444">🔓</text>
+  <text x="290" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">Credential Stuffing</text>
+  <text x="290" y="176" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Password reuse attacks</text>
+
+  <!-- Row 2 -->
+  <rect x="58" y="200" width="145" height="66" rx="8" fill="#1a0a0a" stroke="#f97316" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="130" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#f97316">↔️</text>
+  <text x="130" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fdba74">Lateral Movement</text>
+  <text x="130" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Escalate inside network</text>
+
+  <rect x="218" y="200" width="145" height="66" rx="8" fill="#1a0a0a" stroke="#f97316" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="290" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#f97316">👤</text>
+  <text x="290" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fdba74">Insider Threats</text>
+  <text x="290" y="256" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Misuse of standing access</text>
+
+  <!-- Row 3 -->
+  <rect x="58" y="280" width="305" height="66" rx="8" fill="#0a1a0a" stroke="#22c55e" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="210" y="302" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#22c55e">🛡️</text>
+  <text x="210" y="320" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#86efac">PAM IT Security — The Defence</text>
+  <text x="210" y="336" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Vault · JIT · Session Recording · Least Privilege</text>
+
+  <!-- Arrow -->
+  <path d="M392 220 L438 220" stroke="#00B8FF" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="438,215 448,220 438,225" fill="#00B8FF"/>
+
+  <!-- Right: impact stats -->
+  <rect x="450" y="78" width="330" height="285" rx="12" fill="#0d1f35" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="615" y="106" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Impact Without PAM Solution</text>
+
+  <!-- Stat bars -->
+  <text x="475" y="136" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">Breaches involving privileged accounts</text>
+  <rect x="475" y="142" width="285" height="16" rx="4" fill="#1e293b"/>
+  <rect x="475" y="142" width="228" height="16" rx="4" fill="url(#bar-red)"/>
+  <text x="708" y="155" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">80%</text>
+
+  <text x="475" y="180" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">Avg. breach cost (privileged vector)</text>
+  <rect x="475" y="186" width="285" height="16" rx="4" fill="#1e293b"/>
+  <rect x="475" y="186" width="199" height="16" rx="4" fill="url(#bar-red)"/>
+  <text x="682" y="199" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">$4.9M</text>
+
+  <text x="475" y="224" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">Enterprises with unmonitored admin accounts</text>
+  <rect x="475" y="230" width="285" height="16" rx="4" fill="#1e293b"/>
+  <rect x="475" y="230" width="242" height="16" rx="4" fill="url(#bar-red)"/>
+  <text x="725" y="243" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">85%</text>
+
+  <text x="475" y="268" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">Risk reduction with best PAM solutions</text>
+  <rect x="475" y="274" width="285" height="16" rx="4" fill="#1e293b"/>
+  <rect x="475" y="274" width="228" height="16" rx="4" fill="url(#bar-cyan)"/>
+  <text x="708" y="287" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#00B8FF">80%↓</text>
+
+  <text x="475" y="312" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">Compliance violations prevented by PAM</text>
+  <rect x="475" y="318" width="285" height="16" rx="4" fill="#1e293b"/>
+  <rect x="475" y="318" width="256" height="16" rx="4" fill="url(#bar-cyan)"/>
+  <text x="739" y="331" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#00B8FF">90%↓</text>
+
+  <!-- Footer label -->
+  <text x="410" y="384" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">privileged access management pam solution  · omnipriv.com</text>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" width="820" height="440">
+  <defs>
+    <linearGradient id="bg-feat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="440" fill="url(#bg-feat)" rx="14"/>
+
+  <!-- Title -->
+  <text x="410" y="36" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif" font-size="17" font-weight="700" fill="#ffffff">Core Features of Enterprise-Grade PAM Solutions</text>
+  <text x="410" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#64748b">privileged access management pam solution · OmniPriv Platform</text>
+
+  <!-- Feature 1: Credential Vaulting -->
+  <rect x="40" y="78" width="175" height="160" rx="12" fill="#0d1f35" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="128" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#00B8FF">🔐</text>
+  <text x="128" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Credential Vaulting</text>
+  <text x="128" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">&amp; Rotation</text>
+  <line x1="60" y1="163" x2="196" y2="163" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="128" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">AES-256 encrypted vault</text>
+  <text x="128" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Auto password rotation</text>
+  <text x="128" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">No standing credentials</text>
+  <rect x="76" y="224" width="104" height="6" rx="3" fill="#00B8FF" fill-opacity="0.25"/>
+
+  <!-- Feature 2: JIT Access -->
+  <rect x="236" y="78" width="175" height="160" rx="12" fill="#0d1f35" stroke="#6366f1" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="324" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#818cf8">⏱️</text>
+  <text x="324" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Just-in-Time</text>
+  <text x="324" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Access</text>
+  <line x1="256" y1="163" x2="392" y2="163" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="324" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Elevated on-demand only</text>
+  <text x="324" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Auto-revoke on completion</text>
+  <text x="324" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Approval workflows</text>
+  <rect x="272" y="224" width="104" height="6" rx="3" fill="#6366f1" fill-opacity="0.35"/>
+
+  <!-- Feature 3: Session Monitoring -->
+  <rect x="432" y="78" width="175" height="160" rx="12" fill="#0d1f35" stroke="#22c55e" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="520" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#22c55e">📹</text>
+  <text x="520" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Session Monitoring</text>
+  <text x="520" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">&amp; Recording</text>
+  <line x1="452" y1="163" x2="588" y2="163" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="520" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Full session video playback</text>
+  <text x="520" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Keystroke &amp; command logs</text>
+  <text x="520" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Real-time anomaly alerts</text>
+  <rect x="468" y="224" width="104" height="6" rx="3" fill="#22c55e" fill-opacity="0.3"/>
+
+  <!-- Feature 4: Least Privilege -->
+  <rect x="628" y="78" width="152" height="160" rx="12" fill="#0d1f35" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="704" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#f59e0b">🏛️</text>
+  <text x="704" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Least Privilege</text>
+  <text x="704" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">Enforcement</text>
+  <line x1="648" y1="163" x2="762" y2="163" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="704" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">RBAC/ABAC policies</text>
+  <text x="704" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Command-level filtering</text>
+  <text x="704" y="214" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Minimal attack surface</text>
+  <rect x="652" y="224" width="104" height="6" rx="3" fill="#f59e0b" fill-opacity="0.3"/>
+
+  <!-- Bottom: OmniPriv integration banner -->
+  <rect x="40" y="262" width="740" height="140" rx="12" fill="#071525" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="410" y="292" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#00B8FF">OmniPriv — Enterprise PAM Privileged Access Management Solutions</text>
+
+  <!-- Pillars row -->
+  <rect x="68" y="308" width="140" height="72" rx="8" fill="#0d1f35" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="138" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#00B8FF">🔑</text>
+  <text x="138" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">Credential Vault</text>
+  <text x="138" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">SSH · RDP · DB · API</text>
+
+  <rect x="228" y="308" width="140" height="72" rx="8" fill="#0d1f35" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="298" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#818cf8">🔒</text>
+  <text x="298" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">Zero Trust Gateway</text>
+  <text x="298" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">Session isolation</text>
+
+  <rect x="388" y="308" width="140" height="72" rx="8" fill="#0d1f35" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="458" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#22c55e">📊</text>
+  <text x="458" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">Compliance Reports</text>
+  <text x="458" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">SOC2 · ISO27001 · PCI</text>
+
+  <rect x="548" y="308" width="140" height="72" rx="8" fill="#0d1f35" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="618" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#f59e0b">⚡</text>
+  <text x="618" y="352" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">87+ Integrations</text>
+  <text x="618" y="368" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">SIEM · AD · ITSM · SSO</text>
+
+  <!-- Footer -->
+  <text x="410" y="422" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#475569">best pam solutions · pam it security · omnipriv.com</text>
+</svg>
