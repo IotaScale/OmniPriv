@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { solutions } from "./data";
+import { ArrowRight, ShieldCheck, Cpu, CheckCircle2 } from "lucide-react";
+import { solutions, datasheetStats, complianceStandards, platformSpecs } from "./data";
 
 export const metadata: Metadata = {
-  title: "Platform: Enterprise PAM Capabilities",
+  title: "Platform: Enterprise PAM Capabilities & Specifications",
   description:
-    "Explore OmniPriv's 8 core PAM capabilities: infrastructure deployment, credential management, application security, enterprise integration, session management, workflow access control, audit compliance, and threat detection.",
+    "Explore OmniPriv's 8 core PAM capability modules covering 80+ enterprise requirements, 100% agentless architecture, regulatory compliance, and on-premise deployment specifications.",
 };
 
 export default function SolutionsPage() {
@@ -17,20 +17,46 @@ export default function SolutionsPage() {
         <div className="absolute inset-0 bg-grid opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
         <div className="container-xl relative z-10 text-center">
-          <div className="badge-cyan mb-6 inline-flex mx-auto">PAM Capabilities</div>
+          <div className="badge-cyan mb-6 inline-flex mx-auto">Enterprise PAM Platform</div>
           <h1
             className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto"
             style={{ fontFamily: "var(--font-syne)" }}
           >
             Enterprise-Grade <span className="text-gradient">PAM Platform</span>
           </h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-            From infrastructure deployment to threat detection, OmniPriv covers every dimension of
-            privileged access management with purpose-built, enterprise-ready capabilities.
+          <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+            OmniPriv delivers complete privileged access lifecycle management — from credential vaulting
+            and session isolation to AI-driven threat detection and regulatory compliance — in a unified,
+            agentless platform deployable on-premise across any enterprise environment.
           </p>
-          <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
-            Request a Demo <ArrowRight className="w-5 h-5" />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
+              Request a Demo <ArrowRight className="w-5 h-5" />
+            </Link>
+            <a href="#specifications" className="btn-secondary text-base px-8 py-3.5">
+              View Specifications
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Datasheet Highlights Bar */}
+      <section className="border-b border-white/[0.06] bg-[#071322]/80 backdrop-blur-sm py-8">
+        <div className="container-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {datasheetStats.map((stat) => (
+              <div key={stat.label} className="p-4 rounded-xl border border-white/[0.04] bg-white/[0.02]">
+                <div
+                  className="text-3xl lg:text-4xl font-extrabold text-[#00B8FF] mb-1"
+                  style={{ fontFamily: "var(--font-syne)" }}
+                >
+                  {stat.value}
+                </div>
+                <div className="text-sm font-semibold text-white mb-0.5">{stat.label}</div>
+                <div className="text-xs text-slate-400">{stat.sub}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -46,8 +72,8 @@ export default function SolutionsPage() {
               8 Pillars of Privileged Access Management
             </h2>
             <p className="text-slate-400 text-lg">
-              Each capability is designed to address a critical dimension of PAM. Click to explore
-              the full feature set.
+              Each capability module addresses a critical dimension of modern PAM. Click any module
+              to explore its detailed feature set.
             </p>
           </div>
 
@@ -79,8 +105,80 @@ export default function SolutionsPage() {
         </div>
       </section>
 
+      {/* Regulatory Compliance Standards Summary */}
+      <section className="section-padding bg-[#071322]/50 border-y border-white/[0.04]">
+        <div className="container-xl">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="badge-cyan mb-4 inline-flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5" /> Compliance Readiness
+            </div>
+            <h2
+              className="text-3xl md:text-4xl font-extrabold text-white mb-4"
+              style={{ fontFamily: "var(--font-syne)" }}
+            >
+              Regulatory Standards Supported <span className="text-gradient">Out of the Box</span>
+            </h2>
+            <p className="text-slate-400 text-lg">
+              OmniPriv provides automated reports, immutable audit trails, and strict access governance
+              mapped directly to leading global and regional regulations.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {complianceStandards.map((std) => (
+              <div
+                key={std.code}
+                className="p-5 rounded-xl border border-white/[0.06] bg-[#0A1628]/70 hover:border-[#00B8FF]/20 transition-all duration-200"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-extrabold text-[#00B8FF] text-base font-mono">{std.code}</span>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                </div>
+                <h3 className="text-sm font-semibold text-white mb-1.5">{std.fullName}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{std.applicability}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Specifications */}
+      <section id="specifications" className="section-padding scroll-mt-20">
+        <div className="container-xl">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="badge-cyan mb-4 inline-flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5" /> Technical Specifications
+            </div>
+            <h2
+              className="text-3xl md:text-4xl font-extrabold text-white mb-4"
+              style={{ fontFamily: "var(--font-syne)" }}
+            >
+              Platform <span className="text-gradient">Specifications</span> &amp; Architecture
+            </h2>
+            <p className="text-slate-400 text-lg">
+              Engineered for seamless enterprise rollout — completely hardware-agnostic, agentless,
+              and hardened for zero-trust security.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {platformSpecs.map((spec) => (
+              <div
+                key={spec.label}
+                className="p-4 rounded-xl border border-white/[0.06] bg-[#0A1628]/60 flex flex-col justify-between"
+              >
+                <span className="text-xs font-semibold text-[#00B8FF] uppercase tracking-wider mb-1">
+                  {spec.label}
+                </span>
+                <span className="text-sm text-slate-200 leading-snug">{spec.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="section-padding">
+      <section className="section-padding pt-0">
         <div className="container-xl">
           <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-16 text-center">
             <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] to-[#030711]" />
@@ -91,15 +189,19 @@ export default function SolutionsPage() {
                 className="text-3xl md:text-4xl font-extrabold text-white mb-4"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
-                Not Sure Where to Start?
+                Ready to Secure Your Privileged Access?
               </h2>
               <p className="text-slate-400 text-lg mb-8 max-w-xl mx-auto">
-                Talk to a PAM expert who can help you identify which capabilities are most relevant
-                to your organization's security posture and compliance requirements.
+                Request a demo or contact our engineering team to discuss your enterprise PAM deployment requirements.
               </p>
-              <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
-                Schedule a Consultation <ArrowRight className="w-5 h-5" />
-              </Link>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
+                  Request a Demo <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link href="/enterprise" className="btn-secondary text-base px-8 py-3.5">
+                  Enterprise Plans
+                </Link>
+              </div>
             </div>
           </div>
         </div>

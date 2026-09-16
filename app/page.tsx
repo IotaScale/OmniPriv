@@ -425,6 +425,34 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00B8FF]/50 to-transparent" />
       </section>
 
+      {/* ─── DATASHEET HIGHLIGHTS ───────────────── */}
+      <section className="border-y border-white/[0.06] bg-[#071322]/90 backdrop-blur-sm py-6">
+        <div className="container-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div className="p-3">
+              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>80+</div>
+              <div className="text-xs font-semibold text-white mt-1">Requirement Points Covered</div>
+              <div className="text-[11px] text-slate-400">Enterprise PAM coverage</div>
+            </div>
+            <div className="p-3 border-l border-white/[0.06]">
+              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>8</div>
+              <div className="text-xs font-semibold text-white mt-1">Core Capability Modules</div>
+              <div className="text-[11px] text-slate-400">End-to-end access lifecycle</div>
+            </div>
+            <div className="p-3 border-t md:border-t-0 md:border-l border-white/[0.06]">
+              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>Zero</div>
+              <div className="text-xs font-semibold text-white mt-1">Software Agents Required</div>
+              <div className="text-[11px] text-slate-400">100% Agentless architecture</div>
+            </div>
+            <div className="p-3 border-t md:border-t-0 md:border-l border-white/[0.06]">
+              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>100%</div>
+              <div className="text-xs font-semibold text-white mt-1">Encrypted Credential Vault</div>
+              <div className="text-[11px] text-slate-400">AES-256 + SHA-512 &amp; HSM</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── TECH MARQUEE (SVG logos) ─────────── */}
       <TechMarquee />
 
