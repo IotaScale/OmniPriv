@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" width="820" height="460">
+  <defs>
+    <linearGradient id="bg-eval-sa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="card-eval-sa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e2038"/>
+      <stop offset="100%" style="stop-color:#071424"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="460" fill="url(#bg-eval-sa)" rx="14"/>
+  <rect x="1" y="1" width="818" height="458" fill="none" stroke="#1e3a5f" stroke-width="1" rx="13"/>
+
+  <!-- Header -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="18" font-weight="800" fill="#ffffff">What to Look for in PAM Solutions in Saudi Arabia</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#94a3b8">5 Core Capabilities for Modern Saudi Enterprise Privileged Access Security</text>
+
+  <!-- Row 1: 3 cards -->
+  <!-- Pillar 1: Least Privilege -->
+  <g transform="translate(35, 80)">
+    <rect width="230" height="155" rx="10" fill="url(#card-eval-sa)" stroke="#00B8FF" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="28" cy="28" r="14" fill="#00B8FF" opacity="0.2"/>
+    <text x="28" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#00B8FF">01</text>
+    <text x="200" y="33" text-anchor="end" font-size="18">🛡️</text>
+    <text x="16" y="66" font-family="Arial,sans-serif" font-size="12.5" font-weight="700" fill="#f1f5f9">Least-Privilege Access</text>
+    <text x="16" y="88" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Limit users to exact permissions</text>
+    <text x="16" y="104" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">needed for their job roles.</text>
+    <text x="16" y="124" font-family="Arial,sans-serif" font-size="9" fill="#38bdf8">• Zero unrestricted standing rights</text>
+    <text x="16" y="140" font-family="Arial,sans-serif" font-size="9" fill="#38bdf8">• Drastically reduces blast radius</text>
+  </g>
+
+  <!-- Pillar 2: Just-in-Time Access -->
+  <g transform="translate(295, 80)">
+    <rect width="230" height="155" rx="10" fill="url(#card-eval-sa)" stroke="#22c55e" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="28" cy="28" r="14" fill="#22c55e" opacity="0.2"/>
+    <text x="28" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#22c55e">02</text>
+    <text x="200" y="33" text-anchor="end" font-size="18">⏳</text>
+    <text x="16" y="66" font-family="Arial,sans-serif" font-size="12.5" font-weight="700" fill="#f1f5f9">Just-in-Time (JIT) Access</text>
+    <text x="16" y="88" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Grant elevated access on demand</text>
+    <text x="16" y="104" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">for task duration only.</text>
+    <text x="16" y="124" font-family="Arial,sans-serif" font-size="9" fill="#4ade80">• Time-bounded auto revocations</text>
+    <text x="16" y="140" font-family="Arial,sans-serif" font-size="9" fill="#4ade80">• Eliminates static admin sessions</text>
+  </g>
+
+  <!-- Pillar 3: Session Monitoring -->
+  <g transform="translate(555, 80)">
+    <rect width="230" height="155" rx="10" fill="url(#card-eval-sa)" stroke="#6366f1" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="28" cy="28" r="14" fill="#6366f1" opacity="0.2"/>
+    <text x="28" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#818cf8">03</text>
+    <text x="200" y="33" text-anchor="end" font-size="18">📹</text>
+    <text x="16" y="66" font-family="Arial,sans-serif" font-size="12.5" font-weight="700" fill="#f1f5f9">Session Monitoring</text>
+    <text x="16" y="88" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">Complete video recordings and</text>
+    <text x="16" y="104" font-family="Arial,sans-serif" font-size="9.5" fill="#94a3b8">keystroke audit trails.</text>
+    <text x="16" y="124" font-family="Arial,sans-serif" font-size="9" fill="#a5b4fc">• Live session termination</text>
+    <text x="16" y="140" font-family="Arial,sans-serif" font-size="9" fill="#a5b4fc">• Tamper-proof NCA audit logs</text>
+  </g>
+
+  <!-- Row 2: 2 wider cards -->
+  <!-- Pillar 4: Remote & Vendor Access -->
+  <g transform="translate(35, 255)">
+    <rect width="360" height="135" rx="10" fill="url(#card-eval-sa)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="28" cy="28" r="14" fill="#f59e0b" opacity="0.2"/>
+    <text x="28" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#f59e0b">04</text>
+    <text x="330" y="33" text-anchor="end" font-size="18">🌐</text>
+    <text x="16" y="66" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">Remote and Third-Party Access</text>
+    <text x="16" y="88" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Secure external vendor and remote contractor connections</text>
+    <text x="16" y="104" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">without VPNs or distributing permanent passwords.</text>
+    <text x="16" y="122" font-family="Arial,sans-serif" font-size="9.5" fill="#fbbf24">• Isolated jump sessions with mandatory multi-factor authentication</text>
+  </g>
+
+  <!-- Pillar 5: Cloud Privileged Access -->
+  <g transform="translate(425, 255)">
+    <rect width="360" height="135" rx="10" fill="url(#card-eval-sa)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="28" cy="28" r="14" fill="#ec4899" opacity="0.2"/>
+    <text x="28" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#ec4899">05</text>
+    <text x="330" y="33" text-anchor="end" font-size="18">☁️</text>
+    <text x="16" y="66" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">Cloud Privileged Access</text>
+    <text x="16" y="88" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Multi-cloud identity governance spanning AWS, Azure,</text>
+    <text x="16" y="104" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Google Cloud, and hybrid on-premises environments in KSA.</text>
+    <text x="16" y="122" font-family="Arial,sans-serif" font-size="9.5" fill="#f472b6">• Unified visibility and policy enforcement across hybrid assets</text>
+  </g>
+
+  <!-- Tagline -->
+  <text x="410" y="425" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#64748b">PAM Solutions in Saudi Arabia · OmniPriv Identity &amp; Access Governance</text>
+</svg>

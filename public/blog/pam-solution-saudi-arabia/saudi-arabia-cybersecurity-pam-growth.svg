@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" width="820" height="400">
+  <defs>
+    <linearGradient id="bg-growth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="card-growth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e223a"/>
+      <stop offset="100%" style="stop-color:#061426"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="400" fill="url(#bg-growth)" rx="14"/>
+  <rect x="1" y="1" width="818" height="398" fill="none" stroke="#1e3a5f" stroke-width="1" rx="13"/>
+
+  <!-- Header -->
+  <text x="410" y="38" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="18" font-weight="800" fill="#ffffff">Saudi Arabia Cybersecurity Market &amp; PAM Growth</text>
+  <text x="410" y="58" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#94a3b8">National Cybersecurity Authority (NCA) Insights &amp; Privileged Access Dynamics</text>
+
+  <!-- 4 Stat Cards Across -->
+  <!-- Card 1: SAR 15.2B Market -->
+  <g transform="translate(30, 85)">
+    <rect width="175" height="180" rx="12" fill="url(#card-growth)" stroke="#059669" stroke-width="1.2"/>
+    <text x="87" y="38" text-anchor="middle" font-size="24">🇸🇦</text>
+    <text x="87" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#34d399">SAR 15.2B</text>
+    <text x="87" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Saudi Cyber Market</text>
+    <text x="87" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Kingdom-wide security</text>
+    <text x="87" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">spending reached in 2024</text>
+    <text x="87" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#34d399">NCA Official Data</text>
+  </g>
+
+  <!-- Card 2: 14% YoY Growth -->
+  <g transform="translate(225, 85)">
+    <rect width="175" height="180" rx="12" fill="url(#card-growth)" stroke="#00B8FF" stroke-width="1.2"/>
+    <text x="87" y="38" text-anchor="middle" font-size="24">📈</text>
+    <text x="87" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#00B8FF">+14%</text>
+    <text x="87" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Annual Growth</text>
+    <text x="87" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Rapid expansion from</text>
+    <text x="87" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">2023 across industries</text>
+    <text x="87" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#00B8FF">Accelerating Demand</text>
+  </g>
+
+  <!-- Card 3: SAR 10.3B Private Sector -->
+  <g transform="translate(420, 85)">
+    <rect width="175" height="180" rx="12" fill="url(#card-growth)" stroke="#6366f1" stroke-width="1.2"/>
+    <text x="87" y="38" text-anchor="middle" font-size="24">🏢</text>
+    <text x="87" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#818cf8">SAR 10.3B</text>
+    <text x="87" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Private Sector Share</text>
+    <text x="87" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Major corporate &amp; fintech</text>
+    <text x="87" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">investment in defense</text>
+    <text x="87" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#a5b4fc">68% of Total Market</text>
+  </g>
+
+  <!-- Card 4: NCA ECC 2-2024 Mandate -->
+  <g transform="translate(615, 85)">
+    <rect width="175" height="180" rx="12" fill="url(#card-growth)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="87" y="38" text-anchor="middle" font-size="24">🛡️</text>
+    <text x="87" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="800" fill="#fbbf24">ECC 2-2024</text>
+    <text x="87" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">NCA Controls Mandate</text>
+    <text x="87" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Mandatory PAM, least</text>
+    <text x="87" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">privilege &amp; log monitoring</text>
+    <text x="87" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#fbbf24">Strict Compliance</text>
+  </g>
+
+  <!-- Bottom Regulatory & Value Statement Banner -->
+  <g transform="translate(30, 285)">
+    <rect width="760" height="75" rx="10" fill="#071525" stroke="#00B8FF" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="32" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#ffffff">Why PAM is Crucial for Saudi Organizations:</text>
+    <text x="24" y="54" font-family="Arial,sans-serif" font-size="10.5" fill="#94a3b8">Protects against credential breaches, satisfies NCA Essential Cybersecurity Controls, and enforces Zero Trust across hybrid infrastructure.</text>
+    <rect x="635" y="20" width="105" height="35" rx="6" fill="#00B8FF" opacity="0.15"/>
+    <text x="687" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#00B8FF">Zero Trust PAM</text>
+  </g>
+</svg>
