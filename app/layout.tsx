@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 //
 const inter = Inter({
   subsets: ["latin"],
@@ -89,7 +90,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/omnipriv-icon.svg", type: "image/svg+xml" },
       { url: "/omnipriv-icon.png", type: "image/png" },
     ],
     shortcut: "/omnipriv-icon.png",
@@ -105,6 +105,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jakartaSans.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('omnipriv-theme');if(t==='light'){document.documentElement.classList.remove('dark');}else{document.documentElement.classList.add('dark');}}catch(e){document.documentElement.classList.add('dark');}})();`,
+          }}
+        />
         <link rel="icon" href="/omnipriv-icon.png" type="image/png" />
         <link rel="shortcut icon" href="/omnipriv-icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/omnipriv-icon.png" />
@@ -129,7 +134,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-dark text-slate-200 antialiased" suppressHydrationWarning>
+      <body className="bg-white text-slate-900 dark:bg-[#060b17] dark:text-slate-200 antialiased" suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W5FJSLJRGE"
           strategy="afterInteractive"
@@ -142,9 +147,11 @@ export default function RootLayout({
             gtag('config', 'G-W5FJSLJRGE');
           `}
         </Script>
-        <Header />
-        <main className="pt-[72px]">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main className="pt-[72px]">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

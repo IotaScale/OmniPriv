@@ -120,15 +120,15 @@ export default function DemoPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
           <div className="badge-cyan mb-6">Request a Demo</div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
             See OmniPriv in Your <span className="text-gradient">Environment</span>
           </h1>
-          <p className="text-lg text-slate-400 leading-relaxed">
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
             Get a personalized, no-commitment walkthrough tailored to your infrastructure and compliance requirements. Our PAM specialists will show you exactly how OmniPriv eliminates privilege-based risk at your scale.
           </p>
         </div>
@@ -146,8 +146,8 @@ export default function DemoPage() {
                   <div className="w-16 h-16 rounded-full bg-[#00B8FF]/15 flex items-center justify-center mx-auto mb-5">
                     <CheckCircle2 className="w-8 h-8 text-[#00B8FF]" />
                   </div>
-                  <h2 className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>Demo Request Received!</h2>
-                  <p className="text-slate-400 mb-8 max-w-md mx-auto">
+                  <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>Demo Request Received!</h2>
+                  <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
                     A member of our team will contact you within one business day to schedule your personalized walkthrough.
                   </p>
                   <Link href="/" className="btn-secondary">
@@ -155,14 +155,14 @@ export default function DemoPage() {
                   </Link>
                 </div>
               ) : (
-                <div className="p-8 rounded-3xl border border-white/[0.06] bg-[#0A1628]/60">
-                  <h2 className="text-xl font-bold text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
+                <div className="p-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
+                  <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
                     Tell Us About Your Needs
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5">First Name *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">First Name *</label>
                         <input
                           required
                           type="text"
@@ -174,7 +174,7 @@ export default function DemoPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5">Last Name *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Last Name *</label>
                         <input
                           required
                           type="text"
@@ -188,7 +188,7 @@ export default function DemoPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1.5">Work Email *</label>
+                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Work Email *</label>
                       <input
                         required
                         type="email"
@@ -202,7 +202,7 @@ export default function DemoPage() {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5">Phone Number</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone Number</label>
                         <input
                           type="tel"
                           name="phone"
@@ -213,7 +213,7 @@ export default function DemoPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5">Company *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Company *</label>
                         <input
                           required
                           type="text"
@@ -227,7 +227,7 @@ export default function DemoPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1.5">Job Title *</label>
+                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Job Title *</label>
                       <input
                         required
                         type="text"
@@ -241,7 +241,7 @@ export default function DemoPage() {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5">Company Size *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Company Size *</label>
                         <select
                           required
                           name="companySize"
@@ -256,7 +256,7 @@ export default function DemoPage() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5">Primary Use Case *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Primary Use Case *</label>
                         <select
                           required
                           name="useCase"
@@ -273,7 +273,7 @@ export default function DemoPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1.5">Additional Context</label>
+                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Additional Context</label>
                       <textarea
                         rows={4}
                         name="context"
@@ -292,9 +292,9 @@ export default function DemoPage() {
                         name="agree"
                         checked={formData.agree}
                         onChange={handleChange}
-                        className="mt-1 w-4 h-4 rounded border-white/20 bg-[#0F1E35] accent-[#00B8FF]"
+                        className="mt-1 w-4 h-4 rounded border-slate-300 dark:border-white/20 bg-slate-200 dark:bg-[#0F1E35] accent-[#00B8FF]"
                       />
-                      <label htmlFor="agree" className="text-sm text-slate-400 leading-relaxed">
+                      <label htmlFor="agree" className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                         I agree to OmniPriv&apos;s{" "}
                         <Link href="/privacy-policy" className="text-[#00B8FF] hover:underline">Privacy Policy</Link>{" "}
                         and{" "}
@@ -339,15 +339,15 @@ export default function DemoPage() {
             <div className="lg:col-span-2 space-y-8">
 
               {/* Trust stats */}
-              {/* <div className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60">
-                <h3 className="text-sm font-bold text-white mb-5 uppercase tracking-wider" style={{ fontFamily: "var(--font-syne)" }}>Trusted By Security Leaders</h3>
+              {/* <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
+                <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-5 uppercase tracking-wider" style={{ fontFamily: "var(--font-syne)" }}>Trusted By Security Leaders</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {trustStats.map((t) => (
-                    <div key={t.label} className="text-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                    <div key={t.label} className="text-center p-3 rounded-xl bg-slate-900/[0.02] dark:bg-white/[0.02] border border-slate-900/[0.05] dark:border-white/[0.04]">
                       <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center mx-auto mb-2">
                         <t.icon className="w-4 h-4 text-[#00B8FF]" />
                       </div>
-                      <div className="text-sm font-bold text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{t.value}</div>
+                      <div className="text-sm font-bold text-slate-950 dark:text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{t.value}</div>
                       <div className="text-[10px] text-slate-500">{t.label}</div>
                     </div>
                   ))}
@@ -356,16 +356,16 @@ export default function DemoPage() {
 
               {/* What to Expect */}
               <div>
-                <h3 className="text-base font-bold text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>What to Expect</h3>
+                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>What to Expect</h3>
                 <div className="space-y-4">
                   {whatToExpect.map((step) => (
-                    <div key={step.step} className="flex gap-4 p-4 rounded-xl border border-white/[0.04] bg-[#0A1628]/40">
+                    <div key={step.step} className="flex gap-4 p-4 rounded-xl border border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/40 dark:bg-[#0A1628]/40">
                       <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-[#00B8FF] font-bold text-xs" style={{ fontFamily: "var(--font-syne)" }}>
                         {step.step}
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-white mb-1">{step.title}</div>
-                        <p className="text-xs text-slate-400 leading-relaxed">{step.description}</p>
+                        <div className="text-sm font-bold text-slate-950 dark:text-white mb-1">{step.title}</div>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{step.description}</p>
                       </div>
                     </div>
                   ))}
@@ -373,10 +373,10 @@ export default function DemoPage() {
               </div>
 
               {/* Contact */}
-              <div className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60">
-                <h3 className="text-sm font-bold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>Prefer to Talk Directly?</h3>
+              <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
+                <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>Prefer to Talk Directly?</h3>
                 <div className="space-y-3">
-                  <a href="mailto:info@omnipriv.com" className="flex items-center gap-3 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors">
+                  <a href="mailto:info@omnipriv.com" className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors">
                     <Mail className="w-4 h-4 text-[#00B8FF]" />
                     info@omnipriv.com
                   </a>

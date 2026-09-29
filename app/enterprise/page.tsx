@@ -153,15 +153,15 @@ export default function EnterprisePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Enterprise Plans</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
             Secure Your Enterprise with <span className="text-gradient">OmniPriv</span>
           </h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">
             OmniPriv is a premium, enterprise-grade PAM solution. All plans include our complete security platform; pricing is tailored to your organization's size, deployment requirements, and support needs.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -179,10 +179,10 @@ export default function EnterprisePage() {
       <section className="section-padding-lg">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Plans for Every Scale
             </h2>
-            <p className="text-slate-400 text-lg">
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
               Each plan is a fully commercial, enterprise-grade offering. Contact our sales team for custom pricing.
             </p>
           </div>
@@ -192,8 +192,8 @@ export default function EnterprisePage() {
               <div
                 key={plan.name}
                 className={`relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 ${plan.highlight
-                    ? "border-[#00B8FF]/40 bg-gradient-to-b from-[#00B8FF]/[0.08] to-[#0A1628]/80 shadow-[0_0_40px_rgba(0,184,255,0.15)]"
-                    : "border-white/[0.07] bg-[#0A1628]/60"
+                    ? "border-[#00B8FF]/40 bg-gradient-to-b from-[#00B8FF]/[0.08] to-slate-100/80 dark:to-[#0A1628]/80 shadow-[0_0_40px_rgba(0,184,255,0.15)]"
+                    : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/60 dark:bg-[#0A1628]/60"
                   }`}
               >
                 {plan.badge && (
@@ -201,21 +201,21 @@ export default function EnterprisePage() {
                     {plan.badge}
                   </div>
                 )}
-                <div className="p-7 border-b border-white/[0.06]">
-                  <h3 className="text-2xl font-extrabold text-white mb-1" style={{ fontFamily: "var(--font-syne)" }}>
+                <div className="p-7 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
+                  <h3 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-1" style={{ fontFamily: "var(--font-syne)" }}>
                     {plan.name}
                   </h3>
-                  <p className="text-sm text-slate-400 mb-4">{plan.description}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">{plan.description}</p>
                   <div className="space-y-2 text-xs">
-                    <div className="flex items-center gap-2 text-slate-400">
+                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
                       <Users className="w-3.5 h-3.5 text-[#00B8FF]" />
                       {plan.seats}
                     </div>
-                    <div className="flex items-center gap-2 text-slate-400">
+                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
                       <Server className="w-3.5 h-3.5 text-[#00B8FF]" />
                       {plan.assets}
                     </div>
-                    <div className="flex items-center gap-2 text-slate-400">
+                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
                       <Zap className="w-3.5 h-3.5 text-[#00B8FF]" />
                       HA: {plan.ha}
                     </div>
@@ -231,13 +231,13 @@ export default function EnterprisePage() {
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5">
                         <CheckCircle2 className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-slate-300">{f}</span>
+                        <span className="text-sm text-slate-700 dark:text-slate-300">{f}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-7 border-t border-white/[0.06]">
+                <div className="p-7 border-t border-slate-900/[0.08] dark:border-white/[0.06]">
                   <Link
                     href="/demo"
                     className={`block text-center py-3 rounded-xl font-semibold text-sm transition-all ${plan.highlight
@@ -260,22 +260,22 @@ export default function EnterprisePage() {
       </section>
 
       {/* Enterprise features */}
-      <section className="section-padding border-y border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Enterprise Platform</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Built for Enterprise <span className="text-gradient">Scale & Complexity</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {enterpriseFeatures.map((f) => (
-              <div key={f.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine">
+              <div key={f.title} className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine">
                 <div className="icon-wrapper mb-5">
                   <f.icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-bold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{f.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{f.description}</p>
+                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{f.title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{f.description}</p>
               </div>
             ))}
           </div>
@@ -287,19 +287,19 @@ export default function EnterprisePage() {
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Service Level Agreement</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Enterprise SLA Commitments
             </h2>
-            <p className="text-slate-400">
+            <p className="text-slate-600 dark:text-slate-400">
               We stand behind our platform with contractual commitments on availability, support response, and service quality.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {slaHighlights.map((s) => (
-              <div key={s.metric} className="text-center p-7 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all">
+              <div key={s.metric} className="text-center p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all">
                 <div className="stat-number mb-2">{s.metric}</div>
-                <div className="text-white font-semibold text-sm mb-2" style={{ fontFamily: "var(--font-syne)" }}>{s.label}</div>
-                <p className="text-xs text-slate-400">{s.desc}</p>
+                <div className="text-slate-950 dark:text-white font-semibold text-sm mb-2" style={{ fontFamily: "var(--font-syne)" }}>{s.label}</div>
+                <p className="text-xs text-slate-600 dark:text-slate-400">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -307,22 +307,22 @@ export default function EnterprisePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding border-t border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <h2 className="text-3xl font-extrabold text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }}>
+          <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }}>
             What Enterprise Customers Say
           </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {testimonials.map((t) => (
-              <div key={t.author} className="relative p-8 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60">
+              <div key={t.author} className="relative p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
                 <span className="quote-mark">"</span>
                 <div className="flex items-center gap-0.5 mb-4 mt-4">
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4 italic">"{t.quote}"</p>
-                <div className="text-sm font-medium text-slate-400 border-t border-white/[0.05] pt-4">{t.author}</div>
+                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4 italic">"{t.quote}"</p>
+                <div className="text-sm font-medium text-slate-600 dark:text-slate-400 border-t border-slate-900/[0.06] dark:border-white/[0.05] pt-4">{t.author}</div>
               </div>
             ))}
           </div>
@@ -333,14 +333,14 @@ export default function EnterprisePage() {
       <section className="section-padding">
         <div className="container-xl">
           <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-14">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] to-[#030711]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />
             <div className="absolute inset-0 bg-grid opacity-20" />
             <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
                   Let's Build the Right Plan for Your Organization
                 </h2>
-                <p className="text-slate-400 text-lg mb-6">
+                <p className="text-slate-600 dark:text-slate-400 text-lg mb-6">
                   Our enterprise sales team will analyze your environment, identify the right plan, and provide a custom quote with no obligation.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -357,9 +357,9 @@ export default function EnterprisePage() {
                   { icon: Award, text: "Proof-of-concept deployment at no cost" },
                   { icon: BarChart3, text: "ROI analysis and compliance gap report" },
                 ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-3 p-4 rounded-xl border border-white/[0.05] bg-white/[0.02]">
+                  <div key={text} className="flex items-center gap-3 p-4 rounded-xl border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-900/[0.02] dark:bg-white/[0.02]">
                     <Icon className="w-5 h-5 text-[#00B8FF] flex-shrink-0" />
-                    <span className="text-sm text-slate-300">{text}</span>
+                    <span className="text-sm text-slate-700 dark:text-slate-300">{text}</span>
                   </div>
                 ))}
               </div>

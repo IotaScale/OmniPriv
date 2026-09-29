@@ -108,16 +108,16 @@ export const pillarsData = [
 ───────────────────────────────────────────────────────────── */
 function AuthenticationVisual({ isHovered }: { isHovered: boolean }) {
   return (
-    <div className="w-full rounded-xl border border-white/[0.08] bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
+    <div className="w-full rounded-xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md bg-[#00B8FF]/15 border border-[#00B8FF]/30 flex items-center justify-center text-[#00B8FF]">
             <Fingerprint className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-white">Identity Verification Pipeline</div>
-            <div className="text-[10px] font-mono text-slate-400">Context-Aware Zero Trust</div>
+            <div className="text-xs font-semibold text-slate-950 dark:text-white">Identity Verification Pipeline</div>
+            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Context-Aware Zero Trust</div>
           </div>
         </div>
         <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -128,44 +128,44 @@ function AuthenticationVisual({ isHovered }: { isHovered: boolean }) {
       {/* Identity Verification Nodes */}
       <div className="space-y-2.5 my-4">
         {/* Node 1: IdP SSO */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#00B8FF]" />
             <div>
-              <div className="text-[11px] font-semibold text-slate-200">Identity Provider (IdP)</div>
-              <div className="text-[9.5px] font-mono text-slate-400">Okta / Azure AD &middot; SAML 2.0 / OIDC</div>
+              <div className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">Identity Provider (IdP)</div>
+              <div className="text-[9.5px] font-mono text-slate-600 dark:text-slate-400">Okta / Azure AD &middot; SAML 2.0 / OIDC</div>
             </div>
           </div>
           <span className="text-[10px] font-mono text-emerald-400 font-semibold">SSO Verified</span>
         </div>
 
         {/* Node 2: MFA Challenge */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#00B8FF]" />
             <div>
-              <div className="text-[11px] font-semibold text-slate-200">Security Challenge (MFA)</div>
-              <div className="text-[9.5px] font-mono text-slate-400">FIDO2 Hardware Key &middot; WebAuthn</div>
+              <div className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">Security Challenge (MFA)</div>
+              <div className="text-[9.5px] font-mono text-slate-600 dark:text-slate-400">FIDO2 Hardware Key &middot; WebAuthn</div>
             </div>
           </div>
           <span className="text-[10px] font-mono text-[#00B8FF] font-semibold">Token Matched</span>
         </div>
 
         {/* Node 3: Device Posture & Directory Sync */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#00B8FF]" />
             <div>
-              <div className="text-[11px] font-semibold text-slate-200">Directory &amp; Posture Sync</div>
-              <div className="text-[9.5px] font-mono text-slate-400">corp.local / Active Directory &middot; Compliant</div>
+              <div className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">Directory &amp; Posture Sync</div>
+              <div className="text-[9.5px] font-mono text-slate-600 dark:text-slate-400">corp.local / Active Directory &middot; Compliant</div>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-slate-400">4,820 Objects</span>
+          <span className="text-[10px] font-mono text-slate-600 dark:text-slate-400">4,820 Objects</span>
         </div>
       </div>
 
       {/* Footer Status */}
-      <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-600 dark:text-slate-400">
         <span className="flex items-center gap-1.5">
           <span className={`w-1.5 h-1.5 rounded-full bg-[#00B8FF] ${isHovered ? "animate-ping" : ""}`} />
           Brute-Force &amp; CAPTCHA Guard Active
@@ -181,16 +181,16 @@ function AuthenticationVisual({ isHovered }: { isHovered: boolean }) {
 ───────────────────────────────────────────────────────────── */
 function AuthorizationVisual({ isHovered }: { isHovered: boolean }) {
   return (
-    <div className="w-full rounded-xl border border-white/[0.08] bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
+    <div className="w-full rounded-xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md bg-[#6366f1]/15 border border-[#6366f1]/30 flex items-center justify-center text-[#818cf8]">
             <Lock className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-white">Access Policy Enforcement</div>
-            <div className="text-[10px] font-mono text-slate-400">Least-Privilege Engine (PoLP)</div>
+            <div className="text-xs font-semibold text-slate-950 dark:text-white">Access Policy Enforcement</div>
+            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Least-Privilege Engine (PoLP)</div>
           </div>
         </div>
         <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
@@ -201,10 +201,10 @@ function AuthorizationVisual({ isHovered }: { isHovered: boolean }) {
       {/* Policy Details */}
       <div className="space-y-2.5 my-4">
         {/* Request Details */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div>
-            <div className="text-[10px] font-mono text-slate-400">Target Asset Request</div>
-            <div className="text-[11px] font-bold text-white flex items-center gap-1.5 mt-0.5">
+            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Target Asset Request</div>
+            <div className="text-[11px] font-bold text-slate-950 dark:text-white flex items-center gap-1.5 mt-0.5">
               <Database className="w-3.5 h-3.5 text-[#00B8FF]" /> prod-db-01 &middot; PostgreSQL
             </div>
           </div>
@@ -215,12 +215,12 @@ function AuthorizationVisual({ isHovered }: { isHovered: boolean }) {
 
         {/* Policy Conditions */}
         <div className="grid grid-cols-2 gap-2 text-[10px]">
-          <div className="p-2 rounded bg-[#060b14] border border-white/[0.04]">
-            <div className="text-slate-400 font-mono">Role Mapping:</div>
-            <div className="font-semibold text-slate-200 mt-0.5">DB Administrator</div>
+          <div className="p-2 rounded bg-slate-50 dark:bg-[#060b14] border border-slate-900/[0.05] dark:border-white/[0.04]">
+            <div className="text-slate-600 dark:text-slate-400 font-mono">Role Mapping:</div>
+            <div className="font-semibold text-slate-800 dark:text-slate-200 mt-0.5">DB Administrator</div>
           </div>
-          <div className="p-2 rounded bg-[#060b14] border border-white/[0.04]">
-            <div className="text-slate-400 font-mono">Command ACL:</div>
+          <div className="p-2 rounded bg-slate-50 dark:bg-[#060b14] border border-slate-900/[0.05] dark:border-white/[0.04]">
+            <div className="text-slate-600 dark:text-slate-400 font-mono">Command ACL:</div>
             <div className="font-semibold text-indigo-300 mt-0.5">DROP/ALTER Filtered</div>
           </div>
         </div>
@@ -229,7 +229,7 @@ function AuthorizationVisual({ isHovered }: { isHovered: boolean }) {
         <div className="p-2.5 rounded-lg border border-emerald-500/25 bg-emerald-500/[0.06] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span className="text-[11px] font-semibold text-white">Multi-Party Authorization</span>
+            <span className="text-[11px] font-semibold text-slate-950 dark:text-white">Multi-Party Authorization</span>
           </div>
           <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30">
             Approved 2/2
@@ -238,7 +238,7 @@ function AuthorizationVisual({ isHovered }: { isHovered: boolean }) {
       </div>
 
       {/* Footer Status */}
-      <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-600 dark:text-slate-400">
         <span className="flex items-center gap-1.5">
           <Clock className="w-3 h-3 text-[#818cf8]" />
           Access Window: 29m 45s remaining
@@ -254,16 +254,16 @@ function AuthorizationVisual({ isHovered }: { isHovered: boolean }) {
 ───────────────────────────────────────────────────────────── */
 function AccountManagementVisual({ isHovered }: { isHovered: boolean }) {
   return (
-    <div className="w-full rounded-xl border border-white/[0.08] bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
+    <div className="w-full rounded-xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md bg-[#10b981]/15 border border-[#10b981]/30 flex items-center justify-center text-[#34d399]">
             <Key className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-white">Credential Vault &amp; Lifecycle</div>
-            <div className="text-[10px] font-mono text-slate-400">Hardware Security Module (HSM)</div>
+            <div className="text-xs font-semibold text-slate-950 dark:text-white">Credential Vault &amp; Lifecycle</div>
+            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Hardware Security Module (HSM)</div>
           </div>
         </div>
         <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -274,36 +274,36 @@ function AccountManagementVisual({ isHovered }: { isHovered: boolean }) {
       {/* Lifecycle Progression */}
       <div className="space-y-2.5 my-4">
         {/* Step 1: Discovered Account */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold text-slate-400">01</span>
+            <span className="text-[10px] font-mono font-bold text-slate-600 dark:text-slate-400">01</span>
             <div>
-              <div className="text-[11px] font-semibold text-slate-200">Automated Discovery</div>
-              <div className="text-[9.5px] font-mono text-slate-400">root@linux-srv-401 &middot; Unmanaged detected</div>
+              <div className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">Automated Discovery</div>
+              <div className="text-[9.5px] font-mono text-slate-600 dark:text-slate-400">root@linux-srv-401 &middot; Unmanaged detected</div>
             </div>
           </div>
           <span className="text-[10px] font-mono text-[#34d399]">Onboarded</span>
         </div>
 
         {/* Step 2: Encrypted Vaulting */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold text-slate-400">02</span>
+            <span className="text-[10px] font-mono font-bold text-slate-600 dark:text-slate-400">02</span>
             <div>
-              <div className="text-[11px] font-semibold text-slate-200">Zero Plain-Text Vaulting</div>
-              <div className="text-[9.5px] font-mono text-slate-400">KMS Key Sealed &middot; Ephemeral Tokens Only</div>
+              <div className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">Zero Plain-Text Vaulting</div>
+              <div className="text-[9.5px] font-mono text-slate-600 dark:text-slate-400">KMS Key Sealed &middot; Ephemeral Tokens Only</div>
             </div>
           </div>
           <span className="text-[10px] font-mono text-emerald-400">100% Sealed</span>
         </div>
 
         {/* Step 3: Scheduled Rotation */}
-        <div className="p-2.5 rounded-lg border border-white/[0.05] bg-[#060b14] flex items-center justify-between">
+        <div className="p-2.5 rounded-lg border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-50 dark:bg-[#060b14] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold text-slate-400">03</span>
+            <span className="text-[10px] font-mono font-bold text-slate-600 dark:text-slate-400">03</span>
             <div>
-              <div className="text-[11px] font-semibold text-slate-200">Scheduled Rotation Cycle</div>
-              <div className="text-[9.5px] font-mono text-slate-400">Last rotated: 2h ago &middot; Next: in 22h</div>
+              <div className="text-[11px] font-semibold text-slate-800 dark:text-slate-200">Scheduled Rotation Cycle</div>
+              <div className="text-[9.5px] font-mono text-slate-600 dark:text-slate-400">Last rotated: 2h ago &middot; Next: in 22h</div>
             </div>
           </div>
           <span className="text-[10px] font-mono text-[#00B8FF] flex items-center gap-1">
@@ -313,7 +313,7 @@ function AccountManagementVisual({ isHovered }: { isHovered: boolean }) {
       </div>
 
       {/* Footer Status */}
-      <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-600 dark:text-slate-400">
         <span className="flex items-center gap-1.5">
           <ShieldCheck className="w-3 h-3 text-[#34d399]" />
           Zero Standing Passwords in Memory
@@ -329,16 +329,16 @@ function AccountManagementVisual({ isHovered }: { isHovered: boolean }) {
 ───────────────────────────────────────────────────────────── */
 function AuditComplianceVisual({ isHovered }: { isHovered: boolean }) {
   return (
-    <div className="w-full rounded-xl border border-white/[0.08] bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
+    <div className="w-full rounded-xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#091222] p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-200">
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md bg-[#00B8FF]/15 border border-[#00B8FF]/30 flex items-center justify-center text-[#38bdf8]">
             <Eye className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-white">Live Session Evidence &amp; Audit</div>
-            <div className="text-[10px] font-mono text-slate-400">Immutable Cryptographic Log</div>
+            <div className="text-xs font-semibold text-slate-950 dark:text-white">Live Session Evidence &amp; Audit</div>
+            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Immutable Cryptographic Log</div>
           </div>
         </div>
         <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-red-500/10 text-red-400 border border-red-500/20 flex items-center gap-1">
@@ -350,19 +350,19 @@ function AuditComplianceVisual({ isHovered }: { isHovered: boolean }) {
       {/* Session Events Stream */}
       <div className="space-y-2 my-3 font-mono text-[10px]">
         {/* Normal event 1 */}
-        <div className="p-2 rounded bg-[#060b14] border border-white/[0.04] flex items-center justify-between">
+        <div className="p-2 rounded bg-slate-50 dark:bg-[#060b14] border border-slate-900/[0.05] dark:border-white/[0.04] flex items-center justify-between">
           <div className="flex items-center gap-2 truncate">
             <span className="text-[#00B8FF]">&gt;</span>
-            <span className="text-slate-300 truncate">11:02:14 &middot; TLS 1.3 Bastion handshake verified</span>
+            <span className="text-slate-700 dark:text-slate-300 truncate">11:02:14 &middot; TLS 1.3 Bastion handshake verified</span>
           </div>
           <span className="text-emerald-400 text-[9px] flex-shrink-0">OK</span>
         </div>
 
         {/* Normal event 2 */}
-        <div className="p-2 rounded bg-[#060b14] border border-white/[0.04] flex items-center justify-between">
+        <div className="p-2 rounded bg-slate-50 dark:bg-[#060b14] border border-slate-900/[0.05] dark:border-white/[0.04] flex items-center justify-between">
           <div className="flex items-center gap-2 truncate">
             <span className="text-[#00B8FF]">&gt;</span>
-            <span className="text-slate-300 truncate">11:03:02 &middot; sudo systemctl status postgresql</span>
+            <span className="text-slate-700 dark:text-slate-300 truncate">11:03:02 &middot; sudo systemctl status postgresql</span>
           </div>
           <span className="text-emerald-400 text-[9px] flex-shrink-0">OK</span>
         </div>
@@ -382,7 +382,7 @@ function AuditComplianceVisual({ isHovered }: { isHovered: boolean }) {
       </div>
 
       {/* Footer Status */}
-      <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-600 dark:text-slate-400">
         <span className="flex items-center gap-1.5">
           <FileCheck className="w-3 h-3 text-[#00B8FF]" />
           SHA-256 Hash Tamper-Proof Verified
@@ -400,7 +400,7 @@ export default function FourPillarsSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section id="capabilities" className="section-padding-lg relative overflow-hidden bg-[#060b17] border-y border-white/[0.05]">
+    <section id="capabilities" className="section-padding-lg relative overflow-hidden bg-slate-50 dark:bg-[#060b17] border-y border-slate-900/[0.06] dark:border-white/[0.05]">
       {/* Background subtle atmospheric glow */}
       <div
         className="absolute top-1/3 left-1/4 w-[700px] h-[400px] pointer-events-none opacity-20"
@@ -419,13 +419,13 @@ export default function FourPillarsSection() {
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5 tracking-tight"
             style={{ fontFamily: "var(--font-syne)" }}
           >
             The Four Pillars of Privileged Access Management
           </h2>
 
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             OmniPriv is built on the 4A framework — Authentication, Authorization, Account
             Management, and Audit — providing end-to-end coverage of every privileged access scenario
             in your enterprise. Built around the best practices for privileged access management, it helps organizations enforce least-privilege access, secure critical accounts, and monitor privileged activity in real time.
@@ -444,10 +444,10 @@ export default function FourPillarsSection() {
                 id={pillar.id}
                 onMouseEnter={() => setHoveredCard(pillar.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`relative rounded-2xl border transition-all duration-200 bg-[#070e1c] overflow-hidden ${
+                className={`relative rounded-2xl border transition-all duration-200 bg-slate-100 dark:bg-[#070e1c] overflow-hidden ${
                   isHovered
                     ? "border-[#00B8FF]/45 -translate-y-1 shadow-[0_16px_40px_rgba(0,0,0,0.5),0_0_24px_rgba(0,184,255,0.06)]"
-                    : "border-white/[0.08] hover:border-white/[0.16]"
+                    : "border-slate-900/[0.1] dark:border-white/[0.08] hover:border-slate-900/[0.2] dark:hover:border-white/[0.16]"
                 }`}
                 style={{ minHeight: "380px" }}
               >
@@ -458,7 +458,7 @@ export default function FourPillarsSection() {
 
                 {/* Large Faded Pillar Number in Background (5-8% opacity) */}
                 <div
-                  className="absolute right-6 bottom-2 text-8xl sm:text-9xl font-black text-white/[0.04] select-none pointer-events-none font-mono"
+                  className="absolute right-6 bottom-2 text-8xl sm:text-9xl font-black text-slate-900/[0.04] dark:text-white/[0.04] select-none pointer-events-none font-mono"
                   style={{ fontFamily: "var(--font-syne)" }}
                 >
                   {pillar.number}
@@ -475,7 +475,7 @@ export default function FourPillarsSection() {
                       <div>
                         {/* Eyebrow number + Title */}
                         <div className="flex items-center gap-3.5 mb-3">
-                          <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#00B8FF]">
+                          <div className="w-10 h-10 rounded-xl bg-slate-900/[0.03] dark:bg-white/[0.04] border border-slate-900/[0.1] dark:border-white/[0.08] flex items-center justify-center text-[#00B8FF]">
                             <pillar.icon className="w-5 h-5" />
                           </div>
                           <div>
@@ -483,7 +483,7 @@ export default function FourPillarsSection() {
                               Pillar {pillar.number}
                             </span>
                             <h3
-                              className="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+                              className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white tracking-tight"
                               style={{ fontFamily: "var(--font-syne)" }}
                             >
                               {pillar.title}
@@ -495,7 +495,7 @@ export default function FourPillarsSection() {
                         <p className="text-[#00B8FF] font-semibold text-sm mb-2.5">
                           {pillar.subtitle}
                         </p>
-                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                        <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                           {pillar.description}
                         </p>
 
@@ -504,10 +504,10 @@ export default function FourPillarsSection() {
                           {pillar.features.map((feature) => (
                             <div
                               key={feature}
-                              className="flex items-start gap-2.5 p-2 rounded-lg bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.05] transition-colors"
+                              className="flex items-start gap-2.5 p-2 rounded-lg bg-slate-900/[0.02] dark:bg-white/[0.02] border border-slate-900/[0.05] dark:border-white/[0.04] hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-colors"
                             >
                               <CheckCircle2 className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
-                              <span className="text-xs sm:text-sm text-slate-200 leading-snug">
+                              <span className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-snug">
                                 {feature}
                               </span>
                             </div>

@@ -164,7 +164,7 @@ export default function TechMarquee() {
 
     return (
         <div ref={ref}>
-            <section className="py-16 border-b border-white/[0.04] overflow-hidden">
+            <section className="py-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
                 <div className="container-xl mb-8">
                     <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest reveal-item">
                         Supports Every Protocol &amp; Platform
@@ -177,12 +177,12 @@ export default function TechMarquee() {
                         {[...logos, ...logos, ...logos].map((logo, i) => (
                             <div
                                 key={`${logo.name}-${i}`}
-                                className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
+                                className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
                             >
                                 <div className="opacity-80 group-hover:opacity-100 transition-opacity">
                                     {logo.svg}
                                 </div>
-                                <span className="text-slate-400 group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">
+                                <span className="text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">
                                     {logo.name}
                                 </span>
                             </div>
@@ -196,12 +196,12 @@ export default function TechMarquee() {
                         {[...logos, ...logos, ...logos].reverse().map((logo, i) => (
                             <div
                                 key={`rev-${logo.name}-${i}`}
-                                className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
+                                className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
                             >
                                 <div className="opacity-80 group-hover:opacity-100 transition-opacity">
                                     {logo.svg}
                                 </div>
-                                <span className="text-slate-400 group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">
+                                <span className="text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">
                                     {logo.name}
                                 </span>
                             </div>

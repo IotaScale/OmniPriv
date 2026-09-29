@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   Shield,
   ChevronDown,
@@ -141,7 +142,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-[#030711]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,184,255,0.06)]"
+        ? "bg-white/95 dark:bg-[#030711]/95 backdrop-blur-xl border-b border-slate-900/[0.08] dark:border-white/[0.06] shadow-[0_4px_30px_rgba(0,184,255,0.06)]"
         : "bg-transparent"
         }`}
     >
@@ -150,11 +151,19 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/omnipriv-logo-white.webp"
+              src="/omnipriv-light.png"
               alt="OmniPriv"
               width={160}
               height={40}
-              className="h-9 w-auto object-contain"
+              className="h-9 w-auto object-contain dark:hidden"
+              priority
+            />
+            <Image
+              src="/omniprivdark.png"
+              alt="OmniPriv"
+              width={160}
+              height={40}
+              className="h-9 w-auto object-contain hidden dark:block"
               priority
             />
           </Link>
@@ -163,7 +172,7 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-1">
             <Link
               href="/"
-              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.05] transition-all duration-200"
+              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
             >
               Home
             </Link>
@@ -171,13 +180,13 @@ export default function Header() {
             <div className="relative" ref={platformRef}>
               <button
                 onClick={() => { setPlatformOpen((o) => !o); setResourceOpen(false); }}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.05] transition-all duration-200"
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
               >
                 Platform
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${platformOpen ? "rotate-180" : ""}`} />
               </button>
               {platformOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] p-2 bg-[#0A1628]/95 backdrop-blur-xl border border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] z-50">
                   <div className="grid grid-cols-2 gap-1">
                     {platformLinks.map((item) => (
                       <Link
@@ -190,13 +199,13 @@ export default function Header() {
                           <item.icon className="w-4 h-4 text-[#00B8FF]" />
                         </div>
                         <div>
-                          <div className="text-sm font-semibold text-white mb-0.5">{item.label}</div>
+                          <div className="text-sm font-semibold text-slate-950 dark:text-white mb-0.5">{item.label}</div>
                           <div className="text-xs text-slate-500">{item.description}</div>
                         </div>
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-2 pt-2 border-t border-white/[0.05] px-2 text-center">
+                  <div className="mt-2 pt-2 border-t border-slate-900/[0.06] dark:border-white/[0.05] px-2 text-center">
                     <Link
                       href="/platform"
                       onClick={() => setPlatformOpen(false)}
@@ -215,13 +224,13 @@ export default function Header() {
             <div className="relative" ref={resourceRef}>
               <button
                 onClick={() => { setResourceOpen((o) => !o); setPlatformOpen(false); }}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.05] transition-all duration-200"
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
               >
                 Resources
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${resourceOpen ? "rotate-180" : ""}`} />
               </button>
               {resourceOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] p-2 bg-[#0A1628]/95 backdrop-blur-xl border border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] z-50">
                   {resourceLinks.map((item) => (
                     <Link
                       key={item.label}
@@ -232,7 +241,7 @@ export default function Header() {
                       <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center flex-shrink-0">
                         <item.icon className="w-3.5 h-3.5 text-[#00B8FF]" />
                       </div>
-                      <span className="text-sm font-medium text-white">{item.label}</span>
+                      <span className="text-sm font-medium text-slate-950 dark:text-white">{item.label}</span>
                     </Link>
                   ))}
                   <button
@@ -247,7 +256,7 @@ export default function Header() {
                       <Download className="w-3.5 h-3.5 text-[#00B8FF]" />
                     </div>
                     <div className="text-left">
-                      <span className="text-sm font-medium text-white block">Data Sheet</span>
+                      <span className="text-sm font-medium text-slate-950 dark:text-white block">Data Sheet</span>
                       <span className="text-[11px] text-slate-500">Download PDF</span>
                     </div>
                   </button>
@@ -257,7 +266,7 @@ export default function Header() {
 
             <Link
               href="/about"
-              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.05] transition-all duration-200"
+              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
             >
               About
             </Link>
@@ -266,9 +275,10 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             <Link
               href="/sign-in"
-              className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white border border-white/[0.12] hover:border-white/25 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-200"
+              className="px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-900/[0.15] dark:border-white/[0.12] hover:border-slate-300 dark:hover:border-white/25 rounded-lg bg-slate-900/[0.03] dark:bg-white/[0.04] hover:bg-slate-900/[0.06] dark:hover:bg-white/[0.08] transition-all duration-200"
             >
               Partner Portal
             </Link>
@@ -284,7 +294,7 @@ export default function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.05] transition-all"
+            className="lg:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -294,15 +304,15 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-[#030711]/98 backdrop-blur-xl overflow-y-auto z-40">
+        <div className="lg:hidden fixed inset-0 top-[72px] bg-white/95 dark:bg-[#030711]/98 backdrop-blur-xl overflow-y-auto z-40">
           <div className="container-xl py-6 space-y-2">
             {/* Platform */}
-            <Link href="/" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-white rounded-xl hover:bg-white/[0.05] transition-all">
+            <Link href="/" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
               Home
             </Link>
             <button
               onClick={() => setMobileProduct(!mobileProduct)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-white rounded-xl hover:bg-white/[0.05] transition-all"
+              className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
             >
               Platform
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileProduct ? "rotate-180" : ""}`} />
@@ -314,7 +324,7 @@ export default function Header() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all"
+                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition-all"
                   >
                     <item.icon className="w-4 h-4 text-[#00B8FF]" />
                     {item.label}
@@ -328,7 +338,7 @@ export default function Header() {
             {/* Resources */}
             <button
               onClick={() => setMobileResource(!mobileResource)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-white rounded-xl hover:bg-white/[0.05] transition-all"
+              className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
             >
               Resources
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileResource ? "rotate-180" : ""}`} />
@@ -340,7 +350,7 @@ export default function Header() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all"
+                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition-all"
                   >
                     <item.icon className="w-4 h-4 text-[#00B8FF]" />
                     {item.label}
@@ -352,7 +362,7 @@ export default function Header() {
                     downloadDatasheets();
                     setMobileOpen(false);
                   }}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all w-full"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition-all w-full"
                 >
                   <Download className="w-4 h-4 text-[#00B8FF]" />
                   <span>Data Sheet</span>
@@ -361,16 +371,21 @@ export default function Header() {
               </div>
             )}
 
-            <Link href="/about" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-white rounded-xl hover:bg-white/[0.05] transition-all">
+            <Link href="/about" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
               About
             </Link>
+
+            <div className="flex items-center justify-between px-4 py-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06]">
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Theme</span>
+              <ThemeToggle />
+            </div>
             
 
-            <div className="pt-4 border-t border-white/[0.06] space-y-3">
+            <div className="pt-4 border-t border-slate-900/[0.08] dark:border-white/[0.06] space-y-3">
               <Link
                 href="/sign-in"
                 onClick={() => setMobileOpen(false)}
-                className="block w-full text-center px-4 py-3 text-sm font-semibold text-slate-300 border border-white/[0.12] rounded-xl hover:bg-white/[0.05] transition-all"
+                className="block w-full text-center px-4 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 border border-slate-900/[0.15] dark:border-white/[0.12] rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
               >
                 Partner Portal
               </Link>

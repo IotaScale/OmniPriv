@@ -152,13 +152,13 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04]">
+      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl max-w-3xl mx-auto">
           <div className="badge-cyan mb-5">Legal</div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
             Privacy Policy
           </h1>
-          <p className="text-slate-400">
+          <p className="text-slate-600 dark:text-slate-400">
             Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025
           </p>
         </div>
@@ -174,7 +174,7 @@ export default function PrivacyPolicyPage() {
               <div className="sticky top-28 space-y-1">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
                 {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-400 hover:text-[#00B8FF] transition-colors py-1 border-l border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
+                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors py-1 border-l border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
                     {s.title}
                   </a>
                 ))}
@@ -183,16 +183,16 @@ export default function PrivacyPolicyPage() {
 
             {/* Main Content */}
             <article className="lg:col-span-3 space-y-12">
-              <div className="p-5 rounded-xl border border-[#00B8FF]/15 bg-[#00B8FF]/[0.03] text-sm text-slate-300 leading-relaxed">
-                <strong className="text-white">Summary:</strong> OmniPriv is a B2B enterprise security company. We collect contact information when you interact with us, use it to provide our services, don&apos;t sell it, protect it with SOC 2 / ISO 27001 certified infrastructure, and honor your data rights. Questions? Email privacy@OmniPriv.com.
+              <div className="p-5 rounded-xl border border-[#00B8FF]/15 bg-[#00B8FF]/[0.03] text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <strong className="text-slate-950 dark:text-white">Summary:</strong> OmniPriv is a B2B enterprise security company. We collect contact information when you interact with us, use it to provide our services, don&apos;t sell it, protect it with SOC 2 / ISO 27001 certified infrastructure, and honor your data rights. Questions? Email privacy@OmniPriv.com.
               </div>
 
               {sections.map((s) => (
                 <div key={s.id} id={s.id}>
-                  <h2 className="text-xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>{s.title}</h2>
+                  <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>{s.title}</h2>
                   <div className="prose-dark space-y-3">
                     {s.content.split("\n\n").map((para, i) => (
-                      <p key={i} className="text-sm text-slate-400 leading-relaxed whitespace-pre-line">{para}</p>
+                      <p key={i} className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">{para}</p>
                     ))}
                   </div>
                   <div className="divider mt-10" />

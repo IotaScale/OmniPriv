@@ -59,9 +59,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-14 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-14 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/40 via-[#030711]/80 to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 dark:from-[#030711]/40 via-white/80 dark:via-[#030711]/80 to-white dark:to-[#030711]" />
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse at top, rgba(0,184,255,0.08) 0%, transparent 60%)" }}
@@ -69,7 +69,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="container-xl relative z-10 max-w-3xl mx-auto">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
@@ -79,21 +79,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight mb-6"
             style={{ fontFamily: "var(--font-syne)" }}
           >
             {post.title}
           </h1>
 
-          <p className="text-lg text-slate-400 leading-relaxed mb-8">{post.excerpt}</p>
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8">{post.excerpt}</p>
 
           <div className="flex flex-wrap items-center gap-5 text-sm text-slate-500">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#6366f1]/20 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#6366f1]/20 flex items-center justify-center text-slate-950 dark:text-white font-bold text-sm flex-shrink-0">
                 {post.author.charAt(0)}
               </div>
               <div>
-                <div className="text-white font-semibold text-sm">{post.author}</div>
+                <div className="text-slate-950 dark:text-white font-semibold text-sm">{post.author}</div>
                 {post.authorTitle && <div className="text-xs text-slate-500">{post.authorTitle}</div>}
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-white/[0.08] bg-white/[0.04] text-slate-400"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-600 dark:text-slate-400"
                 >
                   <Tag className="w-2.5 h-2.5" /> {tag}
                 </span>
@@ -136,7 +136,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <div key={i}>
                   {heading && (
                     <h2
-                      className="text-xl md:text-2xl font-extrabold text-white mb-5"
+                      className="text-xl md:text-2xl font-extrabold text-slate-950 dark:text-white mb-5"
                       style={{ fontFamily: "var(--font-syne)" }}
                     >
                       {heading}
@@ -148,7 +148,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       const imageMatch = para.trim().match(/^!\[(.+?)\]\((.+?)\)$/);
                       if (imageMatch) {
                         return (
-                          <div key={j} className="my-6 rounded-xl overflow-hidden border border-white/[0.07]">
+                          <div key={j} className="my-6 rounded-xl overflow-hidden border border-slate-900/[0.09] dark:border-white/[0.07]">
                             <Image
                               src={imageMatch[2]}
                               alt={imageMatch[1]}
@@ -166,7 +166,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         return (
                           <ul key={j} className="space-y-2.5 ml-1">
                             {listLines.map((item, k) => (
-                              <li key={k} className="flex items-start gap-3 text-slate-400 leading-relaxed">
+                              <li key={k} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 leading-relaxed">
                                 <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#00B8FF] flex-shrink-0" />
                                 {renderInline(item.trim().slice(2))}
                               </li>
@@ -179,7 +179,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         return (
                           <h3
                             key={j}
-                            className="text-lg md:text-xl font-bold text-white mt-2 mb-1"
+                            className="text-lg md:text-xl font-bold text-slate-950 dark:text-white mt-2 mb-1"
                             style={{ fontFamily: "var(--font-syne)" }}
                           >
                             {para.trim().replace(/^###\s*/, "")}
@@ -190,14 +190,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       const boldMatch = para.match(/^\*\*(.+?)\*\*\s*([\s\S]*)/);
                       if (boldMatch) {
                         return (
-                          <p key={j} className="text-slate-300 leading-relaxed">
-                            <strong className="text-white font-semibold">{boldMatch[1]}</strong>
+                          <p key={j} className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            <strong className="text-slate-950 dark:text-white font-semibold">{boldMatch[1]}</strong>
                             {boldMatch[2] ? <> {renderInline(boldMatch[2])}</> : ""}
                           </p>
                         );
                       }
                       return (
-                        <p key={j} className="text-slate-400 leading-relaxed">
+                        <p key={j} className="text-slate-600 dark:text-slate-400 leading-relaxed">
                           {renderInline(para)}
                         </p>
                       );
@@ -209,14 +209,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* CTA */}
-          <div className="mt-16 p-8 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-br from-[#0A1628] to-[#030711]">
+          <div className="mt-16 p-8 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]">
             <h3
-              className="text-lg font-extrabold text-white mb-3"
+              className="text-lg font-extrabold text-slate-950 dark:text-white mb-3"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               See OmniPriv in Action
             </h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-5">
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5">
               Talk to our team to see how OmniPriv addresses the challenges in this article for your specific environment.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -230,10 +230,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Back */}
-          <div className="mt-10 pt-8 border-t border-white/[0.06]">
+          <div className="mt-10 pt-8 border-t border-slate-900/[0.08] dark:border-white/[0.06]">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" /> Back to all articles
             </Link>

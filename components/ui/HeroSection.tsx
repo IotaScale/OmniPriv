@@ -10,7 +10,7 @@ interface Protocol { name: string; color: string; }
 
 export default function HeroSection({ protocols }: { protocols: Protocol[] }) {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#07070E]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-[#07070E]">
       {/* ── Background image ── */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -22,9 +22,9 @@ export default function HeroSection({ protocols }: { protocols: Protocol[] }) {
           sizes="100vw"
         />
         {/* Dark overlay to keep text readable */}
-        <div className="absolute inset-0 bg-[#07070E]/80" />
+        <div className="absolute inset-0 bg-white/80 dark:bg-[#07070E]/80" />
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-[#07070E]" style={{ maskImage: "linear-gradient(to bottom, transparent, #07070E)", WebkitMaskImage: "linear-gradient(to bottom, transparent, #07070E)" }} />
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-white dark:bg-[#07070E]" style={{ maskImage: "linear-gradient(to bottom, transparent, #07070E)", WebkitMaskImage: "linear-gradient(to bottom, transparent, #07070E)" }} />
       </div>
 
       {/* ── Dot grid overlay ── */}
@@ -61,7 +61,7 @@ export default function HeroSection({ protocols }: { protocols: Protocol[] }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 dark:text-white leading-[1.1] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               Zero-Trust{" "}
@@ -78,7 +78,7 @@ export default function HeroSection({ protocols }: { protocols: Protocol[] }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-slate-400 leading-relaxed mb-8 max-w-xl"
+              className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-xl"
             >
               Omnipriv secures your most critical systems with industry-leading PAM solutions. As a comprehensive privileged identity management solution, we provide automated credential management, full session auditing, and real-time threat detection.
             </motion.p>
@@ -104,7 +104,7 @@ export default function HeroSection({ protocols }: { protocols: Protocol[] }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.06]"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-slate-900/[0.05] dark:bg-white/[0.06] rounded-2xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.06]"
             >
               {[
                 { value: "5,000+", label: "Assets Protected" },
@@ -112,7 +112,7 @@ export default function HeroSection({ protocols }: { protocols: Protocol[] }) {
                 { value: "48 hrs", label: "Deployment Time" },
                 { value: "SOC 2",  label: "Certified" },
               ].map((stat) => (
-                <div key={stat.label} className="bg-[#07070E]/80 py-5 px-3 text-center">
+                <div key={stat.label} className="bg-white/80 dark:bg-[#07070E]/80 py-5 px-3 text-center">
                   <div className="stat-number text-xl mb-0.5">{stat.value}</div>
                   <div className="text-[11px] text-slate-500 font-medium">{stat.label}</div>
                 </div>

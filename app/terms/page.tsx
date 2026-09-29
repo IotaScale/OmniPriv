@@ -152,13 +152,13 @@ export default function TermsPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04]">
+      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl max-w-3xl mx-auto">
           <div className="badge-cyan mb-5">Legal</div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
             Terms of Service
           </h1>
-          <p className="text-slate-400">
+          <p className="text-slate-600 dark:text-slate-400">
             Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025
           </p>
         </div>
@@ -174,7 +174,7 @@ export default function TermsPage() {
               <div className="sticky top-28 space-y-1">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
                 {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-400 hover:text-[#00B8FF] transition-colors py-0.5 border-l border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
+                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors py-0.5 border-l border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
                     {s.title}
                   </a>
                 ))}
@@ -183,16 +183,16 @@ export default function TermsPage() {
 
             {/* Main Content */}
             <article className="lg:col-span-3 space-y-10">
-              <div className="p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/[0.03] text-sm text-slate-300 leading-relaxed">
-                <strong className="text-white">Note:</strong> These Terms of Service apply to OmniPriv&apos;s website and software-as-a-service platform. Enterprise customers with custom contracts should refer to their signed Order Form and Master Subscription Agreement, which supersede these Terms where they conflict.
+              <div className="p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/[0.03] text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <strong className="text-slate-950 dark:text-white">Note:</strong> These Terms of Service apply to OmniPriv&apos;s website and software-as-a-service platform. Enterprise customers with custom contracts should refer to their signed Order Form and Master Subscription Agreement, which supersede these Terms where they conflict.
               </div>
 
               {sections.map((s) => (
                 <div key={s.id} id={s.id}>
-                  <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>{s.title}</h2>
+                  <h2 className="text-lg font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>{s.title}</h2>
                   <div className="space-y-3">
                     {s.content.split("\n\n").map((para, i) => (
-                      <p key={i} className="text-sm text-slate-400 leading-relaxed whitespace-pre-line">{para}</p>
+                      <p key={i} className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">{para}</p>
                     ))}
                   </div>
                   <div className="divider mt-8" />

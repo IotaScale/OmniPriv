@@ -32,7 +32,7 @@ export default function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative pt-32 pb-24 border-b border-white/[0.04] overflow-hidden">
+    <section className="relative pt-32 pb-24 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -44,9 +44,9 @@ export default function PageHero({
           sizes="100vw"
         />
         {/* Progressive darkening overlay */}
-        <div className="absolute inset-0 bg-[#07070E]/75" />
+        <div className="absolute inset-0 bg-white/75 dark:bg-[#07070E]/75" />
         {/* Bottom solid fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#07070E]" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-white dark:bg-[#07070E]" />
       </div>
 
       {/* Dot grid */}
@@ -63,13 +63,13 @@ export default function PageHero({
           <div className={`badge-cyan mb-6 ${centered ? "inline-flex" : ""}`}>{badge}</div>
 
           <h1
-            className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight"
+            className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight"
             style={{ fontFamily: "var(--font-syne)" }}
           >
             {title}
           </h1>
 
-          <p className="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl">
+          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-2xl">
             {subtitle}
           </p>
 
@@ -79,10 +79,10 @@ export default function PageHero({
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="p-4 rounded-xl bg-[#0E0E1C]/80 border border-white/[0.07] backdrop-blur-sm text-center"
+                  className="p-4 rounded-xl bg-slate-100/80 dark:bg-[#0E0E1C]/80 border border-slate-900/[0.09] dark:border-white/[0.07] backdrop-blur-sm text-center"
                 >
                   <div
-                    className="text-2xl font-extrabold text-white mb-0.5"
+                    className="text-2xl font-extrabold text-slate-950 dark:text-white mb-0.5"
                     style={{ fontFamily: "var(--font-syne)" }}
                   >
                     {s.val}

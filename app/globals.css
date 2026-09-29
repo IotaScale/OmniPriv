@@ -6,6 +6,44 @@
    CSS Custom Properties
 ────────────────────────────────────────────── */
 :root {
+  /* Light palette */
+  --color-primary: #00b8ff;
+  --color-primary-dark: #0090cd;
+  --color-purple: #a78bfa;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f5f9;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-cyan: rgba(0, 184, 255, 0.25);
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-accent: #00b8ff;
+  --gradient-primary: linear-gradient(135deg, #00b8ff 0%, #6366f1 100%);
+  --gradient-dark: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  --glow-primary: 0 0 50px rgba(0, 184, 255, 0.25);
+  --glow-purple: 0 0 40px rgba(139, 92, 246, 0.18);
+  --glow-sm: 0 0 20px rgba(0, 184, 255, 0.14);
+
+  /* Theme-aware surfaces */
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-bg-cyan: rgba(255, 255, 255, 0.8);
+  --card-shadow: 0 4px 24px rgba(15, 23, 42, 0.08), 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 0 0 1px rgba(255, 255, 255, 0.4);
+  --btn-secondary-bg: rgba(15, 23, 42, 0.04);
+  --btn-secondary-text: #334155;
+  --btn-secondary-border: rgba(15, 23, 42, 0.12);
+  --input-bg: #ffffff;
+  --input-border: rgba(15, 23, 42, 0.12);
+  --tag-bg: rgba(15, 23, 42, 0.05);
+  --stat-gradient: linear-gradient(125deg, #0284c7 0%, #4f46e5 50%, #7c3aed 100%);
+  --code-bg: #f1f5f9;
+  --feature-card-bg: #ffffff;
+  --feature-card-hover: #f8fafc;
+  --table-head-text: #0f172a;
+  --table-cell-text: #475569;
+}
+
+.dark {
+  /* Dark palette */
   --color-primary: #00b8ff;
   --color-primary-dark: #0090cd;
   --color-purple: #a78bfa;
@@ -22,6 +60,23 @@
   --glow-primary: 0 0 50px rgba(0, 184, 255, 0.35);
   --glow-purple: 0 0 40px rgba(139, 92, 246, 0.25);
   --glow-sm: 0 0 20px rgba(0, 184, 255, 0.2);
+
+  /* Theme-aware surfaces */
+  --card-bg: rgba(10, 22, 40, 0.55);
+  --card-bg-cyan: rgba(10, 22, 40, 0.6);
+  --card-shadow: 0 4px 40px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255,255,255,0.07) inset, 0 0 0 1px rgba(255,255,255,0.02);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+  --btn-secondary-text: #e2e8f0;
+  --btn-secondary-border: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(10, 22, 40, 0.8);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --tag-bg: rgba(15, 30, 55, 0.85);
+  --stat-gradient: linear-gradient(125deg, #ffffff 0%, #38bdf8 50%, #818cf8 100%);
+  --code-bg: #050e1f;
+  --feature-card-bg: #090f1e;
+  --feature-card-hover: #0a1322;
+  --table-head-text: #e2e8f0;
+  --table-cell-text: #94a3b8;
 }
 
 @keyframes ambientPulse {
@@ -108,21 +163,21 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Cards with glass effect */
   .card-glass {
-    background: rgba(10, 22, 40, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--card-bg);
+    border: 1px solid var(--color-border);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255,255,255,0.07) inset, 0 0 0 1px rgba(255,255,255,0.02);
+    box-shadow: var(--card-shadow);
   }
 
   .card-glass-cyan {
-    background: rgba(10, 22, 40, 0.6);
+    background: var(--card-bg-cyan);
     border: 1px solid rgba(0, 184, 255, 0.12);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(0, 184, 255, 0.06);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(0, 184, 255, 0.06);
   }
 
   .card-glass-cyan::before {
@@ -179,13 +234,13 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.75rem;
-    background: rgba(255, 255, 255, 0.04);
-    color: #e2e8f0;
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
     font-weight: 600;
     font-size: 0.9375rem;
     letter-spacing: -0.01em;
     border-radius: 0.625rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--btn-secondary-border);
     transition: all 0.22s ease;
     cursor: pointer;
     font-family: var(--font-inter), sans-serif;
@@ -194,9 +249,9 @@ h1, h2, h3, h4, h5, h6 {
   .btn-secondary:hover {
     background: rgba(14, 165, 233, 0.07);
     border-color: rgba(14, 165, 233, 0.32);
-    color: #ffffff;
+    color: var(--color-text);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(14,165,233,0.1) inset;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(14,165,233,0.1) inset;
   }
 
   /* Section Spacing */
@@ -301,8 +356,8 @@ h1, h2, h3, h4, h5, h6 {
   .input-dark {
     width: 100%;
     padding: 0.75rem 1rem;
-    background: rgba(10, 22, 40, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 0.5rem;
     color: var(--color-text);
     /* 1rem (16px) minimum prevents iOS Safari from auto-zooming on focus */
@@ -325,8 +380,8 @@ h1, h2, h3, h4, h5, h6 {
   .select-dark {
     width: 100%;
     padding: 0.75rem 1rem;
-    background: rgba(10, 22, 40, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 0.5rem;
     color: var(--color-text);
     /* 1rem (16px) minimum prevents iOS Safari from auto-zooming on focus */
@@ -373,7 +428,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-syne), sans-serif;
     font-weight: 800;
     font-size: 2.625rem;
-    background: linear-gradient(125deg, #ffffff 0%, #38bdf8 50%, #818cf8 100%);
+    background: var(--stat-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -386,10 +441,10 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     padding: 0.2rem 0.75rem;
-    background: rgba(15, 30, 55, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--tag-bg);
+    border: 1px solid var(--color-border);
     border-radius: 9999px;
-    color: #94a3b8;
+    color: var(--color-muted);
     font-size: 0.75rem;
     font-weight: 500;
     backdrop-filter: blur(8px);
@@ -554,7 +609,7 @@ h1, h2, h3, h4, h5, h6 {
    Code Block
 ────────────────────────────────────────────── */
 .code-block {
-  background: #050e1f;
+  background: var(--code-bg);
   border: 1px solid rgba(0, 184, 255, 0.15);
   border-radius: 12px;
   overflow: hidden;
@@ -641,14 +696,14 @@ h1, h2, h3, h4, h5, h6 {
 .feature-card-body {
   position: relative;
   z-index: 1;
-  background: #090f1e;
+  background: var(--feature-card-bg);
   border-radius: calc(0.875rem - 1px);
   height: 100%;
   transition: background 0.35s ease;
 }
 
 .feature-card:hover .feature-card-body {
-  background: #0a1322;
+  background: var(--feature-card-hover);
 }
 
 @keyframes feature-card-spin {
@@ -672,20 +727,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
-  color: #e2e8f0;
+  color: var(--table-head-text);
   text-align: left;
 }
 
 .comparison-table td {
   padding: 0.875rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--color-border);
   font-size: 0.9375rem;
-  color: #94a3b8;
+  color: var(--table-cell-text);
 }
 
 .comparison-table tr:hover td {
   background: rgba(0, 184, 255, 0.03);
-  color: #e2e8f0;
+  color: var(--table-head-text);
 }
 
 /* Focus visible */

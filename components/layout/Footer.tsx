@@ -40,19 +40,19 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#030711] border-t border-white/[0.06] overflow-hidden">
+    <footer className="relative bg-white dark:bg-[#030711] border-t border-slate-900/[0.08] dark:border-white/[0.06] overflow-hidden">
       {/* Top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
 
       {/* Newsletter bar */}
-      <div className="border-b border-white/[0.06] bg-[#0A1628]/50">
+      <div className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/50 dark:bg-[#0A1628]/50">
         <div className="container-xl py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="font-display font-bold text-white text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
+              <h3 className="font-display font-bold text-slate-950 dark:text-white text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
                 Stay ahead of privilege-based threats
               </h3>
-              <p className="text-slate-400 text-sm">
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
                 Get PAM insights, security advisories, and best practices from our team.
               </p>
             </div>
@@ -87,15 +87,22 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-2">
             <Link href="/" className="inline-flex mb-5">
               <Image
-                src="/omnipriv-logo-white.webp"
+                src="/omnipriv-light.png"
                 alt="OmniPriv"
                 width={160}
                 height={40}
-                className="h-9 w-auto object-contain"
+                className="h-9 w-auto object-contain dark:hidden"
+              />
+              <Image
+                src="/omniprivdark.png"
+                alt="OmniPriv"
+                width={160}
+                height={40}
+                className="h-9 w-auto object-contain hidden dark:block"
               />
             </Link>
 
-            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
               Enterprise Privileged Access Management. Secure, audit, and control every privileged session across your hybrid infrastructure.
             </p>
 
@@ -103,27 +110,17 @@ export default function Footer() {
             <div className="space-y-4">
               <a
                 href="mailto:info@omnipriv.com"
-                className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-[#00B8FF] transition-colors group/contact"
+                className="flex items-center gap-2.5 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors group/contact"
               >
                 <Mail className="w-3.5 h-3.5 text-[#00B8FF]/60 group-hover/contact:text-[#00B8FF] transition-colors flex-shrink-0" />
                 info@omnipriv.com
               </a>
-              <div className="flex items-start gap-2.5 text-sm text-slate-400">
+              <div className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-400">
                 <MapPin className="w-3.5 h-3.5 text-[#00B8FF]/60 transition-colors flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-white/70 font-medium text-xs mb-0.5">Omnipriv Global</div>
-                  <div>10 Mead Road, Abbeymead</div>
-                  <div>Gloucester, GL4 5GL</div>
-                  <div>United Kingdom</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5 text-sm text-slate-400">
-                <MapPin className="w-3.5 h-3.5 text-[#00B8FF]/60 transition-colors flex-shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-white/70 font-medium text-xs mb-0.5">Omnipriv Middle East</div>
-                  <div>Compass Building</div>
-                  <div>AL Hamra Industrial Zone-FZ</div>
-                  <div>Ras Al Khaimah, UAE</div>
+                  <div className="text-slate-900/70 dark:text-white/70 font-medium text-xs mb-0.5">Omnipriv US Office</div>
+                  <div>4301 Independence St.</div>
+                  <div>Rockville MD 20853, USA</div>
                 </div>
               </div>
             </div>
@@ -131,7 +128,7 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
+            <h4 className="text-slate-950 dark:text-white font-semibold text-sm mb-4 uppercase tracking-wider">
               Capabilities
             </h4>
             <ul className="space-y-3">
@@ -139,7 +136,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
                     {link.label}
@@ -153,7 +150,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
+            <h4 className="text-slate-950 dark:text-white font-semibold text-sm mb-4 uppercase tracking-wider">
               Resources
             </h4>
             <ul className="space-y-3">
@@ -161,7 +158,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
                     {link.label}
@@ -173,7 +170,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
+            <h4 className="text-slate-950 dark:text-white font-semibold text-sm mb-4 uppercase tracking-wider">
               Company
             </h4>
             <ul className="space-y-3">
@@ -181,7 +178,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
                     {link.label}
@@ -196,10 +193,10 @@ export default function Footer() {
         {/* CTA Banner */}
         <div className="mt-10 p-6 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-r from-[#00B8FF]/[0.06] to-[#0060FF]/[0.04] flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <p className="text-white font-semibold text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
+            <p className="text-slate-950 dark:text-white font-semibold text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
               Ready to secure your privileged access?
             </p>
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
               Talk to our PAM experts and get a personalized demo.
             </p>
           </div>
@@ -213,7 +210,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/[0.05] bg-[#020609]/60">
+      <div className="border-t border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-100/60 dark:bg-[#020609]/60">
         <div className="container-xl py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-slate-500">

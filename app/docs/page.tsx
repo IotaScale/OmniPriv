@@ -113,15 +113,15 @@ export default function DocsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Documentation</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
             OmniPriv <span className="text-gradient">Documentation</span>
           </h1>
-          <p className="text-xl text-slate-400 max-w-xl mx-auto mb-10">
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl mx-auto mb-10">
             Everything you need to deploy, configure, and operate OmniPriv in your enterprise environment.
           </p>
 
@@ -130,13 +130,13 @@ export default function DocsPage() {
       </section>
 
       {/* Quick Links */}
-      <section className="py-8 border-b border-white/[0.04] bg-[#0A1628]/30">
+      <section className="py-8 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {quickLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="flex items-center gap-2 p-3 rounded-xl border border-white/[0.06] hover:border-[#00B8FF]/20 transition-all group">
+              <Link key={link.label} href={link.href} className="flex items-center gap-2 p-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8FF]/20 transition-all group">
                 <link.icon className="w-4 h-4 text-[#00B8FF] flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">{link.label}</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-slate-950 dark:group-hover:text-white transition-colors">{link.label}</span>
               </Link>
             ))}
           </div>
@@ -146,7 +146,7 @@ export default function DocsPage() {
       {/* Documentation Categories */}
       <section className="section-padding">
         <div className="container-xl">
-          <h2 className="text-2xl font-extrabold text-white mb-8" style={{ fontFamily: "var(--font-syne)" }}>
+          <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-8" style={{ fontFamily: "var(--font-syne)" }}>
             Browse by Category
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -156,13 +156,13 @@ export default function DocsPage() {
                   <cat.icon className={`w-5 h-5 ${cat.textColor}`} />
                   <h3 className={`font-bold text-base ${cat.textColor}`} style={{ fontFamily: "var(--font-syne)" }}>{cat.title}</h3>
                 </div>
-                <p className="text-xs text-slate-400 mb-5">{cat.description}</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mb-5">{cat.description}</p>
                 <ul className="space-y-2.5">
                   {cat.articles.map((article) => (
                     <li key={article.title}>
                       {/* <Link
                         href={article.href}
-                        className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors group/link"
+                        className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors group/link"
                       > */}
                         <ChevronRight className="w-3 h-3 text-[#00B8FF]/50 group-hover/link:text-[#00B8FF] transition-colors flex-shrink-0" />
                         {article.title}
@@ -177,10 +177,10 @@ export default function DocsPage() {
       </section>
 
       {/* Popular Articles */}
-      <section className="section-padding border-t border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-            <h2 className="text-2xl font-extrabold text-white" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
               Most Popular Articles
             </h2>
             {/* <Link href="/docs/all" className="text-sm text-[#00B8FF] hover:underline flex items-center gap-1">
@@ -192,11 +192,11 @@ export default function DocsPage() {
               <Link
                 key={doc.title}
                 href={doc.href}
-                className="flex items-start gap-3 p-5 rounded-xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group"
+                className="flex items-start gap-3 p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group"
               >
                 <doc.icon className="w-5 h-5 text-[#00B8FF] flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-sm font-semibold text-white mb-1 group-hover:text-[#00B8FF] transition-colors">
+                  <div className="text-sm font-semibold text-slate-950 dark:text-white mb-1 group-hover:text-[#00B8FF] transition-colors">
                     {doc.title}
                   </div>
                   <div className="text-xs text-slate-500">{doc.views}</div>
@@ -211,13 +211,13 @@ export default function DocsPage() {
       <section className="section-padding">
         <div className="container-xl">
           <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 text-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] to-[#030711]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />
             <div className="relative z-10">
               <BookOpen className="w-12 h-12 text-[#00B8FF] mx-auto mb-5" />
-              <h2 className="text-2xl font-extrabold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
+              <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
                 Can&apos;t find what you need?
               </h2>
-              <p className="text-slate-400 mb-8 max-w-md mx-auto">
+              <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
                 Our support team and dedicated Customer Success managers are available to help you with any technical questions.
               </p>
               <div className="flex flex-wrap justify-center gap-4">

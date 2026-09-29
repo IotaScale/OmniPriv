@@ -58,7 +58,7 @@ function getTagColor(tag: string) {
     "Compliance": "bg-orange-500/10 text-orange-400 border-orange-500/20",
     "DevSecOps": "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
   };
-  return colors[tag] ?? "bg-slate-500/10 text-slate-400 border-slate-500/20";
+  return colors[tag] ?? "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20";
 }
 
 export default function BlogPage() {
@@ -93,22 +93,22 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Blog & Insights</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
             PAM Security <span className="text-gradient">Insights</span>
           </h1>
-          <p className="text-xl text-slate-400 max-w-xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
             Best practices, security research, compliance guidance, and product updates from the OmniPriv team. Discover how to leverage our Privileged Access Management Solution to secure your enterprise.
           </p>
         </div>
       </section>
 
       {/* Categories */}
-      <section className="py-5 border-b border-white/[0.04] bg-[#0A1628]/30 sticky top-[72px] z-30 backdrop-blur-xl">
+      <section className="py-5 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30 sticky top-[72px] z-30 backdrop-blur-xl">
         <div className="container-xl">
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             {categories.map((cat) => (
@@ -118,7 +118,7 @@ export default function BlogPage() {
                 className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border ${
                   cat === activeCategory
                     ? "bg-[#00B8FF]/15 border-[#00B8FF]/30 text-[#00B8FF]"
-                    : "bg-transparent border-white/[0.06] text-slate-400 hover:border-[#00B8FF]/20 hover:text-white"
+                    : "bg-transparent border-slate-900/[0.08] dark:border-white/[0.06] text-slate-600 dark:text-slate-400 hover:border-[#00B8FF]/20 hover:text-slate-950 dark:hover:text-white"
                 }`}
               >
                 {cat}
@@ -133,7 +133,7 @@ export default function BlogPage() {
         <div className="container-xl">
           <Link
             href={featuredPost.href}
-            className="group block relative rounded-2xl border border-white/[0.07] bg-gradient-to-br from-[#0A1628]/80 to-[#0F1E35]/60 overflow-hidden hover:border-[#00B8FF]/20 transition-all duration-300 card-shine"
+            className="group block relative rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-gradient-to-br from-slate-100/80 dark:from-[#0A1628]/80 to-slate-200/60 dark:to-[#0F1E35]/60 overflow-hidden hover:border-[#00B8FF]/20 transition-all duration-300 card-shine"
           >
             <div className="absolute inset-0 bg-grid opacity-20" />
             <div className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10" style={{ background: "radial-gradient(circle, #00B8FF 0%, transparent 60%)" }} />
@@ -144,10 +144,10 @@ export default function BlogPage() {
                 </span>
                 <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Featured</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl" style={{ fontFamily: "var(--font-syne)" }}>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl" style={{ fontFamily: "var(--font-syne)" }}>
                 {featuredPost.title}
               </h2>
-              <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-2xl">
+              <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 max-w-2xl">
                 {featuredPost.excerpt}
               </p>
               <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -157,11 +157,11 @@ export default function BlogPage() {
               </div>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-white text-sm font-bold" style={{ fontFamily: "var(--font-syne)" }}>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-slate-950 dark:text-white text-sm font-bold" style={{ fontFamily: "var(--font-syne)" }}>
                     {featuredPost.author.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-white text-sm font-semibold">{featuredPost.author}</div>
+                    <div className="text-slate-950 dark:text-white text-sm font-semibold">{featuredPost.author}</div>
                     <div className="text-slate-500 text-xs">{featuredPost.authorTitle}</div>
                   </div>
                 </div>
@@ -186,17 +186,17 @@ export default function BlogPage() {
               <Link
                 key={post.title}
                 href={post.href}
-                className="group flex flex-col p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 hover:bg-[#0A1628]/90 transition-all duration-300 card-shine"
+                className="group flex flex-col p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 hover:bg-slate-100/90 dark:hover:bg-[#0A1628]/90 transition-all duration-300 card-shine"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className={`px-2.5 py-1 rounded-full border text-xs font-semibold ${getTagColor(post.category)}`}>
                     {post.category}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-white mb-3 group-hover:text-[#00B8FF] transition-colors line-clamp-2 flex-1" style={{ fontFamily: "var(--font-syne)" }}>
+                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-3 group-hover:text-[#00B8FF] transition-colors line-clamp-2 flex-1" style={{ fontFamily: "var(--font-syne)" }}>
                   {post.title}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 mb-4">
                   {post.excerpt}
                 </p>
                 <div className="flex flex-wrap gap-1.5 mb-4">
@@ -204,13 +204,13 @@ export default function BlogPage() {
                     <span key={tag} className="tag text-[11px]">{tag}</span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between border-t border-white/[0.05] pt-4 mt-auto">
+                <div className="flex items-center justify-between border-t border-slate-900/[0.06] dark:border-white/[0.05] pt-4 mt-auto">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/30 flex items-center justify-center text-white text-xs font-bold" style={{ fontFamily: "var(--font-syne)" }}>
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/30 flex items-center justify-center text-slate-950 dark:text-white text-xs font-bold" style={{ fontFamily: "var(--font-syne)" }}>
                       {post.author.charAt(0)}
                     </div>
                     <div>
-                      <div className="text-xs text-white font-medium leading-tight">{post.author}</div>
+                      <div className="text-xs text-slate-950 dark:text-white font-medium leading-tight">{post.author}</div>
                       <div className="text-[10px] text-slate-600">{post.readTime}</div>
                     </div>
                   </div>
@@ -226,13 +226,13 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="section-padding border-t border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-extrabold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
               Get PAM Insights in Your Inbox
             </h2>
-            <p className="text-slate-400 mb-7">
+            <p className="text-slate-600 dark:text-slate-400 mb-7">
               Weekly security insights, PAM best practices, and OmniPriv product updates. No spam, unsubscribe anytime.
             </p>
             {newsletterStatus === "success" ? (

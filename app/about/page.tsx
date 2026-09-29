@@ -111,19 +111,19 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-32 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10">
           <div className="max-w-3xl">
             <div className="badge-cyan mb-6">About OmniPriv</div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
+            <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
               We Exist to <span className="text-gradient">Eliminate Privilege-Based Risk</span> – PAM Solutions
             </h1>
-            <p className="text-xl text-slate-400 leading-relaxed mb-8">
+            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
               OmniPriv was founded by security professionals focused on delivering advanced PAM solutions to prevent breaches caused by uncontrolled privileged access. Our privileged access management solution was built to be powerful enough for the world's most demanding environments, yet practical enough to actually deploy.
             </p>
-            <p className="text-xl text-slate-400 leading-relaxed mb-8">
+            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
               We set out to build the PAM platform we always wished existed — one that helps organizations take full control of sensitive accounts, reduce security risks, and ensure compliance with modern cybersecurity standards. OmniPriv combines advanced security capabilities with ease of use, helping businesses manage and monitor privileged access efficiently.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -139,13 +139,13 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      {/* <section className="py-14 border-b border-white/[0.04] bg-[#0A1628]/40">
+      {/* <section className="py-14 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/40 dark:bg-[#0A1628]/40">
         <div className="container-xl">
           <div className="grid grid-cols-3 gap-10">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
                 <div className="stat-number mb-2">{s.value}</div>
-                <div className="text-slate-400 text-sm font-medium">{s.label}</div>
+                <div className="text-slate-600 dark:text-slate-400 text-sm font-medium">{s.label}</div>
               </div>
             ))}
           </div>
@@ -158,16 +158,16 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="badge-cyan mb-6">Our Mission</div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
                 Making Enterprise Security <span className="text-gradient">Achievable for Everyone</span>
               </h2>
-              <p className="text-slate-400 leading-relaxed mb-5">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
                 The security industry has a dirty secret: the best privileged access management tools were historically so complex and expensive that only the largest enterprises could afford them. Meanwhile, thousands of mid-market companies were left exposed with inadequate controls.
               </p>
-              <p className="text-slate-400 leading-relaxed mb-5">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
                 OmniPriv changes that. We've built modern privileged access management (PAM) that is accessible to organizations of all sizes — without sacrificing the depth and rigor that Fortune 500 companies demand.
               </p>
-              <p className="text-slate-400 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 Today, OmniPriv secures privileged access for over 3,000 organizations across six continents — from 50-person technology startups to 200,000-employee global enterprises and government agencies.
               </p>
             </div>
@@ -178,11 +178,11 @@ export default function AboutPage() {
                 { icon: Globe, text: "Built for global scale with multi-region, air-gapped, and sovereign cloud options" },
                 { icon: Users, text: "Customer success team with average 8-year enterprise security experience" },
               ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4 p-5 rounded-xl border border-white/[0.05] bg-[#0A1628]/60">
+                <div key={text} className="flex items-start gap-4 p-5 rounded-xl border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-100/60 dark:bg-[#0A1628]/60">
                   <div className="icon-wrapper w-10 h-10 rounded-lg flex-shrink-0">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <p className="text-slate-300 text-sm leading-relaxed">{text}</p>
+                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
@@ -191,22 +191,22 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding border-y border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Our Values</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               What We Stand For
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="p-7 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 text-center group hover:border-[#00B8FF]/20 transition-all card-shine">
+              <div key={v.title} className="p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 text-center group hover:border-[#00B8FF]/20 transition-all card-shine">
                 <div className="icon-wrapper w-12 h-12 mx-auto mb-5 rounded-xl">
                   <v.icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-bold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>{v.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{v.description}</p>
+                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>{v.title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{v.description}</p>
               </div>
             ))}
           </div>
@@ -218,27 +218,27 @@ export default function AboutPage() {
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Leadership</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Led by Security Veterans
             </h2>
-            <p className="text-slate-400 text-lg">
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
               Our leadership team brings together decades of experience from the world's top security organizations, intelligence agencies, and enterprise software companies. Together, they are dedicated to building PAM solutions that redefine how organizations deploy modern privileged access management to protect their most critical assets.
             </p>
           </div>
 
           {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {team.map((member) => (
-              <div key={member.name} className="p-7 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group card-shine">
+              <div key={member.name} className="p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group card-shine">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/20 flex items-center justify-center text-white font-bold text-xl flex-shrink-0" style={{ fontFamily: "var(--font-syne)" }}>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/20 flex items-center justify-center text-slate-950 dark:text-white font-bold text-xl flex-shrink-0" style={{ fontFamily: "var(--font-syne)" }}>
                     {member.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{member.name}</h3>
+                    <h3 className="text-base font-bold text-slate-950 dark:text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{member.name}</h3>
                     <div className="text-xs text-[#00B8FF] font-semibold">{member.title}</div>
                   </div>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed">{member.bio}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{member.bio}</p>
               </div>
             ))}
           </div> */}
@@ -246,14 +246,14 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-white/[0.04]">
+      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="grid md:grid-cols-2 gap-10 items-center p-10 rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-[#0A1628] to-[#030711]">
+          <div className="grid md:grid-cols-2 gap-10 items-center p-10 rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]">
             <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
                 Join 100+ Enterprises Securing Their Infrastructure
               </h2>
-              <p className="text-slate-400">
+              <p className="text-slate-600 dark:text-slate-400">
                 Talk to our team and discover how OmniPriv can protect your most sensitive systems.
               </p>
             </div>

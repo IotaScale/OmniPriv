@@ -91,7 +91,7 @@ export default function PamFaqSection() {
   };
 
   return (
-    <section className="section-padding-lg border-t border-white/[0.06] bg-[#050a14] relative">
+    <section className="section-padding-lg border-t border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-50 dark:bg-[#050a14] relative">
       {/* Schema injection */}
       <script
         type="application/ld+json"
@@ -107,12 +107,12 @@ export default function PamFaqSection() {
             </span>
           </div>
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight mb-4"
             style={{ fontFamily: "var(--font-syne)" }}
           >
             Frequently Asked Questions About Privileged Access Management
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
             Everything enterprise security and infrastructure leaders need to know about PAM architecture, policy governance, and session audit readiness.
           </p>
         </div>
@@ -129,8 +129,8 @@ export default function PamFaqSection() {
                 key={faq.question}
                 className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? "border-[#00B8FF]/35 bg-[#091222] shadow-[0_4px_24px_rgba(0,184,255,0.04)]"
-                    : "border-white/[0.07] bg-[#070e1a] hover:border-white/[0.14] hover:bg-[#08101d]"
+                    ? "border-[#00B8FF]/35 bg-slate-100 dark:bg-[#091222] shadow-[0_4px_24px_rgba(0,184,255,0.04)]"
+                    : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100 dark:bg-[#070e1a] hover:border-slate-900/[0.16] dark:hover:border-white/[0.14] hover:bg-slate-100 dark:hover:bg-[#08101d]"
                 }`}
               >
                 <button
@@ -142,7 +142,7 @@ export default function PamFaqSection() {
                 >
                   <span
                     className={`text-base sm:text-lg font-semibold transition-colors duration-180 ${
-                      isOpen ? "text-white" : "text-slate-200"
+                      isOpen ? "text-slate-950 dark:text-white" : "text-slate-800 dark:text-slate-200"
                     }`}
                     style={{ fontFamily: "var(--font-syne)" }}
                   >
@@ -152,7 +152,7 @@ export default function PamFaqSection() {
                     className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-180 ${
                       isOpen
                         ? "bg-[#00B8FF]/20 text-[#00B8FF]"
-                        : "bg-white/[0.04] text-slate-400 group-hover:text-white"
+                        : "bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
                     }`}
                   >
                     {isOpen ? (
@@ -168,10 +168,10 @@ export default function PamFaqSection() {
                     id={regionId}
                     role="region"
                     aria-labelledby={buttonId}
-                    className="px-5 sm:px-6 pb-6 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed space-y-4 border-t border-white/[0.04]"
+                    className="px-5 sm:px-6 pb-6 pt-1 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4 border-t border-slate-900/[0.05] dark:border-white/[0.04]"
                   >
                     {faq.answer.map((para, pIdx) => (
-                      <p key={pIdx} className="text-slate-300">
+                      <p key={pIdx} className="text-slate-700 dark:text-slate-300">
                         {para}
                       </p>
                     ))}

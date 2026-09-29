@@ -6,7 +6,7 @@ export default function AmbientTechnicalBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
       {/* Deep midnight navy base gradient */}
-      <div className="absolute inset-0 bg-[#060b17]" />
+      <div className="absolute inset-0 bg-slate-50 dark:bg-[#060b17]" />
 
       {/* Atmospheric upper-left blue ambient glow (slowly breathing over 22s) */}
       <div

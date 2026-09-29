@@ -110,15 +110,15 @@ export default function IntegrationsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
           <div className="badge-cyan mb-6">Integrations</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
             Fits Seamlessly Into <span className="text-gradient">Your Stack</span>
           </h1>
-          <p className="text-xl text-slate-400 leading-relaxed mb-8">
+          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
             OmniPriv connects natively with 250+ enterprise tools — identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them.
           </p>
           <Link href="/demo" className="btn-primary">
@@ -128,16 +128,16 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Featured logos */}
-      <section className="py-12 border-b border-white/[0.04] bg-[#0A1628]/30">
+      <section className="py-12 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <p className="text-xs text-slate-500 text-center uppercase tracking-widest mb-8">Certified Integrations Include</p>
           <div className="flex flex-wrap justify-center gap-3">
             {featuredLogos.map((logo) => (
-              <div key={logo} className="px-6 py-2.5 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 text-sm font-medium text-slate-300 hover:border-[#00B8FF]/20 transition-all">
+              <div key={logo} className="px-6 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-[#00B8FF]/20 transition-all">
                 {logo}
               </div>
             ))}
-            <div className="px-6 py-2.5 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 text-sm font-medium text-slate-500">
+            <div className="px-6 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 text-sm font-medium text-slate-500">
               + 238 more
             </div>
           </div>
@@ -153,13 +153,13 @@ export default function IntegrationsPage() {
               { icon: CheckCircle2, title: "Certified Partner Program", desc: "OmniPriv maintains certified integrations with 100+ partners — tested and validated with each platform release." },
               { icon: ArrowRight, title: "Custom Connectors", desc: "Build custom connectors using our open SDK or request a connector from our engineering team. No vendor lock-in." },
             ].map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl border border-white/[0.06] bg-[#0A1628]/60 flex items-start gap-4">
+              <div key={item.title} className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 flex items-start gap-4">
                 <div className="icon-wrapper w-10 h-10 rounded-lg flex-shrink-0">
                   <item.icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                  <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{item.title}</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -168,27 +168,27 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Category Sections */}
-      <section className="section-padding-lg border-t border-white/[0.04]">
+      <section className="section-padding-lg border-t border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl space-y-16">
           {categories.map((cat) => (
             <div key={cat.label}>
               <div className="mb-7">
-                <h2 className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{cat.label}</h2>
-                <p className="text-slate-400 text-sm">{cat.description}</p>
+                <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{cat.label}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-sm">{cat.description}</p>
               </div>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cat.integrations.map((intg) => (
-                  <div key={intg.name} className="p-5 rounded-xl border border-white/[0.06] bg-[#0A1628]/40 hover:border-[#00B8FF]/20 transition-all group card-shine">
+                  <div key={intg.name} className="p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/20 transition-all group card-shine">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-[8px] font-bold text-[#00B8FF] leading-none text-center" style={{ fontFamily: "var(--font-syne)" }}>
                         {intg.name.substring(0, 3).toUpperCase()}
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-white leading-tight">{intg.name}</div>
+                        <div className="text-sm font-bold text-slate-950 dark:text-white leading-tight">{intg.name}</div>
                         <div className="text-[10px] text-slate-500">{intg.category}</div>
                       </div>
                     </div>
-                    <p className="text-xs text-slate-400 leading-relaxed">{intg.desc}</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{intg.desc}</p>
                   </div>
                 ))}
               </div>
@@ -198,12 +198,12 @@ export default function IntegrationsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-white/[0.04]">
+      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+          <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Don&apos;t See Your Tool?
           </h2>
-          <p className="text-slate-400 mb-8">
+          <p className="text-slate-600 dark:text-slate-400 mb-8">
             Contact our integration team. We support custom connectors and can prioritize new integrations based on customer demand.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">

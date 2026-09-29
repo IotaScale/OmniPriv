@@ -208,10 +208,10 @@ export default function HomePage() {
     <>
       <AmbientTechnicalBackground />
       {/* ─── HERO ──────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#030711] pt-12 pb-16 lg:py-24 border-b border-white/[0.06]">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white dark:bg-[#030711] pt-12 pb-16 lg:py-24 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         {/* Subtle architectural background */}
         <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/40 via-[#030711]/80 to-[#030711]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 dark:from-[#030711]/40 via-white/80 dark:via-[#030711]/80 to-white dark:to-[#030711]" />
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] pointer-events-none"
           style={{
@@ -233,14 +233,14 @@ export default function HomePage() {
 
               {/* H1 */}
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-[1.12] tracking-tight mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-slate-950 dark:text-white leading-[1.12] tracking-tight mb-6"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 Redefining Privileged Access Management for the Modern Enterprise
               </h1>
 
               {/* Two Paragraphs Body Copy */}
-              <div className="space-y-4 text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl lg:mx-0 mx-auto">
+              <div className="space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl lg:mx-0 mx-auto">
                 <p>
                   Modern enterprises depend on employees, vendors, applications, and automated systems that require privileged access to critical infrastructure. Without the right controls, these identities can increase security risk and expand the attack surface.
                 </p>
@@ -271,7 +271,7 @@ export default function HomePage() {
                 {protocols.slice(0, 8).map((p) => (
                   <span
                     key={p.name}
-                    className="px-2.5 py-1 rounded text-xs font-mono text-slate-400 bg-white/[0.03] border border-white/[0.06]"
+                    className="px-2.5 py-1 rounded text-xs font-mono text-slate-600 dark:text-slate-400 bg-slate-900/[0.02] dark:bg-white/[0.03] border border-slate-900/[0.08] dark:border-white/[0.06]"
                   >
                     {p.name}
                   </span>
@@ -288,28 +288,28 @@ export default function HomePage() {
       </section>
 
       {/* ─── DATASHEET HIGHLIGHTS ───────────────── */}
-      <section className="border-y border-white/[0.06] bg-[#071322]/90 backdrop-blur-sm py-6">
+      <section className="border-y border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/90 dark:bg-[#071322]/90 backdrop-blur-sm py-6">
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="p-3">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>80+</div>
-              <div className="text-xs font-semibold text-white mt-1">Requirement Points Covered</div>
-              <div className="text-[11px] text-slate-400">Enterprise PAM coverage</div>
+              <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Requirement Points Covered</div>
+              <div className="text-[11px] text-slate-600 dark:text-slate-400">Enterprise PAM coverage</div>
             </div>
-            <div className="p-3 border-l border-white/[0.06]">
+            <div className="p-3 border-l border-slate-900/[0.08] dark:border-white/[0.06]">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>8</div>
-              <div className="text-xs font-semibold text-white mt-1">Core Capability Modules</div>
-              <div className="text-[11px] text-slate-400">End-to-end access lifecycle</div>
+              <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Core Capability Modules</div>
+              <div className="text-[11px] text-slate-600 dark:text-slate-400">End-to-end access lifecycle</div>
             </div>
-            <div className="p-3 border-t md:border-t-0 md:border-l border-white/[0.06]">
+            <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>Zero</div>
-              <div className="text-xs font-semibold text-white mt-1">Software Agents Required</div>
-              <div className="text-[11px] text-slate-400">100% Agentless architecture</div>
+              <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Software Agents Required</div>
+              <div className="text-[11px] text-slate-600 dark:text-slate-400">100% Agentless architecture</div>
             </div>
-            <div className="p-3 border-t md:border-t-0 md:border-l border-white/[0.06]">
+            <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>100%</div>
-              <div className="text-xs font-semibold text-white mt-1">Encrypted Credential Vault</div>
-              <div className="text-[11px] text-slate-400">AES-256 + SHA-512 &amp; HSM</div>
+              <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Encrypted Credential Vault</div>
+              <div className="text-[11px] text-slate-600 dark:text-slate-400">AES-256 + SHA-512 &amp; HSM</div>
             </div>
           </div>
         </div>
@@ -324,18 +324,18 @@ export default function HomePage() {
       <FourPillarsSection />
 
       {/* ─── FEATURES GRID ─────────────────────── */}
-      <section className="section-padding border-y border-white/[0.04] bg-[#030711]">
+      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Platform Features</div>
             <h2
-              className="text-4xl md:text-5xl font-extrabold text-white mb-5"
+              className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               The Ultimate{" "}
               <span className="text-gradient">Privileged Identity Management Solution</span>
             </h2>
-            <p className="text-slate-400 text-lg">
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
               Simplify your security stack with our comprehensive PAM platform. OmniPriv delivers enterprise-grade protection in one unified interface, making it a powerful Privileged Identity Management Solution for modern enterprises. It eliminates the need for complex, bolt-on tools while helping organizations secure privileged access with greater control and efficiency.
             </p>
           </div>
@@ -344,7 +344,7 @@ export default function HomePage() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group relative p-6 rounded-2xl border border-white/[0.07] bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.08)] transition-all duration-300 card-shine cursor-default overflow-hidden"
+                className="group relative p-6 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.08)] transition-all duration-300 card-shine cursor-default overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.07] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
@@ -353,12 +353,12 @@ export default function HomePage() {
                     <feature.icon className="w-5 h-5" />
                   </div>
                   <h3
-                    className="text-base font-bold text-white mb-2"
+                    className="text-base font-bold text-slate-950 dark:text-white mb-2"
                     style={{ fontFamily: "var(--font-syne)" }}
                   >
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -372,17 +372,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-14 rounded-2xl border border-[#00B8FF]/15 bg-[#0A1628]/60 overflow-hidden">
+          <div className="mt-14 rounded-2xl border border-[#00B8FF]/15 bg-slate-100/60 dark:bg-[#0A1628]/60 overflow-hidden">
             <div className="grid lg:grid-cols-[1.1fr_1.4fr] gap-0">
-              <div className="p-8 border-b lg:border-b-0 lg:border-r border-white/[0.06]">
+              <div className="p-8 border-b lg:border-b-0 lg:border-r border-slate-900/[0.08] dark:border-white/[0.06]">
                 <div className="badge-cyan mb-4">Live Visibility</div>
                 <h3
-                  className="text-2xl font-extrabold text-white mb-3"
+                  className="text-2xl font-extrabold text-slate-950 dark:text-white mb-3"
                   style={{ fontFamily: "var(--font-syne)" }}
                 >
                   Unified Security Command Center
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                   Give security, infrastructure, and compliance teams one place to review active sessions,
                   investigate privileged activity, and make access decisions without jumping between tools.
                 </p>
@@ -405,14 +405,14 @@ export default function HomePage() {
                     text: "Surface searchable recordings, commands, and evidence needed for investigations and audits.",
                   },
                 ].map(({ icon: Icon, title, text }) => (
-                  <div key={title} className="p-6 border-t sm:border-t-0 sm:border-l first:sm:border-l-0 border-white/[0.06]">
+                  <div key={title} className="p-6 border-t sm:border-t-0 sm:border-l first:sm:border-l-0 border-slate-900/[0.08] dark:border-white/[0.06]">
                     <div className="icon-wrapper mb-4">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h4 className="text-white font-semibold mb-2" style={{ fontFamily: "var(--font-syne)" }}>
+                    <h4 className="text-slate-950 dark:text-white font-semibold mb-2" style={{ fontFamily: "var(--font-syne)" }}>
                       {title}
                     </h4>
-                    <p className="text-sm text-slate-400 leading-relaxed">{text}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{text}</p>
                   </div>
                 ))}
               </div>
@@ -422,7 +422,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── HOW IT WORKS (SECURE ACCESS IN THREE STEPS) ─── */}
-      <section className="section-padding-lg border-y border-white/[0.04] bg-[#040814]">
+      <section className="section-padding-lg border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#040814]">
         <div className="container-xl">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-5">
@@ -431,12 +431,12 @@ export default function HomePage() {
               </span>
             </div>
             <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5 tracking-tight"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               Secure Access in Three Steps
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
               OmniPriv turns privileged access into a controlled lifecycle: connect critical infrastructure, enforce the right policy, and continuously observe every privileged interaction.
             </p>
           </div>
@@ -453,20 +453,20 @@ export default function HomePage() {
       </section>
 
       {/* ─── COMPLIANCE ────────────────────────── */}
-      <section className="section-padding border-y border-white/[0.04]" style={{ background: "linear-gradient(180deg, #0A1628 0%, #030711 100%)" }}>
+      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04]" style={{ background: "linear-gradient(180deg, #0A1628 0%, #030711 100%)" }}>
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="badge-cyan mb-6">Compliance & Certifications</div>
               <h2
-                className="text-4xl md:text-5xl font-extrabold text-white mb-5"
+                className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 Built for the{" "}
                 <span className="text-gradient">Most Regulated</span>{" "}
                 Environments
               </h2>
-              <p className="text-slate-400 text-lg leading-relaxed mb-8">
+              <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
                 OmniPriv is designed from the ground up to meet the strictest global compliance
                 standards. Our platform generates audit-ready reports in minutes — not days.
               </p>
@@ -488,8 +488,8 @@ export default function HomePage() {
                   <div key={item.title} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#00B8FF] flex-shrink-0 mt-0.5" />
                     <div>
-                      <div className="text-white font-semibold text-sm mb-0.5">{item.title}</div>
-                      <div className="text-slate-400 text-sm">{item.desc}</div>
+                      <div className="text-slate-950 dark:text-white font-semibold text-sm mb-0.5">{item.title}</div>
+                      <div className="text-slate-600 dark:text-slate-400 text-sm">{item.desc}</div>
                     </div>
                   </div>
                 ))}
@@ -503,7 +503,7 @@ export default function HomePage() {
                   className="flex flex-col items-center justify-center p-6 rounded-2xl border border-[#00B8FF]/18 bg-[#00B8FF]/[0.05] hover:bg-[#00B8FF]/[0.14] hover:border-[#00B8FF]/45 hover:shadow-[0_0_30px_rgba(0,184,255,0.12)] transition-all duration-300 group"
                 >
                   <cert.icon className="w-8 h-8 text-[#00B8FF] mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-xs font-bold text-white text-center whitespace-pre-line leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
+                  <div className="text-xs font-bold text-slate-950 dark:text-white text-center whitespace-pre-line leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
                     {cert.name}
                   </div>
                   <span className="mt-2 text-[10px] text-[#00B8FF]/60 font-medium">Certified</span>
@@ -520,13 +520,13 @@ export default function HomePage() {
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="badge-cyan mb-5">Customer Stories</div>
             <h2
-              className="text-4xl md:text-5xl font-extrabold text-white mb-5"
+              className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               Trusted by Security Leaders{" "}
               <span className="text-gradient">Worldwide</span>
             </h2>
-            <p className="text-slate-400 text-lg">
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
               Hear from the CISOs, security architects, and IT leaders who rely on OmniPriv
               to protect their most critical systems.
             </p>
@@ -543,13 +543,13 @@ export default function HomePage() {
       </section>
 
       {/* ─── BLOG PREVIEW ──────────────────────── */}
-      <section className="section-padding border-t border-white/[0.04] bg-[#0A1628]/30">
+      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
             <div>
               <div className="badge-cyan mb-3">Latest Insights</div>
               <h2
-                className="text-3xl md:text-4xl font-extrabold text-white"
+                className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 PAM Best Practices & Security Research
@@ -565,28 +565,28 @@ export default function HomePage() {
               <Link
                 key={post.title}
                 href={post.href}
-                className="group flex flex-col rounded-2xl border border-white/[0.07] bg-[#0A1628]/50 hover:border-[#00B8FF]/[0.28] hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.07)] transition-all duration-300 overflow-hidden"
+                className="group flex flex-col rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/50 dark:bg-[#0A1628]/50 hover:border-[#00B8FF]/[0.28] hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.07)] transition-all duration-300 overflow-hidden"
               >
                 {/* Cover image */}
-                <div className="relative h-44 overflow-hidden bg-[#0F1E35]">
+                <div className="relative h-44 overflow-hidden bg-slate-200 dark:bg-[#0F1E35]">
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
                     className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-100 dark:from-[#0A1628] to-transparent opacity-60" />
                   <span className="absolute bottom-3 left-4 tag text-xs">{post.category}</span>
                 </div>
                 {/* Text */}
                 <div className="p-5 flex flex-col flex-1">
                   <h3
-                    className="text-sm font-bold text-white mb-2.5 group-hover:text-sky-300 transition-colors line-clamp-2 leading-snug"
+                    className="text-sm font-bold text-slate-950 dark:text-white mb-2.5 group-hover:text-sky-300 transition-colors line-clamp-2 leading-snug"
                     style={{ fontFamily: "var(--font-syne)" }}
                   >
                     {post.title}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 flex-1 mb-4">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 flex-1 mb-4">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between">

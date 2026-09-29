@@ -6,29 +6,29 @@ import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export default function ClosingCtaSection() {
   return (
-    <section className="section-padding-lg border-t border-white/[0.06] bg-[#030711]">
+    <section className="section-padding-lg border-t border-slate-900/[0.08] dark:border-white/[0.06] bg-white dark:bg-[#030711]">
       <div className="container-xl max-w-5xl mx-auto">
-        <div className="relative rounded-2xl border border-white/[0.08] bg-[#08101e] p-8 sm:p-12 lg:p-16 overflow-hidden">
+        <div className="relative rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#08101e] p-8 sm:p-12 lg:p-16 overflow-hidden">
           {/* Subtle top border accent */}
           <div className="absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
 
           <div className="text-center max-w-3xl mx-auto">
             {/* Small product-status accent */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] text-slate-300 text-xs font-mono mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 text-xs font-mono mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
               <span>Enterprise PAM Ready &middot; Zero Trust Architecture</span>
             </div>
 
             {/* Heading */}
             <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight mb-5"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               Ready to strengthen control over privileged access?
             </h2>
 
             {/* Body */}
-            <p className="text-slate-400 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
               Explore OmniPriv’s enterprise PAM solutions and discover how centralized access control, Just-in-Time privileges, credential protection, and session visibility can help secure your organization’s most sensitive systems.
             </p>
 

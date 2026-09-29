@@ -38,29 +38,29 @@ export default function HeroDashboard() {
       <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#6366F1]/20 via-transparent to-[#00B8FF]/10 blur-2xl" />
 
       {/* Browser chrome */}
-      <div className="relative rounded-2xl overflow-hidden border border-white/[0.1] shadow-[0_32px_80px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.04)]"
+      <div className="relative rounded-2xl overflow-hidden border border-slate-900/[0.12] dark:border-white/[0.1] shadow-[0_32px_80px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.04)]"
         style={{ background: "linear-gradient(160deg, #0c0e1e 0%, #090b18 100%)" }}>
 
         {/* Title bar */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]"
+        <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-900/[0.08] dark:border-white/[0.06]"
           style={{ background: "rgba(255,255,255,0.03)" }}>
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded-full bg-red-500/80" />
             <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <span className="w-3 h-3 rounded-full bg-green-500/80" />
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/[0.05] border border-white/[0.06]">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900/[0.04] dark:bg-white/[0.05] border border-slate-900/[0.08] dark:border-white/[0.06]">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[11px] text-slate-400 font-mono">omnipriv.console · secure</span>
+            <span className="text-[11px] text-slate-600 dark:text-slate-400 font-mono">omnipriv.console · secure</span>
           </div>
           <div className="flex items-center gap-2">
             <Activity className="w-3.5 h-3.5 text-[#6366F1]" />
-            <span className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">PAM Console</span>
+            <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">PAM Console</span>
           </div>
         </div>
 
         {/* Metric cards row */}
-        <div className="grid grid-cols-4 gap-px bg-white/[0.04] border-b border-white/[0.06]">
+        <div className="grid grid-cols-4 gap-px bg-slate-900/[0.03] dark:bg-white/[0.04] border-b border-slate-900/[0.08] dark:border-white/[0.06]">
           {metrics.map(({ icon: Icon, label, value, color, border, bg }) => (
             <div key={label} className="px-3 py-3 flex flex-col gap-1.5" style={{ background: "#090b18" }}>
               <div className={`w-7 h-7 rounded-lg ${bg} border ${border} flex items-center justify-center`}>
@@ -73,11 +73,11 @@ export default function HeroDashboard() {
         </div>
 
         {/* Activity chart */}
-        <div className="px-4 pt-3.5 pb-2 border-b border-white/[0.05]">
+        <div className="px-4 pt-3.5 pb-2 border-b border-slate-900/[0.06] dark:border-white/[0.05]">
           <div className="flex items-center justify-between mb-2.5">
             <div className="flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-[#6366F1]" />
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Session Activity (24h)</span>
+              <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Session Activity (24h)</span>
             </div>
             <span className="text-[10px] text-emerald-400 font-medium">↑ 12% vs yesterday</span>
           </div>
@@ -127,7 +127,7 @@ export default function HeroDashboard() {
                 </div>
                 {/* Info */}
                 <div className="min-w-0 flex-1">
-                  <div className="text-[11px] text-slate-300 truncate font-medium">{s.user}</div>
+                  <div className="text-[11px] text-slate-700 dark:text-slate-300 truncate font-medium">{s.user}</div>
                   <div className="text-[10px] text-slate-600 truncate">{s.resource}</div>
                 </div>
                 {/* Protocol badge */}
@@ -144,7 +144,7 @@ export default function HeroDashboard() {
         </div>
 
         {/* Footer status bar */}
-        <div className="flex items-center justify-between px-4 py-2 border-t border-white/[0.05]"
+        <div className="flex items-center justify-between px-4 py-2 border-t border-slate-900/[0.06] dark:border-white/[0.05]"
           style={{ background: "rgba(99,102,241,0.04)" }}>
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1 text-[10px] text-emerald-400 font-medium">
