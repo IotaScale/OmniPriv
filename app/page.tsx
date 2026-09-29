@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TechMarquee from "@/components/layout/TechMarquee";
-import AmbientTechnicalBackground from "@/components/layout/AmbientTechnicalBackground";
 import HeroPolicyFlow from "@/components/ui/HeroPolicyFlow";
 import FourPillarsSection from "@/components/ui/FourPillarsSection";
 import ThreeStepsLifecycle from "@/components/ui/ThreeStepsLifecycle";
@@ -206,7 +205,6 @@ const latestBlogPosts = Object.entries(blogData)
 export default function HomePage() {
   return (
     <>
-      <AmbientTechnicalBackground />
       {/* ─── HERO ──────────────────────────────── */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white dark:bg-[#030711] pt-12 pb-16 lg:py-24 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         {/* Subtle architectural background */}
