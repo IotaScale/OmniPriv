@@ -224,54 +224,52 @@ export default function HomePage() {
             <div className="lg:col-span-5 text-center lg:text-left">
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
                 <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider font-mono">
-                  ENTERPRISE PRIVILEGED ACCESS MANAGEMENT
+                  ZERO TRUST PAM &amp; AI GOVERNANCE
                 </span>
               </div>
 
+              {/* H1 */}
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-extrabold text-slate-950 dark:text-white leading-[1.12] tracking-tight mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-extrabold text-slate-950 dark:text-white leading-[1.12] tracking-tight mb-5"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
-                Redefining Privileged Access Management for the Modern Enterprise
+                Redefining Privileged Access for the{" "}
+                <span className="text-gradient">Modern Enterprise</span>
               </h1>
 
-              {/* Two Paragraphs Body Copy */}
-              <div className="space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl lg:mx-0 mx-auto">
-                <p>
-                  Modern enterprises depend on employees, vendors, applications, and automated systems that require privileged access to critical infrastructure. Without the right controls, these identities can increase security risk and expand the attack surface.
-                </p>
-                <p>
-                  OmniPriv delivers modern PAM solutions with Zero Trust access, Just-in-Time privileges, secure credential management, and complete session visibility—helping organizations control every privileged interaction with confidence.
-                </p>
-              </div>
+              {/* Body Copy */}
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-xl lg:mx-0 mx-auto">
+                Control human administrators and autonomous AI agents with unified Zero Trust security. OmniPriv delivers Just-in-Time access, real-time ML anomaly detection, automated credential vaulting, and complete session recording across your entire infrastructure.
+              </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
-                <Link
-                  href="/platform"
-                  className="btn-primary text-base px-8 py-3.5 w-full sm:w-auto text-center"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 mb-8">
                 <Link
                   href="/demo"
-                  className="btn-secondary text-base px-8 py-3.5 w-full sm:w-auto text-center"
+                  className="btn-primary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
                 >
                   Request a Technical Demo
+                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                </Link>
+                <Link
+                  href="/platform"
+                  className="btn-secondary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
+                >
+                  Explore Platform
                 </Link>
               </div>
 
-              {/* Protocol tags */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-1.5">
-                {protocols.slice(0, 8).map((p) => (
+              {/* Clean Protocol Ribbon */}
+              <div className="flex items-center justify-center lg:justify-start gap-1.5 flex-wrap">
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mr-1">Protected:</span>
+                {["SSH", "RDP", "Databases", "Kubernetes", "Web Apps", "Cloud IAM", "MCP"].map((name) => (
                   <span
-                    key={p.name}
-                    className="px-2.5 py-1 rounded text-xs font-mono text-slate-600 dark:text-slate-400 bg-slate-900/[0.02] dark:bg-white/[0.03] border border-slate-900/[0.08] dark:border-white/[0.06]"
+                    key={name}
+                    className="px-2.5 py-0.5 rounded text-[11px] font-mono text-slate-600 dark:text-slate-400 bg-slate-900/[0.03] dark:bg-white/[0.03] border border-slate-900/[0.08] dark:border-white/[0.06]"
                   >
-                    {p.name}
+                    {name}
                   </span>
                 ))}
               </div>
