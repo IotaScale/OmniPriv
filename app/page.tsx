@@ -600,11 +600,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── COMPLETE FAQ SECTION ───────────────── */}
-      <PamFaqSection />
-
       {/* ─── CLOSING CTA ───────────────────────── */}
       <ClosingCtaSection />
+
+      {/* ─── COMPLETE FAQ SECTION ───────────────── */}
+      <PamFaqSection />
     </>
   );
 }

@@ -270,6 +270,12 @@ export default function Header() {
             >
               About
             </Link>
+            <Link
+              href="/demo"
+              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
+            >
+              Contact
+            </Link>
             
           </nav>
 
@@ -373,6 +379,9 @@ export default function Header() {
 
             <Link href="/about" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
               About
+            </Link>
+            <Link href="/demo" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
+              Contact
             </Link>
 
             <div className="flex items-center justify-between px-4 py-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06]">
