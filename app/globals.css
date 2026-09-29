@@ -9,19 +9,30 @@
   --color-primary: #00b8ff;
   --color-primary-dark: #0090cd;
   --color-purple: #a78bfa;
-  --color-bg: #030711;
-  --color-surface: #0a1628;
-  --color-surface-2: #0f1e35;
-  --color-border: rgba(255, 255, 255, 0.07);
-  --color-border-cyan: rgba(0, 184, 255, 0.2);
-  --color-text: #e2e8f0;
+  --color-bg: #060b17;
+  --color-surface: #091222;
+  --color-surface-2: #0d1a30;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-cyan: rgba(0, 184, 255, 0.25);
+  --color-text: #f1f5f9;
   --color-muted: #94a3b8;
   --color-accent: #00b8ff;
   --gradient-primary: linear-gradient(135deg, #00b8ff 0%, #6366f1 100%);
-  --gradient-dark: linear-gradient(180deg, #030711 0%, #0a1628 100%);
-  --glow-primary: 0 0 50px rgba(0, 184, 255, 0.4);
-  --glow-purple: 0 0 40px rgba(139, 92, 246, 0.3);
-  --glow-sm: 0 0 20px rgba(0, 184, 255, 0.25);
+  --gradient-dark: linear-gradient(180deg, #060b17 0%, #0a1324 100%);
+  --glow-primary: 0 0 50px rgba(0, 184, 255, 0.35);
+  --glow-purple: 0 0 40px rgba(139, 92, 246, 0.25);
+  --glow-sm: 0 0 20px rgba(0, 184, 255, 0.2);
+}
+
+@keyframes ambientPulse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(24px, 16px) scale(1.05);
+    opacity: 0.52;
+  }
 }
 
 /* ──────────────────────────────────────────────

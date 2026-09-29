@@ -276,7 +276,7 @@ export default function Header() {
               href="/demo"
               className="btn-primary text-sm px-5 py-2.5 rounded-lg"
             >
-              Request a Demo
+              Request a Technical Demo
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -379,7 +379,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="btn-primary w-full justify-center"
               >
-                Request a Demo
+                Request a Technical Demo
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
