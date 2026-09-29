@@ -7,6 +7,7 @@ import FourPillarsSection from "@/components/ui/FourPillarsSection";
 import ThreeStepsLifecycle from "@/components/ui/ThreeStepsLifecycle";
 import PamFaqSection from "@/components/ui/PamFaqSection";
 import ClosingCtaSection from "@/components/ui/ClosingCtaSection";
+import AiPamEngineSection from "@/components/ui/AiPamEngineSection";
 import { posts as blogData } from "@/lib/blog-data";
 import {
   ArrowRight,
@@ -218,9 +219,9 @@ export default function HomePage() {
         />
 
         <div className="container-xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             {/* Left: text */}
-            <div className="text-center lg:text-left">
+            <div className="lg:col-span-5 text-center lg:text-left">
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF]" />
@@ -229,9 +230,8 @@ export default function HomePage() {
                 </span>
               </div>
 
-              {/* H1 */}
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-slate-950 dark:text-white leading-[1.12] tracking-tight mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-extrabold text-slate-950 dark:text-white leading-[1.12] tracking-tight mb-6"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 Redefining Privileged Access Management for the Modern Enterprise
@@ -278,7 +278,7 @@ export default function HomePage() {
             </div>
 
             {/* Right: Hero Product Visual (Responsive: underneath on mobile/tablet, right on desktop) */}
-            <div className="w-full">
+            <div className="lg:col-span-7 w-full">
               <HeroPolicyFlow />
             </div>
           </div>
@@ -418,6 +418,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── AI-PAM & CORE ML ENGINE ────────────── */}
+      <AiPamEngineSection />
 
       {/* ─── HOW IT WORKS (SECURE ACCESS IN THREE STEPS) ─── */}
       <section className="section-padding-lg border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#040814]">
