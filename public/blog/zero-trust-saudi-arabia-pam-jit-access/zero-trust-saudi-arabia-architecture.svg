@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="bg-arch" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="100%" style="stop-color:#030711"/>
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e223a"/>
+      <stop offset="100%" style="stop-color:#061426"/>
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B8FF;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#00B8FF;stop-opacity:0.02"/>
+    </linearGradient>
+    <linearGradient id="red-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.02"/>
+    </linearGradient>
+    <linearGradient id="green-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg-arch)" rx="14"/>
+  <rect x="1" y="1" width="818" height="418" fill="none" stroke="#1e3a5f" stroke-width="1" rx="13"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="75" x2="820" y2="75" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.5"/>
+  <line x1="270" y1="75" x2="270" y2="420" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+  <line x1="550" y1="75" x2="550" y2="420" stroke="#1e3a5f" stroke-width="0.6" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+
+  <!-- Header -->
+  <text x="410" y="34" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="18" font-weight="800" fill="#ffffff">Zero Trust Saudi Arabia: Privileged Access Architecture</text>
+  <text x="410" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="12" fill="#94a3b8">Transforming High-Risk Standing Privileges into Controlled, Time-Bound JIT Access</text>
+
+  <!-- COLUMN 1: Traditional Standing Privileges (High Risk) -->
+  <g transform="translate(25, 95)">
+    <rect width="225" height="300" rx="12" fill="url(#red-glow)" stroke="#ef4444" stroke-width="1.2" stroke-opacity="0.7"/>
+    <rect width="225" height="30" rx="12" fill="#ef4444" fill-opacity="0.12"/>
+    <text x="112" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#f87171">TRADITIONAL ACCESS (HIGH RISK)</text>
+    
+    <!-- Item 1 -->
+    <rect x="15" y="45" width="195" height="52" rx="8" fill="#0D1F35" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="25" y="66" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">⚠️ 24/7 Standing Privilege</text>
+    <text x="25" y="84" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Admin rights remain active permanently</text>
+
+    <!-- Item 2 -->
+    <rect x="15" y="110" width="195" height="52" rx="8" fill="#0D1F35" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="25" y="131" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">🔓 Shared Admin Passwords</text>
+    <text x="25" y="149" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Direct server logins without individual audit</text>
+
+    <!-- Item 3 -->
+    <rect x="15" y="175" width="195" height="52" rx="8" fill="#0D1F35" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="25" y="196" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fca5a5">🌐 Broad Lateral Movement</text>
+    <text x="25" y="214" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Attackers pivot through critical networks</text>
+
+    <rect x="15" y="242" width="195" height="42" rx="6" fill="#450a0a" fill-opacity="0.6"/>
+    <text x="112" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#f87171">High Blast Radius</text>
+    <text x="112" y="274" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#fca5a5">Compromised identity = full breach</text>
+  </g>
+
+  <!-- COLUMN 2: OmniPriv Zero Trust Verification Engine -->
+  <g transform="translate(285, 95)">
+    <rect width="250" height="300" rx="12" fill="url(#cyan-glow)" stroke="#00B8FF" stroke-width="1.5" stroke-opacity="0.8"/>
+    <rect width="250" height="30" rx="12" fill="#00B8FF" fill-opacity="0.15"/>
+    <text x="125" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#00B8FF">ZERO TRUST PAM ENGINE</text>
+
+    <circle cx="125" cy="72" r="28" fill="#00B8FF" fill-opacity="0.15" stroke="#00B8FF" stroke-width="1.5"/>
+    <text x="125" y="79" text-anchor="middle" font-size="22">🛡️</text>
+
+    <text x="125" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#ffffff">Never Trust, Always Verify</text>
+    <text x="125" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#94a3b8">Continuous Identity Evaluation</text>
+
+    <rect x="18" y="152" width="214" height="40" rx="6" fill="#0D1F35" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.5"/>
+    <text x="125" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#38bdf8">Contextual MFA &amp; Device Trust</text>
+    <text x="125" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">Enforced prior to any elevation</text>
+
+    <rect x="18" y="200" width="214" height="40" rx="6" fill="#0D1F35" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.5"/>
+    <text x="125" y="218" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#38bdf8">Least Privilege &amp; Need-to-Know</text>
+    <text x="125" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">Granular role and resource policies</text>
+
+    <rect x="18" y="248" width="214" height="40" rx="6" fill="#0D1F35" stroke="#00B8FF" stroke-width="0.8" stroke-opacity="0.5"/>
+    <text x="125" y="266" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#38bdf8">Automated Approval Workflows</text>
+    <text x="125" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">Dual-custody for high-risk assets</text>
+  </g>
+
+  <!-- COLUMN 3: Just-In-Time Access (Zero Standing Privilege) -->
+  <g transform="translate(565, 95)">
+    <rect width="230" height="300" rx="12" fill="url(#green-glow)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.8"/>
+    <rect width="230" height="30" rx="12" fill="#10b981" fill-opacity="0.15"/>
+    <text x="115" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#34d399">ZERO STANDING PRIVILEGE (JIT)</text>
+
+    <!-- Item 1 -->
+    <rect x="15" y="45" width="200" height="52" rx="8" fill="#0D1F35" stroke="#10b981" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="25" y="66" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">⏱️ Ephemeral Time-Bound Access</text>
+    <text x="25" y="84" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Privileges expire automatically upon task end</text>
+
+    <!-- Item 2 -->
+    <rect x="15" y="110" width="200" height="52" rx="8" fill="#0D1F35" stroke="#10b981" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="25" y="131" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">🎥 Proxied &amp; Recorded Sessions</text>
+    <text x="25" y="149" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Isolated connection with keystroke audit</text>
+
+    <!-- Item 3 -->
+    <rect x="15" y="175" width="200" height="52" rx="8" fill="#0D1F35" stroke="#10b981" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="25" y="196" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">🛑 Instant Kill-Switch Revocation</text>
+    <text x="25" y="214" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">Immediate termination upon suspicious action</text>
+
+    <rect x="15" y="242" width="200" height="42" rx="6" fill="#064e3b" fill-opacity="0.6"/>
+    <text x="115" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#34d399">Minimal Blast Radius</text>
+    <text x="115" y="274" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a7f3d0">Zero standing rights to exploit</text>
+  </g>
+</svg>
