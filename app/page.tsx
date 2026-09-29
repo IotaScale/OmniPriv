@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TechMarquee from "@/components/layout/TechMarquee";
-import HeroPolicyFlow from "@/components/ui/HeroPolicyFlow";
+import HeroBackground from "@/components/ui/HeroBackground";
 import FourPillarsSection from "@/components/ui/FourPillarsSection";
+import ControlPlaneSection from "@/components/ui/ControlPlaneSection";
 import ThreeStepsLifecycle from "@/components/ui/ThreeStepsLifecycle";
 import PamFaqSection from "@/components/ui/PamFaqSection";
 import ClosingCtaSection from "@/components/ui/ClosingCtaSection";
@@ -61,7 +62,7 @@ const features = [
     icon: Server,
     title: "Bastion Host Gateway",
     description:
-      "Zero-trust bastion host for SSH, RDP, VNC, Telnet, and K8s clusters. No VPN required — access through a secure, audited web terminal.",
+      "AI-powered bastion host for SSH, RDP, VNC, Telnet, and K8s clusters. No VPN required — access through a secure, audited web terminal.",
   },
   {
     icon: Monitor,
@@ -207,77 +208,87 @@ export default function HomePage() {
   return (
     <>
       {/* ─── HERO ──────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white dark:bg-[#030711] pt-12 pb-16 lg:py-24 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
+      <section className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-white dark:bg-[#030711] pt-16 pb-20 lg:py-28 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         {/* Subtle architectural background */}
         <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/40 dark:from-[#030711]/40 via-white/80 dark:via-[#030711]/80 to-white dark:to-[#030711]" />
         <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] pointer-events-none"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse, rgba(0,184,255,0.08) 0%, transparent 65%)",
+            background: "radial-gradient(ellipse, rgba(0,184,255,0.10) 0%, transparent 65%)",
           }}
         />
 
-        <div className="container-xl relative z-10">
-          <div className="grid lg:grid-cols-12 gap-8 xl:gap-12 items-center">
-            {/* Left: text */}
-            <div className="lg:col-span-5 text-center lg:text-left">
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
-                <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider font-mono">
-                  ZERO TRUST PAM &amp; AI GOVERNANCE
-                </span>
-              </div>
+        {/* Animated privileged-access graph */}
+        <HeroBackground />
 
-              {/* H1 */}
-              <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-extrabold text-slate-950 dark:text-white leading-[1.12] tracking-tight mb-5"
-                style={{ fontFamily: "var(--font-syne)" }}
-              >
-                Redefining Privileged Access for the{" "}
-                <span className="text-gradient">Modern Enterprise</span>
-              </h1>
+        {/* Readability scrim so the hero text stays crisp over the graph */}
+        <div
+          className="absolute inset-0 pointer-events-none dark:hidden"
+          style={{
+            background:
+              "radial-gradient(ellipse 58% 54% at 50% 46%, rgba(248,250,252,0.96) 0%, rgba(248,250,252,0.62) 45%, rgba(248,250,252,0) 80%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none hidden dark:block"
+          style={{
+            background:
+              "radial-gradient(ellipse 58% 54% at 50% 46%, rgba(3,7,17,0.92) 0%, rgba(3,7,17,0.6) 45%, rgba(3,7,17,0) 80%)",
+          }}
+        />
 
-              {/* Body Copy */}
-              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-xl lg:mx-0 mx-auto">
-                Control human administrators and autonomous AI agents with unified Zero Trust security. OmniPriv delivers Just-in-Time access, real-time ML anomaly detection, automated credential vaulting, and complete session recording across your entire infrastructure.
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 mb-8">
-                <Link
-                  href="/demo"
-                  className="btn-primary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
-                >
-                  Request a Technical Demo
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Link>
-                <Link
-                  href="/platform"
-                  className="btn-secondary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
-                >
-                  Explore Platform
-                </Link>
-              </div>
-
-              {/* Clean Protocol Ribbon */}
-              <div className="flex items-center justify-center lg:justify-start gap-1.5 flex-wrap">
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mr-1">Protected:</span>
-                {["SSH", "RDP", "Databases", "Kubernetes", "Web Apps", "Cloud IAM", "MCP"].map((name) => (
-                  <span
-                    key={name}
-                    className="px-2.5 py-0.5 rounded text-[11px] font-mono text-slate-600 dark:text-slate-400 bg-slate-900/[0.03] dark:bg-white/[0.03] border border-slate-900/[0.08] dark:border-white/[0.06]"
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
+        <div className="container-xl relative z-10 w-full">
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Eyebrow */}
+            <div className="hero-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-7">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
+              <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider font-mono">
+                  AI-POWERED PRIVILEGED ACCESS MANAGEMENT
+              </span>
             </div>
 
-            {/* Right: Hero Product Visual (Responsive: underneath on mobile/tablet, right on desktop) */}
-            <div className="lg:col-span-7 w-full">
-              <HeroPolicyFlow />
+            {/* H1 */}
+            <h1
+              className="hero-reveal text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-slate-950 dark:text-white leading-[1.08] tracking-tight mb-6"
+              style={{ fontFamily: "var(--font-syne)", animationDelay: "0.1s" }}
+            >
+              Secure AI Access.
+              <br />
+              <span className="text-gradient">Control Every Privileged Move.</span>
+            </h1>
+
+            {/* Two Paragraphs Body Copy */}
+            <div
+              className="hero-reveal space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-10 max-w-4xl mx-auto"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <p>
+                  AI, automation, applications, and human identities are changing how privileged access works across the enterprise. OmniPriv brings Privileged Access Management into the AI era with AI-driven controls, Just-in-Time access, secure credentials, and complete session visibility.
+              </p>
+              <p>
+                Built for organizations exploring modern AI PAM solutions, OmniPriv helps security teams manage privileged identities and reduce unnecessary access without slowing down critical operations. As PAM AI strategies evolve, OmniPriv keeps privileged access controlled, auditable, and aligned with enterprise security requirements.
+              </p>
+            </div>
+
+            {/* CTAs */}
+            <div
+              className="hero-reveal flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-8"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <Link
+                href="/demo"
+                className="btn-primary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
+              >
+                Request a Technical Demo
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Link>
+              <Link
+                href="/platform"
+                className="btn-secondary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
+              >
+                Explore Platform
+              </Link>
             </div>
           </div>
         </div>
@@ -318,6 +329,98 @@ export default function HomePage() {
 
       {/* ─── FOUR PILLARS ──────────────────────── */}
       <FourPillarsSection />
+
+      {/* ─── PRIVILEGED ACCESS CONTROL PLANE ───── */}
+      <ControlPlaneSection />
+
+      {/* ─── IDENTITY COVERAGE CARDS ───────────── */}
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14]">
+        <div className="container-xl">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="badge-cyan mb-5">Privileged Access for Every Identity</div>
+            <h2
+              className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
+              style={{ fontFamily: "var(--font-syne)" }}
+            >
+              Secure Privileged Access Across Every Identity
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
+              Move beyond basic authentication with intelligent, real-time privileged access control for AI agents, human users, and machine identities through OmniPriv.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* AI & Automated Identities */}
+            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_12px_40px_rgba(0,184,255,0.08)] transition-all duration-300 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
+              <div className="relative z-10 flex flex-col flex-1">
+                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_20px_rgba(0,184,255,0.25)] transition-all duration-300">
+                  <Cpu className="w-6 h-6 text-[#00B8FF]" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
+                  AI &amp; Automated Identities
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-1">
+                  Secure privileged actions performed by AI-powered tools, automation, and intelligent workflows with policy-based access controls and controlled permissions.
+                </p>
+                <Link
+                  href="/features"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
+                >
+                  Explore AI-Ready PAM <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Human Identities */}
+            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_12px_40px_rgba(0,184,255,0.08)] transition-all duration-300 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
+              <div className="relative z-10 flex flex-col flex-1">
+                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_20px_rgba(0,184,255,0.25)] transition-all duration-300">
+                  <Users className="w-6 h-6 text-[#00B8FF]" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
+                  Human Identities
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-1">
+                  Secure administrators, employees, contractors, and vendors with MFA, role-based access, approval workflows, Just-in-Time privileges, and monitored sessions.
+                </p>
+                <Link
+                  href="/demo"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
+                >
+                  Secure Human Access <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Machine Identities */}
+            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_12px_40px_rgba(0,184,255,0.08)] transition-all duration-300 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
+              <div className="relative z-10 flex flex-col flex-1">
+                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_20px_rgba(0,184,255,0.25)] transition-all duration-300">
+                  <Server className="w-6 h-6 text-[#00B8FF]" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
+                  Machine Identities
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-1">
+                  Control privileged credentials used by applications, service accounts, databases, cloud workloads, and other non-human identities while reducing unnecessary standing access.
+                </p>
+                <Link
+                  href="/demo"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
+                >
+                  Secure Machine Access <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ─── FEATURES GRID ─────────────────────── */}
       <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">

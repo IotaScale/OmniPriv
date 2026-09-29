@@ -61,7 +61,7 @@ const cases = [
     logo: "FDA",
     metric: "FISMA compliant in 6 months",
     highlight: "Air-gapped deployment for classified environments",
-    desc: "A federal agency with air-gapped networks deployed OmniPriv in a classified environment to meet NIST 800-53 and FISMA requirements. Zero-trust privileged access replaced legacy bastion hosts.",
+    desc: "A federal agency with air-gapped networks deployed OmniPriv in a classified environment to meet NIST 800-53 and FISMA requirements. AI-driven privileged access replaced legacy bastion hosts.",
   },
   {
     company: "Energy Operator",

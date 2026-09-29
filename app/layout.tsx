@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     template: "%s | OmniPriv",
   },
   description:
-    "OmniPriv delivers enterprise-grade Privileged Access Management with bastion host, session auditing, credential vaulting, and zero-trust controls. Secure every privileged session.",
+    "OmniPriv delivers enterprise-grade Privileged Access Management with bastion host, session auditing, credential vaulting, and AI-driven controls. Secure every privileged session.",
   keywords: [
     "privileged access management",
     "PAM solution",
     "bastion host",
     "session auditing",
     "credential vault",
-    "zero trust",
+    "AI PAM",
     "enterprise security",
     "identity security",
     "access control",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "OmniPriv",
     title: "OmniPriv: Enterprise Privileged Access Management",
     description:
-      "Secure every privileged session with OmniPriv's enterprise PAM platform. Bastion host, session auditing, credential vaulting, and zero-trust controls.",
+      "Secure every privileged session with OmniPriv's enterprise PAM platform. Bastion host, session auditing, credential vaulting, and AI-driven controls.",
     images: [
       {
         url: "/og-image.png",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "OmniPriv: Enterprise PAM",
     description:
-      "Enterprise Privileged Access Management. Zero-trust. Always-on audit. Request a demo.",
+      "Enterprise Privileged Access Management. AI-native. Always-on audit. Request a demo.",
     images: ["/og-image.png"],
   },
   verification: {

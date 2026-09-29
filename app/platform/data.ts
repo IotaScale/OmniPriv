@@ -127,7 +127,7 @@ export const solutions: Solution[] = [
     {
         slug: "application-security",
         title: "Application Security & Encryption",
-        tagline: "Zero-trust credential protection with enterprise-grade encryption",
+        tagline: "AI-powered credential protection with enterprise-grade encryption",
         description:
             "OmniPriv enforces multi-factor authentication, full encryption in transit and at rest, Hardware Security Module (HSM) integration, and AI-driven keystroke behavioral anomaly detection to protect every layer of privileged access.",
         metaTitle: "Application Security & Encryption — OmniPriv PAM",

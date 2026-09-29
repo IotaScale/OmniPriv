@@ -60,7 +60,7 @@ const team = [
   {
     name: "Chen Wei",
     title: "Chief Product Officer",
-    bio: "Previously CPO at two enterprise security unicorns. Expert in zero-trust architecture and enterprise identity platforms.",
+    bio: "Previously CPO at two enterprise security unicorns. Expert in AI-native architecture and enterprise identity platforms.",
     linkedin: "#",
     twitter: "#",
   },

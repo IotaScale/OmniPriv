@@ -6,17 +6,17 @@ import {
   Key, Layers, Cpu, FileSearch, BarChart3, RefreshCw, UserCheck,
 } from "lucide-react";
 export const metadata: Metadata = {
-  title: "Security: Zero-Trust Architecture & Compliance",
+  title: "Security: AI-Native Architecture & Compliance",
   description:
-    "OmniPriv is built on zero-trust principles with AES-256 encryption, immutable audit logs, and comprehensive compliance certifications including SOC2, ISO 27001, HIPAA, and PCI-DSS.",
+    "OmniPriv is built on AI-native security principles with AES-256 encryption, immutable audit logs, and comprehensive compliance certifications including SOC2, ISO 27001, HIPAA, and PCI-DSS.",
 };
 
 const securityPrinciples = [
   {
     icon: Shield,
-    title: "Zero-Trust Architecture",
+    title: "AI-Native Security Architecture",
     description:
-      "OmniPriv implements zero-trust at every layer. No user, device, or network is inherently trusted. Every access request is authenticated, authorized, and logged, regardless of origin.",
+      "OmniPriv implements AI-native security at every layer. No user, device, or network is inherently trusted. Every access request is authenticated, authorized, and logged, regardless of origin.",
     details: [
       "Verify every identity before granting access",
       "Enforce least-privilege on every session",
@@ -185,7 +185,7 @@ export default function SecurityPage() {
             Security is Our <span className="text-gradient">Foundation</span>
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">
-            OmniPriv is built with security at its core, from zero-trust architecture and end-to-end encryption to independent penetration testing and comprehensive compliance certifications.
+            OmniPriv is built with security at its core, from AI-native architecture and end-to-end encryption to independent penetration testing and comprehensive compliance certifications.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/demo" className="btn-primary text-base px-8 py-3.5 inline-flex items-center gap-2">

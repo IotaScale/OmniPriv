@@ -157,7 +157,7 @@ export default function SolutionsPage() {
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg">
               Engineered for seamless enterprise rollout — completely hardware-agnostic, agentless,
-              and hardened for zero-trust security.
+              and hardened for AI-native security.
             </p>
           </div>
 

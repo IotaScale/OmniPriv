@@ -117,7 +117,7 @@ function AuthenticationVisual({ isHovered }: { isHovered: boolean }) {
           </div>
           <div>
             <div className="text-xs font-semibold text-slate-950 dark:text-white">Identity Verification Pipeline</div>
-            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Context-Aware Zero Trust</div>
+            <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400">Context-Aware AI Access</div>
           </div>
         </div>
         <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -411,7 +411,7 @@ export default function FourPillarsSection() {
 
       <div className="container-xl max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-5xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-5">
             <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider font-mono">
               Core Capabilities
@@ -425,7 +425,7 @@ export default function FourPillarsSection() {
             The Four Pillars of Privileged Access Management
           </h2>
 
-          <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-4xl mx-auto">
             OmniPriv is built on the 4A framework — Authentication, Authorization, Account
             Management, and Audit — providing end-to-end coverage of every privileged access scenario
             in your enterprise. Built around the best practices for privileged access management, it helps organizations enforce least-privilege access, secure critical accounts, and monitor privileged activity in real time.

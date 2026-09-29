@@ -16,7 +16,7 @@ export default function ClosingCtaSection() {
             {/* Small product-status accent */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 text-xs font-mono mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
-              <span>Enterprise PAM Ready &middot; Zero Trust Architecture</span>
+              <span>Enterprise PAM Ready &middot; AI-Native Architecture</span>
             </div>
 
             {/* Heading */}
@@ -53,7 +53,7 @@ export default function ClosingCtaSection() {
             <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-slate-500 font-mono">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                Zero Trust JIT Access
+                AI-Driven JIT Access
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
