@@ -322,8 +322,8 @@ export default function HomePage() {
               <div className="relative z-10 flex flex-col flex-1">
                 <div className="relative w-full h-44 mb-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
                   <Image
-                    src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?auto=format&fit=crop&w=900&q=70"
-                    alt="Glowing neural sphere representing AI and automated identities"
+                    src="/identities/ai-automated-identities.jpeg"
+                    alt="Glowing neural network brain above a lit platform, ringed by security padlocks, representing AI and automated identities"
                     fill
                     sizes="(max-width: 768px) 100vw, 380px"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -354,8 +354,8 @@ export default function HomePage() {
               <div className="relative z-10 flex flex-col flex-1">
                 <div className="relative w-full h-44 mb-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
                   <Image
-                    src="https://images.unsplash.com/photo-1714974528737-3e6c7e4d11af?auto=format&fit=crop&w=900&q=70"
-                    alt="Two professionals greeting each other in a bright office"
+                    src="/identities/human-identities.jpeg"
+                    alt="Colleagues collaborating around a table with holographic identity verification panels and a security shield, representing human identities"
                     fill
                     sizes="(max-width: 768px) 100vw, 380px"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -386,8 +386,8 @@ export default function HomePage() {
               <div className="relative z-10 flex flex-col flex-1">
                 <div className="relative w-full h-44 mb-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
                   <Image
-                    src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=70"
-                    alt="AI bot face representing machine and service identities"
+                    src="/identities/machine-identities.jpeg"
+                    alt="Robot presenting a holographic key panel, surrounded by padlocked platforms representing cloud, server, database and application identities"
                     fill
                     sizes="(max-width: 768px) 100vw, 380px"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
