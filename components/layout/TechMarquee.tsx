@@ -1,139 +1,22 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
-/* ─── SVG logos with real brand colours ─── */
+/* ─── Official brand marks (source: Iconify "logos" icon set) ─── */
 const logos = [
-    {
-        name: "Linux",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M20 4C18.5 4 17.2 5.8 16.5 8.5C16 10.5 15.8 13 16 15.5C14 16.5 12.5 18 11.5 20C10 23 10 26 11 28C12 29.5 13.5 30 15 30C16 30 17 29.5 18 29C19 30 20 30.5 20 30.5C20 30.5 21 30 22 29C23 29.5 24 30 25 30C26.5 30 28 29.5 29 28C30 26 30 23 28.5 20C27.5 18 26 16.5 24 15.5C24.2 13 24 10.5 23.5 8.5C22.8 5.8 21.5 4 20 4Z" fill="#FCD34D" opacity="0.25" stroke="#FCD34D" strokeWidth="1.2" />
-                <circle cx="17.5" cy="14" r="1.5" fill="#FCD34D" />
-                <circle cx="22.5" cy="14" r="1.5" fill="#FCD34D" />
-                <path d="M17 18C18 19.5 22 19.5 23 18" stroke="#FCD34D" strokeWidth="1" strokeLinecap="round" />
-            </svg>
-        ),
-    },
-    {
-        name: "Windows",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M6 11.5L17.5 9.8V19.5H6V11.5Z" fill="#00AEF3" />
-                <path d="M19 9.5L34 7V19.5H19V9.5Z" fill="#00AEF3" />
-                <path d="M6 21H17.5V30.2L6 28.5V21Z" fill="#00AEF3" />
-                <path d="M19 21H34V33L19 30.5V21Z" fill="#00AEF3" />
-            </svg>
-        ),
-    },
-    {
-        name: "Kubernetes",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M20 6L32 13V27L20 34L8 27V13L20 6Z" fill="#326CE5" opacity="0.18" stroke="#326CE5" strokeWidth="1.2" />
-                <circle cx="20" cy="20" r="4" fill="none" stroke="#326CE5" strokeWidth="1.5" />
-                <path d="M20 16V10M20 24V30M16 18L11 15M24 22L29 25M16 22L11 25M24 18L29 15" stroke="#326CE5" strokeWidth="1" strokeLinecap="round" />
-                <circle cx="20" cy="20" r="1.5" fill="#326CE5" />
-            </svg>
-        ),
-    },
-    {
-        name: "PostgreSQL",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <ellipse cx="20" cy="12" rx="11" ry="5" fill="#336791" opacity="0.2" stroke="#6FA8C9" strokeWidth="1.2" />
-                <path d="M9 12V28C9 30.8 14 33 20 33C26 33 31 30.8 31 28V12" stroke="#6FA8C9" strokeWidth="1.2" fill="none" />
-                <path d="M9 19C9 21.8 14 24 20 24C26 24 31 21.8 31 19" stroke="#6FA8C9" strokeWidth="1" opacity="0.7" />
-                <path d="M9 25C9 27.8 14 30 20 30C26 30 31 27.8 31 25" stroke="#6FA8C9" strokeWidth="1" opacity="0.4" />
-            </svg>
-        ),
-    },
-    {
-        name: "MongoDB",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M20 5C20 5 14 12 14 22C14 28 16.5 32 20 35C23.5 32 26 28 26 22C26 12 20 5 20 5Z" fill="#13AA52" opacity="0.22" stroke="#13AA52" strokeWidth="1.2" />
-                <line x1="20" y1="15" x2="20" y2="30" stroke="#13AA52" strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-        ),
-    },
-    {
-        name: "Redis",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M20 9L34 16L20 23L6 16L20 9Z" fill="#DC382D" opacity="0.25" />
-                <path d="M6 16L20 23L34 16" stroke="#DC382D" strokeWidth="1.2" fill="none" />
-                <path d="M6 22L20 29L34 22" stroke="#DC382D" strokeWidth="1.2" fill="none" opacity="0.65" />
-                <path d="M6 28L20 35L34 28" stroke="#DC382D" strokeWidth="1.2" fill="none" opacity="0.35" />
-                <path d="M20 9L34 16L20 23L6 16L20 9Z" stroke="#DC382D" strokeWidth="1.2" fill="none" />
-            </svg>
-        ),
-    },
-    {
-        name: "MySQL",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <circle cx="20" cy="20" r="13" fill="#4479A1" opacity="0.12" stroke="#4479A1" strokeWidth="1.2" />
-                <path d="M13 15C15 12 18 11 20 11C25 11 27 14 27 17C27 20 24 22 22 23L22 26" stroke="#F29111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                <circle cx="22" cy="29" r="1.2" fill="#F29111" />
-            </svg>
-        ),
-    },
-    {
-        name: "Oracle",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <rect x="6" y="13" width="28" height="14" rx="7" fill="#F80000" opacity="0.18" stroke="#F80000" strokeWidth="1.2" />
-                <rect x="11" y="17" width="18" height="6" rx="3" fill="none" stroke="#F80000" strokeWidth="1" />
-            </svg>
-        ),
-    },
-    {
-        name: "AWS",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M9 24C12 26 16 27 20 27C24 27 28 26 31 24" stroke="#FF9900" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M28 25L32 23L30 27" stroke="#FF9900" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M14 11L20 22L26 11" stroke="#FF9900" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M16 16H24" stroke="#FF9900" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-        ),
-    },
-    {
-        name: "Azure",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M12 30L21 8H17L8 26L12 30Z" fill="#0089D6" opacity="0.55" />
-                <path d="M21 8L28 26L20 30H33L21 8Z" fill="#0089D6" opacity="0.9" />
-            </svg>
-        ),
-    },
-    {
-        name: "GCP",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M25 10H15L8 20L15 30H25L32 20L25 10Z" fill="#4285F4" opacity="0.1" stroke="#4285F4" strokeWidth="1.2" />
-                <circle cx="20" cy="20" r="4.5" fill="none" stroke="#4285F4" strokeWidth="1.5" />
-                <circle cx="14.5" cy="10.5" r="2" fill="#EA4335" />
-                <circle cx="25.5" cy="10.5" r="2" fill="#FBBC04" />
-                <circle cx="31" cy="20" r="2" fill="#34A853" />
-                <circle cx="25.5" cy="29.5" r="2" fill="#4285F4" />
-                <circle cx="14.5" cy="29.5" r="2" fill="#EA4335" />
-                <circle cx="9" cy="20" r="2" fill="#FBBC04" />
-            </svg>
-        ),
-    },
-    {
-        name: "VMware",
-        svg: (
-            <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <path d="M6 16C8 14 10 13 12 15L18 25" stroke="#82B900" strokeWidth="2" strokeLinecap="round" />
-                <path d="M14 16L20 26L26 16" stroke="#82B900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                <path d="M23 16L29 26" stroke="#82B900" strokeWidth="2" strokeLinecap="round" />
-                <path d="M34 16C32 14 30 13 28 15L26 19" stroke="#82B900" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-        ),
-    },
+    { name: "Linux", src: "/tech/linux.svg" },
+    { name: "Windows", src: "/tech/windows.svg" },
+    { name: "Kubernetes", src: "/tech/kubernetes.svg" },
+    { name: "PostgreSQL", src: "/tech/postgresql.svg" },
+    { name: "MongoDB", src: "/tech/mongodb.svg" },
+    { name: "Redis", src: "/tech/redis.svg" },
+    { name: "MySQL", src: "/tech/mysql.svg" },
+    { name: "Oracle", src: "/tech/oracle.svg" },
+    { name: "AWS", src: "/tech/aws.svg" },
+    { name: "Azure", src: "/tech/azure.svg" },
+    { name: "GCP", src: "/tech/gcp.svg" },
+    { name: "VMware", src: "/tech/vmware.svg" },
 ];
 
 /* ─── Scroll Reveal Hook ─── */
@@ -179,9 +62,14 @@ export default function TechMarquee() {
                                 key={`${logo.name}-${i}`}
                                 className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
                             >
-                                <div className="opacity-80 group-hover:opacity-100 transition-opacity">
-                                    {logo.svg}
-                                </div>
+                                <Image
+                                    src={logo.src}
+                                    alt={logo.name}
+                                    width={40}
+                                    height={40}
+                                    unoptimized
+                                    className="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                                />
                                 <span className="text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">
                                     {logo.name}
                                 </span>
@@ -198,9 +86,14 @@ export default function TechMarquee() {
                                 key={`rev-${logo.name}-${i}`}
                                 className="flex-shrink-0 flex items-center gap-3 px-8 py-3 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
                             >
-                                <div className="opacity-80 group-hover:opacity-100 transition-opacity">
-                                    {logo.svg}
-                                </div>
+                                <Image
+                                    src={logo.src}
+                                    alt={logo.name}
+                                    width={40}
+                                    height={40}
+                                    unoptimized
+                                    className="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                                />
                                 <span className="text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">
                                     {logo.name}
                                 </span>
