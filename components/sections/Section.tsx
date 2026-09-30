@@ -1,11 +1,6 @@
 import { cn } from "@/lib/utils";
 import { sectionBorder } from "@/lib/styles";
 
-const sizes = {
-    md: "section-padding",
-    lg: "section-padding-lg",
-} as const;
-
 const tones = {
     default: "",
     muted: "bg-slate-50 dark:bg-[#050a14]",
@@ -15,20 +10,20 @@ const tones = {
 const borders = {
     none: "",
     bottom: "border-b",
-    both: "border-y",
 } as const;
 
 export interface SectionProps {
     children: React.ReactNode;
-    /** Vertical rhythm. `lg` is the marketing default. */
-    size?: keyof typeof sizes;
     /**
      * `muted` renders the recessed slate band.
      * `dark` renders the hardcoded near-black band and wraps itself in a
      * `.dark` ancestor so the theme-aware text inside stays readable.
      */
     tone?: keyof typeof tones;
-    /** Which horizontal rules to draw, using the shared border token. */
+    /**
+     * Draw the trailing hairline. Only ever `bottom`: a top border would
+     * stack against the previous section's bottom border and read as 2px.
+     */
     border?: keyof typeof borders;
     /** Render the `container-xl` wrapper. Defaults to true. */
     container?: boolean;
@@ -46,7 +41,6 @@ export interface SectionProps {
  */
 export default function Section({
     children,
-    size = "lg",
     tone = "default",
     border = "none",
     container = true,
@@ -56,7 +50,7 @@ export default function Section({
     const body = (
         <section
             className={cn(
-                sizes[size],
+                "section-padding",
                 borders[border],
                 border !== "none" && sectionBorder,
                 tones[tone],

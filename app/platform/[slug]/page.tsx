@@ -73,7 +73,7 @@ export default async function SolutionPage({
             </section>
 
             {/* Features Grid */}
-            <section className="section-padding-lg">
+            <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
                 <div className="container-xl">
                     <div className="text-center max-w-2xl mx-auto mb-14">
                         <div className="badge-cyan mb-5">Capabilities</div>
@@ -111,7 +111,7 @@ export default async function SolutionPage({
             </section>
 
             {/* CTA */}
-            <section className="section-padding">
+            <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
                 <div className="container-xl">
                     <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-16 text-center">
                         <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />

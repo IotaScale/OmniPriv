@@ -176,7 +176,7 @@ export default function EnterprisePage() {
       </section>
 
       {/* Plans */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -260,7 +260,7 @@ export default function EnterprisePage() {
       </section>
 
       {/* Enterprise features */}
-      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Enterprise Platform</div>
@@ -283,7 +283,7 @@ export default function EnterprisePage() {
       </section>
 
       {/* SLA */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Service Level Agreement</div>
@@ -307,7 +307,7 @@ export default function EnterprisePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }}>
             What Enterprise Customers Say
@@ -330,7 +330,7 @@ export default function EnterprisePage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-14">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />

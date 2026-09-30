@@ -290,14 +290,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* Section Spacing */
+  /* One site-wide vertical rhythm. There is deliberately only one step: a
+     second token previously drifted into use, leaving sections alternately
+     80px and 112px apart with no pattern behind the choice. */
   .section-padding {
     padding-top: 5rem;
     padding-bottom: 5rem;
-  }
-
-  .section-padding-lg {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
   }
 
   /* Container */
@@ -736,11 +734,6 @@ h1, h2, h3, h4, h5, h6 {
   .section-padding {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
-  }
-
-  .section-padding-lg {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
   }
 }
 

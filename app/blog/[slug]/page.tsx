@@ -123,7 +123,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Article Body */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl max-w-3xl mx-auto">
           <div className="space-y-10">
             {sections.map((section, i) => {

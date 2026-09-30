@@ -41,7 +41,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Datasheet Highlights Bar */}
-      <section className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/80 dark:bg-[#071322]/80 backdrop-blur-sm py-8">
+      <section className="border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/80 dark:bg-[#071322]/80 backdrop-blur-sm py-8">
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {datasheetStats.map((stat) => (
@@ -61,7 +61,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Solution Cards Grid */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="badge-cyan mb-5">Core Capabilities</div>
@@ -106,7 +106,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Regulatory Compliance Standards Summary */}
-      <section className="section-padding bg-slate-100/50 dark:bg-[#071322]/50 border-y border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding bg-slate-100/50 dark:bg-[#071322]/50 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-4 inline-flex items-center gap-1.5">
@@ -143,7 +143,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Platform Specifications */}
-      <section id="specifications" className="section-padding scroll-mt-20">
+      <section id="specifications" className="section-padding scroll-mt-20 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-4 inline-flex items-center gap-1.5">
@@ -178,7 +178,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding pt-0">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-16 text-center">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />

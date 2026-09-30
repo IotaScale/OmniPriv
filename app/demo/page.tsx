@@ -120,7 +120,7 @@ export default function DemoPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
@@ -135,7 +135,7 @@ export default function DemoPage() {
       </section>
 
       {/* Main */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="grid lg:grid-cols-5 gap-14 items-start">
 

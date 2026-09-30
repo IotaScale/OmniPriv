@@ -182,7 +182,7 @@ export default function FourPillarsSection() {
     return (
         <section
             id="capabilities"
-            className="section-padding-lg relative overflow-hidden bg-slate-50 dark:bg-[#060b17] border-y border-slate-900/[0.06] dark:border-white/[0.05]"
+            className="section-padding relative overflow-hidden bg-slate-50 dark:bg-[#060b17] border-b border-slate-900/[0.05] dark:border-white/[0.04]"
         >
             <div
                 className="absolute top-1/3 left-1/4 w-[700px] h-[400px] pointer-events-none opacity-20"

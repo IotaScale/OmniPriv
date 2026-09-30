@@ -116,7 +116,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Featured Case Study */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <p className="text-xs text-slate-500 uppercase tracking-widest font-medium mb-6">Featured Case Study</p>
           <div className="rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711] overflow-hidden">
@@ -167,7 +167,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Quick outcomes strip */}
-      <section className="py-10 border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="py-10 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="grid sm:grid-cols-3 gap-8 text-center">
             <div className="flex flex-col items-center gap-2">
@@ -190,7 +190,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter Bar (display only — non-interactive without client component) */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="flex flex-wrap gap-2 mb-10">
             {industries.map((ind, i) => (
@@ -224,7 +224,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl text-center max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Ready to Write Your <span className="text-gradient">Own Success Story?</span>

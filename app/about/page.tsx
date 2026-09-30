@@ -111,7 +111,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10">
@@ -153,7 +153,7 @@ export default function AboutPage() {
       </section> */}
 
       {/* Mission */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -191,7 +191,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="badge-cyan mb-5">Our Values</div>
@@ -214,7 +214,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Leadership</div>
@@ -246,7 +246,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="grid md:grid-cols-2 gap-10 items-center p-10 rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]">
             <div>

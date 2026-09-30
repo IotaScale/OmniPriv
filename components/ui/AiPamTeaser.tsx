@@ -12,7 +12,7 @@ const stats = [
 
 export default function AiPamTeaser() {
     return (
-        <section className="section-padding relative overflow-hidden border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14]">
+        <section className="section-padding relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14]">
             <div
                 className="absolute -top-32 right-1/4 w-[620px] h-[380px] pointer-events-none opacity-60"
                 style={{

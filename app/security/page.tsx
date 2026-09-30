@@ -196,7 +196,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Core Security Principles */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Architecture</div>
@@ -232,7 +232,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Security Features Grid */}
-      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -257,7 +257,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Certifications */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Certifications</div>
@@ -288,7 +288,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Pen Testing */}
-      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
@@ -313,7 +313,7 @@ export default function SecurityPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl text-center">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Responsible Disclosure</div>
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>

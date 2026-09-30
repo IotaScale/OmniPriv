@@ -128,7 +128,7 @@ export default function AiAgentSecurityPage() {
             </Section>
 
             {/* ─── AFTER ACCESS IS GRANTED (dark band) ── */}
-            <Section tone="dark" border="both">
+            <Section tone="dark" border="bottom">
                 <SectionHeading
                     title={afterAccessSection.title}
                     className="max-w-3xl mb-14"

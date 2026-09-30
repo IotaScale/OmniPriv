@@ -152,7 +152,7 @@ export default function TermsPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl max-w-3xl mx-auto">
           <div className="badge-cyan mb-5">Legal</div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
@@ -165,7 +165,7 @@ export default function TermsPage() {
       </section>
 
       {/* Content */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="grid lg:grid-cols-4 gap-10">
 

@@ -93,7 +93,7 @@ export default function HumanIdentitySecurityPage() {
             </Section>
 
             {/* ─── CREDENTIALS + SESSIONS (dark band) ── */}
-            <Section tone="dark" border="both">
+            <Section tone="dark" border="bottom">
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
                     <div>
                         <div className="icon-wrapper mb-5">

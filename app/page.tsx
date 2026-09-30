@@ -184,7 +184,7 @@ export default function HomePage() {
   return (
     <>
       {/* ─── HERO ──────────────────────────────── */}
-      <section className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-[#030711] pt-16 pb-20 lg:py-24 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
+      <section className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-[#030711] pt-16 pb-20 lg:py-24 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         {/* Full-bleed rotating background photographs */}
         <HeroSlideshow />
 
@@ -256,7 +256,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── DATASHEET HIGHLIGHTS ───────────────── */}
-      <section className="border-y border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/90 dark:bg-[#071322]/90 backdrop-blur-sm py-6">
+      <section className="border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/90 dark:bg-[#071322]/90 backdrop-blur-sm py-6">
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="p-3">
@@ -415,7 +415,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── FEATURES GRID ─────────────────────── */}
-      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="badge-cyan mb-5">Platform Features</div>
@@ -531,7 +531,7 @@ export default function HomePage() {
           TEMPORARILY DISABLED — repeated the same connect → control → observe
           story as the Control Plane section.
 
-      <section className="section-padding-lg border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#040814]">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#040814]">
         <div className="container-xl">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-5">
@@ -567,7 +567,7 @@ export default function HomePage() {
       {/* This section always has a dark background, so force the dark palette
           — otherwise its text stays near-black in light mode. */}
       <div className="dark">
-      <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04]" style={{ background: "linear-gradient(180deg, #0A1628 0%, #030711 100%)" }}>
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]" style={{ background: "linear-gradient(180deg, #0A1628 0%, #030711 100%)" }}>
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -630,7 +630,7 @@ export default function HomePage() {
       </div>
 
       {/* ─── TESTIMONIALS ──────────────────────── */}
-      <section className="section-padding-lg">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="badge-cyan mb-5">Customer Stories</div>
@@ -658,7 +658,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── BLOG PREVIEW ──────────────────────── */}
-      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
             <div>

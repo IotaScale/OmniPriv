@@ -44,7 +44,7 @@ export default function CtaBand({
         <div className="dark">
             <section
                 className={cn(
-                    "section-padding-lg border-b border-white/[0.06]",
+                    "section-padding border-b border-white/[0.04]",
                     darkSurface,
                     className
                 )}

@@ -113,7 +113,7 @@ export default function DocsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-16 pb-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
         <div className="container-xl relative z-10 text-center">
@@ -144,7 +144,7 @@ export default function DocsPage() {
       </section>
 
       {/* Documentation Categories */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-8" style={{ fontFamily: "var(--font-syne)" }}>
             Browse by Category
@@ -177,7 +177,7 @@ export default function DocsPage() {
       </section>
 
       {/* Popular Articles */}
-      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
@@ -208,7 +208,7 @@ export default function DocsPage() {
       </section>
 
       {/* Support CTA */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 text-center">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />

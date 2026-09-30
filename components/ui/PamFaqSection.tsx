@@ -91,7 +91,7 @@ export default function PamFaqSection() {
   };
 
   return (
-    <section className="section-padding-lg border-t border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-50 dark:bg-[#050a14] relative">
+    <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14] relative">
       {/* Schema injection */}
       <script
         type="application/ld+json"

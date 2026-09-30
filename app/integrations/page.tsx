@@ -145,7 +145,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* API-first callout */}
-      <section className="section-padding">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
           <div className="grid lg:grid-cols-3 gap-5">
             {[
@@ -168,7 +168,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Category Sections */}
-      <section className="section-padding-lg border-t border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl space-y-16">
           {categories.map((cat) => (
             <div key={cat.label}>
@@ -198,7 +198,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl text-center max-w-2xl mx-auto">
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Don&apos;t See Your Tool?

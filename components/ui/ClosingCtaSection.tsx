@@ -6,7 +6,7 @@ import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export default function ClosingCtaSection() {
   return (
-    <section className="section-padding-lg border-t border-slate-900/[0.08] dark:border-white/[0.06] bg-white dark:bg-[#030711]">
+    <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
       <div className="container-xl max-w-5xl mx-auto">
         <div className="relative rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#08101e] p-8 sm:p-12 lg:p-16 overflow-hidden">
           {/* Subtle top border accent */}

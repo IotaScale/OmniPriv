@@ -163,7 +163,7 @@ function ChallengeVisual({
 ───────────────────────────────────────────────────────────── */
 export default function ChallengesSection() {
     return (
-        <section className="section-padding-lg relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
+        <section className="section-padding relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
             <div
                 className="absolute -top-24 left-1/2 h-[420px] w-[820px] -translate-x-1/2 pointer-events-none opacity-60"
                 style={{
@@ -180,9 +180,9 @@ export default function ChallengesSection() {
                         className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5 tracking-tight"
                         style={{ fontFamily: "var(--font-syne)" }}
                     >
-                        Six challenges.{" "}
+                        Six challenges{" "}
                         <br />
-                        <span className="text-gradient">One agentless platform.</span>
+                        <span className="text-gradient">One agentless platform</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
                         From governing autonomous AI agents to proving compliance, OmniPriv closes

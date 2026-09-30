@@ -37,7 +37,6 @@ single class, so adopting them is not a redesign.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `size` | `"md" \| "lg"` | `"lg"` | `.section-padding` / `.section-padding-lg`. |
 | `tone` | `"default" \| "muted" \| "dark"` | `"default"` | `muted` = slate band. `dark` = `#050b16` **and** wraps itself in `.dark`. |
 | `border` | `"none" \| "bottom" \| "both"` | `"none"` | Uses the shared border token. |
 | `container` | `boolean` | `true` | Renders the `container-xl` wrapper. |
@@ -55,8 +54,7 @@ light mode. Do not hand-roll it.
 | `badge` | `string` | — | Eyebrow pill above the title. |
 | `as` | `"h2" \| "h3"` | `"h2"` | Use `h3` for a sub-section inside a section that already has an `h2`. Switches the weight to `font-bold`. |
 | `align` | `"left" \| "center"` | `"left"` | |
-| `size` | `"md" \| "lg" \| "sm"` | `"md"` | `sm` pairs with `as="h3"`. |
-| `titleClassName` | `string` | — | e.g. `"max-w-3xl"`. |
+| `size` | `"md" \| "lg" \| "sm"` | `"md"` | `sm` pairs with `as="h3"`. || `titleClassName` | `string` | — | e.g. `"max-w-3xl"`. |
 | `className` | `string` | — | Wrapper, e.g. `"max-w-3xl mb-12"`. |
 
 ### `Prose`

@@ -168,7 +168,7 @@ export default function AiPamEngineSection() {
   ];
 
   return (
-    <section className="section-padding-lg relative overflow-hidden bg-[#050b16] border-y border-white/[0.06]">
+    <section className="section-padding relative overflow-hidden bg-[#050b16] border-b border-white/[0.06]">
       {/* Background glow accents */}
       <div
         className="absolute top-1/4 -left-[10%] w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none"
