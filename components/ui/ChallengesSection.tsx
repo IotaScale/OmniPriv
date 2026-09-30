@@ -181,6 +181,7 @@ export default function ChallengesSection() {
                         style={{ fontFamily: "var(--font-syne)" }}
                     >
                         Six challenges.{" "}
+                        <br />
                         <span className="text-gradient">One agentless platform.</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
