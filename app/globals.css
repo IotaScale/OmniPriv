@@ -254,6 +254,34 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
   }
 
+  /* ──────────────────────────────────────────────
+     Fluid scale
+     Sizes across the site are rem-based, so scaling the root font
+     size rescales typography AND spacing together and proportions
+     hold. This makes the layout adapt continuously to any viewport
+     instead of only snapping at fixed width breakpoints.
+  ────────────────────────────────────────────── */
+  html {
+    font-size: 16px;
+  }
+
+  /* Short, wide viewports (720p / 768p laptops): shrink the whole scale
+     so content fits the fold instead of overflowing. min-width excludes
+     phones, whose width is too small to sacrifice legibility. */
+  @media (max-height: 830px) and (min-width: 1024px) {
+    html {
+      font-size: clamp(14px, 2vh, 16px);
+    }
+  }
+
+  /* Large displays (1440p and up): scale up so the site doesn't
+     look lost on a big screen. */
+  @media (min-width: 2200px) {
+    html {
+      font-size: clamp(16px, 0.42vw + 7px, 19px);
+    }
+  }
+
   /* Section Spacing */
   .section-padding {
     padding-top: 5rem;
@@ -272,6 +300,27 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  /* Widen the content column on very large displays so it doesn't
+     read as a narrow strip. 1080p and below are unaffected. */
+  @media (min-width: 2000px) {
+    .container-xl {
+      max-width: 1440px;
+    }
+  }
+
+  @media (min-width: 2800px) {
+    .container-xl {
+      max-width: 1600px;
+    }
+  }
+
+  /* 4K at 1x and 8K canvases — keep the column proportionate. */
+  @media (min-width: 3600px) {
+    .container-xl {
+      max-width: 1840px;
+    }
   }
 
   @media (min-width: 640px) {
