@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog-data";
 import { solutions } from "@/app/platform/data";
+import { solutions as solutionRegistry } from "@/app/solutions/data";
 
 const BASE_URL = "https://omnipriv.com";
 
@@ -11,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ai-pam`,         lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE_URL}/platform`,       lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE_URL}/features`,       lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/solutions/human-identity-security`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/integrations`,   lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/enterprise`,     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/about`,          lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
@@ -32,6 +32,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // ── Solution pages (auto-derived from app/solutions/data.ts) ─
+  // Adding a new solution to the registry adds it here.
+  const solutionPages: MetadataRoute.Sitemap = solutionRegistry.map((s) => ({
+    url: `${BASE_URL}/solutions/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   // ── Blog posts (auto-derived from lib/blog-data.ts) ────
   // Adding a new post to lib/blog-data.ts automatically adds it here.
   const blogPages: MetadataRoute.Sitemap = Object.entries(posts).map(
@@ -43,5 +52,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  return [...staticPages, ...platformPages, ...blogPages];
+  return [...staticPages, ...solutionPages, ...platformPages, ...blogPages];
 }

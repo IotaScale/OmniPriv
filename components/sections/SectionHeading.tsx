@@ -6,17 +6,21 @@ const sizes = {
     md: "text-3xl md:text-4xl mb-5",
     /** Headings that introduce a centred block. */
     lg: "text-3xl sm:text-4xl mb-4",
+    /** Sub-section heading inside a section that already has an `h2`. */
+    sm: "text-xl md:text-2xl mb-4",
 } as const;
 
 export interface SectionHeadingProps {
     title: React.ReactNode;
     /** Eyebrow pill above the title. */
     badge?: string;
+    /** Heading level. Use `h3` for sub-sections. */
+    as?: "h2" | "h3";
     align?: "left" | "center";
     size?: keyof typeof sizes;
     /** Extra classes for the wrapper, e.g. `"max-w-3xl mb-12"`. */
     className?: string;
-    /** Extra classes appended to the `h2`. */
+    /** Extra classes appended to the heading. */
     titleClassName?: string;
     /** Body copy rendered under the title. */
     children?: React.ReactNode;
@@ -28,6 +32,7 @@ export interface SectionHeadingProps {
 export default function SectionHeading({
     title,
     badge,
+    as: Tag = "h2",
     align = "left",
     size = "md",
     className,
@@ -44,16 +49,17 @@ export default function SectionHeading({
                 </div>
             )}
 
-            <h2
+            <Tag
                 className={cn(
-                    "font-extrabold text-slate-950 dark:text-white tracking-tight",
+                    Tag === "h3" ? "font-bold" : "font-extrabold",
+                    "text-slate-950 dark:text-white tracking-tight",
                     sizes[size],
                     titleClassName
                 )}
                 style={displayFont}
             >
                 {title}
-            </h2>
+            </Tag>
 
             {children}
         </div>

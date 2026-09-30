@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { UserCheck } from "lucide-react";
+import { Cpu, UserCheck } from "lucide-react";
 
 /**
  * Registry of solution pages.
@@ -37,6 +37,18 @@ export const solutions: SolutionMeta[] = [
             "Secure admins, employees, developers, and vendors with OmniPriv human identity security, JIT access, least privilege, AI-driven detection, and PAM.",
         icon: UserCheck,
         order: 1,
+    },
+    {
+        slug: "ai-agent-security",
+        eyebrow: "AI Agent Security",
+        cardTitle: "AI Agent Security",
+        description:
+            "Secure AI agents and automated workflows with least privilege, JIT access, credential protection, session monitoring and intelligent threat detection.",
+        metaTitle: "AI Agent Security & Privileged Access Management | OmniPriv",
+        metaDescription:
+            "Strengthen AI agent security with OmniPriv PAM using JIT access, least privilege, credential protection, session monitoring, and intelligent threat detection.",
+        icon: Cpu,
+        order: 2,
     },
 ];
 

@@ -339,7 +339,7 @@ export default function HomePage() {
                   Secure privileged actions performed by AI-powered tools, automation, and intelligent workflows with policy-based access controls and controlled permissions.
                 </p>
                 <Link
-                  href="/features"
+                  href="/solutions/ai-agent-security"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
                 >
                   Explore AI-Ready PAM <ArrowRight className="w-4 h-4" />

@@ -29,6 +29,7 @@ single class, so adopting them is not a redesign.
 | `IconCardGrid` | Responsive grid of icon cards. |
 | `CheckList` | Accent-ticked bullet list. |
 | `ChipList` | Row of chips, optionally joined into a flow. |
+| `ArrowLink` | Standalone "Explore X →" link that closes out a section. |
 | `CtaBand` | Full-width closing CTA on the dark surface. |
 | `FaqSection` | Question/answer cards plus `FAQPage` structured data. |
 
@@ -46,6 +47,18 @@ single class, so adopting them is not a redesign.
 theme-aware text readable inside a hardcoded dark band while the site is in
 light mode. Do not hand-roll it.
 
+### `SectionHeading`
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `title` | `React.ReactNode` | — | |
+| `badge` | `string` | — | Eyebrow pill above the title. |
+| `as` | `"h2" \| "h3"` | `"h2"` | Use `h3` for a sub-section inside a section that already has an `h2`. Switches the weight to `font-bold`. |
+| `align` | `"left" \| "center"` | `"left"` | |
+| `size` | `"md" \| "lg" \| "sm"` | `"md"` | `sm` pairs with `as="h3"`. |
+| `titleClassName` | `string` | — | e.g. `"max-w-3xl"`. |
+| `className` | `string` | — | Wrapper, e.g. `"max-w-3xl mb-12"`. |
+
 ### `Prose`
 
 | Prop | Type | Notes |
@@ -61,8 +74,9 @@ silently change the leading of a paragraph that never had it.
 ## Adding a solution page
 
 1. Add an entry to `app/solutions/data.ts` (`SolutionMeta`) — slug, eyebrow,
-   card title, summary and SEO metadata. This is what a future `/solutions`
-   index reads, so the page and its card cannot drift.
+   card title, summary and SEO metadata. This is what the `/solutions` index
+   will read and what `app/sitemap.ts` already uses to emit URLs, so the page,
+   its card and its sitemap entry cannot drift.
 2. Create `app/solutions/<slug>/data.ts` with the page copy. Keep it plain
    data — strings, `RichText` paragraphs, `IconCard` arrays, `FaqEntry`
    arrays. Import the shared types (`IconCard`, `FaqEntry`, `RichText`) so the
