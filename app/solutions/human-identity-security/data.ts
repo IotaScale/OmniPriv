@@ -42,8 +42,8 @@ export const hero = {
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform", label: "Explore OmniPriv PAM" },
     image: {
-        src: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=1200&q=70",
-        alt: "Human identity security team reviewing privileged access with PAM",
+        src: "/identities/human-identities.jpeg",
+        alt: "Colleagues collaborating around a table with holographic identity verification panels and a security shield, representing human identities",
     },
 };
 
