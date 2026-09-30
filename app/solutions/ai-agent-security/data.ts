@@ -35,8 +35,8 @@ export const hero = {
     primary: { href: "/demo", label: "Request a Technical Demo" },
     secondary: { href: "https://omnipriv.com/platform", label: "Explore the OmniPriv PAM Platform" },
     image: {
-        src: "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?auto=format&fit=crop&w=1200&q=70",
-        alt: "Abstract neural sphere representing AI agents accessing privileged enterprise systems",
+        src: "/identities/ai-automated-identities.jpeg",
+        alt: "Neural network brain above a lit platform ringed by security padlocks, representing AI agents accessing privileged enterprise systems",
     },
 };
 
