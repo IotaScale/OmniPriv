@@ -202,9 +202,9 @@ export const solutions: Solution[] = [
         tagline: "Structured, policy-driven privileged access with full approval governance",
         description:
             "OmniPriv enforces 4-Eyes approval workflows, temporary privilege assignments, and application credential management — rotating hard-coded passwords in config files, Windows Services, and IIS App Pools.",
-        metaTitle: "AI Agent Governance — OmniPriv PAM",
+        metaTitle: "Workflow & Access Control — OmniPriv PAM",
         metaDescription:
-            "Govern autonomous AI agents with a verifiable identity, tool allowlist, data scope and human approval on high-risk actions — backed by 4-Eyes approval workflows and application credential management.",
+            "Enforce 4-eyes approval, multi-level workflows, time-based policies, and application credential management for complete privileged access governance.",
         icon: Workflow,
         features: [
             { name: "4-Eyes Approval Principle", description: "Minimum two independent approvers required before access is granted; no user can self-approve their own privileged access request", icon: UserCheck },
