@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Cpu, UserCheck } from "lucide-react";
+import { Cpu, Server, UserCheck } from "lucide-react";
 
 /**
  * Registry of solution pages.
@@ -49,6 +49,18 @@ export const solutions: SolutionMeta[] = [
             "Strengthen AI agent security with OmniPriv PAM using JIT access, least privilege, credential protection, session monitoring, and intelligent threat detection.",
         icon: Cpu,
         order: 2,
+    },
+    {
+        slug: "machine-identity-security",
+        eyebrow: "Machine Identity Security",
+        cardTitle: "Machine Identity Security",
+        description:
+            "Secure service accounts, workloads, APIs and machine identities with automated credential rotation, JIT access and intelligent threat detection.",
+        metaTitle: "Machine Identity Security | OmniPriv",
+        metaDescription:
+            "Secure service accounts, workloads, APIs and machine identities with OmniPriv PAM, automated credential rotation, JIT access and intelligent threat detection.",
+        icon: Server,
+        order: 3,
     },
 ];
 

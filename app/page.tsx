@@ -403,7 +403,7 @@ export default function HomePage() {
                   Control privileged credentials used by applications, service accounts, databases, cloud workloads, and other non-human identities while reducing unnecessary standing access.
                 </p>
                 <Link
-                  href="/demo"
+                  href="/solutions/machine-identity-security"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
                 >
                   Secure Machine Access <ArrowRight className="w-4 h-4" />
