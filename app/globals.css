@@ -267,10 +267,17 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Short, wide viewports (720p / 768p laptops): shrink the whole scale
      so content fits the fold instead of overflowing. min-width excludes
-     phones, whose width is too small to sacrifice legibility. */
+     phones, whose width is too small to sacrifice legibility.
+
+     The slope matters more than the floor here. A viewport of exactly
+     720px is rare — a 720p laptop usually has only ~600-700px of height
+     once browser chrome is subtracted. With the earlier `2vh` slope the
+     14px floor bound on anything under 700px tall, so the rule was a
+     no-op on the very screens it was written for. Tuned so ~720px lands
+     near 13px and ~830px hands back over to 16px. */
   @media (max-height: 830px) and (min-width: 1024px) {
     html {
-      font-size: clamp(14px, 2vh, 16px);
+      font-size: clamp(12.5px, calc(2.9vh - 7.9px), 16px);
     }
   }
 
