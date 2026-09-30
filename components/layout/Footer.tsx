@@ -44,9 +44,10 @@ export default function Footer() {
       {/* Top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
 
-      {/* Newsletter bar */}
-      <div className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/50 dark:bg-[#0A1628]/50">
-        <div className="container-xl py-8">
+      {/* Newsletter bar — forced dark band so light mode keeps contrast */}
+      <div className="dark">
+        <div className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/50 dark:bg-[#0A1628]">
+          <div className="container-xl py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="font-display font-bold text-slate-950 dark:text-white text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
@@ -77,6 +78,7 @@ export default function Footer() {
               </form>
             )}
           </div>
+        </div>
         </div>
       </div>
 

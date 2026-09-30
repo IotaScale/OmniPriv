@@ -2,39 +2,35 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TechMarquee from "@/components/layout/TechMarquee";
-import HeroBackground from "@/components/ui/HeroBackground";
-import FourPillarsSection from "@/components/ui/FourPillarsSection";
+import ChallengesSection from "@/components/ui/ChallengesSection";
+import HeroSlideshow from "@/components/ui/HeroSlideshow";
+// Temporarily disabled — repeats the Challenges section
+// import FourPillarsSection from "@/components/ui/FourPillarsSection";
 import ControlPlaneSection from "@/components/ui/ControlPlaneSection";
-import ThreeStepsLifecycle from "@/components/ui/ThreeStepsLifecycle";
+// Temporarily disabled — repeats the Control Plane section
+// import ThreeStepsLifecycle from "@/components/ui/ThreeStepsLifecycle";
 import PamFaqSection from "@/components/ui/PamFaqSection";
 import ClosingCtaSection from "@/components/ui/ClosingCtaSection";
-import AiPamEngineSection from "@/components/ui/AiPamEngineSection";
+import AiPamTeaser from "@/components/ui/AiPamTeaser";
 import { posts as blogData } from "@/lib/blog-data";
 import {
   ArrowRight,
   Shield,
   Lock,
-  Eye,
   Key,
   UserCheck,
   CheckCircle2,
   Monitor,
-  Database,
   Server,
   Globe,
-  Layers,
-  RefreshCw,
   AlertTriangle,
   FileSearch,
   Fingerprint,
   Clock,
   Building2,
-  Star,
   ChevronRight,
   Cpu,
-  Network,
   BarChart3,
-  Workflow,
   ShieldCheck,
   Users,
 } from "lucide-react";
@@ -57,78 +53,56 @@ const trustedBrands = [
 ];
 
 
+/* Homepage shows 8 AI-first capabilities only.
+   The complete 24-feature breakdown lives on /features. */
 const features = [
   {
-    icon: Server,
-    title: "Bastion Host Gateway",
+    icon: Cpu,
+    title: "AI Agent Governance",
     description:
-      "AI-powered bastion host for SSH, RDP, VNC, Telnet, and K8s clusters. No VPN required — access through a secure, audited web terminal.",
-  },
-  {
-    icon: Monitor,
-    title: "Multi-Protocol Support",
-    description:
-      "Connect to Linux, Windows, databases, Kubernetes pods, web applications, and remote apps — all from a single browser-based interface.",
-  },
-  {
-    icon: Database,
-    title: "Database Access Control",
-    description:
-      "Secure access to MySQL, PostgreSQL, Oracle, SQL Server, MongoDB, and Redis without exposing credentials to end users.",
-  },
-  {
-    icon: Fingerprint,
-    title: "Identity Security",
-    description:
-      "Tie every privileged action to a verified human identity. Context-aware authentication prevents account takeovers and insider threats.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Automatic Credential Rotation",
-    description:
-      "Rotate passwords, SSH keys, and API tokens on a schedule or on-demand — for thousands of assets simultaneously.",
-  },
-  {
-    icon: FileSearch,
-    title: "Immutable Audit Trails",
-    description:
-      "Cryptographically signed session logs that cannot be tampered with. Meet SOC2, ISO 27001, HIPAA, and PCI-DSS audit requirements.",
-  },
-  {
-    icon: Network,
-    title: "Distributed Architecture",
-    description:
-      "Horizontally scalable to support millions of concurrent sessions. Deploy on-premises, in the cloud, or as a hybrid configuration.",
-  },
-  {
-    icon: Layers,
-    title: "Multi-Cloud & Multi-Tenant",
-    description:
-      "Manage assets across AWS, Azure, GCP, and on-premises environments from a single platform with per-tenant access isolation.",
+      "Give every MCP agent its own verifiable identity, tool allowlist and data scope. The AI can act — but never with unrestricted authority.",
   },
   {
     icon: AlertTriangle,
-    title: "Threat Detection & Alerts",
+    title: "ML Anomaly Detection",
     description:
-      "Real-time anomaly detection flags suspicious privileged activity. Automatically alert security teams and terminate risky sessions.",
+      "IsolationForest scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time.",
+  },
+  {
+    icon: Fingerprint,
+    title: "Behavioral Analytics",
+    description:
+      "AI keystroke-dynamics and per-agent baselines flag impossible travel, off-hours access and deviation from learned behaviour.",
+  },
+  {
+    icon: UserCheck,
+    title: "Human-in-the-Loop Approvals",
+    description:
+      "High-risk agent actions — drop table, delete cluster, transfer funds — pause for explicit human approval before they execute.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Prompt-Injection Guard",
+    description:
+      "Even when an LLM's reasoning is manipulated, every tool call is re-verified against deterministic policy before it is allowed to run.",
+  },
+  {
+    icon: FileSearch,
+    title: "Agent Session Audit Trail",
+    description:
+      "A full forensic trace from human to agent to MCP server to tool to resource — with decision, privilege level and duration recorded.",
   },
   {
     icon: Clock,
     title: "Just-In-Time Access",
     description:
-      "Grant time-limited, purpose-specific access that expires automatically. Eliminate standing privileges that attackers exploit.",
+      "Ephemeral, time-boxed privileges for humans and agents alike. Access expires automatically, so there is no standing access to steal.",
   },
   {
-    icon: Workflow,
-    title: "Workflow & Approvals",
+    icon: Key,
+    title: "Dynamic Secret Vault",
     description:
-      "Built-in approval workflows for sensitive access requests. Integrate with ServiceNow, Jira, and custom ITSM systems.",
-  },
-  {
-    icon: BarChart3,
-    title: "Risk & Compliance Dashboards",
-    description:
-      "Executive-ready dashboards showing privilege risk posture, session activity, and compliance status — in real time.",
+      "Credentials are discovered, AES-256 vaulted and rotated on schedule, then checked out as short-lived tokens for each session.",
   },
 ];
 
@@ -155,6 +129,8 @@ const certs = [
   { name: "GDPR", icon: Globe },
   { name: "FedRAMP\nReady", icon: Building2 },
 ];
+
+/* Hero photography lives in components/ui/HeroSlideshow.tsx */
 
 const testimonials = [
   {
@@ -208,41 +184,26 @@ export default function HomePage() {
   return (
     <>
       {/* ─── HERO ──────────────────────────────── */}
-      <section className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-white dark:bg-[#030711] pt-16 pb-20 lg:py-28 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
-        {/* Subtle architectural background */}
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 dark:from-[#030711]/40 via-white/80 dark:via-[#030711]/80 to-white dark:to-[#030711]" />
-        <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse, rgba(0,184,255,0.10) 0%, transparent 65%)",
-          }}
-        />
+      <section className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-[#030711] pt-16 pb-20 lg:py-24 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
+        {/* Full-bleed rotating background photographs */}
+        <HeroSlideshow />
 
-        {/* Animated privileged-access graph */}
-        <HeroBackground />
-
-        {/* Readability scrim so the hero text stays crisp over the graph */}
+        {/* Overlays keep the headline readable while the photo stays visible */}
+        <div className="absolute inset-0 bg-[#030711]/25" />
         <div
-          className="absolute inset-0 pointer-events-none dark:hidden"
+          className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 58% 54% at 50% 46%, rgba(248,250,252,0.96) 0%, rgba(248,250,252,0.62) 45%, rgba(248,250,252,0) 80%)",
+              "radial-gradient(ellipse 68% 64% at 50% 47%, rgba(3,7,17,0.72) 0%, rgba(3,7,17,0.34) 55%, rgba(3,7,17,0) 85%)",
           }}
         />
-        <div
-          className="absolute inset-0 pointer-events-none hidden dark:block"
-          style={{
-            background:
-              "radial-gradient(ellipse 58% 54% at 50% 46%, rgba(3,7,17,0.92) 0%, rgba(3,7,17,0.6) 45%, rgba(3,7,17,0) 80%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/45 via-transparent to-[#030711]/80" />
 
         <div className="container-xl relative z-10 w-full">
           <div className="max-w-6xl mx-auto text-center">
             {/* Eyebrow */}
-            <div className="hero-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-7">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
+            <div className="hero-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/35 bg-[#030711]/50 backdrop-blur-sm mb-7">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF]" />
               <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider font-mono">
                   AI-POWERED PRIVILEGED ACCESS MANAGEMENT
               </span>
@@ -250,17 +211,17 @@ export default function HomePage() {
 
             {/* H1 */}
             <h1
-              className="hero-reveal text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-slate-950 dark:text-white leading-[1.08] tracking-tight mb-6"
+              className="hero-reveal text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-syne)", animationDelay: "0.1s" }}
             >
-              Secure AI Access.
+              Secure AI Access
               <br />
-              <span className="text-gradient">Control Every Privileged Move.</span>
+              <span className="text-gradient">Control Every Privileged Move</span>
             </h1>
 
             {/* Two Paragraphs Body Copy */}
             <div
-              className="hero-reveal space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-10 max-w-4xl mx-auto"
+              className="hero-reveal space-y-4 text-base sm:text-lg text-slate-200 leading-relaxed mb-10 max-w-4xl mx-auto"
               style={{ animationDelay: "0.2s" }}
             >
               <p>
@@ -285,7 +246,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/platform"
-                className="btn-secondary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
+                className="inline-flex items-center justify-center rounded-[0.625rem] border border-white/30 bg-white/10 backdrop-blur-sm text-white font-semibold text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center hover:bg-white/20 transition-colors"
               >
                 Explore Platform
               </Link>
@@ -325,13 +286,17 @@ export default function HomePage() {
       {/* ─── TECH MARQUEE (SVG logos) ─────────── */}
       <TechMarquee />
 
+      {/* ─── CHALLENGES WE SOLVE (AI first) ────── */}
+      <ChallengesSection />
 
-
-      {/* ─── FOUR PILLARS ──────────────────────── */}
-      <FourPillarsSection />
+      {/* ─── FOUR PILLARS (temporarily disabled) ── */}
+      {/* <FourPillarsSection /> */}
 
       {/* ─── PRIVILEGED ACCESS CONTROL PLANE ───── */}
-      <ControlPlaneSection />
+      {/* Forced dark band so light mode keeps contrast between sections */}
+      <div className="dark">
+        <ControlPlaneSection />
+      </div>
 
       {/* ─── IDENTITY COVERAGE CARDS ───────────── */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14]">
@@ -351,11 +316,20 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* AI & Automated Identities */}
-            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_12px_40px_rgba(0,184,255,0.08)] transition-all duration-300 overflow-hidden">
+            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
               <div className="relative z-10 flex flex-col flex-1">
-                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_20px_rgba(0,184,255,0.25)] transition-all duration-300">
+                <div className="relative w-full h-44 mb-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?auto=format&fit=crop&w=900&q=70"
+                    alt="Glowing neural sphere representing AI and automated identities"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_10px_rgba(0,184,255,0.12)] transition-all duration-300">
                   <Cpu className="w-6 h-6 text-[#00B8FF]" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
@@ -374,11 +348,20 @@ export default function HomePage() {
             </div>
 
             {/* Human Identities */}
-            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_12px_40px_rgba(0,184,255,0.08)] transition-all duration-300 overflow-hidden">
+            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
               <div className="relative z-10 flex flex-col flex-1">
-                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_20px_rgba(0,184,255,0.25)] transition-all duration-300">
+                <div className="relative w-full h-44 mb-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1714974528737-3e6c7e4d11af?auto=format&fit=crop&w=900&q=70"
+                    alt="Two professionals greeting each other in a bright office"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_10px_rgba(0,184,255,0.12)] transition-all duration-300">
                   <Users className="w-6 h-6 text-[#00B8FF]" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
@@ -397,11 +380,20 @@ export default function HomePage() {
             </div>
 
             {/* Machine Identities */}
-            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_12px_40px_rgba(0,184,255,0.08)] transition-all duration-300 overflow-hidden">
+            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
               <div className="relative z-10 flex flex-col flex-1">
-                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_20px_rgba(0,184,255,0.25)] transition-all duration-300">
+                <div className="relative w-full h-44 mb-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=70"
+                    alt="AI bot face representing machine and service identities"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center mb-5 group-hover:bg-[#00B8FF]/20 group-hover:shadow-[0_0_10px_rgba(0,184,255,0.12)] transition-all duration-300">
                   <Server className="w-6 h-6 text-[#00B8FF]" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
@@ -443,7 +435,7 @@ export default function HomePage() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group relative p-6 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.08)] transition-all duration-300 card-shine cursor-default overflow-hidden"
+                className="group relative p-6 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_14px_rgba(0,184,255,0.04)] transition-all duration-300 card-shine cursor-default overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.07] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
@@ -466,12 +458,14 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/platform" className="btn-secondary">
+            <Link href="/features" className="btn-secondary">
               View All Features <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="mt-14 rounded-2xl border border-[#00B8FF]/15 bg-slate-100/60 dark:bg-[#0A1628]/60 overflow-hidden">
+          {/* Forced dark band so light mode keeps contrast */}
+          <div className="dark">
+          <div className="mt-14 rounded-2xl border border-[#00B8FF]/15 bg-slate-100/60 dark:bg-[#0A1628] overflow-hidden">
             <div className="grid lg:grid-cols-[1.1fr_1.4fr] gap-0">
               <div className="p-8 border-b lg:border-b-0 lg:border-r border-slate-900/[0.08] dark:border-white/[0.06]">
                 <div className="badge-cyan mb-4">Live Visibility</div>
@@ -485,6 +479,15 @@ export default function HomePage() {
                   Give security, infrastructure, and compliance teams one place to review active sessions,
                   investigate privileged activity, and make access decisions without jumping between tools.
                 </p>
+                <div className="relative w-full h-48 mt-6 rounded-xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=70"
+                    alt="Security and infrastructure teams reviewing privileged activity together"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 560px"
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <div className="grid sm:grid-cols-3">
                 {[
@@ -517,13 +520,17 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </section>
 
-      {/* ─── AI-PAM & CORE ML ENGINE ────────────── */}
-      <AiPamEngineSection />
+      {/* ─── AI-PAM TEASER (full deep dive on /ai-pam) ── */}
+      <AiPamTeaser />
 
-      {/* ─── HOW IT WORKS (SECURE ACCESS IN THREE STEPS) ─── */}
+      {/* ─── HOW IT WORKS (SECURE ACCESS IN THREE STEPS) ───
+          TEMPORARILY DISABLED — repeated the same connect → control → observe
+          story as the Control Plane section.
+
       <section className="section-padding-lg border-y border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#040814]">
         <div className="container-xl">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -554,7 +561,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── COMPLIANCE ────────────────────────── */}
+      */}
+
+      {/* ─── COMPLIANCE ──────────────────────── */}
+      {/* This section always has a dark background, so force the dark palette
+          — otherwise its text stays near-black in light mode. */}
+      <div className="dark">
       <section className="section-padding border-y border-slate-900/[0.05] dark:border-white/[0.04]" style={{ background: "linear-gradient(180deg, #0A1628 0%, #030711 100%)" }}>
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -602,7 +614,7 @@ export default function HomePage() {
               {certs.map((cert) => (
                 <div
                   key={cert.name}
-                  className="flex flex-col items-center justify-center p-6 rounded-2xl border border-[#00B8FF]/18 bg-[#00B8FF]/[0.05] hover:bg-[#00B8FF]/[0.14] hover:border-[#00B8FF]/45 hover:shadow-[0_0_30px_rgba(0,184,255,0.12)] transition-all duration-300 group"
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl border border-[#00B8FF]/18 bg-[#00B8FF]/[0.05] hover:bg-[#00B8FF]/[0.14] hover:border-[#00B8FF]/45 hover:shadow-[0_0_14px_rgba(0,184,255,0.06)] transition-all duration-300 group"
                 >
                   <cert.icon className="w-8 h-8 text-[#00B8FF] mb-3 group-hover:scale-110 transition-transform" />
                   <div className="text-xs font-bold text-slate-950 dark:text-white text-center whitespace-pre-line leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
@@ -615,6 +627,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ─── TESTIMONIALS ──────────────────────── */}
       <section className="section-padding-lg">
@@ -667,7 +680,7 @@ export default function HomePage() {
               <Link
                 key={post.title}
                 href={post.href}
-                className="group flex flex-col rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/50 dark:bg-[#0A1628]/50 hover:border-[#00B8FF]/[0.28] hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_30px_rgba(0,184,255,0.07)] transition-all duration-300 overflow-hidden"
+                className="group flex flex-col rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/50 dark:bg-[#0A1628]/50 hover:border-[#00B8FF]/[0.28] hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_14px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden"
               >
                 {/* Cover image */}
                 <div className="relative h-44 overflow-hidden bg-slate-200 dark:bg-[#0F1E35]">
@@ -705,7 +718,10 @@ export default function HomePage() {
       </section>
 
       {/* ─── CLOSING CTA ───────────────────────── */}
-      <ClosingCtaSection />
+      {/* Forced dark band so light mode keeps contrast between sections */}
+      <div className="dark">
+        <ClosingCtaSection />
+      </div>
 
       {/* ─── COMPLETE FAQ SECTION ───────────────── */}
       <PamFaqSection />

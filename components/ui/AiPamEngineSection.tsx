@@ -210,7 +210,7 @@ export default function AiPamEngineSection() {
               onClick={() => setActiveTab("ml")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 activeTab === "ml"
-                  ? "bg-[#00B8FF]/20 text-[#00B8FF] border border-[#00B8FF]/40 shadow-[0_0_20px_rgba(0,184,255,0.15)]"
+                  ? "bg-[#00B8FF]/20 text-[#00B8FF] border border-[#00B8FF]/40 shadow-[0_0_10px_rgba(0,184,255,0.07)]"
                   : "bg-white/[0.03] text-slate-400 border border-white/[0.08] hover:text-white hover:bg-white/[0.06]"
               }`}
             >
@@ -222,7 +222,7 @@ export default function AiPamEngineSection() {
               onClick={() => setActiveTab("agents")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 activeTab === "agents"
-                  ? "bg-[#6366f1]/25 text-[#a5b4fc] border border-[#6366f1]/45 shadow-[0_0_20px_rgba(99,102,241,0.2)]"
+                  ? "bg-[#6366f1]/25 text-[#a5b4fc] border border-[#6366f1]/45 shadow-[0_0_10px_rgba(99,102,241,0.10)]"
                   : "bg-white/[0.03] text-slate-400 border border-white/[0.08] hover:text-white hover:bg-white/[0.06]"
               }`}
             >
@@ -234,7 +234,7 @@ export default function AiPamEngineSection() {
               onClick={() => setActiveTab("mcp")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 activeTab === "mcp"
-                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]"
+                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.07)]"
                   : "bg-white/[0.03] text-slate-400 border border-white/[0.08] hover:text-white hover:bg-white/[0.06]"
               }`}
             >
@@ -338,7 +338,7 @@ export default function AiPamEngineSection() {
                       onClick={() => setActiveThreatIndex(idx)}
                       className={`p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "border-[#00B8FF]/45 bg-[#0c182c] shadow-[0_0_20px_rgba(0,184,255,0.08)]"
+                          ? "border-[#00B8FF]/45 bg-[#0c182c] shadow-[0_0_12px_rgba(0,184,255,0.04)]"
                           : "border-white/[0.06] bg-[#050b14] hover:border-white/[0.12] hover:bg-[#07101e]"
                       }`}
                     >

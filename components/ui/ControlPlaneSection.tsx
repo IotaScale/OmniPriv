@@ -11,8 +11,8 @@ import {
   ScanSearch,
   ShieldCheck,
   Settings,
-  ArrowLeft,
-  ArrowRight,
+  ArrowDown,
+  ArrowUp,
 } from "lucide-react";
 
 const identities = [
@@ -105,15 +105,21 @@ export default function ControlPlaneSection() {
           </p>
         </div>
 
-        {/* Top connector */}
-        <div className="hidden lg:flex items-center gap-2 mb-5">
-          <ArrowLeft className="cp-arrow-left w-4 h-4 text-[#00B8FF] flex-shrink-0" />
-          <div className="cp-dash cp-dash-left flex-1" />
-          <span className="px-4 text-sm font-semibold text-slate-950 dark:text-white whitespace-nowrap">
-            Intelligent Detection &amp; Response
-          </span>
-          <div className="cp-dash cp-dash-right flex-1" />
-          <ArrowRight className="cp-arrow-right w-4 h-4 text-[#00B8FF] flex-shrink-0" />
+        {/* Top connector — arrows centred over the All Identities / All Targets rails */}
+        <div className="hidden lg:grid lg:grid-cols-[180px_1fr_1fr_1fr_180px] gap-4 items-center mb-5">
+          <div className="flex justify-center">
+            <ArrowDown className="cp-arrow-down w-4 h-4 text-[#00B8FF]" />
+          </div>
+          <div className="col-span-3 flex items-center gap-2">
+            <div className="cp-dash cp-dash-left flex-1" />
+            <span className="px-4 text-sm font-semibold text-slate-950 dark:text-white whitespace-nowrap">
+              Intelligent Detection &amp; Response
+            </span>
+            <div className="cp-dash cp-dash-right flex-1" />
+          </div>
+          <div className="flex justify-center">
+            <ArrowDown className="cp-arrow-down w-4 h-4 text-[#00B8FF]" />
+          </div>
         </div>
 
         {/* Control plane grid */}
@@ -123,7 +129,7 @@ export default function ControlPlaneSection() {
           {stages.map((stage) => (
             <div
               key={stage.title}
-              className="group relative flex flex-col rounded-2xl border border-[#00B8FF]/20 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-6 pt-12 overflow-hidden shadow-[0_0_50px_rgba(0,184,255,0.06)] transition-all duration-300 hover:border-[#00B8FF]/45 hover:shadow-[0_16px_50px_rgba(0,184,255,0.14)] hover:-translate-y-1"
+              className="group relative flex flex-col rounded-2xl border border-[#00B8FF]/20 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-6 pt-12 overflow-hidden shadow-[0_0_20px_rgba(0,184,255,0.03)] transition-all duration-300 hover:border-[#00B8FF]/45 hover:shadow-[0_10px_24px_rgba(0,184,255,0.06)] hover:-translate-y-1"
             >
               <div className="relative flex flex-col flex-1">
                 {/* Icon with scan rings centred on it */}
@@ -162,7 +168,7 @@ export default function ControlPlaneSection() {
                   {/* Pulsing halo behind the icon */}
                   <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-2xl border border-[#00B8FF]/40 cp-icon-pulse" />
 
-                  <div className="relative w-14 h-14 rounded-2xl bg-[#00B8FF]/10 border border-[#00B8FF]/25 flex items-center justify-center shadow-[0_0_24px_rgba(0,184,255,0.15)]">
+                  <div className="relative w-14 h-14 rounded-2xl bg-[#00B8FF]/10 border border-[#00B8FF]/25 flex items-center justify-center shadow-[0_0_12px_rgba(0,184,255,0.07)]">
                     <stage.icon className="w-7 h-7 text-[#00B8FF]" />
                   </div>
                 </div>
@@ -194,15 +200,21 @@ export default function ControlPlaneSection() {
           <Rail title="All Targets" items={targets} />
         </div>
 
-        {/* Bottom connector */}
-        <div className="hidden lg:flex items-center gap-2 mt-5">
-          <ArrowLeft className="cp-arrow-left w-4 h-4 text-[#00B8FF] flex-shrink-0" />
-          <div className="cp-dash cp-dash-left flex-1" />
-          <span className="px-4 text-sm font-semibold text-slate-950 dark:text-white whitespace-nowrap">
-            Automated Policy &amp; Posture
-          </span>
-          <div className="cp-dash cp-dash-right flex-1" />
-          <ArrowRight className="cp-arrow-right w-4 h-4 text-[#00B8FF] flex-shrink-0" />
+        {/* Bottom connector — arrows centred over the All Identities / All Targets rails */}
+        <div className="hidden lg:grid lg:grid-cols-[180px_1fr_1fr_1fr_180px] gap-4 items-center mt-5">
+          <div className="flex justify-center">
+            <ArrowUp className="cp-arrow-up w-4 h-4 text-[#00B8FF]" />
+          </div>
+          <div className="col-span-3 flex items-center gap-2">
+            <div className="cp-dash cp-dash-left flex-1" />
+            <span className="px-4 text-sm font-semibold text-slate-950 dark:text-white whitespace-nowrap">
+              Automated Policy &amp; Posture
+            </span>
+            <div className="cp-dash cp-dash-right flex-1" />
+          </div>
+          <div className="flex justify-center">
+            <ArrowUp className="cp-arrow-up w-4 h-4 text-[#00B8FF]" />
+          </div>
         </div>
       </div>
     </section>

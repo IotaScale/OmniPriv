@@ -38,7 +38,7 @@ export default function SignInPage() {
 
         <div className="w-full max-w-md">
           {/* Card */}
-          <div className="rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100/80 dark:bg-[#0A1628]/80 backdrop-blur-xl p-8 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+          <div className="rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100/80 dark:bg-[#0A1628]/80 backdrop-blur-xl p-8 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
             <div className="text-center mb-6">
               <div className="badge-cyan mx-auto mb-3">Partner Portal</div>
               <h1

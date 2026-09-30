@@ -192,7 +192,7 @@ export default function EnterprisePage() {
               <div
                 key={plan.name}
                 className={`relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 ${plan.highlight
-                    ? "border-[#00B8FF]/40 bg-gradient-to-b from-[#00B8FF]/[0.08] to-slate-100/80 dark:to-[#0A1628]/80 shadow-[0_0_40px_rgba(0,184,255,0.15)]"
+                    ? "border-[#00B8FF]/40 bg-gradient-to-b from-[#00B8FF]/[0.08] to-slate-100/80 dark:to-[#0A1628]/80 shadow-[0_0_18px_rgba(0,184,255,0.07)]"
                     : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/60 dark:bg-[#0A1628]/60"
                   }`}
               >

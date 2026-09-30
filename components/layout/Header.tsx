@@ -26,6 +26,12 @@ import {
 
 const platformLinks = [
   {
+    label: "AI-PAM Engine",
+    description: "ML detection, MCP agent governance",
+    href: "/ai-pam",
+    icon: Zap,
+  },
+  {
     label: "Infrastructure & Deployment",
     description: "On-premise, HA, agentless",
     href: "/platform/infrastructure-deployment",
@@ -142,7 +148,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-white/95 dark:bg-[#030711]/95 backdrop-blur-xl border-b border-slate-900/[0.08] dark:border-white/[0.06] shadow-[0_4px_30px_rgba(0,184,255,0.06)]"
+        ? "bg-white/95 dark:bg-[#030711]/95 backdrop-blur-xl border-b border-slate-900/[0.08] dark:border-white/[0.06] shadow-[0_2px_12px_rgba(0,184,255,0.04)]"
         : "bg-transparent"
         }`}
     >
@@ -186,7 +192,7 @@ export default function Header() {
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${platformOpen ? "rotate-180" : ""}`} />
               </button>
               {platformOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.16)] z-50">
                   <div className="grid grid-cols-2 gap-1">
                     {platformLinks.map((item) => (
                       <Link
@@ -230,7 +236,7 @@ export default function Header() {
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${resourceOpen ? "rotate-180" : ""}`} />
               </button>
               {resourceOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.16)] z-50">
                   {resourceLinks.map((item) => (
                     <Link
                       key={item.label}
