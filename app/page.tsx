@@ -371,7 +371,7 @@ export default function HomePage() {
                   Secure administrators, employees, contractors, and vendors with MFA, role-based access, approval workflows, Just-in-Time privileges, and monitored sessions.
                 </p>
                 <Link
-                  href="/demo"
+                  href="/solutions/human-identity-security"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
                 >
                   Secure Human Access <ArrowRight className="w-4 h-4" />
