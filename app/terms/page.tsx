@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | OmniPriv",
+  title: { absolute: "Terms of Service | OmniPriv" },
   description: "OmniPriv Terms of Service: the legal agreement governing your use of our privileged access management platform and website.",
 };
 

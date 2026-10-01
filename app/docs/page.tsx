@@ -1,10 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight, BookOpen, Code, Server, Zap, Shield,
   ChevronRight, FileText, Database, Network, Cpu, Lock, Globe,
   Play, Terminal, Settings, Users,
   Icon,
 } from "lucide-react";
+
+// No category sub-routes exist yet, so the brand suffix here is deliberately
+// distinct from the layout default that /demo would otherwise share.
+export const metadata: Metadata = {
+  title: { absolute: "Documentation | OmniPriv PAM Guides & API Reference" },
+  description:
+    "Installation, administration, security, API and deployment guides for the OmniPriv privileged access management platform.",
+};
 
 const docCategories = [
   {

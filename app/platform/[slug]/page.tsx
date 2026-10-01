@@ -52,7 +52,9 @@ export async function generateMetadata({
     const solution = getSolutionBySlug(slug);
     if (!solution) return {};
     return {
-        title: solution.metaTitle,
+        // metaTitle already carries the brand, so it must bypass the
+        // "%s | OmniPriv" template in app/layout.tsx or the suffix doubles up.
+        title: { absolute: solution.metaTitle },
         description: solution.metaDescription,
     };
 }
@@ -129,7 +131,7 @@ export default async function SolutionPage({
                                 className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all duration-300 group card-shine"
                             >
                                 <div className="icon-wrapper w-10 h-10 rounded-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <feature.icon className="w-4.5 h-4.5" />
+                                    <feature.icon className="w-5 h-5" />
                                 </div>
                                 <h3
                                     className="text-base font-bold text-slate-950 dark:text-white mb-2"

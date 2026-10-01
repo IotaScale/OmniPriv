@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Blog|omnipriv Privileged Access Management Solution",
+    absolute: "Blog | OmniPriv Privileged Access Management Solution",
   },
   description:
-    "Explore the Omnipriv blog to discover best practices and strategies for implementing a secure privileged access management solution in your organization.",
+    "Explore the OmniPriv blog to discover best practices and strategies for implementing a secure privileged access management solution in your organization.",
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

@@ -37,10 +37,10 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Omnipriv|Top Privileged Access Management & PAM Solutions",
+    absolute: "OmniPriv | Top Privileged Access Management & PAM Solutions",
   },
   description:
-    "Protect your enterprise with Omnipriv advanced PAM solutions. Discover seamless privileged access management to secure critical data and reduce risk.",
+    "Protect your enterprise with OmniPriv advanced PAM solutions. Discover seamless privileged access management to secure critical data and reduce risk.",
 };
 
 

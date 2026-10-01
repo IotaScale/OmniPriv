@@ -30,7 +30,7 @@ import type { RichText } from "@/lib/rich-text";
  */
 
 export const metadata: Metadata = {
-    title: "Consolidation: Replace a Fragmented PAM Stack — OmniPriv",
+    title: { absolute: "Consolidation: Replace a Fragmented PAM Stack — OmniPriv" },
     description:
         "Replace separate vaulting, session recording, workflow and reporting tools with one agentless PAM platform you deploy on your own infrastructure.",
 };

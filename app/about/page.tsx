@@ -7,10 +7,10 @@ import {
 // 
 export const metadata: Metadata = {
   title: {
-    absolute: "About Omnipriv | Advanced PAM Solutions",
+    absolute: "About OmniPriv | Advanced PAM Solutions",
   },
   description:
-    "Learn about Omnipriv's mission to secure digital assets. As experts in enterprise PAM solutions, we protect your business from modern cyber threats.",
+    "Learn about OmniPriv's mission to secure digital assets. As experts in enterprise PAM solutions, we protect your business from modern cyber threats.",
 };
 
 const values = [
