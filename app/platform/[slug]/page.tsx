@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { solutions, getSolutionBySlug } from "../data";
 import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage";
+import ThreatDetectionPage from "@/components/solutions/ThreatDetectionPage";
 
 /*
  * Capabilities that need more than the generic layout below.
@@ -15,6 +16,7 @@ import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage"
  */
 const bespokePages: Record<string, ComponentType> = {
     "ai-agent-governance": AiAgentGovernancePage,
+    "threat-detection": ThreatDetectionPage,
 };
 
 /* ── Static params for all 8 slugs ─────────────────────────── */

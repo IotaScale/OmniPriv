@@ -30,7 +30,7 @@ const challenges = [
         headline: "Defend against AI-era attacks",
         body: "Machine-learning anomaly detection scores every privileged login and session in real time, then steps up or blocks automatically.",
         caption: "ML · ISOLATIONFOREST",
-        href: "/platform/application-security",
+        href: "/platform/threat-detection",
         icon: ShieldAlert,
         accent: "#818cf8",
     },
