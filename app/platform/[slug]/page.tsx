@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { solutions, getSolutionBySlug } from "../data";
 import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage";
+import AuditCompliancePage from "@/components/solutions/AuditCompliancePage";
 import SessionManagementPage from "@/components/solutions/SessionManagementPage";
 import ThreatDetectionPage from "@/components/solutions/ThreatDetectionPage";
 
@@ -17,6 +18,7 @@ import ThreatDetectionPage from "@/components/solutions/ThreatDetectionPage";
  */
 const bespokePages: Record<string, ComponentType> = {
     "ai-agent-governance": AiAgentGovernancePage,
+    "audit-compliance": AuditCompliancePage,
     "session-management": SessionManagementPage,
     "threat-detection": ThreatDetectionPage,
 };
