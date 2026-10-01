@@ -19,6 +19,7 @@ import SectionHeading from "@/components/sections/SectionHeading";
 import SplitHero from "@/components/sections/SplitHero";
 import BlogIndex from "@/components/blog/BlogIndex";
 import BlogNewsletter from "@/components/blog/BlogNewsletter";
+import { getCover } from "@/lib/blog-covers";
 import { posts } from "@/lib/blog-data";
 import type { BlogCard, BlogCategory } from "@/components/blog/BlogIndex";
 import type { FaqEntry } from "@/components/sections/FaqSection";
@@ -76,6 +77,7 @@ function toCard(slug: string, post: (typeof posts)[string]): BlogCard {
         authorTitle: post.authorTitle,
         href: `/blog/${slug}`,
         tags: post.tags,
+        image: getCover(slug),
     };
 }
 

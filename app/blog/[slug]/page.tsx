@@ -3,9 +3,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, Calendar, Tag, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
 
+import CtaBand from "@/components/sections/CtaBand";
 import { posts } from "@/lib/blog-data";
+import { getCover } from "@/lib/blog-covers";
+import { mediaBorder } from "@/lib/styles";
 
 /* ─── INLINE MARKDOWN RENDERER ─────────────────────── */
 
@@ -52,6 +55,8 @@ export async function generateMetadata(
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = posts[params.slug];
   if (!post) notFound();
+
+  const cover = getCover(params.slug);
 
   // Split content into sections by ## headings
   const sections = post.content.trim().split(/\n(?=## )/);
@@ -117,6 +122,19 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   <Tag className="w-2.5 h-2.5" /> {tag}
                 </span>
               ))}
+            </div>
+          )}
+
+          {cover && (
+            <div className={`relative mt-10 w-full h-56 sm:h-72 rounded-2xl overflow-hidden border ${mediaBorder}`}>
+              <Image
+                src={cover.src}
+                alt={cover.alt}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 768px"
+                className="object-cover"
+              />
             </div>
           )}
         </div>
@@ -208,29 +226,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             })}
           </div>
 
-          {/* CTA */}
-          <div className="mt-16 p-8 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]">
-            <h3
-              className="text-lg font-extrabold text-slate-950 dark:text-white mb-3"
-              style={{ fontFamily: "var(--font-syne)" }}
-            >
-              See OmniPriv in Action
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5">
-              Talk to our team to see how OmniPriv addresses the challenges in this article for your specific environment.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/demo" className="btn-primary text-sm">
-                Request a Demo <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/demo" className="btn-secondary text-sm">
-                Contact Sales
-              </Link>
-            </div>
-          </div>
-
           {/* Back */}
-          <div className="mt-10 pt-8 border-t border-slate-900/[0.08] dark:border-white/[0.06]">
+          <div className="mt-16 pt-8 border-t border-slate-900/[0.08] dark:border-white/[0.06]">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors"
@@ -240,6 +237,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
+
+      {/* Closing — top level so CtaBand keeps its full-bleed dark surface. */}
+      <CtaBand
+        title="See these controls against your own environment"
+        body={[
+          "The platform index describes what each capability module does; a walkthrough shows what it looks like against your systems.",
+        ]}
+        kicker="Nine modules. One audit trail."
+        primary={{ href: "/demo", label: "Request a Demo" }}
+        secondary={{ href: "/platform", label: "Explore the Platform" }}
+      />
     </>
   );
 }

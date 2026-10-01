@@ -146,74 +146,89 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                 >
                     <div className="absolute inset-0 bg-grid opacity-20" aria-hidden="true" />
                     <div
-                        className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10 pointer-events-none"
+                        className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10 pointer-events-none z-10"
                         style={{
                             background: "radial-gradient(circle, #00B8FF 0%, transparent 60%)",
                         }}
                         aria-hidden="true"
                     />
 
-                    <div className="relative z-10 p-8 md:p-12">
-                        <div className="flex items-center gap-3 mb-5">
-                            <span
-                                className={cn(
-                                    "px-3 py-1 rounded-full border text-xs font-semibold",
-                                    getTagColor(featured.category),
-                                )}
-                            >
-                                {labelOf(featured.category)}
-                            </span>
-                            <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">
-                                Featured
-                            </span>
-                        </div>
-
-                        <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl">
-                            {featured.title}
-                        </h2>
-
-                        <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 max-w-2xl">
-                            {featured.excerpt}
-                        </p>
-
-                        <div className="flex flex-wrap items-center gap-2 mb-6">
-                            {featured.tags.map((tag) => (
-                                <span key={tag} className="tag text-xs">
-                                    {tag}
+                    <div className="relative z-20 grid lg:grid-cols-[1.15fr_1fr]">
+                        <div className="p-8 md:p-12 order-2 lg:order-1">
+                            <div className="flex items-center gap-3 mb-5">
+                                <span
+                                    className={cn(
+                                        "px-3 py-1 rounded-full border text-xs font-semibold",
+                                        getTagColor(featured.category),
+                                    )}
+                                >
+                                    {labelOf(featured.category)}
                                 </span>
-                            ))}
-                        </div>
-
-                        <div className="flex items-center justify-between flex-wrap gap-4">
-                            <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-slate-950 dark:text-white text-sm font-bold">
-                                    {featured.author.charAt(0)}
-                                </div>
-                                <div>
-                                    <div className="text-slate-950 dark:text-white text-sm font-semibold">
-                                        {featured.author}
-                                    </div>
-                                    <div className="text-slate-500 text-xs">
-                                        {featured.authorTitle}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-4 text-xs text-slate-500">
-                                <span className="flex items-center gap-1">
-                                    <Calendar className="w-3 h-3" aria-hidden="true" />
-                                    {featured.date}
-                                </span>
-                                <span className="flex items-center gap-1">
-                                    <Clock className="w-3 h-3" aria-hidden="true" />
-                                    {featured.readTime}
-                                </span>
-                                <span className="text-[#00B8FF] font-semibold flex items-center gap-1">
-                                    Read Article
-                                    <ChevronRight className="w-3 h-3" aria-hidden="true" />
+                                <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                                    Featured
                                 </span>
                             </div>
+
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl">
+                                {featured.title}
+                            </h2>
+
+                            <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 max-w-2xl">
+                                {featured.excerpt}
+                            </p>
+
+                            <div className="flex flex-wrap items-center gap-2 mb-6">
+                                {featured.tags.map((tag) => (
+                                    <span key={tag} className="tag text-xs">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <div className="flex items-center justify-between flex-wrap gap-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-slate-950 dark:text-white text-sm font-bold">
+                                        {featured.author.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <div className="text-slate-950 dark:text-white text-sm font-semibold">
+                                            {featured.author}
+                                        </div>
+                                        <div className="text-slate-500 text-xs">
+                                            {featured.authorTitle}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-4 text-xs text-slate-500">
+                                    <span className="flex items-center gap-1">
+                                        <Calendar className="w-3 h-3" aria-hidden="true" />
+                                        {featured.date}
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                        <Clock className="w-3 h-3" aria-hidden="true" />
+                                        {featured.readTime}
+                                    </span>
+                                    <span className="text-[#00B8FF] font-semibold flex items-center gap-1">
+                                        Read Article
+                                        <ChevronRight className="w-3 h-3" aria-hidden="true" />
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+
+                        {featured.image && (
+                            <div className="relative h-56 lg:h-auto lg:min-h-[320px] order-1 lg:order-2">
+                                <Image
+                                    src={featured.image.src}
+                                    alt={featured.image.alt}
+                                    fill
+                                    priority
+                                    sizes="(max-width: 1024px) 100vw, 40vw"
+                                    className="object-cover"
+                                />
+                            </div>
+                        )}
                     </div>
                 </Link>
 
