@@ -21,7 +21,7 @@ import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/workflow-access-control — the destination of
+ * Bespoke layout for /platform/ai-agent-governance — the destination of
  * the "AI Governance / Govern AI agents securely" challenge card.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this

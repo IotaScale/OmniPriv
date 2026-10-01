@@ -14,7 +14,7 @@ import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage"
  * would. Anything not listed here keeps the generic capability template.
  */
 const bespokePages: Record<string, ComponentType> = {
-    "workflow-access-control": AiAgentGovernancePage,
+    "ai-agent-governance": AiAgentGovernancePage,
 };
 
 /* ── Static params for all 8 slugs ─────────────────────────── */

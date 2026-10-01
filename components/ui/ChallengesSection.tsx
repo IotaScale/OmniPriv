@@ -20,7 +20,7 @@ const challenges = [
         headline: "Govern AI agents securely",
         body: "Every MCP agent gets its own verifiable identity, tool allowlist and data scope — with human approval on high-risk actions.",
         caption: "MCP · 100+ TOOLS",
-        href: "/platform/workflow-access-control",
+        href: "/platform/ai-agent-governance",
         icon: Bot,
         accent: "#00B8FF",
     },

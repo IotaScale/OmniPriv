@@ -1,6 +1,6 @@
 import {
     Server, Key, Shield, Building2, Monitor,
-    Workflow, BarChart3, AlertTriangle,
+    Workflow, BarChart3, AlertTriangle, Bot,
     // Feature icons
     Globe, Database, Cpu, Eye, Lock, RefreshCw,
     FileSearch, Layers, Zap, Clock, Network,
@@ -70,7 +70,26 @@ export const platformSpecs: PlatformSpec[] = [
     { label: "Disaster Recovery", value: "Break-glass emergency procedure + granular credential restore without full system restore" },
 ];
 
-export const solutions: Solution[] = [
+export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-first: intentionally listed first) ─
+    {
+        slug: "ai-agent-governance",
+        title: "AI Agent Governance",
+        tagline: "Verifiable identity, tool allowlist and data scope for every AI agent",
+        description:
+            "OmniPriv governs autonomous AI agents and MCP servers with a verifiable identity per agent, an explicit tool allowlist, a bounded data scope, and human approval on high-risk actions.",
+        metaTitle: "AI Agent Governance — OmniPriv PAM",
+        metaDescription:
+            "Govern autonomous AI agents and MCP servers with a verifiable identity, tool allowlist, data scope and human approval on high-risk actions.",
+        icon: Bot,
+        features: [
+            { name: "Verifiable Agent Identity", description: "Every MCP agent is registered as its own identity with its own credentials — never a borrowed human account or a shared service account", icon: Fingerprint },
+            { name: "Tool Allowlist Enforcement", description: "An agent may call only the tools and MCP servers explicitly permitted for its task; everything else is refused at policy evaluation", icon: Shield },
+            { name: "Bounded Data Scope", description: "Each agent's reach is limited to the records and resources the approved task actually requires", icon: Database },
+            { name: "Human Approval on High-Risk Actions", description: "Actions classified as high risk are held for human approval before they execute, with multi-approver chains and time-based conditions", icon: UserCheck },
+            { name: "Runtime Policy Enforcement", description: "Every tool call, query and command is evaluated against policy before it runs — not once when the session opens", icon: Zap },
+            { name: "Agent Session Audit Trail", description: "Every agent session is recorded in full and tied back to the identity that directed it", icon: FileSearch },
+        ],
+    },
     // ─── 1. Infrastructure & Deployment ───────────────────────────
     {
         slug: "infrastructure-deployment",
@@ -202,9 +221,9 @@ export const solutions: Solution[] = [
         tagline: "Structured, policy-driven privileged access with full approval governance",
         description:
             "OmniPriv enforces 4-Eyes approval workflows, temporary privilege assignments, and application credential management — rotating hard-coded passwords in config files, Windows Services, and IIS App Pools.",
-        metaTitle: "AI Agent Governance — OmniPriv PAM",
+        metaTitle: "Workflow & Access Control — OmniPriv PAM",
         metaDescription:
-            "Govern autonomous AI agents with a verifiable identity, tool allowlist, data scope and human approval on high-risk actions — backed by 4-Eyes approval workflows and application credential management.",
+            "Enforce 4-eyes approval, multi-level workflows, time-based policies, and application credential management for complete privileged access governance.",
         icon: Workflow,
         features: [
             { name: "4-Eyes Approval Principle", description: "Minimum two independent approvers required before access is granted; no user can self-approve their own privileged access request", icon: UserCheck },
