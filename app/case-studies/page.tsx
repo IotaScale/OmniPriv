@@ -1,242 +1,366 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, TrendingDown, Clock, ShieldCheck } from "lucide-react";
+import {
+    ClipboardCheck,
+    Clock,
+    Eye,
+    KeyRound,
+    Layers,
+    Monitor,
+    Network,
+    RefreshCw,
+    ShieldCheck,
+    UserCheck,
+} from "lucide-react";
+
+import ArrowLink from "@/components/sections/ArrowLink";
+import CheckList from "@/components/sections/CheckList";
+import ChipList from "@/components/sections/ChipList";
+import CtaBand from "@/components/sections/CtaBand";
+import FaqSection from "@/components/sections/FaqSection";
+import IconCardGrid from "@/components/sections/IconCardGrid";
+import MediaSplit from "@/components/sections/MediaSplit";
+import Prose from "@/components/sections/Prose";
+import Section from "@/components/sections/Section";
+import SectionHeading from "@/components/sections/SectionHeading";
+import SplitHero from "@/components/sections/SplitHero";
+import type { FaqEntry } from "@/components/sections/FaqSection";
+import type { IconCard } from "@/components/sections/IconCardGrid";
+import type { RichText } from "@/lib/rich-text";
+
+/*
+ * /case-studies
+ *
+ * Rebuilt on the shared section library, and reframed from customer stories
+ * to problem patterns.
+ *
+ * The previous version presented nine anonymous organisations as real
+ * customers — "Global Investment Bank", "Regional Health System", "Federal
+ * Defense Agency" — each with precise metrics ("68% reduction in privilege
+ * account attack surface", "2,400 privileged accounts brought under
+ * management", "Zero privilege-related incidents"). None of it was real, and
+ * given that no customer is named, none of it was checkable either. It also
+ * ran a filter bar that looked interactive but had no handler.
+ *
+ * This version describes the problem shapes privileged access programmes
+ * actually run into and the platform controls that address them. Every
+ * capability referenced below comes from app/platform/data.ts. There are no
+ * invented customers, no invented percentages, and no implied testimonials.
+ */
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "OmniPriv Case Studies | Proven PAM Solutions in Action",
-  },
-  description:
-    "Discover real-world success stories. Learn how OmniPriv delivers scalable PAM solutions to solve complex cybersecurity challenges for leading businesses.",
+    title: {
+        absolute: "Privileged Access Patterns | OmniPriv",
+    },
+    description:
+        "The problem patterns privileged access programmes run into — fragmented tooling, standing privilege, stale credentials, unprovable audit trails — and the platform controls that address them.",
 };
 
-const industries = ["All Industries", "Financial Services", "Healthcare", "Manufacturing", "Technology", "Government", "Energy"];
-
-const featured = {
-  company: "Global Investment Bank",
-  industry: "Financial Services",
-  logo: "GIB",
-  challenge:
-    "A top-10 global investment bank managing significant assets under management faced mounting pressure from regulators after a privileged account misuse incident. With over 3,000 privileged accounts across 12 countries and no unified audit trail, the bank could not demonstrate adequate control.",
-  solution:
-    "OmniPriv was deployed across 4 data centers in 2 regions over 12 weeks. The bank leveraged JIT access, MFA enforcement, session recording, and automated account rotation to lock down all privileged paths.",
-  results: [
-    { metric: "68%", label: "Reduction in privilege account attack surface" },
-    { metric: "100%", label: "Regulatory audit coverage achieved" },
-    { metric: "Zero", label: "Privilege-related incidents post-deployment" },
-    { metric: "90 days", label: "Time to full compliance posture" },
-  ],
-  quote: "OmniPriv didn't just solve our privileged access problem. It transformed how we think about trust across our entire infrastructure. The regulators were impressed. Our board was relieved.",
-  attribution: "Chief Information Security Officer",
+const hero = {
+    badge: "Patterns & Outcomes",
+    titleLead: "The problem shape",
+    titleAccent: "is always the same.",
+    intro: [
+        "Privileged access failures rarely come from a missing control. They come from the same six situations, repeated across industries and organisation sizes — a secret nobody owns, a permission nobody removed, a record nobody can vouch for.",
+    ] as RichText,
+    body: [
+        "So this page describes the patterns rather than the customers. Each one below names the situation, and links to the capability module built to resolve it.",
+    ] as RichText,
+    primary: { href: "/demo", label: "Request a Demo" },
+    secondary: { href: "/platform", label: "See the Capabilities" },
+    image: {
+        src: "https://images.unsplash.com/photo-1759310610480-48649b55fbdf?auto=format&fit=crop&w=1200&q=70",
+        alt: "Group of colleagues in a business meeting discussing a project",
+    },
 };
 
-const cases = [
-  {
-    company: "Regional Health System",
-    industry: "Healthcare",
-    logo: "RHS",
-    metric: "HIPAA compliant in 90 days",
-    highlight: "Secured EHR & medical device access across 6 hospitals",
-    desc: "A regional health system needed HIPAA-compliant privileged access across its EHR, medical devices, and distributed IT staff. OmniPriv delivered full session recording and JIT access within 90 days.",
-  },
-  {
-    company: "European Automaker",
-    industry: "Manufacturing",
-    logo: "EA",
-    metric: "Reduced unplanned access events by 70%",
-    highlight: "OT/ICS privileged access secured across 3 plants",
-    desc: "A European automotive manufacturer protecting its connected factory environment deployed OmniPriv to secure privileged access to PLCs, SCADA systems, and industrial IoT — without impacting production uptime.",
-  },
-  {
-    company: "SaaS Scale-up",
-    industry: "Technology",
-    logo: "SS",
-    metric: "SOC 2 audit passed first attempt",
-    highlight: "AWS/GCP secrets management unified in one platform",
-    desc: "A growth-stage SaaS company with 40+ AWS accounts needed to unify cloud secrets management before their SOC 2 audit. OmniPriv consolidated their tooling and achieved full vault coverage in eight weeks.",
-  },
-  {
-    company: "Federal Defense Agency",
-    industry: "Government",
-    logo: "FDA",
-    metric: "FISMA compliant in 6 months",
-    highlight: "Air-gapped deployment for classified environments",
-    desc: "A federal agency with air-gapped networks deployed OmniPriv in a classified environment to meet NIST 800-53 and FISMA requirements. AI-driven privileged access replaced legacy bastion hosts.",
-  },
-  {
-    company: "Energy Operator",
-    industry: "Energy",
-    logo: "EO",
-    metric: "2,400 privileged accounts brought under management",
-    highlight: "Unified PAM across onshore and cloud systems",
-    desc: "An energy company coordinating operations across onshore refineries and cloud infrastructure unified privileged access management across 2,400 accounts and 3 operating divisions.",
-  },
-  {
-    company: "Insurance Carrier",
-    industry: "Financial Services",
-    logo: "IC",
-    metric: "40% reduction in audit preparation time",
-    highlight: "Automated SOC 2 and PCI-DSS evidence collection",
-    desc: "A mid-market insurance carrier replaced manual privilege reviews with OmniPriv's automated control evidence collection — cutting SOC 2 and PCI-DSS audit prep from 6 weeks to about 3.5 weeks.",
-  },
-  {
-    company: "Academic Medical Center",
-    industry: "Healthcare",
-    logo: "AMC",
-    metric: "Shared credentials eliminated in production",
-    highlight: "Replaced shared privileged accounts across 2 data centers",
-    desc: "An academic medical center eliminated shared privileged credentials across its two data centers, replacing them with individually managed accounts with full session accountability under OmniPriv.",
-  },
-  {
-    company: "Regional Telco",
-    industry: "Technology",
-    logo: "RT",
-    metric: "8,000 sessions recorded per day",
-    highlight: "Session recording with anomaly alerting",
-    desc: "A regional telco processing thousands of privileged sessions daily deployed OmniPriv's anomaly detection to flag unusual access patterns and strengthen insider threat visibility.",
-  },
+const patternsSection = {
+    title: "Patterns, not logos",
+    lead: [
+        "We do not name customers without written consent, and we do not publish figures we cannot stand behind. What follows is the set of problems — not attributed results from organisations you cannot call to verify.",
+    ] as RichText,
+};
+
+const patterns: IconCard[] = [
+    {
+        icon: Layers,
+        eyebrow: "Pattern 01",
+        title: "The stack nobody chose",
+        text: "A vault was bought for secrets, a recorder for sessions, a workflow tool for approvals and a reporting add-on for the audit — each with its own console and its own copy of who can do what.",
+        href: "/platform/consolidation",
+    },
+    {
+        icon: Clock,
+        eyebrow: "Pattern 02",
+        title: "Privilege that never expires",
+        text: "Access granted for one incident is still active two years later. Nobody decided to keep it; there was simply never a mechanism that removed it.",
+        href: "/platform/workflow-access-control",
+    },
+    {
+        icon: KeyRound,
+        eyebrow: "Pattern 03",
+        title: "Credentials hiding in plain sight",
+        text: "Database passwords in config files, service accounts in scheduled tasks, an IIS App Pool that has used the same secret since install. These are the credentials no rotation policy ever reaches.",
+        href: "/platform/password-credential-management",
+    },
+    {
+        icon: ShieldCheck,
+        eyebrow: "Pattern 04",
+        title: "Logs you cannot vouch for",
+        text: "The events exist, but they sit in storage an administrator can edit — so in an investigation or an audit they prove nothing about what happened.",
+        href: "/platform/audit-compliance",
+    },
+    {
+        icon: Eye,
+        eyebrow: "Pattern 05",
+        title: "Sessions nobody can inspect",
+        text: "A privileged session ran, the change landed, and the only account of how it happened is the operator's memory several weeks later.",
+        href: "/platform/session-management",
+    },
+    {
+        icon: Network,
+        eyebrow: "Pattern 06",
+        title: "Third parties and automation with standing keys",
+        text: "Vendors, CI/CD pipelines and now autonomous agents hold long-lived credentials for systems their operators may never need to touch directly.",
+        href: "/platform/enterprise-integration",
+    },
+];
+
+const reviewSection = {
+    icon: ClipboardCheck,
+    title: "The review that stops being an argument",
+    paragraphs: [
+        [
+            "Most access reviews are reconstruction work. Somebody assembles a picture from logs, ticket history, emails and memory, and then defends it. When the record is produced by the platform as a side effect of doing the work, the same meeting becomes a matter of reading it out.",
+        ],
+    ] as RichText[],
+    image: {
+        src: "https://images.unsplash.com/photo-1769740333462-9a63bfa914bc?auto=format&fit=crop&w=1200&q=70",
+        alt: "Colleagues seated around a conference table reviewing a project together",
+    },
+    points: [
+        "Every privileged action logged with user, time, asset and outcome",
+        "Session recordings that are contextual, fully indexed and searchable after the fact",
+        "Approvals recorded as evidence rather than reconstructed from an inbox",
+        "Audit records held in tamper-proof storage with cryptographic audit-chain hashing",
+        "Scheduled reports covering entitlements, user activity and asset inventory",
+        "Nine regulatory frameworks mapped out of the box, so a report arrives in the auditor's shape",
+    ],
+};
+
+const outputSection = {
+    title: "What the platform actually produces",
+    lead: [
+        "Outcomes are only meaningful if something concrete stands behind them. These are the artefacts OmniPriv emits, and they are the same ones an audit asks for.",
+    ] as RichText,
+};
+
+const outputPillars = [
+    {
+        icon: Monitor,
+        title: "Session recordings",
+        text: "Every privileged session is fully monitored and recorded, with high-fidelity playback stored securely under controlled access and indexed for later search — no agent on the target.",
+    },
+    {
+        icon: UserCheck,
+        title: "Approval trails",
+        text: "4-eyes is enforced: a minimum of two independent approvers, with the requester excluded from the approval path, so no request can be self-approved.",
+    },
+    {
+        icon: ShieldCheck,
+        title: "Hash-chained audit records",
+        text: "Audit entries are held in tamper-proof storage with cryptographic audit-chain hashing, preserving integrity and non-repudiation rather than merely retaining rows.",
+    },
+    {
+        icon: RefreshCw,
+        title: "Rotation events",
+        text: "Hard-coded credentials are eliminated from configuration files, databases, registries, Windows Services, scheduled tasks and IIS App Pools, and rotated automatically instead.",
+    },
+];
+
+const protocols = ["SSH", "RDP", "VNC", "HTTP", "Database"];
+
+const deepDives = [
+    { href: "/blog/meridian-bank-case-study", label: "Reading: privileged access in a PCI-DSS programme" },
+    { href: "/blog/bank-case-study", label: "Reading: reducing audit preparation effort" },
+    { href: "/platform", label: "All nine platform capabilities" },
+];
+
+const closing = {
+    title: "Start from your pattern, not our template",
+    body: [
+        "Tell us which of the six situations matches your environment and we will show you the controls that address it — including the ones you would have to give up to get there.",
+        "No invented percentages required on either side.",
+    ],
+    kicker: "Agentless. On-premise. Independently audited.",
+    primary: { href: "/demo", label: "Request a Demo" },
+    secondary: { href: "/security", label: "Security Posture" },
+};
+
+const faqs: FaqEntry[] = [
+    {
+        question: "Why are there no customer names on this page?",
+        answer:
+            "Because we do not name customers without their written consent, and we do not publish outcome figures we cannot stand behind. Rather than present unnamed organisations with precise-sounding percentages, this page describes the problem patterns and the platform controls that address them. We are happy to arrange a reference call where one is appropriate and consented to.",
+    },
+    {
+        question: "How long does a deployment take?",
+        answer:
+            "It is scoped against your environment rather than sold as a fixed number. Because the platform is 100% agentless, there is no software rollout to the machines being protected — which removes the phase that usually dominates a privileged access project. A rollout plan is produced during the architecture review, before any commitment.",
+    },
+    {
+        question: "Where does the platform run?",
+        answer:
+            "On-premise, on infrastructure you control — VMware, Red Hat and OpenStack, as a hardware-agnostic software appliance. Multi-node clustering, Docker health checks, WebSocket heartbeat, database replication and load balancing are available for high availability.",
+    },
+    {
+        question: "What does a proof-of-concept involve?",
+        answer:
+            "A 30-minute introductory call, a tailored walkthrough configured for your use cases, an architecture review of your existing infrastructure, and optionally 30 days running OmniPriv in your own environment at no cost with support from our engineering team.",
+    },
+    {
+        question: "Who owns the audit data and the encryption keys?",
+        answer:
+            "You do, on both counts. Data is encrypted at rest with AES-256-GCM and in transit with TLS 1.3, with an HSM providing root-of-trust key protection. The SECRET_KEY is generated at installation and must be stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted — including by an administrator.",
+    },
 ];
 
 export default function CaseStudiesPage() {
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
-          <div className="badge-cyan mb-6">Customer Success</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-            Real Results from <span className="text-gradient">Real Enterprises</span>
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-            See how the world's most security-conscious organizations use OmniPriv to eliminate privileged access risk, meet compliance requirements, and protect their most critical systems.
-          </p>
-        </div>
-      </section>
+    return (
+        <>
+            <SplitHero
+                badge={hero.badge}
+                titleLead={hero.titleLead}
+                titleAccent={hero.titleAccent}
+                primary={hero.primary}
+                secondary={hero.secondary}
+                media={hero.image}
+            >
+                <Prose segments={hero.intro} className="text-lg mb-5" />
+                <Prose segments={hero.body} className="text-lg mb-8" />
+            </SplitHero>
 
-      {/* Featured Case Study */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <p className="text-xs text-slate-500 uppercase tracking-widest font-medium mb-6">Featured Case Study</p>
-          <div className="rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711] overflow-hidden">
-            <div className="p-10 md:p-14">
-              <div className="flex flex-wrap items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-[#00B8FF]/10 flex items-center justify-center text-sm font-bold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>
-                  {featured.logo}
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>{featured.company}</div>
-                  <div className="text-xs text-[#00B8FF] font-semibold">{featured.industry}</div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-12 mb-10">
-                <div>
-                  <h3 className="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-3">The Challenge</h3>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{featured.challenge}</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-3">The Solution</h3>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{featured.solution}</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-10">
-                {featured.results.map((r) => (
-                  <div key={r.label} className="p-5 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-900/10 dark:bg-black/20 text-center">
-                    <div className="text-2xl font-extrabold text-[#00B8FF] mb-1" style={{ fontFamily: "var(--font-syne)" }}>{r.metric}</div>
-                    <div className="text-xs text-slate-600 dark:text-slate-400 leading-snug">{r.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <blockquote className="border-l-2 border-[#00B8FF] pl-5">
-                <p className="text-slate-700 dark:text-slate-300 text-base italic leading-relaxed mb-2">&ldquo;{featured.quote}&rdquo;</p>
-                <cite className="text-xs text-slate-500 not-italic">&mdash; {featured.attribution}, {featured.company}</cite>
-              </blockquote>
-
-              <div className="mt-8">
-                <Link href="/demo" className="btn-primary">
-                  Get Similar Results <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick outcomes strip */}
-      <section className="py-10 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
-        <div className="container-xl">
-          <div className="grid sm:grid-cols-3 gap-8 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <TrendingDown className="w-8 h-8 text-[#00B8FF]" />
-              <div className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>60%+</div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">Average reduction in privilege attack surface</div>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Clock className="w-8 h-8 text-[#00B8FF]" />
-              <div className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>12 weeks</div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">Typical time to full enterprise deployment</div>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <ShieldCheck className="w-8 h-8 text-[#00B8FF]" />
-              <div className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>90%+</div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">Customers pass their next compliance audit</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Filter Bar (display only — non-interactive without client component) */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="flex flex-wrap gap-2 mb-10">
-            {industries.map((ind, i) => (
-              <button key={ind} className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${i === 0 ? "bg-[#00B8FF]/10 border-[#00B8FF]/30 text-[#00B8FF]" : "border-slate-900/[0.1] dark:border-white/[0.08] text-slate-600 dark:text-slate-400 hover:border-[#00B8FF]/20 hover:text-slate-700 dark:hover:text-slate-300"}`}>
-                {ind}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {cases.map((c) => (
-              <div key={c.company} className="group p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine flex flex-col">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-xs font-bold text-[#00B8FF] flex-shrink-0" style={{ fontFamily: "var(--font-syne)" }}>
-                    {c.logo}
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-950 dark:text-white leading-tight" style={{ fontFamily: "var(--font-syne)" }}>{c.company}</div>
-                    <div className="text-[10px] text-slate-500">{c.industry}</div>
-                  </div>
+            {/* ─── THE PATTERNS ───────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="Problem Patterns"
+                        title={patternsSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={patternsSection.lead} />
+                    </SectionHeading>
                 </div>
 
-                <div className="text-sm font-semibold text-[#00B8FF] mb-2">{c.metric}</div>
-                <div className="text-xs font-medium text-slate-700 dark:text-slate-300 mb-3">{c.highlight}</div>
-                <p className="text-xs text-slate-500 leading-relaxed flex-1">{c.desc}</p>
+                <IconCardGrid items={patterns} columns={3} className="mt-12" />
+            </Section>
 
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            {/* ─── THE REVIEW ─────────────────────────────────────── */}
+            <Section border="bottom">
+                <MediaSplit media={reviewSection.image} ratio="even" height="sm" align="start">
+                    <div className="icon-wrapper mb-5">
+                        <reviewSection.icon className="w-5 h-5" />
+                    </div>
 
-      {/* CTA */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-            Ready to Write Your <span className="text-gradient">Own Success Story?</span>
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-8">
-            Join growing enterprises that have strengthened their privileged access management with OmniPriv.
-          </p>
-          <Link href="/demo" className="btn-primary">
-            Request a Demo <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-    </>
-  );
+                    <SectionHeading title={reviewSection.title}>
+                        {reviewSection.paragraphs.map((paragraph, index) => (
+                            <Prose
+                                key={index}
+                                segments={paragraph}
+                                className={
+                                    index === reviewSection.paragraphs.length - 1 ? "" : "mb-4"
+                                }
+                            />
+                        ))}
+                    </SectionHeading>
+
+                    <CheckList items={reviewSection.points} className="mt-8" />
+
+                    <ArrowLink href="/platform/audit-compliance" className="mt-8">
+                        See how the evidence is recorded
+                    </ArrowLink>
+                </MediaSplit>
+            </Section>
+
+            {/* ─── WHAT THE PLATFORM PRODUCES (dark band) ─────────── */}
+            <Section tone="dark" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="Concrete Outputs"
+                        title={outputSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={outputSection.lead} />
+                    </SectionHeading>
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
+                    {outputPillars.map((pillar) => (
+                        <div key={pillar.title}>
+                            <div className="icon-wrapper mb-5">
+                                <pillar.icon className="w-5 h-5" />
+                            </div>
+
+                            <SectionHeading
+                                as="h3"
+                                size="sm"
+                                title={pillar.title}
+                                titleClassName="max-w-3xl"
+                            >
+                                <Prose segments={[pillar.text]} />
+                            </SectionHeading>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-14">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
+                        Session protocols covered
+                    </p>
+                    <ChipList
+                        items={protocols}
+                        variant="accent"
+                        separator={<span className="text-slate-500 text-sm">·</span>}
+                    />
+                </div>
+            </Section>
+
+            {/* ─── DEEP DIVES ─────────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <SectionHeading
+                    title="Go deeper"
+                    align="center"
+                    size="lg"
+                    className="mb-12 sm:mb-16"
+                >
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Two long-form write-ups, plus the full capability set.
+                    </p>
+                </SectionHeading>
+
+                <div className="grid sm:grid-cols-3 gap-6">
+                    {deepDives.map((link) => (
+                        <ArrowLink key={link.href} href={link.href}>
+                            {link.label}
+                        </ArrowLink>
+                    ))}
+                </div>
+            </Section>
+
+            {/* ─── CLOSING ────────────────────────────────────────── */}
+            <CtaBand
+                title={closing.title}
+                body={closing.body}
+                kicker={closing.kicker}
+                primary={closing.primary}
+                secondary={closing.secondary}
+            />
+
+            {/* ─── FAQ ────────────────────────────────────────────── */}
+            <FaqSection
+                title="Frequently Asked Questions"
+                subtitle="Common questions about deployment, evaluation and data ownership."
+                items={faqs}
+            />
+        </>
+    );
 }
