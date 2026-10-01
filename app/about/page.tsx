@@ -1,273 +1,345 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
-  Shield, Target, Eye, Users, Award, Globe, ArrowRight,
-  CheckCircle2, Mail,
+    Award,
+    CreditCard,
+    Eye,
+    KeyRound,
+    Lock,
+    Server,
+    Shield,
+    ShieldCheck,
+    Target,
 } from "lucide-react";
-// 
+
+import ArrowLink from "@/components/sections/ArrowLink";
+import CheckList from "@/components/sections/CheckList";
+import ChipList from "@/components/sections/ChipList";
+import CtaBand from "@/components/sections/CtaBand";
+import FaqSection from "@/components/sections/FaqSection";
+import IconCardGrid from "@/components/sections/IconCardGrid";
+import MediaSplit from "@/components/sections/MediaSplit";
+import Prose from "@/components/sections/Prose";
+import Section from "@/components/sections/Section";
+import SectionHeading from "@/components/sections/SectionHeading";
+import SplitHero from "@/components/sections/SplitHero";
+import { complianceStandards, solutions } from "@/app/platform/data";
+import type { FaqEntry } from "@/components/sections/FaqSection";
+import type { IconCard } from "@/components/sections/IconCardGrid";
+import type { RichText } from "@/lib/rich-text";
+
+/*
+ * /about
+ *
+ * Rebuilt on the shared section library. Everything asserted here traces to
+ * something the site already publishes: the module list, platformSpecs and
+ * complianceStandards in app/platform/data.ts, and the certifications on
+ * app/security/page.tsx.
+ *
+ * Deliberately removed from the previous version: an invented headcount,
+ * office count and customer count ("500+ employees", "10+ countries",
+ * "100+ enterprise customers", "over 3,000 organizations across six
+ * continents"), and a leadership grid of six invented people whose bios
+ * cited real employers. None of it was verifiable, and the bios in
+ * particular attributed fabricated employment histories to named
+ * individuals at named companies.
+ */
+
 export const metadata: Metadata = {
-  title: {
-    absolute: "About OmniPriv | Advanced PAM Solutions",
-  },
-  description:
-    "Learn about OmniPriv's mission to secure digital assets. As experts in enterprise PAM solutions, we protect your business from modern cyber threats.",
+    title: {
+        absolute: "About OmniPriv | Advanced PAM Solutions",
+    },
+    description:
+        "OmniPriv builds privileged access management for on-premise, regulated environments — nine capability modules, 100% agentless, independently certified.",
 };
 
-const values = [
-  {
-    icon: Shield,
-    title: "Security First",
-    description:
-      "Every product decision starts with security. We never compromise on protection to ship faster or cut costs. Our customers' trust depends on it.",
-  },
-  {
-    icon: Target,
-    title: "Enterprise Excellence",
-    description:
-      "We build for the world's most demanding environments — banks, hospitals, governments, and global enterprises. Good enough is never good enough.",
-  },
-  {
-    icon: Eye,
-    title: "Complete Transparency",
-    description:
-      "We share our security practices, certifications, and test results openly. Our customers deserve to know exactly how we protect their data.",
-  },
-  {
-    icon: Users,
-    title: "Customer Partnership",
-    description:
-      "We don't just sell software — we partner with our customers to solve their privileged access challenges, for the long term.",
-  },
+const hero = {
+    badge: "About OmniPriv",
+    titleLead: "We build the audit trail",
+    titleAccent: "before the incident.",
+    intro: [
+        "OmniPriv was built by people who had already run privileged access programmes and watched the same failure repeat: the controls existed on paper, and the evidence did not exist at all.",
+    ] as RichText,
+    body: [
+        "So the record came first. Every privileged action produces something an auditor can follow, every secret is encrypted and vault-managed, and the whole platform runs on infrastructure you control rather than ours.",
+    ] as RichText,
+    primary: { href: "/platform", label: "Explore the Platform" },
+    secondary: { href: "/demo", label: "Talk to Us" },
+    image: {
+        src: "https://images.unsplash.com/photo-1680992046626-418f7e910589?auto=format&fit=crop&w=1200&q=70",
+        alt: "Rack of electronic equipment with indicator lights in a dark server room",
+    },
+};
+
+/* Driven from app/platform/data.ts — the /about grid can never drift from
+   the module list the platform index and sitemap are built from. */
+const moduleCards: IconCard[] = solutions.map((solution, index) => ({
+    icon: solution.icon,
+    eyebrow: String(index + 1).padStart(2, "0"),
+    title: solution.title,
+    text: solution.tagline,
+    href: `/platform/${solution.slug}`,
+}));
+
+const buildSection = {
+    title: "What we build",
+    lead: [
+        "Nine capability modules over one policy engine and one audit trail — the same list the platform index is generated from.",
+    ] as RichText,
+};
+
+const deploymentSection = {
+    icon: Server,
+    title: "Built to be deployed, not demoed",
+    paragraphs: [
+        [
+            "A privileged access platform only counts once it is running against real systems, so the deployment model is treated as part of the security argument rather than an implementation detail. OmniPriv runs where your other critical systems run, and it asks nothing of the machines it protects.",
+        ],
+    ] as RichText[],
+    image: {
+        src: "https://images.unsplash.com/photo-1548544027-1a96c4c24c7a?auto=format&fit=crop&w=1200&q=70",
+        alt: "Close-up of a rack-mounted network appliance with status indicator lights",
+    },
+    points: [
+        "100% agentless — no software on endpoints, servers or workstations to roll out or patch",
+        "On-premise deployment across VMware, Red Hat and OpenStack as a hardware-agnostic appliance",
+        "Multi-node clustering with Docker health checks, WebSocket heartbeat and database replication",
+        "Strict multi-tenancy through org_id isolation on every resource, schema-per-tenant",
+        "HSM integration for root-of-trust key protection, with an external SECRET_KEY you hold",
+        "Break-glass emergency procedure and granular credential restore without a full system restore",
+    ],
+};
+
+const assuranceSection = {
+    title: "How we're independently verified",
+    lead: [
+        "We would rather be checked than believed. These are the audits behind the platform, and the frameworks its controls are already mapped to.",
+    ] as RichText,
+};
+
+const assurancePillars = [
+    {
+        icon: ShieldCheck,
+        title: "SOC 2 Type II",
+        text: "An annual third-party audit covering security, availability, processing integrity, confidentiality and privacy controls — not a self-assessment.",
+    },
+    {
+        icon: Award,
+        title: "ISO 27001",
+        text: "An information security management system certification spanning platform operations and the development process behind it.",
+    },
+    {
+        icon: CreditCard,
+        title: "PCI-DSS Level 1",
+        text: "The highest PCI level, validated by a Qualified Security Assessor, for environments that handle payment card data.",
+    },
+    {
+        icon: Lock,
+        title: "FIPS 140-2",
+        text: "Validated cryptographic modules used for all key management and encryption operations, alongside TLS 1.3 in transit and AES-256-GCM at rest.",
+    },
 ];
 
+const frameworks = complianceStandards.map((standard) => standard.code);
 
+const principlesSection = {
+    title: "What we hold ourselves to",
+    lead: [
+        "These are positions on how the product gets built, not claims about how many people work here.",
+    ] as RichText,
+};
 
-const team = [
-  {
-    name: "Alexandra Mercer",
-    title: "Chief Executive Officer",
-    bio: "Former VP Security at Palo Alto Networks. 20+ years building enterprise security solutions. Executive MBA from Wharton.",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Dr. Rajan Krishnamurthy",
-    title: "Chief Technology Officer",
-    bio: "PhD in Computer Science (MIT). Former Principal Engineer at Amazon Web Services. 15+ patents in distributed systems and identity security.",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Chen Wei",
-    title: "Chief Product Officer",
-    bio: "Previously CPO at two enterprise security unicorns. Expert in AI-native architecture and enterprise identity platforms.",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Dr. Priya Anand",
-    title: "Chief Security Architect",
-    bio: "Former NSA and CISA with 18 years in cyber operations. Certified CISSP, CISM, and GREM. Leads OmniPriv's security design.",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Marcus Washington",
-    title: "VP Threat Intelligence",
-    bio: "SANS Institute instructor and threat intelligence researcher. Formerly at CrowdStrike Adversary Intelligence team.",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Jennifer Park",
-    title: "VP Global Compliance",
-    bio: "JD with 15 years in cybersecurity law and compliance. Led compliance programs at two major financial institutions before joining OmniPriv.",
-    linkedin: "#",
-    twitter: "#",
-  },
+const principles: IconCard[] = [
+    {
+        icon: Shield,
+        title: "Security is not a trade-off",
+        text: "Security does not lose to shipping speed. The platform itself holds zero hard-coded credentials, and every secret it uses is vault-managed and auditable.",
+    },
+    {
+        icon: Target,
+        title: "Built for hard environments",
+        text: "Designed for on-premise estates in financial services, healthcare, government and energy, where the network cannot be re-architected around a vendor.",
+    },
+    {
+        icon: Eye,
+        title: "Evidence over assertion",
+        text: "Certifications and control mappings are published rather than implied, so a capability can be checked instead of taken on trust.",
+    },
+    {
+        icon: KeyRound,
+        title: "You hold the keys",
+        text: "The SECRET_KEY is generated at installation and stored independently of the platform, so a compromise of our storage is not a compromise of yours.",
+    },
 ];
 
-const stats = [
-  { value: "500+", label: "Employees Worldwide" },
-  { value: "10+", label: "Countries Served" },
-  { value: "100+", label: "Enterprise Customers" },
-];
+const closing = {
+    title: "See what the platform does before you take our word for it",
+    body: [
+        "Nine modules, one audit trail, and a deployment model that matches the infrastructure you already run.",
+        "We will walk through the capability set and the control mappings against your own environment.",
+    ],
+    kicker: "Agentless. On-premise. Independently audited.",
+    primary: { href: "/demo", label: "Request a Demo" },
+    secondary: { href: "/security", label: "Security Posture" },
+};
 
-const investors = [
-  "Sequoia Capital",
-  "Andreessen Horowitz",
-  "Insight Partners",
-  "Tiger Global",
-  "General Catalyst",
-];
-
-const certBadges = [
-  "SOC 2 Type II",
-  "ISO 27001",
-  "GDPR",
+const faqs: FaqEntry[] = [
+    {
+        question: "What is OmniPriv built for?",
+        answer:
+            "On-premise, regulated environments that need to prove what happened to a privileged account. The platform covers the full privileged access lifecycle — vaulting, session control, approval workflow, integration and audit — in nine capability modules that share one policy engine and one audit trail.",
+    },
+    {
+        question: "Do I have to install software on the machines being protected?",
+        answer:
+            "No. OmniPriv is 100% agentless. There is nothing to deploy to endpoints, servers or workstations, which means nothing new to patch on the hosts you are trying to secure and no rollout project before the platform does anything useful.",
+    },
+    {
+        question: "Which certifications and frameworks does OmniPriv hold?",
+        answer:
+            "SOC 2 Type II, ISO 27001, PCI-DSS Level 1, HIPAA, GDPR and FIPS 140-2 validated cryptographic modules. Controls are additionally mapped out of the box to nine regulatory frameworks: SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, NIST 800-53, FERC/NERC CIP, GDPR and ISO 27001.",
+    },
+    {
+        question: "Who holds the encryption keys?",
+        answer:
+            "You do. Data is encrypted at rest with AES-256-GCM and in transit with TLS 1.3, with an HSM providing root-of-trust protection for stored keys. The SECRET_KEY is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
+    },
+    {
+        question: "Where can I see the full technical specification?",
+        answer:
+            "The platform index lists every module, and the specification covers deployment model, architecture, supported protocols, high availability, multi-tenancy, encryption, approval principles and disaster recovery. We can also walk through it against your environment on a call.",
+    },
 ];
 
 export default function AboutPage() {
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10">
-          <div className="max-w-3xl">
-            <div className="badge-cyan mb-6">About OmniPriv</div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-              We Exist to <span className="text-gradient">Eliminate Privilege-Based Risk</span> – PAM Solutions
-            </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-              OmniPriv was founded by security professionals focused on delivering advanced PAM solutions to prevent breaches caused by uncontrolled privileged access. Our privileged access management solution was built to be powerful enough for the world's most demanding environments, yet practical enough to actually deploy.
-            </p>
-            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-              We set out to build the PAM platform we always wished existed — one that helps organizations take full control of sensitive accounts, reduce security risks, and ensure compliance with modern cybersecurity standards. OmniPriv combines advanced security capabilities with ease of use, helping businesses manage and monitor privileged access efficiently.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/platform" className="btn-primary">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/demo" className="btn-secondary">
-                Get in Touch
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    return (
+        <>
+            <SplitHero
+                badge={hero.badge}
+                titleLead={hero.titleLead}
+                titleAccent={hero.titleAccent}
+                primary={hero.primary}
+                secondary={hero.secondary}
+                media={hero.image}
+            >
+                <Prose segments={hero.intro} className="text-lg mb-5" />
+                <Prose segments={hero.body} className="text-lg mb-8" />
+            </SplitHero>
 
-      {/* Stats */}
-      {/* <section className="py-14 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/40 dark:bg-[#0A1628]/40">
-        <div className="container-xl">
-          <div className="grid grid-cols-3 gap-10">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="stat-number mb-2">{s.value}</div>
-                <div className="text-slate-600 dark:text-slate-400 text-sm font-medium">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Mission */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="badge-cyan mb-6">Our Mission</div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
-                Making Enterprise Security <span className="text-gradient">Achievable for Everyone</span>
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
-                The security industry has a dirty secret: the best privileged access management tools were historically so complex and expensive that only the largest enterprises could afford them. Meanwhile, thousands of mid-market companies were left exposed with inadequate controls.
-              </p>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
-                OmniPriv changes that. We've built modern privileged access management (PAM) that is accessible to organizations of all sizes — without sacrificing the depth and rigor that Fortune 500 companies demand.
-              </p>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Today, OmniPriv secures privileged access for over 3,000 organizations across six continents — from 50-person technology startups to 200,000-employee global enterprises and government agencies.
-              </p>
-            </div>
-            <div className="space-y-4">
-              {[
-                { icon: Shield, text: "Security professionals, not just software engineers, build every feature" },
-                { icon: Award, text: "Independently certified to the highest global compliance standards" },
-                { icon: Globe, text: "Built for global scale with multi-region, air-gapped, and sovereign cloud options" },
-                { icon: Users, text: "Customer success team with average 8-year enterprise security experience" },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4 p-5 rounded-xl border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-100/60 dark:bg-[#0A1628]/60">
-                  <div className="icon-wrapper w-10 h-10 rounded-lg flex-shrink-0">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{text}</p>
+            {/* ─── WHAT WE BUILD ──────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="The Platform"
+                        title={buildSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={buildSection.lead} />
+                    </SectionHeading>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Values */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
-        <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="badge-cyan mb-5">Our Values</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              What We Stand For
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {values.map((v) => (
-              <div key={v.title} className="p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 text-center group hover:border-[#00B8FF]/20 transition-all card-shine">
-                <div className="icon-wrapper w-12 h-12 mx-auto mb-5 rounded-xl">
-                  <v.icon className="w-5 h-5" />
+                <IconCardGrid items={moduleCards} columns={3} className="mt-12" />
+            </Section>
+
+            {/* ─── DEPLOYMENT MODEL ───────────────────────────────── */}
+            <Section border="bottom">
+                <MediaSplit media={deploymentSection.image} ratio="even" height="sm" align="start">
+                    <div className="icon-wrapper mb-5">
+                        <deploymentSection.icon className="w-5 h-5" />
+                    </div>
+
+                    <SectionHeading title={deploymentSection.title}>
+                        {deploymentSection.paragraphs.map((paragraph, index) => (
+                            <Prose
+                                key={index}
+                                segments={paragraph}
+                                className={
+                                    index === deploymentSection.paragraphs.length - 1 ? "" : "mb-4"
+                                }
+                            />
+                        ))}
+                    </SectionHeading>
+
+                    <CheckList items={deploymentSection.points} className="mt-8" />
+
+                    <ArrowLink href="/platform" className="mt-8">
+                        See the full specification
+                    </ArrowLink>
+                </MediaSplit>
+            </Section>
+
+            {/* ─── INDEPENDENT ASSURANCE (dark band) ──────────────── */}
+            <Section tone="dark" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="Independent Assurance"
+                        title={assuranceSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={assuranceSection.lead} />
+                    </SectionHeading>
                 </div>
-                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>{v.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{v.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Leadership Team */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="badge-cyan mb-5">Leadership</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              Led by Security Veterans
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">
-              Our leadership team brings together decades of experience from the world's top security organizations, intelligence agencies, and enterprise software companies. Together, they are dedicated to building PAM solutions that redefine how organizations deploy modern privileged access management to protect their most critical assets.
-            </p>
-          </div>
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
+                    {assurancePillars.map((pillar) => (
+                        <div key={pillar.title}>
+                            <div className="icon-wrapper mb-5">
+                                <pillar.icon className="w-5 h-5" />
+                            </div>
 
-          {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {team.map((member) => (
-              <div key={member.name} className="p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group card-shine">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/20 flex items-center justify-center text-slate-950 dark:text-white font-bold text-xl flex-shrink-0" style={{ fontFamily: "var(--font-syne)" }}>
-                    {member.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-slate-950 dark:text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{member.name}</h3>
-                    <div className="text-xs text-[#00B8FF] font-semibold">{member.title}</div>
-                  </div>
+                            <SectionHeading
+                                as="h3"
+                                size="sm"
+                                title={pillar.title}
+                                titleClassName="max-w-3xl"
+                            >
+                                <Prose segments={[pillar.text]} />
+                            </SectionHeading>
+                        </div>
+                    ))}
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{member.bio}</p>
-              </div>
-            ))}
-          </div> */}
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="grid md:grid-cols-2 gap-10 items-center p-10 rounded-3xl border border-[#00B8FF]/15 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
-                Join 100+ Enterprises Securing Their Infrastructure
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400">
-                Talk to our team and discover how OmniPriv can protect your most sensitive systems.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 md:justify-end">
-              <Link href="/demo" className="btn-primary">
-                Schedule a Call <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/demo" className="btn-secondary flex items-center gap-2">
-                <Mail className="w-4 h-4" /> Say Hello
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+                <div className="mt-14">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
+                        Controls mapped out of the box
+                    </p>
+                    <ChipList
+                        items={frameworks}
+                        variant="accent"
+                        separator={<span className="text-slate-500 text-sm">·</span>}
+                    />
+                </div>
+            </Section>
+
+            {/* ─── PRINCIPLES ─────────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="How We Work"
+                        title={principlesSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={principlesSection.lead} />
+                    </SectionHeading>
+                </div>
+
+                <IconCardGrid items={principles} columns={4} className="mt-12" />
+            </Section>
+
+            {/* ─── CLOSING ────────────────────────────────────────── */}
+            <CtaBand
+                title={closing.title}
+                body={closing.body}
+                kicker={closing.kicker}
+                primary={closing.primary}
+                secondary={closing.secondary}
+            />
+
+            {/* ─── FAQ ────────────────────────────────────────────── */}
+            <FaqSection
+                title="Frequently Asked Questions"
+                subtitle="Common questions about the platform, its deployment model and its certifications."
+                items={faqs}
+            />
+        </>
+    );
 }
