@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Cpu, CheckCircle2, Layers, Server } from "lucide-react";
-
-import ArrowLink from "@/components/sections/ArrowLink";
-import CheckList from "@/components/sections/CheckList";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import type { IconCard } from "@/components/sections/IconCardGrid";
-import type { RichText } from "@/lib/rich-text";
+import { ArrowRight, ShieldCheck, Cpu, CheckCircle2 } from "lucide-react";
 import { solutions, datasheetStats, complianceStandards, platformSpecs } from "./data";
 
 export const metadata: Metadata = {
@@ -17,49 +8,6 @@ export const metadata: Metadata = {
   description:
     "Explore OmniPriv's 9 core PAM capability modules covering 80+ enterprise requirements, 100% agentless architecture, regulatory compliance, and on-premise deployment specifications.",
 };
-
-/*
- * Consolidation story — the destination of the "Consolidation / Consolidate
- * your PAM stack" challenge card.
- *
- * Every claim below is already made elsewhere in this repository: the module
- * list, stats and platform specs come from ./data.ts, and the deployment
- * topologies come from app/enterprise/page.tsx. Nothing new is asserted here.
- */
-
-const consolidationBenefits: IconCard[] = [
-  {
-    icon: Layers,
-    title: "Less complexity",
-    text: "One console, one policy engine and one credential store replace a vault, a session recorder, a workflow tool and a reporting add-on.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Less risk",
-    text: "Silos are where risk hides. Nobody should have to reconcile two consoles to find out whether an identity still has access — the answer lives in one place.",
-  },
-  {
-    icon: Server,
-    title: "Less to run",
-    text: "Agentless, with nothing installed on endpoints and no per-tool appliance to patch. One platform to upgrade instead of five, on infrastructure you already own.",
-  },
-];
-
-const retiredTools = [
-  "The standalone credential vault — rotation, SSH key lifecycle and password reconciliation move into the platform",
-  "The separate session recorder — SSH, RDP, VNC, HTTP and database sessions recorded and searchable in the same console",
-  "The bolt-on reporting tool — nine regulatory mappings and scheduled reports, built in rather than licensed separately",
-  "The email-and-spreadsheet approval chain — 4-eyes and multi-level workflows enforced by policy instead of habit",
-  "The separate analytics licence — 39-feature behavioural scoring running on every closed session",
-];
-
-const deploymentPoints = [
-  "Runs on your own infrastructure — on-premises, private cloud or public cloud, in any topology",
-  "Standalone, active-standby or a full HA cluster, with multi-node clustering and database replication",
-  "Strict multi-tenancy with per-organization isolation and RBAC, for MSSPs and enterprises with subsidiaries",
-  "Break-glass emergency access with granular credential restore, without a full system restore",
-  "Custom connectors through an open SDK, so there is no vendor lock-in",
-];
 
 export default function SolutionsPage() {
   return (
@@ -111,58 +59,6 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
-
-      {/* ─── CONSOLIDATION ────────────────────── */}
-      <Section tone="muted" border="bottom">
-        <SectionHeading
-          badge="Consolidation"
-          title="Fewer tools, less to go wrong"
-          align="center"
-          size="md"
-          titleClassName="mb-4"
-          className="max-w-2xl mx-auto mb-16"
-        >
-          <Prose
-            segments={[
-              "Most privileged access estates grew one purchase at a time — a vault, a session recorder, a workflow tool, a reporting add-on, and a spreadsheet quietly holding it together. Each addition bought a licence, a console, an integration to maintain, and one more place for a gap to hide.",
-            ] as RichText}
-          />
-          <Prose
-            segments={[
-              "Consolidation is not really about a smaller invoice. It is about one policy engine giving one answer, once, to every identity that asks.",
-            ] as RichText}
-            className="mt-4"
-          />
-        </SectionHeading>
-
-        <IconCardGrid items={consolidationBenefits} columns={3} />
-      </Section>
-
-      {/* ─── WHAT YOU RETIRE ──────────────────── */}
-      <Section border="bottom">
-        <SectionHeading
-          badge="What you can retire"
-          title="Five tools, one platform"
-          align="center"
-          size="md"
-          titleClassName="mb-4"
-          className="max-w-2xl mx-auto mb-14"
-        >
-          <Prose
-            segments={[
-              "Consolidating is only worth doing if the replacement genuinely covers what the point tools did. These are the jobs the capability modules take over.",
-            ] as RichText}
-          />
-        </SectionHeading>
-
-        <CheckList items={retiredTools} className="max-w-3xl mx-auto" />
-
-        <div className="text-center mt-10">
-          <ArrowLink href="/identity-security">
-            See how the capabilities fit together
-          </ArrowLink>
-        </div>
-      </Section>
 
       {/* Solution Cards Grid */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
@@ -277,15 +173,6 @@ export default function SolutionsPage() {
                 <span className="text-sm text-slate-800 dark:text-slate-200 leading-snug">{spec.value}</span>
               </div>
             ))}
-          </div>
-
-          <div className="max-w-4xl mx-auto mt-12">
-            <CheckList items={deploymentPoints} />
-            <div className="text-center">
-              <ArrowLink href="/enterprise" className="mt-8">
-                See enterprise deployment options
-              </ArrowLink>
-            </div>
           </div>
         </div>
       </section>

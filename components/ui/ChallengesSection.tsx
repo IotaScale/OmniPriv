@@ -70,7 +70,7 @@ const challenges = [
         headline: "Consolidate your PAM stack",
         body: "Replace fragmented vaulting, session management and audit tools with one agentless platform you can run on-premise.",
         caption: "9 MODULES · 1 PLATFORM",
-        href: "/platform",
+        href: "/platform/consolidation",
         icon: Boxes,
         accent: "#a78bfa",
     },
