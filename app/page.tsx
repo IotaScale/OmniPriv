@@ -265,7 +265,7 @@ export default function HomePage() {
               <div className="text-[11px] text-slate-600 dark:text-slate-400">Enterprise PAM coverage</div>
             </div>
             <div className="p-3 border-l border-slate-900/[0.08] dark:border-white/[0.06]">
-              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>8</div>
+              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>9</div>
               <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Core Capability Modules</div>
               <div className="text-[11px] text-slate-600 dark:text-slate-400">End-to-end access lifecycle</div>
             </div>

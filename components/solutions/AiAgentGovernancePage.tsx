@@ -26,7 +26,7 @@ import type { RichText } from "@/lib/rich-text";
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
  * component instead of the generic capability template when the slug appears
- * in its `bespokePages` map. That keeps all eight capability routes working
+ * in its `bespokePages` map. That keeps all nine capability routes working
  * and lets any of them get a richer layout later without touching routing.
  */
 

@@ -38,7 +38,7 @@ export interface PlatformSpec {
 
 export const datasheetStats = [
     { value: "80+", label: "Requirement Points Covered", sub: "Enterprise PAM coverage" },
-    { value: "8", label: "Core Capability Modules", sub: "End-to-end access lifecycle" },
+    { value: "9", label: "Core Capability Modules", sub: "End-to-end access lifecycle" },
     { value: "0", label: "Software Agents Required", sub: "100% Agentless architecture" },
     { value: "100%", label: "Encrypted Credential Vault", sub: "AES-256 + SHA-512 & HSM" },
 ];
