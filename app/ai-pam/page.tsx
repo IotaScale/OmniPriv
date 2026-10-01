@@ -4,7 +4,6 @@ import {
     Activity,
     ArrowRight,
     Bot,
-    Cpu,
     Crosshair,
     Eye,
     FileSpreadsheet,
@@ -14,12 +13,15 @@ import {
 } from "lucide-react";
 
 import ArrowLink from "@/components/sections/ArrowLink";
+import CheckList from "@/components/sections/CheckList";
 import CtaBand from "@/components/sections/CtaBand";
 import FaqSection from "@/components/sections/FaqSection";
 import IconCardGrid from "@/components/sections/IconCardGrid";
+import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
 import Section from "@/components/sections/Section";
 import SectionHeading from "@/components/sections/SectionHeading";
+import SplitHero from "@/components/sections/SplitHero";
 import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
@@ -28,24 +30,39 @@ import type { RichText } from "@/lib/rich-text";
 /*
  * /ai-pam — the AI-PAM engine deep dive.
  *
- * Rebuilt from the previous tabbed layout. The three tabs meant two thirds
- * of the engine's content was unreachable without a click and invisible to
- * crawlers, and the whole block shipped client JavaScript for what is static
- * copy. Everything is now an always-visible section on the shared section
- * library, so the page is server-rendered and every claim is crawlable.
+ * Laid out on the same pattern as the other interior pages: a SplitHero with
+ * framing photography, alternating muted and default bands, exactly one dark
+ * band, a media split and a closing band. The engine's own figures, the
+ * detection lanes and the 12 agent pillars are kept in full.
  *
- * Copy was also lifted out of internal-implementation territory: script
- * filenames, model artefacts, an internal API endpoint and an internal
- * authorisation library are no longer published. The verifiable engineering
- * — 39 scored features, 0–1 scoring, the escalation tiers, the 10-second
- * sweep, the 12 agent pillars, 100+ MCP tools and the detection lanes —
- * is kept in full.
+ * No internal implementation is published here — no script or model
+ * artefact names, no internal endpoints or authorisation library, and no
+ * specific LLM vendor. Those describe how the engine is built rather than
+ * what it does, and they date quickly.
  */
 
 export const metadata: Metadata = {
     title: "AI-PAM Engine: ML Threat Detection & MCP Agent Governance",
     description:
         "OmniPriv's AI-PAM engine pairs IsolationForest behavioral anomaly detection with Model Context Protocol agent governance — 12 agent security pillars, 100+ MCP tools, and a 10-second auto-block sweeper.",
+};
+
+const hero = {
+    badge: "AI-PAM Engine",
+    titleLead: "The AI can act.",
+    titleAccent: "It never holds the keys.",
+    intro: [
+        "Autonomous agents reach systems faster than any review process can follow. So the engine scores what happens inside a privileged session, and separately governs what an agent is allowed to reach.",
+    ] as RichText,
+    body: [
+        "IsolationForest anomaly detection scores every closed session across 39 behavioural features. Model Context Protocol governance gives each agent its own identity, tool allowlist and data scope — machine learning on one side, deterministic policy on the other.",
+    ] as RichText,
+    primary: { href: "/demo", label: "Request a Technical Demo" },
+    secondary: { href: "/platform", label: "Explore the Platform" },
+    image: {
+        src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=70",
+        alt: "Three-dimensional letters spelling AI on a dark digital background",
+    },
 };
 
 const engineSection = {
@@ -243,18 +260,33 @@ const transportCards: IconCard[] = [
         text: "Exposes 100+ platform tools to MCP clients including Claude, GitHub Copilot and Cursor, with device-flow OAuth and scoped, auto-refreshing tokens.",
     },
     {
-        icon: Eye,
-        eyebrow: "Forensic transparency",
-        title: "Threat explainability",
-        text: "Every elevated score comes with its indicator breakdown, so security teams and auditors can see why — rather than being asked to trust a black box.",
-    },
-    {
         icon: Lock,
         eyebrow: "Organisation and role schemas",
         title: "Data-level RBAC for AI",
         text: "Agents see only what the delegating human's organisation and role allow. Filtering happens at the data layer, before anything reaches the model.",
     },
 ];
+
+const explainSection = {
+    icon: Eye,
+    title: "Every score explains itself",
+    paragraphs: [
+        [
+            "A blocked session is only useful if somebody can say why. Every elevated score carries its indicator breakdown, and every agent action carries the full trace from the human who delegated it down to the resource it touched.",
+        ],
+    ] as RichText[],
+    image: {
+        src: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=70",
+        alt: "Monitor displaying lines of code and system output",
+    },
+    points: [
+        "Per-session indicator breakdown — which features moved the score, and by how much",
+        "Five-tier agent trace — human, agent, MCP server, tool and resource, with the decision and duration",
+        "Held-out evaluation and threshold sweeps, exported as workbooks so thresholds can be reviewed",
+        "Offender-only quarantine, so one flagged session does not disturb the others",
+        "Streamed to your SIEM alongside the rest of your privileged activity",
+    ],
+};
 
 const stats = [
     { value: "39", label: "Features scored per session", sub: "IsolationForest model" },
@@ -310,44 +342,20 @@ const faqs: FaqEntry[] = [
 export default function AiPamPage() {
     return (
         <>
-            {/* ─── HERO (fades into the dark engine band) ─────────── */}
-            <section className="relative pt-16 pb-24 overflow-hidden">
-                <div className="absolute inset-0 bg-grid opacity-40" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050b16]" />
+            <SplitHero
+                badge={hero.badge}
+                titleLead={hero.titleLead}
+                titleAccent={hero.titleAccent}
+                primary={hero.primary}
+                secondary={hero.secondary}
+                media={hero.image}
+            >
+                <Prose segments={hero.intro} className="text-lg mb-5" />
+                <Prose segments={hero.body} className="text-lg mb-8" />
+            </SplitHero>
 
-                <div className="container-xl relative z-10 text-center">
-                    <div className="badge-cyan mb-6 inline-flex mx-auto items-center gap-1.5">
-                        <Cpu className="w-3.5 h-3.5" />
-                        AI-PAM Engine
-                    </div>
-
-                    <h1
-                        className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 max-w-4xl mx-auto tracking-tight"
-                        style={displayFont}
-                    >
-                        AI-PAM: <span className="text-gradient">Autonomous ML &amp; Multi-Agent Security</span>
-                    </h1>
-
-                    <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-                        IsolationForest anomaly detection and Model Context Protocol agent governance — one
-                        engine that keeps every privileged action, human or autonomous, inside policy
-                        evaluated on the action itself.
-                    </p>
-
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
-                            Request a Technical Demo
-                            <ArrowRight className="w-5 h-5 ml-1.5" />
-                        </Link>
-                        <Link href="/platform" className="btn-secondary text-base px-8 py-3.5">
-                            Explore the Platform
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* ─── THE ML ENGINE (dark band) ──────────────────────── */}
-            <Section tone="dark" border="bottom">
+            {/* ─── THE ML ENGINE ──────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
                 <div className="max-w-3xl">
                     <SectionHeading
                         badge="Core ML Detection Engine"
@@ -359,63 +367,56 @@ export default function AiPamPage() {
                 </div>
 
                 <IconCardGrid items={engineCards} columns={4} className="mt-12" />
+            </Section>
 
-                {/* Detection lanes */}
-                <div className="mt-14 rounded-2xl border border-white/[0.09] bg-[#070e1a] p-6 lg:p-8">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/[0.07]">
-                        <div>
-                            <div className="badge-cyan mb-2 inline-flex">Live Rule Lanes</div>
+            {/* ─── DETECTION LANES (dark band) ────────────────────── */}
+            <Section tone="dark" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading badge="Live Rule Lanes" title="Real-time in-session threat detection">
+                        <Prose
+                            segments={[
+                                "The command detector scans typed commands as they happen. The script scanner flags executed scripts (.sh, .ps1, .bat) and quarantines the offender only.",
+                            ]}
+                        />
+                    </SectionHeading>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+                    {threats.map((threat) => (
+                        <div
+                            key={threat.name}
+                            className={`p-5 rounded-2xl border ${cardBorder} ${cardSurface}`}
+                        >
+                            <div className="flex items-start justify-between gap-3 mb-3">
+                                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500">
+                                    {threat.tag}
+                                </span>
+                                <span
+                                    className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${threat.riskClass}`}
+                                >
+                                    {threat.risk}
+                                </span>
+                            </div>
+
                             <h3
-                                className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white"
+                                className="text-base font-bold text-slate-950 dark:text-white mb-2"
                                 style={displayFont}
                             >
-                                Real-time in-session threat detection
+                                {threat.name}
                             </h3>
-                            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
-                                The command detector scans typed commands as they happen. The script scanner
-                                flags executed scripts (.sh, .ps1, .bat) and quarantines the offender only.
+
+                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                {threat.detects}
                             </p>
-                        </div>
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono text-emerald-400 font-semibold self-start md:self-center whitespace-nowrap">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                            6 DETECTION LANES
-                        </div>
-                    </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                        {threats.map((threat) => (
-                            <div
-                                key={threat.name}
-                                className="p-4 rounded-xl border border-white/[0.06] bg-[#050b14] hover:border-[#00B8FF]/30 transition-colors duration-200"
-                            >
-                                <div className="flex items-center justify-between gap-2 mb-2">
-                                    <span className="text-[11px] font-mono text-slate-400">
-                                        {threat.tag}
-                                    </span>
-                                    <span
-                                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${threat.riskClass}`}
-                                    >
-                                        {threat.risk}
-                                    </span>
-                                </div>
-
-                                <h4 className="text-sm font-bold text-slate-950 dark:text-white mb-1.5">
-                                    {threat.name}
-                                </h4>
-
-                                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-                                    {threat.detects}
-                                </p>
-
-                                <div className="pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 flex items-center justify-between gap-2">
-                                    <span>Action</span>
-                                    <span className="text-emerald-400 font-semibold text-right">
-                                        {threat.action}
-                                    </span>
-                                </div>
+                            <div className="pt-3 border-t border-slate-900/[0.06] dark:border-white/[0.06] text-xs font-mono flex items-center justify-between gap-2">
+                                <span className="text-slate-500">Action</span>
+                                <span className="text-emerald-500 dark:text-emerald-400 font-semibold text-right">
+                                    {threat.action}
+                                </span>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </Section>
 
@@ -469,11 +470,38 @@ export default function AiPamPage() {
                     </SectionHeading>
                 </div>
 
-                <IconCardGrid items={transportCards} columns={2} className="mt-12" />
+                <IconCardGrid items={transportCards} columns={3} className="mt-12" />
+            </Section>
+
+            {/* ─── EXPLAINABILITY ─────────────────────────────────── */}
+            <Section border="bottom">
+                <MediaSplit media={explainSection.image} ratio="even" height="sm" align="start">
+                    <div className="icon-wrapper mb-5">
+                        <explainSection.icon className="w-5 h-5" />
+                    </div>
+
+                    <SectionHeading title={explainSection.title}>
+                        {explainSection.paragraphs.map((paragraph, index) => (
+                            <Prose
+                                key={index}
+                                segments={paragraph}
+                                className={
+                                    index === explainSection.paragraphs.length - 1 ? "" : "mb-4"
+                                }
+                            />
+                        ))}
+                    </SectionHeading>
+
+                    <CheckList items={explainSection.points} className="mt-8" />
+
+                    <ArrowLink href="/features#ai" className="mt-8">
+                        See these capabilities in the full feature list
+                    </ArrowLink>
+                </MediaSplit>
             </Section>
 
             {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section border="bottom">
+            <Section tone="muted" border="bottom">
                 <SectionHeading
                     title="Engine figures you can point at"
                     align="center"
