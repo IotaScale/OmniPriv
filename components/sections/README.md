@@ -110,6 +110,64 @@ is open at a time.
 Prefer `FaqSection` over `FaqAccordion` directly: it adds the band, the centred
 heading and the `FAQPage` structured data, and those stay server-rendered.
 
+## Adding a platform capability page
+
+The nine modules in `app/platform/data.ts` each have a bespoke page under
+`components/solutions/`, registered in the `bespokePages` map inside
+`app/platform/[slug]/page.tsx`.
+
+1. Update the module in `app/platform/data.ts` (`SolutionMeta`). That entry
+   drives the `/platform` index cards, the nav dropdown, `generateStaticParams`
+   and the per-page metadata — so the page, its card and its SEO tags cannot
+   drift apart.
+2. Create `components/solutions/<Name>Page.tsx`. Keep the copy in plain `const`
+   objects at the top of the file and compose the layout underneath, so the
+   words can be edited without reading JSX.
+3. Register it: `import` the component, then add `"<slug>": <Name>Page` to
+   `bespokePages`.
+4. Do **not** create `app/platform/<slug>/page.tsx`. A static sibling segment
+   takes precedence over `[slug]`, so it would shadow the dynamic route that
+   already handles metadata and `notFound()`.
+
+### Page rhythm
+
+Every platform page opens the same way and closes the same way, with a variable
+number of content bands in between — seven to nine sections in total, depending
+on how much the module needs to say.
+
+Invariants, verified across all nine pages at the time of writing:
+
+- One `SplitHero` first, on the default (transparent) surface.
+- The second band is `tone="muted"`.
+- Exactly **two** dark bands: one content band, and the closing `CtaBand`. Three
+  hardcoded dark bands read as a different site.
+- The page ends `CtaBand` (dark) → `FaqSection` (muted).
+- Every top-level `<section>` carries **one** `border-b`. Never `border-t` or
+  `border-y` — a top border stacks against the previous section's and reads 2px.
+- No horizontal overflow at 1440×900.
+
+What is *not* fixed is the middle. Some pages run `dark → muted → default`,
+some run `dark → default → muted`, and some add a second `muted` band. Place the
+dark band wherever the technical content sits and alternate the surrounding
+bands so no two adjacent sections share a surface.
+
+Other rules that are easiest to get wrong:
+
+- `tone="dark"` wraps itself in `.dark`; never hand-roll the ancestor.
+- `SplitHero` supplies its own padding (`pt-16 pb-20`). Do not wrap it in a
+  `Section`.
+- `ChipList` takes a `separator` node to express a sequence and a `variant`
+  (`accent` for emphasis, `neutral` for a capability set). It is a good fit for
+  a fixed-length list — protocols, request types, control names — that would
+  bloat a paragraph.
+
+### The generic template is a fallback
+
+`app/platform/[slug]/page.tsx` still renders a generic capability body for any
+slug in `data.ts` that is **not** in `bespokePages`. All nine current modules are
+bespoke, so that branch is dormant — it stays as the default for a module added
+before its bespoke page exists. Do not delete it.
+
 ## Not yet unified
 
 - `components/ui/PageHero.tsx` is a full-bleed image-background hero and does

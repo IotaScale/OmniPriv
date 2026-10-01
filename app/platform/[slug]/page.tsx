@@ -17,9 +17,13 @@ import WorkflowAccessControlPage from "@/components/solutions/WorkflowAccessCont
 /*
  * Capabilities that need more than the generic layout below.
  *
- * The route stays dynamic and only the body is swapped, so a bespoke page
- * cannot collide with the [slug] segment the way a sibling static route
- * would. Anything not listed here keeps the generic capability template.
+ * All nine modules in ../data.ts are currently bespoke. The route stays
+ * dynamic and only the body is swapped, so a bespoke page cannot collide
+ * with the [slug] segment the way a sibling static route would.
+ *
+ * The generic branch after this map is deliberately dormant rather than
+ * deleted: it is the default a module falls back to between being added to
+ * data.ts and getting its own page.
  */
 const bespokePages: Record<string, ComponentType> = {
     "ai-agent-governance": AiAgentGovernancePage,
@@ -33,7 +37,7 @@ const bespokePages: Record<string, ComponentType> = {
     "workflow-access-control": WorkflowAccessControlPage,
 };
 
-/* ── Static params for all 8 slugs ─────────────────────────── */
+/* ── Static params for all 9 slugs ─────────────────────────── */
 export function generateStaticParams() {
     return solutions.map((s) => ({ slug: s.slug }));
 }
