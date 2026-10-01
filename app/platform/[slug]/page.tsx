@@ -12,6 +12,7 @@ import InfrastructureDeploymentPage from "@/components/solutions/InfrastructureD
 import PasswordCredentialManagementPage from "@/components/solutions/PasswordCredentialManagementPage";
 import SessionManagementPage from "@/components/solutions/SessionManagementPage";
 import ThreatDetectionPage from "@/components/solutions/ThreatDetectionPage";
+import WorkflowAccessControlPage from "@/components/solutions/WorkflowAccessControlPage";
 
 /*
  * Capabilities that need more than the generic layout below.
@@ -29,6 +30,7 @@ const bespokePages: Record<string, ComponentType> = {
     "password-credential-management": PasswordCredentialManagementPage,
     "session-management": SessionManagementPage,
     "threat-detection": ThreatDetectionPage,
+    "workflow-access-control": WorkflowAccessControlPage,
 };
 
 /* ── Static params for all 8 slugs ─────────────────────────── */
