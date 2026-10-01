@@ -35,8 +35,8 @@ import type { RichText } from "@/lib/rich-text";
  * module entry in app/platform/data.ts.
  *
  * Every figure quoted below is OmniPriv's own and is verifiable in this
- * repository — see components/ui/AiPamEngineSection.tsx for the 39-feature
- * model and its tiers, and app/ai-pam/page.tsx for the 10-second sweeper.
+ * repository — see app/ai-pam/page.tsx for the 39-feature model, its
+ * escalation tiers and the 10-second sweeper.
  */
 
 const hero = {

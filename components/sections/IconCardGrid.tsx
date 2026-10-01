@@ -14,6 +14,8 @@ export interface IconCard {
     icon: LucideIcon;
     title: string;
     text: string;
+    /** Small mono label above the title, e.g. the name of a control. */
+    eyebrow?: string;
     /** When set, the whole card becomes a link and gains a trailing arrow. */
     href?: string;
 }
@@ -47,6 +49,12 @@ export default function IconCardGrid({ items, columns: cols = 4, className }: Ic
                         <div className="icon-wrapper mb-5">
                             <item.icon className="w-5 h-5" />
                         </div>
+
+                        {item.eyebrow && (
+                            <div className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#00B8FF] mb-1.5">
+                                {item.eyebrow}
+                            </div>
+                        )}
 
                         <h3
                             className="text-lg font-bold text-slate-950 dark:text-white mb-2.5 tracking-tight"
