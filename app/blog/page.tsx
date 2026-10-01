@@ -1,272 +1,339 @@
-"use client";
-
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import Link from "next/link";
-import { ArrowRight, Clock, Calendar, ChevronRight } from "lucide-react";
+import type { Metadata } from "next";
 import {
-  EMAILJS_PUBLIC_KEY,
-  EMAILJS_SERVICE_ID,
-  EMAILJS_NEWSLETTER_TEMPLATE_ID,
-  EMAILJS_RECIPIENT,
-} from "@/lib/emailjs";
-import { posts as blogData } from "@/lib/blog-data";
+    BookOpen,
+    ClipboardCheck,
+    Compass,
+    ShieldCheck,
+    Terminal,
+    Timer,
+} from "lucide-react";
 
-const categories = ["All", "Best Practices", "Security Research", "Case Studies", "Product Updates", "Compliance", "DevSecOps"];
+import ArrowLink from "@/components/sections/ArrowLink";
+import ChipList from "@/components/sections/ChipList";
+import CtaBand from "@/components/sections/CtaBand";
+import FaqSection from "@/components/sections/FaqSection";
+import IconCardGrid from "@/components/sections/IconCardGrid";
+import Prose from "@/components/sections/Prose";
+import Section from "@/components/sections/Section";
+import SectionHeading from "@/components/sections/SectionHeading";
+import SplitHero from "@/components/sections/SplitHero";
+import BlogIndex from "@/components/blog/BlogIndex";
+import BlogNewsletter from "@/components/blog/BlogNewsletter";
+import { posts } from "@/lib/blog-data";
+import type { BlogCard, BlogCategory } from "@/components/blog/BlogIndex";
+import type { FaqEntry } from "@/components/sections/FaqSection";
+import type { IconCard } from "@/components/sections/IconCardGrid";
+import type { RichText } from "@/lib/rich-text";
 
-// ── Auto-derived from lib/blog-data.ts ──────────────────────────────────────
-// The featured post is pinned by slug. Change FEATURED_SLUG to pin a different post.
-const FEATURED_SLUG = "privileged-access-management-solutions-guide-2026";
+/*
+ * /blog — the article index.
+ *
+ * Previously a single "use client" page with five hand-rolled sections, which
+ * blocked the shared section library. The filter/grid now live in
+ * components/blog/BlogIndex.tsx and the signup in BlogNewsletter.tsx, so this
+ * file is a server component and composes the same primitives as the rest of
+ * the site. The hero had no imagery; that is fixed below.
+ *
+ * The category list is derived from the posts themselves rather than a
+ * hardcoded array. See BlogIndex.tsx for the two filter bugs that drift caused.
+ */
 
-const _fp = blogData[FEATURED_SLUG];
-const featuredPost = {
-  category: _fp.category,
-  title: _fp.title,
-  excerpt: _fp.excerpt,
-  date: _fp.date,
-  readTime: _fp.readTime,
-  author: _fp.author,
-  authorTitle: _fp.authorTitle,
-  href: `/blog/${FEATURED_SLUG}`,
-  tags: _fp.tags,
+export const metadata: Metadata = {
+    title: { absolute: "Blog | OmniPriv Privileged Access Management Solution" },
+    description:
+        "Best practices, security research, compliance guidance and product updates on privileged access management from the OmniPriv team.",
 };
 
-// All posts except the featured one, newest first.
-// Adding a new post to lib/blog-data.ts automatically appears here.
-const posts = Object.entries(blogData)
-  .filter(([slug]) => slug !== FEATURED_SLUG)
-  .map(([slug, post]) => ({
-    category: post.category,
-    title: post.title,
-    excerpt: post.excerpt,
-    date: post.date,
-    readTime: post.readTime,
-    author: post.author,
-    authorTitle: post.authorTitle,
-    href: `/blog/${slug}`,
-    tags: post.tags,
-  }))
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-// ─────────────────────────────────────────────────────────────────────────────
+/* Display-only overrides. The stored value stays singular so filtering works. */
+const CATEGORY_LABELS: Record<string, string> = {
+    "Case Study": "Case Studies",
+};
 
-function getTagColor(tag: string) {
-  const colors: Record<string, string> = {
-    "Best Practices": "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    "Security Research": "bg-red-500/10 text-red-400 border-red-500/20",
-    "Case Study": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    "Product Updates": "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    "Compliance": "bg-orange-500/10 text-orange-400 border-orange-500/20",
-    "DevSecOps": "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-  };
-  return colors[tag] ?? "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20";
+const allEntries = Object.entries(posts);
+
+/* Newest first — used for the fallback featured pick. */
+const byNewest = [...allEntries].sort(
+    (a, b) => new Date(b[1].date).getTime() - new Date(a[1].date).getTime(),
+);
+
+/*
+ * The featured post is pinned by slug, but falls back to the newest post if
+ * that slug is ever renamed. The previous version indexed the record directly
+ * and then called .charAt() on the result, so removing the slug crashed the
+ * build rather than degrading.
+ */
+const FEATURED_SLUG = "privileged-access-management-solutions-guide-2026";
+const featuredSlug = posts[FEATURED_SLUG] ? FEATURED_SLUG : byNewest[0][0];
+
+function toCard(slug: string, post: (typeof posts)[string]): BlogCard {
+    return {
+        category: post.category,
+        title: post.title,
+        excerpt: post.excerpt,
+        date: post.date,
+        readTime: post.readTime,
+        author: post.author,
+        authorTitle: post.authorTitle,
+        href: `/blog/${slug}`,
+        tags: post.tags,
+    };
 }
 
+const featured = toCard(featuredSlug, posts[featuredSlug]);
+const gridPosts = byNewest
+    .filter(([slug]) => slug !== featuredSlug)
+    .map(([slug, post]) => toCard(slug, post));
+
+/* Derived from the post data, so a new category in blog-data.ts appears here
+   automatically instead of being silently unreachable. */
+const counts = new Map<string, number>();
+for (const [, post] of allEntries) {
+    counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
+}
+
+const categories: BlogCategory[] = Array.from(counts.entries())
+    .map(([value, count]) => ({
+        value,
+        label: CATEGORY_LABELS[value] ?? value,
+        count,
+    }))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+
+const hero = {
+    badge: "Blog & Insights",
+    titleLead: "Guides for people who have to",
+    titleAccent: "defend the decision.",
+    intro: [
+        "Best practices, security research, compliance guidance and product updates on privileged access — written to be read by the engineer, the auditor and the person signing the budget.",
+    ] as RichText,
+    body: [
+        `${allEntries.length} articles across ${categories.length} topics, from first-principles explainers to deployment and protocol detail.`,
+    ] as RichText,
+    primary: { href: "/demo", label: "Request a Demo" },
+    secondary: { href: "/platform", label: "Explore the Platform" },
+    image: {
+        src: "https://images.unsplash.com/photo-1653656120510-b800119e5b73?auto=format&fit=crop&w=1200&q=70",
+        alt: "Person reading through printed documents beside a laptop at a desk",
+    },
+};
+
+const picksSection = {
+    title: "Where to start",
+    lead: [
+        "Four pieces that answer the questions we get asked most often before an evaluation.",
+    ] as RichText,
+};
+
+const picks: IconCard[] = [
+    {
+        icon: BookOpen,
+        eyebrow: "Start here",
+        title: "What Is Privileged Access Management",
+        text: "The category from first principles: what privileged access actually is, and why it is treated differently from ordinary user access.",
+        href: "/blog/what-is-privileged-access-management",
+    },
+    {
+        icon: Timer,
+        eyebrow: "Just-in-time",
+        title: "Why JIT Is Replacing Standing Access",
+        text: "Standing privilege is the thing most organisations regret. How time-bound access changes the risk profile of an estate.",
+        href: "/blog/jit-access-guide",
+    },
+    {
+        icon: ShieldCheck,
+        eyebrow: "Zero trust",
+        title: "How to Implement Zero-Trust PAM",
+        text: "A step-by-step enterprise guide to verifying privileged access regardless of where the request comes from.",
+        href: "/blog/zero-trust-pam-guide",
+    },
+    {
+        icon: ClipboardCheck,
+        eyebrow: "Compliance",
+        title: "SOC 2 Type II and PAM",
+        text: "What auditors look for in privileged access controls, and which evidence they expect to be produced rather than reconstructed.",
+        href: "/blog/soc2-pam-audit",
+    },
+];
+
+const editorialSection = {
+    title: "What we publish, and what we don't",
+    lead: [
+        "An editorial policy is only worth stating if it rules some things out. These four do.",
+    ] as RichText,
+};
+
+const editorialPillars = [
+    {
+        icon: BookOpen,
+        title: "No vendor league tables",
+        text: "We do not write \u201ctop 10 PAM vendors\u201d pieces that happen to rank us first. If a comparison is useful, it explains the trade-offs rather than declaring a winner.",
+    },
+    {
+        icon: ShieldCheck,
+        title: "Framework-mapped, not framework-flavoured",
+        text: "Compliance articles reference the actual control sets — SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, NIST 800-53, FERC/NERC CIP, GDPR and ISO 27001 — rather than gesturing at \u201ccompliance\u201d generally.",
+    },
+    {
+        icon: Terminal,
+        title: "Deployment detail over positioning",
+        text: "Protocol behaviour, architecture and operational consequences, because those are the things that decide whether a rollout succeeds.",
+    },
+    {
+        icon: Compass,
+        title: "Corrected, not quietly rewritten",
+        text: "Articles are revised as the guidance changes. The date on each card reflects the published version, and substantive corrections are made in the open.",
+    },
+];
+
+const closing = {
+    title: "Read the deep dives, then test the claims",
+    body: [
+        "Nothing here needs to be taken on trust. The platform index lists what each module does, and the security page carries the certifications behind it.",
+    ],
+    kicker: "Explanations, not positioning.",
+    primary: { href: "/demo", label: "Request a Demo" },
+    secondary: { href: "/security", label: "Security Posture" },
+};
+
+const faqs: FaqEntry[] = [
+    {
+        question: "What does the blog cover?",
+        answer:
+            "Best practices, security research, compliance guidance, product updates and DevSecOps, across privileged access management generally rather than only our own product. Some articles are general explainers — what PAM is, how just-in-time access works — and others are implementation-level.",
+    },
+    {
+        question: "Who writes the articles?",
+        answer:
+            "Articles are published under a team byline rather than individual attribution, because they are reviewed and updated by more than one person over their life. If you need to know who specifically authored or reviewed something, email us and we will tell you.",
+    },
+    {
+        question: "How current are the guides?",
+        answer:
+            "Each card shows the publication date of the version you are reading. We update articles when the underlying guidance changes, including after platform releases, rather than leaving superseded advice live — but a dated guide is always worth checking against the current product documentation before you rely on a specific detail.",
+    },
+    {
+        question: "Can I quote or republish an article?",
+        answer:
+            "Quoting with attribution and a link back is fine and needs no permission. For republishing an article in full, or translating one, email info@omnipriv.com and we will confirm.",
+    },
+    {
+        question: "Where should I start if I am evaluating PAM?",
+        answer:
+            "The four pieces above, in order: what privileged access management is, why standing access is being replaced by just-in-time, how zero-trust changes the model, and what an auditor expects to see. After that the platform index is a better use of time than the blog.",
+    },
+];
+
 export default function BlogPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    return (
+        <>
+            <SplitHero
+                badge={hero.badge}
+                titleLead={hero.titleLead}
+                titleAccent={hero.titleAccent}
+                primary={hero.primary}
+                secondary={hero.secondary}
+                media={hero.image}
+            >
+                <Prose segments={hero.intro} className="text-lg mb-5" />
+                <Prose segments={hero.body} className="text-lg mb-8" />
+            </SplitHero>
 
-  const filteredPosts = activeCategory === "All"
-    ? posts
-    : posts.filter((p) => p.category === activeCategory);
+            {/* ─── FILTER + FEATURED + GRID ───────────────────────── */}
+            <BlogIndex featured={featured} posts={gridPosts} categories={categories} />
 
-  async function handleNewsletter(e: React.FormEvent) {
-    e.preventDefault();
-    setNewsletterStatus("loading");
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_NEWSLETTER_TEMPLATE_ID,
-        {
-          to_email: EMAILJS_RECIPIENT,
-          subscriber_email: newsletterEmail,
-        },
-        EMAILJS_PUBLIC_KEY,
-      );
-      setNewsletterStatus("success");
-      setNewsletterEmail("");
-    } catch {
-      setNewsletterStatus("error");
-    }
-  }
-
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center">
-          <div className="badge-cyan mb-6 inline-flex mx-auto">Blog & Insights</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
-            PAM Security <span className="text-gradient">Insights</span>
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-            Best practices, security research, compliance guidance, and product updates from the OmniPriv team. Discover how to leverage our Privileged Access Management Solution to secure your enterprise.
-          </p>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="py-5 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30 sticky top-[72px] z-30 backdrop-blur-xl">
-        <div className="container-xl">
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border ${
-                  cat === activeCategory
-                    ? "bg-[#00B8FF]/15 border-[#00B8FF]/30 text-[#00B8FF]"
-                    : "bg-transparent border-slate-900/[0.08] dark:border-white/[0.06] text-slate-600 dark:text-slate-400 hover:border-[#00B8FF]/20 hover:text-slate-950 dark:hover:text-white"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Post */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <Link
-            href={featuredPost.href}
-            className="group block relative rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-gradient-to-br from-slate-100/80 dark:from-[#0A1628]/80 to-slate-200/60 dark:to-[#0F1E35]/60 overflow-hidden hover:border-[#00B8FF]/20 transition-all duration-300 card-shine"
-          >
-            <div className="absolute inset-0 bg-grid opacity-20" />
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10" style={{ background: "radial-gradient(circle, #00B8FF 0%, transparent 60%)" }} />
-            <div className="relative z-10 p-8 md:p-12">
-              <div className="flex items-center gap-3 mb-5">
-                <span className={`px-3 py-1 rounded-full border text-xs font-semibold ${getTagColor(featuredPost.category)}`}>
-                  {featuredPost.category}
-                </span>
-                <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Featured</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl" style={{ fontFamily: "var(--font-syne)" }}>
-                {featuredPost.title}
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 max-w-2xl">
-                {featuredPost.excerpt}
-              </p>
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                {featuredPost.tags.map((tag) => (
-                  <span key={tag} className="tag text-xs">{tag}</span>
-                ))}
-              </div>
-              <div className="flex items-center justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-slate-950 dark:text-white text-sm font-bold" style={{ fontFamily: "var(--font-syne)" }}>
-                    {featuredPost.author.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="text-slate-950 dark:text-white text-sm font-semibold">{featuredPost.author}</div>
-                    <div className="text-slate-500 text-xs">{featuredPost.authorTitle}</div>
-                  </div>
+            {/* ─── WHERE TO START ─────────────────────────────────── */}
+            <Section border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading badge="Editor's Picks" title={picksSection.title} className="mb-2">
+                        <Prose segments={picksSection.lead} />
+                    </SectionHeading>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-slate-500">
-                  <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{featuredPost.date}</span>
-                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{featuredPost.readTime}</span>
-                  <span className="text-[#00B8FF] font-semibold flex items-center gap-1">
-                    Read Article <ChevronRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
 
-      {/* Posts Grid */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map((post) => (
-              <Link
-                key={post.title}
-                href={post.href}
-                className="group flex flex-col p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 hover:bg-slate-100/90 dark:hover:bg-[#0A1628]/90 transition-all duration-300 card-shine"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <span className={`px-2.5 py-1 rounded-full border text-xs font-semibold ${getTagColor(post.category)}`}>
-                    {post.category}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-3 group-hover:text-[#00B8FF] transition-colors line-clamp-2 flex-1" style={{ fontFamily: "var(--font-syne)" }}>
-                  {post.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 mb-4">
-                  {post.excerpt}
-                </p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {post.tags.slice(0, 2).map((tag) => (
-                    <span key={tag} className="tag text-[11px]">{tag}</span>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between border-t border-slate-900/[0.06] dark:border-white/[0.05] pt-4 mt-auto">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/30 flex items-center justify-center text-slate-950 dark:text-white text-xs font-bold" style={{ fontFamily: "var(--font-syne)" }}>
-                      {post.author.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-950 dark:text-white font-medium leading-tight">{post.author}</div>
-                      <div className="text-[10px] text-slate-600">{post.readTime}</div>
-                    </div>
-                  </div>
-                  <span className="text-xs text-slate-600 flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
-                    {post.date.split(",")[0].split(" ").slice(0, 2).join(" ")}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+                <IconCardGrid items={picks} columns={4} className="mt-12" />
 
-      {/* Newsletter */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
-        <div className="container-xl">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
-              Get PAM Insights in Your Inbox
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-7">
-              Weekly security insights, PAM best practices, and OmniPriv product updates. No spam, unsubscribe anytime.
-            </p>
-            {newsletterStatus === "success" ? (
-              <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] text-[#00B8FF] text-sm font-medium">
-                ✓ You&apos;re subscribed! Welcome aboard.
-              </div>
-            ) : (
-              <>
-                <form className="flex gap-3 max-w-md mx-auto" onSubmit={handleNewsletter}>
-                  <input
-                    type="email"
-                    required
-                    placeholder="Work email address"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    className="input-dark flex-1"
-                  />
-                  <button
-                    type="submit"
-                    disabled={newsletterStatus === "loading"}
-                    className="btn-primary whitespace-nowrap disabled:opacity-60"
-                  >
-                    {newsletterStatus === "loading" ? "Subscribing..." : "Subscribe"}
-                  </button>
-                </form>
-                {newsletterStatus === "error" && (
-                  <p className="text-xs text-red-400 mt-2">Something went wrong. Please try again.</p>
-                )}
-                <p className="text-xs text-slate-600 mt-3">~4,200 security professionals subscribed</p>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
-    </>
-  );
+                <div className="mt-12">
+                    <ArrowLink href="/platform">Browse the platform capabilities instead</ArrowLink>
+                </div>
+            </Section>
+
+            {/* ─── EDITORIAL POLICY (dark band) ───────────────────── */}
+            <Section tone="dark" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="Editorial Policy"
+                        title={editorialSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={editorialSection.lead} />
+                    </SectionHeading>
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
+                    {editorialPillars.map((pillar) => (
+                        <div key={pillar.title}>
+                            <div className="icon-wrapper mb-5">
+                                <pillar.icon className="w-5 h-5" />
+                            </div>
+
+                            <SectionHeading
+                                as="h3"
+                                size="sm"
+                                title={pillar.title}
+                                titleClassName="max-w-3xl"
+                            >
+                                <Prose segments={[pillar.text]} />
+                            </SectionHeading>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-14">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
+                        Topics covered
+                    </p>
+                    <ChipList
+                        items={categories.map((category) => category.label)}
+                        variant="accent"
+                        separator={<span className="text-slate-500 text-sm">·</span>}
+                    />
+                </div>
+            </Section>
+
+            {/* ─── NEWSLETTER ─────────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <div className="max-w-2xl mx-auto text-center">
+                    <SectionHeading
+                        badge="Newsletter"
+                        title="Get PAM insights in your inbox"
+                        align="center"
+                        size="lg"
+                        className="mb-7"
+                    >
+                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            New articles, plus product updates when a release changes something
+                            documented here. No spam, and you can unsubscribe at any time.
+                        </p>
+                    </SectionHeading>
+
+                    <BlogNewsletter />
+                </div>
+            </Section>
+
+            {/* ─── CLOSING ────────────────────────────────────────── */}
+            <CtaBand
+                title={closing.title}
+                body={closing.body}
+                kicker={closing.kicker}
+                primary={closing.primary}
+                secondary={closing.secondary}
+            />
+
+            {/* ─── FAQ ────────────────────────────────────────────── */}
+            <FaqSection
+                title="Frequently Asked Questions"
+                subtitle="Common questions about the articles, attribution and where to begin."
+                items={faqs}
+            />
+        </>
+    );
 }
