@@ -7,6 +7,7 @@ import { solutions, getSolutionBySlug } from "../data";
 import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage";
 import AuditCompliancePage from "@/components/solutions/AuditCompliancePage";
 import InfrastructureDeploymentPage from "@/components/solutions/InfrastructureDeploymentPage";
+import PasswordCredentialManagementPage from "@/components/solutions/PasswordCredentialManagementPage";
 import SessionManagementPage from "@/components/solutions/SessionManagementPage";
 import ThreatDetectionPage from "@/components/solutions/ThreatDetectionPage";
 
@@ -21,6 +22,7 @@ const bespokePages: Record<string, ComponentType> = {
     "ai-agent-governance": AiAgentGovernancePage,
     "audit-compliance": AuditCompliancePage,
     "infrastructure-deployment": InfrastructureDeploymentPage,
+    "password-credential-management": PasswordCredentialManagementPage,
     "session-management": SessionManagementPage,
     "threat-detection": ThreatDetectionPage,
 };
