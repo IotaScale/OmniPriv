@@ -13,7 +13,8 @@ single class, so adopting them is not a redesign.
   also marking the band `tone="dark"`.
 - **`cn()` merges classes.** Import from `@/lib/utils`. A caller can override
   any default by passing a class of the same utility group (last one wins).
-- **Server components.** Nothing here ships client JavaScript.
+- **Server components by default.** Only `FaqAccordion` is a client component,
+  because a closeable list needs state. Everything else ships no JavaScript.
 - **Tokens live in `@/lib/styles`.** Border, surface and prose class strings
   are defined once. Change them there, not in a page.
 
@@ -31,14 +32,15 @@ single class, so adopting them is not a redesign.
 | `ChipList` | Row of chips, optionally joined into a flow. |
 | `ArrowLink` | Standalone "Explore X →" link that closes out a section. |
 | `CtaBand` | Full-width closing CTA on the dark surface. |
-| `FaqSection` | Question/answer cards plus `FAQPage` structured data. |
+| `FaqAccordion` | **Client.** Closeable question list — the homepage accordion, shared by every page. |
+| `FaqSection` | Band + heading + `FAQPage` structured data wrapping `FaqAccordion`. |
 
 ### `Section`
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `tone` | `"default" \| "muted" \| "dark"` | `"default"` | `muted` = slate band. `dark` = `#050b16` **and** wraps itself in `.dark`. |
-| `border` | `"none" \| "bottom" \| "both"` | `"none"` | Uses the shared border token. |
+| `border` | `"none" \| "bottom"` | `"none"` | Uses the shared border token. Only ever `bottom` — a top border stacks against the previous section's and reads as 2px. |
 | `container` | `boolean` | `true` | Renders the `container-xl` wrapper. |
 | `containerClassName` | `string` | — | e.g. `"max-w-3xl mx-auto"`. |
 
@@ -54,7 +56,8 @@ light mode. Do not hand-roll it.
 | `badge` | `string` | — | Eyebrow pill above the title. |
 | `as` | `"h2" \| "h3"` | `"h2"` | Use `h3` for a sub-section inside a section that already has an `h2`. Switches the weight to `font-bold`. |
 | `align` | `"left" \| "center"` | `"left"` | |
-| `size` | `"md" \| "lg" \| "sm"` | `"md"` | `sm` pairs with `as="h3"`. || `titleClassName` | `string` | — | e.g. `"max-w-3xl"`. |
+| `size` | `"md" \| "lg" \| "sm"` | `"md"` | `sm` pairs with `as="h3"`. |
+| `titleClassName` | `string` | — | Appended to the heading, e.g. `"md:text-5xl"`. |
 | `className` | `string` | — | Wrapper, e.g. `"max-w-3xl mb-12"`. |
 
 ### `Prose`
@@ -92,11 +95,23 @@ export const metadata: Metadata = {
 };
 ```
 
+### `FaqAccordion`
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `items` | `FaqEntry[]` | — | `answer` may be a string or an array of paragraphs. |
+| `initialOpen` | `number \| null` | `0` | Index open on first render. `null` starts fully collapsed. |
+| `idPrefix` | `string` | `"faq"` | Set a distinct value if two accordions share a page. |
+
+Closed answers stay in the DOM behind `hidden` rather than being unmounted, so
+the copy is still in the server-rendered HTML for search engines. Only one item
+is open at a time.
+
+Prefer `FaqSection` over `FaqAccordion` directly: it adds the band, the centred
+heading and the `FAQPage` structured data, and those stay server-rendered.
+
 ## Not yet unified
 
-- `components/ui/PamFaqSection.tsx` (homepage) is still its own accordion. Its
-  header design differs, so folding it in needs the homepage re-verified.
-  `FaqSection` is static by design and ships no JS.
 - `components/ui/PageHero.tsx` is a full-bleed image-background hero and does
   not match `SplitHero`. It is superseded — prefer `SplitHero`.
 - Thirteen pages still hand-roll the centred hero markup.

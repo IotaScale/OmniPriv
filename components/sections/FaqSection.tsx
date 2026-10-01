@@ -1,13 +1,10 @@
 import { cn } from "@/lib/utils";
-import { cardBorder, cardSurface, displayFont, prose } from "@/lib/styles";
+import { prose } from "@/lib/styles";
+import FaqAccordion, { type FaqEntry } from "./FaqAccordion";
 import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
-export interface FaqEntry {
-    question: string;
-    /** A single paragraph. */
-    answer: string;
-}
+export type { FaqEntry };
 
 export interface FaqSectionProps {
     title: string;
@@ -21,8 +18,9 @@ export interface FaqSectionProps {
 /**
  * Question-and-answer block on the recessed band.
  *
- * Answers are always visible (no accordion), so the block is a server
- * component and ships no client JavaScript.
+ * The list itself is the closeable accordion from the homepage; this wrapper
+ * only supplies the band, the heading and the FAQPage structured data. Those
+ * stay server-rendered even though the accordion is a client component.
  */
 export default function FaqSection({
     title,
@@ -37,7 +35,10 @@ export default function FaqSection({
         mainEntity: items.map((item) => ({
             "@type": "Question",
             name: item.question,
-            acceptedAnswer: { "@type": "Answer", text: item.answer },
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: Array.isArray(item.answer) ? item.answer.join(" ") : item.answer,
+            },
         })),
     };
 
@@ -50,35 +51,22 @@ export default function FaqSection({
                 />
             )}
 
-            <div className="container-xl max-w-3xl mx-auto">
+            <div className="container-xl max-w-4xl mx-auto">
                 <SectionHeading
                     title={title}
                     align="center"
                     size="lg"
-                    className="mb-12"
+                    className="mb-12 sm:mb-16"
+                    titleClassName="md:text-5xl leading-tight"
                 >
-                    {subtitle && <p className={prose}>{subtitle}</p>}
+                    {subtitle && (
+                        <p className={cn(prose, "text-base sm:text-lg max-w-2xl mx-auto")}>
+                            {subtitle}
+                        </p>
+                    )}
                 </SectionHeading>
 
-                <div className="space-y-4">
-                    {items.map((item) => (
-                        <div
-                            key={item.question}
-                            className={cn("rounded-2xl border p-6", cardBorder, cardSurface)}
-                        >
-                            <h3
-                                className="text-lg font-bold text-slate-950 dark:text-white mb-3 tracking-tight"
-                                style={displayFont}
-                            >
-                                {item.question}
-                            </h3>
-
-                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                                {item.answer}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+                <FaqAccordion items={items} />
             </div>
         </Section>
     );
