@@ -3,6 +3,23 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 
+/*
+ * Two-row scrolling marquee of official brand marks.
+ *
+ * Extracted from components/layout/TechMarquee.tsx so the homepage and
+ * /features share one implementation. /features previously carried its own
+ * banner made of 16 hand-drawn inline SVG icons in a different chip style —
+ * bare icon, no logo tile, 3 track copies, tighter spacing — which read as a
+ * cheaper version of the homepage band. Both pages now render this component
+ * and differ only in the label above it.
+ *
+ * `label` is the only prop, so the two usages cannot drift apart again.
+ *
+ * CLIENT COMPONENT: the scroll reveal needs IntersectionObserver. This is the
+ * second client component in components/sections/ after FaqAccordion; see the
+ * README.
+ */
+
 /* ─── Official brand marks (source: Iconify "logos" icon set) ───
    36 logos split across 2 rows of 18. */
 type Logo = { name: string; src: string };
@@ -65,7 +82,7 @@ function useScrollReveal() {
                     }
                 });
             },
-            { threshold: 0.15 }
+            { threshold: 0.15 },
         );
         const children = el.querySelectorAll(".reveal-item");
         children.forEach((child) => observer.observe(child));
@@ -121,7 +138,12 @@ function MarqueeRow({
     );
 }
 
-export default function TechMarquee() {
+export interface LogoMarqueeProps {
+    /** Caption above the rows. The two usages are otherwise identical. */
+    label: string;
+}
+
+export default function LogoMarquee({ label }: LogoMarqueeProps) {
     const ref = useScrollReveal();
 
     return (
@@ -129,7 +151,7 @@ export default function TechMarquee() {
             <section className="py-16 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
                 <div className="container-xl mb-8">
                     <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest reveal-item">
-                        Supports Every Protocol &amp; Platform
+                        {label}
                     </p>
                 </div>
 

@@ -13,8 +13,9 @@ single class, so adopting them is not a redesign.
   also marking the band `tone="dark"`.
 - **`cn()` merges classes.** Import from `@/lib/utils`. A caller can override
   any default by passing a class of the same utility group (last one wins).
-- **Server components by default.** Only `FaqAccordion` is a client component,
-  because a closeable list needs state. Everything else ships no JavaScript.
+- **Server components by default.** `FaqAccordion` is a client component because
+  a closeable list needs state, and `LogoMarquee` because its scroll reveal
+  needs `IntersectionObserver`. Everything else ships no JavaScript.
 - **Tokens live in `@/lib/styles`.** Border, surface and prose class strings
   are defined once. Change them there, not in a page.
 
@@ -30,6 +31,7 @@ single class, so adopting them is not a redesign.
 | `IconCardGrid` | Responsive grid of icon cards. |
 | `CheckList` | Accent-ticked bullet list. |
 | `ChipList` | Row of chips, optionally joined into a flow. |
+| `LogoMarquee` | **Client.** Two-row scrolling marquee of the 36 brand marks in `public/tech/`. |
 | `ArrowLink` | Standalone "Explore X →" link that closes out a section. |
 | `CtaBand` | Full-width closing CTA on the dark surface. |
 | `FaqAccordion` | **Client.** Closeable question list — the homepage accordion, shared by every page. |

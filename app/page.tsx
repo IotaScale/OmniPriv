@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import TechMarquee from "@/components/layout/TechMarquee";
+import LogoMarquee from "@/components/sections/LogoMarquee";
 import ChallengesSection from "@/components/ui/ChallengesSection";
 import HeroSlideshow from "@/components/ui/HeroSlideshow";
 // Temporarily disabled — repeats the Challenges section
@@ -284,7 +284,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── TECH MARQUEE (SVG logos) ─────────── */}
-      <TechMarquee />
+      <LogoMarquee label="Supports Every Protocol &amp; Platform" />
 
       {/* ─── CHALLENGES WE SOLVE (AI first) ────── */}
       <ChallengesSection />

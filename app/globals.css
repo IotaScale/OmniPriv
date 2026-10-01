@@ -549,7 +549,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Scroll-driven reveal items (used by TechMarquee and other sections) */
+/* Scroll-driven reveal items (used by LogoMarquee and other sections) */
 /* Default: fully visible — ensures content is always accessible without JS or with reduced-motion */
 .reveal-item {
   opacity: 1;
