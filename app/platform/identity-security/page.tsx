@@ -29,17 +29,21 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /identity-security — the cross-cutting hub.
+ * /platform/identity-security — the cross-cutting hub.
  *
- * Unlike the bespoke /platform/<slug> pages, this lives at the top level
- * because it describes the whole identity estate rather than one capability,
- * and because it is the only place that links the two halves of the site
- * together: the identity classes under /solutions and the capability modules
- * under /platform.
+ * It sits inside the /platform namespace because every challenge card now
+ * points there, but it is not a capability module and is deliberately absent
+ * from `solutions` in ../data.ts: it describes the whole identity estate
+ * rather than one capability. That is also why it is a real route rather than
+ * an entry in the bespokePages map — a static segment takes precedence over
+ * the neighbouring [slug] route, so no module entry is needed for it to
+ * resolve, and the module count stays at nine.
  *
- * It is also the destination of the "Identity Risk / Shrink your privilege
- * sprawl" challenge card, which previously pointed at a single credential
- * module that did not describe it.
+ * It is the only page that links the two halves of the site together: the
+ * identity classes under /solutions and the capability modules under
+ * /platform. It is also the destination of the "Identity Risk / Shrink your
+ * privilege sprawl" challenge card, which previously pointed at a single
+ * credential module that did not describe it.
  *
  * The four identity classes come from app/solutions/ai-agent-security/data.ts:
  * "human, machine, vendor, and AI/automated identities". Every destination

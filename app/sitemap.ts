@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/`,               lastModified: new Date(), changeFrequency: "weekly",  priority: 1.0 },
     { url: `${BASE_URL}/ai-pam`,         lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE_URL}/platform`,       lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${BASE_URL}/identity-security`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/platform/identity-security`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/features`,       lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/integrations`,   lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/enterprise`,     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },

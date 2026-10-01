@@ -44,6 +44,16 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // The Identity Security hub was briefly served from the top level.
+      {
+        source: '/identity-security',
+        destination: '/platform/identity-security',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
