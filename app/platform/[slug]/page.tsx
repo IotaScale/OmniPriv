@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { solutions, getSolutionBySlug } from "../data";
+import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage";
+
+/*
+ * Capabilities that need more than the generic layout below.
+ *
+ * The route stays dynamic and only the body is swapped, so a bespoke page
+ * cannot collide with the [slug] segment the way a sibling static route
+ * would. Anything not listed here keeps the generic capability template.
+ */
+const bespokePages: Record<string, ComponentType> = {
+    "workflow-access-control": AiAgentGovernancePage,
+};
 
 /* ── Static params for all 8 slugs ─────────────────────────── */
 export function generateStaticParams() {
@@ -33,6 +46,9 @@ export default async function SolutionPage({
     const { slug } = await params;
     const solution = getSolutionBySlug(slug);
     if (!solution) notFound();
+
+    const Bespoke = bespokePages[slug];
+    if (Bespoke) return <Bespoke />;
 
     const Icon = solution.icon;
 
