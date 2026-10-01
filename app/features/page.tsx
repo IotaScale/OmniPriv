@@ -8,6 +8,7 @@ import {
   ScanSearch, RotateCcw, KeyRound, Upload, ShieldAlert, UserPlus,
   Video, Activity, TrendingUp, ScrollText, Share2, FileCheck2,
   Network, BarChart3,
+  AlertTriangle, Bot, Cpu, FileSearch, Zap,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -52,6 +53,17 @@ const auditFeatures = [
   { icon: FileCheck2,  title: "Compliance Reports",          desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, PCI-DSS, HIPAA, and more." },
 ];
 
+const aiFeatures = [
+  { icon: AlertTriangle, title: "ML Anomaly Detection",       desc: "IsolationForest scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time." },
+  { icon: Fingerprint,   title: "Behavioural Analytics",      desc: "AI keystroke-dynamics and per-agent baselines flag impossible travel, off-hours access and deviation from learned behaviour." },
+  { icon: ShieldCheck,   title: "Adaptive MFA Step-Up",      desc: "Keystroke rhythm, speed and pattern are compared against the identity's baseline at login — drift triggers an MFA challenge automatically." },
+  { icon: Bot,           title: "AI Agent Governance",       desc: "Every MCP agent gets a verifiable identity, tool allowlist and data scope. More than 100 MCP tools sit under policy rather than under a borrowed human login." },
+  { icon: UserCheck,     title: "Human-in-the-Loop Approval", desc: "High-risk agent actions — drop table, delete cluster, transfer funds — pause for explicit human approval before they execute." },
+  { icon: Lock,          title: "Prompt-Injection Guard",     desc: "Even when an LLM's reasoning is manipulated, every tool call is re-verified against deterministic policy before it is allowed to run." },
+  { icon: FileSearch,    title: "Agent Session Audit Trail", desc: "A full forensic trace from human to agent to MCP server to tool to resource — with decision, privilege level and duration recorded." },
+  { icon: Zap,           title: "Automated Threat Response", desc: "Each session is scored 0–1 across 39 features and escalates in tiers: dashboard alert, then admin alert, then automatic block on a 10-second sweep." },
+];
+
 const protocolSupport = [
   { protocol: "SSH / SFTP", category: "Linux & Unix", color: "bg-blue-500/10 border-blue-500/20 text-blue-400" },
   { protocol: "RDP", category: "Windows", color: "bg-purple-500/10 border-purple-500/20 text-purple-400" },
@@ -72,10 +84,11 @@ const protocolSupport = [
 ];
 
 function FeatureSection({
-  id, icon: Icon, title, subtitle, description, features, reverse = false,
+  id, icon: Icon, title, subtitle, description, features, reverse = false, cta,
 }: {
   id: string; icon: React.ElementType; title: string; subtitle: string; description: string;
   features: { icon: React.ElementType; title: string; desc: string }[]; reverse?: boolean;
+  cta?: { href: string; label: string };
 }) {
   return (
     <div id={id} className="scroll-mt-24 section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
@@ -93,6 +106,15 @@ function FeatureSection({
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">{description}</p>
 
+            {cta && (
+              <Link
+                href={cta.href}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
+              >
+                {cta.label}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
           </div>
           <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`}>
             {features.map((f) => (
@@ -227,6 +249,17 @@ export default function FeaturesPage() {
         description="Every privileged action leaves a permanent, tamper-proof record in OmniPriv. Compliance teams can generate audit reports in minutes, security teams can investigate incidents in real time, and executives get the visibility they need to manage risk."
         features={auditFeatures}
         reverse
+      />
+
+      {/* AI & Automation */}
+      <FeatureSection
+        id="ai"
+        icon={Cpu}
+        title="AI & Automation: Intelligence on Every Privileged Action"
+        subtitle="05: AI & Automation"
+        description="OmniPriv's AI-PAM engine scores behaviour on every privileged action and governs autonomous agents through the same policy engine that governs people. Detection, approval and enforcement happen inside the platform, not in an analytics product bolted onto it."
+        features={aiFeatures}
+        cta={{ href: "/ai-pam", label: "Explore the AI-PAM engine" }}
       />
 
     </>  

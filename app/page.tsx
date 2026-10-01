@@ -54,7 +54,7 @@ const trustedBrands = [
 
 
 /* Homepage shows 8 AI-first capabilities only.
-   The complete 24-feature breakdown lives on /features. */
+   The complete 32-feature breakdown lives on /features. */
 const features = [
   {
     icon: Cpu,
