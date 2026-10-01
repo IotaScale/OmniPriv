@@ -170,6 +170,4 @@ before its bespoke page exists. Do not delete it.
 
 ## Not yet unified
 
-- `components/ui/PageHero.tsx` is a full-bleed image-background hero and does
-  not match `SplitHero`. It is superseded — prefer `SplitHero`.
-- Thirteen pages still hand-roll the centred hero markup.
+- Thirteen pages still hand-roll the centred hero markup. Prefer `SplitHero`.

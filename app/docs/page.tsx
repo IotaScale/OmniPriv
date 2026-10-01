@@ -7,8 +7,19 @@ import {
   Icon,
 } from "lucide-react";
 
-// No category sub-routes exist yet, so the brand suffix here is deliberately
-// distinct from the layout default that /demo would otherwise share.
+/*
+ * Documentation index.
+ *
+ * None of the destinations advertised here exist yet — app/docs/ contains only
+ * this page, so every /docs/<section>/<article> URL below would 404. The
+ * article lists are therefore rendered as inert text with a "coming soon"
+ * treatment rather than as links, and the fabricated view counts that used to
+ * sit on the popular-article cards have been removed.
+ *
+ * The `href` values are deliberately kept as the intended route map. Once a
+ * section is actually built, swap the wrapping <div> back to a <Link> and drop
+ * the aria-disabled/opacity styling.
+ */
 export const metadata: Metadata = {
   title: { absolute: "Documentation | OmniPriv PAM Guides & API Reference" },
   description:
@@ -103,12 +114,12 @@ const docCategories = [
 ];
 
 const popularDocs = [
-  { icon: Terminal, title: "How to Connect Assets via SSH Proxy", href: "/docs/how-to/ssh-proxy", views: "34.2k views" },
-  { icon: Users, title: "Setting Up LDAP/AD Sync for Enterprise", href: "/docs/how-to/ldap-sync", views: "28.1k views" },
-  { icon: Lock, title: "Configuring MFA with Google Authenticator", href: "/docs/how-to/mfa-setup", views: "21.5k views" },
-  { icon: Database, title: "Connecting to MySQL and PostgreSQL Databases", href: "/docs/how-to/database", views: "19.8k views" },
-  { icon: Network, title: "Kubernetes Cluster Access with OmniPriv", href: "/docs/how-to/kubernetes", views: "15.3k views" },
-  { icon: FileText, title: "Generating SOC2 Compliance Reports", href: "/docs/how-to/soc2-report", views: "13.7k views" },
+  { icon: Terminal, title: "How to Connect Assets via SSH Proxy", href: "/docs/how-to/ssh-proxy" },
+  { icon: Users, title: "Setting Up LDAP/AD Sync for Enterprise", href: "/docs/how-to/ldap-sync" },
+  { icon: Lock, title: "Configuring MFA with Google Authenticator", href: "/docs/how-to/mfa-setup" },
+  { icon: Database, title: "Connecting to MySQL and PostgreSQL Databases", href: "/docs/how-to/database" },
+  { icon: Network, title: "Kubernetes Cluster Access with OmniPriv", href: "/docs/how-to/kubernetes" },
+  { icon: FileText, title: "Generating SOC2 Compliance Reports", href: "/docs/how-to/soc2-report" },
 ];
 
 const quickLinks = [
@@ -143,10 +154,15 @@ export default function DocsPage() {
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {quickLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="flex items-center gap-2 p-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8FF]/20 transition-all group">
+              <div
+                key={link.label}
+                aria-disabled="true"
+                className="flex items-center gap-2 p-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] opacity-75"
+              >
                 <link.icon className="w-4 h-4 text-[#00B8FF] flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-slate-950 dark:group-hover:text-white transition-colors">{link.label}</span>
-              </Link>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{link.label}</span>
+                <span className="ml-auto text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex-shrink-0">Soon</span>
+              </div>
             ))}
           </div>
         </div>
@@ -155,9 +171,14 @@ export default function DocsPage() {
       {/* Documentation Categories */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-8" style={{ fontFamily: "var(--font-syne)" }}>
+          <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Browse by Category
           </h2>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 max-w-2xl">
+            The guide titles below outline what is being written. They are not yet
+            published, so they are listed for reference rather than as links. In the
+            meantime, our support team can answer any of these directly.
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {docCategories.map((cat) => (
               <div key={cat.title} className={`p-6 rounded-2xl border ${cat.color} hover:border-opacity-40 transition-all group`}>
@@ -168,14 +189,12 @@ export default function DocsPage() {
                 <p className="text-xs text-slate-600 dark:text-slate-400 mb-5">{cat.description}</p>
                 <ul className="space-y-2.5">
                   {cat.articles.map((article) => (
-                    <li key={article.title}>
-                      {/* <Link
-                        href={article.href}
-                        className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors group/link"
-                      > */}
-                        <ChevronRight className="w-3 h-3 text-[#00B8FF]/50 group-hover/link:text-[#00B8FF] transition-colors flex-shrink-0" />
-                        {article.title}
-                      {/* </Link> */}
+                    <li
+                      key={article.title}
+                      className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-500"
+                    >
+                      <ChevronRight className="w-3 h-3 text-[#00B8FF]/40 flex-shrink-0" />
+                      {article.title}
                     </li>
                   ))}
                 </ul>
@@ -192,25 +211,22 @@ export default function DocsPage() {
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
               Most Popular Articles
             </h2>
-            {/* <Link href="/docs/all" className="text-sm text-[#00B8FF] hover:underline flex items-center gap-1">
-              View all docs <ArrowRight className="w-3.5 h-3.5" />
-            </Link> */}
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {popularDocs.map((doc) => (
-              <Link
+              <div
                 key={doc.title}
-                href={doc.href}
-                className="flex items-start gap-3 p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all group"
+                aria-disabled="true"
+                className="flex items-start gap-3 p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 opacity-75"
               >
                 <doc.icon className="w-5 h-5 text-[#00B8FF] flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-sm font-semibold text-slate-950 dark:text-white mb-1 group-hover:text-[#00B8FF] transition-colors">
+                  <div className="text-sm font-semibold text-slate-950 dark:text-white mb-1">
                     {doc.title}
                   </div>
-                  <div className="text-xs text-slate-500">{doc.views}</div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Coming soon</div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

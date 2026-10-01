@@ -40,7 +40,8 @@ export default function AiPamTeaser() {
                         <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
                             From real-time IsolationForest anomaly detection to Model Context Protocol
                             (MCP) agent scoping, OmniPriv keeps autonomous AI agents and human
-                            administrators inside mathematically verified, least-privilege boundaries.
+                            administrators inside least-privilege boundaries that are re-verified
+                            against deterministic policy before anything runs.
                         </p>
 
                         <Link href="/ai-pam" className="btn-primary text-base px-7 py-3.5">
