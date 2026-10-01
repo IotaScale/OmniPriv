@@ -60,7 +60,7 @@ const challenges = [
         headline: "Shrink your privilege sprawl",
         body: "Continuous discovery surfaces stale accounts, orphaned keys and excessive rights — just-in-time access removes standing privilege.",
         caption: "JIT · ZERO STANDING",
-        href: "/platform/password-credential-management",
+        href: "/identity-security",
         icon: Layers,
         accent: "#fbbf24",
     },
