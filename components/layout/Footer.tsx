@@ -58,13 +58,21 @@ export default function Footer() {
               </p>
             </div>
             {status === "success" ? (
-              <p className="text-[#00B8FF] font-medium text-sm flex items-center gap-2">
+              <p
+                role="status"
+                aria-live="polite"
+                className="text-[#00B8FF] font-medium text-sm flex items-center gap-2"
+              >
                 <span className="text-lg">✓</span> You&apos;re subscribed! Welcome aboard.
               </p>
             ) : (
               <form className="flex gap-3 w-full md:w-auto" onSubmit={handleSubscribe}>
+                <label htmlFor="footer-newsletter-email" className="sr-only">
+                  Work email address
+                </label>
                 <input
                   type="email"
+                  id="footer-newsletter-email"
                   placeholder="Work email address"
                   className="input-dark w-full md:w-72"
                   autoComplete="email"

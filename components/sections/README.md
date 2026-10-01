@@ -151,6 +151,12 @@ some run `dark → default → muted`, and some add a second `muted` band. Place
 dark band wherever the technical content sits and alternate the surrounding
 bands so no two adjacent sections share a surface.
 
+**The one deliberate exception: `/demo`.** It has a single dark band and no
+`CtaBand`, ending on `FaqSection` instead. The form on that page *is* the call
+to action, so a closing band whose buttons point back at `/demo` would be
+circular. Do not "fix" this by adding a `CtaBand` — if the page ever needs a
+second dark band, it should be a content band, not a CTA.
+
 Other rules that are easiest to get wrong:
 
 - `tone="dark"` wraps itself in `.dark`; never hand-roll the ancestor.

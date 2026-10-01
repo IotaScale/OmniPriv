@@ -1,391 +1,271 @@
-"use client";
-
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import Link from "next/link";
+import type { Metadata } from "next";
 import {
-  Shield, Clock, Users, CheckCircle2, Star,
-  ArrowRight, Phone, Mail, Linkedin, Twitter,
+    ClipboardCheck,
+    FlaskConical,
+    KeyRound,
+    Layers,
+    Mail,
+    MonitorPlay,
+    PhoneCall,
+    Server,
+    UserCheck,
 } from "lucide-react";
-import {
-  EMAILJS_PUBLIC_KEY,
-  EMAILJS_SERVICE_ID,
-  EMAILJS_DEMO_TEMPLATE_ID,
-  EMAILJS_RECIPIENT,
-} from "@/lib/emailjs";
 
-const companySizes = [
-  "1–50 employees",
-  "51–200 employees",
-  "201–1,000 employees",
-  "1,001–5,000 employees",
-  "5,001–10,000 employees",
-  "10,000+ employees",
+import FaqSection from "@/components/sections/FaqSection";
+import IconCardGrid from "@/components/sections/IconCardGrid";
+import Prose from "@/components/sections/Prose";
+import Section from "@/components/sections/Section";
+import SectionHeading from "@/components/sections/SectionHeading";
+import SplitHero from "@/components/sections/SplitHero";
+import DemoForm from "@/components/demo/DemoForm";
+import type { FaqEntry } from "@/components/sections/FaqSection";
+import type { IconCard } from "@/components/sections/IconCardGrid";
+import type { RichText } from "@/lib/rich-text";
+
+/*
+ * /demo
+ *
+ * Previously a single "use client" page: a hand-rolled centred hero plus one
+ * grid holding the form. That blocked the shared section library, since
+ * SplitHero, Section and FaqSection are server components.
+ *
+ * The form now lives in components/demo/DemoForm.tsx and this file is a
+ * server component, so the page composes the same primitives as the rest of
+ * the site. Metadata moved back here from app/demo/layout.tsx, which existed
+ * only because a client page cannot export it.
+ *
+ * Removed: the commented-out "Trusted By Security Leaders" block and its
+ * `trustStats` array, which claimed "100+ Enterprise Customers" and a
+ * "99.99% Uptime SLA". Neither figure traced to anything the site publishes.
+ *
+ * No CtaBand: the form is the call to action, so a closing band pointing at
+ * /demo would be circular. This page therefore has one content dark band
+ * rather than the usual two — see components/sections/README.md.
+ */
+
+export const metadata: Metadata = {
+    title: { absolute: "Request a Demo | See OmniPriv PAM in Your Environment" },
+    description:
+        "Book a 30-minute introductory call, a tailored walkthrough, or an architecture review — including an optional 30-day proof-of-concept in your own environment.",
+};
+
+const hero = {
+    badge: "Request a Demo",
+    titleLead: "See OmniPriv in your",
+    titleAccent: "own environment.",
+    intro: [
+        "A walkthrough is only useful if it looks like your estate. Tell us which systems matter and we will focus the session on those rather than giving a generic tour.",
+    ] as RichText,
+    body: [
+        "No credit card, no commitment, and no obligation to sit through a slide deck — you can start with the architecture review instead if that is the more useful conversation.",
+    ] as RichText,
+    image: {
+        src: "https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?auto=format&fit=crop&w=1200&q=70",
+        alt: "Colleague presenting to a team seated around a conference table",
+    },
+    primary: { href: "#demo-form", label: "Request Your Demo" },
+    secondary: { href: "/platform", label: "Explore the Platform First" },
+};
+
+const expectationsSection = {
+    title: "What to expect",
+    lead: [
+        "Four steps, and you can stop after any of them. Nothing is charged at any stage, including the proof-of-concept.",
+    ] as RichText,
+};
+
+const whatToExpect: IconCard[] = [
+    {
+        icon: PhoneCall,
+        eyebrow: "Step 01",
+        title: "Introductory call",
+        text: "A 30-minute discovery conversation with a PAM specialist to understand your environment, challenges and goals.",
+    },
+    {
+        icon: MonitorPlay,
+        eyebrow: "Step 02",
+        title: "Tailored walkthrough",
+        text: "A live demonstration configured for your specific use cases, industry and compliance requirements.",
+    },
+    {
+        icon: Layers,
+        eyebrow: "Step 03",
+        title: "Architecture review",
+        text: "Our solution architects review your existing infrastructure and design a deployment plan with no disruption to operations.",
+    },
+    {
+        icon: FlaskConical,
+        eyebrow: "Step 04",
+        title: "Free proof-of-concept",
+        text: "Optionally, run OmniPriv in your own environment at no cost for 30 days, with support from our engineering team.",
+    },
 ];
 
-const useCases = [
-  "Privileged Session Management",
-  "Just-in-Time (JIT) Access",
-  "MFA & Identity Governance",
-  "Cloud Secrets Management",
-  "DevOps / CI-CD Pipeline Security",
-  "Compliance & Audit Reporting",
-  "Third-Party & Vendor Access",
-  "Other / Not Sure Yet",
+const walkthroughSection = {
+    title: "What we'll walk through",
+    lead: [
+        "The session follows the platform's own specification: how it deploys, how it handles the secrets you already have, how approval works, and what your audit will look like afterwards.",
+    ] as RichText,
+};
+
+const walkthroughPillars = [
+    {
+        icon: Server,
+        title: "Your deployment model",
+        text: "On-premise on VMware, Red Hat or OpenStack as a hardware-agnostic appliance. 100% agentless, so nothing is installed on the machines being protected, with multi-node clustering available for high availability.",
+    },
+    {
+        icon: KeyRound,
+        title: "Where your secrets live today",
+        text: "We will look at the credentials currently sitting in configuration files, databases, registries, Windows Services, scheduled tasks and IIS App Pools, and show what replacing them with vaulting and automated rotation involves.",
+    },
+    {
+        icon: UserCheck,
+        title: "How approval would work for you",
+        text: "The 4-eyes principle is the default — a minimum of two independent approvers with the requester excluded. We will map your existing approval chains onto multi-level workflows, including mobile and email approvals.",
+    },
+    {
+        icon: ClipboardCheck,
+        title: "What your audit will look like",
+        text: "Session recordings, hash-chained audit records and scheduled entitlement reports, against whichever of the nine mapped regulatory frameworks applies to you.",
+    },
 ];
 
-const trustStats = [
-  { icon: Users, value: "100+", label: "Enterprise Customers" },
-  { icon: Shield, value: "SOC 2 Type II", label: "Certified Security" },
-  { icon: Star, value: "99.99%", label: "Uptime SLA" },
-  { icon: Clock, value: "< 1 hr", label: "Support Response Time" },
-];
-
-const whatToExpect = [
-  {
-    step: "01",
-    title: "Introductory Call",
-    description: "A 30-minute discovery conversation with a PAM specialist to understand your environment, challenges, and goals.",
-  },
-  {
-    step: "02",
-    title: "Personalized Walkthrough",
-    description: "A tailored live demonstration of OmniPriv configured for your specific use cases, industry, and compliance requirements.",
-  },
-  {
-    step: "03",
-    title: "Architecture Review",
-    description: "Our solution architects review your existing infrastructure and design a deployment plan with no disruption to operations.",
-  },
-  {
-    step: "04",
-    title: "Free Proof-of-Concept",
-    description: "Optionally, run OmniPriv in your environment at no cost for 30 days with full support from our engineering team.",
-  },
+const faqs: FaqEntry[] = [
+    {
+        question: "What actually happens on the demo call?",
+        answer:
+            "A 30-minute introductory call first, to understand your environment and which of the nine capability modules matter to you. The walkthrough itself is configured for your use cases rather than being a fixed script, and you can switch to an architecture review if a demonstration is not the useful conversation yet.",
+    },
+    {
+        question: "Do I need to prepare anything, or provide access?",
+        answer:
+            "Nothing for the introductory call. For an architecture review it helps to know your hypervisor, directory service and roughly how many privileged accounts you are dealing with. You never need to give us access to a production system to see the platform.",
+    },
+    {
+        question: "Can we run it in our own environment first?",
+        answer:
+            "Yes — that is step four, and it is free. OmniPriv can run in your environment for 30 days at no cost with support from our engineering team. Because the platform is 100% agentless there is no software rollout to the protected machines, which is what usually makes a trial impractical.",
+    },
+    {
+        question: "Where does the platform run, and who holds the keys?",
+        answer:
+            "On-premise, on infrastructure you control. Data is encrypted at rest with AES-256-GCM and in transit with TLS 1.3, with HSM-backed root-of-trust key protection. The SECRET_KEY is generated at installation and stored externally and independently of the platform, so a compromise of our storage is not a compromise of yours.",
+    },
+    {
+        question: "What happens to the information I submit?",
+        answer:
+            "It is sent to our sales team so they can prepare for the call, and handled under our privacy policy. The form asks for your name, work contact details, company, job title, company size and primary use case; the additional context field is optional. You can ask us to delete it at any point.",
+    },
 ];
 
 export default function DemoPage() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    jobTitle: "",
-    companySize: "",
-    useCase: "",
-    context: "",
-    agree: false,
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+    return (
+        <>
+            <SplitHero
+                badge={hero.badge}
+                titleLead={hero.titleLead}
+                titleAccent={hero.titleAccent}
+                primary={hero.primary}
+                secondary={hero.secondary}
+                media={hero.image}
+            >
+                <Prose segments={hero.intro} className="text-lg mb-5" />
+                <Prose segments={hero.body} className="text-lg mb-8" />
+            </SplitHero>
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
-    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_DEMO_TEMPLATE_ID,
-        {
-          to_email: EMAILJS_RECIPIENT,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          jobTitle: formData.jobTitle,
-          company: formData.company,
-          companySize: formData.companySize,
-          useCase: formData.useCase,
-          context: formData.context || "No additional context provided.",
-        },
-        EMAILJS_PUBLIC_KEY,
-      );
-      setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again or email us at info@omnipriv.com");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
-          <div className="badge-cyan mb-6">Request a Demo</div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-            See OmniPriv in Your <span className="text-gradient">Environment</span>
-          </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            Get a personalized, no-commitment walkthrough tailored to your infrastructure and compliance requirements. Our PAM specialists will show you exactly how OmniPriv eliminates privilege-based risk at your scale.
-          </p>
-        </div>
-      </section>
-
-      {/* Main */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="grid lg:grid-cols-5 gap-14 items-start">
-
-            {/* LEFT: Form */}
-            <div className="lg:col-span-3">
-              {submitted ? (
-                <div className="p-12 rounded-3xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.04] text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#00B8FF]/15 flex items-center justify-center mx-auto mb-5">
-                    <CheckCircle2 className="w-8 h-8 text-[#00B8FF]" />
-                  </div>
-                  <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>Demo Request Received!</h2>
-                  <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
-                    A member of our team will contact you within one business day to schedule your personalized walkthrough.
-                  </p>
-                  <Link href="/" className="btn-secondary">
-                    Return to Home
-                  </Link>
-                </div>
-              ) : (
-                <div className="p-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
-                  <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
-                    Tell Us About Your Needs
-                  </h2>
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">First Name *</label>
-                        <input
-                          required
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleChange}
-                          placeholder="Alexandra"
-                          className="input-dark"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Last Name *</label>
-                        <input
-                          required
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleChange}
-                          placeholder="Mercer"
-                          className="input-dark"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Work Email *</label>
-                      <input
-                        required
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="you@company.com"
-                        className="input-dark"
-                      />
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone Number</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="+1 (555) 000-0000"
-                          className="input-dark"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Company *</label>
-                        <input
-                          required
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          placeholder="Acme Corporation"
-                          className="input-dark"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Job Title *</label>
-                      <input
-                        required
-                        type="text"
-                        name="jobTitle"
-                        value={formData.jobTitle}
-                        onChange={handleChange}
-                        placeholder="CISO / IT Director / VP Engineering"
-                        className="input-dark"
-                      />
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Company Size *</label>
-                        <select
-                          required
-                          name="companySize"
-                          value={formData.companySize}
-                          onChange={handleChange}
-                          className="select-dark"
-                        >
-                          <option value="">Select a range</option>
-                          {companySizes.map((s) => (
-                            <option key={s} value={s}>{s}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Primary Use Case *</label>
-                        <select
-                          required
-                          name="useCase"
-                          value={formData.useCase}
-                          onChange={handleChange}
-                          className="select-dark"
-                        >
-                          <option value="">Select a use case</option>
-                          {useCases.map((u) => (
-                            <option key={u} value={u}>{u}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Additional Context</label>
-                      <textarea
-                        rows={4}
-                        name="context"
-                        value={formData.context}
-                        onChange={handleChange}
-                        placeholder="Describe your current environment, key challenges, timeline, or anything else we should know to make the demo as relevant as possible."
-                        className="input-dark resize-none"
-                      />
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <input
-                        required
-                        type="checkbox"
-                        id="agree"
-                        name="agree"
-                        checked={formData.agree}
-                        onChange={handleChange}
-                        className="mt-1 w-4 h-4 rounded border-slate-300 dark:border-white/20 bg-slate-200 dark:bg-[#0F1E35] accent-[#00B8FF]"
-                      />
-                      <label htmlFor="agree" className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        I agree to OmniPriv&apos;s{" "}
-                        <Link href="/privacy-policy" className="text-[#00B8FF] hover:underline">Privacy Policy</Link>{" "}
-                        and{" "}
-                        <Link href="/terms" className="text-[#00B8FF] hover:underline">Terms of Service</Link>.
-                        I agree to receive communications from OmniPriv about products and services.
-                      </label>
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="btn-primary w-full justify-center text-base py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
+            {/* ─── WHAT TO EXPECT ─────────────────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="The Process"
+                        title={expectationsSection.title}
+                        className="mb-2"
                     >
-                      {loading ? (
-                        <span className="flex items-center gap-2 justify-center">
-                          <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z" />
-                          </svg>
-                          Submitting...
-                        </span>
-                      ) : (
-                        <>Request Your Demo <ArrowRight className="w-4 h-4" /></>
-                      )}
-                    </button>
-
-                    <p className="text-xs text-slate-500 text-center">
-                      No credit card required &bull; No commitment &bull; Respond within 1 business day
-                    </p>
-
-                    {error && (
-                      <p className="text-sm text-red-400 text-center border border-red-500/20 bg-red-500/10 rounded-xl px-4 py-3">
-                        {error}
-                      </p>
-                    )}
-                  </form>
+                        <Prose segments={expectationsSection.lead} />
+                    </SectionHeading>
                 </div>
-              )}
-            </div>
 
-            {/* RIGHT: What to Expect + Trust + Contact */}
-            <div className="lg:col-span-2 space-y-8">
+                <IconCardGrid items={whatToExpect} columns={4} className="mt-12" />
+            </Section>
 
-              {/* Trust stats */}
-              {/* <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
-                <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-5 uppercase tracking-wider" style={{ fontFamily: "var(--font-syne)" }}>Trusted By Security Leaders</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {trustStats.map((t) => (
-                    <div key={t.label} className="text-center p-3 rounded-xl bg-slate-900/[0.02] dark:bg-white/[0.02] border border-slate-900/[0.05] dark:border-white/[0.04]">
-                      <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center mx-auto mb-2">
-                        <t.icon className="w-4 h-4 text-[#00B8FF]" />
-                      </div>
-                      <div className="text-sm font-bold text-slate-950 dark:text-white mb-0.5" style={{ fontFamily: "var(--font-syne)" }}>{t.value}</div>
-                      <div className="text-[10px] text-slate-500">{t.label}</div>
+            {/* ─── THE FORM ───────────────────────────────────────── */}
+            <Section border="bottom">
+                <div id="demo-form" className="grid lg:grid-cols-5 gap-14 items-start">
+                    <div className="lg:col-span-3 scroll-mt-28">
+                        <DemoForm />
                     </div>
-                  ))}
-                </div>
-              </div> */}
 
-              {/* What to Expect */}
-              <div>
-                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>What to Expect</h3>
-                <div className="space-y-4">
-                  {whatToExpect.map((step) => (
-                    <div key={step.step} className="flex gap-4 p-4 rounded-xl border border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/40 dark:bg-[#0A1628]/40">
-                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-[#00B8FF] font-bold text-xs" style={{ fontFamily: "var(--font-syne)" }}>
-                        {step.step}
-                      </div>
-                      <div>
-                        <div className="text-sm font-bold text-slate-950 dark:text-white mb-1">{step.title}</div>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{step.description}</p>
-                      </div>
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#070e1c]">
+                            <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
+                                Prefer to talk directly?
+                            </h3>
+                            <a
+                                href="mailto:info@omnipriv.com"
+                                className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors"
+                            >
+                                <Mail className="w-4 h-4 text-[#00B8FF]" aria-hidden="true" />
+                                info@omnipriv.com
+                            </a>
+                            <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+                                Email us with the systems that matter and we will scope the session
+                                around them.
+                            </p>
+                        </div>
+
+                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#070e1c]">
+                            <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
+                                What we will not do
+                            </h3>
+                            <ul className="space-y-2.5 text-xs text-slate-500 leading-relaxed">
+                                <li>No discovering a &ldquo;special price&rdquo; that expires today.</li>
+                                <li>No passing your details to a partner network.</li>
+                                <li>No renewal pressure on a free proof-of-concept.</li>
+                            </ul>
+                        </div>
                     </div>
-                  ))}
                 </div>
-              </div>
+            </Section>
 
-              {/* Contact */}
-              <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
-                <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>Prefer to Talk Directly?</h3>
-                <div className="space-y-3">
-                  <a href="mailto:info@omnipriv.com" className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors">
-                    <Mail className="w-4 h-4 text-[#00B8FF]" />
-                    info@omnipriv.com
-                  </a>
+            {/* ─── WHAT WE'LL WALK THROUGH (dark band) ────────────── */}
+            <Section tone="dark" border="bottom">
+                <div className="max-w-3xl">
+                    <SectionHeading
+                        badge="Session Agenda"
+                        title={walkthroughSection.title}
+                        className="mb-2"
+                    >
+                        <Prose segments={walkthroughSection.lead} />
+                    </SectionHeading>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
+                    {walkthroughPillars.map((pillar) => (
+                        <div key={pillar.title}>
+                            <div className="icon-wrapper mb-5">
+                                <pillar.icon className="w-5 h-5" />
+                            </div>
+
+                            <SectionHeading
+                                as="h3"
+                                size="sm"
+                                title={pillar.title}
+                                titleClassName="max-w-3xl"
+                            >
+                                <Prose segments={[pillar.text]} />
+                            </SectionHeading>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+
+            {/* ─── FAQ ────────────────────────────────────────────── */}
+            <FaqSection
+                title="Frequently Asked Questions"
+                subtitle="Common questions about the demo process, evaluation and data handling."
+                items={faqs}
+            />
+        </>
+    );
 }
