@@ -18,7 +18,7 @@ export const posts: Record<string, BlogPost> = {
     metaTitle: "AI PAM Solutions | Secure AI & Machine Access | OmniPriv",
     metaDescription: "Secure AI agents, machine identities, and privileged access with OmniPriv AI PAM solutions, JIT access, credential security, monitoring, and Zero Trust.",
     category: "AI & Automation",
-    date: "May 12, 2026",
+    date: "October 2, 2026",
     readTime: "10 min read",
     author: "OmniPriv Team",
     authorTitle: "Enterprise PAM & AI Security",
@@ -37,6 +37,8 @@ export const posts: Record<string, BlogPost> = {
 ## AI PAM Solutions for Secure Human, Machine & Automated Access
 
 AI, automation, cloud workloads, applications, and machine identities are changing how privileged access operates inside the enterprise. Security teams now need to protect more than traditional administrator accounts—they need visibility and control wherever elevated access is used.
+
+![AI PAM Solutions: Secure Human, Machine & Automated Access](/identities/ai-automated-identities.jpeg)
 
 OmniPriv brings [Privileged Access Management](https://omnipriv.com/platform) into this new environment with centralized identity verification, least-privilege authorization, Just-in-Time access, credential protection, session monitoring, and intelligent threat detection.
 

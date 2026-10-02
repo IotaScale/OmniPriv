@@ -13,6 +13,7 @@ import PamFaqSection from "@/components/ui/PamFaqSection";
 import ClosingCtaSection from "@/components/ui/ClosingCtaSection";
 import AiPamTeaser from "@/components/ui/AiPamTeaser";
 import { posts as blogData } from "@/lib/blog-data";
+import { getCover } from "@/lib/blog-covers";
 import {
   ArrowRight,
   Shield,
@@ -165,6 +166,7 @@ const testimonials = [
 const latestBlogPosts = Object.entries(blogData)
   .map(([slug, post]) => {
     const imageMatch = post.content.match(/!\[.*?\]\((.*?)\)/);
+    const cover = getCover(slug);
     return {
       category: post.category,
       title: post.title,
@@ -172,7 +174,7 @@ const latestBlogPosts = Object.entries(blogData)
       date: post.date,
       readTime: post.readTime,
       href: `/blog/${slug}`,
-      image: imageMatch ? imageMatch[1] : "/blog/pam-best-practices-2026/least-privilege.svg",
+      image: imageMatch ? imageMatch[1] : (cover?.src ?? "/blog/pam-best-practices-2026/least-privilege.svg"),
     };
   })
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
