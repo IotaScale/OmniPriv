@@ -131,6 +131,10 @@ export const blogCovers: Record<string, BlogCover> = {
         src: url("photo-1622675205169-901710ac8643"),
         alt: "Colleagues discussing a project around a table",
     },
+    "ai-pam-solutions": {
+        src: url("photo-1531746790731-6c087fecd65a"),
+        alt: "Secure AI PAM solutions for human, machine, and automated access",
+    },
 };
 
 /** Cover for a post, or `undefined` if none is mapped yet. */

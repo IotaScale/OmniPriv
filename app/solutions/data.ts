@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Cpu, Server, UserCheck } from "lucide-react";
+import { Bot, Cpu, Server, UserCheck } from "lucide-react";
 
 /**
  * Registry of solution pages.
@@ -61,6 +61,18 @@ export const solutions: SolutionMeta[] = [
             "Secure service accounts, workloads, APIs and machine identities with OmniPriv PAM, automated credential rotation, JIT access and intelligent threat detection.",
         icon: Server,
         order: 3,
+    },
+    {
+        slug: "ai-pam-solutions",
+        eyebrow: "AI PAM Solutions",
+        cardTitle: "AI PAM Solutions",
+        description:
+            "Secure AI agents, machine identities, and privileged access with OmniPriv AI PAM solutions, JIT access, credential security, monitoring, and Zero Trust.",
+        metaTitle: "AI PAM Solutions | Secure AI & Machine Access | OmniPriv",
+        metaDescription:
+            "Secure AI agents, machine identities, and privileged access with OmniPriv AI PAM solutions, JIT access, credential security, monitoring, and Zero Trust.",
+        icon: Bot,
+        order: 4,
     },
 ];
 
