@@ -242,7 +242,7 @@ export default function AboutPage() {
 
             {/* ─── DEPLOYMENT MODEL ───────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={deploymentSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={deploymentSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <deploymentSection.icon className="w-5 h-5" />
                     </div>

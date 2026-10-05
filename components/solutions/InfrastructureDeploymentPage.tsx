@@ -236,7 +236,7 @@ export default function InfrastructureDeploymentPage() {
 
             {/* ─── AVAILABILITY ───────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={availabilitySection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={availabilitySection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <availabilitySection.icon className="w-5 h-5" />
                     </div>
@@ -257,7 +257,7 @@ export default function InfrastructureDeploymentPage() {
 
                     <CheckList items={availabilitySection.points} className="mt-8" />
 
-                    <ArrowLink href="/platform/session-management" className="mt-8">
+                    <ArrowLink href="/platform/secure-remote-access" className="mt-8">
                         See how sessions are brokered without an agent
                     </ArrowLink>
                 </MediaSplit>

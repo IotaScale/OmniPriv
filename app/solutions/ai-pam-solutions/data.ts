@@ -210,7 +210,7 @@ export const strengthenSection = {
         ] as RichText,
         body: [
             "OmniPriv provides ",
-            { text: "privileged session monitoring", href: "https://omnipriv.com/platform/session-management" },
+            { text: "privileged session monitoring", href: "https://omnipriv.com/platform/secure-remote-access" },
             " across SSH, RDP, VNC, HTTP, and database connections, with recording, isolation, searchable session history, script monitoring, session controls, and real-time intervention. For governed sessions, runtime access control can restrict specific actions and trigger responses when predefined security conditions are detected.",
         ] as RichText,
         prompt: "Security teams gain visibility into:",

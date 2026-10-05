@@ -52,6 +52,24 @@ const nextConfig = {
         destination: '/platform/identity-security',
         permanent: true,
       },
+      // Threat Detection & Response was renamed to AI Threat Protection.
+      {
+        source: '/platform/threat-detection',
+        destination: '/platform/ai-threat-protection',
+        permanent: true,
+      },
+      // Privileged Session Management was renamed to Secure Remote Access.
+      {
+        source: '/platform/session-management',
+        destination: '/platform/secure-remote-access',
+        permanent: true,
+      },
+      // AI Agent Governance was renamed to Secure AI Agents.
+      {
+        source: '/platform/ai-agent-governance',
+        destination: '/platform/secure-ai-agents-omnipriv',
+        permanent: true,
+      },
     ];
   },
 };

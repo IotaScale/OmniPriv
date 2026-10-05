@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
     Bot,
@@ -12,69 +13,135 @@ import {
 /* ─────────────────────────────────────────────────────────────
    Six challenges OmniPriv solves — AI capabilities first.
    Each card maps to a real product module (see `href`).
+   A challenge may carry a screenshot instead of the generated
+   visual; the rest fall back to `ChallengeVisual`.
 ───────────────────────────────────────────────────────────── */
-const challenges = [
+interface Challenge {
+    id: string;
+    headline: string;
+    body: string;
+    caption: string;
+    href: string;
+    icon: typeof Bot;
+    accent: string;
+    /** Optional screenshot rendered in place of the generated visual. */
+    image?: string;
+    imageAlt?: string;
+}
+
+const challenges: Challenge[] = [
     {
         id: "ai-agents",
-        tag: "AI Governance",
-        headline: "Govern AI agents securely",
-        body: "Every MCP agent gets its own verifiable identity, tool allowlist and data scope — with human approval on high-risk actions.",
+        headline: "Secure AI Agents",
+        body: "Strengthen AI agent security with JIT access, least privilege, credential protection, and governed access for AI-powered identities and automated workflows.",
         caption: "MCP · 100+ TOOLS",
-        href: "/platform/ai-agent-governance",
+        href: "/platform/secure-ai-agents-omnipriv",
         icon: Bot,
         accent: "#00B8FF",
+        image: "/challenges/secure-ai-agents.jpeg",
+        imageAlt:
+            "Secure AI agents illustration showing an AI agent shielded inside a central control point, with blocked attack paths on one side and verified privileged resources on the other",
     },
     {
         id: "ai-attacks",
-        tag: "AI Threat Defense",
-        headline: "Defend against AI-era attacks",
-        body: "Machine-learning anomaly detection scores every privileged login and session in real time, then steps up or blocks automatically.",
+        headline: "Defend Against AI-Driven Threats",
+        body: "Improve AI threat protection with intelligent anomaly detection, privileged access controls, session monitoring, and rapid response to suspicious activity.",
         caption: "ML · ISOLATIONFOREST",
-        href: "/platform/threat-detection",
+        href: "/platform/ai-threat-protection",
         icon: ShieldAlert,
         accent: "#818cf8",
+        image: "/challenges/defend-ai-driven-threats.jpeg",
+        imageAlt:
+            "Defend against AI-driven threats illustration showing a central privileged access shield governing identity, credentials, key material and privileged systems",
     },
     {
         id: "remote",
-        tag: "Remote Access",
-        headline: "Secure remote & hybrid access",
-        body: "Give engineers agentless RDP, SSH and database access from anywhere — no VPN client, no endpoint agent, no inbound ports.",
+        headline: "Secure Remote & Hybrid Access",
+        body: "Enable secure remote access for administrators, employees, and vendors with MFA, JIT privileges, credential protection, and monitored sessions.",
         caption: "AGENTLESS · RDP / SSH",
-        href: "/platform/session-management",
+        href: "/platform/secure-remote-access",
         icon: Globe,
         accent: "#38bdf8",
+        image: "/challenges/secure-remote-hybrid-access.jpeg",
+        imageAlt:
+            "Secure remote access illustration showing verified identities and audited sessions reaching enterprise systems through a central control point",
     },
     {
         id: "compliance",
-        tag: "Compliance",
-        headline: "Prove compliance with evidence",
-        body: "Indexed session recording and command-level logs turn every privileged action into replayable, tamper-proof evidence.",
+        headline: "Audit, Governance & Compliance",
+        body: "Simplify privileged access audits with centralized activity logs, policy controls, session records, and compliance-ready reporting across critical systems.",
         caption: "SOC 2 · ISO 27001",
         href: "/platform/audit-compliance",
         icon: ScrollText,
         accent: "#34d399",
+        image: "/challenges/audit-governance-compliance.jpeg",
+        imageAlt:
+            "Audit, governance and compliance illustration showing governed privileged access across laptops, servers, cloud and databases with verification checks",
     },
     {
         id: "risk",
-        tag: "Identity Risk",
-        headline: "Shrink your privilege sprawl",
-        body: "Continuous discovery surfaces stale accounts, orphaned keys and excessive rights — just-in-time access removes standing privilege.",
+        headline: "Reduce Privileged Identity Risk",
+        body: "Identify excessive privileges, risky access, and unusual behavior while enforcing least privilege, JIT access, and stronger controls across privileged identities.",
         caption: "JIT · ZERO STANDING",
         href: "/platform/identity-security",
         icon: Layers,
         accent: "#fbbf24",
+        image: "/challenges/reduce-privileged-identity-risk.jpeg",
+        imageAlt:
+            "Privileged identity risk illustration separating verified least-privilege identities from flagged risky access attempts",
     },
     {
         id: "consolidation",
-        tag: "Consolidation",
-        headline: "Consolidate your PAM stack",
-        body: "Replace fragmented vaulting, session management and audit tools with one agentless platform you can run on-premise.",
+        headline: "Consolidate PAM & Identity Security",
+        body: "Bring privileged access, identity controls, credential security, session monitoring, and policy enforcement together in one unified OmniPriv platform.",
         caption: "9 MODULES · 1 PLATFORM",
         href: "/platform/consolidation",
         icon: Boxes,
         accent: "#a78bfa",
+        image: "/challenges/consolidate-pam-identity-security.jpeg",
+        imageAlt:
+            "Consolidate PAM and identity security illustration showing cloud, database, code and server access converging on a single central security control point",
     },
 ];
+
+/* ─────────────────────────────────────────────────────────────
+   Card visual — screenshot variant used when a challenge
+   supplies its own image.
+───────────────────────────────────────────────────────────── */
+function ChallengeImage({
+    src,
+    alt,
+    caption,
+    accent,
+}: {
+    src: string;
+    alt: string;
+    caption: string;
+    accent: string;
+}) {
+    return (
+        <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl border border-slate-900/[0.06] dark:border-white/[0.06] bg-white dark:bg-[#060b14]">
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                className="object-cover object-center"
+            />
+
+            {/* Scrim so the caption stays legible over the artwork */}
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
+
+            {/* Caption */}
+            <div
+                className="absolute inset-x-0 bottom-2 text-center font-mono text-[10px] font-semibold tracking-[0.14em]"
+                style={{ color: accent }}
+            >
+                {caption}
+            </div>
+        </div>
+    );
+}
 
 /* ─────────────────────────────────────────────────────────────
    Card visual — tinted panel, orbiting rings, glowing icon
@@ -198,22 +265,24 @@ export default function ChallengesSection() {
                             href={challenge.href}
                             className="group flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#070e1c] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#00B8FF]/40 hover:bg-white dark:hover:bg-[#0b1424] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
                         >
-                            <ChallengeVisual
-                                icon={challenge.icon}
-                                accent={challenge.accent}
-                                caption={challenge.caption}
-                            />
-
-                            <div
-                                className="mt-5 font-mono text-[10.5px] font-bold uppercase tracking-[0.14em] mb-2"
-                                style={{ color: challenge.accent }}
-                            >
-                                {challenge.tag}
-                            </div>
+                            {challenge.image ? (
+                                <ChallengeImage
+                                    src={challenge.image}
+                                    alt={challenge.imageAlt ?? challenge.headline}
+                                    caption={challenge.caption}
+                                    accent={challenge.accent}
+                                />
+                            ) : (
+                                <ChallengeVisual
+                                    icon={challenge.icon}
+                                    accent={challenge.accent}
+                                    caption={challenge.caption}
+                                />
+                            )}
 
                             <h3
-                                className="text-lg font-bold text-slate-950 dark:text-white tracking-tight mb-2"
-                                style={{ fontFamily: "var(--font-syne)" }}
+                                className="mt-5 text-xl font-bold tracking-tight mb-2"
+                                style={{ fontFamily: "var(--font-syne)", color: challenge.accent }}
                             >
                                 {challenge.headline}
                             </h3>

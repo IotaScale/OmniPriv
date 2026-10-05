@@ -229,7 +229,7 @@ export default function EnterpriseIntegrationPage() {
 
             {/* ─── DIRECTORY INTEGRATION ──────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={directorySection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={directorySection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <directorySection.icon className="w-5 h-5" />
                     </div>

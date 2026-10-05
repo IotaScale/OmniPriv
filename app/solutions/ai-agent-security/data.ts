@@ -141,7 +141,7 @@ export const afterAccessSection = {
         ] as RichText,
         body: [
             "OmniPriv provides full ",
-            { text: "privileged session recording and monitoring", href: "https://omnipriv.com/platform/session-management" },
+            { text: "privileged session recording and monitoring", href: "https://omnipriv.com/platform/secure-remote-access" },
             " across SSH, RDP, VNC, HTTP and database sessions. Security teams can use searchable session history, script monitoring, HTTP-level visibility and automated controls to investigate sensitive activity.",
         ] as RichText,
         note: [
@@ -156,8 +156,8 @@ export const afterAccessSection = {
             "Whether the session required intervention",
         ],
         link: {
-            href: "https://omnipriv.com/platform/session-management",
-            label: "Explore Privileged Session Management",
+            href: "https://omnipriv.com/platform/secure-remote-access",
+            label: "Explore Secure Remote Access",
         },
     },
     detection: {
@@ -175,8 +175,8 @@ export const afterAccessSection = {
             "This adds behavioral context to identity security, helping teams identify suspicious privileged activity even when the identity itself appears legitimate.",
         ] as RichText,
         link: {
-            href: "https://omnipriv.com/platform/threat-detection",
-            label: "Explore Threat Detection & Response",
+            href: "https://omnipriv.com/platform/ai-threat-protection",
+            label: "Explore AI Threat Protection",
         },
     },
 };

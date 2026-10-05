@@ -232,7 +232,7 @@ export default function PlatformPage() {
 
             {/* ─── ONE CONSOLE ────────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={consoleSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={consoleSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <consoleSection.icon className="w-5 h-5" />
                     </div>

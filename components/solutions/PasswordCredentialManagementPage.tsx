@@ -257,7 +257,7 @@ export default function PasswordCredentialManagementPage() {
 
             {/* ─── DE-SYNC AND RECONCILIATION ─────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={driftSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={driftSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <driftSection.icon className="w-5 h-5" />
                     </div>

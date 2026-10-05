@@ -139,7 +139,7 @@ export const sessions = {
     lead: ["Authentication is only the beginning."] as RichText,
     body: [
         "OmniPriv ",
-        { text: "Privileged Session Management", href: "https://omnipriv.com/platform/session-management" },
+        { text: "Privileged Session Management", href: "https://omnipriv.com/platform/secure-remote-access" },
         " records, isolates, and monitors privileged activity across supported environments. Security teams gain searchable session histories, script monitoring, session controls, and the ability to intervene when required.",
     ] as RichText,
     prompt: "This gives organizations visibility into:",

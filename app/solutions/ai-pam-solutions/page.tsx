@@ -249,7 +249,7 @@ export default function AiPamSolutionsPage() {
 
             {/* ─── DESIGNED FOR AGENTIC AI SECURITY WITHOUT LOSING CONTROL ── */}
             <Section border="bottom">
-                <MediaSplit media={agenticSection.image} ratio="even" height="sm" align="center">
+                <MediaSplit media={agenticSection.image} ratio="wide-last" height="sm" align="center">
                     <SectionHeading title={agenticSection.title}>
                         <Prose segments={agenticSection.lead} className="mb-4" />
                         <Prose segments={agenticSection.body} />

@@ -243,7 +243,7 @@ export default function WorkflowAccessControlPage() {
 
             {/* ─── TEMPORARY ASSIGNMENT ───────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={expirySection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={expirySection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <expirySection.icon className="w-5 h-5" />
                     </div>

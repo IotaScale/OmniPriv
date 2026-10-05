@@ -72,14 +72,14 @@ export const platformSpecs: PlatformSpec[] = [
 
 export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-first: intentionally listed first) ─
     {
-        slug: "ai-agent-governance",
-        title: "AI Agent Governance",
-        tagline: "Verifiable identity, tool allowlist and data scope for every AI agent",
+        slug: "secure-ai-agents-omnipriv",
+        title: "Secure AI Agents",
+        tagline: "Scoped privilege, tool allowlists and recorded sessions for every AI agent",
         description:
-            "OmniPriv governs autonomous AI agents and MCP servers with a verifiable identity per agent, an explicit tool allowlist, a bounded data scope, and human approval on high-risk actions.",
-        metaTitle: "AI Agent Governance — OmniPriv PAM",
+            "Strengthen AI agent security with JIT access, least privilege, credential protection, and governed access for AI-powered identities and automated workflows.",
+        metaTitle: "Secure AI Agents with Privileged Access | OmniPriv",
         metaDescription:
-            "Govern autonomous AI agents and MCP servers with a verifiable identity, tool allowlist, data scope and human approval on high-risk actions.",
+            "Strengthen AI agent security with JIT access, least privilege, credential protection, and governed access for AI-powered identities and automated workflows.",
         icon: Bot,
         features: [
             { name: "Verifiable Agent Identity", description: "Every MCP agent is registered as its own identity with its own credentials — never a borrowed human account or a shared service account", icon: Fingerprint },
@@ -189,18 +189,22 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         ],
     },
 
-    // ─── 5. Privileged Session Management ─────────────────────────
+    // ─── 5. Secure Remote Access ───────────────────────────────────
     {
-        slug: "session-management",
-        title: "Privileged Session Management",
-        tagline: "Complete visibility and control over every privileged session",
+        slug: "secure-remote-access",
+        title: "Secure Remote & Hybrid Access",
+        tagline: "Agentless privileged remote access for a distributed workforce",
         description:
-            "OmniPriv records, isolates, and monitors all privileged sessions across protocols — featuring transparent database proxying with dynamic data masking, script monitoring, and searchable session forensics.",
-        metaTitle: "Privileged Session Management — OmniPriv PAM",
+            "Enable secure remote access for administrators, employees, and vendors with MFA, JIT privileges, credential protection, and monitored sessions.",
+        metaTitle: "Secure Remote & Hybrid Access | OmniPriv",
         metaDescription:
-            "Record, isolate, and monitor privileged sessions across SSH, RDP, VNC, HTTP, and databases with searchable audit trails and real-time controls.",
+            "Enable secure remote access for administrators, employees, and vendors with MFA, JIT privileges, credential protection, and monitored sessions.",
         icon: Monitor,
         features: [
+            { name: "Agentless Remote Access", description: "Privileged SSH, RDP, VNC and database access from any location without endpoint software agents, VPN clients or inbound ports", icon: Globe },
+            { name: "Just-in-Time Privileges", description: "Time-limited, purpose-specific permissions that expire automatically, replacing standing administrative rights for remote users", icon: Clock },
+            { name: "MFA & Zero Trust Enforcement", description: "Authenticate and authorize every privileged session with MFA, enterprise SSO and contextual risk controls instead of trusting network location", icon: Shield },
+            { name: "Credential Protection", description: "Vaulted credentials injected on the far side of the connection with automated rotation, so remote users never handle a raw privileged secret", icon: Key },
             { name: "Full Session Recording & Monitoring", description: "All privileged sessions fully monitored and recorded; high-fidelity video playback stored securely with controlled access — no agent reliance required", icon: Eye },
             { name: "Session Isolation & Air-Gap", description: "Air-gap enforced between target devices and user workstations; credentials are never disclosed or transmitted to endpoints", icon: Shield },
             { name: "Multi-Platform Protocol Support", description: "Session recording and isolation across SSH, RDP, VNC, HTTP, and database protocol sessions", icon: Globe },
@@ -238,16 +242,16 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         ],
     },
 
-    // ─── 7. Audit, Reporting & Compliance ─────────────────────────
+    // ─── 7. Audit, Governance & Compliance ────────────────────────
     {
         slug: "audit-compliance",
-        title: "Audit, Reporting & Compliance",
+        title: "Audit, Governance & Compliance",
         tagline: "Complete privileged account accountability for regulatory and internal requirements",
         description:
-            "OmniPriv provides complete audit trails, scheduled compliance reports, and out-of-the-box alignment for 9 major regulatory frameworks including SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, and NIST 800-53.",
-        metaTitle: "Audit, Reporting & Compliance — OmniPriv PAM",
+            "Simplify privileged access audits with centralized activity logs, policy controls, session records, and compliance-ready reporting across critical systems.",
+        metaTitle: "Audit, Governance & Compliance | OmniPriv",
         metaDescription:
-            "Achieve SOX, PCI-DSS, HIPAA, NIST, and GDPR compliance with tamper-proof audit trails, automated reports, and privileged account accountability.",
+            "Simplify privileged access audits with centralized activity logs, policy controls, session records, and compliance-ready reporting across critical systems.",
         icon: BarChart3,
         features: [
             { name: "Full Privileged Account Accountability", description: "Complete, tamper-proof audit trail of all privileged account usage; every action logged with user, time, asset, and outcome", icon: Shield },
@@ -258,24 +262,24 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         ],
     },
 
-    // ─── 8. Threat Detection & Response ───────────────────────────
+    // ─── 8. Defend Against AI-Driven Threats ──────────────────────
     {
-        slug: "threat-detection",
-        title: "Threat Detection & Response",
-        tagline: "Proactive intelligence against insider threats and privilege abuse",
+        slug: "ai-threat-protection",
+        title: "Defend Against AI-Driven Threats",
+        tagline: "Machine-learning detection and automated response at the privileged-access layer",
         description:
-            "OmniPriv uses intelligence-based behavioral analytics to detect insider threats, backdoor attempts, lateral movement, and credential harvesting in real time, triggering automated remediation actions.",
-        metaTitle: "Threat Detection & Response — OmniPriv PAM",
+            "Improve AI threat protection with intelligent anomaly detection, privileged access controls, session monitoring, and rapid response to suspicious activity.",
+        metaTitle: "Defend Against AI-Driven Threats | OmniPriv",
         metaDescription:
-            "Detect insider threats, credential theft, lateral movement, and PAM bypass attempts with AI-powered behavioral analytics and automated response.",
+            "Improve AI threat protection with intelligent anomaly detection, privileged access controls, session monitoring, and rapid response to suspicious activity.",
         icon: AlertTriangle,
         features: [
-            { name: "Behavioural Analytics Engine", description: "Intelligence-based analytics continuously monitoring privileged account activity to detect suspicious patterns and behavioural anomalies", icon: BarChart3 },
-            { name: "Insider Threat Detection", description: "Continuous monitoring of privileged user behaviour for signs of misuse, compromise, or policy violation by internal actors", icon: Eye },
-            { name: "PAM Bypass & Backdoor Detection", description: "Detects attempts to circumvent privileged access controls, exploit undisclosed accounts, or establish unauthorized backdoor access", icon: AlertTriangle },
-            { name: "Lateral Movement Prevention", description: "Privileged administrators restricted to only their specifically authorized applications on target systems, preventing traversal across infrastructure", icon: Network },
-            { name: "Credential Theft & Harvesting Detection", description: "Detects credential harvesting attempts, unusual credential access patterns, and exfiltration indicators in real time", icon: Shield },
-            { name: "Automated Threat Response & Alerting", description: "Triggers automated remediation actions and real-time alerts on confirmed threat events; security operations team notified immediately", icon: Zap },
+            { name: "ML Anomaly Detection", description: "IsolationForest behavioural scoring across 39 features for every closed privileged session, identifying activity that diverges from an identity's established baseline", icon: BarChart3 },
+            { name: "Insider & Credential Theft Detection", description: "Detects credential harvesting, privilege abuse, unusual command patterns, abnormal access times and attempts to bypass PAM controls in real time", icon: Eye },
+            { name: "Lateral Movement Prevention", description: "Privileged administrators are restricted to only their specifically authorized applications on target systems, preventing traversal across infrastructure", icon: Network },
+            { name: "Just-in-Time Privileged Access", description: "Task-specific permissions issued on request and expiring automatically, reducing standing privilege and the access a compromised identity inherits", icon: Clock },
+            { name: "Privileged Credential Protection", description: "Encrypted vaulting with automated rotation of passwords, SSH keys and API tokens on schedule or immediately after a privileged session", icon: Key },
+            { name: "Automated Threat Response & Alerting", description: "Tiered escalation from dashboard alert to admin alert to automatic block, driven by a sweeper that reviews active sessions every ten seconds", icon: Zap },
         ],
     },
 ];

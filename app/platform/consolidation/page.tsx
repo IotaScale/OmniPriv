@@ -16,8 +16,8 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /platform/consolidation — the destination of the "Consolidation /
- * Consolidate your PAM stack" challenge card.
+ * /platform/consolidation — the destination of the "Consolidate PAM &
+ * Identity Security" challenge card.
  *
  * A real route rather than an entry in the bespokePages map, for the same
  * reason as its sibling /platform/identity-security: a static segment takes
@@ -30,13 +30,13 @@ import type { RichText } from "@/lib/rich-text";
  */
 
 export const metadata: Metadata = {
-    title: { absolute: "Consolidation: Replace a Fragmented PAM Stack — OmniPriv" },
+    title: { absolute: "Consolidate PAM & Identity Security | OmniPriv" },
     description:
-        "Replace separate vaulting, session recording, workflow and reporting tools with one agentless PAM platform you deploy on your own infrastructure.",
+        "Bring privileged access, identity controls, credential security, session monitoring, and policy enforcement together in one unified OmniPriv platform.",
 };
 
 const hero = {
-    badge: "Consolidation",
+    badge: "Consolidate PAM & Identity Security",
     titleLead: "Five tools. Five consoles.",
     titleAccent: "One platform.",
     intro: [

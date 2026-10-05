@@ -72,7 +72,7 @@ export default function HumanIdentitySecurityPage() {
 
             {/* ─── JIT ACCESS ───────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={jitSection.image} ratio="even" height="sm">
+                <MediaSplit media={jitSection.image} ratio="wide-last" height="sm">
                     <SectionHeading badge={jitSection.badge} title={jitSection.title}>
                         <Prose segments={jitSection.lead} className="mb-4" />
                         <Prose segments={jitSection.body} className="mb-4" />

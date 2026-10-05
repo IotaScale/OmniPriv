@@ -4,14 +4,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { solutions, getSolutionBySlug } from "../data";
-import AiAgentGovernancePage from "@/components/solutions/AiAgentGovernancePage";
+import AiThreatProtectionPage from "@/components/solutions/AiThreatProtectionPage";
 import ApplicationSecurityPage from "@/components/solutions/ApplicationSecurityPage";
 import AuditCompliancePage from "@/components/solutions/AuditCompliancePage";
 import EnterpriseIntegrationPage from "@/components/solutions/EnterpriseIntegrationPage";
 import InfrastructureDeploymentPage from "@/components/solutions/InfrastructureDeploymentPage";
 import PasswordCredentialManagementPage from "@/components/solutions/PasswordCredentialManagementPage";
-import SessionManagementPage from "@/components/solutions/SessionManagementPage";
-import ThreatDetectionPage from "@/components/solutions/ThreatDetectionPage";
+import SecureAiAgentsPage from "@/components/solutions/SecureAiAgentsPage";
+import SecureRemoteAccessPage from "@/components/solutions/SecureRemoteAccessPage";
 import WorkflowAccessControlPage from "@/components/solutions/WorkflowAccessControlPage";
 
 /*
@@ -26,14 +26,14 @@ import WorkflowAccessControlPage from "@/components/solutions/WorkflowAccessCont
  * data.ts and getting its own page.
  */
 const bespokePages: Record<string, ComponentType> = {
-    "ai-agent-governance": AiAgentGovernancePage,
+    "ai-threat-protection": AiThreatProtectionPage,
     "application-security": ApplicationSecurityPage,
     "audit-compliance": AuditCompliancePage,
     "enterprise-integration": EnterpriseIntegrationPage,
     "infrastructure-deployment": InfrastructureDeploymentPage,
     "password-credential-management": PasswordCredentialManagementPage,
-    "session-management": SessionManagementPage,
-    "threat-detection": ThreatDetectionPage,
+    "secure-ai-agents-omnipriv": SecureAiAgentsPage,
+    "secure-remote-access": SecureRemoteAccessPage,
     "workflow-access-control": WorkflowAccessControlPage,
 };
 

@@ -8,11 +8,19 @@ const ratios = {
     even: "lg:grid-cols-2",
     /** Text column takes slightly more room than the image. */
     "wide-first": "lg:grid-cols-[1.15fr_1fr]",
+    /** Image column takes slightly more room than the text. */
+    "wide-last": "lg:grid-cols-[1fr_1.15fr]",
 } as const;
 
+/**
+ * Image frames all share one aspect ratio so imagery is the same size and
+ * shape on every page, and a frame can never crop its source. The names below
+ * are aliases kept because existing call sites select between them.
+ */
 const heights = {
-    sm: "h-64 sm:h-80 lg:h-[400px]",
-    md: "h-64 sm:h-80 lg:h-[420px]",
+    sm: "aspect-video",
+    md: "aspect-video",
+    video: "aspect-video",
 } as const;
 
 export interface MediaSplitProps {

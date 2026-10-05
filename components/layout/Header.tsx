@@ -56,9 +56,9 @@ const platformLinks = [
     icon: Building2,
   },
   {
-    label: "Session Management",
-    description: "Recording, isolation, controls",
-    href: "/platform/session-management",
+    label: "Secure Remote Access",
+    description: "VPN-free privileged access",
+    href: "/platform/secure-remote-access",
     icon: Eye,
   },
   {
@@ -74,9 +74,9 @@ const platformLinks = [
     icon: BarChart3,
   },
   {
-    label: "Threat Detection",
+    label: "AI Threat Protection",
     description: "AI-powered threat response",
-    href: "/platform/threat-detection",
+    href: "/platform/ai-threat-protection",
     icon: AlertTriangle,
   },
 ];

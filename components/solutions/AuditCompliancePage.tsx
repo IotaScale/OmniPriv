@@ -42,7 +42,7 @@ import type { RichText } from "@/lib/rich-text";
  */
 
 const hero = {
-    badge: "Audit, Reporting & Compliance",
+    badge: "Audit, Governance & Compliance",
     titleLead: "When the auditor asks,",
     titleAccent: "the answer should already exist.",
     intro: [
@@ -323,7 +323,7 @@ export default function AuditCompliancePage() {
 
             {/* ─── CREDENTIAL HYGIENE ───────────────── */}
             <Section border="bottom">
-                <MediaSplit media={rotationSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={rotationSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <rotationSection.icon className="w-5 h-5" />
                     </div>

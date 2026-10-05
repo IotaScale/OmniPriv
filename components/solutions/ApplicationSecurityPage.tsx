@@ -217,7 +217,7 @@ export default function ApplicationSecurityPage() {
 
             {/* ─── ENCRYPTION LAYERS ──────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={encryptionSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={encryptionSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <encryptionSection.icon className="w-5 h-5" />
                     </div>

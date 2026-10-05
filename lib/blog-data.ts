@@ -118,7 +118,7 @@ OmniPriv provides RBAC, conditional access, time-based restrictions, command-lev
 ### 4. Control Activity During Privileged Sessions
 Authorization should not stop once access begins.
 
-OmniPriv provides [privileged session monitoring](https://omnipriv.com/platform/session-management) across SSH, RDP, VNC, HTTP, and database connections, with recording, isolation, searchable session history, script monitoring, session controls, and real-time intervention.
+OmniPriv provides [privileged session monitoring](https://omnipriv.com/platform/secure-remote-access) across SSH, RDP, VNC, HTTP, and database connections, with recording, isolation, searchable session history, script monitoring, session controls, and real-time intervention.
 
 For governed sessions, runtime access control can restrict specific actions and trigger responses when predefined security conditions are detected.
 
@@ -2428,7 +2428,7 @@ Important capabilities include:
 - Searchable activity logs and audit trails
 - Rapid access revocation and session termination
 
-The [OmniPriv enterprise PAM platform](https://omnipriv.com/platform?utm_source=chatgpt.com) brings privileged-access capabilities together across enterprise environments. Its [Privileged Session Management](https://omnipriv.com/platform/session-management?utm_source=chatgpt.com) capabilities provide recording, isolation, monitoring, searchable session history, and session controls, while Audit, Reporting & Compliance provides privileged-account traceability and reporting.
+The [OmniPriv enterprise PAM platform](https://omnipriv.com/platform?utm_source=chatgpt.com) brings privileged-access capabilities together across enterprise environments. Its [Privileged Session Management](https://omnipriv.com/platform/secure-remote-access?utm_source=chatgpt.com) capabilities provide recording, isolation, monitoring, searchable session history, and session controls, while Audit, Reporting & Compliance provides privileged-account traceability and reporting.
 
 ![Zero Trust Saudi Arabia: JIT privileged access lifecycle and session security](/blog/zero-trust-saudi-arabia-pam-jit-access/jit-privileged-access-lifecycle-ksa.svg)
 

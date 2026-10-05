@@ -114,7 +114,7 @@ const patterns: IconCard[] = [
         eyebrow: "Pattern 05",
         title: "Sessions nobody can inspect",
         text: "A privileged session ran, the change landed, and the only account of how it happened is the operator's memory several weeks later.",
-        href: "/platform/session-management",
+        href: "/platform/secure-remote-access",
     },
     {
         icon: Network,
@@ -256,7 +256,7 @@ export default function CaseStudiesPage() {
 
             {/* ─── THE REVIEW ─────────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={reviewSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={reviewSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <reviewSection.icon className="w-5 h-5" />
                     </div>

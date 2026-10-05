@@ -233,7 +233,7 @@ export const monitoringSection = {
         ],
         [
             "OmniPriv provides ",
-            { text: "privileged session recording", href: "https://omnipriv.com/platform/session-management" },
+            { text: "privileged session recording", href: "https://omnipriv.com/platform/secure-remote-access" },
             ", isolation, searchable histories, script monitoring, HTTP monitoring and database query controls across supported access protocols.",
         ],
         [

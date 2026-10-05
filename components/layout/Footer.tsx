@@ -9,10 +9,10 @@ const productLinks = [
   { label: "Infrastructure Deployment", href: "/platform/infrastructure-deployment" },
   { label: "Credential Management", href: "/platform/password-credential-management" },
   { label: "Application Security", href: "/platform/application-security" },
-  { label: "Session Management", href: "/platform/session-management" },
+  { label: "Secure Remote Access", href: "/platform/secure-remote-access" },
   { label: "Enterprise Integration", href: "/platform/enterprise-integration" },
   { label: "Compliance & Audit", href: "/platform/audit-compliance" },
-  { label: "Threat Detection", href: "/platform/threat-detection" },
+  { label: "AI Threat Protection", href: "/platform/ai-threat-protection" },
 ];
 
 const resourceLinks = [

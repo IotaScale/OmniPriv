@@ -41,9 +41,9 @@ import type { RichText } from "@/lib/rich-text";
  *
  * It is the only page that links the two halves of the site together: the
  * identity classes under /solutions and the capability modules under
- * /platform. It is also the destination of the "Identity Risk / Shrink your
- * privilege sprawl" challenge card, which previously pointed at a single
- * credential module that did not describe it.
+ * It is also the destination of the "Reduce Privileged Identity Risk"
+ * challenge card, which previously pointed at a single credential module
+ * that did not describe it.
  *
  * The four identity classes come from app/solutions/ai-agent-security/data.ts:
  * "human, machine, vendor, and AI/automated identities". Every destination
@@ -51,13 +51,15 @@ import type { RichText } from "@/lib/rich-text";
  */
 
 export const metadata: Metadata = {
-    title: "Identity Security — OmniPriv PAM",
+    // The name carries the brand, so it must bypass the "%s | OmniPriv"
+    // template in app/layout.tsx or the suffix doubles up.
+    title: { absolute: "Reduce Privileged Identity Risk | OmniPriv" },
     description:
-        "Govern human, machine, vendor and AI identities with one authorization model — discovery, credential protection, zero standing privilege, session control and audit.",
+        "Identify excessive privileges, risky access, and unusual behavior while enforcing least privilege, JIT access, and stronger controls across privileged identities.",
 };
 
 const hero = {
-    badge: "Identity Security",
+    badge: "Reduce Privileged Identity Risk",
     titleLead: "Every access point is privileged.",
     titleAccent: "What matters is who, to what, and when.",
     intro: [
@@ -104,7 +106,7 @@ const identityClasses: IconCard[] = [
         icon: Building2,
         title: "Vendor & third-party",
         text: "Contractors, suppliers and partners who need genuine access for a defined piece of work — and need it revoked the moment that work ends.",
-        href: "/platform/session-management",
+        href: "/platform/secure-remote-access",
     },
 ];
 
@@ -138,13 +140,13 @@ const riskAreas: IconCard[] = [
         icon: Eye,
         title: "Privileged secure access",
         text: "Brokered, recorded and monitored sessions across every protocol — agentless, with no VPN client and no inbound port.",
-        href: "/platform/session-management",
+        href: "/platform/secure-remote-access",
     },
     {
         icon: AlertTriangle,
         title: "Posture & threat analysis",
         text: "Behavioural scoring on every closed session, with tiered escalation from dashboard alert to admin alert to automatic block.",
-        href: "/platform/threat-detection",
+        href: "/platform/ai-threat-protection",
     },
     {
         icon: BarChart3,

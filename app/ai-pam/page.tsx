@@ -296,9 +296,9 @@ const stats = [
 ];
 
 const keepReading = [
-    { href: "/platform/ai-agent-governance", label: "AI Agent Governance in depth" },
+    { href: "/platform/secure-ai-agents-omnipriv", label: "Secure AI Agents in depth" },
     { href: "/platform/identity-security", label: "How the identities fit together" },
-    { href: "/platform/threat-detection", label: "Detection and response across the estate" },
+    { href: "/platform/ai-threat-protection", label: "Detection and response across the estate" },
 ];
 
 const closing = {
@@ -475,7 +475,7 @@ export default function AiPamPage() {
 
             {/* ─── EXPLAINABILITY ─────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={explainSection.image} ratio="even" height="sm" align="start">
+                <MediaSplit media={explainSection.image} ratio="wide-last" height="sm" align="start">
                     <div className="icon-wrapper mb-5">
                         <explainSection.icon className="w-5 h-5" />
                     </div>

@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { displayFont, sectionBorder } from "@/lib/styles";
 import MediaSplit from "./MediaSplit";
+import type { MediaSplitProps } from "./MediaSplit";
 
 export interface HeroAction {
     href: string;
@@ -22,6 +23,10 @@ export interface SplitHeroProps {
         alt: string;
         priority?: boolean;
     };
+    /** Column split. Use `wide-last` when the media is a product screenshot. */
+    ratio?: MediaSplitProps["ratio"];
+    /** Frame height. Use `video` for 16:9 images that must not be cropped. */
+    height?: MediaSplitProps["height"];
     /** The intro paragraphs, usually `<Prose />` elements. */
     children: React.ReactNode;
     className?: string;
@@ -39,6 +44,8 @@ export default function SplitHero({
     primary,
     secondary,
     media,
+    ratio = "wide-last",
+    height = "md",
     children,
     className,
 }: SplitHeroProps) {
@@ -59,8 +66,8 @@ export default function SplitHero({
             <div className="container-xl relative z-10">
                 <MediaSplit
                     media={{ ...media, priority: true }}
-                    ratio="wide-first"
-                    height="md"
+                    ratio={ratio}
+                    height={height}
                 >
                     <div>
                         <div className="badge-cyan mb-6 inline-flex">{badge}</div>
