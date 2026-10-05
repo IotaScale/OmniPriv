@@ -179,7 +179,7 @@ export default function SecurityPage() {
       <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711] pointer-events-none" />
-        <div className="container-xl relative z-10 text-center">
+        <div className="container-xl relative z-10 text-center" data-aos="fade-up">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Security & Trust</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
             Security is Our <span className="text-gradient">Foundation</span>
@@ -198,14 +198,14 @@ export default function SecurityPage() {
       {/* Core Security Principles */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
             <div className="badge-cyan mb-5">Architecture</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Security Principles That <span className="text-gradient">Never Compromise</span>
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6" data-aos="fade-up" data-aos-delay="80">
             {securityPrinciples.map((p, idx) => (
               <div key={p.title} className={`p-8 md:p-10 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/60 dark:bg-[#0A1628]/60 grid md:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? "md:grid-flow-dense" : ""}`}>
                 <div className={idx % 2 === 1 ? "md:col-start-2" : ""}>
@@ -234,7 +234,7 @@ export default function SecurityPage() {
       {/* Security Features Grid */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Defense in Depth
             </h2>
@@ -242,7 +242,7 @@ export default function SecurityPage() {
               Multiple overlapping security controls at every layer of the stack.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="80">
             {securityFeatures.map((f) => (
               <div key={f.title} className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine group">
                 <div className="icon-wrapper mb-4 w-10 h-10 rounded-lg">
@@ -259,7 +259,7 @@ export default function SecurityPage() {
       {/* Certifications */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
             <div className="badge-cyan mb-5">Certifications</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Independently Verified Compliance
@@ -269,7 +269,7 @@ export default function SecurityPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="80">
             {certs.map((cert) => (
               <div key={cert.name} className={`p-6 rounded-2xl border ${cert.color} hover:border-opacity-40 transition-all group`}>
                 <div className="flex items-center gap-3 mb-4">
@@ -291,7 +291,7 @@ export default function SecurityPage() {
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
-            <div>
+            <div data-aos="fade-right">
               <div className="badge-cyan mb-6">Independent Testing</div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
                 Penetration Testing & <span className="text-gradient">Vulnerability Research</span>
@@ -300,7 +300,7 @@ export default function SecurityPage() {
                 Security cannot be assumed; it must be continuously verified. OmniPriv undergoes rigorous, independent security testing including white-box penetration testing, red team exercises, and bug bounty programs with the world's leading security researchers.
               </p>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3" data-aos="fade-left" data-aos-delay="100">
               {penTestFacts.map((f) => (
                 <div key={f.label} className="flex gap-4 p-4 rounded-xl border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-900/[0.02] dark:bg-white/[0.02]">
                   <div className="text-xs font-bold text-[#00B8FF] uppercase w-24 flex-shrink-0 pt-0.5">{f.label}</div>
@@ -314,7 +314,7 @@ export default function SecurityPage() {
 
       {/* CTA */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl text-center">
+        <div className="container-xl text-center" data-aos="fade-up">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Responsible Disclosure</div>
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Found a Security Vulnerability?

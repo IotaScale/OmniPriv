@@ -327,9 +327,15 @@ export default function IdentitySecurityPage() {
 
                 <CheckList items={governancePoints} className="max-w-3xl" />
 
-                <ArrowLink href="/enterprise" className="mt-10">
-                    See how OmniPriv runs in enterprise environments
-                </ArrowLink>
+                {/* Centred: the heading and tick list above are centred, so a
+                    trailing link left-hugging the container reads as a mistake.
+                    `ArrowLink` renders an inline-flex anchor, so it follows the
+                    parent's text alignment — a plain wrapper is not enough. */}
+                <div className="mt-10 flex justify-center">
+                    <ArrowLink href="/enterprise">
+                        See how OmniPriv runs in enterprise environments
+                    </ArrowLink>
+                </div>
             </Section>
 
             {/* ─── OUTCOMES ─────────────────────────── */}

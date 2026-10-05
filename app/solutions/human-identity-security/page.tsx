@@ -67,7 +67,7 @@ export default function HumanIdentitySecurityPage() {
 
                 <IconCardGrid items={personas} columns={4} />
 
-                <Prose segments={personaSection.closing} className="text-base mt-10 max-w-3xl" />
+                <Prose segments={personaSection.closing} className="text-base mt-10 max-w-3xl text-center" />
             </Section>
 
             {/* ─── JIT ACCESS ───────────────────────── */}
@@ -123,37 +123,40 @@ export default function HumanIdentitySecurityPage() {
                 </div>
             </Section>
 
-            {/* ─── AI + GOVERNANCE ──────────────────── */}
+            {/* ─── AI + GOVERNANCE ────────────────────
+                No image, so the content centres — the same treatment as the other
+                image-less sections on the page. `max-w-3xl mx-auto` centres each
+                column; `align="center"` centres the heading and the prose rendered
+                inside it, which is what the shared rule in globals.css does for
+                section-heading blocks anyway. The icon rides along.
+                The chip row needs `justify-center`: ChipList's `align` prop only
+                sets `items-center` (vertical), it does not centre the row. */}
             <Section border="bottom">
-                <div className="mb-16">
-                    <div className="icon-wrapper mb-5">
+                <div className="max-w-3xl mx-auto mb-16">
+                    <div className="icon-wrapper mb-5 mx-auto">
                         <aiSection.icon className="w-5 h-5" />
                     </div>
 
-                    <SectionHeading title={aiSection.title} titleClassName="max-w-3xl">
-                        <div className="max-w-3xl">
-                            <Prose segments={aiSection.lead} className="mb-4" />
-                            <Prose segments={aiSection.body} className="mb-4" />
-                            <Prose segments={aiSection.note} />
-                        </div>
+                    <SectionHeading title={aiSection.title} align="center">
+                        <Prose segments={aiSection.lead} className="mb-4" />
+                        <Prose segments={aiSection.body} className="mb-4" />
+                        <Prose segments={aiSection.note} />
                     </SectionHeading>
                 </div>
 
-                <div>
-                    <div className="icon-wrapper mb-5">
+                <div className="max-w-3xl mx-auto">
+                    <div className="icon-wrapper mb-5 mx-auto">
                         <governanceSection.icon className="w-5 h-5" />
                     </div>
 
-                    <SectionHeading title={governanceSection.title} titleClassName="max-w-3xl">
-                        <div className="max-w-3xl">
-                            <Prose segments={governanceSection.lead} className="mb-6" />
-                            <ChipList
-                                items={governancePoints}
-                                variant="neutral"
-                                className="mb-6 gap-2.5"
-                            />
-                            <Prose segments={governanceSection.note} />
-                        </div>
+                    <SectionHeading title={governanceSection.title} align="center">
+                        <Prose segments={governanceSection.lead} className="mb-6" />
+                        <ChipList
+                            items={governancePoints}
+                            variant="neutral"
+                            className="mb-6 gap-2.5 justify-center"
+                        />
+                        <Prose segments={governanceSection.note} />
                     </SectionHeading>
                 </div>
             </Section>

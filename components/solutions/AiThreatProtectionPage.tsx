@@ -356,8 +356,12 @@ export default function AiThreatProtectionPage() {
                 </MediaSplit>
             </Section>
 
-            {/* ─── REDUCE THE PRIVILEGE ─────────────── */}
-            <Section border="bottom">
+            {/* ─── REDUCE THE PRIVILEGE ───────────────
+                Hardcoded dark band. `tone="dark"` also wraps the section in a
+                `.dark` ancestor, without which the theme-aware text inside would
+                render dark-on-dark while the site is in light mode. Sits between
+                two `muted` bands, so the rhythm reads muted → dark → muted. */}
+            <Section tone="dark" border="bottom">
                 <div className="max-w-3xl">
                     <SectionHeading title={privilegeSection.title}>
                         <Prose segments={privilegeSection.lead} />
@@ -410,8 +414,12 @@ export default function AiThreatProtectionPage() {
                 </MediaSplit>
             </Section>
 
-            {/* ─── OUTCOMES ─────────────────────────── */}
-            <Section tone="muted" border="bottom">
+            {/* ─── OUTCOMES ───────────────────────────
+                Hardcoded dark band, matching the other dark sections on this page.
+                `tone="dark"` also wraps the section in `.dark`, which is what flips
+                `cardSurface` and the `dark:*` text inside to the dark palette —
+                without it the stat cards would be white-on-dark. */}
+            <Section tone="dark" border="bottom">
                 <SectionHeading
                     title="AI threat protection you can point at"
                     align="center"
@@ -439,7 +447,10 @@ export default function AiThreatProtectionPage() {
                             <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
                                 {stat.label}
                             </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
+                            {/* `dark:` variant is required now this band is dark:
+                                plain slate-500 on the dark card is 4.05:1, under
+                                the 4.5:1 minimum for 12px text. */}
+                            <div className="text-xs text-slate-500 dark:text-slate-400">{stat.sub}</div>
                         </div>
                     ))}
                 </div>

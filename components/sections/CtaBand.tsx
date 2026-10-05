@@ -49,7 +49,7 @@ export default function CtaBand({
                     className
                 )}
             >
-                <div className="container-xl max-w-4xl mx-auto text-center">
+                <div className="container-xl max-w-4xl mx-auto text-center" data-aos="fade-up">
                     {badge && <div className="badge-cyan mb-6 inline-flex mx-auto">{badge}</div>}
 
                     <h2

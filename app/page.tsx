@@ -261,22 +261,22 @@ export default function HomePage() {
       <section className="border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/90 dark:bg-[#071322]/90 backdrop-blur-sm py-6">
         <div className="container-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="p-3">
+            <div className="p-3" data-aos="fade-up">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>80+</div>
               <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Requirement Points Covered</div>
               <div className="text-[11px] text-slate-600 dark:text-slate-400">Enterprise PAM coverage</div>
             </div>
-            <div className="p-3 border-l border-slate-900/[0.08] dark:border-white/[0.06]">
+            <div className="p-3 border-l border-slate-900/[0.08] dark:border-white/[0.06]" data-aos="fade-up" data-aos-delay="80">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>9</div>
               <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Core Capability Modules</div>
               <div className="text-[11px] text-slate-600 dark:text-slate-400">End-to-end access lifecycle</div>
             </div>
-            <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]">
+            <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]" data-aos="fade-up" data-aos-delay="160">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>Zero</div>
               <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Software Agents Required</div>
               <div className="text-[11px] text-slate-600 dark:text-slate-400">100% Agentless architecture</div>
             </div>
-            <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]">
+            <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]" data-aos="fade-up" data-aos-delay="240">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>100%</div>
               <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Encrypted Credential Vault</div>
               <div className="text-[11px] text-slate-600 dark:text-slate-400">AES-256 + SHA-512 &amp; HSM</div>
@@ -303,7 +303,7 @@ export default function HomePage() {
       {/* ─── IDENTITY COVERAGE CARDS ───────────── */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14]">
         <div className="container-xl">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
             <div className="badge-cyan mb-5">Privileged Access for Every Identity</div>
             <h2
               className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
@@ -318,7 +318,10 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* AI & Automated Identities */}
-            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden">
+            <div
+              className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden"
+              data-aos="fade-up"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
               <div className="relative z-10 flex flex-col flex-1">
@@ -350,7 +353,11 @@ export default function HomePage() {
             </div>
 
             {/* Human Identities */}
-            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden">
+            <div
+              className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
               <div className="relative z-10 flex flex-col flex-1">
@@ -382,7 +389,11 @@ export default function HomePage() {
             </div>
 
             {/* Machine Identities */}
-            <div className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden">
+            <div
+              className="group relative flex flex-col p-8 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_8px_20px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.06] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
               <div className="relative z-10 flex flex-col flex-1">
@@ -419,7 +430,7 @@ export default function HomePage() {
       {/* ─── FEATURES GRID ─────────────────────── */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
             <div className="badge-cyan mb-5">Platform Features</div>
             <h2
               className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
@@ -434,10 +445,12 @@ export default function HomePage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {features.map((feature) => (
+            {features.map((feature, index) => (
               <div
                 key={feature.title}
                 className="group relative p-6 rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_14px_rgba(0,184,255,0.04)] transition-all duration-300 card-shine cursor-default overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay={(index % 4) * 70}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00B8FF]/[0.07] via-transparent to-violet-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00B8FF]/0 to-transparent group-hover:via-[#00B8FF]/70 transition-all duration-300" />
@@ -467,7 +480,7 @@ export default function HomePage() {
 
           {/* Forced dark band so light mode keeps contrast */}
           <div className="dark">
-          <div className="mt-14 rounded-2xl border border-[#00B8FF]/15 bg-slate-100/60 dark:bg-[#0A1628] overflow-hidden">
+          <div className="mt-14 rounded-2xl border border-[#00B8FF]/15 bg-slate-100/60 dark:bg-[#0A1628] overflow-hidden" data-aos="fade-up">
             <div className="grid lg:grid-cols-[1.1fr_1.4fr] gap-0">
               <div className="p-8 border-b lg:border-b-0 lg:border-r border-slate-900/[0.08] dark:border-white/[0.06]">
                 <div className="badge-cyan mb-4">Live Visibility</div>
@@ -572,7 +585,7 @@ export default function HomePage() {
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]" style={{ background: "linear-gradient(180deg, #0A1628 0%, #030711 100%)" }}>
         <div className="container-xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div data-aos="fade-right">
               <div className="badge-cyan mb-6">Compliance & Certifications</div>
               <h2
                 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
@@ -613,10 +626,12 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {certs.map((cert) => (
+              {certs.map((cert, index) => (
                 <div
                   key={cert.name}
                   className="flex flex-col items-center justify-center p-6 rounded-2xl border border-[#00B8FF]/18 bg-[#00B8FF]/[0.05] hover:bg-[#00B8FF]/[0.14] hover:border-[#00B8FF]/45 hover:shadow-[0_0_14px_rgba(0,184,255,0.06)] transition-all duration-300 group"
+                  data-aos="fade-left"
+                  data-aos-delay={index * 60}
                 >
                   <cert.icon className="w-8 h-8 text-[#00B8FF] mb-3 group-hover:scale-110 transition-transform" />
                   <div className="text-xs font-bold text-slate-950 dark:text-white text-center whitespace-pre-line leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
@@ -634,7 +649,7 @@ export default function HomePage() {
       {/* ─── TESTIMONIALS ──────────────────────── */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
             <div className="badge-cyan mb-5">Customer Stories</div>
             <h2
               className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
@@ -662,7 +677,7 @@ export default function HomePage() {
       {/* ─── BLOG PREVIEW ──────────────────────── */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
+          <div className="flex items-center justify-between mb-12 flex-wrap gap-4" data-aos="fade-up">
             <div>
               <div className="badge-cyan mb-3">Latest Insights</div>
               <h2
@@ -678,11 +693,13 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {latestBlogPosts.map((post) => (
+            {latestBlogPosts.map((post, index) => (
               <Link
                 key={post.title}
                 href={post.href}
                 className="group flex flex-col rounded-2xl border border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/50 dark:bg-[#0A1628]/50 hover:border-[#00B8FF]/[0.28] hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 hover:shadow-[0_0_14px_rgba(0,184,255,0.04)] transition-all duration-300 overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
               >
                 {/* Cover image */}
                 <div className="relative h-44 overflow-hidden bg-slate-200 dark:bg-[#0F1E35]">

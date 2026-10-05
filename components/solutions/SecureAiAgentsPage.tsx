@@ -223,10 +223,6 @@ const boundaries: IconCard[] = [
 const infraSection = {
     title: "Secure AI Across Enterprise Infrastructure",
     lead: ["AI agents rarely operate in isolation. They may interact with:"] as RichText,
-    image: {
-        src: "https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?auto=format&fit=crop&w=1200&q=70",
-        alt: "Secure AI agents reaching enterprise infrastructure held in a data centre server rack under privileged access control",
-    },
 };
 
 const infraAreas: IconCard[] = [
@@ -364,23 +360,39 @@ export default function SecureAiAgentsPage() {
                 </MediaSplit>
             </Section>
 
-            {/* ─── ZERO TRUST PAM + JIT ─────────────── */}
+            {/* ─── ZERO TRUST PAM + JIT ───────────────
+                Two TOPICS, one per column — not one topic spread across both.
+                The earlier split put the heading and its prose on the left and
+                that same heading's bullet list on the right, then began the JIT
+                heading underneath them. The eye had to jump columns mid-subject,
+                and the JIT heading read as if it belonged to the list above it.
+                The content is two distinct practices, so each column now holds
+                one complete topic: Zero Trust PAM controls on the left, JIT
+                access on the right. DOM order still matches reading order. */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={zeroTrustSection.title}>
-                        <Prose segments={zeroTrustSection.paragraphs[0]} className="mb-4" />
-                        <Prose segments={zeroTrustSection.paragraphs[1]} />
-                    </SectionHeading>
+                <div className="grid lg:grid-cols-2 gap-x-16 gap-y-14 items-start">
+                    {/* Topic 1 — Zero Trust PAM: why authentication is not
+                        enough, the five controls it introduces, and what the
+                        governance model includes. */}
+                    <div>
+                        <SectionHeading title={zeroTrustSection.title}>
+                            <Prose segments={zeroTrustSection.paragraphs[0]} className="mb-4" />
+                            <Prose segments={zeroTrustSection.paragraphs[1]} />
+                        </SectionHeading>
 
-                    <CheckList items={zeroTrustSection.controls} className="mt-8" />
+                        <CheckList items={zeroTrustSection.controls} className="mt-8" />
 
-                    <Prose segments={zeroTrustSection.closing} className="mt-8" />
+                        <Prose segments={zeroTrustSection.closing} className="mt-8" />
+                    </div>
 
+                    {/* Topic 2 — JIT access, complete in its own column.
+                        `size="md"` so the two headings read as parallel topics
+                        instead of the second looking like a caption on the
+                        first; `as="h3"` keeps the document outline intact. */}
                     <SectionHeading
                         as="h3"
-                        size="sm"
+                        size="md"
                         title={zeroTrustSection.subheading}
-                        className="mt-14"
                     >
                         {zeroTrustSection.jit.map((paragraph, index) => (
                             <Prose
@@ -437,10 +449,12 @@ export default function SecureAiAgentsPage() {
                 </MediaSplit>
             </Section>
 
-            {/* ─── DETECT (dark band) ───────────────── */}
+            {/* ─── DETECT (dark band) ─────────────────
+                No image, so the column is centred and the heading block with it;
+                the pattern list stays left-aligned for scannability. */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={detectSection.title}>
+                <div className="max-w-3xl mx-auto">
+                    <SectionHeading title={detectSection.title} align="center">
                         <Prose segments={detectSection.paragraphs[0]} className="mb-4" />
                         <Prose segments={detectSection.paragraphs[1]} />
                     </SectionHeading>
@@ -451,10 +465,11 @@ export default function SecureAiAgentsPage() {
                 </div>
             </Section>
 
-            {/* ─── BOUNDARIES ───────────────────────── */}
+            {/* ─── BOUNDARIES ─────────────────────────
+                No image, so the heading block is centred. */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={boundariesSection.title}>
+                <div className="max-w-3xl mx-auto">
+                    <SectionHeading title={boundariesSection.title} align="center">
                         <Prose segments={boundariesSection.lead} />
                     </SectionHeading>
                 </div>
@@ -462,21 +477,37 @@ export default function SecureAiAgentsPage() {
                 <IconCardGrid items={boundaries} columns={3} className="mt-12" />
             </Section>
 
-            {/* ─── ENTERPRISE INFRASTRUCTURE ────────── */}
-            <Section border="bottom">
-                <MediaSplit media={infraSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={infraSection.title}>
-                        <Prose segments={infraSection.lead} />
-                    </SectionHeading>
-                </MediaSplit>
+            {/* ─── ENTERPRISE INFRASTRUCTURE ──────────
+                Was a MediaSplit. That lays out as `lg:grid-cols-[1fr_1.15fr]`, so
+                a 16:9 photograph forced a 337px row while the heading and single
+                sentence beside it needed ~110px — roughly 230px of the row was
+                empty by construction, and the photograph was the only reason for
+                it. The section is really one heading, one introducing sentence and
+                four items, so the image is gone and the four items now run in one
+                row instead of two.
 
-                <IconCardGrid items={infraAreas} columns={2} className="mt-12" />
+                With no image beside it the heading block is centred, matching
+                the other image-less sections and "Governance you can point at"
+                further down the page. */}
+            <Section border="bottom">
+                <SectionHeading
+                    title={infraSection.title}
+                    align="center"
+                    className="max-w-3xl mx-auto"
+                >
+                    <Prose segments={infraSection.lead} />
+                </SectionHeading>
+
+                <IconCardGrid items={infraAreas} columns={4} className="mt-10" />
             </Section>
 
-            {/* ─── WHY OMNIPRIV ─────────────────────── */}
+            {/* ─── WHY OMNIPRIV ───────────────────────
+                No image, so the column is centred and the heading block with it.
+                The tick list stays left-aligned inside the centred column — a
+                centred list is harder to scan. */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={whySection.title}>
+                <div className="max-w-3xl mx-auto">
+                    <SectionHeading title={whySection.title} align="center">
                         <Prose segments={whySection.lead} />
                     </SectionHeading>
 

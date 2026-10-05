@@ -155,7 +155,10 @@ export default function AiPamSolutionsPage() {
                     <Prose segments={strengthenSection.lead} />
                 </SectionHeading>
 
-                <div className="space-y-12 max-w-4xl">
+                {/* `mx-auto`: the heading above is centred (image-less section), so a
+                    left-hugging 896px stack under it leaves all the slack on the right.
+                    Only `.max-w-3xl` columns are centred by the rule in globals.css. */}
+                <div className="space-y-12 max-w-4xl mx-auto">
                     {/* 1. JIT Access & Zero Standing Privileges */}
                     <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
                         <div className="text-xs font-mono font-bold text-[#00B8FF] uppercase tracking-widest mb-2">

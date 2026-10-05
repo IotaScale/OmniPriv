@@ -42,7 +42,13 @@ export default function SectionHeading({
     const centered = align === "center";
 
     return (
-        <div className={cn(centered && "text-center", className)}>
+        // `section-heading` is a stable hook for globals.css: an image-less
+        // section centres its intro column, and this is what lets the rule reach
+        // the heading without also centring the body copy and tick lists below.
+        <div
+            className={cn("section-heading", centered && "text-center", className)}
+            data-aos="fade-up"
+        >
             {badge && (
                 <div className={cn("badge-cyan mb-5 inline-flex", centered && "mx-auto")}>
                     {badge}

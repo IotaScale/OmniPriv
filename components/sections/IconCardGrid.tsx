@@ -35,7 +35,9 @@ export interface IconCardGridProps {
  */
 export default function IconCardGrid({ items, columns: cols = 4, className }: IconCardGridProps) {
     return (
-        <div className={cn("grid gap-5", columns[cols], className)}>
+        // Animated on the container, not the cards: the cards lift on hover and
+        // AOS leaves a transform behind that would out-specify it.
+        <div className={cn("grid gap-5", columns[cols], className)} data-aos="fade-up">
             {items.map((item) => {
                 const cardClass = cn(
                     "group flex flex-col rounded-2xl border p-6 transition-all duration-300",

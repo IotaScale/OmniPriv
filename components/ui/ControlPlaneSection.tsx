@@ -88,7 +88,7 @@ export default function ControlPlaneSection() {
 
       <div className="container-xl relative z-10">
         {/* Header */}
-        <div className="text-center max-w-5xl mx-auto mb-12">
+        <div className="text-center max-w-5xl mx-auto mb-12" data-aos="fade-up">
           <div className="text-[#00B8FF] text-xs font-bold uppercase tracking-[0.25em] mb-4 font-mono">
             How OmniPriv Works
           </div>
@@ -123,7 +123,7 @@ export default function ControlPlaneSection() {
         </div>
 
         {/* Control plane grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[180px_1fr_1fr_1fr_180px] gap-4 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[180px_1fr_1fr_1fr_180px] gap-4 items-stretch" data-aos="fade-up" data-aos-delay="120">
           <Rail title="All Identities" items={identities} />
 
           {stages.map((stage) => (

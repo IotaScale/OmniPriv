@@ -307,6 +307,34 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 1.5rem;
   }
 
+  /* Image-less sections centre their intro column.
+     The rule: a section with no picture should not hug the left edge with all
+     the slack piling up on the right. Its intro column is centred instead, and
+     so is the heading inside it.
+     Done here rather than in JSX because the same `container-xl > .max-w-3xl`
+     shape is repeated ~50 times across 20 files; changing it in one place is
+     what keeps the rule actually true everywhere.
+     Scoped to a DIRECT child of `.container-xl`, so a `max-w-3xl` used inside a
+     `Section` is matched but a max-width column used as a grid track in a 2-up
+     section is not — those already fill the row and must stay put.
+     Only the heading block is centred. Body copy and tick lists stay
+     left-aligned inside the centred column: centred prose is harder to read and
+     a centred list is harder to scan. */
+  .container-xl:not(:has(img)) > .max-w-3xl {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Centre the heading inside that column. Keyed on `SectionHeading`'s
+     `section-heading` class rather than `:first-child`, because the heading is
+     not always the column's first child (`SectionHeading` may render a badge
+     wrapper, or may itself be the column). Body copy and tick lists are left
+     untouched and stay left-aligned. */
+  .container-xl:not(:has(img)) > .max-w-3xl .section-heading,
+  .container-xl:not(:has(img)) > .max-w-3xl.section-heading {
+    text-align: center;
+  }
+
   /* Widen the content column on very large displays so it doesn't
      read as a narrow strip. 1080p and below are unaffected. */
   @media (min-width: 2000px) {
@@ -1381,5 +1409,19 @@ h1, h2, h3, h4, h5, h6 {
   .cp-ring-spin-reverse,
   .cp-icon-pulse {
     animation: none;
+  }
+}
+
+/*
+ * AOS reduced motion.
+ *
+ * Deliberately handled here rather than with AOS's `disable` option: `disable`
+ * switches the whole library off, so a visitor whose OS asks for reduced motion
+ * gets no scroll reveal at all. This keeps the fade and removes only the
+ * movement, which is what the preference is really about.
+ */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos^="fade"] {
+    transform: none !important;
   }
 }

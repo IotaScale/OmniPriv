@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import AosProvider from "@/components/ui/AosProvider";
 //
 const inter = Inter({
   subsets: ["latin"],
@@ -133,8 +134,17 @@ export default function RootLayout({
             }),
           }}
         />
+        {/*
+          AOS ships `[data-aos] { opacity: 0 }`, so without JavaScript every
+          animated element would stay invisible for good. Force them back to
+          visible — this must stay in the head so it applies before first paint.
+        */}
+        <noscript>
+          <style>{`[data-aos]{opacity:1!important;transform:none!important;transition:none!important}`}</style>
+        </noscript>
       </head>
       <body className="bg-white text-slate-900 dark:bg-[#060b17] dark:text-slate-200 antialiased" suppressHydrationWarning>
+        <AosProvider />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W5FJSLJRGE"
           strategy="afterInteractive"

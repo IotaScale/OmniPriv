@@ -23,7 +23,7 @@ export default function AiPamTeaser() {
             <div className="container-xl relative z-10">
                 <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
                     {/* Copy */}
-                    <div>
+                    <div data-aos="fade-right">
                         <div className="badge-cyan mb-5 inline-flex items-center gap-1.5">
                             <Cpu className="w-3.5 h-3.5" />
                             AI-PAM Engine
@@ -51,7 +51,7 @@ export default function AiPamTeaser() {
                     </div>
 
                     {/* Stat grid */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-4" data-aos="fade-left">
                         {stats.map((stat) => (
                             <div
                                 key={stat.label}

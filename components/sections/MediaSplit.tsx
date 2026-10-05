@@ -61,6 +61,7 @@ export default function MediaSplit({
                 mediaBorder,
                 heights[height]
             )}
+            data-aos="fade-up"
         >
             <Image
                 src={media.src}

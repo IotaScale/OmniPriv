@@ -93,7 +93,7 @@ export default function PamFaqSection() {
 
       <div className="container-xl max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-5">
             <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider">
               PAM KNOWLEDGE BASE
@@ -111,7 +111,9 @@ export default function PamFaqSection() {
         </div>
 
         {/* Accordion list — the shared component used by every page FAQ */}
-        <FaqAccordion items={faqs} />
+        <div data-aos="fade-up" data-aos-delay="80">
+          <FaqAccordion items={faqs} />
+        </div>
       </div>
     </section>
   );

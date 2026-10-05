@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   UserCheck, Lock, Key, Eye, ArrowRight,
@@ -77,7 +78,7 @@ function FeatureSection({
     <div id={id} className="scroll-mt-24 section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
       <div className="container-xl">
         <div className={`grid lg:grid-cols-2 gap-16 items-start ${reverse ? "lg:grid-flow-dense" : ""}`}>
-          <div className={reverse ? "lg:col-start-2" : ""}>
+          <div className={reverse ? "lg:col-start-2" : ""} data-aos="fade-up">
             <div className="flex items-center gap-3 mb-5">
               <div className="icon-wrapper w-12 h-12 rounded-xl">
                 <Icon className="w-6 h-6" />
@@ -99,7 +100,7 @@ function FeatureSection({
               </Link>
             )}
           </div>
-          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`}>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`} data-aos="fade-up" data-aos-delay="100">
             {features.map((f) => (
               <div key={f.title} className="feature-card group">
                 <div className="feature-card-body p-5 flex flex-col">
@@ -121,16 +122,46 @@ function FeatureSection({
 export default function FeaturesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center">
+      {/* Hero
+          Full-bleed themed photograph behind centred copy — the same treatment as
+          the homepage hero, so the two share one hero language. The three overlay
+          layers below it are copied from that hero verbatim: a flat scrim, a
+          radial vignette behind the headline, and a top/bottom gradient. The
+          headline sits on top of all three, which is what keeps it readable over
+          an unknown photograph without dimming the image into mud. */}
+      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden bg-[#030711]">
+        <Image
+          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=60"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-60"
+        />
+
+        {/* Overlays keep the headline readable while the photo stays visible */}
+        <div className="absolute inset-0 bg-[#030711]/30" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 68% 64% at 50% 47%, rgba(3,7,17,0.74) 0%, rgba(3,7,17,0.36) 55%, rgba(3,7,17,0) 85%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/45 via-transparent to-[#030711]/85" />
+
+        {/* `hero-reveal`, not `data-aos`: this is above the fold and sits on a dark
+            photograph, so if AOS ever failed to apply `.aos-animate` the copy would
+            be invisible on the image. `hero-reveal` is the CSS-only entrance the
+            homepage hero uses — it is `animation-fill-mode: both`, so the text is
+            painted even with no JS, and it is already reduced-motion aware. */}
+        <div className="container-xl relative z-10 text-center hero-reveal">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Platform Features</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
             Complete <span className="text-gradient">PAM Feature Set</span> for Modern Enterprises
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">
+          <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-10">
             Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance — in one unified platform.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

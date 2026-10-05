@@ -136,7 +136,7 @@ export default function DocsPage() {
       <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center">
+        <div className="container-xl relative z-10 text-center" data-aos="fade-up">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Documentation</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
             OmniPriv <span className="text-gradient">Documentation</span>
@@ -152,7 +152,7 @@ export default function DocsPage() {
       {/* Quick Links */}
       <section className="py-8 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-aos="fade-up">
             {quickLinks.map((link) => (
               <div
                 key={link.label}
@@ -171,7 +171,7 @@ export default function DocsPage() {
       {/* Documentation Categories */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
+          <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }} data-aos="fade-up">
             Browse by Category
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 max-w-2xl">
@@ -179,7 +179,7 @@ export default function DocsPage() {
             published, so they are listed for reference rather than as links. In the
             meantime, our support team can answer any of these directly.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5" data-aos="fade-up" data-aos-delay="80">
             {docCategories.map((cat) => (
               <div key={cat.title} className={`p-6 rounded-2xl border ${cat.color} hover:border-opacity-40 transition-all group`}>
                 <div className="flex items-center gap-3 mb-3">
@@ -207,12 +207,12 @@ export default function DocsPage() {
       {/* Popular Articles */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+          <div className="flex items-center justify-between mb-8 flex-wrap gap-4" data-aos="fade-up">
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
               Most Popular Articles
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="80">
             {popularDocs.map((doc) => (
               <div
                 key={doc.title}
@@ -235,7 +235,7 @@ export default function DocsPage() {
       {/* Support CTA */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 text-center">
+          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 text-center" data-aos="fade-up">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />
             <div className="relative z-10">
               <BookOpen className="w-12 h-12 text-[#00B8FF] mx-auto mb-5" />

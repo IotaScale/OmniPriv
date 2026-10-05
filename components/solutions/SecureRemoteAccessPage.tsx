@@ -427,8 +427,12 @@ export default function SecureRemoteAccessPage() {
                 </MediaSplit>
             </Section>
 
-            {/* ─── SESSION MONITORING ───────────────── */}
-            <Section tone="muted" border="bottom">
+            {/* ─── SESSION MONITORING ─────────────────
+                Hardcoded dark band. `tone="dark"` also wraps the section in a
+                `.dark` ancestor, which is what switches the `Prose` body copy and
+                the ChipList chips to their dark palette while the site is in
+                light mode. Sitting between two light bands keeps the rhythm. */}
+            <Section tone="dark" border="bottom">
                 <div className="max-w-3xl">
                     <SectionHeading title={monitorSection.title}>
                         <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />

@@ -113,7 +113,7 @@ export default function IntegrationsPage() {
       <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center max-w-3xl mx-auto">
+        <div className="container-xl relative z-10 text-center max-w-3xl mx-auto" data-aos="fade-up">
           <div className="badge-cyan mb-6">Integrations</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
             Fits Seamlessly Into <span className="text-gradient">Your Stack</span>
@@ -131,7 +131,7 @@ export default function IntegrationsPage() {
       <section className="py-12 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
           <p className="text-xs text-slate-500 text-center uppercase tracking-widest mb-8">Certified Integrations Include</p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3" data-aos="fade-up">
             {featuredLogos.map((logo) => (
               <div key={logo} className="px-6 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-[#00B8FF]/20 transition-all">
                 {logo}
@@ -147,7 +147,7 @@ export default function IntegrationsPage() {
       {/* API-first callout */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="grid lg:grid-cols-3 gap-5">
+          <div className="grid lg:grid-cols-3 gap-5" data-aos="fade-up">
             {[
               { icon: Plug, title: "REST API", desc: "Fully documented REST API for custom integrations, automation, and SIEM data streaming. Every platform action is API-accessible." },
               { icon: CheckCircle2, title: "Certified Partner Program", desc: "OmniPriv maintains certified integrations with 100+ partners — tested and validated with each platform release." },
@@ -172,11 +172,11 @@ export default function IntegrationsPage() {
         <div className="container-xl space-y-16">
           {categories.map((cat) => (
             <div key={cat.label}>
-              <div className="mb-7">
+              <div className="mb-7" data-aos="fade-up">
                 <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{cat.label}</h2>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">{cat.description}</p>
               </div>
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="80">
                 {cat.integrations.map((intg) => (
                   <div key={intg.name} className="p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/20 transition-all group card-shine">
                     <div className="flex items-center gap-3 mb-3">
@@ -199,7 +199,7 @@ export default function IntegrationsPage() {
 
       {/* CTA */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl text-center max-w-2xl mx-auto">
+        <div className="container-xl text-center max-w-2xl mx-auto" data-aos="fade-up">
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Don&apos;t See Your Tool?
           </h2>

@@ -156,7 +156,7 @@ export default function EnterprisePage() {
       <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center">
+        <div className="container-xl relative z-10 text-center" data-aos="fade-up">
           <div className="badge-cyan mb-6 inline-flex mx-auto">Enterprise Plans</div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
             Secure Your Enterprise with <span className="text-gradient">OmniPriv</span>
@@ -178,7 +178,7 @@ export default function EnterprisePage() {
       {/* Plans */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Plans for Every Scale
             </h2>
@@ -187,7 +187,7 @@ export default function EnterprisePage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="80">
             {plans.map((plan) => (
               <div
                 key={plan.name}
@@ -262,13 +262,13 @@ export default function EnterprisePage() {
       {/* Enterprise features */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
             <div className="badge-cyan mb-5">Enterprise Platform</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Built for Enterprise <span className="text-gradient">Scale & Complexity</span>
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="80">
             {enterpriseFeatures.map((f) => (
               <div key={f.title} className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine">
                 <div className="icon-wrapper mb-5">
@@ -285,7 +285,7 @@ export default function EnterprisePage() {
       {/* SLA */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
             <div className="badge-cyan mb-5">Service Level Agreement</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
               Enterprise SLA Commitments
@@ -294,7 +294,7 @@ export default function EnterprisePage() {
               We stand behind our platform with contractual commitments on availability, support response, and service quality.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="80">
             {slaHighlights.map((s) => (
               <div key={s.metric} className="text-center p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all">
                 <div className="stat-number mb-2">{s.metric}</div>
@@ -309,10 +309,10 @@ export default function EnterprisePage() {
       {/* Testimonials */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
         <div className="container-xl">
-          <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }}>
+          <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }} data-aos="fade-up">
             What Enterprise Customers Say
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="80">
             {testimonials.map((t) => (
               <div key={t.author} className="relative p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
                 <span className="quote-mark">"</span>
@@ -332,7 +332,7 @@ export default function EnterprisePage() {
       {/* Contact CTA */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
         <div className="container-xl">
-          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-14">
+          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-14" data-aos="fade-up">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />
             <div className="absolute inset-0 bg-grid opacity-20" />
             <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
