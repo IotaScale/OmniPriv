@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import LogoMarquee from "@/components/sections/LogoMarquee";
+import FaqSection, { type FaqEntry } from "@/components/sections/FaqSection";
 
 export const metadata: Metadata = {
   title: "Features: Complete PAM Capabilities",
@@ -53,7 +54,7 @@ const auditFeatures = [
   { icon: TrendingUp,  title: "Analytics Dashboards",        desc: "Executive-level risk dashboards showing access patterns, anomalies, and compliance status." },
   { icon: ScrollText,  title: "Command History",             desc: "Full keystroke logging and command execution history for every SSH and terminal session." },
   { icon: Share2,      title: "SIEM Integration",            desc: "Stream all events to Splunk, IBM QRadar, Elastic SIEM, or any syslog-compatible system." },
-  { icon: FileCheck2,  title: "Compliance Reports",          desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, PCI DSS, HIPAA and more." },
+  { icon: FileCheck2,  title: "Compliance Reports",          desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404." },
 ];
 
 const aiFeatures = [
@@ -65,6 +66,43 @@ const aiFeatures = [
   { icon: Lock,          title: "Prompt-Injection Guard",     desc: "Even when an LLM's reasoning is manipulated, every tool call is re-verified against deterministic policy before it is allowed to run." },
   { icon: FileSearch,    title: "Agent Session Audit Trail", desc: "A full forensic trace from human to agent to MCP server to tool to resource — with decision, privilege level and duration recorded." },
   { icon: Zap,           title: "Automated Threat Response", desc: "Each session is scored 0–1 across 39 features and escalates in tiers: dashboard alert, then admin alert, then automatic block on a 10-second sweep." },
+];
+
+const featureFaqs: FaqEntry[] = [
+  {
+    question: "What does the OmniPriv platform include?",
+    answer:
+      "OmniPriv covers authentication, authorization, privileged account management, session audit and AI-driven controls in one platform. That means MFA and SSO, role-based and just-in-time access, credential vaulting and rotation, full session recording, and an AI engine that scores behaviour on every privileged action.",
+  },
+  {
+    question: "Do we need to replace our existing identity provider?",
+    answer:
+      "No. OmniPriv works with the directory and identity infrastructure you already run — Active Directory and LDAP for directory sync, and SAML 2.0, OAuth 2.0 or OpenID Connect for single sign-on, with RADIUS for network devices. It adds privileged access controls on top of your identity provider rather than replacing it.",
+  },
+  {
+    question: "How does just-in-time access differ from standard RBAC?",
+    answer: [
+      "RBAC decides what an identity is allowed to reach. Just-in-time access decides when — it provisions time-limited access for a specific task and revokes it automatically when the window closes.",
+      "The result is no standing privilege: an account that is compromised outside an approved window has nothing to use.",
+    ],
+  },
+  {
+    question: "Can OmniPriv rotate credentials without manual work?",
+    answer:
+      "Yes. Passwords, SSH keys and API tokens can be rotated on a schedule or on demand, and the updated values are pushed directly to the target assets. No user ever sees the raw credential — they authenticate through OmniPriv instead.",
+  },
+  {
+    question: "How are AI agents governed?",
+    answer: [
+      "Every MCP agent is given a verifiable identity, a tool allowlist and a data scope, so it operates under policy rather than through a borrowed human login.",
+      "High-risk actions pause for explicit human approval, and each tool call is re-verified against deterministic policy before it runs — even when the model's own reasoning has been manipulated. Every session leaves a forensic trail from human to agent to tool to resource.",
+    ],
+  },
+  {
+    question: "Which compliance frameworks can OmniPriv report against?",
+    answer:
+      "Audit reporting covers SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Every privileged action is recorded with the identity, the access decision, the privilege level and the duration, so evidence is available without reconstructing it after an incident.",
+  },
 ];
 
 function FeatureSection({
@@ -229,6 +267,18 @@ export default function FeaturesPage() {
         description="OmniPriv's AI-PAM engine scores behaviour on every privileged action and governs autonomous agents through the same policy engine that governs people. Detection, approval and enforcement happen inside the platform, not in an analytics product bolted onto it."
         features={aiFeatures}
         cta={{ href: "/ai-pam", label: "Explore the AI-PAM engine" }}
+      />
+
+      {/* FAQ
+          Closes the page. `FaqSection` rather than `FaqAccordion` so the band,
+          the centred heading and the FAQPage structured data all come from the
+          shared component and stay server-rendered. `tone="muted"` is set by
+          the component itself, which keeps it alternating against the default
+          surface of the AI section above. */}
+      <FaqSection
+        title="Frequently Asked Questions"
+        subtitle="Common questions about deploying and running OmniPriv."
+        items={featureFaqs}
       />
 
     </>  
