@@ -133,35 +133,12 @@ const certs = [
 
 /* Hero photography lives in components/ui/HeroSlideshow.tsx */
 
-const testimonials = [
-  {
-    quote:
-      "OmniPriv transformed how we manage privileged access across our global infrastructure. What took days now takes minutes, and our audit team has never been happier. The session recording feature alone saved us during our last SOC2 audit.",
-    author: "Sarah Chen",
-    title: "CISO",
-    company: "Global Financial Group",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80",
-  },
-  {
-    quote:
-      "We evaluated CyberArk, BeyondTrust, and OmniPriv. OmniPriv won hands-down on feature parity, deployment speed, and total cost of ownership. The JIT access module is a game-changer for our DevOps teams.",
-    author: "Marcus Weber",
-    title: "VP of Infrastructure Security",
-    company: "European Manufacturing Corp",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80",
-  },
-  {
-    quote:
-      "After a privileged account compromise incident, we deployed OmniPriv across 5,000 assets in under two weeks. The credential rotation feature eliminated our most significant attack vector. I can't recommend it enough.",
-    author: "Jennifer Park",
-    title: "Director of IT Security",
-    company: "Healthcare Networks Inc.",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=80&h=80&q=80",
-  },
-];
+/* The testimonial cards that used to sit here were fabricated — invented
+   people, invented employers, and one of them quoted a review against named
+   competitors. There is deliberately no `testimonials` array any more, and the
+   section that rendered the surrounding "Customer Stories" heading went with
+   it. If real, attributable quotes are ever supplied, build that section
+   fresh rather than restoring this data. */
 
 const latestBlogPosts = Object.entries(blogData)
   .map(([slug, post]) => {
@@ -207,7 +184,7 @@ export default function HomePage() {
             <div className="hero-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/35 bg-[#030711]/50 backdrop-blur-sm mb-7">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF]" />
               <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider font-mono">
-                  AI-POWERED PRIVILEGED ACCESS MANAGEMENT
+                AI-POWERED PRIVILEGED ACCESS MANAGEMENT
               </span>
             </div>
 
@@ -221,18 +198,16 @@ export default function HomePage() {
               <span className="text-gradient">Control Every Privileged Move</span>
             </h1>
 
-            {/* Two Paragraphs Body Copy */}
-            <div
-              className="hero-reveal space-y-4 text-base sm:text-lg text-slate-200 leading-relaxed mb-10 max-w-4xl mx-auto"
+            {/* Body copy */}
+            <p
+              className="hero-reveal text-base sm:text-lg text-slate-200 leading-relaxed mb-10 max-w-3xl mx-auto"
               style={{ animationDelay: "0.2s" }}
             >
-              <p>
-                  AI, automation, applications, and human identities are changing how privileged access works across the enterprise. OmniPriv brings Privileged Access Management into the AI era with AI-driven controls, Just-in-Time access, secure credentials, and complete session visibility.
-              </p>
-              <p>
-                Built for organizations exploring modern AI PAM solutions, OmniPriv helps security teams manage privileged identities and reduce unnecessary access without slowing down critical operations. As PAM AI strategies evolve, OmniPriv keeps privileged access controlled, auditable, and aligned with enterprise security requirements.
-              </p>
-            </div>
+              AI, automation, applications, and human identities are reshaping privileged
+              access. OmniPriv delivers modern AI PAM solutions with AI-driven controls,
+              Just-in-Time access, secure credentials, and complete session visibility—helping
+              teams reduce risk while keeping privileged access controlled and auditable.
+            </p>
 
             {/* CTAs */}
             <div
@@ -645,34 +620,6 @@ export default function HomePage() {
         </div>
       </section>
       </div>
-
-      {/* ─── TESTIMONIALS ──────────────────────── */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
-            <div className="badge-cyan mb-5">Customer Stories</div>
-            <h2
-              className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5"
-              style={{ fontFamily: "var(--font-syne)" }}
-            >
-              Trusted by Security Leaders{" "}
-              <span className="text-gradient">Worldwide</span>
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">
-              Hear from the CISOs, security architects, and IT leaders who rely on OmniPriv
-              to protect their most critical systems.
-            </p>
-          </div>
-
-          
-
-          <div className="text-center mt-10">
-            <Link href="/case-studies" className="btn-secondary">
-              Read All Case Studies <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* ─── BLOG PREVIEW ──────────────────────── */}
       <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
