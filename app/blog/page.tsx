@@ -173,7 +173,7 @@ const editorialPillars = [
     {
         icon: ShieldCheck,
         title: "Framework-mapped, not framework-flavoured",
-        text: "Compliance articles reference the actual control sets — SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, NIST 800-53, FERC/NERC CIP, GDPR and ISO 27001 — rather than gesturing at \u201ccompliance\u201d generally.",
+        text: "Compliance articles reference the actual control sets — SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404 — rather than gesturing at \u201ccompliance\u201d generally.",
     },
     {
         icon: Terminal,

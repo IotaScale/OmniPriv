@@ -46,7 +46,7 @@ const challenges: Challenge[] = [
         id: "ai-attacks",
         headline: "Defend Against AI-Driven Threats",
         body: "Improve AI threat protection with intelligent anomaly detection, privileged access controls, session monitoring, and rapid response to suspicious activity.",
-        caption: "ML · ISOLATIONFOREST",
+        caption: "ML · BEHAVIOURAL SCORING",
         href: "/platform/ai-threat-protection",
         icon: ShieldAlert,
         accent: "#818cf8",
@@ -58,7 +58,7 @@ const challenges: Challenge[] = [
         id: "remote",
         headline: "Secure Remote & Hybrid Access",
         body: "Enable secure remote access for administrators, employees, and vendors with MFA, JIT privileges, credential protection, and monitored sessions.",
-        caption: "AGENTLESS · RDP / SSH",
+        caption: "BROKERED · RDP / SSH",
         href: "/platform/secure-remote-access",
         icon: Globe,
         accent: "#38bdf8",
@@ -249,7 +249,7 @@ export default function ChallengesSection() {
                     >
                         Six challenges{" "}
                         <br />
-                        <span className="text-gradient">One agentless platform</span>
+                        <span className="text-gradient">One governed platform</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
                         From governing autonomous AI agents to proving compliance, OmniPriv closes

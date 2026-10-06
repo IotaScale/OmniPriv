@@ -32,10 +32,11 @@ import type { RichText } from "@/lib/rich-text";
  * component instead of the generic template when the slug appears in its
  * `bespokePages` map.
  *
- * All ten features from ../data.ts are represented: MFA, HSM integration,
- * adaptive MFA, SHA-512/AES-256-GCM, mutually encrypted component traffic,
- * encrypted backups, role-based access isolation, tamper-proof audit
- * storage, zero hard-coded credentials and the independent SECRET_KEY.
+ * All ten features from ../data.ts are represented: MFA, hardware-backed key
+ * protection, adaptive MFA, encryption at rest and in transit, mutually
+ * encrypted component traffic, encrypted backups, role-based access isolation,
+ * tamper-proof audit storage, zero hard-coded credentials and independent key
+ * custody.
  */
 
 const hero = {
@@ -46,7 +47,7 @@ const hero = {
         "OmniPriv is built on the assumption that something will eventually end up somewhere it should not. Every secret is encrypted, every component talks over mutual TLS, and every login can be made to prove more than a password.",
     ] as RichText,
     body: [
-        "Multi-factor authentication is enforced up front, HSM-backed keys protect what is stored, and cryptographic hash-chaining protects what is recorded — so integrity holds even when the storage layer underneath is not trusted.",
+        "Multi-factor authentication is enforced up front, hardware-backed keys protect what is stored, and cryptographic hash-chaining protects what is recorded — so integrity holds even when the storage layer underneath is not trusted.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform/password-credential-management", label: "See Credential Vaulting" },
@@ -97,9 +98,9 @@ const encryptionSection = {
         alt: "Printed circuit board showing intricate gold conductive pathways and solder points",
     },
     points: [
-        "HSM integration — a hardware security module provides root-of-trust protection for stored keys",
-        "SHA-256 and SHA-512 with AES-256-GCM envelope encryption, covering data at rest and in transit",
-        "Mutual TLS between platform components, so nothing crosses the wire in plaintext at any layer",
+        "A hardware security module provides root-of-trust protection for stored keys",
+        "Envelope encryption covering data at rest and in transit",
+        "Mutual authentication between platform components, so nothing crosses the wire in plaintext at any layer",
     ],
 };
 
@@ -124,7 +125,7 @@ const custodyPillars = [
     {
         icon: Lock,
         title: "Independent key backup",
-        text: "The SECRET_KEY is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
+        text: "The installation key is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
     },
     {
         icon: Database,
@@ -134,9 +135,9 @@ const custodyPillars = [
 ];
 
 const stats = [
-    { value: "AES-256", label: "Envelope encryption", sub: "With SHA-512, at rest and in transit" },
-    { value: "HSM", label: "Root-of-trust key protection", sub: "Hardware security module" },
-    { value: "mTLS", label: "Between platform components", sub: "No plaintext on the wire" },
+    { value: "100%", label: "Envelope encryption", sub: "At rest and in transit" },
+    { value: "Hardware", label: "Root-of-trust key protection", sub: "Keys held in a security module" },
+    { value: "Mutual", label: "Authentication between components", sub: "No plaintext on the wire" },
     { value: "0", label: "Hard-coded credentials", sub: "Every secret vault-managed" },
 ];
 
@@ -149,7 +150,7 @@ const keepReading = [
 const closing = {
     title: "Put the encryption where the risk actually is",
     body: [
-        "MFA at the front, HSM-backed keys behind it, mutual TLS between every component and hash-chained records underneath.",
+        "MFA at the front, hardware-backed keys behind it, mutual authentication between every component and hash-chained records underneath.",
         "We will walk through the encryption model and the key custody arrangements against your environment.",
     ],
     kicker: "Encrypted in transit. Encrypted at rest. Hash-chained throughout.",
@@ -171,10 +172,10 @@ const faqs: FaqEntry[] = [
     {
         question: "How is data encrypted at rest and in transit?",
         answer:
-            "Sensitive data is encrypted with SHA-256 and SHA-512 hashing and AES-256-GCM envelope encryption, both at rest and in transit, with a hardware security module providing root-of-trust key protection. Traffic between the platform's own components is mutually TLS-encrypted, so there is no plaintext layer inside the stack.",
+            "Sensitive data is encrypted both at rest and in transit, with a hardware security module providing root-of-trust key protection. Traffic between the platform's own components is mutually authenticated and encrypted, so there is no plaintext layer inside the stack.",
     },
     {
-        question: "What is the SECRET_KEY and why does it need separate storage?",
+        question: "What is the installation key and why does it need separate storage?",
         answer:
             "It is the key generated when the platform is installed, and it must be stored externally and independently of OmniPriv itself. Keeping it separate is what stops a compromise of the platform's storage from also handing over the means to decrypt what is in it, and it has to be carried forward across upgrades and migrations.",
     },

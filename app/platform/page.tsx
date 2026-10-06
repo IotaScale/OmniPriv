@@ -32,7 +32,7 @@ import type { RichText } from "@/lib/rich-text";
 export const metadata: Metadata = {
     title: "Platform: Enterprise PAM Capabilities & Specifications",
     description:
-        "Explore OmniPriv's 9 core PAM capability modules covering 80+ enterprise requirements, 100% agentless architecture, regulatory compliance, and on-premise deployment specifications.",
+        "Explore OmniPriv's 9 core PAM capability modules covering 80+ enterprise requirements, compliance mappings, and on-premise deployment specifications.",
 };
 
 const hero = {
@@ -40,7 +40,7 @@ const hero = {
     titleLead: "Nine capabilities.",
     titleAccent: "One policy engine.",
     intro: [
-        "Privileged access work usually ends up spread across a vault, a session recorder, a workflow tool and a reporting add-on. OmniPriv covers the same ground in one agentless platform you run on your own infrastructure.",
+        "Privileged access work usually ends up spread across a vault, a session recorder, a workflow tool and a reporting add-on. OmniPriv covers the same ground in one platform you run on your own infrastructure.",
     ] as RichText,
     body: [
         "Each module below addresses one part of the privileged access lifecycle. They share one credential store, one policy engine and one audit trail — so an identity cannot move between them to escape a control.",
@@ -65,15 +65,15 @@ const moduleCards: IconCard[] = solutions.map((solution, index) => ({
 const architectureSection = {
     title: "One platform, on your own infrastructure",
     lead: [
-        "The deployment model is part of the security argument. OmniPriv runs where your other critical systems run, and it asks nothing of the machines it protects.",
+        "The deployment model is part of the security argument. OmniPriv runs where your other critical systems run, on hardware you already own.",
     ] as RichText,
 };
 
 const architecturePillars = [
     {
         icon: Zap,
-        title: "Agentless by default",
-        text: "No software agents on devices, servers or workstations. There is nothing to roll out and nothing to keep patched on the machines you are trying to protect.",
+        title: "Deployed as a software appliance",
+        text: "Delivered as a single hardware-agnostic software appliance, so it can be deployed on the infrastructure you already run.",
     },
     {
         icon: Server,
@@ -106,15 +106,14 @@ const consoleSection = {
     },
     points: [
         "Browser console across Edge, Chrome, Firefox and Safari, plus a command-line interface",
-        "A built-in mobile browser client with TOTP, approvals and geofencing — no app to install",
+        "A built-in mobile browser client with TOTP and approvals — no app to install",
         "Centralised administration in a single UI with one credential repository",
-        "Zone and gateway architecture for remote segments, managed from the same control plane",
-        "Credentials protected with SHA-512 and AES-256-GCM envelope encryption, with HSM integration",
+        "Credentials encrypted at rest and in transit, with hardware-backed key protection",
     ],
 };
 
 const standardsSection = {
-    title: "Nine frameworks, mapped out of the box",
+    title: "Six frameworks, mapped out of the box",
     lead: [
         "Compliance mappings are pre-configured rather than assembled by hand, and the reports arrive in the shape an auditor expects.",
     ] as RichText,
@@ -141,7 +140,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What is the OmniPriv platform?",
         answer:
-            "OmniPriv is an agentless privileged access management platform delivered as a software appliance you deploy on your own infrastructure. It covers credential management, session management, workflow and approval, audit and compliance, threat detection, application security, enterprise integration, infrastructure and deployment, and AI agent governance.",
+            "OmniPriv is a privileged access management platform delivered as a software appliance you deploy on your own infrastructure. It covers credential management, session management, workflow and approval, audit and compliance, threat detection, application security, enterprise integration, infrastructure and deployment, and AI agent governance.",
     },
     {
         question: "Are the nine modules separate products?",
@@ -149,9 +148,9 @@ const faqs: FaqEntry[] = [
             "They are capability modules of one platform rather than separate tools bolted together. That distinction is the point: they share a single credential store, a single policy engine and a single audit trail, so access granted in one area is visible and governed in all of them.",
     },
     {
-        question: "Does OmniPriv require software agents on my servers?",
+        question: "Does OmniPriv need inbound ports opened to managed systems?",
         answer:
-            "No. The architecture is one hundred percent agentless — no software agents are installed on endpoints, servers or user workstations. Privileged connections are brokered through the platform rather than intercepted at the machine, which also means no inbound port has to be opened to the target.",
+            "No. Privileged connections are brokered through the platform rather than intercepted at the machine, so an inbound port does not have to be opened on the target system.",
     },
     {
         question: "Where can OmniPriv be deployed?",
@@ -161,7 +160,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Which regulatory frameworks does OmniPriv map to?",
         answer:
-            "Nine, with pre-configured mappings: SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, NIST 800-53, FERC/NERC CIP, GDPR and ISO 27001. Audit records are held in tamper-proof storage with cryptographic audit-chain hashing, and reports can be generated on a schedule.",
+            "Six, with pre-configured mappings: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Audit records are held in tamper-proof storage with cryptographic audit-chain hashing, and reports can be generated on a schedule.",
     },
 ];
 

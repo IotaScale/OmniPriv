@@ -95,7 +95,7 @@ const enterpriseFeatures = [
     icon: Shield,
     title: "Enterprise-Grade Security",
     description:
-      "SOC 2 Type II certified, ISO 27001 compliant, and built with AI-native architecture. OmniPriv meets the strictest enterprise security requirements.",
+      "Independently audited against SOC 2 and ISO 27001, and built with AI-native architecture. OmniPriv meets the strictest enterprise security requirements.",
   },
   {
     icon: Globe,

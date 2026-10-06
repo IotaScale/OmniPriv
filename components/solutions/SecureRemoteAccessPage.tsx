@@ -41,7 +41,7 @@ import type { RichText } from "@/lib/rich-text";
  *
  * Claims here are limited to what this repository already states: the
  * protocol and asset coverage in app/features/page.tsx and app/platform/data.ts,
- * the agentless / no-VPN / no-inbound-port model, 4-eyes approval, and the
+ * the no-inbound-port model, 4-eyes approval, and the
  * 9 mapped regulatory standards.
  */
 
@@ -75,7 +75,7 @@ const surfaceSection = {
             "Remote work changes where access happens, but it should not change how privileged access is controlled.",
         ],
         [
-            "OmniPriv provides agentless access to RDP, SSH, databases, and other enterprise resources from remote locations. Its architecture is designed to operate without endpoint software agents, VPN clients, or inbound ports for these privileged-access workflows.",
+            "OmniPriv provides access to RDP, SSH, databases, and other enterprise resources from remote locations. Connections are brokered through the platform rather than by exposing target systems directly to the internet.",
         ],
         [
             "Every privileged request can be authenticated, authorized, logged, and governed through centralized PAM controls.",
@@ -228,15 +228,15 @@ const vendorControls: IconCard[] = [
 const solutionsSection = {
     title: "OmniPriv Remote Access Security Solutions",
     lead: [
-        "OmniPriv remote access security solutions combine enterprise PAM controls with an agentless architecture designed for cloud, on-premises, database, and hybrid environments.",
+        "OmniPriv remote access security solutions combine enterprise PAM controls with an architecture designed for cloud, on-premises, database, and hybrid environments.",
     ] as RichText,
 };
 
 const solutionCapabilities: IconCard[] = [
     {
         icon: Monitor,
-        title: "Agentless Remote Access",
-        text: "Enable privileged SSH, RDP, and database access without installing endpoint agents.",
+        title: "Brokered Remote Access",
+        text: "Enable privileged SSH, RDP, and database access from any location, brokered through the platform.",
     },
     {
         icon: Timer,
@@ -266,10 +266,10 @@ const solutionCapabilities: IconCard[] = [
 ];
 
 const stats = [
-    { value: "0", label: "Software agents on endpoints", sub: "100% agentless" },
     { value: "16", label: "Protocols and platforms", sub: "SSH through Kubernetes" },
-    { value: "100%", label: "Credential vault encryption", sub: "AES-256 with HSM" },
-    { value: "9", label: "Regulatory standards mapped", sub: "SOX through ISO 27001" },
+    { value: "0", label: "Standing privileges", sub: "Access expires with the task" },
+    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
+    { value: "6", label: "Regulatory standards mapped", sub: "SOC 2 through SOX 404" },
 ];
 
 const keepReading = [
@@ -304,7 +304,7 @@ const faqs: FaqEntry[] = [
     {
         question: "How does OmniPriv secure remote users?",
         answer:
-            "OmniPriv combines MFA, policy-based authorization, JIT access, credential protection, an agentless proxy architecture, and privileged-session visibility to control remote access to sensitive resources.",
+            "OmniPriv combines MFA, policy-based authorization, JIT access, credential protection, a brokered proxy architecture, and privileged-session visibility to control remote access to sensitive resources.",
     },
     {
         question: "Does OmniPriv support remote SSH and RDP access?",

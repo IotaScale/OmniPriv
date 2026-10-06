@@ -5,7 +5,6 @@ import {
     Key,
     Layers,
     Lock,
-    Network,
     RefreshCw,
     Zap,
 } from "lucide-react";
@@ -20,7 +19,7 @@ import Prose from "@/components/sections/Prose";
 import Section from "@/components/sections/Section";
 import SectionHeading from "@/components/sections/SectionHeading";
 import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
+import { cardBorder, cardSurface } from "@/lib/styles";
 import { platformSpecs } from "@/app/platform/data";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
@@ -44,9 +43,9 @@ import type { RichText } from "@/lib/rich-text";
 const hero = {
     badge: "Infrastructure & Deployment",
     titleLead: "Runs on your infrastructure.",
-    titleAccent: "Asks nothing of your machines.",
+    titleAccent: "Managed from one control plane.",
     intro: [
-        "OmniPriv deploys on-premise across VMware, Red Hat and OpenStack as a hardware-agnostic software appliance. There is no agent to install on the servers, workstations or devices it protects.",
+        "OmniPriv deploys on-premise across VMware, Red Hat and OpenStack as a hardware-agnostic software appliance, on the infrastructure you already run.",
     ] as RichText,
     body: [
         "High availability, tenant isolation, disaster recovery and break-glass access are handled by the platform itself, so the operational questions are answered by the product rather than by a professional services engagement.",
@@ -69,9 +68,9 @@ const postureSection = {
 const postureCards: IconCard[] = [
     {
         icon: Zap,
-        eyebrow: "Agentless",
-        title: "Nothing on the machines you protect",
-        text: "No software agents on devices, servers or user workstations — nothing to roll out, and nothing to keep patched on the estate you are trying to secure.",
+        eyebrow: "On-premise",
+        title: "Runs where your systems run",
+        text: "Deployed on your own infrastructure rather than reached as a service over the internet, so privileged traffic stays inside your estate.",
     },
     {
         icon: Cpu,
@@ -106,17 +105,16 @@ const availabilitySection = {
         alt: "Rack of electronic equipment with status lights in a dark room",
     },
     points: [
-        "Multi-node clustering with Docker-based health checks and automatic restart",
-        "WebSocket heartbeat monitoring between nodes, so a stalled node is noticed rather than waited on",
+        "Multi-node clustering with container-based health checks and automatic restart",
+        "Heartbeat monitoring between nodes, so a stalled node is noticed rather than waited on",
         "Database replication and load balancing across the cluster",
         "Granular disaster recovery — credentials restored without restoring the entire system",
-        "Distributed zones with gateways proxying SSH and RDP per remote segment, managed from one control plane",
         "Offline device management — credentials for devices that rarely reach the corporate network stay managed and current",
     ],
 };
 
 const isolationSection = {
-    title: "Zones, tenants and emergency access",
+    title: "Tenants and emergency access",
     lead: [
         "Remote sites, subsidiaries and the worst day of the year each need an answer that does not undermine the rest of the model.",
     ] as RichText,
@@ -124,14 +122,14 @@ const isolationSection = {
 
 const isolationPillars = [
     {
-        icon: Network,
-        title: "Zones and gateways",
-        text: "Remote segments are modelled as zones, each with a gateway that proxies SSH and RDP locally so traffic does not have to traverse the WAN to be governed.",
+        icon: RefreshCw,
+        title: "Offline device management",
+        text: "Credentials for devices that rarely reach the corporate network stay managed and current, rather than drifting out of the vault.",
     },
     {
         icon: Building2,
         title: "Strict multi-tenancy",
-        text: "Isolation via org_id on every resource with PostgreSQL schema-per-tenant and per-organization RBAC, including dedicated ROOT, DEFAULT and SYSTEM organizations.",
+        text: "Isolation via org_id on every resource with schema-per-tenant data separation and per-organization RBAC, including dedicated ROOT, DEFAULT and SYSTEM organizations.",
     },
     {
         icon: Key,
@@ -148,30 +146,17 @@ const isolationPillars = [
 const specsSection = {
     title: "Platform specifications",
     lead: [
-        "The deployment facts, stated plainly. Nothing here depends on a particular hypervisor, and nothing requires an agent on the target.",
+        "The deployment facts, stated plainly. Nothing here depends on a particular hypervisor.",
     ] as RichText,
 };
-
-const stats = [
-    { value: "0", label: "Software agents required", sub: "100% agentless architecture" },
-    { value: "3", label: "Hypervisor platforms", sub: "VMware · Red Hat · OpenStack" },
-    { value: "AES-256", label: "Credential vault encryption", sub: "With SHA-512 and HSM" },
-    { value: "9", label: "Regulatory frameworks mapped", sub: "SOX through ISO 27001" },
-];
-
-const keepReading = [
-    { href: "/platform", label: "Browse all nine capabilities" },
-    { href: "/platform/workflow-access-control", label: "Approval and access governance" },
-    { href: "/enterprise", label: "Enterprise deployment options" },
-];
 
 const closing = {
     title: "Deploy it on hardware you already own",
     body: [
-        "OmniPriv runs on-premise as a software appliance, agentless, with clustering and disaster recovery built in.",
+        "OmniPriv runs on-premise as a software appliance, with clustering and disaster recovery built in.",
         "We will walk through the topology that suits your estate — standalone, active-standby or a full HA cluster.",
     ],
-    kicker: "Your infrastructure. Your keys. No agents.",
+    kicker: "Your infrastructure. Your keys. Your topology.",
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform", label: "Explore the Platform" },
 };
@@ -183,14 +168,14 @@ const faqs: FaqEntry[] = [
             "On-premise across VMware, Red Hat and OpenStack or other OpenSource-based platforms, as well as in private or public cloud. It supports standalone, active-standby and full high-availability cluster topologies, so the same product covers a single site and a distributed one.",
     },
     {
-        question: "Does it require agents on my servers or workstations?",
+        question: "Does OmniPriv need inbound ports opened to managed systems?",
         answer:
-            "No. The architecture is one hundred percent agentless — no software agents are installed on endpoints, servers or user workstations. Privileged connections are brokered through the platform rather than intercepted at the machine, which also means no inbound port has to be opened on the target.",
+            "No. Privileged connections are brokered through the platform rather than intercepted at the machine, so an inbound port does not have to be opened on the target system.",
     },
     {
         question: "How does high availability actually work?",
         answer:
-            "OmniPriv clusters across multiple nodes with Docker-based health checks and automatic restart, WebSocket heartbeat monitoring between nodes, database replication and load balancing. A node that stops responding is detected and worked around rather than waited on.",
+            "OmniPriv clusters across multiple nodes with container-based health checks and automatic restart, heartbeat monitoring between nodes, database replication and load balancing. A node that stops responding is detected and worked around rather than waited on.",
     },
     {
         question: "What happens if the PAM platform itself is unavailable?",
@@ -200,7 +185,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Can we run separate tenants for subsidiaries or customers?",
         answer:
-            "Yes. Isolation is enforced via org_id on every resource with PostgreSQL schema-per-tenant, and each organization gets its own RBAC. The model includes dedicated ROOT, DEFAULT and SYSTEM organizations, which is what makes it workable for MSPs as well as for enterprises with subsidiaries.",
+            "Yes. Isolation is enforced via org_id on every resource with schema-per-tenant data separation, and each organization gets its own RBAC. The model includes dedicated ROOT, DEFAULT and SYSTEM organizations, which is what makes it workable for MSPs as well as for enterprises with subsidiaries.",
     },
 ];
 
@@ -258,12 +243,12 @@ export default function InfrastructureDeploymentPage() {
                     <CheckList items={availabilitySection.points} className="mt-8" />
 
                     <ArrowLink href="/platform/secure-remote-access" className="mt-8">
-                        See how sessions are brokered without an agent
+                        See how privileged sessions are brokered
                     </ArrowLink>
                 </MediaSplit>
             </Section>
 
-            {/* ─── ZONES AND TENANTS (dark band) ──────────────────── */}
+            {/* ─── TENANTS AND RECOVERY (dark band) ───────────────── */}
             <Section tone="dark" border="bottom">
                 <div className="max-w-3xl">
                     <SectionHeading
@@ -324,48 +309,6 @@ export default function InfrastructureDeploymentPage() {
                 </div>
             </Section>
 
-            {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title="Infrastructure you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a deployment diagram. These are the constraints the platform is built to.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
-                </div>
-            </Section>
-
             {/* ─── CLOSING ────────────────────────────────────────── */}
             <CtaBand
                 title={closing.title}
@@ -378,7 +321,7 @@ export default function InfrastructureDeploymentPage() {
             {/* ─── FAQ ────────────────────────────────────────────── */}
             <FaqSection
                 title="Frequently Asked Questions"
-                subtitle="Common questions about deployment targets, agentless architecture, clustering and tenant isolation."
+                subtitle="Common questions about deployment targets, clustering and tenant isolation."
                 items={faqs}
             />
         </>

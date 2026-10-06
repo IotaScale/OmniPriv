@@ -38,7 +38,7 @@ import type { RichText } from "@/lib/rich-text";
  * Claims here are limited to what this repository already states: the agent
  * governance model (per-agent identity, tool allowlist, bounded data scope,
  * human approval, runtime enforcement, session audit) and the AI-PAM engine's
- * IsolationForest scoring, escalation tiers and 10-second sweeper.
+ * machine-learning scoring, escalation tiers and 10-second sweeper.
  */
 
 const hero = {
@@ -165,7 +165,7 @@ const detectSection = {
     paragraphs: [
         ["Static policies cannot identify every abnormal behavior pattern."],
         [
-            "OmniPriv's AI-PAM engine applies machine-learning-based anomaly detection to privileged activity. Its current architecture documents IsolationForest analysis, multiple behavioral features, risk scoring, escalation, and automated blocking workflows. This helps security teams identify situations such as:",
+            "OmniPriv's AI-PAM engine applies machine-learning-based anomaly detection to privileged activity. Its current architecture documents behavioural analysis across multiple features, risk scoring, escalation, and automated blocking workflows. This helps security teams identify situations such as:",
         ],
     ] as RichText[],
     patterns: [

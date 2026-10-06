@@ -49,7 +49,7 @@ const hero = {
         "Compliance is rarely short of controls. It is short of evidence — the kind that can be produced months later, in the format somebody else asks for.",
     ] as RichText,
     body: [
-        "OmniPriv records every privileged action in a tamper-proof audit trail, enforces segregation of duties rather than merely recommending it, and maps that evidence against nine regulatory frameworks out of the box.",
+        "OmniPriv records every privileged action in a tamper-proof audit trail, enforces segregation of duties rather than merely recommending it, and maps that evidence against six regulatory frameworks out of the box.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
@@ -105,23 +105,20 @@ const trailSection = {
 };
 
 const standardsSection = {
-    title: "Nine frameworks, mapped out of the box",
+    title: "Six frameworks, mapped out of the box",
     lead: [
         "Mappings are pre-configured rather than assembled by hand, and the reports already arrive in the shape an auditor expects.",
     ] as RichText,
     standards: [
-        "SOX",
-        "PCI-DSS",
-        "HIPAA",
-        "Basel II",
-        "MAS TRM",
-        "NIST 800-53",
-        "FERC/NERC CIP",
-        "GDPR",
+        "SOC 2",
         "ISO 27001",
+        "NIST SP 800-53",
+        "HIPAA",
+        "PCI DSS",
+        "SOX 404",
     ],
     points: [
-        "One-click reports pre-formatted for SOC 2, ISO 27001, PCI-DSS and HIPAA",
+        "One-click reports pre-formatted for SOC 2, ISO 27001, PCI DSS and HIPAA",
         "Detailed reporting across entitlements, user activity, asset inventory and compliance posture",
         "Scheduled generation — evidence produced on a timetable rather than under deadline pressure",
         "Policy compliance alerts when a privileged account drifts outside its credential policy",
@@ -171,7 +168,7 @@ const rotationSection = {
         alt: "Stacked paperwork and forms, representing audit evidence gathered ahead of a review",
     },
     points: [
-        "Encrypted credential vault — AES-256 with SHA-512, and no user ever sees a raw password",
+        "Encrypted credential vault, and no user ever sees a raw password",
         "Automated rotation of passwords, SSH keys and API tokens on a schedule or on demand, across thousands of assets at once",
         "Credential push to target assets after rotation — no manual step and no outage window",
         "Asset and account discovery across on-prem, cloud and hybrid, so the inventory is generated rather than assembled",
@@ -180,10 +177,10 @@ const rotationSection = {
 };
 
 const stats = [
-    { value: "9", label: "Regulatory frameworks mapped", sub: "SOX through ISO 27001" },
-    { value: "4", label: "Report formats pre-built", sub: "SOC 2 · ISO 27001 · PCI-DSS · HIPAA" },
+    { value: "6", label: "Regulatory frameworks mapped", sub: "SOC 2 through SOX 404" },
+    { value: "4", label: "Report formats pre-built", sub: "SOC 2 · ISO 27001 · PCI DSS · HIPAA" },
     { value: "SOC 2", label: "Type II certified", sub: "Independently audited" },
-    { value: "AES-256", label: "Credential vault encryption", sub: "With SHA-512 and HSM" },
+    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
 ];
 
 const keepReading = [
@@ -207,7 +204,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Which regulatory frameworks does OmniPriv map to?",
         answer:
-            "OmniPriv ships pre-configured compliance mappings for nine frameworks: SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, NIST 800-53, FERC/NERC CIP, GDPR and ISO 27001. Reporting templates are also available pre-formatted for SOC 2, ISO 27001, PCI-DSS and HIPAA.",
+            "OmniPriv ships pre-configured compliance mappings for six frameworks: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Reporting templates are available pre-formatted for the certification set.",
     },
     {
         question: "How is the audit trail tamper-proof?",
@@ -280,7 +277,7 @@ export default function AuditCompliancePage() {
                 <CheckList items={trailSection.points} className="mt-10 max-w-3xl" />
             </Section>
 
-            {/* ─── THE NINE FRAMEWORKS ──────────────── */}
+            {/* ─── THE SIX FRAMEWORKS ──────────────── */}
             <Section tone="muted" border="bottom">
                 <div className="max-w-3xl">
                     <SectionHeading title={standardsSection.title} className="mb-6">

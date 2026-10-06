@@ -3,12 +3,12 @@ import Link from "next/link";
 import {
   Shield, Lock, Eye, Fingerprint, Network, Server, Database,
   AlertTriangle, CheckCircle2, ArrowRight, ShieldCheck, Globe,
-  Key, Layers, Cpu, FileSearch, BarChart3, RefreshCw, UserCheck,
+  Layers, Cpu, FileSearch, BarChart3, RefreshCw, UserCheck,
 } from "lucide-react";
 export const metadata: Metadata = {
   title: "Security: AI-Native Architecture & Compliance",
   description:
-    "OmniPriv is built on AI-native security principles with AES-256 encryption, immutable audit logs, and comprehensive compliance certifications including SOC2, ISO 27001, HIPAA, and PCI-DSS.",
+    "OmniPriv is built on AI-native security principles with encryption at rest and in transit, immutable audit logs, and independently audited compliance certifications including SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404.",
 };
 
 const securityPrinciples = [
@@ -28,11 +28,11 @@ const securityPrinciples = [
     icon: Lock,
     title: "End-to-End Encryption",
     description:
-      "All data in transit is encrypted with TLS 1.3. All stored data (credentials, session recordings, audit logs) is encrypted at rest with AES-256-GCM. Encryption keys are managed with FIPS 140-2 Level 2 compliant HSMs.",
+      "All data in transit is encrypted, and all stored data — credentials, session recordings and audit logs — is encrypted at rest. Encryption keys are held in hardware security modules rather than alongside the data they protect.",
     details: [
-      "TLS 1.3 for all transport layer communications",
-      "AES-256-GCM for data at rest",
-      "FIPS 140-2 Level 2 key management",
+      "Encryption for all transport-layer communications",
+      "Encryption at rest for every stored artefact",
+      "Hardware-backed key management",
       "Per-tenant encryption key isolation",
     ],
   },
@@ -91,7 +91,7 @@ const securityFeatures = [
   {
     icon: Database,
     title: "Secure Credential Storage",
-    description: "The built-in credential vault uses AES-256 encryption with PBKDF2 key derivation. No credentials are ever stored in plaintext.",
+    description: "The built-in credential vault encrypts every stored secret. No credentials are ever stored in plaintext.",
   },
   {
     icon: FileSearch,
@@ -107,7 +107,7 @@ const securityFeatures = [
 
 const certs = [
   {
-    name: "SOC 2 Type II",
+    name: "SOC 2",
     icon: ShieldCheck,
     description: "Annual third-party audit verifying security, availability, processing integrity, confidentiality, and privacy controls.",
     color: "border-blue-500/20 bg-blue-500/5",
@@ -121,11 +121,11 @@ const certs = [
     textColor: "text-teal-400",
   },
   {
-    name: "PCI-DSS Level 1",
-    icon: Lock,
-    description: "Highest level of PCI compliance, validated by a Qualified Security Assessor (QSA). Suitable for payment card data environments.",
-    color: "border-purple-500/20 bg-purple-500/5",
-    textColor: "text-purple-400",
+    name: "NIST SP 800-53",
+    icon: BarChart3,
+    description: "Controls mapped to the federal security and privacy control catalogue used as the baseline for regulated environments.",
+    color: "border-emerald-500/20 bg-emerald-500/5",
+    textColor: "text-emerald-400",
   },
   {
     name: "HIPAA",
@@ -135,32 +135,18 @@ const certs = [
     textColor: "text-rose-400",
   },
   {
-    name: "GDPR",
+    name: "PCI DSS",
+    icon: Lock,
+    description: "Validated by a Qualified Security Assessor (QSA). Suitable for environments that handle payment card data.",
+    color: "border-purple-500/20 bg-purple-500/5",
+    textColor: "text-purple-400",
+  },
+  {
+    name: "SOX 404",
     icon: Globe,
-    description: "Full GDPR compliance including data processing agreements, data residency options, and privacy-by-design architecture.",
+    description: "Access governance and audit controls mapped to Section 404 financial-reporting requirements.",
     color: "border-orange-500/20 bg-orange-500/5",
     textColor: "text-orange-400",
-  },
-  {
-    name: "FedRAMP Ready",
-    icon: BarChart3,
-    description: "FedRAMP Moderate baseline controls implemented and documented. Authorizing agency engagement in progress.",
-    color: "border-cyan-500/20 bg-cyan-500/5",
-    textColor: "text-cyan-400",
-  },
-  {
-    name: "NIST CSF",
-    icon: Key,
-    description: "Full NIST Cybersecurity Framework alignment across Identify, Protect, Detect, Respond, and Recover functions.",
-    color: "border-emerald-500/20 bg-emerald-500/5",
-    textColor: "text-emerald-400",
-  },
-  {
-    name: "FIPS 140-2",
-    icon: Fingerprint,
-    description: "FIPS 140-2 validated cryptographic modules used for all key management and encryption operations.",
-    color: "border-yellow-500/20 bg-yellow-500/5",
-    textColor: "text-yellow-400",
   },
 ];
 

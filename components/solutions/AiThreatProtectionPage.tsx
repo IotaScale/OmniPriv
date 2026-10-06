@@ -135,7 +135,7 @@ const detectSection = {
         "Attempts to bypass PAM controls",
     ],
     note: [
-        "OmniPriv's AI-PAM engine also uses IsolationForest-based anomaly scoring across privileged sessions and supports automated escalation and blocking based on risk.",
+        "OmniPriv's AI-PAM engine also uses machine-learning-based anomaly scoring across privileged sessions and supports automated escalation and blocking based on risk.",
     ] as RichText,
     image: {
         src: "https://images.unsplash.com/photo-1751448555253-f39c06e29d82?auto=format&fit=crop&w=1200&q=70",
@@ -265,9 +265,9 @@ const modelSteps: IconCard[] = [
 ];
 
 const stats = [
-    { value: "39", label: "ML features scored per session", sub: "IsolationForest model" },
+    { value: "39", label: "ML features scored per session", sub: "Behavioural model" },
     { value: "10s", label: "Auto-block sweep interval", sub: "Tiered escalation" },
-    { value: "0", label: "Software agents required", sub: "100% agentless" },
+    { value: "0", label: "Standing privileges", sub: "Access expires with the task" },
     { value: "9", label: "Regulatory standards mapped", sub: "SOX through ISO 27001" },
 ];
 

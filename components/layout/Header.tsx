@@ -33,7 +33,7 @@ const platformLinks = [
   },
   {
     label: "Infrastructure & Deployment",
-    description: "On-premise, HA, agentless",
+    description: "On-premise, HA, clustered",
     href: "/platform/infrastructure-deployment",
     icon: Lock,
   },
@@ -45,7 +45,7 @@ const platformLinks = [
   },
   {
     label: "Application Security",
-    description: "MFA, encryption, HSM",
+    description: "MFA, encryption, session control",
     href: "/platform/application-security",
     icon: Shield,
   },

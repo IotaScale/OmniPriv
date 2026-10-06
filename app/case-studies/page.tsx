@@ -143,7 +143,7 @@ const reviewSection = {
         "Approvals recorded as evidence rather than reconstructed from an inbox",
         "Audit records held in tamper-proof storage with cryptographic audit-chain hashing",
         "Scheduled reports covering entitlements, user activity and asset inventory",
-        "Nine regulatory frameworks mapped out of the box, so a report arrives in the auditor's shape",
+        "Six regulatory frameworks mapped out of the box, so a report arrives in the auditor's shape",
     ],
 };
 
@@ -191,7 +191,7 @@ const closing = {
         "Tell us which of the six situations matches your environment and we will show you the controls that address it — including the ones you would have to give up to get there.",
         "No invented percentages required on either side.",
     ],
-    kicker: "Agentless. On-premise. Independently audited.",
+    kicker: "On-premise. Independently audited. Yours to run.",
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/security", label: "Security Posture" },
 };
@@ -205,12 +205,12 @@ const faqs: FaqEntry[] = [
     {
         question: "How long does a deployment take?",
         answer:
-            "It is scoped against your environment rather than sold as a fixed number. Because the platform is 100% agentless, there is no software rollout to the machines being protected — which removes the phase that usually dominates a privileged access project. A rollout plan is produced during the architecture review, before any commitment.",
+            "It is scoped against your environment rather than sold as a fixed number. A rollout plan is produced during the architecture review, before any commitment.",
     },
     {
         question: "Where does the platform run?",
         answer:
-            "On-premise, on infrastructure you control — VMware, Red Hat and OpenStack, as a hardware-agnostic software appliance. Multi-node clustering, Docker health checks, WebSocket heartbeat, database replication and load balancing are available for high availability.",
+            "On-premise, on infrastructure you control — VMware, Red Hat and OpenStack, as a hardware-agnostic software appliance. Multi-node clustering, automated health checks, continuous heartbeat monitoring, database replication and load balancing are available for high availability.",
     },
     {
         question: "What does a proof-of-concept involve?",
@@ -220,7 +220,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Who owns the audit data and the encryption keys?",
         answer:
-            "You do, on both counts. Data is encrypted at rest with AES-256-GCM and in transit with TLS 1.3, with an HSM providing root-of-trust key protection. The SECRET_KEY is generated at installation and must be stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted — including by an administrator.",
+            "You do, on both counts. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys, and the installation key is generated at installation and stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted — including by an administrator.",
     },
 ];
 

@@ -41,7 +41,7 @@ const authzFeatures = [
 const accountFeatures = [
   { icon: ScanSearch,  title: "Asset & Account Discovery",     desc: "Automatically discover privileged accounts across your entire infrastructure — on-prem, cloud, and hybrid." },
   { icon: RotateCcw,   title: "Credential Rotation",           desc: "Rotate passwords, SSH keys, and API tokens on a schedule or on-demand, for thousands of assets simultaneously." },
-  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials with AES-256 encryption. No user ever sees raw passwords — they authenticate through OmniPriv." },
+  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials in an encrypted vault. No user ever sees raw passwords — they authenticate through OmniPriv." },
   { icon: Upload,      title: "Credential Push",               desc: "Push updated credentials directly to target assets after rotation. No manual steps, no outages." },
   { icon: ShieldAlert, title: "Break-Glass Access",            desc: "Emergency access procedures with mandatory approval, time limits, and full session recording." },
   { icon: UserPlus,    title: "Account Lifecycle Management",  desc: "Provision, deprovision, and modify privileged accounts across all systems from a single control plane." },
@@ -53,11 +53,11 @@ const auditFeatures = [
   { icon: TrendingUp,  title: "Analytics Dashboards",        desc: "Executive-level risk dashboards showing access patterns, anomalies, and compliance status." },
   { icon: ScrollText,  title: "Command History",             desc: "Full keystroke logging and command execution history for every SSH and terminal session." },
   { icon: Share2,      title: "SIEM Integration",            desc: "Stream all events to Splunk, IBM QRadar, Elastic SIEM, or any syslog-compatible system." },
-  { icon: FileCheck2,  title: "Compliance Reports",          desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, PCI-DSS, HIPAA, and more." },
+  { icon: FileCheck2,  title: "Compliance Reports",          desc: "One-click audit reports pre-formatted for SOC 2, ISO 27001, PCI DSS, HIPAA and more." },
 ];
 
 const aiFeatures = [
-  { icon: AlertTriangle, title: "ML Anomaly Detection",       desc: "IsolationForest scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time." },
+  { icon: AlertTriangle, title: "ML Anomaly Detection",       desc: "Machine-learning behavioural scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time." },
   { icon: Fingerprint,   title: "Behavioural Analytics",      desc: "AI keystroke-dynamics and per-agent baselines flag impossible travel, off-hours access and deviation from learned behaviour." },
   { icon: ShieldCheck,   title: "Adaptive MFA Step-Up",      desc: "Keystroke rhythm, speed and pattern are compared against the identity's baseline at login — drift triggers an MFA challenge automatically." },
   { icon: Bot,           title: "AI Agent Governance",       desc: "Every MCP agent gets a verifiable identity, tool allowlist and data scope. More than 100 MCP tools sit under policy rather than under a borrowed human login." },

@@ -40,7 +40,7 @@ export const pillarsData = [
         id: "account",
         keyword: "Account Management",
         headline: "Eliminate standing credentials",
-        body: "Automated discovery, AES-256 vaulting and scheduled rotation remove raw passwords from your team and your memory.",
+        body: "Automated discovery, encrypted vaulting and scheduled rotation remove raw passwords from your team and your memory.",
         href: "/platform/password-credential-management",
         cta: "Explore account management",
         icon: Key,
@@ -105,7 +105,7 @@ function AuthorizationVisual() {
             </div>
             <div className="px-2 py-1.5 rounded-md border border-slate-900/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#091222]">
                 <div className="text-[10.5px] font-semibold text-slate-800 dark:text-slate-200 truncate">
-                    prod-db-01 &middot; PostgreSQL
+                    prod-db-01 &middot; Production DB
                 </div>
                 <div className="text-[9px] font-mono text-slate-500 dark:text-slate-400 mt-0.5">
                     JIT window &middot; DROP / ALTER filtered
@@ -131,7 +131,7 @@ function AccountManagementVisual() {
                     root@linux-srv-401
                 </div>
                 <div className="text-[9px] font-mono text-slate-500 dark:text-slate-400 mt-0.5">
-                    Auto-discovered &middot; AES-256 sealed
+                    Auto-discovered &middot; Encrypted at rest
                 </div>
             </div>
             <div className="flex items-center justify-between px-2 py-1.5 rounded-md border border-slate-900/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#091222]">
@@ -156,7 +156,7 @@ function AuditComplianceVisual() {
                 </span>
             </div>
             <div className="px-2 py-1.5 rounded-md border border-slate-900/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#091222] text-[9.5px] font-mono text-slate-600 dark:text-slate-400 truncate">
-                <span className="text-emerald-400">OK</span> &nbsp;sudo systemctl status postgresql
+                <span className="text-emerald-400">OK</span> &nbsp;sudo systemctl status prod-db
             </div>
             <div className="px-2 py-1.5 rounded-md border border-amber-500/25 bg-amber-500/[0.08] flex items-center gap-1.5">
                 <AlertTriangle className="w-3 h-3 text-amber-400 flex-shrink-0" />
@@ -204,7 +204,7 @@ export default function FourPillarsSection() {
                         <span className="text-gradient">Privileged Access Management</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                        One agentless platform covering the full 4A framework &mdash; authenticate,
+                        One governed platform covering the full 4A framework &mdash; authenticate,
                         authorize, manage, audit.
                     </p>
                 </div>

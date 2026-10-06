@@ -85,7 +85,7 @@ When data is no longer needed, we securely delete or anonymize it.`,
     title: "How We Protect Your Information",
     content: `We implement technical and organizational security measures appropriate to the risk, including:
 
-- AES-256 encryption at rest and TLS 1.3 in transit for all data
+- Encryption at rest and in transit for all data
 - SOC 2 Type II certified infrastructure
 - ISO 27001 certified information security management system
 - Role-based access controls and least-privilege principles for our internal team

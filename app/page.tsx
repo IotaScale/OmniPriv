@@ -67,7 +67,7 @@ const features = [
     icon: AlertTriangle,
     title: "ML Anomaly Detection",
     description:
-      "IsolationForest scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time.",
+      "Machine-learning behavioural scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time.",
   },
   {
     icon: Fingerprint,
@@ -103,7 +103,7 @@ const features = [
     icon: Key,
     title: "Dynamic Secret Vault",
     description:
-      "Credentials are discovered, AES-256 vaulted and rotated on schedule, then checked out as short-lived tokens for each session.",
+      "Credentials are discovered, encrypted and vaulted, rotated on schedule, then checked out as short-lived tokens for each session.",
   },
 ];
 
@@ -123,12 +123,12 @@ const protocols = [
 ];
 
 const certs = [
-  { name: "SOC 2\nType II", icon: ShieldCheck },
+  { name: "SOC 2", icon: ShieldCheck },
   { name: "ISO\n27001", icon: Shield },
-  { name: "PCI\nDSS", icon: Lock },
+  { name: "NIST SP\n800-53", icon: Building2 },
   { name: "HIPAA", icon: UserCheck },
-  { name: "GDPR", icon: Globe },
-  { name: "FedRAMP\nReady", icon: Building2 },
+  { name: "PCI\nDSS", icon: Lock },
+  { name: "SOX\n404", icon: Globe },
 ];
 
 /* Hero photography lives in components/ui/HeroSlideshow.tsx */
@@ -272,14 +272,14 @@ export default function HomePage() {
               <div className="text-[11px] text-slate-600 dark:text-slate-400">End-to-end access lifecycle</div>
             </div>
             <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]" data-aos="fade-up" data-aos-delay="160">
-              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>Zero</div>
-              <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Software Agents Required</div>
-              <div className="text-[11px] text-slate-600 dark:text-slate-400">100% Agentless architecture</div>
+              <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>24h</div>
+              <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Critical Patch Commitment</div>
+              <div className="text-[11px] text-slate-600 dark:text-slate-400">From disclosure to fix</div>
             </div>
             <div className="p-3 border-t md:border-t-0 md:border-l border-slate-900/[0.08] dark:border-white/[0.06]" data-aos="fade-up" data-aos-delay="240">
               <div className="text-2xl lg:text-3xl font-extrabold text-[#00B8FF]" style={{ fontFamily: "var(--font-syne)" }}>100%</div>
               <div className="text-xs font-semibold text-slate-950 dark:text-white mt-1">Encrypted Credential Vault</div>
-              <div className="text-[11px] text-slate-600 dark:text-slate-400">AES-256 + SHA-512 &amp; HSM</div>
+              <div className="text-[11px] text-slate-600 dark:text-slate-400">Encrypted at rest and in transit</div>
             </div>
           </div>
         </div>
@@ -603,7 +603,7 @@ export default function HomePage() {
                 {[
                   {
                     title: "Audit-Ready Reports",
-                    desc: "One-click exports in formats required by SOC2, ISO 27001, PCI-DSS, and HIPAA auditors.",
+                    desc: "One-click exports in formats required by SOC 2, ISO 27001, PCI DSS, HIPAA and SOX 404 auditors.",
                   },
                   {
                     title: "Immutable Session Logs",

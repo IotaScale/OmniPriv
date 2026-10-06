@@ -44,7 +44,7 @@ import type { RichText } from "@/lib/rich-text";
 export const metadata: Metadata = {
     title: "AI-PAM Engine: ML Threat Detection & MCP Agent Governance",
     description:
-        "OmniPriv's AI-PAM engine pairs IsolationForest behavioral anomaly detection with Model Context Protocol agent governance — 12 agent security pillars, 100+ MCP tools, and a 10-second auto-block sweeper.",
+        "OmniPriv's AI-PAM engine pairs machine-learning behavioural anomaly detection with Model Context Protocol agent governance — 12 agent security pillars, 100+ MCP tools, and a 10-second auto-block sweeper.",
 };
 
 const hero = {
@@ -55,7 +55,7 @@ const hero = {
         "Autonomous agents reach systems faster than any review process can follow. So the engine scores what happens inside a privileged session, and separately governs what an agent is allowed to reach.",
     ] as RichText,
     body: [
-        "IsolationForest anomaly detection scores every closed session across 39 behavioural features. Model Context Protocol governance gives each agent its own identity, tool allowlist and data scope — machine learning on one side, deterministic policy on the other.",
+        "Machine-learning anomaly detection scores every closed session across 39 behavioural features. Model Context Protocol governance gives each agent its own identity, tool allowlist and data scope — machine learning on one side, deterministic policy on the other.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Technical Demo" },
     secondary: { href: "/platform", label: "Explore the Platform" },
@@ -75,7 +75,7 @@ const engineSection = {
 const engineCards: IconCard[] = [
     {
         icon: Activity,
-        eyebrow: "IsolationForest",
+        eyebrow: "Behavioural model",
         title: "Behavioural anomaly detection",
         text: "39 features are evaluated for every closed session and scored 0–1, with tiered escalation: dashboard alert, then admin alert, then automatic block.",
     },
@@ -289,7 +289,7 @@ const explainSection = {
 };
 
 const stats = [
-    { value: "39", label: "Features scored per session", sub: "IsolationForest model" },
+    { value: "39", label: "Features scored per session", sub: "Behavioural model" },
     { value: "10s", label: "Auto-block sweep interval", sub: "Tiered escalation" },
     { value: "12", label: "Agent security pillars", sub: "Multi-agent architecture" },
     { value: "100+", label: "MCP tools governed", sub: "Allowlist and data scope" },

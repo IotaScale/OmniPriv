@@ -112,7 +112,7 @@ const walkthroughPillars = [
     {
         icon: Server,
         title: "Your deployment model",
-        text: "On-premise on VMware, Red Hat or OpenStack as a hardware-agnostic appliance. 100% agentless, so nothing is installed on the machines being protected, with multi-node clustering available for high availability.",
+        text: "On-premise on VMware, Red Hat or OpenStack as a hardware-agnostic appliance, with multi-node clustering available for high availability.",
     },
     {
         icon: KeyRound,
@@ -127,7 +127,7 @@ const walkthroughPillars = [
     {
         icon: ClipboardCheck,
         title: "What your audit will look like",
-        text: "Session recordings, hash-chained audit records and scheduled entitlement reports, against whichever of the nine mapped regulatory frameworks applies to you.",
+        text: "Session recordings, hash-chained audit records and scheduled entitlement reports, against whichever of the six mapped regulatory frameworks applies to you.",
     },
 ];
 
@@ -145,12 +145,12 @@ const faqs: FaqEntry[] = [
     {
         question: "Can we run it in our own environment first?",
         answer:
-            "Yes — that is step four, and it is free. OmniPriv can run in your environment for 30 days at no cost with support from our engineering team. Because the platform is 100% agentless there is no software rollout to the protected machines, which is what usually makes a trial impractical.",
+            "Yes — that is step four, and it is free. OmniPriv can run in your environment for 30 days at no cost with support from our engineering team. The trial is scoped against your environment, and a rollout plan is produced during the architecture review.",
     },
     {
         question: "Where does the platform run, and who holds the keys?",
         answer:
-            "On-premise, on infrastructure you control. Data is encrypted at rest with AES-256-GCM and in transit with TLS 1.3, with HSM-backed root-of-trust key protection. The SECRET_KEY is generated at installation and stored externally and independently of the platform, so a compromise of our storage is not a compromise of yours.",
+            "On-premise, on infrastructure you control. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys. The installation key is generated at installation and stored externally and independently of the platform, so a compromise of our storage is not a compromise of yours.",
     },
     {
         question: "What happens to the information I submit?",

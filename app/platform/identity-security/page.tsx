@@ -139,7 +139,7 @@ const riskAreas: IconCard[] = [
     {
         icon: Eye,
         title: "Privileged secure access",
-        text: "Brokered, recorded and monitored sessions across every protocol — agentless, with no VPN client and no inbound port.",
+        text: "Brokered, recorded and monitored sessions across every protocol, with no inbound port exposed on the target system.",
         href: "/platform/secure-remote-access",
     },
     {
@@ -151,7 +151,7 @@ const riskAreas: IconCard[] = [
     {
         icon: BarChart3,
         title: "Accountability & audit",
-        text: "A tamper-proof trail with cryptographic hash-chaining, mapped against nine regulatory frameworks out of the box.",
+        text: "A tamper-proof trail with cryptographic hash-chaining, mapped against six regulatory frameworks out of the box.",
         href: "/platform/audit-compliance",
     },
 ];
@@ -195,9 +195,9 @@ const governancePoints = [
 
 const stats = [
     { value: "4", label: "Identity classes governed", sub: "Human · machine · vendor · AI" },
-    { value: "39", label: "ML features scored per session", sub: "IsolationForest model" },
-    { value: "9", label: "Regulatory frameworks mapped", sub: "SOX through ISO 27001" },
-    { value: "0", label: "Software agents required", sub: "100% agentless" },
+    { value: "39", label: "ML features scored per session", sub: "Behavioural model" },
+    { value: "6", label: "Regulatory frameworks mapped", sub: "SOC 2 through SOX 404" },
+    { value: "0", label: "Standing privileges", sub: "Access expires with the task" },
 ];
 
 const keepReading = [

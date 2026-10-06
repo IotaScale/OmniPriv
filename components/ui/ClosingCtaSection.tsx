@@ -61,7 +61,7 @@ export default function ClosingCtaSection() {
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                Agentless Multi-Cloud Proxy
+                Brokered Multi-Cloud Proxy
               </span>
             </div>
           </div>

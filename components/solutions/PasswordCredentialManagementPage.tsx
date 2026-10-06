@@ -78,7 +78,7 @@ const lifecycleCards: IconCard[] = [
         icon: KeyRound,
         eyebrow: "Vault",
         title: "Nobody reads the password",
-        text: "Secrets are stored with AES-256 encryption and HSM-backed key protection. No user ever sees a raw password — they authenticate through OmniPriv.",
+        text: "Secrets are stored in an encrypted vault with hardware-backed key protection. No user ever sees a raw password — they authenticate through OmniPriv.",
     },
     {
         icon: RotateCcw,
@@ -157,7 +157,7 @@ const reachCards: IconCard[] = [
         icon: Monitor,
         eyebrow: "Mobile client",
         title: "No app to install",
-        text: "A built-in mobile browser client with TOTP two-factor authentication, ticket approvals, geofencing controls and role-based vault access.",
+        text: "A built-in mobile browser client with TOTP two-factor authentication, ticket approvals and role-based vault access.",
     },
     {
         icon: Globe,
@@ -174,7 +174,7 @@ const reachCards: IconCard[] = [
 ];
 
 const stats = [
-    { value: "AES-256", label: "Credential vault encryption", sub: "With SHA-512 and HSM" },
+    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
     { value: "0", label: "Users who see a raw password", sub: "Access is brokered" },
     { value: "10", label: "Credential lifecycle controls", sub: "This capability module" },
     { value: "9", label: "Regulatory frameworks mapped", sub: "SOX through ISO 27001" },

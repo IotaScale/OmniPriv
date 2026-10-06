@@ -25,7 +25,7 @@ import type { RichText } from "@/lib/rich-text";
  * entry in ../data.ts and the capability count stays at nine.
  *
  * Every figure below is OmniPriv's own, taken from ../data.ts: the nine
- * modules, 80+ requirement points, 0 software agents and the AES-256/HSM
+ * modules, 80+ requirement points and the compliance mappings
  * vault. The deployment points mirror app/enterprise/page.tsx.
  */
 
@@ -43,7 +43,7 @@ const hero = {
         "Most privileged access estates grew one purchase at a time — a vault, a session recorder, a workflow tool, a reporting add-on, and a spreadsheet quietly holding it together.",
     ] as RichText,
     body: [
-        "OmniPriv covers the same ground in a single agentless platform: nine capability modules, one policy engine, one credential store and one audit trail, deployed on infrastructure you already own.",
+        "OmniPriv covers the same ground in a single platform: nine capability modules, one policy engine, one credential store and one audit trail, deployed on infrastructure you already own.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform", label: "See All Nine Capabilities" },
@@ -74,7 +74,7 @@ const benefits: IconCard[] = [
     {
         icon: Server,
         title: "Less to run",
-        text: "Agentless, with nothing installed on endpoints and no per-tool appliance to patch. One platform to upgrade instead of five, on infrastructure you already own.",
+        text: "One platform to upgrade instead of five, on infrastructure you already own, with no per-tool appliance to patch.",
     },
 ];
 
@@ -88,7 +88,7 @@ const retireSection = {
 const retiredTools = [
     "The standalone credential vault — rotation, SSH key lifecycle and password reconciliation move into the platform",
     "The separate session recorder — SSH, RDP, VNC, HTTP and database sessions recorded and searchable in the same console",
-    "The bolt-on reporting tool — nine regulatory mappings and scheduled reports, built in rather than licensed separately",
+    "The bolt-on reporting tool — six regulatory mappings and scheduled reports, built in rather than licensed separately",
     "The email-and-spreadsheet approval chain — 4-eyes and multi-level workflows enforced by policy instead of habit",
     "The separate analytics licence — 39-feature behavioural scoring running on every closed session",
 ];
@@ -109,9 +109,9 @@ const ownershipSection = {
 
 const stats = [
     { value: "9", label: "Capability modules", sub: "One policy engine" },
-    { value: "0", label: "Software agents required", sub: "100% agentless" },
+    { value: "6", label: "Regulatory frameworks", sub: "SOC 2 through SOX 404" },
     { value: "80+", label: "Requirement points covered", sub: "Enterprise PAM coverage" },
-    { value: "100%", label: "Credential vault encryption", sub: "AES-256 with HSM" },
+    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
 ];
 
 const keepReading = [
@@ -123,7 +123,7 @@ const keepReading = [
 const closing = {
     title: "Replace the stack, then stop maintaining it",
     body: [
-        "OmniPriv brings vaulting, session control, workflow, threat detection and reporting into one agentless platform.",
+        "OmniPriv brings vaulting, session control, workflow, threat detection and reporting into one platform.",
         "Fewer tools, one audit trail, and a deployment you already know how to run.",
     ],
     kicker: "One platform. One policy engine. One source of truth.",

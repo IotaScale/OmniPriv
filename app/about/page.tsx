@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         absolute: "About OmniPriv | Advanced PAM Solutions",
     },
     description:
-        "OmniPriv builds privileged access management for on-premise, regulated environments — nine capability modules, 100% agentless, independently certified.",
+        "OmniPriv builds privileged access management for on-premise, regulated environments — nine capability modules, independently certified.",
 };
 
 const hero = {
@@ -100,11 +100,10 @@ const deploymentSection = {
         alt: "Close-up of a rack-mounted network appliance with status indicator lights",
     },
     points: [
-        "100% agentless — no software on endpoints, servers or workstations to roll out or patch",
         "On-premise deployment across VMware, Red Hat and OpenStack as a hardware-agnostic appliance",
-        "Multi-node clustering with Docker health checks, WebSocket heartbeat and database replication",
+        "Multi-node clustering with container health checks, heartbeat monitoring and database replication",
         "Strict multi-tenancy through org_id isolation on every resource, schema-per-tenant",
-        "HSM integration for root-of-trust key protection, with an external SECRET_KEY you hold",
+        "Hardware-backed key protection, with an external installation key you hold",
         "Break-glass emergency procedure and granular credential restore without a full system restore",
     ],
 };
@@ -119,7 +118,7 @@ const assuranceSection = {
 const assurancePillars = [
     {
         icon: ShieldCheck,
-        title: "SOC 2 Type II",
+        title: "SOC 2",
         text: "An annual third-party audit covering security, availability, processing integrity, confidentiality and privacy controls — not a self-assessment.",
     },
     {
@@ -129,13 +128,13 @@ const assurancePillars = [
     },
     {
         icon: CreditCard,
-        title: "PCI-DSS Level 1",
+        title: "PCI DSS",
         text: "The highest PCI level, validated by a Qualified Security Assessor, for environments that handle payment card data.",
     },
     {
         icon: Lock,
-        title: "FIPS 140-2",
-        text: "Validated cryptographic modules used for all key management and encryption operations, alongside TLS 1.3 in transit and AES-256-GCM at rest.",
+        title: "NIST SP 800-53",
+        text: "Controls mapped to the federal security and privacy control catalogue that regulated environments are assessed against.",
     },
 ];
 
@@ -167,7 +166,7 @@ const principles: IconCard[] = [
     {
         icon: KeyRound,
         title: "You hold the keys",
-        text: "The SECRET_KEY is generated at installation and stored independently of the platform, so a compromise of our storage is not a compromise of yours.",
+        text: "The installation key is generated at installation and stored independently of the platform, so a compromise of our storage is not a compromise of yours.",
     },
 ];
 
@@ -177,7 +176,7 @@ const closing = {
         "Nine modules, one audit trail, and a deployment model that matches the infrastructure you already run.",
         "We will walk through the capability set and the control mappings against your own environment.",
     ],
-    kicker: "Agentless. On-premise. Independently audited.",
+    kicker: "On-premise. Independently audited. Yours to run.",
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/security", label: "Security Posture" },
 };
@@ -189,19 +188,19 @@ const faqs: FaqEntry[] = [
             "On-premise, regulated environments that need to prove what happened to a privileged account. The platform covers the full privileged access lifecycle — vaulting, session control, approval workflow, integration and audit — in nine capability modules that share one policy engine and one audit trail.",
     },
     {
-        question: "Do I have to install software on the machines being protected?",
+        question: "Does OmniPriv need inbound ports opened to managed systems?",
         answer:
-            "No. OmniPriv is 100% agentless. There is nothing to deploy to endpoints, servers or workstations, which means nothing new to patch on the hosts you are trying to secure and no rollout project before the platform does anything useful.",
+            "No. Privileged connections are brokered through the platform rather than intercepted at the machine, so an inbound port does not have to be opened on the target system.",
     },
     {
         question: "Which certifications and frameworks does OmniPriv hold?",
         answer:
-            "SOC 2 Type II, ISO 27001, PCI-DSS Level 1, HIPAA, GDPR and FIPS 140-2 validated cryptographic modules. Controls are additionally mapped out of the box to nine regulatory frameworks: SOX, PCI-DSS, HIPAA, Basel II, MAS TRM, NIST 800-53, FERC/NERC CIP, GDPR and ISO 27001.",
+            "SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Controls are mapped out of the box to those same six frameworks, and reporting templates are available pre-formatted for the certification set.",
     },
     {
         question: "Who holds the encryption keys?",
         answer:
-            "You do. Data is encrypted at rest with AES-256-GCM and in transit with TLS 1.3, with an HSM providing root-of-trust protection for stored keys. The SECRET_KEY is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
+            "You do. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys. The installation key is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
     },
     {
         question: "Where can I see the full technical specification?",
