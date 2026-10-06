@@ -5,6 +5,32 @@ description: "Use when adding, changing or reviewing motion in the OmniPriv site
 
 # Animations — OmniPriv
 
+## Two skills cover motion here — know which is which
+
+**`animate`** (`.agents/skills/animate/`, third-party, by Emil Kowalski) owns
+**craft**: which easing, which duration, which properties, whether it should
+animate at all, how it interrupts and exits. It is library-agnostic and good.
+
+**This file** owns **this codebase**: what already exists (AOS, `hero-reveal`,
+`.reveal-item`, the `.cp-*` loops), the dead classes not to touch, the
+AOS-vs-hover trap, and the timings the site already ships.
+
+| Question | Winner |
+|---|---|
+| *How should this feel?* | `animate` — follow it and its `RECIPES.md` |
+| *What already exists here?* | **this file** — `animate` has no knowledge of this repo and will happily have you rebuild a component you already have |
+| *What duration?* | **this file** — see below |
+| *Should I add Motion?* | **this file** — no. `animate` only reaches for it for springs, layout and exit animations, none of which this site has |
+
+**Timings.** The site ships a documented budget (220ms buttons, 300ms cards,
+600ms reveals, 800ms hero). `animate`'s tables are generic and its button figure
+(100–160ms) contradicts ~55 existing elements. Do not shift the site's timings
+as a side effect of an unrelated task — that is a design decision, not a fix.
+
+**`transition: all` is a known deviation, not a bug to fix mid-task.** The skill
+bans it and is right to; this codebase uses it in ~55 places plus three
+`globals.css` rules. Converting them is a deliberate change of its own.
+
 ## Before anything else
 
 **Read [`./references/patterns.md`](./references/patterns.md).** It holds 15
