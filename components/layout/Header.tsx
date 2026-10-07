@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "@/components/ThemeToggle";
+import LightBeamButton from "@/components/ui/LightBeamButton";
 import {
   Shield,
   ChevronDown,
@@ -294,13 +295,10 @@ export default function Header() {
             >
               Partner Portal
             </Link>
-            <Link
-              href="/demo"
-              className="btn-primary text-sm px-5 py-2.5 rounded-lg"
-            >
+            <LightBeamButton href="/demo" className="text-sm px-5 py-2.5">
               Request a Technical Demo
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </LightBeamButton>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -404,14 +402,14 @@ export default function Header() {
               >
                 Partner Portal
               </Link>
-              <Link
+              <LightBeamButton
                 href="/demo"
                 onClick={() => setMobileOpen(false)}
-                className="btn-primary w-full justify-center"
+                className="w-full"
               >
                 Request a Technical Demo
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </LightBeamButton>
             </div>
           </div>
         </div>

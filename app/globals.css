@@ -1077,7 +1077,14 @@ h1, h2, h3, h4, h5, h6 {
   inset: 0;
   z-index: -1;
   border-radius: 0.625rem;
-  background: #030711;
+  /*
+   * Deliberately NOT #030711. That is exactly what the header turns into once
+   * scrolled in dark mode - rgba(3,7,17,.95) - so the button disappeared into
+   * the bar leaving only its ring floating. #0A1628 is the site's dark-50:
+   * still reads as a dark button on white, but stays a distinct surface
+   * against near-black.
+   */
+  background: #0a1628;
 }
 
 .light-beam .light-beam-glow {

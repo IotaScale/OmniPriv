@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
+import LightBeamButton from "@/components/ui/LightBeamButton";
 
 export default function ClosingCtaSection() {
   return (
@@ -41,12 +42,12 @@ export default function ClosingCtaSection() {
                 Explore Enterprise PAM
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
-              <Link
+              <LightBeamButton
                 href="/demo"
-                className="btn-secondary text-base px-8 py-3.5 w-full sm:w-auto text-center"
+                className="text-base px-8 py-3.5 w-full sm:w-auto text-center"
               >
                 Request a Technical Demo
-              </Link>
+              </LightBeamButton>
             </div>
 
             {/* Subdued reassurance row */}
