@@ -1021,3 +1021,83 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
   }
 }
+
+/* ──────────────────────────────────────────────
+   Light-beam button — rotating conic border
+   Used by components/ui/LightBeamButton.tsx
+────────────────────────────────────────────── */
+
+/*
+ * `@property` is load-bearing. Without registering --beam-angle it stays an
+ * unregistered custom property, which cannot be interpolated, so the beam
+ * would jump from 0deg to 360deg instead of sweeping. On a browser without
+ * @property support the gradient still paints, just static — a graceful
+ * degradation rather than a broken button.
+ */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes beamSpin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+.light-beam {
+  position: relative;
+  isolation: isolate; /* keeps the -z pseudo-elements inside the button */
+  border-radius: 0.625rem;
+  font-weight: 600;
+}
+
+/* The beam itself. Sits 1px outside the button so only a hairline shows. */
+.light-beam::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -2;
+  border-radius: 0.6875rem; /* 0.625rem + 1px */
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    #00b8ff 35%,
+    #a78bfa 50%,
+    transparent 65%
+  );
+  animation: beamSpin 2.5s linear infinite;
+}
+
+/* The fill, covering everything except that 1px ring. */
+.light-beam::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0.625rem;
+  background: #030711;
+}
+
+.light-beam .light-beam-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.625rem;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 184, 255, 0.2) 0%, transparent 62%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .light-beam:hover .light-beam-glow {
+    opacity: 1;
+  }
+}
+
+/* A 2.5s infinite sweep is exactly what the preference is asking to stop. */
+@media (prefers-reduced-motion: reduce) {
+  .light-beam::before {
+    animation: none;
+  }
+}

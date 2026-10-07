@@ -4,6 +4,7 @@ import Link from "next/link";
 import LogoMarquee from "@/components/sections/LogoMarquee";
 import ChallengesSection from "@/components/ui/ChallengesSection";
 import HeroSlideshow from "@/components/ui/HeroSlideshow";
+import LightBeamButton from "@/components/ui/LightBeamButton";
 // Temporarily disabled — repeats the Challenges section
 // import FourPillarsSection from "@/components/ui/FourPillarsSection";
 import ControlPlaneSection from "@/components/ui/ControlPlaneSection";
@@ -214,13 +215,10 @@ export default function HomePage() {
               className="hero-reveal flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-8"
               style={{ animationDelay: "0.3s" }}
             >
-              <Link
-                href="/demo"
-                className="btn-primary text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center"
-              >
+              <LightBeamButton href="/demo" className="w-full sm:w-auto text-center">
                 Request a Technical Demo
                 <ArrowRight className="w-4 h-4 ml-1.5" />
-              </Link>
+              </LightBeamButton>
               <Link
                 href="/platform"
                 className="inline-flex items-center justify-center rounded-[0.625rem] border border-white/30 bg-white/10 backdrop-blur-sm text-white font-semibold text-sm sm:text-base px-7 py-3.5 w-full sm:w-auto text-center hover:bg-white/20 transition-colors"
