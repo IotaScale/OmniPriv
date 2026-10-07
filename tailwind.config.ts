@@ -2,6 +2,21 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: "class",
+  /*
+   * Wrap every Tailwind `hover:` / `group-hover:` utility in
+   * `@media (hover: hover) and (pointer: fine)`.
+   *
+   * Without this Tailwind emits a bare `&:hover`, and a touch device fires a
+   * false hover on tap - a card lifts and then stays lifted. This is how
+   * Tailwind intends it to be switched on; there is no per-class alternative
+   * that does not mean rewriting every hover utility in the codebase.
+   *
+   * Hand-written `:hover` rules in app/globals.css are NOT covered by this
+   * flag. Those are gated separately, in a media query in that file.
+   */
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",

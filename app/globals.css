@@ -199,17 +199,22 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9375rem;
     letter-spacing: -0.01em;
     border-radius: 0.625rem;
-    transition: all 0.22s ease;
+    /* Named properties, not `all`: the hover only changes these three, and
+       `all` makes the browser enumerate every animatable property instead. */
+    transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
     border: none;
     cursor: pointer;
     font-family: var(--font-inter), sans-serif;
     box-shadow: 0 1px 2px rgba(0,0,0,0.18), 0 0 0 1px rgba(56,189,248,0.14) inset;
   }
 
-  .btn-primary:hover {
-    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
-    box-shadow: 0 3px 12px rgba(56,189,248,0.22), 0 1px 4px rgba(99,102,241,0.12);
-    transform: translateY(-1px);
+  /* Gated: a touch device fires :hover on tap and the lift would stick. */
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
+      box-shadow: 0 3px 12px rgba(56,189,248,0.22), 0 1px 4px rgba(99,102,241,0.12);
+      transform: translateY(-1px);
+    }
   }
 
   .btn-primary:active {
@@ -230,17 +235,20 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.01em;
     border-radius: 0.625rem;
     border: 1px solid var(--btn-secondary-border);
-    transition: all 0.22s ease;
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease,
+                box-shadow 0.22s ease, transform 0.22s ease;
     cursor: pointer;
     font-family: var(--font-inter), sans-serif;
   }
 
-  .btn-secondary:hover {
-    background: rgba(14, 165, 233, 0.07);
-    border-color: rgba(14, 165, 233, 0.32);
-    color: var(--color-text);
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-secondary:hover {
+      background: rgba(14, 165, 233, 0.07);
+      border-color: rgba(14, 165, 233, 0.32);
+      color: var(--color-text);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+    }
   }
 
   /* ──────────────────────────────────────────────
@@ -407,7 +415,7 @@ h1, h2, h3, h4, h5, h6 {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 40%;
     height: 100%;
     background: linear-gradient(
@@ -416,11 +424,18 @@ h1, h2, h3, h4, h5, h6 {
       rgba(255, 255, 255, 0.028),
       transparent
     );
-    transition: left 0.6s ease;
+    /* translateX, not `left` - animating an offset property runs layout on
+       every frame. The element is 40% of the card's width, so -250% of its own
+       width is the same -100% of the card's width the rule used before, and
+       400% is the old `left: 160%`. */
+    transform: translateX(-250%);
+    transition: transform 0.6s ease;
   }
 
-  .card-shine:hover::after {
-    left: 160%;
+  @media (hover: hover) and (pointer: fine) {
+    .card-shine:hover::after {
+      transform: translateX(400%);
+    }
   }
 
   /* Badge */
@@ -620,8 +635,11 @@ h1, h2, h3, h4, h5, h6 {
   animation: marquee 35s linear infinite;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+/* Pausing on hover is meaningless without a hover - let it keep scrolling. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
 }
 
 .marquee-track-reverse {
@@ -630,8 +648,10 @@ h1, h2, h3, h4, h5, h6 {
   animation: marquee-reverse 40s linear infinite;
 }
 
-.marquee-track-reverse:hover {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .marquee-track-reverse:hover {
+    animation-play-state: paused;
+  }
 }
 
 /* ──────────────────────────────────────────────
@@ -665,16 +685,19 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 12px;
   color: #38bdf8;
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, color 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 184, 255, 0.08);
 }
 
-.icon-wrapper:hover,
-.group:hover .icon-wrapper {
-    background: linear-gradient(135deg, rgba(0, 184, 255, 0.32) 0%, rgba(99, 102, 241, 0.22) 100%);
-    border-color: rgba(0, 184, 255, 0.48);
-    box-shadow: 0 0 12px rgba(0, 184, 255, 0.22);
-    color: #7dd3fa;
+@media (hover: hover) and (pointer: fine) {
+  .icon-wrapper:hover,
+  .group:hover .icon-wrapper {
+      background: linear-gradient(135deg, rgba(0, 184, 255, 0.32) 0%, rgba(99, 102, 241, 0.22) 100%);
+      border-color: rgba(0, 184, 255, 0.48);
+      box-shadow: 0 0 12px rgba(0, 184, 255, 0.22);
+      color: #7dd3fa;
+  }
 }
 
 /* ──────────────────────────────────────────────
@@ -773,8 +796,10 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 0;
 }
 
-.feature-card:hover::before {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover::before {
+    opacity: 1;
+  }
 }
 
 .feature-card-body {
@@ -786,8 +811,10 @@ h1, h2, h3, h4, h5, h6 {
   transition: background 0.35s ease;
 }
 
-.feature-card:hover .feature-card-body {
-  background: var(--feature-card-hover);
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover .feature-card-body {
+    background: var(--feature-card-hover);
+  }
 }
 
 @keyframes feature-card-spin {
