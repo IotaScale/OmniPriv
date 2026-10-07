@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:partner": "npx tsx scripts/test-partner-portal.ts",
+    "migrate": "npx tsx scripts/migrate.ts",
+    "bootstrap:admin": "npx tsx scripts/bootstrap-channel-admin.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -16,6 +19,7 @@
     "jspdf": "^4.2.0",
     "lucide-react": "^0.400.0",
     "next": "14.2.35",
+    "pg": "^8.23.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.4.0"
@@ -23,6 +27,7 @@
   "devDependencies": {
     "@types/aos": "^3.0.8",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.19",
