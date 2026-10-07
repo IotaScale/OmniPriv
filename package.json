@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:partner": "npx tsx scripts/test-partner-portal.ts",
+    "migrate": "npx tsx scripts/migrate.ts",
+    "bootstrap:admin": "npx tsx scripts/bootstrap-channel-admin.ts"
   },
   "dependencies": {
+    "pg": "^8.11.5",
     "@emailjs/browser": "^4.4.1",
     "aos": "^2.3.4",
     "clsx": "^2.1.1",
