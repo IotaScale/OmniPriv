@@ -384,14 +384,30 @@ export default function HeroProductShowcase() {
         })}
       </div>
       <div className="mt-3 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-        <div key={scene.key} className="hp-path max-w-lg min-h-[5.5rem]" aria-live="polite">
-          <p
-            className="text-lg sm:text-xl font-semibold tracking-[-0.02em] leading-snug text-slate-950 dark:text-white"
-            style={{ fontFamily: "var(--font-syne)" }}
-          >
-            {scene.title}
-          </p>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300/90 leading-relaxed">{scene.caption}</p>
+        {/*
+          Every caption is stacked in the same grid cell and only the active one
+          is shown. The cell is always as tall as the longest caption, so the
+          window above never moves when a caption is one line longer or shorter.
+        */}
+        <div className="grid max-w-lg flex-1" aria-live="polite">
+          {SCENES.map((sc) => {
+            const on = sc.key === scene.key;
+            return (
+              <div
+                key={on ? `${sc.key}-${round}` : sc.key}
+                className={`[grid-area:1/1] ${on ? "hp-path" : "invisible"}`}
+                aria-hidden={!on}
+              >
+                <p
+                  className="text-lg sm:text-xl font-semibold tracking-[-0.02em] leading-snug text-slate-950 dark:text-white"
+                  style={{ fontFamily: "var(--font-syne)" }}
+                >
+                  {sc.title}
+                </p>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300/90 leading-relaxed">{sc.caption}</p>
+              </div>
+            );
+          })}
         </div>
         <Link href="/features" className="hp-all-features group shrink-0">
           Explore all 32 features
@@ -554,6 +570,48 @@ const STATS = [
   { Icon: Bot, value: 53, suffix: "", label: "MCP tools", sub: "Permission-gated", tone: "violet", fly: from(20, -15, 12, 0.7) },
 ] as const;
 
+/*
+ * One stat card for every scene, the same size and layout as the ML engine's:
+ * icon tile, big number, label, one line of context. Keeps all five panels
+ * reading at the same scale.
+ */
+type Tone = "cyan" | "red" | "orange" | "violet" | "green" | "amber";
+
+function StatCard({
+  Icon,
+  tone,
+  value,
+  label,
+  sub,
+  hl,
+  delay,
+  mono = false,
+  style,
+}: {
+  Icon: typeof LayoutDashboard;
+  tone: Tone;
+  value: ReactNode;
+  label: string;
+  sub?: string;
+  hl?: string;
+  delay: number;
+  mono?: boolean;
+  style?: CSSProperties;
+}) {
+  return (
+    <div data-motion data-hl={hl} className="hp-pop hp-card" style={d(delay)}>
+      <span data-motion className={`hp-fly hp-stat-icon is-${tone}`} style={style}>
+        <Icon className="w-[1.5cqw] h-[1.5cqw]" />
+      </span>
+      <span className={`relative block mt-[1cqw] h-[2.4cqw] font-bold leading-none text-white ${mono ? "font-mono text-[1.75cqw] leading-[2.4cqw] whitespace-nowrap" : "text-[2.4cqw]"}`}>
+        {value}
+      </span>
+      <span className="block mt-[0.5cqw] text-[1.05cqw] tracking-[0.08em] text-slate-400 uppercase truncate">{label}</span>
+      {sub && <span className="block text-[1cqw] mt-[0.2cqw] text-slate-500 truncate">{sub}</span>}
+    </div>
+  );
+}
+
 function OverviewScene() {
   return (
     <div className="flex flex-col gap-[1.3cqw] h-full">
@@ -571,16 +629,17 @@ function OverviewScene() {
 
       <div className="grid grid-cols-4 gap-[1cqw]">
         {STATS.map((s, i) => (
-          <div key={s.label} data-motion data-hl={`stat-${i}`} className="hp-pop hp-card" style={d(0.15 + i * 0.05)}>
-            <span data-motion className={`hp-fly hp-stat-icon is-${s.tone}`} style={s.fly}>
-              <s.Icon className="w-[1.5cqw] h-[1.5cqw]" />
-            </span>
-            <span className="block mt-[1cqw] font-bold text-[2.4cqw] leading-none text-white">
-              <Count to={s.value} delay={2.4 + i * 0.1} suffix={s.suffix} />
-            </span>
-            <span className="block mt-[0.5cqw] text-[1.05cqw] tracking-[0.08em] text-slate-400 uppercase">{s.label}</span>
-            <span className="block text-[1cqw] mt-[0.2cqw] text-slate-500">{s.sub}</span>
-          </div>
+          <StatCard
+            key={s.label}
+            Icon={s.Icon}
+            tone={s.tone}
+            hl={`stat-${i}`}
+            delay={0.15 + i * 0.05}
+            style={s.fly}
+            value={<Count to={s.value} delay={2.4 + i * 0.1} suffix={s.suffix} />}
+            label={s.label}
+            sub={s.sub}
+          />
         ))}
       </div>
 
@@ -737,21 +796,24 @@ function AssetsScene() {
         }
       />
       <div className="grid grid-cols-4 gap-[1cqw]">
-        {[
-          { label: "Total Assets", to: 7, tone: "#00B8DB" },
-          { label: "Online", to: 7, tone: "#22c55e" },
-          { label: "Vaulted credentials", to: 7, tone: "#f59e0b" },
-          { label: "Key hierarchy", to: 3, tone: "#8b5cf6", sub: "KEK, DEK, SEK" },
-        ].map((s, i) => (
-          <div key={s.label} data-motion data-hl={i === 3 ? "keys" : undefined} className="hp-pop hp-card hp-card-edge" style={d(0.15 + i * 0.05, { ["--edge" as string]: s.tone })}>
-            <span className="block text-[1cqw] tracking-[0.08em] text-slate-400 uppercase">{s.label}</span>
-            <span className="flex items-baseline gap-[0.6cqw] mt-[0.5cqw]">
-              <span className="block font-bold text-[2.3cqw] text-white leading-none">
-                {s.sub ? s.to : <Count to={s.to} delay={ROW0 + (i === 2 ? 1.3 : 0.4)} dur={ASSETS.length * STEP * 1000} />}
-              </span>
-              {s.sub && <span className="font-mono text-[1.05cqw] text-violet-300">{s.sub}</span>}
-            </span>
-          </div>
+        {(
+          [
+            { label: "Total assets", to: 7, tone: "cyan", Icon: Server, sub: "Discovered automatically" },
+            { label: "Online", to: 7, tone: "green", Icon: Activity, sub: "Reachable right now" },
+            { label: "Vaulted credentials", to: 7, tone: "amber", Icon: KeyRound, sub: "Never shown to users" },
+            { label: "Key hierarchy", to: 3, tone: "violet", Icon: Lock, sub: "KEK, DEK, SEK" },
+          ] as const
+        ).map((s, i) => (
+          <StatCard
+            key={s.label}
+            Icon={s.Icon}
+            tone={s.tone}
+            hl={i === 3 ? "keys" : undefined}
+            delay={0.15 + i * 0.05}
+            value={i === 3 ? s.to : <Count to={s.to} delay={ROW0 + (i === 2 ? 1.3 : 0.4)} dur={ASSETS.length * STEP * 1000} />}
+            label={s.label}
+            sub={s.sub}
+          />
         ))}
       </div>
 
@@ -826,27 +888,34 @@ function ChainScene() {
         }
       />
       <div className="grid grid-cols-4 gap-[1cqw]">
-        {[
-          { label: "Algorithm", value: "HMAC-SHA256", tone: "#00B8DB" },
-          { label: "Checkpoint", value: "Every 50 rows", tone: "#8b5cf6" },
-          { label: "Re-verify", value: "Every 5 min", tone: "#f59e0b" },
-        ].map((c, i) => (
-          <div key={c.label} data-motion className="hp-pop hp-card hp-card-edge" style={d(0.15 + i * 0.05, { ["--edge" as string]: c.tone })}>
-            <span className="block text-[1cqw] tracking-[0.08em] text-slate-400 uppercase">{c.label}</span>
-            <span className="block mt-[0.6cqw] font-bold text-[1.6cqw] text-white leading-none font-mono">{c.value}</span>
-          </div>
+        {(
+          [
+            { label: "Algorithm", value: "HMAC-SHA256", tone: "cyan", Icon: Fingerprint, sub: "Over every audit event" },
+            { label: "Checkpoint", value: "50 rows", tone: "violet", Icon: Link2, sub: "Each seals the last" },
+            { label: "Re-verify", value: "5 min", tone: "amber", Icon: RefreshCw, sub: "Automatic, continuous" },
+          ] as const
+        ).map((c, i) => (
+          <StatCard key={c.label} Icon={c.Icon} tone={c.tone} delay={0.15 + i * 0.05} mono value={c.value} label={c.label} sub={c.sub} />
         ))}
-        <div data-motion data-hl="status" className="hp-pop hp-card hp-card-edge" style={d(0.3, { ["--edge" as string]: "#22c55e" })}>
-          <span className="block text-[1cqw] tracking-[0.08em] text-slate-400 uppercase">Chain status</span>
-          <span className="relative block mt-[0.6cqw] h-[1.8cqw]">
-            <span data-motion className="hp-swap-out absolute left-0 top-0 font-bold text-[1.6cqw] text-slate-300 leading-none" style={d(DONE)}>
-              Checking
-            </span>
-            <span data-motion className="hp-swap-in absolute left-0 top-0 font-bold text-[1.6cqw] text-emerald-400 leading-none" style={d(DONE)}>
-              Intact
-            </span>
-          </span>
-        </div>
+        <StatCard
+          Icon={ShieldCheck}
+          tone="green"
+          hl="status"
+          delay={0.3}
+          mono
+          label="Chain status"
+          sub="No edits detected"
+          value={
+            <>
+              <span data-motion className="hp-swap-out absolute left-0 top-0 text-slate-300" style={d(DONE)}>
+                Checking
+              </span>
+              <span data-motion className="hp-swap-in absolute left-0 top-0 text-emerald-400" style={d(DONE)}>
+                Intact
+              </span>
+            </>
+          }
+        />
       </div>
 
       <div data-motion className="hp-pop hp-panel flex-1 min-h-0" style={d(0.3)}>
@@ -923,22 +992,23 @@ function ComplianceScene() {
         }
       />
       <div className="grid grid-cols-4 gap-[1cqw]">
-        {[
-          { label: "Compliance readiness", to: 86, suffix: "%", tone: "#22c55e", sub: "31 compliant, 3 partial", Icon: ShieldCheck },
-          { label: "Fully evidenced", to: 31, suffix: "", tone: "#22c55e", sub: "Zero open coverage gaps", Icon: CheckCircle2 },
-          { label: "Attention required", to: 7, suffix: "", tone: "#f59e0b", sub: "4 non-compliant, 3 partial", Icon: AlertTriangle },
-          { label: "Frameworks mapped", to: 6, suffix: "", tone: "#00b8db", sub: "SOC 2, ISO, NIST, HIPAA, PCI, SOX", Icon: FileCheck2 },
-        ].map((s, i) => (
-          <div key={s.label} data-motion className="hp-pop hp-card hp-card-edge" style={d(0.15 + i * 0.06, { ["--edge" as string]: s.tone })}>
-            <span className="flex items-start justify-between">
-              <span className="block text-[1cqw] tracking-[0.08em] text-slate-400 uppercase">{s.label}</span>
-              <s.Icon className="w-[1.3cqw] h-[1.3cqw]" style={{ color: s.tone }} />
-            </span>
-            <span className="block mt-[0.4cqw] font-bold text-[2.3cqw] text-white leading-none">
-              <Count to={s.to} delay={0.6 + i * 0.1} dur={1300} suffix={s.suffix} />
-            </span>
-            <span className="block text-[1cqw] text-slate-500 mt-[0.4cqw] truncate">{s.sub}</span>
-          </div>
+        {(
+          [
+            { label: "Readiness", to: 86, suffix: "%", tone: "green", sub: "31 compliant, 3 partial", Icon: ShieldCheck },
+            { label: "Fully evidenced", to: 31, suffix: "", tone: "green", sub: "Zero open coverage gaps", Icon: CheckCircle2 },
+            { label: "Attention", to: 7, suffix: "", tone: "amber", sub: "4 non-compliant, 3 partial", Icon: AlertTriangle },
+            { label: "Frameworks", to: 6, suffix: "", tone: "cyan", sub: "SOC 2, ISO, NIST, HIPAA, PCI, SOX", Icon: FileCheck2 },
+          ] as const
+        ).map((s, i) => (
+          <StatCard
+            key={s.label}
+            Icon={s.Icon}
+            tone={s.tone}
+            delay={0.15 + i * 0.06}
+            value={<Count to={s.to} delay={0.6 + i * 0.1} dur={1300} suffix={s.suffix} />}
+            label={s.label}
+            sub={s.sub}
+          />
         ))}
       </div>
 
@@ -1032,6 +1102,12 @@ function AuditScene() {
           </span>
         }
       />
+      <div className="grid grid-cols-4 gap-[1cqw]">
+        <StatCard Icon={Bot} tone="cyan" delay={0.1} value={<Count to={53} delay={0.4} />} label="MCP tools" sub="Permission-gated" />
+        <StatCard Icon={Activity} tone="green" delay={0.15} value={<Count to={4} delay={0.5} />} label="Live sessions" sub="Recorded end to end" />
+        <StatCard Icon={ShieldAlert} tone="red" delay={0.2} value={<Count to={1} delay={FLAG} />} label="Flagged" sub="Risky call held" />
+        <StatCard Icon={UserCheck} tone="violet" delay={0.25} value="0" label="Standing access" sub="JIT only" />
+      </div>
       <div className="grid grid-cols-[1.55fr_1fr] gap-[1cqw] flex-1 min-h-0">
         <div data-motion className="hp-pop hp-panel !p-0 overflow-hidden" style={d(0.2)}>
           <div className="hp-log hp-th">

@@ -4468,3 +4468,7 @@ html.dark .op-band-navy {
 .dark .bgm .bgm-tint {
   fill: rgba(0, 184, 219, 0.08);
 }
+
+/* Hero tour: extra stat-tile tones, so every scene uses the ML engine's card. */
+.hp-stat-icon.is-green { color: #4ade80; background: rgba(74, 222, 128, 0.14); }
+.hp-stat-icon.is-amber { color: #fbbf24; background: rgba(251, 191, 36, 0.14); }
