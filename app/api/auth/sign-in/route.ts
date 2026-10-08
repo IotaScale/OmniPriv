@@ -110,33 +110,14 @@ export async function POST(request: NextRequest) {
           { status: 403 }
         );
       }
-
-      if (user.programStatus === "pending") {
-        logAuditEvent({
-          actor_user_id: user.id,
-          actor_name: user.name,
-          actor_role: user.role,
-          actor_org_id: user.orgId,
-          action: "channel.auth.denied_pending",
-          target_type: "PartnerProfile",
-          target_id: user.orgId,
-          details: `Login rejected: Partner organization '${user.orgName}' is pending channel activation review.`,
-          ip_address: clientIp,
-        });
-        return NextResponse.json(
-          {
-            error: "Your partner organization application is currently pending OmniPriv Channel Admin review. You will receive an invitation email once activated.",
-            code: "ORG_PENDING",
-          },
-          { status: 403 }
-        );
-      }
     }
 
     // Generate authenticated session token
     const token = createSessionToken(user);
-    const defaultReturn = loginType === "channel_admin" ? "/channel-admin" : "/partner-portal";
-    const safeReturn = returnUrl ? getSafeReturnUrl(returnUrl) : defaultReturn;
+    const isAdmin = user.role === "Channel Admin" || user.role === "Partner Manager";
+    const safeReturn = isAdmin
+      ? (returnUrl && returnUrl !== "/partner-portal" ? getSafeReturnUrl(returnUrl) : "/channel-admin")
+      : (returnUrl ? getSafeReturnUrl(returnUrl) : "/partner-portal");
 
     logAuditEvent({
       actor_user_id: user.id,

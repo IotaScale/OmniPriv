@@ -367,29 +367,39 @@ export const dbService = {
       customer_name: string;
       customer_domain: string;
       customer_country: string;
+      customer_industry?: string;
+      customer_contact_name?: string;
+      customer_contact_email?: string;
+      customer_contact_phone?: string;
       opportunity_name: string;
       estimated_value_usd: number;
       estimated_close_date: string;
       target_products?: string[];
       estimated_seats?: number;
       license_model?: string;
+      deployment_timeline?: string;
+      opportunity_source?: string;
+      partner_notes?: string;
     }
   ) {
     const pool = getPool();
 
-    // 1. Conflict detection: check if another deal with this domain is currently approved or under review
+    // 1. Conflict detection: check if another deal with this domain is currently approved or awaiting review
+    const cleanDomain = deal.customer_domain.trim().toLowerCase();
     const conflictCheck = await pool.query(
       `SELECT id, deal_code, partner_org_name FROM deal_registrations
        WHERE LOWER(customer_domain) = LOWER($1)
-         AND status IN ('submitted', 'under_review', 'approved')
-         AND deal_protection_expiry > NOW()
+         AND (
+           (status = 'approved' AND (protection_expires_at > NOW() OR deal_protection_expiry > NOW()))
+           OR status IN ('awaiting_approval', 'under_review', 'submitted')
+         )
        LIMIT 1;`,
-      [deal.customer_domain.trim()]
+      [cleanDomain]
     );
 
     const hasConflict = conflictCheck.rows.length > 0;
     const conflictNotes = hasConflict
-      ? `Overlapping registration detected against active deal ${conflictCheck.rows[0].deal_code} (${conflictCheck.rows[0].partner_org_name}). Sent to Channel Admin arbitration.`
+      ? `Domain conflict detected: Active or pending registration exists for ${cleanDomain} (${conflictCheck.rows[0].deal_code} by ${conflictCheck.rows[0].partner_org_name}). Routed to Channel Admin arbitration.`
       : null;
 
     // Get partner company name
@@ -402,14 +412,29 @@ export const dbService = {
     const id = `deal-${crypto.randomBytes(8).toString("hex")}`;
     const dealCode = generateCode("DR");
 
+    // Strictly per specification:
+    // - status is 'awaiting_approval'
+    // - Never grant protection immediately on submission: protection_expires_at and deal_protection_expiry are NULL
     const insertQuery = `
       INSERT INTO deal_registrations (
         id, deal_code, partner_org_id, partner_org_name, customer_name,
-        customer_domain, customer_country, opportunity_name, estimated_value_usd,
-        estimated_close_date, target_products, estimated_seats, license_model,
-        status, deal_protection_expiry, conflict_detected, conflict_notes,
+        customer_domain, customer_country, customer_industry,
+        customer_contact_name, customer_contact_email, customer_contact_phone,
+        opportunity_name, estimated_value_usd, estimated_close_date,
+        target_products, estimated_seats, license_model, deployment_timeline,
+        opportunity_source, partner_notes, status, deal_protection_expiry,
+        protection_expires_at, conflict_detected, conflict_notes,
         created_by_user_id, created_by_user_name
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, 'submitted', NOW() + INTERVAL '90 days', $14, $15, $16, $17)
+      ) VALUES (
+        $1, $2, $3, $4, $5,
+        $6, $7, $8,
+        $9, $10, $11,
+        $12, $13, $14,
+        $15, $16, $17, $18,
+        $19, $20, 'awaiting_approval', NULL,
+        NULL, $21, $22,
+        $23, $24
+      )
       RETURNING *;
     `;
 
@@ -419,14 +444,21 @@ export const dbService = {
       orgId,
       orgName,
       deal.customer_name.trim(),
-      deal.customer_domain.trim().toLowerCase(),
+      cleanDomain,
       deal.customer_country.trim(),
+      deal.customer_industry?.trim() || null,
+      deal.customer_contact_name?.trim() || null,
+      deal.customer_contact_email?.trim() || null,
+      deal.customer_contact_phone?.trim() || null,
       deal.opportunity_name.trim(),
       deal.estimated_value_usd || 0,
       deal.estimated_close_date,
       JSON.stringify(deal.target_products || ["OmniPriv Enterprise PAM"]),
       deal.estimated_seats || 50,
       deal.license_model || "Annual Subscription",
+      deal.deployment_timeline?.trim() || "Immediate (1-3 months)",
+      deal.opportunity_source?.trim() || "Direct Partner Outreach",
+      deal.partner_notes?.trim() || null,
       hasConflict,
       conflictNotes,
       userId,
@@ -444,8 +476,21 @@ export const dbService = {
       action: "channel.deal.submitted",
       target_type: "DealRegistration",
       target_id: row.id,
-      details: `Registered deal '${deal.opportunity_name}' for '${deal.customer_name}' (${dealCode}). Protection locked 90 days. Conflict: ${hasConflict}.`,
+      details: `Registered deal '${deal.opportunity_name}' for '${deal.customer_name}' (${dealCode}). Status: awaiting_approval. Conflict: ${hasConflict}. Protection: none until Admin approval.`,
     });
+
+    if (hasConflict) {
+      logAuditEvent({
+        actor_user_id: userId,
+        actor_name: userName,
+        actor_role: "Partner Sales",
+        actor_org_id: orgId,
+        action: "channel.deal.conflict_detected",
+        target_type: "DealRegistration",
+        target_id: row.id,
+        details: conflictNotes || "Domain conflict detected upon deal registration.",
+      });
+    }
 
     return row;
   },
@@ -754,51 +799,116 @@ export const dbService = {
   async getChannelAdminOverview() {
     const pool = getPool();
 
-    const [apps, partners, deals, leads, payouts, renewals] = await Promise.all([
+    const [apps, partners, deals, leads, renewals] = await Promise.all([
+      pool.query(`SELECT COUNT(*) as total FROM partner_applications;`),
       pool.query(`
-        SELECT COUNT(*) as total,
-               COUNT(*) FILTER (WHERE status = 'submitted' OR status = 'under_review') as pending
-        FROM partner_applications;
-      `),
-      pool.query(`
-        SELECT COUNT(*) as total,
-               COUNT(*) FILTER (WHERE program_status = 'active') as active
+        SELECT 
+          COUNT(*) as total,
+          COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '30 days') as new_30d,
+          COUNT(*) FILTER (WHERE program_status = 'active') as active
         FROM partner_profiles;
       `),
       pool.query(`
-        SELECT COUNT(*) as total,
-               COUNT(*) FILTER (WHERE status = 'under_review' OR conflict_detected = TRUE) as pending_review,
-               COUNT(*) FILTER (WHERE status = 'approved') as approved
+        SELECT 
+          COUNT(*) as total,
+          COUNT(*) FILTER (WHERE status IN ('awaiting_approval', 'under_review', 'submitted')) as pending_review,
+          COUNT(*) FILTER (WHERE conflict_detected = TRUE) as domain_conflicts,
+          COUNT(*) FILTER (WHERE status = 'approved') as approved_count,
+          COALESCE(SUM(estimated_value_usd) FILTER (WHERE status = 'approved' AND (protection_expires_at > NOW() OR deal_protection_expiry > NOW() OR protection_expires_at IS NULL)), 0) as approved_pipeline_value
         FROM deal_registrations;
       `),
       pool.query(`
-        SELECT COUNT(*) as total,
-               COUNT(*) FILTER (WHERE partner_status = 'assigned' OR partner_status = 'unassigned') as awaiting_acceptance
+        SELECT 
+          COUNT(*) as total,
+          COUNT(*) FILTER (WHERE partner_status = 'unassigned') as awaiting_assignment,
+          COUNT(*) FILTER (WHERE partner_status = 'assigned' AND sla_deadline < NOW() + INTERVAL '48 hours') as nearing_sla_breach
         FROM channel_leads;
       `),
       pool.query(`
-        SELECT COUNT(*) as total,
-               COUNT(*) FILTER (WHERE status = 'under_review') as pending_verification
-        FROM partner_payout_profiles;
-      `),
-      pool.query(`
-        SELECT COUNT(*) as total,
-               COUNT(*) FILTER (WHERE status = 'upcoming') as upcoming
+        SELECT 
+          COUNT(*) as total,
+          COUNT(*) FILTER (WHERE status = 'upcoming') as upcoming
         FROM renewal_opportunities;
       `),
     ]);
 
+    const appRow = apps.rows[0] || {};
+    const partnerRow = partners.rows[0] || {};
+    const dealRow = deals.rows[0] || {};
+    const leadRow = leads.rows[0] || {};
+    const renewalRow = renewals.rows[0] || {};
+
     return {
-      applicationsTotal: parseInt(apps.rows[0]?.total || "0", 10),
-      applicationsPending: parseInt(apps.rows[0]?.pending || "0", 10),
-      partnersTotal: parseInt(partners.rows[0]?.total || "0", 10),
-      partnersActive: parseInt(partners.rows[0]?.active || "0", 10),
-      dealsPendingReview: parseInt(deals.rows[0]?.pending_review || "0", 10),
-      dealsApproved: parseInt(deals.rows[0]?.approved || "0", 10),
-      leadsAwaitingAcceptance: parseInt(leads.rows[0]?.awaiting_acceptance || "0", 10),
-      payoutsPending: parseInt(payouts.rows[0]?.pending_verification || "0", 10),
-      renewalsUpcoming: parseInt(renewals.rows[0]?.upcoming || "0", 10),
+      applicationsTotal: parseInt(appRow.total || "0", 10),
+      partnersTotal: parseInt(partnerRow.total || "0", 10),
+      newPartnerRegistrations: parseInt(partnerRow.new_30d || "0", 10),
+      partnersActive: parseInt(partnerRow.active || "0", 10),
+      dealsAwaitingReview: parseInt(dealRow.pending_review || "0", 10),
+      dealsPendingReview: parseInt(dealRow.pending_review || "0", 10),
+      domainConflicts: parseInt(dealRow.domain_conflicts || "0", 10),
+      dealsApproved: parseInt(dealRow.approved_count || "0", 10),
+      approvedPipelineValue: parseFloat(dealRow.approved_pipeline_value || "0"),
+      leadsAwaitingAssignment: parseInt(leadRow.awaiting_assignment || "0", 10),
+      leadsNearingSlaBreach: parseInt(leadRow.nearing_sla_breach || "0", 10),
+      renewalsUpcoming: parseInt(renewalRow.upcoming || "0", 10),
     };
+  },
+
+  async getChannelAdminOrganizations() {
+    const pool = getPool();
+    const result = await pool.query(`
+      SELECT 
+        p.partner_org_id,
+        p.company_name,
+        p.legal_name,
+        p.website,
+        p.country,
+        p.region,
+        p.current_tier,
+        p.program_status,
+        p.primary_partner_manager_name,
+        p.primary_contact_name,
+        p.primary_contact_email,
+        p.created_at,
+        COUNT(d.id) as deal_count,
+        COALESCE(SUM(d.estimated_value_usd) FILTER (WHERE d.status = 'approved'), 0) as approved_pipeline
+      FROM partner_profiles p
+      LEFT JOIN deal_registrations d ON d.partner_org_id = p.partner_org_id
+      GROUP BY p.partner_org_id, p.company_name, p.legal_name, p.website, p.country, p.region, p.current_tier, p.program_status, p.primary_partner_manager_name, p.primary_contact_name, p.primary_contact_email, p.created_at
+      ORDER BY p.created_at DESC;
+    `);
+    return result.rows;
+  },
+
+  async updatePartnerOrganization(
+    orgId: string,
+    tier: string,
+    partnerManagerName: string,
+    adminId: string,
+    adminName: string
+  ) {
+    const pool = getPool();
+    const result = await pool.query(
+      `UPDATE partner_profiles 
+       SET current_tier = $1, primary_partner_manager_name = $2, updated_at = NOW() 
+       WHERE partner_org_id = $3 
+       RETURNING *;`,
+      [tier, partnerManagerName, orgId]
+    );
+    const row = result.rows[0];
+    if (row) {
+      logAuditEvent({
+        actor_user_id: adminId,
+        actor_name: adminName,
+        actor_role: "Channel Admin",
+        actor_org_id: "org-omnipriv-internal",
+        action: "channel.partner_org.tier_updated",
+        target_type: "PartnerOrganization",
+        target_id: orgId,
+        details: `Updated tier to '${tier}' and partner manager to '${partnerManagerName}' for ${row.company_name} by ${adminName}.`,
+      });
+    }
+    return row;
   },
 
   async getChannelAdminDeals(statusFilter?: string) {
@@ -822,13 +932,36 @@ export const dbService = {
     notes?: string
   ) {
     const pool = getPool();
-    const newStatus = decision === "approve" ? "approved" : "declined";
-    const query = `
-      UPDATE deal_registrations
-      SET status = $1, reviewer_id = $2, reviewer_name = $3, review_notes = $4, updated_at = NOW()
-      WHERE id = $5
-      RETURNING *;
-    `;
+    const isApproved = decision === "approve";
+    const newStatus = isApproved ? "approved" : "declined";
+
+    // Channel Admin approval grants a 90-day protection period and stores protection_expires_at
+    const query = isApproved
+      ? `
+        UPDATE deal_registrations
+        SET status = $1,
+            reviewer_id = $2,
+            reviewer_name = $3,
+            review_notes = $4,
+            protection_expires_at = NOW() + INTERVAL '90 days',
+            deal_protection_expiry = NOW() + INTERVAL '90 days',
+            updated_at = NOW()
+        WHERE id = $5
+        RETURNING *;
+      `
+      : `
+        UPDATE deal_registrations
+        SET status = $1,
+            reviewer_id = $2,
+            reviewer_name = $3,
+            review_notes = $4,
+            protection_expires_at = NULL,
+            deal_protection_expiry = NULL,
+            updated_at = NOW()
+        WHERE id = $5
+        RETURNING *;
+      `;
+
     const result = await pool.query(query, [newStatus, adminId, adminName, notes || null, dealId]);
     const row = result.rows[0];
 
@@ -838,10 +971,85 @@ export const dbService = {
         actor_name: adminName,
         actor_role: "Channel Admin",
         actor_org_id: "org-omnipriv-internal",
-        action: `channel.deal.${decision}`,
+        action: isApproved ? "channel.deal.approved" : "channel.deal.declined",
         target_type: "DealRegistration",
         target_id: dealId,
-        details: `Deal ${row.deal_code} (${row.opportunity_name}) ${decision}d by ${adminName}. Notes: ${notes || "N/A"}`,
+        details: isApproved
+          ? `Deal ${row.deal_code} (${row.opportunity_name}) approved by ${adminName}. 90-day protection granted until ${row.protection_expires_at}. Notes: ${notes || "N/A"}`
+          : `Deal ${row.deal_code} (${row.opportunity_name}) declined by ${adminName}. Notes: ${notes || "N/A"}`,
+      });
+    }
+
+    return row;
+  },
+
+  async extendDealProtection(
+    dealId: string,
+    days: number,
+    adminId: string,
+    adminName: string,
+    reason?: string
+  ) {
+    const pool = getPool();
+    const query = `
+      UPDATE deal_registrations
+      SET 
+        protection_expires_at = COALESCE(protection_expires_at, NOW()) + ($1 || ' days')::interval,
+        deal_protection_expiry = COALESCE(deal_protection_expiry, NOW()) + ($1 || ' days')::interval,
+        review_notes = COALESCE(review_notes, '') || ' [Protection extended +' || $1 || 'd by ' || $2 || ': ' || COALESCE($3, 'No reason') || ']',
+        updated_at = NOW()
+      WHERE id = $4
+      RETURNING *;
+    `;
+    const result = await pool.query(query, [days, adminName, reason || null, dealId]);
+    const row = result.rows[0];
+
+    if (row) {
+      logAuditEvent({
+        actor_user_id: adminId,
+        actor_name: adminName,
+        actor_role: "Channel Admin",
+        actor_org_id: "org-omnipriv-internal",
+        action: "channel.deal.protection_extended",
+        target_type: "DealRegistration",
+        target_id: dealId,
+        details: `Deal ${row.deal_code} protection extended by ${days} days by ${adminName}. New expiry: ${row.protection_expires_at}.`,
+      });
+    }
+
+    return row;
+  },
+
+  async closeDealOutcome(
+    dealId: string,
+    outcome: "closed_won" | "closed_lost",
+    notes: string,
+    actorId: string,
+    actorName: string,
+    actorRole: string
+  ) {
+    const pool = getPool();
+    const query = `
+      UPDATE deal_registrations
+      SET status = $1,
+          review_notes = COALESCE(review_notes, '') || ' [Outcome: ' || $1 || ' - ' || $2 || ']',
+          updated_at = NOW()
+      WHERE id = $3
+      RETURNING *;
+    `;
+    const result = await pool.query(query, [outcome, notes || "Marked closed", dealId]);
+    const row = result.rows[0];
+
+    if (row) {
+      logAuditEvent({
+        actor_user_id: actorId,
+        actor_name: actorName,
+        actor_role: actorRole,
+        actor_org_id: row.partner_org_id,
+        action: `channel.deal.${outcome}`,
+        target_type: "DealRegistration",
+        target_id: dealId,
+        details: `Deal ${row.deal_code} marked as ${outcome} by ${actorName}. Notes: ${notes || "N/A"}.`,
       });
     }
 

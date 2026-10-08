@@ -36,21 +36,51 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { dealId, decision, reviewNotes } = body;
+    const { dealId, decision, reviewNotes, extendDays, outcome } = body;
 
     if (!dealId || !decision) {
-      return NextResponse.json({ error: "Deal ID and decision ('approve' | 'decline') are required." }, { status: 400 });
+      return NextResponse.json({ error: "Deal ID and decision are required." }, { status: 400 });
     }
 
-    const updated = await dbService.decideDealReview(
-      dealId,
-      decision,
-      session.userId,
-      session.name,
-      reviewNotes
-    );
+    if (decision === "approve" || decision === "decline") {
+      const updated = await dbService.decideDealReview(
+        dealId,
+        decision,
+        session.userId,
+        session.name,
+        reviewNotes
+      );
+      return NextResponse.json({ success: true, deal: updated });
+    }
 
-    return NextResponse.json({ success: true, deal: updated });
+    if (decision === "extend") {
+      const days = Number(extendDays) || 90;
+      const updated = await dbService.extendDealProtection(
+        dealId,
+        days,
+        session.userId,
+        session.name,
+        reviewNotes
+      );
+      return NextResponse.json({ success: true, deal: updated });
+    }
+
+    if (decision === "outcome") {
+      if (outcome !== "closed_won" && outcome !== "closed_lost") {
+        return NextResponse.json({ error: "Outcome must be 'closed_won' or 'closed_lost'." }, { status: 400 });
+      }
+      const updated = await dbService.closeDealOutcome(
+        dealId,
+        outcome,
+        reviewNotes || "",
+        session.userId,
+        session.name,
+        session.role
+      );
+      return NextResponse.json({ success: true, deal: updated });
+    }
+
+    return NextResponse.json({ error: `Unsupported decision: ${decision}` }, { status: 400 });
   } catch (err: any) {
     console.error("Failed to process deal decision:", err);
     return NextResponse.json({ error: "Failed to record deal decision." }, { status: 500 });

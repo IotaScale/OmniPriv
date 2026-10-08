@@ -24,11 +24,6 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(suspendedUrl);
     }
 
-    if (session.programStatus === "pending") {
-      const pendingUrl = new URL("/sign-in?error=org_pending", request.url);
-      return NextResponse.redirect(pendingUrl);
-    }
-
     return NextResponse.next();
   }
 

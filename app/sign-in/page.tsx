@@ -1,132 +1,201 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
-import { Mail, ArrowRight, Lock, Info, AlertCircle } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Shield, Mail, ArrowRight, Lock, AlertCircle, Loader2, Building, ShieldCheck } from "lucide-react";
 
-const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5";
-const fieldIcon =
-  "absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-500 pointer-events-none";
-const cardClass =
-  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140]";
+function SignInContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnUrl = searchParams.get("returnUrl") || "/partner-portal";
 
-export default function SignInPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setError("Invalid username/password.");
+    setError(null);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/auth/sign-in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+          returnUrl,
+          loginType: "partner",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Authentication failed. Please verify credentials.");
+        return;
+      }
+
+      // Successful login -> navigate to returned safe return URL
+      router.push(data.returnUrl || "/partner-portal");
+      router.refresh();
+    } catch (err: any) {
+      console.error("Sign-in error", err);
+      setError("Unable to connect to OmniPriv security gateway. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
-    <>
-      <section className="flex min-h-[calc(100svh-72px)] items-center py-12">
-        <div className="container-xl">
-          <div className="mx-auto w-full max-w-md">
-            <h1 className="op-h1 mb-8 text-center">OmniPriv Partner Portal</h1>
+    <section className="relative min-h-screen flex items-center justify-center py-16 px-4 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-grid opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/60 dark:from-[#030711]/60 via-white/85 dark:via-[#030711]/85 to-white dark:to-[#030711]" />
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, rgba(0,184,255,0.09) 0%, transparent 65%)" }}
+      />
 
-            <div className={`${cardClass} p-6 sm:p-8 shadow-[0_1px_2px_rgba(10,22,40,0.04),0_16px_40px_-20px_rgba(10,22,40,0.18)] dark:shadow-none`}>
-              <p className="text-[0.9375rem] leading-[1.65] text-slate-600 dark:text-slate-400">
-                Enter the credentials provided by your account team.
-              </p>
+      <div className="w-full max-w-md relative z-10 flex flex-col items-center">
+        {/* Logo mark */}
+        <Link href="/" className="flex items-center gap-2.5 mb-8">
+          <div className="icon-wrapper w-10 h-10 rounded-xl">
+            <Shield className="w-5 h-5 text-[#00B8FF]" />
+          </div>
+          <span
+            className="text-xl font-extrabold text-slate-950 dark:text-white tracking-tight"
+            style={{ fontFamily: "var(--font-syne)" }}
+          >
+            OmniPriv
+          </span>
+        </Link>
 
-              <div className="mt-6 flex items-start gap-3 rounded-xl border border-[#00667A]/20 bg-[#00B8DB]/[0.06] p-4 dark:border-[#00B8DB]/20">
-                <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#00667A] dark:text-[#00B8DB]" aria-hidden="true" />
-                <p className="text-sm leading-[1.6] text-slate-700 dark:text-slate-300">
-                  OmniPriv is an enterprise platform. Sign-in credentials are
-                  issued exclusively by our sales team after your account is
-                  provisioned. If you don&apos;t have credentials yet, contact
-                  sales below.
-                </p>
+        {/* Card */}
+        <div className="w-full rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100/90 dark:bg-[#0A1628]/90 backdrop-blur-xl p-8 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
+          <div className="text-center mb-6">
+            <div className="badge-cyan mx-auto mb-3">Partner Portal</div>
+            <h1
+              className="text-2xl font-extrabold text-slate-950 dark:text-white mb-1.5"
+              style={{ fontFamily: "var(--font-syne)" }}
+            >
+              Partner Sign In
+            </h1>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Sign in with your corporate partner credentials.
+            </p>
+          </div>
+
+          {/* Form */}
+          <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+            {error && (
+              <div className="flex items-start gap-2.5 p-3 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-xs leading-relaxed">
+                <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>{error}</span>
               </div>
+            )}
 
-              <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
-                {error && (
-                  <div
-                    role="alert"
-                    className="flex items-center gap-2.5 rounded-xl border border-red-500/30 bg-red-500/[0.08] p-3 text-sm text-red-700 dark:text-red-300"
-                  >
-                    <AlertCircle className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                    {error}
-                  </div>
-                )}
-                <div>
-                  <label htmlFor="email" className={labelClass}>
-                    Work Email
-                  </label>
-                  <div className="relative">
-                    <Mail className={fieldIcon} aria-hidden="true" />
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      required
-                      placeholder="you@company.com"
-                      className="input-dark !pl-10"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="password" className={labelClass}>
-                    Password
-                  </label>
-                  <div className="relative">
-                    <Lock className={fieldIcon} aria-hidden="true" />
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      autoComplete="current-password"
-                      required
-                      placeholder="••••••••••••"
-                      className="input-dark !pl-10"
-                    />
-                  </div>
-                </div>
-
-                <button type="submit" className="btn-primary w-full justify-center">
-                  Sign In <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </button>
-              </form>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider"
+              >
+                Work Email or Username
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  autoComplete="username"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@company.com"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/70 dark:bg-white/[0.05] border border-slate-900/[0.12] dark:border-white/[0.1] text-slate-950 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-[#00B8FF]/60 transition-all"
+                />
+              </div>
             </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••••••"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/70 dark:bg-white/[0.05] border border-slate-900/[0.12] dark:border-white/[0.1] text-slate-950 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-[#00B8FF]/60 transition-all"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full justify-center py-3 mt-3 font-semibold shadow-md disabled:opacity-60"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  Authenticating...
+                </>
+              ) : (
+                <>
+                  Sign In to Partner Portal <ArrowRight className="w-4 h-4 ml-1" />
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* New partner company CTA */}
+          <div className="mt-6 pt-6 border-t border-slate-200 dark:border-white/[0.08] text-center">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
+              Represent a new security reseller, MSP, or system integrator?
+            </p>
+            <Link
+              href="/sign-up"
+              className="btn-secondary w-full justify-center py-2.5 text-xs font-semibold text-cyan-600 dark:text-cyan-400 border-cyan-500/20 hover:border-cyan-500/50"
+            >
+              <Building className="w-3.5 h-3.5 mr-1.5" />
+              Register Your Partner Organization
+            </Link>
           </div>
         </div>
-      </section>
 
-      <section className="pb-12">
-        <div className="container-xl">
-          <div className="mx-auto w-full max-w-md">
-            <div className="my-8 flex items-center gap-4">
-              <div className="h-px flex-1 bg-slate-900/[0.08] dark:bg-white/[0.08]" />
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                Don&apos;t have access yet?
-              </span>
-              <div className="h-px flex-1 bg-slate-900/[0.08] dark:bg-white/[0.08]" />
-            </div>
-
-            <div className={`${cardClass} p-6`}>
-              <div className="icon-wrapper mb-4">
-                <Mail className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <h2 className="op-card-title">Get Your Credentials from Sales</h2>
-              <p className="op-card-text mt-2">
-                OmniPriv accounts are provisioned by our sales team. Reach out to
-                start an evaluation or request access for your organisation.
-              </p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <Link href="/demo" className="btn-primary btn-sm">
-                  Schedule a Demo <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link href="/demo" className="btn-secondary btn-sm">
-                  Contact Sales
-                </Link>
-              </div>
-            </div>
-          </div>
+        {/* Dedicated Channel Admin link */}
+        <div className="mt-6 text-center">
+          <Link
+            href="/channel-admin/login"
+            className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors inline-flex items-center gap-1.5"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-cyan-500" />
+            <span>OmniPriv Internal Team? Go to Channel Admin Console</span>
+          </Link>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SignInContent />
+    </Suspense>
   );
 }
