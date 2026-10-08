@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { usePartnerPortal, StatusChip, EmptyState, LoadingSkeleton } from "@/components/partner-portal/PartnerPortalContext";
 import { DealRegistration } from "@/lib/partner-portal/types";
 import {
@@ -9,37 +10,48 @@ import {
   Search,
   Filter,
   AlertTriangle,
-  CheckCircle2,
   Calendar,
   DollarSign,
+  ShieldCheck,
+  Building2,
+  Clock,
   ArrowRight,
+  ExternalLink,
+  Info,
+  Copy,
+  Check,
+  Layers,
+  Sparkles,
+  TrendingUp,
+  Percent,
+  User,
+  Mail,
+  Phone,
+  Globe,
+  ChevronRight,
   X,
-  ShieldAlert,
 } from "lucide-react";
 
-export default function DealsPage() {
-  const { profile, can, refreshKey, refresh } = usePartnerPortal();
+function getPartnerMargins(tier?: string) {
+  const t = (tier || "Registered").toLowerCase();
+  if (t === "platinum") return { base: 30, rebate: 12, total: 42, label: "Platinum" };
+  if (t === "gold") return { base: 25, rebate: 10, total: 35, label: "Gold" };
+  if (t === "silver") return { base: 20, rebate: 8, total: 28, label: "Silver" };
+  return { base: 15, rebate: 5, total: 20, label: "Registered" };
+}
+
+export default function MyDealsPage() {
+  const { profile, tierInfo, refreshKey } = usePartnerPortal();
   const [deals, setDeals] = useState<DealRegistration[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isWizardOpen, setIsWizardOpen] = useState(false);
-  const [wizardStep, setWizardStep] = useState(1);
-  const [submitting, setSubmitting] = useState(false);
-  const [conflictAlert, setConflictAlert] = useState<string | null>(null);
+  const [selectedDeal, setSelectedDeal] = useState<DealRegistration | null>(null);
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const [activeModalTab, setActiveModalTab] = useState<"overview" | "commercial" | "protection">("overview");
 
-  // Form State
-  const [formData, setFormData] = useState({
-    customer_name: "",
-    customer_domain: "",
-    customer_country: "United Kingdom",
-    opportunity_name: "",
-    estimated_value_usd: "75000",
-    estimated_close_date: "2026-09-30",
-    estimated_seats: "250",
-    license_model: "Annual Subscription" as "Annual Subscription" | "Perpetual" | "MSP Consumption",
-    target_products: ["Credential Management", "Secure Remote Access"],
-  });
+  const currentTier = tierInfo?.tier || profile?.current_tier || "Registered";
+  const margins = getPartnerMargins(currentTier);
 
   useEffect(() => {
     async function loadDeals() {
@@ -63,105 +75,221 @@ export default function DealsPage() {
     loadDeals();
   }, [statusFilter, searchQuery, refreshKey]);
 
-  async function handleSubmitDeal(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitting(true);
-    setConflictAlert(null);
+  // Aggregate metrics
+  const metrics = useMemo(() => {
+    const totalCount = deals.length;
+    const totalArr = deals.reduce((acc, d) => acc + (Number(d.estimated_value_usd) || 0), 0);
+    const awaitingReview = deals.filter((d) => d.status === "awaiting_approval");
+    const protectedDeals = deals.filter((d) => d.status === "approved");
+    const wonDeals = deals.filter((d) => d.status === "closed_won");
 
-    try {
-      const res = await fetch("/api/partner/deals", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          estimated_value_usd: Number(formData.estimated_value_usd),
-          estimated_seats: Number(formData.estimated_seats),
-          partner_org_id: profile?.partner_org_id,
-        }),
-      });
+    const protectedArr = protectedDeals.reduce((acc, d) => acc + (Number(d.estimated_value_usd) || 0), 0);
+    const wonArr = wonDeals.reduce((acc, d) => acc + (Number(d.estimated_value_usd) || 0), 0);
 
-      const data = await res.json();
-      if (!res.ok) {
-        alert(data.error || "Failed to submit deal.");
-      } else {
-        if (data.deal.conflict_detected) {
-          setConflictAlert(data.deal.conflict_notes || "A registration overlap was detected. The submission has been placed under Channel Review.");
-        }
-        refresh();
-        setIsWizardOpen(false);
-        setWizardStep(1);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Submission error");
-    } finally {
-      setSubmitting(false);
-    }
+    return {
+      totalCount,
+      totalArr,
+      awaitingCount: awaitingReview.length,
+      protectedCount: protectedDeals.length,
+      protectedArr,
+      wonCount: wonDeals.length,
+      wonArr,
+    };
+  }, [deals]);
+
+  function copyToClipboard(text: string, e?: React.MouseEvent) {
+    if (e) e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedCode(text);
+    setTimeout(() => setCopiedCode(null), 2000);
+  }
+
+  function getDaysRemaining(expiryDateStr?: string | null) {
+    if (!expiryDateStr) return null;
+    const expiry = new Date(expiryDateStr).getTime();
+    const now = Date.now();
+    const diffDays = Math.ceil((expiry - now) / (1000 * 60 * 60 * 24));
+    return diffDays;
   }
 
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-white/[0.08] pb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-white/[0.08] pb-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Deals
-          </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-            Register and track customer opportunities. Approved deals receive the commercial protection defined by the OmniPriv partner program.
+          <div className="flex items-center gap-3 mb-1">
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              My Deals
+            </h1>
+            <span className="text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+              {metrics.totalCount} Registered Opportunities
+            </span>
+          </div>
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Commercial pipeline and protected customer accounts registered by{" "}
+            <span className="font-semibold text-slate-800 dark:text-slate-200">
+              {profile?.company_name || "your organization"}
+            </span>
+            .
           </p>
         </div>
 
-        {can("channel.deal.create") && (
-          <button
-            onClick={() => {
-              setConflictAlert(null);
-              setIsWizardOpen(true);
-            }}
-            className="btn-primary text-xs px-4 py-2.5 rounded-lg flex items-center gap-2 self-start sm:self-auto font-semibold shadow-sm"
+        <div className="flex items-center gap-3">
+          <Link
+            href="/partner-portal/deals/new"
+            className="btn-primary text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 font-semibold shadow-md shadow-cyan-500/10 hover:shadow-cyan-500/20 transition-all"
           >
             <Plus className="w-4 h-4" />
-            Register Deal
-          </button>
-        )}
+            <span>Register a Deal</span>
+          </Link>
+        </div>
       </div>
 
-      {conflictAlert && (
-        <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-900 dark:text-amber-200 text-xs flex items-start gap-3">
-          <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-          <div>
-            <div className="font-bold mb-0.5">Commercial Conflict Notice</div>
-            <div className="leading-relaxed">{conflictAlert}</div>
+      {/* Pipeline Metric Ribbon */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <span>Total Pipeline ARR</span>
+            <DollarSign className="w-4 h-4 text-cyan-500" />
+          </div>
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+            ${metrics.totalArr.toLocaleString()}
+          </div>
+          <div className="text-[11px] text-slate-400 mt-1 font-mono">
+            {metrics.totalCount} total opportunities
           </div>
         </div>
-      )}
 
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#0A1628] p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-sm">
-        <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Search by customer, deal code, or opportunity..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500"
-          />
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <span>Active Protection</span>
+            <ShieldCheck className="w-4 h-4 text-emerald-500" />
+          </div>
+          <div className="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">
+            ${metrics.protectedArr.toLocaleString()}
+          </div>
+          <div className="text-[11px] text-emerald-600/80 dark:text-emerald-400/80 mt-1 font-medium">
+            {metrics.protectedCount} locked accounts (90-day safe)
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Filter className="w-3.5 h-3.5 text-slate-400" />
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] text-xs rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <span>Awaiting Review</span>
+            <Clock className="w-4 h-4 text-amber-500" />
+          </div>
+          <div className="text-xl sm:text-2xl font-black text-amber-600 dark:text-amber-400">
+            {metrics.awaitingCount}
+          </div>
+          <div className="text-[11px] text-slate-400 mt-1">
+            OmniPriv SecOps arbitration queue
+          </div>
+        </div>
+
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <span>Closed Won ARR</span>
+            <TrendingUp className="w-4 h-4 text-[#00B8FF]" />
+          </div>
+          <div className="text-xl sm:text-2xl font-black text-[#00B8FF]">
+            ${metrics.wonArr.toLocaleString()}
+          </div>
+          <div className="text-[11px] text-slate-400 mt-1">
+            {metrics.wonCount} finalized subscriptions
+          </div>
+        </div>
+      </div>
+
+      {/* Filter and Quick Chips Bar */}
+      <div className="space-y-3">
+        {/* Quick Filter Chips */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs no-scrollbar">
+          <button
+            onClick={() => setStatusFilter("all")}
+            className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
+              statusFilter === "all"
+                ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-cyan-500/40"
+            }`}
           >
-            <option value="all">All Statuses</option>
-            <option value="approved">Approved</option>
-            <option value="under_review">Under Review</option>
-            <option value="submitted">Submitted</option>
-            <option value="declined">Declined</option>
-          </select>
+            <span>All Deals</span>
+            <span className="opacity-70 font-mono">({metrics.totalCount})</span>
+          </button>
+          <button
+            onClick={() => setStatusFilter("awaiting_approval")}
+            className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
+              statusFilter === "awaiting_approval"
+                ? "bg-amber-500 text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-amber-500/40"
+            }`}
+          >
+            <Clock className="w-3 h-3 text-amber-500" />
+            <span>Awaiting Review</span>
+            <span className="opacity-70 font-mono">({metrics.awaitingCount})</span>
+          </button>
+          <button
+            onClick={() => setStatusFilter("approved")}
+            className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
+              statusFilter === "approved"
+                ? "bg-emerald-500 text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-emerald-500/40"
+            }`}
+          >
+            <ShieldCheck className="w-3 h-3 text-emerald-500" />
+            <span>Active Protection</span>
+            <span className="opacity-70 font-mono">({metrics.protectedCount})</span>
+          </button>
+          <button
+            onClick={() => setStatusFilter("closed_won")}
+            className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
+              statusFilter === "closed_won"
+                ? "bg-[#00B8FF] text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8FF]/40"
+            }`}
+          >
+            <span>Closed Won</span>
+            <span className="opacity-70 font-mono">({metrics.wonCount})</span>
+          </button>
+          <button
+            onClick={() => setStatusFilter("declined")}
+            className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 ${
+              statusFilter === "declined"
+                ? "bg-rose-500 text-white font-bold shadow-sm"
+                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-rose-500/40"
+            }`}
+          >
+            Declined
+          </button>
+        </div>
+
+        {/* Search Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#0A1628] p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-sm">
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Search by customer, deal reference code (DR-...), or opportunity title..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-all"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 p-0.5"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
+            <Percent className="w-3.5 h-3.5 text-cyan-500" />
+            <span>Your Effective Tier Margin:</span>
+            <span className="font-bold text-slate-900 dark:text-white font-mono bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20">
+              {margins.total}% ({margins.base}% base + {margins.rebate}% deal reg)
+            </span>
+          </div>
         </div>
       </div>
 
@@ -170,257 +298,426 @@ export default function DealsPage() {
         <LoadingSkeleton rows={5} />
       ) : deals.length === 0 ? (
         <EmptyState
-          title="No deals have been registered yet"
-          description="Register an opportunity to request deal protection. Once approved, the deal is locked against competitor registration for 90 days."
-          actionLabel="Register an Opportunity"
-          onAction={() => setIsWizardOpen(true)}
+          title={statusFilter !== "all" || searchQuery ? "No matching deals found" : "No deals registered yet"}
+          description={
+            statusFilter !== "all" || searchQuery
+              ? "Try adjusting your search criteria or resetting the status filter."
+              : "Register your customer opportunities to lock in 90-day account protection and guarantee deal registration margin discounts."
+          }
+          actionLabel={statusFilter !== "all" || searchQuery ? "Clear Filters" : "Register Your First Opportunity"}
+          onAction={() => {
+            if (statusFilter !== "all" || searchQuery) {
+              setStatusFilter("all");
+              setSearchQuery("");
+            } else {
+              window.location.assign("/partner-portal/deals/new");
+            }
+          }}
         />
       ) : (
         <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 uppercase font-semibold">
+              <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 dark:text-slate-400 uppercase font-semibold text-[11px] tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-4">Opportunity</th>
-                  <th className="py-3.5 px-4">Customer</th>
-                  <th className="py-3.5 px-4">Estimated Value</th>
-                  <th className="py-3.5 px-4">Close Date</th>
-                  <th className="py-3.5 px-4">Protection Expires</th>
+                  <th className="py-3.5 px-4">Opportunity & Customer</th>
                   <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4">Owner</th>
+                  <th className="py-3.5 px-4">Target Product</th>
+                  <th className="py-3.5 px-4">Est. Value (ARR)</th>
+                  <th className="py-3.5 px-4">Estimated Margin</th>
+                  <th className="py-3.5 px-4">Protection Expiry</th>
+                  <th className="py-3.5 px-4">Est. Close</th>
+                  <th className="py-3.5 px-4 text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-white/[0.05]">
-                {deals.map((deal) => (
-                  <tr key={deal.id} className="hover:bg-slate-50/70 dark:hover:bg-white/[0.02] transition-colors">
-                    <td className="py-3.5 px-4">
-                      <div className="font-bold text-sm text-slate-900 dark:text-white">{deal.opportunity_name}</div>
-                      <div className="font-mono text-xs text-cyan-600 dark:text-cyan-400 mt-0.5">{deal.deal_code}</div>
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="font-semibold text-slate-800 dark:text-slate-200">{deal.customer_name}</div>
-                      <div className="text-xs text-slate-400">{deal.customer_country}</div>
-                    </td>
-                    <td className="py-3.5 px-4 font-bold text-slate-900 dark:text-white">
-                      ${deal.estimated_value_usd.toLocaleString()}
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300">
-                      {deal.estimated_close_date}
-                    </td>
-                    <td className="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">
-                      {deal.deal_protection_expiry || "—"}
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-1.5">
-                        <StatusChip status={deal.status} />
-                        {deal.conflict_detected && (
-                          <span title={deal.conflict_notes} className="text-amber-500 cursor-help">
-                            <AlertTriangle className="w-3.5 h-3.5" />
+                {deals.map((deal) => {
+                  const estValue = Number(deal.estimated_value_usd) || 0;
+                  const estimatedMarginDollar = Math.round(estValue * (margins.total / 100));
+                  const expiryDate = deal.protection_expires_at || deal.deal_protection_expiry;
+                  const daysRemaining = getDaysRemaining(expiryDate);
+                  const isProtected = deal.status === "approved" && daysRemaining !== null && daysRemaining > 0;
+
+                  return (
+                    <tr
+                      key={deal.id}
+                      onClick={() => setSelectedDeal(deal)}
+                      className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer group"
+                    >
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5 group-hover:text-cyan-500 transition-colors">
+                          <span>{deal.opportunity_name}</span>
+                          {deal.conflict_detected && (
+                            <span
+                              title={deal.conflict_notes || "Domain conflict detected"}
+                              className="text-amber-500 flex items-center gap-0.5 bg-amber-500/10 px-1.5 py-0.5 rounded text-[10px] font-medium"
+                            >
+                              <AlertTriangle className="w-3 h-3" />
+                              Conflict
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2 mt-1 text-slate-500 dark:text-slate-400">
+                          <span className="font-medium text-slate-700 dark:text-slate-300">
+                            {deal.customer_name}
                           </span>
+                          <span>•</span>
+                          <span className="text-[11px] font-mono text-slate-400">
+                            {deal.customer_domain}
+                          </span>
+                          <span>•</span>
+                          <button
+                            type="button"
+                            onClick={(e) => copyToClipboard(deal.deal_code, e)}
+                            className="font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-300 flex items-center gap-1 bg-cyan-500/10 px-1.5 py-0.5 rounded transition-all"
+                            title="Click to copy Deal Reference Code"
+                          >
+                            <span>{deal.deal_code}</span>
+                            {copiedCode === deal.deal_code ? (
+                              <Check className="w-3 h-3 text-emerald-400" />
+                            ) : (
+                              <Copy className="w-2.5 h-2.5 opacity-60" />
+                            )}
+                          </button>
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <StatusChip status={deal.status} />
+                      </td>
+
+                      <td className="py-3.5 px-4 text-slate-700 dark:text-slate-300">
+                        <div className="font-medium truncate max-w-[190px]">
+                          {Array.isArray(deal.target_products) ? deal.target_products[0] : "OmniPriv Enterprise PAM"}
+                        </div>
+                        <div className="text-[11px] text-slate-400">
+                          {deal.license_model || "Annual Subscription"}
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4 font-bold text-slate-900 dark:text-white font-mono text-sm">
+                        ${estValue.toLocaleString()} USD
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+                          ~${estimatedMarginDollar.toLocaleString()}
+                        </div>
+                        <div className="text-[10px] text-slate-400 font-medium">
+                          {margins.total}% effective
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        {deal.status === "approved" && expiryDate ? (
+                          isProtected ? (
+                            <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-1 rounded-md border border-emerald-500/20 w-fit">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                              <ShieldCheck className="w-3.5 h-3.5" />
+                              <span>{daysRemaining}d left</span>
+                            </div>
+                          ) : (
+                            <div className="text-slate-400 font-medium">Expired</div>
+                          )
+                        ) : deal.status === "declined" ? (
+                          <span className="text-rose-500 font-medium">Protection Denied</span>
+                        ) : (
+                          <div className="flex items-center gap-1 text-amber-500 font-medium">
+                            <Clock className="w-3 h-3" />
+                            <span>Pending Review</span>
+                          </div>
                         )}
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-500">
-                      {deal.created_by_user_name}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+
+                      <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300 font-medium">
+                        {deal.estimated_close_date
+                          ? new Date(deal.estimated_close_date).toLocaleDateString()
+                          : "—"}
+                      </td>
+
+                      <td className="py-3.5 px-4 text-right">
+                        <button
+                          onClick={() => setSelectedDeal(deal)}
+                          className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-300 group-hover:translate-x-0.5 transition-all inline-flex items-center gap-1"
+                        >
+                          <span>View Details</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
       )}
 
-      {/* 3-Step Deal Registration Wizard Modal */}
-      {isWizardOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden">
+      {/* Upgraded Deal Detail Inspection Modal */}
+      {selectedDeal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 sm:p-7 max-w-2xl w-full shadow-2xl space-y-5 text-xs animate-in fade-in zoom-in-95 duration-150">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-200 dark:border-white/[0.08]">
+            <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-4">
               <div>
-                <h2 className="text-base font-bold text-slate-900 dark:text-white">
-                  Register Opportunity
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="font-mono text-xs font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20">
+                    {selectedDeal.deal_code}
+                  </span>
+                  <StatusChip status={selectedDeal.status} />
+                  {selectedDeal.conflict_detected && (
+                    <span className="bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded text-[11px] font-semibold flex items-center gap-1 border border-amber-500/20">
+                      <AlertTriangle className="w-3 h-3" />
+                      Conflict Flagged
+                    </span>
+                  )}
+                </div>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                  {selectedDeal.opportunity_name}
                 </h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Step {wizardStep} of 3: {wizardStep === 1 ? "Deal Details" : wizardStep === 2 ? "Product and Scope" : "Review and Submit"}
-                </p>
+                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mt-1">
+                  <Building2 className="w-3.5 h-3.5" />
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">
+                    {selectedDeal.customer_name}
+                  </span>
+                  <span>•</span>
+                  <Globe className="w-3.5 h-3.5" />
+                  <span>{selectedDeal.customer_domain}</span>
+                </div>
               </div>
               <button
-                onClick={() => setIsWizardOpen(false)}
-                className="text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                onClick={() => setSelectedDeal(null)}
+                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-white/[0.06] text-slate-400 hover:text-white transition-colors"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Modal Body */}
-            <form onSubmit={handleSubmitDeal} className="p-6 space-y-4">
-              {wizardStep === 1 && (
-                <div className="space-y-3.5">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Customer / Prospect Legal Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Apex Financial Corp"
-                      value={formData.customer_name}
-                      onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                    />
-                  </div>
+            {/* Modal Tabs */}
+            <div className="flex items-center gap-2 border-b border-slate-100 dark:border-white/[0.08] pb-2">
+              <button
+                onClick={() => setActiveModalTab("overview")}
+                className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+                  activeModalTab === "overview"
+                    ? "bg-slate-900 text-white dark:bg-white/10 dark:text-white font-bold"
+                    : "text-slate-500 dark:text-slate-400 hover:text-white"
+                }`}
+              >
+                Opportunity Scope
+              </button>
+              <button
+                onClick={() => setActiveModalTab("commercial")}
+                className={`px-3 py-1.5 rounded-lg font-medium transition-colors flex items-center gap-1.5 ${
+                  activeModalTab === "commercial"
+                    ? "bg-slate-900 text-white dark:bg-white/10 dark:text-white font-bold"
+                    : "text-slate-500 dark:text-slate-400 hover:text-white"
+                }`}
+              >
+                <DollarSign className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Commercial & Margin</span>
+              </button>
+              <button
+                onClick={() => setActiveModalTab("protection")}
+                className={`px-3 py-1.5 rounded-lg font-medium transition-colors flex items-center gap-1.5 ${
+                  activeModalTab === "protection"
+                    ? "bg-slate-900 text-white dark:bg-white/10 dark:text-white font-bold"
+                    : "text-slate-500 dark:text-slate-400 hover:text-white"
+                }`}
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-[#00B8FF]" />
+                <span>Protection Status</span>
+              </button>
+            </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Customer Primary Domain *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. apexfinancial.com"
-                      value={formData.customer_domain}
-                      onChange={(e) => setFormData({ ...formData, customer_domain: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Opportunity Title *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Zero-Trust Hybrid Bastion Replacement"
-                      value={formData.opportunity_name}
-                      onChange={(e) => setFormData({ ...formData, opportunity_name: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                        Country
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.customer_country}
-                        onChange={(e) => setFormData({ ...formData, customer_country: e.target.value })}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                      />
+            {/* Tab 1: Overview */}
+            {activeModalTab === "overview" && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
+                    <div className="text-slate-500 dark:text-slate-400 text-[11px] mb-1">Target Product</div>
+                    <div className="font-bold text-slate-900 dark:text-white">
+                      {Array.isArray(selectedDeal.target_products)
+                        ? selectedDeal.target_products.join(", ")
+                        : selectedDeal.target_products || "OmniPriv Enterprise PAM"}
                     </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                        Estimated Close Date
-                      </label>
-                      <input
-                        type="date"
-                        value={formData.estimated_close_date}
-                        onChange={(e) => setFormData({ ...formData, estimated_close_date: e.target.value })}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                      />
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
+                    <div className="text-slate-500 dark:text-slate-400 text-[11px] mb-1">Licensing Model</div>
+                    <div className="font-bold text-slate-900 dark:text-white">
+                      {selectedDeal.license_model || "Annual Subscription"}
+                    </div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
+                    <div className="text-slate-500 dark:text-slate-400 text-[11px] mb-1">Estimated Close Date</div>
+                    <div className="font-bold text-slate-900 dark:text-white">
+                      {selectedDeal.estimated_close_date
+                        ? new Date(selectedDeal.estimated_close_date).toLocaleDateString()
+                        : "Not specified"}
+                    </div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
+                    <div className="text-slate-500 dark:text-slate-400 text-[11px] mb-1">Estimated Privileged Seats</div>
+                    <div className="font-bold text-slate-900 dark:text-white">
+                      {selectedDeal.estimated_seats || "50-250 seats"}
                     </div>
                   </div>
                 </div>
-              )}
 
-              {wizardStep === 2 && (
-                <div className="space-y-3.5">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Estimated Deal Value (USD) *
-                    </label>
-                    <input
-                      type="number"
-                      required
-                      value={formData.estimated_value_usd}
-                      onChange={(e) => setFormData({ ...formData, estimated_value_usd: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                    />
+                {/* Customer Contact Card */}
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
+                  <div className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-cyan-500" />
+                    <span>Customer Decision Maker / Point of Contact</span>
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Estimated Privileged Seats / Nodes
-                    </label>
-                    <input
-                      type="number"
-                      value={formData.estimated_seats}
-                      onChange={(e) => setFormData({ ...formData, estimated_seats: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      License Model
-                    </label>
-                    <select
-                      value={formData.license_model}
-                      onChange={(e) => setFormData({ ...formData, license_model: e.target.value as any })}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs"
-                    >
-                      <option value="Annual Subscription">Annual Subscription (Recommended)</option>
-                      <option value="Perpetual">Perpetual License + Annual Maintenance</option>
-                      <option value="MSP Consumption">MSP Monthly Consumption</option>
-                    </select>
+                  <div className="grid grid-cols-2 gap-2 text-slate-600 dark:text-slate-300">
+                    <div>
+                      <span className="text-slate-400">Contact:</span>{" "}
+                      <span className="font-medium text-slate-900 dark:text-white">
+                        {selectedDeal.customer_contact_name || "Enterprise IT Team"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Email:</span>{" "}
+                      <span className="font-mono text-cyan-600 dark:text-cyan-400">
+                        {selectedDeal.customer_contact_email || "Not specified"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Industry:</span>{" "}
+                      <span>{selectedDeal.customer_industry || "Enterprise"}</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Country:</span>{" "}
+                      <span>{selectedDeal.customer_country || "United States"}</span>
+                    </div>
                   </div>
                 </div>
-              )}
+              </div>
+            )}
 
-              {wizardStep === 3 && (
-                <div className="space-y-3 text-xs bg-slate-50 dark:bg-white/[0.02] p-4 rounded-xl border border-slate-200 dark:border-white/[0.05]">
-                  <div className="font-bold text-slate-900 dark:text-white mb-2">
-                    Submission Summary Snapshot
+            {/* Tab 2: Commercial & Margin */}
+            {activeModalTab === "commercial" && (
+              <div className="space-y-4">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-transparent border border-emerald-500/20">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-slate-400 uppercase tracking-wider text-[10px] font-bold">
+                      Calculated Commercial Return ({margins.label} Tier)
+                    </span>
+                    <span className="font-mono text-xs font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded border border-emerald-500/30">
+                      {margins.total}% Total Margin
+                    </span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2.5 text-slate-600 dark:text-slate-300">
-                    <div><span className="text-slate-400">Customer:</span> {formData.customer_name}</div>
-                    <div><span className="text-slate-400">Domain:</span> {formData.customer_domain}</div>
-                    <div><span className="text-slate-400">Estimated Value:</span> ${Number(formData.estimated_value_usd).toLocaleString()}</div>
-                    <div><span className="text-slate-400">Target Seats:</span> {formData.estimated_seats}</div>
-                    <div><span className="text-slate-400">Model:</span> {formData.license_model}</div>
-                    <div><span className="text-slate-400">Close Date:</span> {formData.estimated_close_date}</div>
+
+                  <div className="grid grid-cols-3 gap-3 my-3 text-center">
+                    <div className="p-2.5 rounded-lg bg-black/20 border border-white/5">
+                      <div className="text-[10px] text-slate-400">Total ARR</div>
+                      <div className="text-sm font-black text-white font-mono mt-0.5">
+                        ${Number(selectedDeal.estimated_value_usd).toLocaleString()}
+                      </div>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-black/20 border border-white/5">
+                      <div className="text-[10px] text-slate-400">Base Margin ({margins.base}%)</div>
+                      <div className="text-sm font-black text-slate-200 font-mono mt-0.5">
+                        ${Math.round(Number(selectedDeal.estimated_value_usd) * (margins.base / 100)).toLocaleString()}
+                      </div>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-black/20 border border-emerald-500/20">
+                      <div className="text-[10px] text-emerald-400 font-semibold">Deal Reg Bonus (+{margins.rebate}%)</div>
+                      <div className="text-sm font-black text-emerald-400 font-mono mt-0.5">
+                        +${Math.round(Number(selectedDeal.estimated_value_usd) * (margins.rebate / 100)).toLocaleString()}
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2.5 leading-relaxed">
-                    Upon submission, automated conflict arbitration will check for existing active registrations. Deal protection lock will apply for 90 days if approved.
-                  </p>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-emerald-500/20 text-xs">
+                    <span className="font-semibold text-slate-300">Net Partner Profit on Closing:</span>
+                    <span className="font-black text-base text-emerald-400 font-mono">
+                      ~${Math.round(Number(selectedDeal.estimated_value_usd) * (margins.total / 100)).toLocaleString()} USD
+                    </span>
+                  </div>
                 </div>
-              )}
 
-              {/* Wizard Nav Controls */}
-              <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-white/[0.08]">
-                {wizardStep > 1 ? (
-                  <button
-                    type="button"
-                    onClick={() => setWizardStep((s) => s - 1)}
-                    className="btn-secondary text-xs px-3 py-2 rounded-lg"
-                  >
-                    Back
-                  </button>
-                ) : <div />}
+                <div className="text-[11px] text-slate-400 leading-relaxed p-3 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
+                  <strong className="text-slate-300">Commercial Margin Rule:</strong> Approved deal registrations protect your pricing quotation. If another partner attempts to quote this domain during your protection window, OmniPriv grants deal registration rebate discounts exclusively to your account.
+                </div>
+              </div>
+            )}
 
-                {wizardStep < 3 ? (
-                  <button
-                    type="button"
-                    onClick={() => setWizardStep((s) => s + 1)}
-                    className="btn-primary text-xs px-4 py-2 rounded-lg font-semibold"
-                  >
-                    Continue
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="btn-primary text-xs px-4 py-2 rounded-lg flex items-center gap-1.5 font-semibold"
-                  >
-                    {submitting ? "Submitting..." : "Submit for Deal Protection"}
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </button>
+            {/* Tab 3: Protection Status & Governance */}
+            {activeModalTab === "protection" && (
+              <div className="space-y-3">
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05] space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400">Protection Lock Expiry:</span>
+                    <span className="font-bold text-slate-900 dark:text-white">
+                      {selectedDeal.protection_expires_at || selectedDeal.deal_protection_expiry
+                        ? new Date(selectedDeal.protection_expires_at || selectedDeal.deal_protection_expiry!).toLocaleDateString()
+                        : "Awaiting Channel Admin Approval"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400">Submission Timestamp:</span>
+                    <span className="font-mono text-slate-300">
+                      {new Date(selectedDeal.created_at).toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400">Protection Extension Count:</span>
+                    <span className="font-semibold text-slate-200">
+                      {(selectedDeal as any).extension_count || 0} / 2 Allowed
+                    </span>
+                  </div>
+                </div>
+
+                {selectedDeal.conflict_detected && (
+                  <div className="p-3 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs">
+                    <div className="font-bold flex items-center gap-1.5 mb-1">
+                      <AlertTriangle className="w-4 h-4" />
+                      Domain Conflict Notice
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-normal">
+                      {selectedDeal.conflict_notes || "Another partner organization holds or recently registered an opportunity with this customer domain. OmniPriv Channel Management arbitrates protection rights."}
+                    </p>
+                  </div>
+                )}
+
+                {selectedDeal.review_notes && (
+                  <div className="p-3.5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50 dark:bg-white/[0.02]">
+                    <div className="font-bold text-slate-900 dark:text-white mb-1">OmniPriv Channel Admin Review Notes:</div>
+                    <div className="text-slate-600 dark:text-slate-300">{selectedDeal.review_notes}</div>
+                  </div>
                 )}
               </div>
-            </form>
+            )}
+
+            {/* Modal Footer */}
+            <div className="pt-3 border-t border-slate-100 dark:border-white/[0.08] flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => copyToClipboard(selectedDeal.deal_code)}
+                className="btn-secondary text-xs px-3 py-2 rounded-xl flex items-center gap-1.5 font-medium"
+              >
+                {copiedCode === selectedDeal.deal_code ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Copied Reference!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Copy Deal Ref ({selectedDeal.deal_code})</span>
+                  </>
+                )}
+              </button>
+
+              <button
+                onClick={() => setSelectedDeal(null)}
+                className="btn-secondary text-xs px-4 py-2 rounded-xl"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

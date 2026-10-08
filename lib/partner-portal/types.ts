@@ -28,6 +28,7 @@ export type LinkStatus = "pending" | "active" | "suspended" | "ended";
 export type DealStatus =
   | "draft"
   | "submitted"
+  | "awaiting_approval"
   | "under_review"
   | "approved"
   | "declined"
@@ -213,9 +214,17 @@ export interface DealRegistration {
   estimated_seats: number;
   license_model: "Perpetual" | "Annual Subscription" | "MSP Consumption";
   status: DealStatus;
-  deal_protection_expiry: string;
+  deal_protection_expiry?: string;
+  protection_expires_at?: string;
   conflict_detected: boolean;
   conflict_notes?: string;
+  customer_industry?: string;
+  customer_contact_name?: string;
+  customer_contact_email?: string;
+  customer_contact_phone?: string;
+  deployment_timeline?: string;
+  opportunity_source?: string;
+  partner_notes?: string;
   reviewer_id?: string;
   reviewer_name?: string;
   review_notes?: string;

@@ -280,8 +280,8 @@ async function runTests() {
     }
   );
   assert(
-    Boolean(testDeal && testDeal.deal_code && testDeal.status === "submitted" && testDeal.deal_protection_expiry),
-    "14a. Deal registration persists to PostgreSQL with 90-day protection window"
+    Boolean(testDeal && testDeal.deal_code && testDeal.status === "awaiting_approval" && !testDeal.protection_expires_at),
+    "14a. Deal registration persists to PostgreSQL in 'awaiting_approval' status without premature protection lock"
   );
 
   // Duplicate conflict test
@@ -303,6 +303,19 @@ async function runTests() {
     "14b. Duplicate domain conflict identified and flagged for Channel Admin review"
   );
 
+  // Channel Admin approval grants 90-day protection
+  const approvedDeal = await dbService.decideDealReview(
+    testDeal.id,
+    "approve",
+    syntheticAdminUsername,
+    "Synthetic Test Admin",
+    "Qualified enterprise opportunity verified. 90-day deal protection lock granted."
+  );
+  assert(
+    Boolean(approvedDeal && approvedDeal.status === "approved" && (approvedDeal.protection_expires_at || approvedDeal.deal_protection_expiry)),
+    "14c. Channel Admin approval grants 90-day protection lock and stores protection_expires_at in PostgreSQL"
+  );
+
   // =========================================================================
   // TEST 15: REAL DATABASE COMPUTED METRICS & STATUS GOVERNANCE
   // =========================================================================
@@ -321,6 +334,8 @@ async function runTests() {
   console.log("\n========================================================");
   console.log("ALL 15 COMPREHENSIVE SECURITY & AUDIT TESTS PASSED (100%)!");
   console.log("========================================================\n");
+
+  await getPool().end();
 }
 
 runTests()

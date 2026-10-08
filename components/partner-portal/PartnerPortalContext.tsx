@@ -120,7 +120,7 @@ export function StatusChip({ status }: { status: string }) {
   let style = "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700";
   if (["approved", "verified", "active", "renewed", "qualified", "closed won"].includes(norm)) {
     style = "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 border-emerald-300 dark:border-emerald-500/30";
-  } else if (["under review", "submitted", "pending", "working", "assigned", "in negotiation", "quote requested", "claim submitted"].includes(norm)) {
+  } else if (["under review", "submitted", "pending", "awaiting approval", "working", "assigned", "in negotiation", "quote requested", "claim submitted"].includes(norm)) {
     style = "bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400 border-amber-300 dark:border-amber-500/30";
   } else if (["declined", "suspended", "expired", "revoked", "closed lost", "disqualified", "lapsed"].includes(norm)) {
     style = "bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-400 border-rose-300 dark:border-rose-500/30";
