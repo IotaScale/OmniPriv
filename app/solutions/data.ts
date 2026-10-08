@@ -5,7 +5,7 @@ import { Bot, Cpu, Server, UserCheck } from "lucide-react";
  * Registry of solution pages.
  *
  * Each `app/solutions/<slug>/` page owns its own copy in a sibling `data.ts`;
- * this file holds only what a *list* of solutions needs — enough to build a
+ * this file holds only what a *list* of solutions needs, enough to build a
  * `/solutions` index, drive navigation, or generate a sitemap without
  * importing any page module.
  */

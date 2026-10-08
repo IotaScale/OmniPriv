@@ -89,6 +89,7 @@ carry their own line-heights.
 | Prop | Type | Default |
 |---|---|---|
 | `media` | `{ src, alt, priority?, sizes? }` | — |
+| `heading` | `ReactNode` | — (renders full width above the two columns) |
 | `children` | `ReactNode` | — (the copy column) |
 | `ratio` | `"even" \| "wide-first" \| "wide-last"` | `"even"` |
 | `height` | `"sm" \| "md" \| "video"` | `"sm"` |
@@ -104,6 +105,10 @@ its source. The frame carries `data-aos="fade-up"`. Default `sizes` is
 should be the wider one. Never put a dashboard screenshot in a fixed-height
 frame.
 
+**Pass the section heading through `heading`, not inside `children`.** Like
+`SplitHero`, the heading spans the full content width and the copy sits beside
+the image underneath it; a heading inside the copy column is the old layout.
+
 ### `SplitHero`
 
 | Prop | Type | Default |
@@ -111,13 +116,14 @@ frame.
 | `titleLead` | `ReactNode` | — |
 | `titleAccent` | `string` | — (rendered in `text-gradient`) |
 | `badge` | `string` | — |
-| `primary` | `{ href, label }` | — |
+| `primary` | `{ href, label }` (optional) | — |
 | `secondary` | `{ href, label }` | — |
 | `media` | `{ src, alt, priority? }` | — (`priority` forced true) |
 | `ratio` / `height` | as `MediaSplit` | `"wide-last"` / `"md"` |
 | `children` | `ReactNode` | — (between the `h1` and the buttons) |
 
-**Supplies its own padding (`pt-16 pb-20`) — do not wrap it in `Section`.**
+The heading spans the full content width above the copy/media columns. Supplies
+its own padding (`pt-16 pb-20`) — do not wrap it in `Section`.
 
 ### `IconCardGrid` / `IconCard`
 

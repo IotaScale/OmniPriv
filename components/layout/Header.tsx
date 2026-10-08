@@ -1,20 +1,21 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
-import LightBeamButton from "@/components/ui/LightBeamButton";
+import { solutions } from "@/app/solutions/data";
 import {
   Shield,
   ChevronDown,
   Menu,
   X,
   ArrowRight,
+  ArrowUpRight,
   Lock,
   Eye,
   Key,
-  UserCheck,
   Building2,
   Globe,
   BookOpen,
@@ -23,68 +24,46 @@ import {
   BarChart3,
   AlertTriangle,
   Download,
+  FileText,
+  ShieldCheck,
+  BrainCircuit,
 } from "lucide-react";
 
+/*
+ * Site header: a floating glass bar.
+ *
+ * - Desktop: one shared dropdown panel under the bar. Its content crossfades
+ *   between Platform / Solutions / Resources, and a single highlight pill
+ *   slides behind whichever top-level item is hovered. Opens on hover for
+ *   fine pointers (with a short close delay) and on click / keyboard for
+ *   everything else. Escape closes and returns focus.
+ * - Scroll: the bar gains a stronger surface once the page moves and stays
+ *   fixed from there — it never hides.
+ * - Mobile: full-screen sheet with staggered links.
+ *
+ * The wrapper carries no transform: any transform makes it the containing
+ * block for the fixed mobile sheet, which would collapse it.
+ *
+ * "Contact" was dropped from the top level: it pointed at /demo, the same
+ * place as the primary CTA, so the bar carried two buttons with one intent.
+ */
+
 const platformLinks = [
-  {
-    label: "AI-PAM Engine",
-    description: "ML detection, MCP agent governance",
-    href: "/ai-pam",
-    icon: Zap,
-  },
-  {
-    label: "Infrastructure & Deployment",
-    description: "On-premise, HA, clustered",
-    href: "/platform/infrastructure-deployment",
-    icon: Lock,
-  },
-  {
-    label: "Credential Management",
-    description: "Rotation, vault, SSH keys",
-    href: "/platform/password-credential-management",
-    icon: Key,
-  },
-  {
-    label: "Application Security",
-    description: "MFA, encryption, session control",
-    href: "/platform/application-security",
-    icon: Shield,
-  },
-  {
-    label: "Enterprise Integration",
-    description: "SIEM, LDAP/AD, ticketing",
-    href: "/platform/enterprise-integration",
-    icon: Building2,
-  },
-  {
-    label: "Secure Remote Access",
-    description: "VPN-free privileged access",
-    href: "/platform/secure-remote-access",
-    icon: Eye,
-  },
-  {
-    label: "Workflow & Access Control",
-    description: "Approvals, JIT, policies",
-    href: "/platform/workflow-access-control",
-    icon: Globe,
-  },
-  {
-    label: "Audit & Compliance",
-    description: "Regulatory reporting & audit",
-    href: "/platform/audit-compliance",
-    icon: BarChart3,
-  },
-  {
-    label: "AI Threat Protection",
-    description: "AI-powered threat response",
-    href: "/platform/ai-threat-protection",
-    icon: AlertTriangle,
-  },
+  { label: "Credential Management", description: "Vault, rotation, SSH keys", href: "/platform/password-credential-management", icon: Key },
+  { label: "Secure Remote Access", description: "VPN-free privileged sessions", href: "/platform/secure-remote-access", icon: Eye },
+  { label: "Workflow & Access Control", description: "Approvals, JIT, policies", href: "/platform/workflow-access-control", icon: Globe },
+  { label: "Application Security", description: "MFA, encryption, session control", href: "/platform/application-security", icon: Shield },
+  { label: "AI Threat Protection", description: "ML detection and auto-block", href: "/platform/ai-threat-protection", icon: AlertTriangle },
+  { label: "Audit & Compliance", description: "Recordings, reports, evidence", href: "/platform/audit-compliance", icon: BarChart3 },
+  { label: "Enterprise Integration", description: "SIEM, LDAP/AD, ticketing", href: "/platform/enterprise-integration", icon: Building2 },
+  { label: "Infrastructure & Deployment", description: "On-premise, HA, clustered", href: "/platform/infrastructure-deployment", icon: Lock },
 ];
 
 const resourceLinks = [
-  { label: "Blog", href: "/blog", icon: BookOpen },
-  { label: "Case Studies", href: "/case-studies", icon: Users },
+  { label: "Blog", description: "PAM research and best practice", href: "/blog", icon: BookOpen },
+  { label: "Case Studies", description: "How teams deploy OmniPriv", href: "/case-studies", icon: Users },
+  { label: "Documentation", description: "Guides and references", href: "/docs", icon: FileText },
+  { label: "Security Center", description: "How we secure OmniPriv", href: "/security", icon: ShieldCheck },
 ];
 
 const datasheetFiles: { url: string; downloadName: string }[] = [
@@ -106,314 +85,446 @@ function downloadDatasheets() {
   });
 }
 
+/** React 18 has no `inert` prop type; set the attribute directly. */
+const inertIf = (on: boolean): Record<string, string> => (on ? { inert: "" } : {});
+
+type MenuKey = "platform" | "solutions" | "resources";
+
+const TOP: ({ key: MenuKey; label: string } | { href: string; label: string })[] = [
+  { key: "platform", label: "Platform" },
+  { key: "solutions", label: "Solutions" },
+  { href: "/ai-pam", label: "AI-PAM" },
+  { key: "resources", label: "Resources" },
+  { href: "/about", label: "About" },
+];
+
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState<MenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileProduct, setMobileProduct] = useState(false);
-  const [mobileResource, setMobileResource] = useState(false);
-  const [platformOpen, setPlatformOpen] = useState(false);
-  const [resourceOpen, setResourceOpen] = useState(false);
-  const platformRef = useRef<HTMLDivElement>(null);
-  const resourceRef = useRef<HTMLDivElement>(null);
+  const [mobileSection, setMobileSection] = useState<MenuKey | null>(null);
 
+  const navRef = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLSpanElement>(null);
+  const closeTimer = useRef<number | null>(null);
+
+  /* ── Scroll state: stronger surface once the page moves ── */
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (platformRef.current && !platformRef.current.contains(e.target as Node)) {
-        setPlatformOpen(false);
-      }
-      if (resourceRef.current && !resourceRef.current.contains(e.target as Node)) {
-        setResourceOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 12);
+        ticking = false;
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Close everything on route change */
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    setOpen(null);
+    setMobileOpen(false);
+  }, [pathname]);
 
+  /* Body scroll lock for the mobile sheet */
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
+  /* Escape + click outside */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (open) {
+        const btn = navRef.current?.querySelector<HTMLButtonElement>(`[data-menu="${open}"]`);
+        setOpen(null);
+        btn?.focus();
+      }
+      setMobileOpen(false);
+    };
+    const onDown = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpen(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDown);
+    };
+  }, [open]);
+
+  /* ── Sliding highlight pill ── */
+  const movePill = useCallback((el: HTMLElement | null) => {
+    const pill = pillRef.current;
+    const host = navRef.current?.querySelector<HTMLElement>("[data-nav-list]");
+    if (!pill || !host) return;
+    if (!el) {
+      pill.style.opacity = "0";
+      return;
+    }
+    const a = el.getBoundingClientRect();
+    const b = host.getBoundingClientRect();
+    pill.style.width = `${a.width}px`;
+    pill.style.transform = `translateX(${a.left - b.left}px)`;
+    pill.style.opacity = "1";
+  }, []);
+
+  const cancelClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = window.setTimeout(() => setOpen(null), 140);
+  };
+  const fine = () => typeof window !== "undefined" && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-white/95 dark:bg-[#030711]/95 backdrop-blur-xl border-b border-slate-900/[0.08] dark:border-white/[0.06] shadow-[0_2px_12px_rgba(0,184,255,0.04)]"
-        : "bg-transparent"
-        }`}
-    >
-      <div className="container-xl">
-        <nav className="flex items-center justify-between h-[72px]">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-4 pt-3">
+      <div
+        ref={navRef}
+        className="relative mx-auto max-w-[1240px]"
+        onMouseLeave={() => {
+          if (fine()) {
+            scheduleClose();
+            movePill(null);
+          }
+        }}
+      >
+        <nav
+          aria-label="Main"
+          className={`nav-bar relative flex items-center justify-between h-[58px] pl-4 pr-2 rounded-2xl border backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300 ${
+            scrolled || open
+              ? "bg-white/85 dark:bg-[#0a101c]/85 border-slate-900/[0.08] dark:border-white/[0.08] shadow-[0_12px_40px_-16px_rgba(15,23,42,0.35)]"
+              : "bg-white/70 dark:bg-[#0a101c]/60 border-slate-900/[0.06] dark:border-white/[0.07] shadow-[0_8px_30px_-18px_rgba(15,23,42,0.3)]"
+          }`}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0">
-            <Image
-              src="/omnipriv-light.png"
-              alt="OmniPriv"
-              width={160}
-              height={40}
-              className="h-9 w-auto object-contain dark:hidden"
-              priority
-            />
-            <Image
-              src="/omniprivdark.png"
-              alt="OmniPriv"
-              width={160}
-              height={40}
-              className="h-9 w-auto object-contain hidden dark:block"
-              priority
-            />
+          <Link href="/" className="flex items-center flex-shrink-0" aria-label="OmniPriv home">
+            <Image src="/omnipriv-light.png" alt="OmniPriv" width={160} height={40} className="h-8 w-auto object-contain dark:hidden" priority />
+            <Image src="/omniprivdark.png" alt="OmniPriv" width={160} height={40} className="h-8 w-auto object-contain hidden dark:block" priority />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* Desktop links */}
+          <div data-nav-list className="relative hidden lg:flex items-center">
+            <span
+              ref={pillRef}
+              aria-hidden="true"
+              className="nav-pill absolute left-0 top-1/2 -translate-y-1/2 h-9 rounded-lg bg-slate-900/[0.05] dark:bg-white/[0.07] opacity-0"
+            />
+            {TOP.map((item) =>
+              "key" in item ? (
+                <button
+                  key={item.label}
+                  type="button"
+                  data-menu={item.key}
+                  aria-expanded={open === item.key}
+                  aria-controls="nav-panel"
+                  onMouseEnter={(e) => {
+                    movePill(e.currentTarget);
+                    if (fine()) {
+                      cancelClose();
+                      setOpen(item.key);
+                    }
+                  }}
+                  onFocus={(e) => movePill(e.currentTarget)}
+                  onClick={() => setOpen((o) => (o === item.key ? null : item.key))}
+                  className={`relative z-10 flex items-center gap-1 px-3.5 h-9 text-[14px] font-medium rounded-lg transition-colors duration-200 ${
+                    open === item.key ? "text-slate-950 dark:text-white" : "text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                  <ChevronDown className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${open === item.key ? "rotate-180" : ""}`} />
+                </button>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onMouseEnter={(e) => {
+                    movePill(e.currentTarget);
+                    if (fine()) scheduleClose();
+                  }}
+                  onFocus={(e) => movePill(e.currentTarget)}
+                  className={`relative z-10 flex items-center gap-1.5 px-3.5 h-9 text-[14px] font-medium rounded-lg transition-colors duration-200 ${
+                    isActive(item.href) ? "text-slate-950 dark:text-white" : "text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white"
+                  }`}
+                >
+                  {item.label === "AI-PAM" && <BrainCircuit className="w-3.5 h-3.5 text-[#00B8DB]" aria-hidden="true" />}
+                  {item.label}
+                </Link>
+              )
+            )}
+          </div>
+
+          {/* Right side */}
+          <div className="hidden lg:flex items-center gap-2">
+            <ThemeToggle />
             <Link
-              href="/"
-              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
+              href="/sign-in"
+              className="px-3 h-9 inline-flex items-center text-[14px] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
             >
-              Home
+              Partner Portal
             </Link>
-            {/* Platform Dropdown */}
-            <div className="relative" ref={platformRef}>
-              <button
-                onClick={() => { setPlatformOpen((o) => !o); setResourceOpen(false); }}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
-              >
-                Platform
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${platformOpen ? "rotate-180" : ""}`} />
-              </button>
-              {platformOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.16)] z-50">
-                  <div className="grid grid-cols-2 gap-1">
-                    {platformLinks.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setPlatformOpen(false)}
-                        className="flex items-start gap-3 p-3 rounded-xl hover:bg-[#00B8FF]/[0.08] transition-all duration-200 group/item"
-                      >
-                        <div className="w-9 h-9 rounded-lg bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-[#00B8FF]/20 transition-colors">
-                          <item.icon className="w-4 h-4 text-[#00B8FF]" />
-                        </div>
-                        <div>
-                          <div className="text-sm font-semibold text-slate-950 dark:text-white mb-0.5">{item.label}</div>
-                          <div className="text-xs text-slate-500">{item.description}</div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="mt-2 pt-2 border-t border-slate-900/[0.06] dark:border-white/[0.05] px-2 text-center">
+            <Link href="/demo" className="nav-cta group">
+              Request a Demo
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </div>
+
+          {/* Mobile toggle */}
+          <div className="flex lg:hidden items-center gap-1.5">
+            <span className="hidden min-[380px]:inline-flex">
+              <Link href="/demo" className="nav-cta !h-9 !px-3.5 !text-[13px]">
+                Request a Demo
+              </Link>
+            </span>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((o) => !o)}
+              className="inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-800 dark:text-slate-200 hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.06] transition-colors"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </nav>
+
+        {/* ── Shared dropdown panel ── */}
+        <div
+          id="nav-panel"
+          onMouseEnter={cancelClose}
+          className={`nav-panel absolute left-1/2 top-[calc(100%+10px)] w-[min(880px,calc(100vw-2rem))] rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#0a101c]/95 backdrop-blur-xl shadow-[0_30px_80px_-24px_rgba(15,23,42,0.45)] hidden lg:block ${
+            open ? "is-open" : ""
+          }`}
+          role="region"
+          aria-label={open ? `${open} menu` : undefined}
+          aria-hidden={!open}
+        >
+          <div className="nav-panel-inner relative">
+            {/* Platform */}
+            <div className={`nav-pane ${open === "platform" ? "is-on" : ""}`} {...inertIf(open !== "platform")}>
+              <div className="grid grid-cols-[1fr_260px] gap-2 p-2">
+                <div className="grid grid-cols-2 gap-1 p-1">
+                  {platformLinks.map((item) => (
                     <Link
-                      href="/platform"
-                      onClick={() => setPlatformOpen(false)}
-                      className="flex items-center justify-center gap-2 text-xs text-[#00B8FF] font-medium hover:underline"
+                      key={item.label}
+                      href={item.href}
+                      className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-colors"
                     >
-                      View all capabilities <ArrowRight className="w-3 h-3" />
+                      <span className="w-9 h-9 rounded-lg bg-[#00B8DB]/10 text-[#00B8DB] flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover/item:scale-105">
+                        <item.icon className="w-4 h-4" />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-slate-950 dark:text-white">{item.label}</span>
+                        <span className="block text-xs text-slate-500 dark:text-slate-400 mt-0.5">{item.description}</span>
+                      </span>
                     </Link>
-                  </div>
+                  ))}
                 </div>
-              )}
+                <Link
+                  href="/ai-pam"
+                  className="group/feat relative flex flex-col justify-between overflow-hidden rounded-xl p-5 bg-[#04070e] text-white"
+                >
+                  <span className="nav-feature-glow" aria-hidden="true" />
+                  <span className="relative">
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#00B8DB]/15 text-[#00B8DB] mb-4">
+                      <BrainCircuit className="w-5 h-5" />
+                    </span>
+                    <span className="block text-base font-semibold">AI-PAM Engine</span>
+                    <span className="block text-sm text-slate-400 mt-1.5 leading-relaxed">
+                      ML threat detection and MCP agent governance in one engine.
+                    </span>
+                  </span>
+                  <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-[#00B8DB] mt-6">
+                    Explore the engine
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/feat:-translate-y-0.5 group-hover/feat:translate-x-0.5" />
+                  </span>
+                </Link>
+              </div>
+              <div className="flex items-center justify-between px-5 py-3 border-t border-slate-900/[0.06] dark:border-white/[0.06]">
+                <span className="text-xs text-slate-500">Nine modules, one privileged access platform.</span>
+                <Link href="/platform" className="inline-flex items-center gap-1 text-xs font-semibold text-[#00B8DB] hover:underline">
+                  View all capabilities <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
 
+            {/* Solutions */}
+            <div className={`nav-pane ${open === "solutions" ? "is-on" : ""}`} {...inertIf(open !== "solutions")}>
+              <div className="grid grid-cols-2 gap-1 p-3">
+                {[...solutions]
+                  .sort((a, b) => a.order - b.order)
+                  .map((s) => (
+                    <Link
+                      key={s.slug}
+                      href={`/solutions/${s.slug}`}
+                      className="group/item flex items-start gap-3 p-4 rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-colors"
+                    >
+                      <span className="w-10 h-10 rounded-lg bg-[#00B8DB]/10 text-[#00B8DB] flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover/item:scale-105">
+                        <s.icon className="w-5 h-5" />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-slate-950 dark:text-white">{s.cardTitle}</span>
+                        <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed line-clamp-2">{s.description}</span>
+                      </span>
+                    </Link>
+                  ))}
+              </div>
+            </div>
 
-
-            {/* Resources Dropdown */}
-            <div className="relative" ref={resourceRef}>
-              <button
-                onClick={() => { setResourceOpen((o) => !o); setPlatformOpen(false); }}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
-              >
-                Resources
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${resourceOpen ? "rotate-180" : ""}`} />
-              </button>
-              {resourceOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] p-2 bg-slate-100/95 dark:bg-[#0A1628]/95 backdrop-blur-xl border border-slate-900/[0.09] dark:border-white/[0.07] rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.16)] z-50">
+            {/* Resources */}
+            <div className={`nav-pane ${open === "resources" ? "is-on" : ""}`} {...inertIf(open !== "resources")}>
+              <div className="grid grid-cols-[1fr_260px] gap-2 p-2">
+                <div className="grid grid-cols-2 gap-1 p-1">
                   {resourceLinks.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      onClick={() => setResourceOpen(false)}
-                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#00B8FF]/[0.08] transition-all duration-200"
+                      className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-colors"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-3.5 h-3.5 text-[#00B8FF]" />
-                      </div>
-                      <span className="text-sm font-medium text-slate-950 dark:text-white">{item.label}</span>
+                      <span className="w-9 h-9 rounded-lg bg-[#00B8DB]/10 text-[#00B8DB] flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-4 h-4" />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-slate-950 dark:text-white">{item.label}</span>
+                        <span className="block text-xs text-slate-500 dark:text-slate-400 mt-0.5">{item.description}</span>
+                      </span>
                     </Link>
                   ))}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      downloadDatasheets();
-                      setResourceOpen(false);
-                    }}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#00B8FF]/[0.08] transition-all duration-200 w-full text-left"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 border border-[#00B8FF]/15 flex items-center justify-center flex-shrink-0">
-                      <Download className="w-3.5 h-3.5 text-[#00B8FF]" />
-                    </div>
-                    <div className="text-left">
-                      <span className="text-sm font-medium text-slate-950 dark:text-white block">Data Sheet</span>
-                      <span className="text-[11px] text-slate-500">Download PDF</span>
-                    </div>
-                  </button>
                 </div>
-              )}
-            </div>
-
-            <Link
-              href="/about"
-              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
-            >
-              About
-            </Link>
-            <Link
-              href="/demo"
-              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all duration-200"
-            >
-              Contact
-            </Link>
-            
-          </nav>
-
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
-            <Link
-              href="/sign-in"
-              className="px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-900/[0.15] dark:border-white/[0.12] hover:border-slate-300 dark:hover:border-white/25 rounded-lg bg-slate-900/[0.03] dark:bg-white/[0.04] hover:bg-slate-900/[0.06] dark:hover:bg-white/[0.08] transition-all duration-200"
-            >
-              Partner Portal
-            </Link>
-            <LightBeamButton href="/demo" className="text-sm px-5 py-2.5">
-              Request a Technical Demo
-              <ArrowRight className="w-4 h-4" />
-            </LightBeamButton>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </nav>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-white/95 dark:bg-[#030711]/98 backdrop-blur-xl overflow-y-auto z-40">
-          <div className="container-xl py-6 space-y-2">
-            {/* Platform */}
-            <Link href="/" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
-              Home
-            </Link>
-            <button
-              onClick={() => setMobileProduct(!mobileProduct)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
-            >
-              Platform
-              <ChevronDown className={`w-4 h-4 transition-transform ${mobileProduct ? "rotate-180" : ""}`} />
-            </button>
-            {mobileProduct && (
-              <div className="pl-4 space-y-1">
-                {platformLinks.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition-all"
-                  >
-                    <item.icon className="w-4 h-4 text-[#00B8FF]" />
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-
-
-            {/* Resources */}
-            <button
-              onClick={() => setMobileResource(!mobileResource)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
-            >
-              Resources
-              <ChevronDown className={`w-4 h-4 transition-transform ${mobileResource ? "rotate-180" : ""}`} />
-            </button>
-            {mobileResource && (
-              <div className="pl-4 space-y-1">
-                {resourceLinks.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition-all"
-                  >
-                    <item.icon className="w-4 h-4 text-[#00B8FF]" />
-                    {item.label}
-                  </Link>
-                ))}
                 <button
                   type="button"
                   onClick={() => {
                     downloadDatasheets();
-                    setMobileOpen(false);
+                    setOpen(null);
                   }}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white rounded-lg hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition-all w-full"
+                  className="group/feat text-left flex flex-col justify-between rounded-xl p-5 border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-white/[0.03] hover:border-[#00B8DB]/40 transition-colors"
                 >
-                  <Download className="w-4 h-4 text-[#00B8FF]" />
-                  <span>Data Sheet</span>
-                  <span className="ml-auto text-[10px] text-slate-600">Download PDF</span>
+                  <span>
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#00B8DB]/10 text-[#00B8DB] mb-4">
+                      <Download className="w-5 h-5" />
+                    </span>
+                    <span className="block text-base font-semibold text-slate-950 dark:text-white">Data sheet</span>
+                    <span className="block text-sm text-slate-500 dark:text-slate-400 mt-1.5">
+                      Product datasheet and full specification, as PDF.
+                    </span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00B8DB] mt-6">
+                    Download
+                    <Download className="w-4 h-4 transition-transform duration-200 group-hover/feat:translate-y-0.5" />
+                  </span>
                 </button>
               </div>
-            )}
-
-            <Link href="/about" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
-              About
-            </Link>
-            <Link href="/demo" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-sm font-semibold text-slate-950 dark:text-white rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all">
-              Contact
-            </Link>
-
-            <div className="flex items-center justify-between px-4 py-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06]">
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Theme</span>
-              <ThemeToggle />
-            </div>
-            
-
-            <div className="pt-4 border-t border-slate-900/[0.08] dark:border-white/[0.06] space-y-3">
-              <Link
-                href="/sign-in"
-                onClick={() => setMobileOpen(false)}
-                className="block w-full text-center px-4 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 border border-slate-900/[0.15] dark:border-white/[0.12] rounded-xl hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition-all"
-              >
-                Partner Portal
-              </Link>
-              <LightBeamButton
-                href="/demo"
-                onClick={() => setMobileOpen(false)}
-                className="w-full"
-              >
-                Request a Technical Demo
-                <ArrowRight className="w-4 h-4" />
-              </LightBeamButton>
             </div>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* ── Mobile sheet ── */}
+      <div
+        className={`nav-sheet lg:hidden fixed inset-x-3 top-[82px] bottom-3 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#0a101c]/95 backdrop-blur-xl overflow-y-auto ${
+          mobileOpen ? "is-open" : ""
+        }`}
+        aria-hidden={!mobileOpen}
+        {...inertIf(!mobileOpen)}
+      >
+        <div className="p-4 space-y-1">
+          {(
+            [
+              { key: "platform" as MenuKey, label: "Platform", items: platformLinks.map((p) => ({ label: p.label, href: p.href, icon: p.icon })) },
+              {
+                key: "solutions" as MenuKey,
+                label: "Solutions",
+                items: [...solutions].sort((a, b) => a.order - b.order).map((s) => ({ label: s.cardTitle, href: `/solutions/${s.slug}`, icon: s.icon })),
+              },
+            ]
+          ).map((group, gi) => (
+            <div key={group.key} className="nav-sheet-item" style={{ ["--i" as string]: gi }}>
+              <button
+                type="button"
+                onClick={() => setMobileSection((s) => (s === group.key ? null : group.key))}
+                aria-expanded={mobileSection === group.key}
+                className="w-full flex items-center justify-between px-3 py-3.5 text-[15px] font-semibold text-slate-950 dark:text-white rounded-xl"
+              >
+                {group.label}
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileSection === group.key ? "rotate-180" : ""}`} />
+              </button>
+              {mobileSection === group.key && (
+                <div className="pb-2 pl-2 grid gap-0.5">
+                  {group.items.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="flex items-center gap-3 px-3 py-2.5 text-sm text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05]"
+                    >
+                      <item.icon className="w-4 h-4 text-[#00B8DB]" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {[
+            { label: "AI-PAM Engine", href: "/ai-pam" },
+            { label: "Blog", href: "/blog" },
+            { label: "Case Studies", href: "/case-studies" },
+            { label: "About", href: "/about" },
+          ].map((l, i) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              className="nav-sheet-item block px-3 py-3.5 text-[15px] font-semibold text-slate-950 dark:text-white rounded-xl"
+              style={{ ["--i" as string]: i + 2 }}
+            >
+              {l.label}
+            </Link>
+          ))}
+
+          <button
+            type="button"
+            onClick={() => {
+              downloadDatasheets();
+              setMobileOpen(false);
+            }}
+            className="nav-sheet-item w-full flex items-center justify-between px-3 py-3.5 text-[15px] font-semibold text-slate-950 dark:text-white rounded-xl"
+            style={{ ["--i" as string]: 6 }}
+          >
+            Data sheet
+            <Download className="w-4 h-4 text-[#00B8DB]" />
+          </button>
+
+          <div className="nav-sheet-item flex items-center justify-between px-3 py-3" style={{ ["--i" as string]: 7 }}>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Theme</span>
+            <ThemeToggle />
+          </div>
+
+          <div className="nav-sheet-item grid gap-2 pt-3 mt-2 border-t border-slate-900/[0.08] dark:border-white/[0.08]" style={{ ["--i" as string]: 8 }}>
+            <Link href="/demo" className="nav-cta !h-12 justify-center">
+              Request a Demo
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/sign-in"
+              className="h-12 inline-flex items-center justify-center rounded-xl border border-slate-900/[0.12] dark:border-white/[0.12] text-sm font-semibold text-slate-800 dark:text-slate-200"
+            >
+              Partner Portal
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

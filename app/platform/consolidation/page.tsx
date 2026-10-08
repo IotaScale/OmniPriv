@@ -16,7 +16,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /platform/consolidation — the destination of the "Consolidate PAM &
+ * /platform/consolidation, the destination of the "Consolidate PAM &
  * Identity Security" challenge card.
  *
  * A real route rather than an entry in the bespokePages map, for the same
@@ -40,7 +40,7 @@ const hero = {
     titleLead: "Five tools. Five consoles.",
     titleAccent: "One platform.",
     intro: [
-        "Most privileged access estates grew one purchase at a time — a vault, a session recorder, a workflow tool, a reporting add-on, and a spreadsheet quietly holding it together.",
+        "Most privileged access estates grew one purchase at a time, a vault, a session recorder, a workflow tool, a reporting add-on, and a spreadsheet quietly holding it together.",
     ] as RichText,
     body: [
         "OmniPriv covers the same ground in a single platform: nine capability modules, one policy engine, one credential store and one audit trail, deployed on infrastructure you already own.",
@@ -48,15 +48,15 @@ const hero = {
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform", label: "See All Nine Capabilities" },
     image: {
-        src: "https://images.unsplash.com/photo-1691435828932-911a7801adfb?auto=format&fit=crop&w=1200&q=70",
-        alt: "Ethernet cables connected to a network switch in a server rack",
+        src: "/challenges/consolidate-pam-identity-security.jpeg",
+        alt: "One control point governing human, machine and AI access across connected systems",
     },
 };
 
 const benefitsSection = {
     title: "Fewer tools, less to go wrong",
     lead: [
-        "Each addition bought a licence, a console, an integration to maintain, and one more place for a gap to hide. Consolidation is not really about a smaller invoice — it is about one policy engine giving one answer, once, to every identity that asks.",
+        "Each addition bought a licence, a console, an integration to maintain, and one more place for a gap to hide. Consolidation is not really about a smaller invoice, it is about one policy engine giving one answer, once, to every identity that asks.",
     ] as RichText,
 };
 
@@ -69,7 +69,7 @@ const benefits: IconCard[] = [
     {
         icon: ShieldCheck,
         title: "Less risk",
-        text: "Silos are where risk hides. Nobody should have to reconcile two consoles to find out whether an identity still has access — the answer lives in one place.",
+        text: "Silos are where risk hides. Nobody should have to reconcile two consoles to find out whether an identity still has access, the answer lives in one place.",
     },
     {
         icon: Server,
@@ -86,11 +86,11 @@ const retireSection = {
 };
 
 const retiredTools = [
-    "The standalone credential vault — rotation, SSH key lifecycle and password reconciliation move into the platform",
-    "The separate session recorder — SSH, RDP, VNC, HTTP and database sessions recorded and searchable in the same console",
-    "The bolt-on reporting tool — six regulatory mappings and scheduled reports, built in rather than licensed separately",
-    "The email-and-spreadsheet approval chain — 4-eyes and multi-level workflows enforced by policy instead of habit",
-    "The separate analytics licence — 39-feature behavioural scoring running on every closed session",
+    "The standalone credential vault, rotation, SSH key lifecycle and password reconciliation move into the platform",
+    "The separate session recorder: SSH, RDP, VNC, HTTP and database sessions recorded and searchable in the same console",
+    "The bolt-on reporting tool, six regulatory mappings and scheduled reports, built in rather than licensed separately",
+    "The email-and-spreadsheet approval chain: 4-eyes and multi-level workflows enforced by policy instead of habit",
+    "The separate analytics licence: 39-feature behavioural scoring running on every closed session",
 ];
 
 const ownershipSection = {
@@ -99,7 +99,7 @@ const ownershipSection = {
         "Consolidating onto a service you do not control simply trades one dependency for a larger one. OmniPriv runs where your other critical systems run.",
     ] as RichText,
     points: [
-        "Runs on your own infrastructure — on-premises, private cloud or public cloud, in any topology",
+        "Runs on your own infrastructure, on-premises, private cloud or public cloud, in any topology",
         "Standalone, active-standby or a full HA cluster, with multi-node clustering and database replication",
         "Strict multi-tenancy with per-organization isolation and RBAC, for MSSPs and enterprises with subsidiaries",
         "Break-glass emergency access with granular credential restore, without a full system restore",
@@ -135,7 +135,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What does consolidating a PAM stack actually involve?",
         answer:
-            "It means replacing several single-purpose tools — typically a credential vault, a session recording appliance, a workflow or approval tool and a reporting add-on — with one platform that performs all of those jobs against a single policy engine and a single audit trail.",
+            "It means replacing several single-purpose tools, typically a credential vault, a session recording appliance, a workflow or approval tool and a reporting add-on, with one platform that performs all of those jobs against a single policy engine and a single audit trail.",
     },
     {
         question: "How many tools can one platform replace?",
@@ -150,7 +150,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Does consolidating mean giving up our integration points?",
         answer:
-            "No. OmniPriv integrates with the systems you already run — SIEM platforms, ITSM and ticketing, LDAP and Active Directory, and standard single sign-on protocols — and custom connectors can be built through an open SDK. The aim is fewer consoles for privileged access, not fewer connections to the rest of your estate.",
+            "No. OmniPriv integrates with the systems you already run: SIEM platforms, ITSM and ticketing, LDAP and Active Directory, and standard single sign-on protocols, and custom connectors can be built through an open SDK. The aim is fewer consoles for privileged access, not fewer connections to the rest of your estate.",
     },
     {
         question: "Where should we start?",
@@ -180,7 +180,7 @@ export default function ConsolidationPage() {
                     title={benefitsSection.title}
                     align="center"
                     size="lg"
-                    className="max-w-3xl mx-auto mb-14"
+                    className="mb-14"
                 >
                     <Prose segments={benefitsSection.lead} />
                 </SectionHeading>
@@ -194,7 +194,7 @@ export default function ConsolidationPage() {
                     title={retireSection.title}
                     align="center"
                     size="lg"
-                    className="max-w-3xl mx-auto mb-12"
+                    className="mb-12"
                 >
                     <Prose segments={retireSection.lead} />
                 </SectionHeading>
@@ -212,7 +212,7 @@ export default function ConsolidationPage() {
                     title={ownershipSection.title}
                     align="center"
                     size="lg"
-                    className="max-w-3xl mx-auto mb-12"
+                    className="mb-12"
                 >
                     <Prose segments={ownershipSection.lead} />
                 </SectionHeading>

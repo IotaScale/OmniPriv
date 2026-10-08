@@ -53,36 +53,26 @@ export default function MachineIdentitySecurityPage() {
 
             {/* ─── WHAT IS MACHINE IDENTITY MANAGEMENT ── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <definitionSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={definitionSection.title}>
-                        {definitionSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={index === definitionSection.paragraphs.length - 1 ? "" : "mb-4"}
-                            />
-                        ))}
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={definitionSection.title}>
+                    {definitionSection.paragraphs.map((paragraph, index) => (
+                        <Prose
+                            key={index}
+                            segments={paragraph}
+                            className={index === definitionSection.paragraphs.length - 1 ? "" : "mb-4"}
+                        />
+                    ))}
+                </SectionHeading>
             </Section>
 
             {/* ─── RISKS ────────────────────────────── */}
             <Section border="bottom">
+                <SectionHeading title={risksSection.title}>
+                    {risksSection.paragraphs.map((paragraph, index) => (
+                        <Prose key={index} segments={paragraph} className="mb-4" />
+                    ))}
+                </SectionHeading>
+
                 <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <risksSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={risksSection.title}>
-                        {risksSection.paragraphs.map((paragraph, index) => (
-                            <Prose key={index} segments={paragraph} className="mb-4" />
-                        ))}
-                    </SectionHeading>
-
                     <CheckList items={risksSection.controls} className="mb-8" />
 
                     <Prose segments={risksSection.note} />
@@ -91,25 +81,15 @@ export default function MachineIdentitySecurityPage() {
 
             {/* ─── CREDENTIALS + CAPABILITY BLOCKS ──── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <credentialsSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={credentialsSection.title}>
-                        {credentialsSection.paragraphs.map((paragraph, index) => (
-                            <Prose key={index} segments={paragraph} className="mb-4" />
-                        ))}
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={credentialsSection.title}>
+                    {credentialsSection.paragraphs.map((paragraph, index) => (
+                        <Prose key={index} segments={paragraph} className="mb-4" />
+                    ))}
+                </SectionHeading>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 mt-14">
                     {capabilityBlocks.map((block) => (
                         <div key={block.title}>
-                            <div className="icon-wrapper mb-5">
-                                <block.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading as="h3" size="sm" title={block.title}>
                                 {block.paragraphs.map((paragraph, index) => (
                                     <Prose
@@ -128,17 +108,13 @@ export default function MachineIdentitySecurityPage() {
 
             {/* ─── LEAST PRIVILEGE ──────────────────── */}
             <Section border="bottom">
+                <SectionHeading title={leastPrivilegeSection.title}>
+                    {leastPrivilegeSection.paragraphs.map((paragraph, index) => (
+                        <Prose key={index} segments={paragraph} className="mb-4" />
+                    ))}
+                </SectionHeading>
+
                 <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <leastPrivilegeSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={leastPrivilegeSection.title}>
-                        {leastPrivilegeSection.paragraphs.map((paragraph, index) => (
-                            <Prose key={index} segments={paragraph} className="mb-4" />
-                        ))}
-                    </SectionHeading>
-
                     <p className="text-slate-950 dark:text-white font-semibold text-lg mb-6">
                         {leastPrivilegeSection.principle}
                     </p>
@@ -149,67 +125,49 @@ export default function MachineIdentitySecurityPage() {
 
             {/* ─── INTELLIGENCE + MONITORING (dark band) ── */}
             <Section tone="dark" border="bottom">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-                    <div>
-                        <div className="icon-wrapper mb-5">
-                            <intelligenceSection.icon className="w-5 h-5" />
-                        </div>
+                <SectionHeading title={intelligenceSection.title}>
+                    {intelligenceSection.paragraphs.map((paragraph, index) => (
+                        <Prose
+                            key={index}
+                            segments={paragraph}
+                            className={
+                                index === intelligenceSection.paragraphs.length - 1
+                                    ? ""
+                                    : "mb-4"
+                            }
+                        />
+                    ))}
+                </SectionHeading>
 
-                        <SectionHeading title={intelligenceSection.title} titleClassName="max-w-3xl">
-                            {intelligenceSection.paragraphs.map((paragraph, index) => (
-                                <Prose
-                                    key={index}
-                                    segments={paragraph}
-                                    className={
-                                        index === intelligenceSection.paragraphs.length - 1
-                                            ? ""
-                                            : "mb-4"
-                                    }
-                                />
-                            ))}
-                        </SectionHeading>
-                    </div>
-
-                    <div>
-                        <div className="icon-wrapper mb-5">
-                            <monitoringSection.icon className="w-5 h-5" />
-                        </div>
-
-                        <SectionHeading title={monitoringSection.title} titleClassName="max-w-3xl">
-                            {monitoringSection.paragraphs.map((paragraph, index) => (
-                                <Prose
-                                    key={index}
-                                    segments={paragraph}
-                                    className={
-                                        index === monitoringSection.paragraphs.length - 1
-                                            ? ""
-                                            : "mb-4"
-                                    }
-                                />
-                            ))}
-                        </SectionHeading>
-                    </div>
-                </div>
+                <SectionHeading title={monitoringSection.title} className="mt-16">
+                    {monitoringSection.paragraphs.map((paragraph, index) => (
+                        <Prose
+                            key={index}
+                            segments={paragraph}
+                            className={
+                                index === monitoringSection.paragraphs.length - 1
+                                    ? ""
+                                    : "mb-4"
+                            }
+                        />
+                    ))}
+                </SectionHeading>
             </Section>
 
             {/* ─── COVERAGE ─────────────────────────── */}
             <Section border="bottom">
+                <SectionHeading title={infrastructureSection.title}>
+                    {infrastructureSection.paragraphs.map((paragraph, index) => (
+                        <Prose key={index} segments={paragraph} className="mb-4" />
+                    ))}
+                    <Prose
+                        segments={[infrastructureSection.prompt]}
+                        tone="strong"
+                        className="mb-5"
+                    />
+                </SectionHeading>
+
                 <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <infrastructureSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={infrastructureSection.title}>
-                        {infrastructureSection.paragraphs.map((paragraph, index) => (
-                            <Prose key={index} segments={paragraph} className="mb-4" />
-                        ))}
-                        <Prose
-                            segments={[infrastructureSection.prompt]}
-                            tone="strong"
-                            className="mb-5"
-                        />
-                    </SectionHeading>
-
                     <ChipList
                         items={infrastructureSection.flow}
                         variant="accent"

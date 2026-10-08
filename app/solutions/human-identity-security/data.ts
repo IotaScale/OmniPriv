@@ -32,7 +32,7 @@ export const meta = {
 
 export const hero = {
     intro: [
-        "Human identities remain one of the most important access points to critical infrastructure. Administrators, developers, employees, contractors, and vendors often need elevated permissions — but permanent or excessive access increases security risk.",
+        "Human identities remain one of the most important access points to critical infrastructure. Administrators, developers, employees, contractors, and vendors often need elevated permissions, but permanent or excessive access increases security risk.",
     ] as RichText,
     body: [
         "OmniPriv delivers human identity security through enterprise ",
@@ -105,8 +105,8 @@ export const jitSection = {
     ] as RichText,
     prompt: "For modern human identity security, access should follow a simple principle:",
     image: {
-        src: "https://images.unsplash.com/photo-1688380692117-63178554d76d?auto=format&fit=crop&w=1200&q=70",
-        alt: "Engineer requesting just-in-time privileged access under human identity security policy",
+        src: "/identities/human-identities.jpeg",
+        alt: "People working with governed human identities and approved access",
     },
 };
 

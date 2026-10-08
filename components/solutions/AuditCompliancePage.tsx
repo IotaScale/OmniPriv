@@ -26,7 +26,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/audit-compliance — the destination of the
+ * Bespoke layout for /platform/audit-compliance, the destination of the
  * "Compliance / Prove compliance with evidence" challenge card.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -46,7 +46,7 @@ const hero = {
     titleLead: "When the auditor asks,",
     titleAccent: "the answer should already exist.",
     intro: [
-        "Compliance is rarely short of controls. It is short of evidence — the kind that can be produced months later, in the format somebody else asks for.",
+        "Compliance is rarely short of controls. It is short of evidence, the kind that can be produced months later, in the format somebody else asks for.",
     ] as RichText,
     body: [
         "OmniPriv records every privileged action in a tamper-proof audit trail, enforces segregation of duties rather than merely recommending it, and maps that evidence against six regulatory frameworks out of the box.",
@@ -54,8 +54,9 @@ const hero = {
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
     image: {
-        src: "https://images.unsplash.com/photo-1754548930574-6a995e5eb5a7?auto=format&fit=crop&w=1200&q=70",
-        alt: "A hand ticking checkboxes on a tablet screen, representing audit requirements being satisfied",
+        src: "/product/compliance.png",
+        alt: "OmniPriv compliance reports with framework coverage and control status",
+        fit: "contain" as const,
     },
 };
 
@@ -89,17 +90,17 @@ const trailSection = {
     title: "Accountability that survives an investigation",
     paragraphs: [
         [
-            "Every privileged action is written to a complete audit trail — the user, the time, the asset and the outcome — held in tamper-proof storage with cryptographic audit-chain hashing, so integrity and non-repudiation hold up under examination instead of resting on trust.",
+            "Every privileged action is written to a complete audit trail, the user, the time, the asset and the outcome, held in tamper-proof storage with cryptographic audit-chain hashing, so integrity and non-repudiation hold up under examination instead of resting on trust.",
         ],
         [
             "Segregation of duties is enforced by the platform rather than agreed in a policy document. Administrators cannot reach the audit logs or alter session recordings they might appear in, and security and operations roles stay separated.",
         ],
     ] as RichText[],
     points: [
-        "Complete audit trail — every privileged action logged with user, time, asset and outcome",
-        "Cryptographic audit-chain hashing — integrity and non-repudiation, not just retention",
-        "Segregation of duties — roles separated, with audit logs out of reach of the administrators they record",
-        "Exclusive session access — accounts can be limited to a single concurrent session, so a shared credential cannot be used in parallel",
+        "Complete audit trail, every privileged action logged with user, time, asset and outcome",
+        "Cryptographic audit-chain hashing, integrity and non-repudiation, not just retention",
+        "Segregation of duties, roles separated, with audit logs out of reach of the administrators they record",
+        "Exclusive session access, accounts can be limited to a single concurrent session, so a shared credential cannot be used in parallel",
         "Immutable session recordings and command history, replayable from any point in time",
     ],
 };
@@ -120,7 +121,7 @@ const standardsSection = {
     points: [
         "One-click reports pre-formatted for SOC 2, ISO 27001, PCI DSS and HIPAA",
         "Detailed reporting across entitlements, user activity, asset inventory and compliance posture",
-        "Scheduled generation — evidence produced on a timetable rather than under deadline pressure",
+        "Scheduled generation, evidence produced on a timetable rather than under deadline pressure",
         "Policy compliance alerts when a privileged account drifts outside its credential policy",
     ],
 };
@@ -151,7 +152,7 @@ const leastPrivilegePillars = [
     {
         icon: Terminal,
         title: "Enforced inside the session",
-        text: "Command-level controls whitelist or blacklist specific shell commands, and database query controls do the same for SQL — scope holds after the session opens, not just at login.",
+        text: "Command-level controls whitelist or blacklist specific shell commands, and database query controls do the same for SQL, scope holds after the session opens, not just at login.",
     },
 ];
 
@@ -160,31 +161,31 @@ const rotationSection = {
     title: "The password requirements nobody keeps up with by hand",
     paragraphs: [
         [
-            "Rotation on a calendar, complexity rules, secure storage — every framework asks for them, and every manual process eventually drifts. Automation is the only version of this that stays true a year later.",
+            "Rotation on a calendar, complexity rules, secure storage, every framework asks for them, and every manual process eventually drifts. Automation is the only version of this that stays true a year later.",
         ],
     ] as RichText[],
     image: {
-        src: "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=1200&q=70",
-        alt: "Stacked paperwork and forms, representing audit evidence gathered ahead of a review",
+        src: "/challenges/secure-remote-hybrid-access.jpeg",
+        alt: "Audit evidence and compliance reports checked and gathered in one place",
     },
     points: [
         "Encrypted credential vault, and no user ever sees a raw password",
         "Automated rotation of passwords, SSH keys and API tokens on a schedule or on demand, across thousands of assets at once",
-        "Credential push to target assets after rotation — no manual step and no outage window",
+        "Credential push to target assets after rotation, no manual step and no outage window",
         "Asset and account discovery across on-prem, cloud and hybrid, so the inventory is generated rather than assembled",
-        "Account lifecycle management — provisioning, modification and deprovisioning from one control plane",
+        "Account lifecycle management, provisioning, modification and deprovisioning from one control plane",
     ],
 };
 
 const stats = [
     { value: "6", label: "Regulatory frameworks mapped", sub: "SOC 2 through SOX 404" },
     { value: "4", label: "Report formats pre-built", sub: "SOC 2 · ISO 27001 · PCI DSS · HIPAA" },
-    { value: "SOC 2", label: "Type II certified", sub: "Independently audited" },
+    { value: "SOC 2", label: "Type II controls mapped", sub: "Trust Services Criteria" },
     { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
 ];
 
 const keepReading = [
-    { href: "/security", label: "Certifications and security posture" },
+    { href: "/security", label: "Framework mappings and security posture" },
     { href: "/case-studies", label: "How customers approached their audits" },
     { href: "/features", label: "See the full capability list" },
 ];
@@ -192,7 +193,7 @@ const keepReading = [
 const closing = {
     title: "Pass the audit, then get back to work",
     body: [
-        "OmniPriv turns privileged activity into evidence — logged, hash-chained and mapped to the framework you report against.",
+        "OmniPriv turns privileged activity into evidence, logged, hash-chained and mapped to the framework you report against.",
         "Most of the effort in an audit goes into reconstructing what already happened. That work only exists because nobody captured it at the time.",
     ],
     kicker: "Logged. Hashed. Mapped. Ready.",
@@ -204,7 +205,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Which regulatory frameworks does OmniPriv map to?",
         answer:
-            "OmniPriv ships pre-configured compliance mappings for six frameworks: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Reporting templates are available pre-formatted for the certification set.",
+            "OmniPriv ships pre-configured compliance mappings for six frameworks: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Reporting templates are available pre-formatted for each of them.",
     },
     {
         question: "How is the audit trail tamper-proof?",
@@ -245,45 +246,35 @@ export default function AuditCompliancePage() {
 
             {/* ─── WHY EVIDENCE IS THE GAP ──────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={framingSection.title} className="mb-2">
-                        <Prose segments={framingSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={framingSection.title} className="mb-2">
+                    <Prose segments={framingSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={framingCards} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── THE AUDIT TRAIL ──────────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <trailSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={trailSection.title}>
-                        {trailSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === trailSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={trailSection.title}>
+                    {trailSection.paragraphs.map((paragraph, index) => (
+                        <Prose
+                            key={index}
+                            segments={paragraph}
+                            className={
+                                index === trailSection.paragraphs.length - 1 ? "" : "mb-4"
+                            }
+                        />
+                    ))}
+                </SectionHeading>
 
                 <CheckList items={trailSection.points} className="mt-10 max-w-3xl" />
             </Section>
 
             {/* ─── THE SIX FRAMEWORKS ──────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={standardsSection.title} className="mb-6">
-                        <Prose segments={standardsSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={standardsSection.title} className="mb-6">
+                    <Prose segments={standardsSection.lead} />
+                </SectionHeading>
 
                 <ChipList items={standardsSection.standards} variant="accent" />
 
@@ -292,19 +283,13 @@ export default function AuditCompliancePage() {
 
             {/* ─── LEAST PRIVILEGE (dark band) ──────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={leastPrivilegeSection.title} className="mb-2">
-                        <Prose segments={leastPrivilegeSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={leastPrivilegeSection.title} className="mb-2">
+                    <Prose segments={leastPrivilegeSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {leastPrivilegePillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -320,12 +305,14 @@ export default function AuditCompliancePage() {
 
             {/* ─── CREDENTIAL HYGIENE ───────────────── */}
             <Section border="bottom">
-                <MediaSplit media={rotationSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <rotationSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={rotationSection.title}>
+                <MediaSplit
+                    media={rotationSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={rotationSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {rotationSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -335,7 +322,7 @@ export default function AuditCompliancePage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={rotationSection.points} className="mt-8" />
 

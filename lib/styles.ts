@@ -16,31 +16,31 @@ export const cardBorder = "border-slate-900/[0.08] dark:border-white/[0.07]";
 export const mediaBorder = "border-slate-900/[0.08] dark:border-white/[0.08]";
 
 /** Default body copy. */
-export const prose = "text-slate-600 dark:text-slate-400 leading-relaxed";
+export const prose = "text-slate-600 dark:text-slate-400 leading-[1.7]";
 
 /** Body copy used as a lead-in above a list or chip row. */
-export const proseStrong = "text-slate-700 dark:text-slate-300 font-semibold";
+export const proseStrong = "text-[#0a1628] dark:text-slate-200 font-semibold";
 
 /** Emphasised sentence directly above a call to action. */
-export const proseKicker = "text-slate-950 dark:text-white font-semibold text-lg";
+export const proseKicker = "text-[#0a1628] dark:text-white font-semibold";
 
 /** Card surface that lifts off a white page and a near-black one. */
-export const cardSurface = "bg-white dark:bg-[#070e1c]";
+export const cardSurface = "bg-white dark:bg-[#0f2140]";
 
 /** Recessed band surface (`bg-slate-50` in light). */
-export const mutedSurface = "bg-slate-50 dark:bg-[#050a14]";
+export const mutedSurface = "bg-slate-50 dark:bg-[#0c1a30]";
 
 /**
- * Hardcoded dark band. Must be solid — a slash-opacity value lets the page
+ * Hardcoded dark band. Must be solid, a slash-opacity value lets the page
  * behind it bleed through and the band reads as washed-out grey.
  */
-export const darkSurface = "bg-[#050b16]";
+export const darkSurface = "bg-[#0a1628]";
 
 /** Inline text link inside body copy. */
-export const accentLink = "text-[#00B8FF] font-semibold hover:underline";
+export const accentLink = "text-[#00667A] dark:text-[#00B8DB] font-semibold underline-offset-2 hover:underline";
 
 /** Accent applied to a phrase inside a heading. */
-export const accentText = "text-[#00B8FF]";
+export const accentText = "text-[#00667A] dark:text-[#00B8DB]";
 
 /**
  * The display typeface. Headings set it with an inline style rather than a

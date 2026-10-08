@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         absolute: "About OmniPriv | Advanced PAM Solutions",
     },
     description:
-        "OmniPriv builds privileged access management for on-premise, regulated environments — nine capability modules, independently certified.",
+        "OmniPriv builds privileged access management for on-premise, regulated environments, nine capability modules, with controls mapped to the major compliance frameworks.",
 };
 
 const hero = {
@@ -65,12 +65,13 @@ const hero = {
     primary: { href: "/platform", label: "Explore the Platform" },
     secondary: { href: "/demo", label: "Talk to Us" },
     image: {
-        src: "https://images.unsplash.com/photo-1680992046626-418f7e910589?auto=format&fit=crop&w=1200&q=70",
-        alt: "Rack of electronic equipment with indicator lights in a dark server room",
+        src: "/product/compliance.png",
+        alt: "OmniPriv compliance reports view: framework coverage and control status built from the audit trail",
+        fit: "contain" as const,
     },
 };
 
-/* Driven from app/platform/data.ts — the /about grid can never drift from
+/* Driven from app/platform/data.ts, the /about grid can never drift from
    the module list the platform index and sitemap are built from. */
 const moduleCards: IconCard[] = solutions.map((solution, index) => ({
     icon: solution.icon,
@@ -83,7 +84,7 @@ const moduleCards: IconCard[] = solutions.map((solution, index) => ({
 const buildSection = {
     title: "What we build",
     lead: [
-        "Nine capability modules over one policy engine and one audit trail — the same list the platform index is generated from.",
+        "Nine capability modules over one policy engine and one audit trail, the same list the platform index is generated from.",
     ] as RichText,
 };
 
@@ -109,9 +110,9 @@ const deploymentSection = {
 };
 
 const assuranceSection = {
-    title: "How we're independently verified",
+    title: "Mapped to the frameworks you report against",
     lead: [
-        "We would rather be checked than believed. These are the audits behind the platform, and the frameworks its controls are already mapped to.",
+        "We would rather be checked than believed. These are the frameworks the platform's controls are mapped to out of the box.",
     ] as RichText,
 };
 
@@ -119,17 +120,17 @@ const assurancePillars = [
     {
         icon: ShieldCheck,
         title: "SOC 2",
-        text: "An annual third-party audit covering security, availability, processing integrity, confidentiality and privacy controls — not a self-assessment.",
+        text: "Controls mapped to the Trust Services Criteria: security, availability, processing integrity, confidentiality and privacy.",
     },
     {
         icon: Award,
         title: "ISO 27001",
-        text: "An information security management system certification spanning platform operations and the development process behind it.",
+        text: "Controls mapped to the ISO 27001 information security management requirements, across platform operations and development.",
     },
     {
         icon: CreditCard,
         title: "PCI DSS",
-        text: "The highest PCI level, validated by a Qualified Security Assessor, for environments that handle payment card data.",
+        text: "Controls mapped to PCI DSS requirements for environments that handle payment card data.",
     },
     {
         icon: Lock,
@@ -161,7 +162,7 @@ const principles: IconCard[] = [
     {
         icon: Eye,
         title: "Evidence over assertion",
-        text: "Certifications and control mappings are published rather than implied, so a capability can be checked instead of taken on trust.",
+        text: "Control mappings are published rather than implied, so a capability can be checked instead of taken on trust.",
     },
     {
         icon: KeyRound,
@@ -176,7 +177,7 @@ const closing = {
         "Nine modules, one audit trail, and a deployment model that matches the infrastructure you already run.",
         "We will walk through the capability set and the control mappings against your own environment.",
     ],
-    kicker: "On-premise. Independently audited. Yours to run.",
+    kicker: "On-premise. Mapped to your frameworks. Yours to run.",
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/security", label: "Security Posture" },
 };
@@ -185,7 +186,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What is OmniPriv built for?",
         answer:
-            "On-premise, regulated environments that need to prove what happened to a privileged account. The platform covers the full privileged access lifecycle — vaulting, session control, approval workflow, integration and audit — in nine capability modules that share one policy engine and one audit trail.",
+            "On-premise, regulated environments that need to prove what happened to a privileged account. The platform covers the full privileged access lifecycle, vaulting, session control, approval workflow, integration and audit, in nine capability modules that share one policy engine and one audit trail.",
     },
     {
         question: "Does OmniPriv need inbound ports opened to managed systems?",
@@ -193,9 +194,9 @@ const faqs: FaqEntry[] = [
             "No. Privileged connections are brokered through the platform rather than intercepted at the machine, so an inbound port does not have to be opened on the target system.",
     },
     {
-        question: "Which certifications and frameworks does OmniPriv hold?",
+        question: "Which compliance frameworks does OmniPriv map to?",
         answer:
-            "SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Controls are mapped out of the box to those same six frameworks, and reporting templates are available pre-formatted for the certification set.",
+            "SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Controls are mapped out of the box to those same six frameworks, and reporting templates are available pre-formatted for each of them.",
     },
     {
         question: "Who holds the encryption keys?",
@@ -226,27 +227,27 @@ export default function AboutPage() {
 
             {/* ─── WHAT WE BUILD ──────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="The Platform"
-                        title={buildSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={buildSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="The Platform"
+                    title={buildSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={buildSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={moduleCards} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── DEPLOYMENT MODEL ───────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={deploymentSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <deploymentSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={deploymentSection.title}>
+                <MediaSplit
+                    media={deploymentSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={deploymentSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {deploymentSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -256,7 +257,7 @@ export default function AboutPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={deploymentSection.points} className="mt-8" />
 
@@ -268,23 +269,17 @@ export default function AboutPage() {
 
             {/* ─── INDEPENDENT ASSURANCE (dark band) ──────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Independent Assurance"
-                        title={assuranceSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={assuranceSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Independent Assurance"
+                    title={assuranceSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={assuranceSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {assurancePillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -311,15 +306,13 @@ export default function AboutPage() {
 
             {/* ─── PRINCIPLES ─────────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="How We Work"
-                        title={principlesSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={principlesSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="How We Work"
+                    title={principlesSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={principlesSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={principles} columns={4} className="mt-12" />
             </Section>
@@ -336,7 +329,7 @@ export default function AboutPage() {
             {/* ─── FAQ ────────────────────────────────────────────── */}
             <FaqSection
                 title="Frequently Asked Questions"
-                subtitle="Common questions about the platform, its deployment model and its certifications."
+                subtitle="Common questions about the platform, its deployment model and its framework mappings."
                 items={faqs}
             />
         </>

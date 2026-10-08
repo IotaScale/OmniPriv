@@ -40,12 +40,12 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-white dark:bg-[#030711] border-t border-slate-900/[0.08] dark:border-white/[0.06] overflow-hidden">
+    <footer className="relative bg-white dark:bg-[#0a1628] border-t border-slate-900/[0.08] dark:border-white/[0.06] overflow-hidden">
       {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
 
-      {/* Newsletter bar — forced dark band so light mode keeps contrast */}
-      <div className="dark">
+      {/* Newsletter bar: follows the theme, so the page ground runs on unbroken */}
+      <div>
         <div className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/50 dark:bg-[#0A1628]">
           <div className="container-xl py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -61,7 +61,7 @@ export default function Footer() {
               <p
                 role="status"
                 aria-live="polite"
-                className="text-[#00B8FF] font-medium text-sm flex items-center gap-2"
+                className="text-[#00B8DB] font-medium text-sm flex items-center gap-2"
               >
                 <span className="text-lg">✓</span> You&apos;re subscribed! Welcome aboard.
               </p>
@@ -120,13 +120,13 @@ export default function Footer() {
             <div className="space-y-4">
               <a
                 href="mailto:info@omnipriv.com"
-                className="flex items-center gap-2.5 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors group/contact"
+                className="flex items-center gap-2.5 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors group/contact"
               >
-                <Mail className="w-3.5 h-3.5 text-[#00B8FF]/60 group-hover/contact:text-[#00B8FF] transition-colors flex-shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#00B8DB]/60 group-hover/contact:text-[#00B8DB] transition-colors flex-shrink-0" />
                 info@omnipriv.com
               </a>
               <div className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-400">
-                <MapPin className="w-3.5 h-3.5 text-[#00B8FF]/60 transition-colors flex-shrink-0 mt-0.5" />
+                <MapPin className="w-3.5 h-3.5 text-[#00B8DB]/60 transition-colors flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="text-slate-900/70 dark:text-white/70 font-medium text-xs mb-0.5">Omnipriv US Office</div>
                   <div>4301 Independence St.</div>
@@ -146,9 +146,9 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors duration-200 flex items-center gap-1.5 group/link"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[#00B8DB]/30 group-hover/link:bg-[#00B8DB] transition-colors flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -168,9 +168,9 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors duration-200 flex items-center gap-1.5 group/link"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[#00B8DB]/30 group-hover/link:bg-[#00B8DB] transition-colors flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -188,9 +188,9 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors duration-200 flex items-center gap-1.5 group/link"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors duration-200 flex items-center gap-1.5 group/link"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#00B8FF]/30 group-hover/link:bg-[#00B8FF] transition-colors flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[#00B8DB]/30 group-hover/link:bg-[#00B8DB] transition-colors flex-shrink-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -201,7 +201,7 @@ export default function Footer() {
 
 
         {/* CTA Banner */}
-        <div className="mt-10 p-6 rounded-2xl border border-[#00B8FF]/15 bg-gradient-to-r from-[#00B8FF]/[0.06] to-[#0060FF]/[0.04] flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-10 p-6 rounded-2xl border border-[#00B8DB]/15 bg-gradient-to-r from-[#00B8DB]/[0.06] to-[#00667A]/[0.04] flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-slate-950 dark:text-white font-semibold text-lg mb-1" style={{ fontFamily: "var(--font-syne)" }}>
               Ready to secure your privileged access?
@@ -214,7 +214,7 @@ export default function Footer() {
             href="/demo"
             className="btn-primary whitespace-nowrap flex-shrink-0"
           >
-            Contact Sales <ArrowRight className="w-4 h-4" />
+            Request a Demo <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -227,13 +227,13 @@ export default function Footer() {
               © {new Date().getFullYear()} OmniPriv Inc. 
             </p>
             <div className="flex items-center gap-5">
-              <Link href="/privacy-policy" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
+              <Link href="/privacy-policy" className="text-xs text-slate-500 hover:text-[#00B8DB] transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
+              <Link href="/terms" className="text-xs text-slate-500 hover:text-[#00B8DB] transition-colors">
                 Terms of Service
               </Link>
-              <Link href="/security" className="text-xs text-slate-500 hover:text-[#00B8FF] transition-colors">
+              <Link href="/security" className="text-xs text-slate-500 hover:text-[#00B8DB] transition-colors">
                 Security
               </Link>
             </div>

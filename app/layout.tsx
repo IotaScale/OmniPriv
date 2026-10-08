@@ -1,26 +1,33 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Onest, Sora, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import AosProvider from "@/components/ui/AosProvider";
-//
-const inter = Inter({
+
+/*
+ * Type system.
+ *   Display  Sora: geometric, confident at large sizes, tightens well.
+ *   Body     Onest: a clear grotesque that stays readable at 14 to 17px,
+ *            with a different construction from Sora so the two contrast.
+ *   Mono     JetBrains Mono for labels, code and the console UI.
+ * The CSS variable names are legacy (--font-inter, --font-syne) and are kept
+ * so every existing reference picks up the new faces without edits.
+ */
+const body = Onest({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
-// Plus Jakarta Sans — premium modern sans used by high-end SaaS products.
-// Kept under --font-syne so existing style references need no change.
-const jakartaSans = Plus_Jakarta_Sans({
+const display = Sora({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-syne",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const jetbrains = JetBrains_Mono({
@@ -104,7 +111,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakartaSans.variable} ${jetbrains.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${body.variable} ${display.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -137,7 +144,7 @@ export default function RootLayout({
         {/*
           AOS ships `[data-aos] { opacity: 0 }`, so without JavaScript every
           animated element would stay invisible for good. Force them back to
-          visible — this must stay in the head so it applies before first paint.
+          visible, this must stay in the head so it applies before first paint.
         */}
         <noscript>
           <style>{`[data-aos]{opacity:1!important;transform:none!important;transition:none!important}`}</style>

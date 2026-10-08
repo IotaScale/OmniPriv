@@ -29,13 +29,13 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /platform/identity-security — the cross-cutting hub.
+ * /platform/identity-security, the cross-cutting hub.
  *
  * It sits inside the /platform namespace because every challenge card now
  * points there, but it is not a capability module and is deliberately absent
  * from `solutions` in ../data.ts: it describes the whole identity estate
  * rather than one capability. That is also why it is a real route rather than
- * an entry in the bespokePages map — a static segment takes precedence over
+ * an entry in the bespokePages map, a static segment takes precedence over
  * the neighbouring [slug] route, so no module entry is needed for it to
  * resolve, and the module count stays at nine.
  *
@@ -66,13 +66,13 @@ const hero = {
         "The old line between privileged and non-privileged identities no longer holds. Across on-premises systems, cloud services and autonomous agents, every path to sensitive data is a privileged one.",
     ] as RichText,
     body: [
-        "OmniPriv governs them together — human, machine, vendor and AI identities — under one policy engine, one credential store and one audit trail, rather than four tools that never quite agree with each other.",
+        "OmniPriv governs them together, human, machine, vendor and AI identities, under one policy engine, one credential store and one audit trail, rather than four tools that never quite agree with each other.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform", label: "Explore the Platform" },
     image: {
-        src: "https://images.unsplash.com/photo-1759931300350-39eb98d8ed74?auto=format&fit=crop&w=1200&q=70",
-        alt: "A person's silhouette rendered on a device screen, representing a digital identity",
+        src: "/challenges/reduce-privileged-identity-risk.jpeg",
+        alt: "A privileged identity protected by a shield while risky access paths are blocked",
     },
 };
 
@@ -87,13 +87,13 @@ const identityClasses: IconCard[] = [
     {
         icon: Users,
         title: "Human identities",
-        text: "Administrators, engineers and workforce users — including remote and hybrid workers whose access IT can no longer watch at the network edge.",
+        text: "Administrators, engineers and workforce users, including remote and hybrid workers whose access IT can no longer watch at the network edge.",
         href: "/solutions/human-identity-security",
     },
     {
         icon: Cpu,
         title: "Machine identities",
-        text: "Service accounts, workload identities, keys, certificates and secrets — created and destroyed faster than any manual review cycle can follow.",
+        text: "Service accounts, workload identities, keys, certificates and secrets, created and destroyed faster than any manual review cycle can follow.",
         href: "/solutions/machine-identity-security",
     },
     {
@@ -105,7 +105,7 @@ const identityClasses: IconCard[] = [
     {
         icon: Building2,
         title: "Vendor & third-party",
-        text: "Contractors, suppliers and partners who need genuine access for a defined piece of work — and need it revoked the moment that work ends.",
+        text: "Contractors, suppliers and partners who need genuine access for a defined piece of work, and need it revoked the moment that work ends.",
         href: "/platform/secure-remote-access",
     },
 ];
@@ -209,7 +209,7 @@ const keepReading = [
 const closing = {
     title: "One authorization model for every identity",
     body: [
-        "OmniPriv governs human, machine, vendor and AI identities together — the same policy engine, the same credential protection and the same audit trail.",
+        "OmniPriv governs human, machine, vendor and AI identities together, the same policy engine, the same credential protection and the same audit trail.",
         "Start with the identity class that worries you most. The model does not change for the next one.",
     ],
     kicker: "Nothing standing. Nobody holds the secret. Nothing unrecorded.",
@@ -262,41 +262,31 @@ export default function IdentitySecurityPage() {
 
             {/* ─── FOUR IDENTITY CLASSES ────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={classesSection.title} className="mb-2">
-                        <Prose segments={classesSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={classesSection.title} className="mb-2">
+                    <Prose segments={classesSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={identityClasses} columns={4} className="mt-12" />
             </Section>
 
             {/* ─── SIX AREAS OF RISK ────────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={areasSection.title} className="mb-2">
-                        <Prose segments={areasSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={areasSection.title} className="mb-2">
+                    <Prose segments={areasSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={riskAreas} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── OPERATING MODEL (dark band) ──────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={operatingSection.title} className="mb-2">
-                        <Prose segments={operatingSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={operatingSection.title} className="mb-2">
+                    <Prose segments={operatingSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {operatingPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -312,25 +302,23 @@ export default function IdentitySecurityPage() {
 
             {/* ─── GOVERNANCE ACROSS CLASSES ────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        title="Governance that does not stop at the boundary of a tool"
-                        className="mb-6"
-                    >
-                        <Prose
-                            segments={[
-                                "Most identity programmes break where one system hands off to another. These are the controls that keep the classes inside a single model, and they stay server-side and policy-driven rather than depending on people remembering a process.",
-                            ]}
-                        />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    title="Governance that does not stop at the boundary of a tool"
+                    className="mb-6"
+                >
+                    <Prose
+                        segments={[
+                            "Most identity programmes break where one system hands off to another. These are the controls that keep the classes inside a single model, and they stay server-side and policy-driven rather than depending on people remembering a process.",
+                        ]}
+                    />
+                </SectionHeading>
 
                 <CheckList items={governancePoints} className="max-w-3xl" />
 
                 {/* Centred: the heading and tick list above are centred, so a
                     trailing link left-hugging the container reads as a mistake.
                     `ArrowLink` renders an inline-flex anchor, so it follows the
-                    parent's text alignment — a plain wrapper is not enough. */}
+                    parent's text alignment, a plain wrapper is not enough. */}
                 <div className="mt-10 flex justify-center">
                     <ArrowLink href="/enterprise">
                         See how OmniPriv runs in enterprise environments

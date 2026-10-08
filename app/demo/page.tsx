@@ -40,13 +40,13 @@ import type { RichText } from "@/lib/rich-text";
  *
  * No CtaBand: the form is the call to action, so a closing band pointing at
  * /demo would be circular. This page therefore has one content dark band
- * rather than the usual two — see components/sections/README.md.
+ * rather than the usual two, see components/sections/README.md.
  */
 
 export const metadata: Metadata = {
     title: { absolute: "Request a Demo | See OmniPriv PAM in Your Environment" },
     description:
-        "Book a 30-minute introductory call, a tailored walkthrough, or an architecture review — including an optional 30-day proof-of-concept in your own environment.",
+        "Book a 30-minute introductory call, a tailored walkthrough, or an architecture review, including an optional 30-day proof-of-concept in your own environment.",
 };
 
 const hero = {
@@ -57,11 +57,12 @@ const hero = {
         "A walkthrough is only useful if it looks like your estate. Tell us which systems matter and we will focus the session on those rather than giving a generic tour.",
     ] as RichText,
     body: [
-        "No credit card, no commitment, and no obligation to sit through a slide deck — you can start with the architecture review instead if that is the more useful conversation.",
+        "No credit card, no commitment, and no obligation to sit through a slide deck, you can start with the architecture review instead if that is the more useful conversation.",
     ] as RichText,
     image: {
-        src: "https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?auto=format&fit=crop&w=1200&q=70",
-        alt: "Colleague presenting to a team seated around a conference table",
+        src: "/product/dashboard.png",
+        alt: "OmniPriv security dashboard, the first screen shown in a demo",
+        fit: "contain" as const,
     },
     primary: { href: "#demo-form", label: "Request Your Demo" },
     secondary: { href: "/platform", label: "Explore the Platform First" },
@@ -122,7 +123,7 @@ const walkthroughPillars = [
     {
         icon: UserCheck,
         title: "How approval would work for you",
-        text: "The 4-eyes principle is the default — a minimum of two independent approvers with the requester excluded. We will map your existing approval chains onto multi-level workflows, including mobile and email approvals.",
+        text: "The 4-eyes principle is the default, a minimum of two independent approvers with the requester excluded. We will map your existing approval chains onto multi-level workflows, including mobile and email approvals.",
     },
     {
         icon: ClipboardCheck,
@@ -145,7 +146,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Can we run it in our own environment first?",
         answer:
-            "Yes — that is step four, and it is free. OmniPriv can run in your environment for 30 days at no cost with support from our engineering team. The trial is scoped against your environment, and a rollout plan is produced during the architecture review.",
+            "Yes, that is step four, and it is free. OmniPriv can run in your environment for 30 days at no cost with support from our engineering team. The trial is scoped against your environment, and a rollout plan is produced during the architecture review.",
     },
     {
         question: "Where does the platform run, and who holds the keys?",
@@ -176,15 +177,13 @@ export default function DemoPage() {
 
             {/* ─── WHAT TO EXPECT ─────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="The Process"
-                        title={expectationsSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={expectationsSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="The Process"
+                    title={expectationsSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={expectationsSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={whatToExpect} columns={4} className="mt-12" />
             </Section>
@@ -197,15 +196,15 @@ export default function DemoPage() {
                     </div>
 
                     <div className="lg:col-span-2 space-y-8">
-                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#070e1c]">
+                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0F2140]">
                             <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
                                 Prefer to talk directly?
                             </h3>
                             <a
                                 href="mailto:info@omnipriv.com"
-                                className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors"
+                                className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors"
                             >
-                                <Mail className="w-4 h-4 text-[#00B8FF]" aria-hidden="true" />
+                                <Mail className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" aria-hidden="true" />
                                 info@omnipriv.com
                             </a>
                             <p className="mt-4 text-xs text-slate-500 leading-relaxed">
@@ -214,7 +213,7 @@ export default function DemoPage() {
                             </p>
                         </div>
 
-                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#070e1c]">
+                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0F2140]">
                             <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
                                 What we will not do
                             </h3>
@@ -230,23 +229,17 @@ export default function DemoPage() {
 
             {/* ─── WHAT WE'LL WALK THROUGH (dark band) ────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Session Agenda"
-                        title={walkthroughSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={walkthroughSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Session Agenda"
+                    title={walkthroughSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={walkthroughSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {walkthroughPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"

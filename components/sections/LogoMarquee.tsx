@@ -8,8 +8,7 @@ import Image from "next/image";
  *
  * Extracted from components/layout/TechMarquee.tsx so the homepage and
  * /features share one implementation. /features previously carried its own
- * banner made of 16 hand-drawn inline SVG icons in a different chip style —
- * bare icon, no logo tile, 3 track copies, tighter spacing — which read as a
+ * banner made of 16 hand-drawn inline SVG icons in a different chip style, * bare icon, no logo tile, 3 track copies, tighter spacing, which read as a
  * cheaper version of the homepage band. Both pages now render this component
  * and differ only in the label above it.
  *
@@ -24,7 +23,7 @@ import Image from "next/image";
    36 logos split across 2 rows of 18. */
 type Logo = { name: string; src: string };
 
-/* Row 1 — operating systems, runtime & databases */
+/* Row 1, operating systems, runtime & databases */
 const rowOne: Logo[] = [
     { name: "Linux", src: "/tech/linux.svg" },
     { name: "Windows", src: "/tech/windows.svg" },
@@ -46,7 +45,7 @@ const rowOne: Logo[] = [
     { name: "MariaDB", src: "/tech/mariadb.svg" },
 ];
 
-/* Row 2 — data platforms, cloud, DevOps, identity & AI */
+/* Row 2, data platforms, cloud, DevOps, identity & AI */
 const rowTwo: Logo[] = [
     { name: "Elasticsearch", src: "/tech/elasticsearch.svg" },
     { name: "Cassandra", src: "/tech/cassandra.svg" },
@@ -68,8 +67,9 @@ const rowTwo: Logo[] = [
     { name: "OpenAI", src: "/tech/openai.svg" },
 ];
 
-/* ─── Scroll Reveal Hook ─── */
-function useScrollReveal() {
+/* ─── Scroll Reveal Hook ───
+   Exported: the homepage sections reuse it through components/home/RevealScope. */
+export function useScrollReveal() {
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const el = ref.current;
@@ -95,7 +95,7 @@ function useScrollReveal() {
    The CSS animation translates the track by -50%, so each row needs an even
    number of identical copies for a seamless loop, and half of the track must
    be wider than the largest viewport so no gap appears. 4 copies of an 18-logo
-   row gives ~5.8k px of travel — enough for ultrawide and 4K displays. */
+   row gives ~5.8k px of travel, enough for ultrawide and 4K displays. */
 function MarqueeRow({
     logos,
     direction,
@@ -114,7 +114,7 @@ function MarqueeRow({
                 {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
                     <div
                         key={`${logo.name}-${i}`}
-                        className="flex-shrink-0 flex items-center gap-3 pl-2.5 pr-6 py-2.5 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
+                        className="flex-shrink-0 flex items-center gap-3 pl-2.5 pr-6 py-2.5 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8DB]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
                     >
                         {/* Light tile keeps dark brand wordmarks legible in dark mode */}
                         <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white border border-slate-900/[0.06] dark:border-white/[0.08]">
@@ -156,10 +156,10 @@ export default function LogoMarquee({ label }: LogoMarqueeProps) {
                 </div>
 
                 <div className="space-y-4">
-                    {/* Row 1 — operating systems, runtime & databases (scrolls left) */}
+                    {/* Row 1, operating systems, runtime & databases (scrolls left) */}
                     <MarqueeRow logos={rowOne} direction="left" duration="52s" />
 
-                    {/* Row 2 — data, cloud, DevOps, identity & AI (scrolls right) */}
+                    {/* Row 2, data, cloud, DevOps, identity & AI (scrolls right) */}
                     <MarqueeRow logos={rowTwo} direction="right" duration="60s" />
                 </div>
             </section>

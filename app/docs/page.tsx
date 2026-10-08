@@ -1,16 +1,17 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  ArrowRight, BookOpen, Code, Server, Zap, Shield,
+  Code, Server, Zap, Shield,
   ChevronRight, FileText, Database, Network, Cpu, Lock, Globe,
   Play, Terminal, Settings, Users,
-  Icon,
 } from "lucide-react";
+
+import CtaBand from "@/components/sections/CtaBand";
+import SplitHero from "@/components/sections/SplitHero";
 
 /*
  * Documentation index.
  *
- * None of the destinations advertised here exist yet — app/docs/ contains only
+ * None of the destinations advertised here exist yet, app/docs/ contains only
  * this page, so every /docs/<section>/<article> URL below would 404. The
  * article lists are therefore rendered as inert text with a "coming soon"
  * treatment rather than as links, and the fabricated view counts that used to
@@ -38,8 +39,6 @@ const docCategories = [
       { title: "Connecting Your First Asset", href: "/docs/quick-start/first-asset" },
       { title: "Creating Users and Roles", href: "/docs/quick-start/users-roles" },
     ],
-    color: "border-blue-500/20 bg-blue-500/5",
-    textColor: "text-blue-400",
   },
   {
     icon: Settings,
@@ -52,8 +51,6 @@ const docCategories = [
       { title: "Authentication Providers (LDAP, SSO)", href: "/docs/admin/auth" },
       { title: "Credential Vault Configuration", href: "/docs/admin/vault" },
     ],
-    color: "border-purple-500/20 bg-purple-500/5",
-    textColor: "text-purple-400",
   },
   {
     icon: Shield,
@@ -66,8 +63,6 @@ const docCategories = [
       { title: "Compliance Report Templates", href: "/docs/security/compliance" },
       { title: "Audit Log Management", href: "/docs/security/audit-logs" },
     ],
-    color: "border-teal-500/20 bg-teal-500/5",
-    textColor: "text-teal-400",
   },
   {
     icon: Code,
@@ -80,8 +75,6 @@ const docCategories = [
       { title: "Sessions API", href: "/docs/api/sessions" },
       { title: "Audit & Reports API", href: "/docs/api/audit" },
     ],
-    color: "border-orange-500/20 bg-orange-500/5",
-    textColor: "text-orange-400",
   },
   {
     icon: Zap,
@@ -94,8 +87,6 @@ const docCategories = [
       { title: "ServiceNow Ticketing", href: "/docs/integrations/servicenow" },
       { title: "Terraform Provider", href: "/docs/integrations/terraform" },
     ],
-    color: "border-yellow-500/20 bg-yellow-500/5",
-    textColor: "text-yellow-400",
   },
   {
     icon: Server,
@@ -108,8 +99,6 @@ const docCategories = [
       { title: "Backup & Disaster Recovery", href: "/docs/deploy/backup" },
       { title: "Upgrade Guide", href: "/docs/deploy/upgrade" },
     ],
-    color: "border-emerald-500/20 bg-emerald-500/5",
-    textColor: "text-emerald-400",
   },
 ];
 
@@ -129,71 +118,71 @@ const quickLinks = [
   { label: "Troubleshooting Guide", href: "/docs/troubleshoot", icon: Settings },
 ];
 
+const cardClass =
+  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140]";
+
 export default function DocsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center" data-aos="fade-up">
-          <div className="badge-cyan mb-6 inline-flex mx-auto">Documentation</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6" style={{ fontFamily: "var(--font-syne)" }}>
-            OmniPriv <span className="text-gradient">Documentation</span>
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl mx-auto mb-10">
-            Everything you need to deploy, configure, and operate OmniPriv in your enterprise environment.
-          </p>
+      <SplitHero
+        titleLead="OmniPriv"
+        titleAccent="Documentation"
+        media={{
+          src: "/product/dashboard.png",
+          alt: "OmniPriv platform dashboard",
+          fit: "contain",
+        }}
+      >
+        <p>
+          Everything you need to deploy, configure, and operate OmniPriv in your enterprise environment.
+        </p>
+      </SplitHero>
 
-
-        </div>
-      </section>
-
-      {/* Quick Links */}
-      <section className="py-8 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      {/* Quick links */}
+      <section className="py-8 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
         <div className="container-xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-aos="fade-up">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" data-aos="fade-up">
             {quickLinks.map((link) => (
               <div
                 key={link.label}
                 aria-disabled="true"
-                className="flex items-center gap-2 p-3 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] opacity-75"
+                className={`${cardClass} flex items-center gap-3 p-4`}
               >
-                <link.icon className="w-4 h-4 text-[#00B8FF] flex-shrink-0" />
+                <link.icon className="w-4 h-4 op-link flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{link.label}</span>
-                <span className="ml-auto text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex-shrink-0">Soon</span>
+                <span className="ml-auto text-xs font-semibold text-slate-500 dark:text-slate-400 flex-shrink-0">Soon</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Documentation Categories */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+      {/* Documentation categories */}
+      <section className="section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
         <div className="container-xl">
-          <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }} data-aos="fade-up">
-            Browse by Category
-          </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 max-w-2xl">
-            The guide titles below outline what is being written. They are not yet
-            published, so they are listed for reference rather than as links. In the
-            meantime, our support team can answer any of these directly.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5" data-aos="fade-up" data-aos-delay="80">
+          <div className="section-heading" data-aos="fade-up">
+            <h2 className="op-h2">Browse by Category</h2>
+            <p className="op-lede">
+              The guide titles below outline what is being written. They are not yet
+              published, so they are listed for reference rather than as links. In the
+              meantime, our support team can answer any of these directly.
+            </p>
+          </div>
+          <div className="op-body grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-aos="fade-up">
             {docCategories.map((cat) => (
-              <div key={cat.title} className={`p-6 rounded-2xl border ${cat.color} hover:border-opacity-40 transition-all group`}>
-                <div className="flex items-center gap-3 mb-3">
-                  <cat.icon className={`w-5 h-5 ${cat.textColor}`} />
-                  <h3 className={`font-bold text-base ${cat.textColor}`} style={{ fontFamily: "var(--font-syne)" }}>{cat.title}</h3>
+              <div key={cat.title} className={`${cardClass} p-6`}>
+                <div className="icon-wrapper mb-4">
+                  <cat.icon className="w-5 h-5" aria-hidden="true" />
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mb-5">{cat.description}</p>
+                <h3 className="op-card-title mb-2">{cat.title}</h3>
+                <p className="op-card-text mb-5">{cat.description}</p>
                 <ul className="space-y-2.5">
                   {cat.articles.map((article) => (
                     <li
                       key={article.title}
-                      className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-500"
+                      className="flex items-start gap-2 text-sm leading-snug text-slate-600 dark:text-slate-400"
                     >
-                      <ChevronRight className="w-3 h-3 text-[#00B8FF]/40 flex-shrink-0" />
+                      <ChevronRight className="w-3.5 h-3.5 mt-0.5 op-link flex-shrink-0" aria-hidden="true" />
                       {article.title}
                     </li>
                   ))}
@@ -204,27 +193,25 @@ export default function DocsPage() {
         </div>
       </section>
 
-      {/* Popular Articles */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      {/* Popular articles */}
+      <section className="section-padding">
         <div className="container-xl">
-          <div className="flex items-center justify-between mb-8 flex-wrap gap-4" data-aos="fade-up">
-            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
-              Most Popular Articles
-            </h2>
+          <div className="section-heading" data-aos="fade-up">
+            <h2 className="op-h2">Most Popular Articles</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="80">
+          <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-aos="fade-up">
             {popularDocs.map((doc) => (
               <div
                 key={doc.title}
                 aria-disabled="true"
-                className="flex items-start gap-3 p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 opacity-75"
+                className={`${cardClass} flex items-start gap-4 p-6`}
               >
-                <doc.icon className="w-5 h-5 text-[#00B8FF] flex-shrink-0 mt-0.5" />
+                <div className="icon-wrapper flex-shrink-0">
+                  <doc.icon className="w-5 h-5" aria-hidden="true" />
+                </div>
                 <div>
-                  <div className="text-sm font-semibold text-slate-950 dark:text-white mb-1">
-                    {doc.title}
-                  </div>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Coming soon</div>
+                  <h3 className="op-card-title text-[0.9375rem] mb-1">{doc.title}</h3>
+                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Coming soon</div>
                 </div>
               </div>
             ))}
@@ -233,30 +220,14 @@ export default function DocsPage() {
       </section>
 
       {/* Support CTA */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 text-center" data-aos="fade-up">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />
-            <div className="relative z-10">
-              <BookOpen className="w-12 h-12 text-[#00B8FF] mx-auto mb-5" />
-              <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
-                Can&apos;t find what you need?
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
-                Our support team and dedicated Customer Success managers are available to help you with any technical questions.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a href="mailto:support@OmniPriv.com" className="btn-primary">
-                  Contact Support <ArrowRight className="w-4 h-4" />
-                </a>
-                <Link href="/demo" className="btn-secondary">
-                  Request a Training Session
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Can't find what you need?"
+        body={[
+          "Our support team and dedicated Customer Success managers are available to help you with any technical questions.",
+        ]}
+        primary={{ href: "mailto:support@OmniPriv.com", label: "Contact Support" }}
+        secondary={{ href: "/demo", label: "Request a Training Session" }}
+      />
     </>
   );
 }

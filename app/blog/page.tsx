@@ -27,7 +27,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /blog — the article index.
+ * /blog, the article index.
  *
  * Previously a single "use client" page with five hand-rolled sections, which
  * blocked the shared section library. The filter/grid now live in
@@ -52,7 +52,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 const allEntries = Object.entries(posts);
 
-/* Newest first — used for the fallback featured pick. */
+/* Newest first, used for the fallback featured pick. */
 const byNewest = [...allEntries].sort(
     (a, b) => new Date(b[1].date).getTime() - new Date(a[1].date).getTime(),
 );
@@ -106,7 +106,7 @@ const hero = {
     titleLead: "Guides for people who have to",
     titleAccent: "defend the decision.",
     intro: [
-        "Best practices, security research, compliance guidance and product updates on privileged access — written to be read by the engineer, the auditor and the person signing the budget.",
+        "Best practices, security research, compliance guidance and product updates on privileged access, written to be read by the engineer, the auditor and the person signing the budget.",
     ] as RichText,
     body: [
         `${allEntries.length} articles across ${categories.length} topics, from first-principles explainers to deployment and protocol detail.`,
@@ -173,7 +173,7 @@ const editorialPillars = [
     {
         icon: ShieldCheck,
         title: "Framework-mapped, not framework-flavoured",
-        text: "Compliance articles reference the actual control sets — SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404 — rather than gesturing at \u201ccompliance\u201d generally.",
+        text: "Compliance articles reference the actual control sets: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404, rather than gesturing at \u201ccompliance\u201d generally.",
     },
     {
         icon: Terminal,
@@ -190,7 +190,7 @@ const editorialPillars = [
 const closing = {
     title: "Read the deep dives, then test the claims",
     body: [
-        "Nothing here needs to be taken on trust. The platform index lists what each module does, and the security page carries the certifications behind it.",
+        "Nothing here needs to be taken on trust. The platform index lists what each module does, and the security page lists the frameworks its controls are mapped to.",
     ],
     kicker: "Explanations, not positioning.",
     primary: { href: "/demo", label: "Request a Demo" },
@@ -201,7 +201,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What does the blog cover?",
         answer:
-            "Best practices, security research, compliance guidance, product updates and DevSecOps, across privileged access management generally rather than only our own product. Some articles are general explainers — what PAM is, how just-in-time access works — and others are implementation-level.",
+            "Best practices, security research, compliance guidance, product updates and DevSecOps, across privileged access management generally rather than only our own product. Some articles are general explainers, what PAM is, how just-in-time access works, and others are implementation-level.",
     },
     {
         question: "Who writes the articles?",
@@ -211,7 +211,7 @@ const faqs: FaqEntry[] = [
     {
         question: "How current are the guides?",
         answer:
-            "Each card shows the publication date of the version you are reading. We update articles when the underlying guidance changes, including after platform releases, rather than leaving superseded advice live — but a dated guide is always worth checking against the current product documentation before you rely on a specific detail.",
+            "Each card shows the publication date of the version you are reading. We update articles when the underlying guidance changes, including after platform releases, rather than leaving superseded advice live, but a dated guide is always worth checking against the current product documentation before you rely on a specific detail.",
     },
     {
         question: "Can I quote or republish an article?",
@@ -245,11 +245,9 @@ export default function BlogPage() {
 
             {/* ─── WHERE TO START ─────────────────────────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Editor's Picks" title={picksSection.title} className="mb-2">
-                        <Prose segments={picksSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Editor's Picks" title={picksSection.title} className="mb-2">
+                    <Prose segments={picksSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={picks} columns={4} className="mt-12" />
 
@@ -260,23 +258,17 @@ export default function BlogPage() {
 
             {/* ─── EDITORIAL POLICY (dark band) ───────────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Editorial Policy"
-                        title={editorialSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={editorialSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Editorial Policy"
+                    title={editorialSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={editorialSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {editorialPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -303,20 +295,20 @@ export default function BlogPage() {
 
             {/* ─── NEWSLETTER ─────────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-2xl mx-auto text-center">
-                    <SectionHeading
-                        badge="Newsletter"
-                        title="Get PAM insights in your inbox"
-                        align="center"
-                        size="lg"
-                        className="mb-7"
-                    >
-                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            New articles, plus product updates when a release changes something
-                            documented here. No spam, and you can unsubscribe at any time.
-                        </p>
-                    </SectionHeading>
+                <SectionHeading
+                    badge="Newsletter"
+                    title="Get PAM insights in your inbox"
+                    align="center"
+                    size="lg"
+                    className="mb-7"
+                >
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        New articles, plus product updates when a release changes something
+                        documented here. No spam, and you can unsubscribe at any time.
+                    </p>
+                </SectionHeading>
 
+                <div className="max-w-2xl mx-auto text-center">
                     <BlogNewsletter />
                 </div>
             </Section>

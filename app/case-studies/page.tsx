@@ -34,8 +34,8 @@ import type { RichText } from "@/lib/rich-text";
  * to problem patterns.
  *
  * The previous version presented nine anonymous organisations as real
- * customers — "Global Investment Bank", "Regional Health System", "Federal
- * Defense Agency" — each with precise metrics ("68% reduction in privilege
+ * customers, "Global Investment Bank", "Regional Health System", "Federal
+ * Defense Agency", each with precise metrics ("68% reduction in privilege
  * account attack surface", "2,400 privileged accounts brought under
  * management", "Zero privilege-related incidents"). None of it was real, and
  * given that no customer is named, none of it was checkable either. It also
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         absolute: "Privileged Access Patterns | OmniPriv",
     },
     description:
-        "The problem patterns privileged access programmes run into — fragmented tooling, standing privilege, stale credentials, unprovable audit trails — and the platform controls that address them.",
+        "The problem patterns privileged access programmes run into, fragmented tooling, standing privilege, stale credentials, unprovable audit trails, and the platform controls that address them.",
 };
 
 const hero = {
@@ -60,7 +60,7 @@ const hero = {
     titleLead: "The problem shape",
     titleAccent: "is always the same.",
     intro: [
-        "Privileged access failures rarely come from a missing control. They come from the same six situations, repeated across industries and organisation sizes — a secret nobody owns, a permission nobody removed, a record nobody can vouch for.",
+        "Privileged access failures rarely come from a missing control. They come from the same six situations, repeated across industries and organisation sizes, a secret nobody owns, a permission nobody removed, a record nobody can vouch for.",
     ] as RichText,
     body: [
         "So this page describes the patterns rather than the customers. Each one below names the situation, and links to the capability module built to resolve it.",
@@ -68,15 +68,15 @@ const hero = {
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform", label: "See the Capabilities" },
     image: {
-        src: "https://images.unsplash.com/photo-1759310610480-48649b55fbdf?auto=format&fit=crop&w=1200&q=70",
-        alt: "Group of colleagues in a business meeting discussing a project",
+        src: "/identities/human-identities.jpeg",
+        alt: "Security leaders reviewing governed identities around a table",
     },
 };
 
 const patternsSection = {
     title: "Patterns, not logos",
     lead: [
-        "We do not name customers without written consent, and we do not publish figures we cannot stand behind. What follows is the set of problems — not attributed results from organisations you cannot call to verify.",
+        "We do not name customers without written consent, and we do not publish figures we cannot stand behind. What follows is the set of problems, not attributed results from organisations you cannot call to verify.",
     ] as RichText,
 };
 
@@ -85,7 +85,7 @@ const patterns: IconCard[] = [
         icon: Layers,
         eyebrow: "Pattern 01",
         title: "The stack nobody chose",
-        text: "A vault was bought for secrets, a recorder for sessions, a workflow tool for approvals and a reporting add-on for the audit — each with its own console and its own copy of who can do what.",
+        text: "A vault was bought for secrets, a recorder for sessions, a workflow tool for approvals and a reporting add-on for the audit, each with its own console and its own copy of who can do what.",
         href: "/platform/consolidation",
     },
     {
@@ -106,7 +106,7 @@ const patterns: IconCard[] = [
         icon: ShieldCheck,
         eyebrow: "Pattern 04",
         title: "Logs you cannot vouch for",
-        text: "The events exist, but they sit in storage an administrator can edit — so in an investigation or an audit they prove nothing about what happened.",
+        text: "The events exist, but they sit in storage an administrator can edit, so in an investigation or an audit they prove nothing about what happened.",
         href: "/platform/audit-compliance",
     },
     {
@@ -158,7 +158,7 @@ const outputPillars = [
     {
         icon: Monitor,
         title: "Session recordings",
-        text: "Every privileged session is fully monitored and recorded, with high-fidelity playback stored securely under controlled access and indexed for later search — no agent on the target.",
+        text: "Every privileged session is fully monitored and recorded, with high-fidelity playback stored securely under controlled access and indexed for later search, no agent on the target.",
     },
     {
         icon: UserCheck,
@@ -188,7 +188,7 @@ const deepDives = [
 const closing = {
     title: "Start from your pattern, not our template",
     body: [
-        "Tell us which of the six situations matches your environment and we will show you the controls that address it — including the ones you would have to give up to get there.",
+        "Tell us which of the six situations matches your environment and we will show you the controls that address it, including the ones you would have to give up to get there.",
         "No invented percentages required on either side.",
     ],
     kicker: "On-premise. Independently audited. Yours to run.",
@@ -210,7 +210,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Where does the platform run?",
         answer:
-            "On-premise, on infrastructure you control — VMware, Red Hat and OpenStack, as a hardware-agnostic software appliance. Multi-node clustering, automated health checks, continuous heartbeat monitoring, database replication and load balancing are available for high availability.",
+            "On-premise, on infrastructure you control: VMware, Red Hat and OpenStack, as a hardware-agnostic software appliance. Multi-node clustering, automated health checks, continuous heartbeat monitoring, database replication and load balancing are available for high availability.",
     },
     {
         question: "What does a proof-of-concept involve?",
@@ -220,7 +220,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Who owns the audit data and the encryption keys?",
         answer:
-            "You do, on both counts. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys, and the installation key is generated at installation and stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted — including by an administrator.",
+            "You do, on both counts. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys, and the installation key is generated at installation and stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted, including by an administrator.",
     },
 ];
 
@@ -241,27 +241,27 @@ export default function CaseStudiesPage() {
 
             {/* ─── THE PATTERNS ───────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Problem Patterns"
-                        title={patternsSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={patternsSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Problem Patterns"
+                    title={patternsSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={patternsSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={patterns} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── THE REVIEW ─────────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={reviewSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <reviewSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={reviewSection.title}>
+                <MediaSplit
+                    media={reviewSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={reviewSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {reviewSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -271,7 +271,7 @@ export default function CaseStudiesPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={reviewSection.points} className="mt-8" />
 
@@ -283,23 +283,17 @@ export default function CaseStudiesPage() {
 
             {/* ─── WHAT THE PLATFORM PRODUCES (dark band) ─────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Concrete Outputs"
-                        title={outputSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={outputSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Concrete Outputs"
+                    title={outputSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={outputSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {outputPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"

@@ -1,8 +1,7 @@
-import { cn } from "@/lib/utils";
-import { prose } from "@/lib/styles";
+
+
 import FaqAccordion, { type FaqEntry } from "./FaqAccordion";
 import Section from "./Section";
-import SectionHeading from "./SectionHeading";
 
 export type { FaqEntry };
 
@@ -43,7 +42,7 @@ export default function FaqSection({
     };
 
     return (
-        <Section tone="muted" border="bottom" container={false} className={className}>
+        <Section border="bottom" container={false} className={className}>
             {emitSchema && (
                 <script
                     type="application/ld+json"
@@ -51,20 +50,12 @@ export default function FaqSection({
                 />
             )}
 
+            {/* Same layout as the homepage FAQ: centred heading over the accordion. */}
             <div className="container-xl max-w-4xl mx-auto">
-                <SectionHeading
-                    title={title}
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                    titleClassName="md:text-5xl leading-tight"
-                >
-                    {subtitle && (
-                        <p className={cn(prose, "text-base sm:text-lg max-w-2xl mx-auto")}>
-                            {subtitle}
-                        </p>
-                    )}
-                </SectionHeading>
+                <div className="text-center mb-10 lg:mb-12" data-aos="fade-up">
+                    <h2 className="op-h2">{title}</h2>
+                    {subtitle && <p className="op-lede mx-auto">{subtitle}</p>}
+                </div>
 
                 <FaqAccordion items={items} />
             </div>

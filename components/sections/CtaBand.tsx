@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { darkSurface, displayFont } from "@/lib/styles";
 
 export interface CtaBandAction {
     href: string;
@@ -32,7 +31,6 @@ export interface CtaBandProps {
  */
 export default function CtaBand({
     title,
-    badge,
     body,
     kicker,
     primary,
@@ -42,49 +40,32 @@ export default function CtaBand({
 }: CtaBandProps) {
     return (
         <div className="dark">
-            <section
-                className={cn(
-                    "section-padding border-b border-white/[0.04]",
-                    darkSurface,
-                    className
-                )}
-            >
-                <div className="container-xl max-w-4xl mx-auto text-center" data-aos="fade-up">
-                    {badge && <div className="badge-cyan mb-6 inline-flex mx-auto">{badge}</div>}
-
-                    <h2
-                        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-6 tracking-tight"
-                        style={displayFont}
-                    >
-                        {title}
-                    </h2>
+            <section className={cn("op-band-navy section-padding", className)}>
+                <div className="container-xl max-w-3xl mx-auto text-center" data-aos="fade-up">
+                    <h2 className="op-h2 op-h2-lg">{title}</h2>
 
                     {body?.map((paragraph, index) => (
                         <p
                             key={index}
                             className={cn(
-                                "text-slate-600 dark:text-slate-400 text-lg leading-relaxed",
-                                index === body.length - 1 ? "mb-10" : "mb-4"
+                                "mx-auto max-w-2xl text-base sm:text-[1.0625rem] leading-[1.7] text-slate-400",
+                                index === 0 ? "mt-5" : "mt-3"
                             )}
                         >
                             {paragraph}
                         </p>
                     ))}
 
-                    {kicker && (
-                        <p className="text-slate-950 dark:text-white font-semibold text-lg mb-6">
-                            {kicker}
-                        </p>
-                    )}
+                    {kicker && <p className="mt-6 text-white font-semibold">{kicker}</p>}
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-3.5">
-                        <Link href={primary.href} className="btn-primary text-base px-8 py-3.5">
+                    <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+                        <Link href={primary.href} className="btn-primary">
                             {primary.label}
-                            <ArrowRight className="w-5 h-5 ml-1.5" />
+                            <ArrowRight className="w-4 h-4" aria-hidden="true" />
                         </Link>
 
                         {secondary && (
-                            <Link href={secondary.href} className="btn-secondary text-base px-8 py-3.5">
+                            <Link href={secondary.href} className="btn-secondary">
                                 {secondary.label}
                             </Link>
                         )}

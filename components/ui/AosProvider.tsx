@@ -10,7 +10,7 @@ import "aos/dist/aos.css";
  *
  * AOS is initialised once, here, from the root layout. The `data-aos`
  * attributes that actually drive the animations are plain HTML, so every
- * section stays a server component — this is the only client component the
+ * section stays a server component, this is the only client component the
  * site adds in order to animate.
  *
  * Worth knowing before changing anything here:
@@ -25,7 +25,7 @@ import "aos/dist/aos.css";
  *   needs refreshHard() or the new page's elements never animate at all.
  * - Reduced motion is handled in CSS (see globals.css), NOT with AOS's `disable`
  *   option. `disable` switches the whole library off, so a visitor whose OS asks
- *   for reduced motion gets no reveal whatsoever — which both wastes the feature
+ *   for reduced motion gets no reveal whatsoever, which both wastes the feature
  *   and reads as "AOS is broken". The CSS keeps the fade and drops only the
  *   movement, which is what the preference is actually about.
  */

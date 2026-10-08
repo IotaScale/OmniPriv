@@ -21,7 +21,7 @@ export interface FaqAccordionProps {
 }
 
 /**
- * Expand/collapse question list — the design used on the homepage.
+ * Expand/collapse question list, the design used on the homepage.
  *
  * Closed answers stay in the DOM behind `hidden` rather than being unmounted,
  * so the copy is still in the server-rendered HTML for search engines while
@@ -51,7 +51,7 @@ export default function FaqAccordion({
                         key={faq.question}
                         className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                             isOpen
-                                ? "border-[#00B8FF]/35 bg-slate-100 dark:bg-[#091222] shadow-[0_4px_24px_rgba(0,184,255,0.04)]"
+                                ? "border-[#00B8DB]/35 bg-slate-100 dark:bg-[#0F2140] shadow-[0_4px_24px_rgba(0, 184, 219,0.04)]"
                                 : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100 dark:bg-[#070e1a] hover:border-slate-900/[0.16] dark:hover:border-white/[0.14] hover:bg-slate-100 dark:hover:bg-[#08101d]"
                         }`}
                     >
@@ -61,7 +61,7 @@ export default function FaqAccordion({
                             aria-expanded={isOpen}
                             aria-controls={regionId}
                             onClick={() => toggle(idx)}
-                            className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B8FF]"
+                            className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B8DB]"
                         >
                             <span
                                 className={`text-base sm:text-lg font-semibold transition-colors ${
@@ -77,7 +77,7 @@ export default function FaqAccordion({
                             <span
                                 className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
                                     isOpen
-                                        ? "bg-[#00B8FF]/20 text-[#00B8FF]"
+                                        ? "bg-[#00B8DB]/20 text-[#00667A] dark:text-[#00B8DB]"
                                         : "bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-600 dark:text-slate-400"
                                 }`}
                             >

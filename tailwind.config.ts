@@ -26,14 +26,14 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#00B8FF",
+          DEFAULT: "#00B8DB",
           50: "#E6F9FF",
           100: "#CCF2FF",
           200: "#99E5FF",
           300: "#66D9FF",
           400: "#33CCFF",
-          500: "#00B8FF",
-          600: "#0090CC",
+          500: "#00B8DB",
+          600: "#00869F",
           700: "#006899",
           800: "#004066",
           900: "#001833",
@@ -53,11 +53,11 @@ const config: Config = {
       },
       backgroundImage: {
         "hero-grid":
-          "linear-gradient(rgba(0,184,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,184,255,0.05) 1px, transparent 1px)",
+          "linear-gradient(rgba(0, 184, 219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 184, 219,0.05) 1px, transparent 1px)",
         "card-glow":
-          "radial-gradient(ellipse at top left, rgba(0,184,255,0.12) 0%, transparent 60%)",
+          "radial-gradient(ellipse at top left, rgba(0, 184, 219,0.12) 0%, transparent 60%)",
         "cyan-radial":
-          "radial-gradient(ellipse at center, rgba(0,184,255,0.15) 0%, transparent 70%)",
+          "radial-gradient(ellipse at center, rgba(0, 184, 219,0.15) 0%, transparent 70%)",
         "page-gradient":
           "linear-gradient(180deg, #030711 0%, #0A1628 30%, #030711 100%)",
       },
@@ -85,8 +85,8 @@ const config: Config = {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         glowPulse: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(0,184,255,0.25)" },
-          "50%": { boxShadow: "0 0 50px rgba(0,184,255,0.6)" },
+          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 184, 219,0.25)" },
+          "50%": { boxShadow: "0 0 50px rgba(0, 184, 219,0.6)" },
         },
         marquee: {
           "0%": { transform: "translateX(0)" },

@@ -26,7 +26,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/infrastructure-deployment — the destination
+ * Bespoke layout for /platform/infrastructure-deployment, the destination
  * of the "Infrastructure & Deployment" entry in the platform dropdown.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -108,8 +108,8 @@ const availabilitySection = {
         "Multi-node clustering with container-based health checks and automatic restart",
         "Heartbeat monitoring between nodes, so a stalled node is noticed rather than waited on",
         "Database replication and load balancing across the cluster",
-        "Granular disaster recovery — credentials restored without restoring the entire system",
-        "Offline device management — credentials for devices that rarely reach the corporate network stay managed and current",
+        "Granular disaster recovery, credentials restored without restoring the entire system",
+        "Offline device management, credentials for devices that rarely reach the corporate network stay managed and current",
     ],
 };
 
@@ -134,7 +134,7 @@ const isolationPillars = [
     {
         icon: Key,
         title: "Break-glass, still recorded",
-        text: "A built-in procedure to bypass the platform in a genuine emergency — available when you need it, and fully written to the audit trail when you use it.",
+        text: "A built-in procedure to bypass the platform in a genuine emergency, available when you need it, and fully written to the audit trail when you use it.",
     },
     {
         icon: Lock,
@@ -154,7 +154,7 @@ const closing = {
     title: "Deploy it on hardware you already own",
     body: [
         "OmniPriv runs on-premise as a software appliance, with clustering and disaster recovery built in.",
-        "We will walk through the topology that suits your estate — standalone, active-standby or a full HA cluster.",
+        "We will walk through the topology that suits your estate, standalone, active-standby or a full HA cluster.",
     ],
     kicker: "Your infrastructure. Your keys. Your topology.",
     primary: { href: "/demo", label: "Request a Demo" },
@@ -180,7 +180,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What happens if the PAM platform itself is unavailable?",
         answer:
-            "There is a built-in break-glass procedure for exactly that emergency. It lets administrators bypass the platform to reach a system, and every use is written to the audit trail — so the exception is available without becoming an invisible bypass.",
+            "There is a built-in break-glass procedure for exactly that emergency. It lets administrators bypass the platform to reach a system, and every use is written to the audit trail, so the exception is available without becoming an invisible bypass.",
     },
     {
         question: "Can we run separate tenants for subsidiaries or customers?",
@@ -206,27 +206,27 @@ export default function InfrastructureDeploymentPage() {
 
             {/* ─── DEPLOYMENT POSTURE ─────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Deployment Posture"
-                        title={postureSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={postureSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Deployment Posture"
+                    title={postureSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={postureSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={postureCards} columns={4} className="mt-12" />
             </Section>
 
             {/* ─── AVAILABILITY ───────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={availabilitySection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <availabilitySection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={availabilitySection.title}>
+                <MediaSplit
+                    media={availabilitySection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={availabilitySection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {availabilitySection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -238,7 +238,7 @@ export default function InfrastructureDeploymentPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={availabilitySection.points} className="mt-8" />
 
@@ -250,23 +250,17 @@ export default function InfrastructureDeploymentPage() {
 
             {/* ─── TENANTS AND RECOVERY (dark band) ───────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Isolation & Recovery"
-                        title={isolationSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={isolationSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Isolation & Recovery"
+                    title={isolationSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={isolationSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {isolationPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -282,15 +276,13 @@ export default function InfrastructureDeploymentPage() {
 
             {/* ─── SPECIFICATIONS ─────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Technical Specifications"
-                        title={specsSection.title}
-                        className="mb-6"
-                    >
-                        <Prose segments={specsSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Technical Specifications"
+                    title={specsSection.title}
+                    className="mb-6"
+                >
+                    <Prose segments={specsSection.lead} />
+                </SectionHeading>
 
                 <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
                     {platformSpecs.map((spec) => (
@@ -298,7 +290,7 @@ export default function InfrastructureDeploymentPage() {
                             key={spec.label}
                             className={`p-5 rounded-2xl border flex flex-col justify-between ${cardBorder} ${cardSurface}`}
                         >
-                            <span className="text-xs font-semibold text-[#00B8FF] uppercase tracking-wider mb-1.5">
+                            <span className="text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-wider mb-1.5">
                                 {spec.label}
                             </span>
                             <span className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">

@@ -10,23 +10,194 @@ import { posts } from "@/lib/blog-data";
 import { getCover } from "@/lib/blog-covers";
 import { mediaBorder } from "@/lib/styles";
 
+/* ─── ARTICLE STYLES ────────────────────────────────── */
+
+const ink = "text-[#0a1628] dark:text-white";
+const articleText = "text-[1.0625rem] leading-[1.8] text-slate-700 dark:text-slate-300";
+const articleH2 = `mt-12 first:mt-0 text-2xl font-bold leading-[1.25] tracking-[-0.02em] ${ink}`;
+const articleH3 = `mt-9 first:mt-0 text-xl font-bold leading-[1.3] tracking-[-0.015em] ${ink}`;
+const articleList = `mt-5 first:mt-0 space-y-2.5 pl-6 marker:text-[#00667A] dark:marker:text-[#00B8DB] ${articleText}`;
+const articleLink = "op-link font-semibold underline-offset-2 hover:underline";
+
 /* ─── INLINE MARKDOWN RENDERER ─────────────────────── */
 
+/** `[text](url)`, `**bold**` and `` `code` ``. */
 function renderInline(text: string): React.ReactNode {
-  // Split on [text](url) patterns
-  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
-  if (parts.length === 1) return text;
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|`[^`]+`)/g).filter(Boolean);
   return parts.map((part, i) => {
-    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-    if (match) {
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
       return (
-        <Link key={i} href={match[2]} className="text-[#00B8FF] hover:underline">
-          {match[1]}
+        <Link key={i} href={link[2]} className={articleLink}>
+          {link[1]}
         </Link>
       );
     }
-    return <span key={i}>{part}</span>;
+    const bold = part.match(/^\*\*([^*]+)\*\*$/);
+    if (bold) {
+      return (
+        <strong key={i} className={`font-semibold ${ink}`}>
+          {renderInline(bold[1])}
+        </strong>
+      );
+    }
+    const code = part.match(/^`([^`]+)`$/);
+    if (code) {
+      return (
+        <code
+          key={i}
+          className="rounded-md bg-slate-100 dark:bg-white/[0.06] px-1.5 py-0.5 font-mono text-[0.875em] text-[#0a1628] dark:text-slate-200"
+        >
+          {code[1]}
+        </code>
+      );
+    }
+    return <React.Fragment key={i}>{part}</React.Fragment>;
   });
+}
+
+/* ─── BLOCK MARKDOWN RENDERER ───────────────────────── */
+
+/**
+ * Line-based renderer for the subset of Markdown the posts use: `##`/`###`
+ * headings, paragraphs, `- ` and `1. ` lists, `![alt](src)` images, `> `
+ * quotes and fenced code. A heading or list may sit directly on the line
+ * above or below a paragraph without a blank line between them.
+ */
+function renderArticle(markdown: string): React.ReactNode[] {
+  const lines = markdown.trim().split("\n");
+  const nodes: React.ReactNode[] = [];
+  let i = 0;
+
+  const isBlockStart = (line: string) =>
+    /^(#{2,4} |- |\d+\. |> |```|!\[)/.test(line.trim());
+
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    const key = `b${i}`;
+
+    if (!line) {
+      i++;
+      continue;
+    }
+
+    // Fenced code
+    if (line.startsWith("```")) {
+      const code: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith("```")) {
+        code.push(lines[i]);
+        i++;
+      }
+      i++;
+      nodes.push(
+        <pre
+          key={key}
+          className="mt-6 first:mt-0 overflow-x-auto rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#0F2140] p-4 font-mono text-sm leading-[1.7] text-[#0a1628] dark:text-slate-200"
+        >
+          <code>{code.join("\n")}</code>
+        </pre>
+      );
+      continue;
+    }
+
+    // Headings
+    const heading = line.match(/^(#{2,4})\s+(.*)$/);
+    if (heading) {
+      nodes.push(
+        heading[1] === "##" ? (
+          <h2 key={key} className={articleH2}>
+            {renderInline(heading[2])}
+          </h2>
+        ) : (
+          <h3 key={key} className={articleH3}>
+            {renderInline(heading[2])}
+          </h3>
+        )
+      );
+      i++;
+      continue;
+    }
+
+    // Image
+    const image = line.match(/^!\[(.+?)\]\((.+?)\)$/);
+    if (image) {
+      nodes.push(
+        <figure key={key} className={`mt-8 mb-2 first:mt-0 rounded-2xl overflow-hidden border ${mediaBorder}`}>
+          <Image
+            src={image[2]}
+            alt={image[1]}
+            width={820}
+            height={420}
+            className="w-full h-auto"
+            unoptimized
+          />
+        </figure>
+      );
+      i++;
+      continue;
+    }
+
+    // Lists
+    if (/^(- |\d+\. )/.test(line)) {
+      const ordered = /^\d+\. /.test(line);
+      const pattern = ordered ? /^\d+\.\s+/ : /^-\s+/;
+      const items: string[] = [];
+      while (i < lines.length && pattern.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(pattern, ""));
+        i++;
+      }
+      const ListTag = ordered ? "ol" : "ul";
+      nodes.push(
+        <ListTag key={key} className={`${articleList} ${ordered ? "list-decimal" : "list-disc"}`}>
+          {items.map((item, k) => (
+            <li key={k} className="pl-1.5">
+              {renderInline(item)}
+            </li>
+          ))}
+        </ListTag>
+      );
+      continue;
+    }
+
+    // Blockquote
+    if (line.startsWith("> ")) {
+      const quote: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) {
+        quote.push(lines[i].trim().replace(/^>\s?/, ""));
+        i++;
+      }
+      nodes.push(
+        <blockquote
+          key={key}
+          className={`mt-6 first:mt-0 border-l-2 border-[#00667A] dark:border-[#00B8DB] pl-5 italic ${articleText}`}
+        >
+          {renderInline(quote.join(" "))}
+        </blockquote>
+      );
+      continue;
+    }
+
+    // Paragraph: consecutive plain lines. A line that is bold on its own
+    // (a lead-in or an FAQ question) keeps its own line.
+    const para: string[] = [];
+    while (i < lines.length && lines[i].trim() && !isBlockStart(lines[i])) {
+      para.push(lines[i].trim());
+      i++;
+    }
+    nodes.push(
+      <p key={key} className={`mt-5 first:mt-0 ${articleText}`}>
+        {para.map((text, k) => (
+          <React.Fragment key={k}>
+            {k > 0 && (/^\*\*.+\*\*:?$/.test(para[k - 1]) ? <br /> : " ")}
+            {renderInline(text)}
+          </React.Fragment>
+        ))}
+      </p>
+    );
+  }
+
+  return nodes;
 }
 
 /* ─── STATIC PARAMS ─────────────────────────────────── */
@@ -45,7 +216,7 @@ export async function generateMetadata(
   return {
     title: post.metaTitle
       ? { absolute: post.metaTitle }
-      : { absolute: `${post.title} — OmniPriv Blog` },
+      : { absolute: `${post.title}: OmniPriv Blog` },
     description: post.metaDescription ?? post.excerpt,
   };
 }
@@ -56,189 +227,89 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = posts[params.slug];
   if (!post) notFound();
 
-  const cover = getCover(params.slug);
-
-  // Split content into sections by ## headings
-  const sections = post.content.trim().split(/\n(?=## )/);
+  const cover = getCover(params.slug) ?? {
+    src: "/product/dashboard.png",
+    alt: "OmniPriv privileged access management dashboard",
+  };
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-14 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 dark:from-[#030711]/40 via-white/80 dark:via-[#030711]/80 to-white dark:to-[#030711]" />
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at top, rgba(0,184,255,0.08) 0%, transparent 60%)" }}
-        />
-        <div className="container-xl relative z-10 max-w-3xl mx-auto">
+      {/* Header: full-width title above the article summary and cover */}
+      <section className="pt-12 lg:pt-16">
+        <div className="container-xl">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-[#0a1628] dark:hover:text-white transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Blog
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Back to Blog
           </Link>
 
-          <div className="flex flex-wrap gap-2 mb-5">
-            <span className="badge-cyan">{post.category}</span>
-          </div>
+          <h1 className="op-h1 mt-6 mb-8">{post.title}</h1>
 
-          <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight mb-6"
-            style={{ fontFamily: "var(--font-syne)" }}
-          >
-            {post.title}
-          </h1>
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12">
+            <div>
+              <p className="op-lede">{post.excerpt}</p>
 
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8">{post.excerpt}</p>
-
-          <div className="flex flex-wrap items-center gap-5 text-sm text-slate-500">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#6366f1]/20 flex items-center justify-center text-slate-950 dark:text-white font-bold text-sm flex-shrink-0">
-                {post.author.charAt(0)}
-              </div>
-              <div>
-                <div className="text-slate-950 dark:text-white font-semibold text-sm">{post.author}</div>
-                {post.authorTitle && <div className="text-xs text-slate-500">{post.authorTitle}</div>}
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5" />
-              {post.date}
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" />
-              {post.readTime}
-            </div>
-          </div>
-
-          {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-6">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-600 dark:text-slate-400"
-                >
-                  <Tag className="w-2.5 h-2.5" /> {tag}
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
+                <span className="badge-cyan">{post.category}</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                  {post.date}
                 </span>
-              ))}
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                  {post.readTime}
+                </span>
+                <span>
+                  By <span className="font-semibold text-[#0a1628] dark:text-white">{post.author}</span>
+                  {post.authorTitle && <>, {post.authorTitle}</>}
+                </span>
+              </div>
             </div>
-          )}
 
-          {cover && (
-            <div className={`relative mt-10 w-full h-56 sm:h-72 rounded-2xl overflow-hidden border ${mediaBorder}`}>
+            <div className={`relative w-full aspect-[2/1] rounded-2xl overflow-hidden border ${mediaBorder}`}>
               <Image
                 src={cover.src}
                 alt={cover.alt}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 768px"
+                sizes="(max-width: 1024px) 100vw, 640px"
                 className="object-cover"
               />
             </div>
-          )}
-        </div>
-      </section>
-
-      {/* Article Body */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl max-w-3xl mx-auto">
-          <div className="space-y-10">
-            {sections.map((section, i) => {
-              const lines = section.trim().split("\n");
-              const heading = lines[0].replace(/^##\s*/, "");
-              const body = lines.slice(1).join("\n").trim();
-              const paragraphs = body.split(/\n\n+/).filter(Boolean);
-
-              return (
-                <div key={i}>
-                  {heading && (
-                    <h2
-                      className="text-xl md:text-2xl font-extrabold text-slate-950 dark:text-white mb-5"
-                      style={{ fontFamily: "var(--font-syne)" }}
-                    >
-                      {heading}
-                    </h2>
-                  )}
-                  <div className="space-y-4">
-                    {paragraphs.map((para, j) => {
-                      // Image pattern: ![alt](src)
-                      const imageMatch = para.trim().match(/^!\[(.+?)\]\((.+?)\)$/);
-                      if (imageMatch) {
-                        return (
-                          <div key={j} className="my-6 rounded-xl overflow-hidden border border-slate-900/[0.09] dark:border-white/[0.07]">
-                            <Image
-                              src={imageMatch[2]}
-                              alt={imageMatch[1]}
-                              width={820}
-                              height={420}
-                              className="w-full h-auto"
-                              unoptimized
-                            />
-                          </div>
-                        );
-                      }
-                      // List pattern: block of lines all starting with "- "
-                      const listLines = para.split("\n").filter(Boolean);
-                      if (listLines.length > 0 && listLines.every((l) => l.trim().startsWith("- "))) {
-                        return (
-                          <ul key={j} className="space-y-2.5 ml-1">
-                            {listLines.map((item, k) => (
-                              <li key={k} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 leading-relaxed">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#00B8FF] flex-shrink-0" />
-                                {renderInline(item.trim().slice(2))}
-                              </li>
-                            ))}
-                          </ul>
-                        );
-                      }
-                      // H3 sub-heading pattern: ### text
-                      if (para.trim().startsWith("### ")) {
-                        return (
-                          <h3
-                            key={j}
-                            className="text-lg md:text-xl font-bold text-slate-950 dark:text-white mt-2 mb-1"
-                            style={{ fontFamily: "var(--font-syne)" }}
-                          >
-                            {para.trim().replace(/^###\s*/, "")}
-                          </h3>
-                        );
-                      }
-                      // Bold intro pattern: **Label** rest
-                      const boldMatch = para.match(/^\*\*(.+?)\*\*\s*([\s\S]*)/);
-                      if (boldMatch) {
-                        return (
-                          <p key={j} className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                            <strong className="text-slate-950 dark:text-white font-semibold">{boldMatch[1]}</strong>
-                            {boldMatch[2] ? <> {renderInline(boldMatch[2])}</> : ""}
-                          </p>
-                        );
-                      }
-                      return (
-                        <p key={j} className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                          {renderInline(para)}
-                        </p>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Back */}
-          <div className="mt-16 pt-8 border-t border-slate-900/[0.08] dark:border-white/[0.06]">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" /> Back to all articles
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Closing — top level so CtaBand keeps its full-bleed dark surface. */}
+      {/* Article body */}
+      <section className="section-padding !pt-12 lg:!pt-14">
+        <div className="container-xl">
+          <article className="max-w-3xl">
+            {renderArticle(post.content)}
+
+            {post.tags.length > 0 && (
+              <div className="mt-14 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] text-slate-600 dark:text-slate-400"
+                  >
+                    <Tag className="w-3 h-3" aria-hidden="true" /> {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className={`mt-10 pt-8 border-t ${mediaBorder}`}>
+              <Link href="/blog" className={`inline-flex items-center gap-2 text-sm ${articleLink}`}>
+                <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Back to all articles
+              </Link>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Closing, top level so CtaBand keeps its full-bleed dark surface. */}
       <CtaBand
         title="See these controls against your own environment"
         body={[

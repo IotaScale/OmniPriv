@@ -20,12 +20,12 @@ export default function ArrowLink({ href, children, className }: ArrowLinkProps)
         <Link
             href={href}
             className={cn(
-                "inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all",
+                "group op-link inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline",
                 className
             )}
         >
             {children}
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
         </Link>
     );
 }

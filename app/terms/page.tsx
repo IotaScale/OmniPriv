@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MediaSplit from "@/components/sections/MediaSplit";
 
 export const metadata: Metadata = {
   title: { absolute: "Terms of Service | OmniPriv" },
@@ -153,14 +154,25 @@ export default function TermsPage() {
     <>
       {/* Header */}
       <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl max-w-3xl mx-auto">
+        <div className="container-xl">
           <div className="badge-cyan mb-5">Legal</div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
-            Terms of Service
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400">
-            Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025
-          </p>
+          <h1 className="op-h1 mb-8">Terms of Service</h1>
+          <MediaSplit
+            media={{
+              src: "/product/compliance.png",
+              alt: "OmniPriv compliance dashboard showing security controls",
+              fit: "contain",
+            }}
+            ratio="wide-last"
+            height="md"
+          >
+            <p className="text-slate-600 dark:text-slate-400">
+              Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025
+            </p>
+            <p className="mt-4 text-slate-600 dark:text-slate-400">
+              These Terms explain the conditions for using the OmniPriv website, documentation, APIs, and services.
+            </p>
+          </MediaSplit>
         </div>
       </section>
 
@@ -174,7 +186,7 @@ export default function TermsPage() {
               <div className="sticky top-28 space-y-1">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
                 {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors py-0.5 border-l border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
+                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors py-0.5 border-l border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8DB]/40 pl-3">
                     {s.title}
                   </a>
                 ))}
@@ -201,7 +213,7 @@ export default function TermsPage() {
 
               <p className="text-xs text-slate-500 mt-6">
                 For legal inquiries:{" "}
-                <a href="mailto:legal@OmniPriv.com" className="text-[#00B8FF] hover:underline">legal@OmniPriv.com</a>
+                <a href="mailto:legal@OmniPriv.com" className="text-[#00B8DB] hover:underline">legal@OmniPriv.com</a>
               </p>
             </article>
           </div>

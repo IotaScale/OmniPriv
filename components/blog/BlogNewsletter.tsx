@@ -15,7 +15,7 @@ import {
  *
  * Split out of app/blog/page.tsx so the index page can be a server component.
  *
- * Behaviour is unchanged — it still posts to EmailJS with the same payload.
+ * Behaviour is unchanged, it still posts to EmailJS with the same payload.
  * Two things were removed or fixed:
  *
  * - The line "~4,200 security professionals subscribed" was deleted. It was
@@ -58,7 +58,7 @@ export default function BlogNewsletter() {
             <div
                 role="status"
                 aria-live="polite"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] text-[#00B8FF] text-sm font-medium"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[#00B8DB]/25 bg-[#00B8DB]/[0.08] text-[#00667A] dark:text-[#00B8DB] text-sm font-medium"
             >
                 ✓ You&apos;re subscribed! Welcome aboard.
             </div>

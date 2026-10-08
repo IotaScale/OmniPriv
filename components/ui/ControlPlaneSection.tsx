@@ -55,15 +55,15 @@ function Rail({
   items: { label: string; icon: ElementType }[];
 }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-[#00B8FF]/15 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-4 lg:py-7">
+    <div className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-[#00B8DB]/15 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-4 lg:py-7">
       <div className="text-center text-sm font-bold text-slate-950 dark:text-white mb-4 lg:mb-7 leading-tight">
         {title}
       </div>
       <div className="flex flex-row lg:flex-col items-center justify-center gap-5 lg:gap-6 flex-1">
         {items.map((item) => (
           <div key={item.label} className="flex flex-col items-center gap-2">
-            <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-full border border-[#00B8FF]/30 bg-[#00B8FF]/[0.06] flex items-center justify-center">
-              <item.icon className="w-5 h-5 text-[#00B8FF]" />
+            <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-full border border-[#00B8DB]/30 bg-[#00B8DB]/[0.06] flex items-center justify-center">
+              <item.icon className="w-5 h-5 text-[#00B8DB]" />
             </div>
             <span className="text-[11px] lg:text-xs text-slate-600 dark:text-slate-400 text-center leading-tight max-w-[70px]">
               {item.label}
@@ -82,14 +82,14 @@ export default function ControlPlaneSection() {
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[420px] pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse, rgba(0,184,255,0.08) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse, rgba(0, 184, 219,0.08) 0%, transparent 65%)",
         }}
       />
 
       <div className="container-xl relative z-10">
         {/* Header */}
         <div className="text-center max-w-5xl mx-auto mb-12" data-aos="fade-up">
-          <div className="text-[#00B8FF] text-xs font-bold uppercase tracking-[0.25em] mb-4 font-mono">
+          <div className="text-[#00B8DB] text-xs font-bold uppercase tracking-[0.25em] mb-4 font-mono">
             How OmniPriv Works
           </div>
           <h2
@@ -105,10 +105,10 @@ export default function ControlPlaneSection() {
           </p>
         </div>
 
-        {/* Top connector — arrows centred over the All Identities / All Targets rails */}
+        {/* Top connector, arrows centred over the All Identities / All Targets rails */}
         <div className="hidden lg:grid lg:grid-cols-[180px_1fr_1fr_1fr_180px] gap-4 items-center mb-5">
           <div className="flex justify-center">
-            <ArrowDown className="cp-arrow-down w-4 h-4 text-[#00B8FF]" />
+            <ArrowDown className="cp-arrow-down w-4 h-4 text-[#00B8DB]" />
           </div>
           <div className="col-span-3 flex items-center gap-2">
             <div className="cp-dash cp-dash-left flex-1" />
@@ -118,7 +118,7 @@ export default function ControlPlaneSection() {
             <div className="cp-dash cp-dash-right flex-1" />
           </div>
           <div className="flex justify-center">
-            <ArrowDown className="cp-arrow-down w-4 h-4 text-[#00B8FF]" />
+            <ArrowDown className="cp-arrow-down w-4 h-4 text-[#00B8DB]" />
           </div>
         </div>
 
@@ -129,7 +129,7 @@ export default function ControlPlaneSection() {
           {stages.map((stage) => (
             <div
               key={stage.title}
-              className="group relative flex flex-col rounded-2xl border border-[#00B8FF]/20 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-6 pt-12 overflow-hidden shadow-[0_0_20px_rgba(0,184,255,0.03)] transition-all duration-300 hover:border-[#00B8FF]/45 hover:shadow-[0_10px_24px_rgba(0,184,255,0.06)] hover:-translate-y-1"
+              className="group relative flex flex-col rounded-2xl border border-[#00B8DB]/20 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-6 pt-12 overflow-hidden shadow-[0_0_20px_rgba(0, 184, 219,0.03)] transition-all duration-300 hover:border-[#00B8DB]/45 hover:shadow-[0_10px_24px_rgba(0, 184, 219,0.06)] hover:-translate-y-1"
             >
               <div className="relative flex flex-col flex-1">
                 {/* Icon with scan rings centred on it */}
@@ -140,12 +140,12 @@ export default function ControlPlaneSection() {
                     fill="none"
                     aria-hidden="true"
                   >
-                    <circle cx="105" cy="105" r="36" stroke="#00B8FF" strokeOpacity="0.18" />
+                    <circle cx="105" cy="105" r="36" stroke="#00B8DB" strokeOpacity="0.18" />
                     <circle
                       cx="105"
                       cy="105"
                       r="56"
-                      stroke="#00B8FF"
+                      stroke="#00B8DB"
                       strokeOpacity="0.22"
                       strokeDasharray="2 7"
                       className="cp-ring-spin"
@@ -154,22 +154,22 @@ export default function ControlPlaneSection() {
                       cx="105"
                       cy="105"
                       r="76"
-                      stroke="#00B8FF"
+                      stroke="#00B8DB"
                       strokeOpacity="0.12"
                       strokeDasharray="1 9"
                       className="cp-ring-spin-reverse"
                     />
-                    <circle cx="105" cy="29" r="2.4" fill="#00B8FF" fillOpacity="0.8" />
-                    <circle cx="181" cy="105" r="2.4" fill="#00B8FF" fillOpacity="0.6" />
-                    <circle cx="150" cy="175" r="2.4" fill="#00B8FF" fillOpacity="0.6" />
-                    <circle cx="42" cy="160" r="2.4" fill="#00B8FF" fillOpacity="0.6" />
+                    <circle cx="105" cy="29" r="2.4" fill="#00B8DB" fillOpacity="0.8" />
+                    <circle cx="181" cy="105" r="2.4" fill="#00B8DB" fillOpacity="0.6" />
+                    <circle cx="150" cy="175" r="2.4" fill="#00B8DB" fillOpacity="0.6" />
+                    <circle cx="42" cy="160" r="2.4" fill="#00B8DB" fillOpacity="0.6" />
                   </svg>
 
                   {/* Pulsing halo behind the icon */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-2xl border border-[#00B8FF]/40 cp-icon-pulse" />
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-2xl border border-[#00B8DB]/40 cp-icon-pulse" />
 
-                  <div className="relative w-14 h-14 rounded-2xl bg-[#00B8FF]/10 border border-[#00B8FF]/25 flex items-center justify-center shadow-[0_0_12px_rgba(0,184,255,0.07)]">
-                    <stage.icon className="w-7 h-7 text-[#00B8FF]" />
+                  <div className="relative w-14 h-14 rounded-2xl bg-[#00B8DB]/10 border border-[#00B8DB]/25 flex items-center justify-center shadow-[0_0_12px_rgba(0, 184, 219,0.07)]">
+                    <stage.icon className="w-7 h-7 text-[#00B8DB]" />
                   </div>
                 </div>
 
@@ -180,7 +180,7 @@ export default function ControlPlaneSection() {
                   {stage.title}
                 </h3>
 
-                <div className="h-px w-24 mx-auto my-5 bg-gradient-to-r from-transparent via-[#00B8FF]/60 to-transparent" />
+                <div className="h-px w-24 mx-auto my-5 bg-gradient-to-r from-transparent via-[#00B8DB]/60 to-transparent" />
 
                 <ul className="space-y-2.5">
                   {stage.items.map((item) => (
@@ -188,7 +188,7 @@ export default function ControlPlaneSection() {
                       key={item}
                       className="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300"
                     >
-                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#00B8FF] flex-shrink-0" />
+                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#00B8DB] flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -200,10 +200,10 @@ export default function ControlPlaneSection() {
           <Rail title="All Targets" items={targets} />
         </div>
 
-        {/* Bottom connector — arrows centred over the All Identities / All Targets rails */}
+        {/* Bottom connector, arrows centred over the All Identities / All Targets rails */}
         <div className="hidden lg:grid lg:grid-cols-[180px_1fr_1fr_1fr_180px] gap-4 items-center mt-5">
           <div className="flex justify-center">
-            <ArrowUp className="cp-arrow-up w-4 h-4 text-[#00B8FF]" />
+            <ArrowUp className="cp-arrow-up w-4 h-4 text-[#00B8DB]" />
           </div>
           <div className="col-span-3 flex items-center gap-2">
             <div className="cp-dash cp-dash-left flex-1" />
@@ -213,7 +213,7 @@ export default function ControlPlaneSection() {
             <div className="cp-dash cp-dash-right flex-1" />
           </div>
           <div className="flex justify-center">
-            <ArrowUp className="cp-arrow-up w-4 h-4 text-[#00B8FF]" />
+            <ArrowUp className="cp-arrow-up w-4 h-4 text-[#00B8DB]" />
           </div>
         </div>
       </div>

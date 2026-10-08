@@ -59,7 +59,7 @@ export default function HumanIdentitySecurityPage() {
                 <SectionHeading
                     badge={personaSection.badge}
                     title={personaSection.title}
-                    className="max-w-3xl mb-12"
+                    className="mb-12"
                 >
                     <Prose segments={personaSection.intro} className="text-lg mb-4" />
                     <Prose segments={[personaSection.prompt]} tone="strong" />
@@ -72,12 +72,17 @@ export default function HumanIdentitySecurityPage() {
 
             {/* ─── JIT ACCESS ───────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={jitSection.image} ratio="wide-last" height="sm">
-                    <SectionHeading badge={jitSection.badge} title={jitSection.title}>
+                <MediaSplit
+                    media={jitSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    heading={<SectionHeading badge={jitSection.badge} title={jitSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         <Prose segments={jitSection.lead} className="mb-4" />
                         <Prose segments={jitSection.body} className="mb-4" />
                         <Prose segments={jitSection.note} />
-                    </SectionHeading>
+                    </div>
 
                     <Prose segments={[jitSection.prompt]} tone="strong" className="mt-8 mb-4" />
 
@@ -94,71 +99,42 @@ export default function HumanIdentitySecurityPage() {
 
             {/* ─── CREDENTIALS + SESSIONS (dark band) ── */}
             <Section tone="dark" border="bottom">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-                    <div>
-                        <div className="icon-wrapper mb-5">
-                            <credentials.icon className="w-5 h-5" />
-                        </div>
+                <SectionHeading title={credentials.title}>
+                    <Prose segments={credentials.lead} className="mb-4" />
+                    <Prose segments={credentials.body} className="mb-4" />
+                    <Prose segments={credentials.note} />
+                </SectionHeading>
 
-                        <SectionHeading title={credentials.title}>
-                            <Prose segments={credentials.lead} className="mb-4" />
-                            <Prose segments={credentials.body} className="mb-4" />
-                            <Prose segments={credentials.note} />
-                        </SectionHeading>
-                    </div>
+                <SectionHeading title={sessions.title} className="mt-16">
+                    <Prose segments={sessions.lead} className="mb-4" />
+                    <Prose segments={sessions.body} className="mb-6" />
+                </SectionHeading>
 
-                    <div>
-                        <div className="icon-wrapper mb-5">
-                            <sessions.icon className="w-5 h-5" />
-                        </div>
-
-                        <SectionHeading title={sessions.title}>
-                            <Prose segments={sessions.lead} className="mb-4" />
-                            <Prose segments={sessions.body} className="mb-6" />
-                        </SectionHeading>
-
-                        <Prose segments={[sessions.prompt]} tone="strong" className="mb-4" />
-                        <CheckList items={sessionInsights} />
-                    </div>
-                </div>
+                <Prose segments={[sessions.prompt]} tone="strong" className="mb-4" />
+                <CheckList items={sessionInsights} />
             </Section>
 
             {/* ─── AI + GOVERNANCE ────────────────────
-                No image, so the content centres — the same treatment as the other
-                image-less sections on the page. `max-w-3xl mx-auto` centres each
-                column; `align="center"` centres the heading and the prose rendered
-                inside it, which is what the shared rule in globals.css does for
-                section-heading blocks anyway. The icon rides along.
+                No image, so the content sits in the same full-width column as the
+                other image-less sections on the page.
                 The chip row needs `justify-center`: ChipList's `align` prop only
                 sets `items-center` (vertical), it does not centre the row. */}
             <Section border="bottom">
-                <div className="max-w-3xl mx-auto mb-16">
-                    <div className="icon-wrapper mb-5 mx-auto">
-                        <aiSection.icon className="w-5 h-5" />
-                    </div>
+                <SectionHeading title={aiSection.title} align="center" className="mb-16">
+                    <Prose segments={aiSection.lead} className="mb-4" />
+                    <Prose segments={aiSection.body} className="mb-4" />
+                    <Prose segments={aiSection.note} />
+                </SectionHeading>
 
-                    <SectionHeading title={aiSection.title} align="center">
-                        <Prose segments={aiSection.lead} className="mb-4" />
-                        <Prose segments={aiSection.body} className="mb-4" />
-                        <Prose segments={aiSection.note} />
-                    </SectionHeading>
-                </div>
-
-                <div className="max-w-3xl mx-auto">
-                    <div className="icon-wrapper mb-5 mx-auto">
-                        <governanceSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={governanceSection.title} align="center">
-                        <Prose segments={governanceSection.lead} className="mb-6" />
-                        <ChipList
-                            items={governancePoints}
-                            variant="neutral"
-                            className="mb-6 gap-2.5 justify-center"
-                        />
-                        <Prose segments={governanceSection.note} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={governanceSection.title} align="center">
+                    <Prose segments={governanceSection.lead} className="mb-6" />
+                    <ChipList
+                        items={governancePoints}
+                        variant="neutral"
+                        className="mb-6 gap-2.5 justify-center"
+                    />
+                    <Prose segments={governanceSection.note} />
+                </SectionHeading>
             </Section>
 
             {/* ─── CLOSING ──────────────────────────── */}

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Plug, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Plug, CheckCircle2, Puzzle } from "lucide-react";
+
+import CtaBand from "@/components/sections/CtaBand";
+import SplitHero from "@/components/sections/SplitHero";
 
 export const metadata: Metadata = {
   title: "Integrations: Connect OmniPriv to Your Stack",
@@ -106,38 +109,41 @@ const featuredLogos = [
   "SailPoint", "Ping", "Kubernetes", "HashiCorp", "GitHub", "Terraform",
 ];
 
+const cardClass =
+  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] hover:border-[#00B8DB]/45 transition-colors";
+
 export default function IntegrationsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center max-w-3xl mx-auto" data-aos="fade-up">
-          <div className="badge-cyan mb-6">Integrations</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 leading-tight" style={{ fontFamily: "var(--font-syne)" }}>
-            Fits Seamlessly Into <span className="text-gradient">Your Stack</span>
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-            OmniPriv connects natively with 250+ enterprise tools — identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them.
-          </p>
-          <Link href="/demo" className="btn-primary">
-            See a Live Integration Demo <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+      <SplitHero
+        titleLead="Fits Seamlessly Into"
+        titleAccent="Your Stack"
+        primary={{ href: "/demo", label: "See a Live Integration Demo" }}
+        media={{
+          src: "/product/asset.png",
+          alt: "OmniPriv asset management view for connected enterprise systems",
+          fit: "contain",
+        }}
+      >
+        <p>
+          OmniPriv connects natively with 250+ enterprise tools, identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them.
+        </p>
+      </SplitHero>
 
-      {/* Featured logos */}
-      <section className="py-12 border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      {/* Featured integrations */}
+      <section className="py-12 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
         <div className="container-xl">
-          <p className="text-xs text-slate-500 text-center uppercase tracking-widest mb-8">Certified Integrations Include</p>
-          <div className="flex flex-wrap justify-center gap-3" data-aos="fade-up">
+          <p className="text-sm font-semibold text-[#0a1628] dark:text-white mb-5">Integrations include</p>
+          <div className="flex flex-wrap gap-3" data-aos="fade-up">
             {featuredLogos.map((logo) => (
-              <div key={logo} className="px-6 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-[#00B8FF]/20 transition-all">
+              <div
+                key={logo}
+                className="px-5 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] text-sm font-medium text-slate-700 dark:text-slate-300"
+              >
                 {logo}
               </div>
             ))}
-            <div className="px-6 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 text-sm font-medium text-slate-500">
+            <div className="px-5 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] text-sm font-medium text-slate-500 dark:text-slate-400">
               + 238 more
             </div>
           </div>
@@ -145,50 +151,51 @@ export default function IntegrationsPage() {
       </section>
 
       {/* API-first callout */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
         <div className="container-xl">
-          <div className="grid lg:grid-cols-3 gap-5" data-aos="fade-up">
+          <div className="grid gap-5 lg:grid-cols-3" data-aos="fade-up">
             {[
               { icon: Plug, title: "REST API", desc: "Fully documented REST API for custom integrations, automation, and SIEM data streaming. Every platform action is API-accessible." },
-              { icon: CheckCircle2, title: "Certified Partner Program", desc: "OmniPriv maintains certified integrations with 100+ partners — tested and validated with each platform release." },
-              { icon: ArrowRight, title: "Custom Connectors", desc: "Build custom connectors using our open SDK or request a connector from our engineering team. No vendor lock-in." },
+              { icon: CheckCircle2, title: "Tested Integrations", desc: "Every integration is tested and validated with each OmniPriv platform release, so upgrades do not break the tools you rely on." },
+              { icon: Puzzle, title: "Custom Connectors", desc: "Build custom connectors using our open SDK or request a connector from our engineering team. No vendor lock-in." },
             ].map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 flex items-start gap-4">
-                <div className="icon-wrapper w-10 h-10 rounded-lg flex-shrink-0">
-                  <item.icon className="w-4 h-4" />
+              <div key={item.title} className={`${cardClass} p-6`}>
+                <div className="icon-wrapper mb-4">
+                  <item.icon className="w-5 h-5" aria-hidden="true" />
                 </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{item.title}</h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
-                </div>
+                <h3 className="op-card-title mb-2">{item.title}</h3>
+                <p className="op-card-text">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Category Sections */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl space-y-16">
+      {/* Category sections */}
+      <section className="section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
+        <div className="container-xl space-y-16 lg:space-y-20">
           {categories.map((cat) => (
             <div key={cat.label}>
-              <div className="mb-7" data-aos="fade-up">
-                <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{cat.label}</h2>
-                <p className="text-slate-600 dark:text-slate-400 text-sm">{cat.description}</p>
+              <div className="section-heading" data-aos="fade-up">
+                <h2 className="op-h2">{cat.label}</h2>
+                <p className="op-lede">{cat.description}</p>
               </div>
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="80">
+              <div className="op-body grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-aos="fade-up">
                 {cat.integrations.map((intg) => (
-                  <div key={intg.name} className="p-5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/20 transition-all group card-shine">
+                  <div key={intg.name} className={`${cardClass} p-5`}>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-[#00B8FF]/10 flex items-center justify-center text-[8px] font-bold text-[#00B8FF] leading-none text-center" style={{ fontFamily: "var(--font-syne)" }}>
+                      <div
+                        className="icon-wrapper flex-shrink-0 flex items-center justify-center text-[9px] font-bold leading-none text-center"
+                        aria-hidden="true"
+                      >
                         {intg.name.substring(0, 3).toUpperCase()}
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-950 dark:text-white leading-tight">{intg.name}</div>
-                        <div className="text-[10px] text-slate-500">{intg.category}</div>
+                        <h3 className="op-card-title text-[0.9375rem] leading-tight">{intg.name}</h3>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{intg.category}</div>
                       </div>
                     </div>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{intg.desc}</p>
+                    <p className="op-card-text text-sm">{intg.desc}</p>
                   </div>
                 ))}
               </div>
@@ -197,25 +204,15 @@ export default function IntegrationsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl text-center max-w-2xl mx-auto" data-aos="fade-up">
-          <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-            Don&apos;t See Your Tool?
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-8">
-            Contact our integration team. We support custom connectors and can prioritize new integrations based on customer demand.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/demo" className="btn-primary">
-              Request an Integration Demo <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a href="mailto:integrations@OmniPriv.com" className="btn-secondary">
-              Contact Integration Team
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Closing CTA */}
+      <CtaBand
+        title="Don't See Your Tool?"
+        body={[
+          "Contact our integration team. We support custom connectors and can prioritize new integrations based on customer demand.",
+        ]}
+        primary={{ href: "/demo", label: "Request an Integration Demo" }}
+        secondary={{ href: "mailto:integrations@OmniPriv.com", label: "Contact Integration Team" }}
+      />
     </>
   );
 }

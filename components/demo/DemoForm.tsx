@@ -16,7 +16,7 @@ import {
  * The interactive half of /demo.
  *
  * Split out of app/demo/page.tsx so that page can be a server component and
- * use the shared section library — SplitHero, Section and FaqSection cannot
+ * use the shared section library: SplitHero, Section and FaqSection cannot
  * be rendered from a "use client" module.
  *
  * The EmailJS payload is unchanged, field for field.
@@ -32,11 +32,11 @@ import {
  */
 
 export const companySizes = [
-    "1–50 employees",
-    "51–200 employees",
-    "201–1,000 employees",
-    "1,001–5,000 employees",
-    "5,001–10,000 employees",
+    "1-50 employees",
+    "51-200 employees",
+    "201-1,000 employees",
+    "1,001-5,000 employees",
+    "5,001-10,000 employees",
     "10,000+ employees",
 ];
 
@@ -124,10 +124,10 @@ export default function DemoForm() {
                 tabIndex={-1}
                 role="status"
                 aria-live="polite"
-                className="p-12 rounded-3xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.04] text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B8FF]/40"
+                className="p-12 rounded-3xl border border-[#00B8DB]/25 bg-[#00B8DB]/[0.04] text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00B8DB]/40"
             >
-                <div className="w-16 h-16 rounded-full bg-[#00B8FF]/15 flex items-center justify-center mx-auto mb-5">
-                    <CheckCircle2 className="w-8 h-8 text-[#00B8FF]" aria-hidden="true" />
+                <div className="w-16 h-16 rounded-full bg-[#00B8DB]/15 flex items-center justify-center mx-auto mb-5">
+                    <CheckCircle2 className="w-8 h-8 text-[#00667A] dark:text-[#00B8DB]" aria-hidden="true" />
                 </div>
                 <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-2">
                     Demo Request Received!
@@ -144,7 +144,7 @@ export default function DemoForm() {
     }
 
     return (
-        <div className="p-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-white dark:bg-[#070e1c]">
+        <div className="p-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-white dark:bg-[#0F2140]">
             <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6">
                 Tell Us About Your Needs
             </h2>
@@ -323,18 +323,18 @@ export default function DemoForm() {
                         name="agree"
                         checked={formData.agree}
                         onChange={handleChange}
-                        className="mt-1 w-4 h-4 rounded border-slate-300 dark:border-white/20 bg-slate-200 dark:bg-[#0F1E35] accent-[#00B8FF]"
+                        className="mt-1 w-4 h-4 rounded border-slate-300 dark:border-white/20 bg-slate-200 dark:bg-[#0F1E35] accent-[#00B8DB]"
                     />
                     <label
                         htmlFor="demo-agree"
                         className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
                     >
                         I agree to OmniPriv&apos;s{" "}
-                        <Link href="/privacy-policy" className="text-[#00B8FF] hover:underline">
+                        <Link href="/privacy-policy" className="text-[#00667A] dark:text-[#00B8DB] hover:underline">
                             Privacy Policy
                         </Link>{" "}
                         and{" "}
-                        <Link href="/terms" className="text-[#00B8FF] hover:underline">
+                        <Link href="/terms" className="text-[#00667A] dark:text-[#00B8DB] hover:underline">
                             Terms of Service
                         </Link>
                         . I agree to receive communications from OmniPriv about products and services.

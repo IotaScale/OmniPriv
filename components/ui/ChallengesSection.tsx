@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────
-   Six challenges OmniPriv solves — AI capabilities first.
+   Six challenges OmniPriv solves: AI capabilities first.
    Each card maps to a real product module (see `href`).
    A challenge may carry a screenshot instead of the generated
    visual; the rest fall back to `ChallengeVisual`.
@@ -37,7 +37,7 @@ const challenges: Challenge[] = [
         caption: "MCP · 100+ TOOLS",
         href: "/platform/secure-ai-agents-omnipriv",
         icon: Bot,
-        accent: "#00B8FF",
+        accent: "#00B8DB",
         image: "/challenges/secure-ai-agents.jpeg",
         imageAlt:
             "Secure AI agents illustration showing an AI agent shielded inside a central control point, with blocked attack paths on one side and verified privileged resources on the other",
@@ -61,7 +61,7 @@ const challenges: Challenge[] = [
         caption: "BROKERED · RDP / SSH",
         href: "/platform/secure-remote-access",
         icon: Globe,
-        accent: "#38bdf8",
+        accent: "#22c3e0",
         image: "/challenges/secure-remote-hybrid-access.jpeg",
         imageAlt:
             "Secure remote access illustration showing verified identities and audited sessions reaching enterprise systems through a central control point",
@@ -105,7 +105,7 @@ const challenges: Challenge[] = [
 ];
 
 /* ─────────────────────────────────────────────────────────────
-   Card visual — screenshot variant used when a challenge
+   Card visual, screenshot variant used when a challenge
    supplies its own image.
 ───────────────────────────────────────────────────────────── */
 function ChallengeImage({
@@ -144,7 +144,7 @@ function ChallengeImage({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Card visual — tinted panel, orbiting rings, glowing icon
+   Card visual, tinted panel, orbiting rings, glowing icon
 ───────────────────────────────────────────────────────────── */
 function ChallengeVisual({
     icon: Icon,
@@ -235,7 +235,7 @@ export default function ChallengesSection() {
                 className="absolute -top-24 left-1/2 h-[420px] w-[820px] -translate-x-1/2 pointer-events-none opacity-60"
                 style={{
                     background:
-                        "radial-gradient(ellipse, rgba(0, 184, 255, 0.07) 0%, transparent 65%)",
+                        "radial-gradient(ellipse, rgba(0, 184, 219, 0.07) 0%, transparent 65%)",
                 }}
             />
 
@@ -263,7 +263,7 @@ export default function ChallengesSection() {
                         <Link
                             key={challenge.id}
                             href={challenge.href}
-                            className="group flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#070e1c] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#00B8FF]/40 hover:bg-white dark:hover:bg-[#0b1424] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
+                            className="group flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#070e1c] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#00B8DB]/40 hover:bg-white dark:hover:bg-[#0b1424] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
                         >
                             {challenge.image ? (
                                 <ChallengeImage
@@ -291,7 +291,7 @@ export default function ChallengesSection() {
                                 {challenge.body}
                             </p>
 
-                            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00B8FF] transition-all duration-300 group-hover:gap-2.5">
+                            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00B8DB] transition-all duration-300 group-hover:gap-2.5">
                                 Learn more
                                 <ArrowRight className="h-4 w-4" />
                             </span>

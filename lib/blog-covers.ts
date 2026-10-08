@@ -1,7 +1,7 @@
 /**
  * Cover art for blog posts.
  *
- * Kept out of lib/blog-data.ts deliberately — that file is 2,284 lines of
+ * Kept out of lib/blog-data.ts deliberately, that file is 2,284 lines of
  * article content, and covers are presentational metadata that changes on a
  * different schedule.
  *
@@ -9,7 +9,7 @@
  * premium (Unsplash+) library uses a `plus.unsplash.com/premium_photo-…`
  * host and is NOT free to use, so each id here was verified individually by
  * following `unsplash.com/photos/<slug>/download` and reading the redirect
- * target — the free library redirects to `images.unsplash.com/photo-…` while
+ * target, the free library redirects to `images.unsplash.com/photo-…` while
  * premium resolves elsewhere. Several rejections during that sweep were
  * premium, including the obvious-looking "bank vault" and "Riyadh Kingdom
  * Tower" candidates.

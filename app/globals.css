@@ -7,22 +7,22 @@
 ────────────────────────────────────────────── */
 :root {
   /* Light palette */
-  --color-primary: #00b8ff;
-  --color-primary-dark: #0090cd;
+  --color-primary: #00b8db;
+  --color-primary-dark: #00869f;
   --color-purple: #a78bfa;
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
   --color-surface-2: #f1f5f9;
   --color-border: rgba(15, 23, 42, 0.08);
-  --color-border-cyan: rgba(0, 184, 255, 0.25);
+  --color-border-cyan: rgba(0, 184, 219, 0.25);
   --color-text: #0f172a;
   --color-muted: #475569;
-  --color-accent: #00b8ff;
-  --gradient-primary: linear-gradient(135deg, #00b8ff 0%, #6366f1 100%);
+  --color-accent: #00b8db;
+  --gradient-primary: linear-gradient(135deg, #00b8db 0%, #00667a 100%);
   --gradient-dark: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-  --glow-primary: 0 0 22px rgba(0, 184, 255, 0.10);
+  --glow-primary: 0 0 22px rgba(0, 184, 219, 0.10);
   --glow-purple: 0 0 40px rgba(139, 92, 246, 0.18);
-  --glow-sm: 0 0 12px rgba(0, 184, 255, 0.07);
+  --glow-sm: 0 0 12px rgba(0, 184, 219, 0.07);
 
   /* Theme-aware surfaces */
   --card-bg: rgba(255, 255, 255, 0.75);
@@ -31,6 +31,8 @@
   --btn-secondary-bg: rgba(15, 23, 42, 0.04);
   --btn-secondary-text: #334155;
   --btn-secondary-border: rgba(15, 23, 42, 0.12);
+  --beam-fill: rgba(255, 255, 255, 0.62);
+  --beam-glow: rgba(0, 184, 219, 0.14);
   --input-bg: #ffffff;
   --input-border: rgba(15, 23, 42, 0.12);
   --tag-bg: rgba(15, 23, 42, 0.05);
@@ -44,22 +46,22 @@
 
 .dark {
   /* Dark palette */
-  --color-primary: #00b8ff;
-  --color-primary-dark: #0090cd;
+  --color-primary: #00b8db;
+  --color-primary-dark: #00869f;
   --color-purple: #a78bfa;
-  --color-bg: #060b17;
-  --color-surface: #091222;
-  --color-surface-2: #0d1a30;
+  --color-bg: #0a1628;
+  --color-surface: #0f2140;
+  --color-surface-2: #13284a;
   --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-cyan: rgba(0, 184, 255, 0.25);
+  --color-border-cyan: rgba(0, 184, 219, 0.25);
   --color-text: #f1f5f9;
   --color-muted: #94a3b8;
-  --color-accent: #00b8ff;
-  --gradient-primary: linear-gradient(135deg, #00b8ff 0%, #6366f1 100%);
-  --gradient-dark: linear-gradient(180deg, #060b17 0%, #0a1324 100%);
-  --glow-primary: 0 0 22px rgba(0, 184, 255, 0.14);
+  --color-accent: #00b8db;
+  --gradient-primary: linear-gradient(135deg, #00b8db 0%, #00667a 100%);
+  --gradient-dark: #0a1628;
+  --glow-primary: 0 0 22px rgba(0, 184, 219, 0.14);
   --glow-purple: 0 0 40px rgba(139, 92, 246, 0.25);
-  --glow-sm: 0 0 12px rgba(0, 184, 255, 0.09);
+  --glow-sm: 0 0 12px rgba(0, 184, 219, 0.09);
 
   /* Theme-aware surfaces */
   --card-bg: rgba(10, 22, 40, 0.55);
@@ -68,13 +70,15 @@
   --btn-secondary-bg: rgba(255, 255, 255, 0.04);
   --btn-secondary-text: #e2e8f0;
   --btn-secondary-border: rgba(255, 255, 255, 0.1);
+  --beam-fill: rgba(255, 255, 255, 0.06);
+  --beam-glow: rgba(255, 255, 255, 0.2);
   --input-bg: rgba(10, 22, 40, 0.8);
   --input-border: rgba(255, 255, 255, 0.1);
   --tag-bg: rgba(15, 30, 55, 0.85);
-  --stat-gradient: linear-gradient(125deg, #ffffff 0%, #38bdf8 50%, #818cf8 100%);
-  --code-bg: #050e1f;
-  --feature-card-bg: #090f1e;
-  --feature-card-hover: #0a1322;
+  --stat-gradient: linear-gradient(125deg, #ffffff 0%, #22c3e0 50%, #818cf8 100%);
+  --code-bg: #0c1a30;
+  --feature-card-bg: #0f2140;
+  --feature-card-hover: #12264a;
   --table-head-text: #e2e8f0;
   --table-cell-text: #94a3b8;
 }
@@ -115,12 +119,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 184, 255, 0.3);
+  background: rgba(0, 184, 219, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 184, 255, 0.6);
+  background: rgba(0, 184, 219, 0.6);
 }
 
 /* ──────────────────────────────────────────────
@@ -139,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 @layer utilities {
   /* Gradient Text */
   .text-gradient {
-    color: #00B8FF;
+    color: #00B8DB;
   }
 
   .text-gradient-warm {
@@ -147,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .text-gradient-subtle {
-    color: #7dd3fa;
+    color: #7fd9ea;
   }
 
   /* Cards with glass effect */
@@ -161,19 +165,19 @@ h1, h2, h3, h4, h5, h6 {
 
   .card-glass-cyan {
     background: var(--card-bg-cyan);
-    border: 1px solid rgba(0, 184, 255, 0.12);
+    border: 1px solid rgba(0, 184, 219, 0.12);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(0, 184, 255, 0.05);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(0, 184, 219, 0.05);
   }
 
   .card-glass-cyan::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at top left, rgba(0, 184, 255, 0.06) 0%, transparent 55%);
+    background: radial-gradient(ellipse at top left, rgba(0, 184, 219, 0.06) 0%, transparent 55%);
     pointer-events: none;
   }
 
@@ -193,8 +197,10 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.75rem;
-    background: linear-gradient(135deg, #0369a1 0%, #4f46e5 55%, #7c3aed 100%);
-    color: #ffffff;
+    /* Solid brand cyan, matching the header and hero CTAs. Was a
+       blue-to-violet gradient that no other surface used. */
+    background: #00b8db;
+    color: #03121c;
     font-weight: 600;
     font-size: 0.9375rem;
     letter-spacing: -0.01em;
@@ -205,21 +211,21 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     cursor: pointer;
     font-family: var(--font-inter), sans-serif;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.18), 0 0 0 1px rgba(56,189,248,0.14) inset;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 18px -8px rgba(0, 184, 219, 0.6);
   }
 
   /* Gated: a touch device fires :hover on tap and the lift would stick. */
   @media (hover: hover) and (pointer: fine) {
     .btn-primary:hover {
-      background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
-      box-shadow: 0 3px 12px rgba(56,189,248,0.22), 0 1px 4px rgba(99,102,241,0.12);
+      background: #33c6e2;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 10px 26px -10px rgba(0, 184, 219, 0.75);
       transform: translateY(-1px);
     }
   }
 
   .btn-primary:active {
     transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(56, 189, 248, 0.12);
+    box-shadow: 0 1px 3px rgba(34, 195, 224, 0.12);
   }
 
   .btn-secondary {
@@ -243,8 +249,8 @@ h1, h2, h3, h4, h5, h6 {
 
   @media (hover: hover) and (pointer: fine) {
     .btn-secondary:hover {
-      background: rgba(14, 165, 233, 0.07);
-      border-color: rgba(14, 165, 233, 0.32);
+      background: rgba(0, 160, 190, 0.07);
+      border-color: rgba(0, 160, 190, 0.32);
       color: var(--color-text);
       transform: translateY(-1px);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
@@ -267,7 +273,7 @@ h1, h2, h3, h4, h5, h6 {
      phones, whose width is too small to sacrifice legibility.
 
      The slope matters more than the floor here. A viewport of exactly
-     720px is rare — a 720p laptop usually has only ~600-700px of height
+     720px is rare, a 720p laptop usually has only ~600-700px of height
      once browser chrome is subtracted. With the earlier `2vh` slope the
      14px floor bound on anything under 700px tall, so the rule was a
      no-op on the very screens it was written for. Tuned so ~720px lands
@@ -313,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
      what keeps the rule actually true everywhere.
      Scoped to a DIRECT child of `.container-xl`, so a `max-w-3xl` used inside a
      `Section` is matched but a max-width column used as a grid track in a 2-up
-     section is not — those already fill the row and must stay put.
+     section is not, those already fill the row and must stay put.
      Only the heading block is centred. Body copy and tick lists stay
      left-aligned inside the centred column: centred prose is harder to read and
      a centred list is harder to scan. */
@@ -346,7 +352,7 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  /* 4K at 1x and 8K canvases — keep the column proportionate. */
+  /* 4K at 1x and 8K canvases, keep the column proportionate. */
   @media (min-width: 3600px) {
     .container-xl {
       max-width: 1840px;
@@ -384,15 +390,15 @@ h1, h2, h3, h4, h5, h6 {
   /* Grid Background */
   .bg-grid {
     background-image: 
-      linear-gradient(rgba(0, 184, 255, 0.075) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 184, 255, 0.075) 1px, transparent 1px);
+      linear-gradient(rgba(0, 184, 219, 0.075) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 184, 219, 0.075) 1px, transparent 1px);
     background-size: 30px 30px;
   }
 
   /* Divider line */
   .divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 184, 255, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 184, 219, 0.3), transparent);
   }
 
   /* Noise texture overlay */
@@ -444,16 +450,16 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: 0.375rem;
     padding: 0.375rem 1rem;
-    background: linear-gradient(135deg, rgba(56,189,248,0.12) 0%, rgba(139,92,246,0.08) 100%);
-    border: 1px solid rgba(56, 189, 248, 0.38);
+    background: linear-gradient(135deg, rgba(34, 195, 224,0.12) 0%, rgba(139,92,246,0.08) 100%);
+    border: 1px solid rgba(34, 195, 224, 0.38);
     border-radius: 9999px;
-    color: #7dd3fa;
+    color: #7fd9ea;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     backdrop-filter: blur(8px);
-    box-shadow: 0 1px 8px rgba(56,189,248,0.08);
+    box-shadow: 0 1px 8px rgba(34, 195, 224,0.08);
   }
 
   .badge-cyan::before {
@@ -462,7 +468,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #38bdf8;
+    background: #22c3e0;
     flex-shrink: 0;
   }
 
@@ -482,8 +488,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .input-dark:focus {
-    border-color: rgba(0, 184, 255, 0.5);
-    box-shadow: 0 0 0 3px rgba(0, 184, 255, 0.08);
+    border-color: rgba(0, 184, 219, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 184, 219, 0.08);
   }
 
   .input-dark::placeholder {
@@ -509,17 +515,17 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .select-dark:focus {
-    border-color: rgba(0, 184, 255, 0.5);
-    box-shadow: 0 0 0 3px rgba(0, 184, 255, 0.08);
+    border-color: rgba(0, 184, 219, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 184, 219, 0.08);
   }
 
   /* Cyan dot indicator */
   .dot-cyan {
     width: 8px;
     height: 8px;
-    background: #00b8ff;
+    background: #00b8db;
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 184, 255, 0.45);
+    box-shadow: 0 0 6px rgba(0, 184, 219, 0.45);
   }
 
   /* Underline accent */
@@ -534,7 +540,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #00b8ff, transparent);
+    background: linear-gradient(90deg, #00b8db, transparent);
   }
 
   /* Number highlight */
@@ -582,7 +588,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Scroll-driven reveal items (used by LogoMarquee and other sections) */
-/* Default: fully visible — ensures content is always accessible without JS or with reduced-motion */
+/* Default: fully visible, ensures content is always accessible without JS or with reduced-motion */
 .reveal-item {
   opacity: 1;
   transform: none;
@@ -680,23 +686,23 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(0, 184, 255, 0.15) 0%, rgba(99, 102, 241, 0.1) 100%);
-  border: 1px solid rgba(0, 184, 255, 0.18);
+  background: linear-gradient(135deg, rgba(0, 184, 219, 0.15) 0%, rgba(0, 102, 122, 0.1) 100%);
+  border: 1px solid rgba(0, 184, 219, 0.18);
   border-radius: 12px;
-  color: #38bdf8;
+  color: #22c3e0;
   flex-shrink: 0;
   transition: background 0.3s ease, border-color 0.3s ease,
               box-shadow 0.3s ease, color 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 184, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 184, 219, 0.08);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .icon-wrapper:hover,
   .group:hover .icon-wrapper {
-      background: linear-gradient(135deg, rgba(0, 184, 255, 0.32) 0%, rgba(99, 102, 241, 0.22) 100%);
-      border-color: rgba(0, 184, 255, 0.48);
-      box-shadow: 0 0 12px rgba(0, 184, 255, 0.22);
-      color: #7dd3fa;
+      background: linear-gradient(135deg, rgba(0, 184, 219, 0.32) 0%, rgba(0, 102, 122, 0.22) 100%);
+      border-color: rgba(0, 184, 219, 0.48);
+      box-shadow: 0 0 12px rgba(0, 184, 219, 0.22);
+      color: #7fd9ea;
   }
 }
 
@@ -714,7 +720,7 @@ h1, h2, h3, h4, h5, h6 {
   left: calc(100% + 0px);
   width: calc(100% - 56px);
   height: 1px;
-  background: linear-gradient(90deg, rgba(0, 184, 255, 0.4), rgba(0, 184, 255, 0.1));
+  background: linear-gradient(90deg, rgba(0, 184, 219, 0.4), rgba(0, 184, 219, 0.1));
 }
 
 /* ──────────────────────────────────────────────
@@ -722,7 +728,7 @@ h1, h2, h3, h4, h5, h6 {
 ────────────────────────────────────────────── */
 .code-block {
   background: var(--code-bg);
-  border: 1px solid rgba(0, 184, 255, 0.15);
+  border: 1px solid rgba(0, 184, 219, 0.15);
   border-radius: 12px;
   overflow: hidden;
   font-family: var(--font-jetbrains), 'Courier New', monospace;
@@ -730,8 +736,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .code-block-header {
   padding: 0.75rem 1rem;
-  background: rgba(0, 184, 255, 0.05);
-  border-bottom: 1px solid rgba(0, 184, 255, 0.1);
+  background: rgba(0, 184, 219, 0.05);
+  border-bottom: 1px solid rgba(0, 184, 219, 0.1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -749,7 +755,7 @@ h1, h2, h3, h4, h5, h6 {
 .quote-mark {
   font-size: 5rem;
   line-height: 1;
-  color: rgba(0, 184, 255, 0.2);
+  color: rgba(0, 184, 219, 0.2);
   font-family: Georgia, serif;
   position: absolute;
   top: -0.5rem;
@@ -786,7 +792,7 @@ h1, h2, h3, h4, h5, h6 {
     from 0deg,
     transparent 0%,
     transparent 35%,
-    rgba(0, 184, 255, 0.95) 48%,
+    rgba(0, 184, 219, 0.95) 48%,
     rgba(139, 92, 246, 0.85) 57%,
     transparent 66%
   );
@@ -833,8 +839,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .comparison-table th {
   padding: 1rem 1.25rem;
-  background: rgba(0, 184, 255, 0.08);
-  border-bottom: 1px solid rgba(0, 184, 255, 0.15);
+  background: rgba(0, 184, 219, 0.08);
+  border-bottom: 1px solid rgba(0, 184, 219, 0.15);
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -850,19 +856,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .comparison-table tr:hover td {
-  background: rgba(0, 184, 255, 0.03);
+  background: rgba(0, 184, 219, 0.03);
   color: var(--table-head-text);
 }
 
 /* Focus visible */
 *:focus-visible {
-  outline: 2px solid rgba(0, 184, 255, 0.6);
+  outline: 2px solid rgba(0, 184, 219, 0.6);
   outline-offset: 3px;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(0, 184, 255, 0.25);
+  background: rgba(0, 184, 219, 0.25);
   color: #ffffff;
 }
 
@@ -906,7 +912,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 1px;
   background-image: repeating-linear-gradient(
     90deg,
-    rgba(0, 184, 255, 0.55) 0 6px,
+    rgba(0, 184, 219, 0.55) 0 6px,
     transparent 6px 14px
   );
 }
@@ -1023,7 +1029,130 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ──────────────────────────────────────────────
-   Light-beam button — rotating conic border
+   Bento grid, spotlight, border glow, particles
+   Used by components/ui/BentoCard.tsx + BentoGlowGrid.tsx
+────────────────────────────────────────────── */
+
+/*
+ * Only the card under the pointer gets its --mx/--my written, by a single
+ * listener on the grid. The gradients below read those variables, so the
+ * spotlight follows the cursor without JavaScript running per frame.
+ *
+ * These are real elements, not pseudo-elements: `.card-shine` already owns
+ * this element's ::after, and these rules are unlayered in globals.css, so a
+ * ::after here would out-rank and silently kill the shine sweep.
+ */
+.bento-card {
+  isolation: isolate;
+}
+
+/* Soft wash that follows the pointer across the card face. */
+.bento-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0, 184, 219, 0.1),
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* The same point again, masked down to the 1px edge. */
+.bento-border {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    190px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0, 184, 219, 0.75),
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/*
+ * Particles are rendered once and animated by CSS, not built on hover and
+ * tweened by a library, sweeping the pointer across a 16-card grid would
+ * otherwise create and destroy hundreds of nodes.
+ */
+.bento-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bento-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #00b8db;
+  box-shadow: 0 0 6px rgba(0, 184, 219, 0.7);
+  opacity: 0;
+  /* Paused until the card is hovered, so an idle grid costs nothing. */
+  animation-play-state: paused;
+}
+
+.bento-dot-1 { left: 12%; top: 22%; }
+.bento-dot-2 { left: 34%; top: 72%; }
+.bento-dot-3 { left: 56%; top: 16%; }
+.bento-dot-4 { left: 74%; top: 58%; }
+.bento-dot-5 { left: 88%; top: 34%; }
+
+@keyframes bentoDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
+  25%  { opacity: 0.9; }
+  50%  { transform: translate3d(6px, -14px, 0) scale(1.3); opacity: 0.5; }
+  75%  { opacity: 0.9; }
+  100% { transform: translate3d(-4px, -26px, 0) scale(1); opacity: 0; }
+}
+
+/* Gated: a touch device fires a false hover on tap and these would stick on. */
+@media (hover: hover) and (pointer: fine) {
+  .bento-card:hover .bento-spotlight,
+  .bento-card:hover .bento-border,
+  .bento-card:hover .bento-particles {
+    opacity: 1;
+  }
+
+  .bento-card:hover .bento-dot {
+    animation-play-state: running;
+  }
+
+  .bento-dot-1 { animation: bentoDrift 4.5s ease-in-out infinite; }
+  .bento-dot-2 { animation: bentoDrift 5.6s ease-in-out infinite 0.6s; }
+  .bento-dot-3 { animation: bentoDrift 4.9s ease-in-out infinite 1.2s; }
+  .bento-dot-4 { animation: bentoDrift 6.2s ease-in-out infinite 0.3s; }
+  .bento-dot-5 { animation: bentoDrift 5.2s ease-in-out infinite 1.7s; }
+}
+
+/* Decoration only, remove it rather than leaving a frozen glow behind. */
+@media (prefers-reduced-motion: reduce) {
+  .bento-spotlight,
+  .bento-border,
+  .bento-particles {
+    display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Light-beam button, rotating conic border
    Used by components/ui/LightBeamButton.tsx
 ────────────────────────────────────────────── */
 
@@ -1031,7 +1160,7 @@ h1, h2, h3, h4, h5, h6 {
  * `@property` is load-bearing. Without registering --beam-angle it stays an
  * unregistered custom property, which cannot be interpolated, so the beam
  * would jump from 0deg to 360deg instead of sweeping. On a browser without
- * @property support the gradient still paints, just static — a graceful
+ * @property support the gradient still paints, just static, a graceful
  * degradation rather than a broken button.
  */
 @property --beam-angle {
@@ -1048,50 +1177,59 @@ h1, h2, h3, h4, h5, h6 {
 
 .light-beam {
   position: relative;
-  isolation: isolate; /* keeps the -z pseudo-elements inside the button */
+  isolation: isolate; /* keeps the -z pseudo-element inside the button */
   border-radius: 0.625rem;
   font-weight: 600;
+  /*
+   * Frosted, not filled. This has to be theme-aware because the same button
+   * lands on opposite surfaces: at the top of the homepage the header is
+   * `bg-transparent` over the dark hero photo, and once scrolled it becomes
+   * white/95 in light mode and #030711/95 in dark mode. The label colour flips
+   * with the theme, so the surface under it has to flip too, a single fixed
+   * value leaves either the light or the dark case unreadable.
+   */
+  background: var(--beam-fill);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-/* The beam itself. Sits 1px outside the button so only a hairline shows. */
+/*
+ * The rotating beam, masked down to a 1px ring.
+ *
+ * The mask is newly load-bearing. At inset:-1px behind the old *opaque* fill,
+ * only the outer 1px of this gradient escaped. The fill is translucent now, so
+ * without the mask the entire conic gradient would show straight through the
+ * button and the whole surface would appear to rotate.
+ *
+ * Back to the brand pair (cyan + violet), the white-cored beam existed only
+ * to stay legible against the cyan fill, which is gone.
+ */
 .light-beam::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: -2;
-  border-radius: 0.6875rem; /* 0.625rem + 1px */
-  background: conic-gradient(
-    from var(--beam-angle),
-    transparent 0%,
-    #00b8ff 35%,
-    #a78bfa 50%,
-    transparent 65%
-  );
-  animation: beamSpin 2.5s linear infinite;
-}
-
-/* The fill, covering everything except that 1px ring. */
-.light-beam::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: 0.625rem;
-  /*
-   * Deliberately NOT #030711. That is exactly what the header turns into once
-   * scrolled in dark mode - rgba(3,7,17,.95) - so the button disappeared into
-   * the bar leaving only its ring floating. #0A1628 is the site's dark-50:
-   * still reads as a dark button on white, but stays a distinct surface
-   * against near-black.
-   */
-  background: #0a1628;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    #00b8db 35%,
+    #a78bfa 50%,
+    transparent 65%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beamSpin 2.5s linear infinite;
 }
 
 .light-beam .light-beam-glow {
   position: absolute;
   inset: 0;
   border-radius: 0.625rem;
-  background: radial-gradient(circle at 50% 0%, rgba(0, 184, 255, 0.2) 0%, transparent 62%);
+  background: radial-gradient(circle at 50% 0%, var(--beam-glow) 0%, transparent 62%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -1102,9 +1240,3231 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/*
+ * Pins the dark treatment on a permanently-dark surface. Declared after the
+ * `:root` and `.dark` token blocks, and at the same specificity, so it wins in
+ * both themes; in dark mode it simply re-states the values already in force.
+ */
+.light-beam-on-dark {
+  --beam-fill: rgba(255, 255, 255, 0.06);
+  --beam-glow: rgba(255, 255, 255, 0.2);
+}
+
 /* A 2.5s infinite sweep is exactly what the preference is asking to stop. */
 @media (prefers-reduced-motion: reduce) {
   .light-beam::before {
     animation: none;
   }
+}
+
+/* ──────────────────────────────────────────────
+   Hero, animated backdrop
+   Adapted from the supplied "3D product screens" reference. Brand colours
+   (#00B8DB) rather than the reference's #00bcd4, so the hero matches the
+   accent used on every other page.
+────────────────────────────────────────────── */
+
+/* Cyan blueprint grid */
+.hero-grid-lines {
+  background-image:
+    linear-gradient(rgba(0, 184, 219, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 184, 219, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Film grain. Inline SVG, so it costs no request and cannot 404. */
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
+}
+
+/*
+ * Pointer-tracked glow.
+ *
+ * Centred with negative margins, NOT a `translate(-50%,-50%)` utility: the
+ * whole point of this element is that JavaScript writes its `transform`, and
+ * anything that centres it via `transform` is overwritten the moment it
+ * moves. (The reference does exactly that, so its glow trails the cursor by
+ * half its own size.)
+ */
+.hero-cursor-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24rem;
+  height: 24rem;
+  margin: -12rem 0 0 -12rem;
+  border-radius: 9999px;
+  background: rgba(0, 184, 219, 0.1);
+  filter: blur(48px);
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+@keyframes heroPulseSoft {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.05);
+  }
+}
+
+.hero-pulse-soft {
+  animation: heroPulseSoft 5s ease-in-out infinite;
+}
+
+/*
+ * Halo behind the screens. Sized in a centring flex parent rather than with
+ * `translate(-50%,-50%)`, for the same reason as the cursor glow, the
+ * keyframes animate `transform` and would clobber the centring.
+ */
+.hero-screen-glow {
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 184, 219, 0.3),
+    rgba(0, 184, 219, 0.07) 42%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  animation: heroPulseSoft 5s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────
+   Hero, orbiting capability icons
+────────────────────────────────────────────── */
+
+/*
+ * `rotate() translateX() rotate(-…)`, the trailing counter-rotation is what
+ * keeps each icon upright while it orbits. Without it the icons spin with the
+ * orbit, which reads as broken rather than decorative.
+ *
+ * These keyframes animate transform ONLY. The reference also animated opacity
+ * here AND in the pulse below; because the later animation wins, its orbit
+ * fades were dead code.
+ */
+@keyframes heroOrbit {
+  0% {
+    transform: rotate(0deg) translateX(90px) rotate(0deg) scale(0.78);
+  }
+  50% {
+    transform: rotate(180deg) translateX(132px) rotate(-180deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(360deg) translateX(165px) rotate(-360deg) scale(0.86);
+  }
+}
+
+@keyframes heroOrbitReverse {
+  0% {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) translateX(105px) rotate(-180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(0deg) translateX(170px) rotate(0deg) scale(1.08);
+  }
+}
+
+/*
+ * Opacity only. The glow is a static `drop-shadow` set on the element below,
+ * so this stays a compositor-side fade, animating the filter itself would
+ * re-rasterise twenty drop-shadows every frame.
+ */
+@keyframes heroParticlePulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero-particle {
+  position: absolute;
+  display: block;
+  color: rgba(0, 184, 219, 0.9);
+  /*
+   * drop-shadow, not box-shadow: these are glyphs, so a box-shadow would paint
+   * a soft rectangle behind each one instead of tracing its outline.
+   */
+  filter: drop-shadow(0 0 6px rgba(0, 184, 219, 0.45));
+  animation:
+    heroOrbit var(--duration, 12s) var(--delay, 0s) cubic-bezier(0.22, 1, 0.36, 1) infinite,
+    heroParticlePulse 3.8s ease-in-out var(--delay, 0s) infinite;
+  pointer-events: none;
+}
+
+.hero-particle.is-reverse {
+  animation-name: heroOrbitReverse, heroParticlePulse;
+}
+
+/* ──────────────────────────────────────────────
+   Hero, floating product screens
+   Used by components/ui/HeroPanelCluster.tsx
+────────────────────────────────────────────── */
+
+@keyframes heroScreenReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 35px, -120px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroFloatBackLeft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateY(-20deg) rotateZ(-5deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotateY(-11deg) rotateZ(-2deg);
+  }
+}
+
+@keyframes heroFloatBackRight {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateY(20deg) rotateZ(5deg);
+  }
+  50% {
+    transform: translate3d(0, -11px, 0) rotateY(10deg) rotateZ(2deg);
+  }
+}
+
+@keyframes heroFloatCenter {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(16deg) rotateZ(2deg);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) rotateX(7deg) rotateZ(-1deg);
+  }
+}
+
+@keyframes heroFloatFront {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateY(14deg) rotateZ(3deg);
+  }
+  50% {
+    transform: translate3d(0, -13px, 0) rotateY(7deg) rotateZ(1deg);
+  }
+}
+
+/*
+ * Four nested layers, each owning exactly ONE way of moving:
+ *
+ *   .hero-screen            fixed hit box + sibling dimming
+ *   .hero-screen-parallax   JS writes transform here
+ *   .hero-screen-float      CSS reveal + float keyframes
+ *   .hero-screen-card       the hover scale
+ *
+ * They are separate because CSS animations beat normal declarations, so a
+ * float keyframe on the same element as the scripted parallax would silently
+ * win and pin the parallax to zero, and the hover scale has to stay off the
+ * hit box or the pointer and the transform fight each other.
+ */
+.hero-screen {
+  transition: opacity 0.4s ease-out;
+}
+
+.hero-screen-parallax,
+.hero-screen-float,
+.hero-screen-card {
+  pointer-events: none;
+}
+
+.hero-screen-float {
+  transform-style: preserve-3d;
+}
+
+.hero-screen.is-pos-backleft .hero-screen-float {
+  animation:
+    heroScreenReveal 0.9s 0.12s both,
+    heroFloatBackLeft 10s 1.02s ease-in-out infinite;
+}
+.hero-screen.is-pos-backright .hero-screen-float {
+  animation:
+    heroScreenReveal 0.9s 0.26s both,
+    heroFloatBackRight 9.5s 1.16s ease-in-out infinite;
+}
+.hero-screen.is-pos-center .hero-screen-float {
+  animation:
+    heroScreenReveal 0.9s 0.4s both,
+    heroFloatCenter 11s 1.3s ease-in-out infinite;
+}
+.hero-screen.is-pos-front .hero-screen-float {
+  animation:
+    heroScreenReveal 0.9s 0.54s both,
+    heroFloatFront 9s 1.44s ease-in-out infinite;
+}
+
+.hero-screen-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 184, 219, 0.35);
+  border-radius: 18px;
+  background: #0a1628;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, filter, box-shadow;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 10px 28px rgba(0, 184, 219, 0.1);
+}
+
+.hero-screen-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Slow diagonal sweep across the glass. */
+@keyframes heroShimmer {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translateX(-20%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(20%);
+  }
+}
+
+.hero-screen-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.18),
+    transparent 28%,
+    transparent 68%,
+    rgba(0, 184, 219, 0.16)
+  );
+  mix-blend-mode: screen;
+  animation: heroShimmer 6s ease-in-out infinite;
+}
+
+.hero-screen-card.is-active {
+  /*
+   * The reference stacks two wide-radius blooms here (`0 0 90px` at 0.9 and
+   * `0 0 150px` at 0.45) plus brightness(1.25). At four-up in a column that
+   * much spill washed out the neighbouring screens and the headline behind
+   * them, so this keeps only a tight cyan rim and lets brightness carry the
+   * lift.
+   */
+  transform: scale(1.32) translateZ(80px);
+  filter: brightness(1.12);
+  border-color: rgba(0, 184, 219, 0.55);
+  box-shadow:
+    0 44px 90px rgba(0, 0, 0, 0.62),
+    0 16px 44px rgba(0, 184, 219, 0.16),
+    0 0 34px rgba(0, 184, 219, 0.28);
+}
+
+/*
+ * Keyboard parity. The ring goes on the card because the card overhangs the
+ * button when scaled, which would hide the global `*:focus-visible` outline.
+ */
+.hero-screen:focus-visible {
+  outline: none;
+}
+
+.hero-screen:focus-visible .hero-screen-card {
+  outline: 2px solid rgba(0, 184, 219, 0.6);
+  outline-offset: 3px;
+}
+
+/* ──────────────────────────────────────────────
+   Hero, tighter left gutter
+────────────────────────────────────────────── */
+
+/*
+ * The hero runs closer to the left edge than every other section.
+ *
+ * `.container-xl` steps its gutter up to 3rem by 1280px, which is right for a
+ * section that sits inside the page flow, but the hero is the first thing on
+ * the page and reads as inset against its own full-bleed backdrop.
+ *
+ * `padding-left` only. The right gutter is untouched so the screen cluster
+ * still aligns with everything below it. Two classes beat one, and this block
+ * sits outside the layer `.container-xl` is declared in, so it wins either way.
+ */
+.container-xl.hero-container {
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-xl.hero-container {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-xl.hero-container {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-xl.hero-container {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-xl.hero-container {
+    padding-left: 1.5rem;
+  }
+}
+
+/*
+ * Let the hero use wide viewports.
+ *
+ * Plain width steps. The product window sizes itself from its column and
+ * the hero grows with min-h, so no viewport-height cap is needed.
+ */
+.container-xl.hero-container {
+  max-width: 1280px;
+}
+
+@media (min-width: 1536px) {
+  .container-xl.hero-container {
+    max-width: 1400px;
+  }
+}
+
+@media (min-width: 1760px) {
+  .container-xl.hero-container {
+    max-width: 1560px;
+  }
+}
+
+@media (min-width: 2100px) {
+  .container-xl.hero-container {
+    max-width: 1720px;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage hero (app/page.tsx + components/ui/HeroProductShowcase.tsx)
+────────────────────────────────────────────── */
+
+/* One soft light behind the product window, and a darker floor. */
+/*
+ * OmniPriv navy, not black. Deep brand navy (#0A1628) lifting to a brighter
+ * blue behind the product, with a cyan bloom.
+ */
+.hp-ground {
+  background:
+    radial-gradient(ellipse 50% 60% at 72% 48%, rgba(0, 184, 219, 0.12), transparent 70%),
+    radial-gradient(ellipse 60% 70% at 15% 10%, rgba(0, 184, 219, 0.05), transparent 70%);
+}
+
+.dark .hp-ground {
+  background:
+    radial-gradient(ellipse 50% 60% at 72% 48%, rgba(0, 184, 219, 0.2), transparent 70%),
+    radial-gradient(ellipse 70% 80% at 20% 20%, rgba(18, 52, 98, 0.55), transparent 70%),
+    linear-gradient(180deg, #0c1d38 0%, #0a1628 60%, #0a1628 100%);
+}
+
+/* Fine grid that only exists around the product side. */
+.hp-grid {
+  background-image:
+    linear-gradient(rgba(10, 22, 40, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 22, 40, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 45% 60% at 72% 48%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 45% 60% at 72% 48%, #000 0%, transparent 75%);
+}
+
+.dark .hp-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Headline lines rise out of their own clip. */
+@keyframes hpRise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.hp-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.hp-line > span {
+  display: block;
+  animation: hpRise 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes hpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hp-fade {
+  animation: hpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes hpRule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hp-rule {
+  transform-origin: left center;
+  animation: hpRule 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+/* Buttons. One radius (10px) shared with the window's inner elements. */
+.hp-btn-primary,
+.hp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.hp-btn-primary {
+  background: #00b8db;
+  color: #03121c;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 8px 24px -10px rgba(0, 184, 219, 0.6);
+}
+
+.hp-btn-secondary {
+  color: #0a1628;
+  border: 1px solid rgba(10, 22, 40, 0.14);
+  background: #fff;
+}
+
+.dark .hp-btn-secondary {
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hp-btn-primary:hover {
+    background: #33c6e2;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 10px 30px -10px rgba(0, 184, 219, 0.75);
+  }
+
+  .hp-btn-secondary:hover {
+    border-color: rgba(10, 22, 40, 0.28);
+    background: #f5f8fc;
+  }
+
+  .dark .hp-btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.hp-btn-primary:active,
+.hp-btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Window entrance: rises and flattens from a slight backward lean. */
+@keyframes hpWindow {
+  from {
+    opacity: 0;
+    transform: perspective(1600px) rotateX(14deg) translateY(48px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1600px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+.hp-window-enter {
+  transform-origin: 50% 100%;
+  animation: hpWindow 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.hp-tilt {
+  will-change: transform;
+}
+
+.hp-window {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d1d35;
+  box-shadow:
+    0 0 0 1px rgba(10, 22, 40, 0.08),
+    0 50px 110px -40px rgba(0, 110, 255, 0.35),
+    0 30px 60px -30px rgba(10, 22, 40, 0.45);
+}
+
+.dark .hp-window {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 50px 120px -30px rgba(0, 110, 255, 0.35),
+    0 30px 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+/* A single run of light along the top edge, after the window lands. */
+@keyframes hpSheen {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(260%);
+    opacity: 0;
+  }
+}
+
+.hp-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #7fdcff, transparent);
+  opacity: 0;
+  animation: hpSheen 1.8s ease-out 1.3s both;
+  pointer-events: none;
+}
+
+/* The URL path swaps with a short fade when the screen changes. */
+.hp-path {
+  display: inline-block;
+  animation: hpFade 0.4s ease both;
+}
+
+/* "Explore all 32 features" under the hero tour */
+.hp-all-features {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.25rem;
+  padding: 0 0.95rem;
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #00667a;
+  background: rgba(0, 184, 219, 0.08);
+  border: 1px solid rgba(0, 184, 219, 0.35);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hp-all-features:hover {
+    background: rgba(0, 184, 219, 0.18);
+    border-color: rgba(0, 184, 219, 0.6);
+  }
+}
+
+.dark .hp-all-features {
+  color: #7fdcff;
+  background: rgba(0, 184, 219, 0.1);
+}
+
+/* Tab progress: its animationend advances the showcase. */
+@keyframes hpProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hp-progress {
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+.hp-progress.is-on {
+  transform: scaleX(1);
+  animation-name: hpProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+.hp-progress.is-paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-link-path,
+  .hp-link-dot,
+  .hp-link-ring,
+  .hp-app [data-hl].is-hl {
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
+
+  .hp-app [data-hl].is-hl {
+    box-shadow: inset 0 0 0 1.5px #00b8db;
+  }
+
+  .hp-line > span,
+  .hp-fade,
+  .hp-rule,
+  .hp-window-enter,
+  .hp-sheen,
+  .hp-path,
+  .hp-progress.is-on {
+    animation: none !important;
+  }
+}
+
+
+/* ── The live console inside the hero window ────────────────
+   Sized in cqw against .hp-app-frame so it scales as one picture. */
+
+.hp-app-frame {
+  container-type: inline-size;
+  border-radius: 0 0 14px 14px;
+}
+
+.hp-app {
+  position: relative;
+  aspect-ratio: 16 / 9.2;
+  display: grid;
+  grid-template-columns: 5.6cqw 1fr;
+  grid-template-rows: 5cqw 1fr;
+  background: #2b2d38;
+  border-radius: 0 0 14px 14px;
+  font-size: 1.1cqw;
+  color: #cbd5e1;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.hp-topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.4cqw;
+  background: linear-gradient(90deg, #0f6174, #0c5165);
+}
+
+.hp-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6cqw;
+  height: 2.6cqw;
+  border-radius: 0.5cqw;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hp-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4cqw;
+  font-size: 1.1cqw;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0.5cqw 1.1cqw;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hp-nav.is-on {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.hp-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3cqw;
+  height: 2.3cqw;
+  border-radius: 0.45cqw;
+  font-size: 0.7cqw;
+  font-weight: 700;
+  color: #fff;
+  background: #0e7490;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hp-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5cqw;
+  padding: 1.4cqw 0.9cqw;
+  background: #262832;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom-left-radius: 14px;
+}
+
+.hp-side-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0.9cqw 0;
+  border-radius: 0.6cqw;
+  font-size: 0;
+  color: #cbd5e1;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hp-side-item.is-on {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(0, 184, 219, 0.14);
+  box-shadow: inset 2px 0 0 #00b8db;
+}
+
+.hp-main {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  padding: 1.8cqw 2cqw;
+}
+
+.hp-head-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3cqw;
+  height: 3cqw;
+  border-radius: 0.6cqw;
+  color: #fff;
+  background: #06b6d4;
+}
+
+.hp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45cqw;
+  padding: 0.55cqw 1.1cqw;
+  border-radius: 9999px;
+  font-size: 1.05cqw;
+  color: #7fd9ea;
+  background: rgba(0, 184, 219, 0.1);
+  border: 1px solid rgba(0, 184, 219, 0.35);
+  white-space: nowrap;
+}
+
+.hp-chip.is-rec {
+  color: #fda4af;
+  background: rgba(244, 63, 94, 0.1);
+  border-color: rgba(244, 63, 94, 0.35);
+}
+
+.hp-card {
+  position: relative;
+  padding: 1cqw 1.1cqw;
+  border-radius: 0.7cqw;
+  background: #33363f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hp-card-edge {
+  box-shadow: inset 0.22cqw 0 0 var(--edge);
+}
+
+.hp-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 1cqw 1.1cqw;
+  border-radius: 0.7cqw;
+  background: #31343d;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(6, 182, 212, 0.55);
+}
+
+.hp-stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8cqw;
+  height: 2.8cqw;
+  border-radius: 0.55cqw;
+  border: 1px solid currentColor;
+  box-shadow: 0 0.6cqw 1.6cqw rgba(0, 0, 0, 0.35);
+}
+
+.hp-stat-icon.is-cyan { color: #00b8db; background: rgba(0, 184, 219, 0.14); }
+.hp-stat-icon.is-orange { color: #fb923c; background: rgba(251, 146, 60, 0.14); }
+.hp-stat-icon.is-red { color: #f87171; background: rgba(248, 113, 113, 0.14); }
+.hp-stat-icon.is-violet { color: #a78bfa; background: rgba(167, 139, 250, 0.14); }
+
+.hp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3cqw;
+  padding: 0.25cqw 0.75cqw;
+  border-radius: 9999px;
+  font-size: 0.98cqw;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.hp-pill.is-green { color: #4ade80; background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.35); }
+.hp-pill.is-amber { color: #fbbf24; background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.35); }
+.hp-pill.is-red { color: #fb7185; background: rgba(251, 113, 133, 0.12); border-color: rgba(251, 113, 133, 0.45); }
+.hp-pill.is-red-solid { color: #fff; background: #e11d48; }
+.hp-pill.is-vault { color: #7fd9ea; background: rgba(0, 184, 219, 0.1); border-color: rgba(0, 184, 219, 0.35); }
+.hp-pill.is-ghost { color: #cbd5e1; border-color: rgba(255, 255, 255, 0.15); font-family: var(--font-jetbrains), monospace; }
+
+/* Tables */
+.hp-tr,
+.hp-log {
+  display: grid;
+  align-items: center;
+  gap: 0.8cqw;
+  padding: 0.9cqw 1.4cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1.12cqw;
+}
+
+.hp-tr { grid-template-columns: 1.3fr 1.2fr 0.9fr 0.8fr 0.9fr; }
+.hp-log { grid-template-columns: 0.75fr 1fr 2fr 0.65fr; }
+
+.hp-th {
+  font-size: 0.9cqw;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.hp-flag {
+  background: rgba(244, 63, 94, 0.08);
+  box-shadow: inset 0.22cqw 0 0 #f43f5e;
+}
+
+.hp-approve {
+  border-top-color: rgba(251, 146, 60, 0.7);
+  box-shadow: 0 1.5cqw 4cqw -1cqw rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(251, 146, 60, 0.2);
+}
+
+.hp-btn-deny,
+.hp-btn-approve {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5cqw;
+  font-size: 1.1cqw;
+  font-weight: 600;
+}
+
+.hp-btn-deny { color: #fff; background: #e11d48; }
+.hp-btn-approve { color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.15); }
+
+.hp-denied {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5cqw;
+  border-radius: 0.5cqw;
+  font-size: 1.1cqw;
+  font-weight: 600;
+  color: #fda4af;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+/* Callouts that float outside the window */
+.hp-callout {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+  border-radius: 14px;
+  background: rgba(13, 29, 53, 0.94);
+  border: 1px solid rgba(0, 184, 219, 0.35);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 4px rgba(0, 184, 219, 0.08),
+    0 18px 44px -14px rgba(2, 20, 45, 0.75);
+  animation: hpCallout calc(0.7s * var(--spd, 1)) cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both;
+}
+
+.hp-callout-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: #03121c;
+  background: #00b8db;
+}
+
+/* Link from a callout into the console */
+@keyframes hpLinkDraw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hpLinkDot {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hpLinkRing {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}
+
+.hp-links {
+  z-index: 25;
+}
+
+.hp-link-path {
+  fill: none;
+  stroke: #00b8db;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hpLinkDraw 0.45s cubic-bezier(0.23, 1, 0.32, 1) both;
+  filter: drop-shadow(0 0 4px rgba(0, 184, 219, 0.6));
+}
+
+.hp-link-dot,
+.hp-link-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hp-link-dot {
+  fill: #00b8db;
+  animation: hpLinkDot 0.25s ease-out 0.4s both;
+}
+
+.hp-link-ring {
+  fill: none;
+  stroke: #00b8db;
+  stroke-width: 1.5;
+  animation: hpLinkRing 1.2s ease-out 0.45s 2 both;
+}
+
+/* The console element a callout points at lights up and stays lit. */
+@keyframes hpHl {
+  0% {
+    box-shadow:
+      inset 0 0 0 1.5px rgba(0, 184, 219, 0),
+      0 0 0 0 rgba(0, 184, 219, 0);
+  }
+  35% {
+    box-shadow:
+      inset 0 0 0 1.5px #00b8db,
+      0 0 0 6px rgba(0, 184, 219, 0.28);
+  }
+  100% {
+    box-shadow:
+      inset 0 0 0 1.5px #00b8db,
+      0 0 0 3px rgba(0, 184, 219, 0.16);
+  }
+}
+
+.hp-app [data-hl].is-hl:not(.hp-btn-verify) {
+  background-color: rgba(0, 184, 219, 0.08);
+}
+
+.hp-app [data-hl].is-hl {
+  position: relative;
+  z-index: 2;
+  animation-name: hpHl;
+  animation-duration: 0.9s;
+  animation-delay: 0.35s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+@keyframes hpCallout {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Choreography ───────────────────────────────────── */
+
+/* Frames and panels settle in place. */
+@keyframes hpPop {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hp-pop {
+  animation: hpPop calc(0.5s * var(--spd, 1)) ease-out var(--d, 0s) both;
+}
+
+/*
+ * Pieces that start OUTSIDE the window: appear where they float, hold for a
+ * beat, then fly into their slot.
+ */
+@keyframes hpFly {
+  0% {
+    opacity: 0;
+    transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(0.7);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(var(--fs, 1.45));
+  }
+  45% {
+    opacity: 1;
+    transform: translate(calc(var(--fx) * 0.96), calc(var(--fy) * 0.96 - 0.8cqw)) rotate(var(--fr)) scale(var(--fs, 1.45));
+    animation-timing-function: cubic-bezier(0.65, 0, 0.2, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hp-fly {
+  position: relative;
+  z-index: 5;
+  animation: hpFly calc(2.2s * var(--spd, 1)) linear var(--d, 0s) both;
+}
+
+/* Donut segments draw on (keyframe with no `to` runs to the element's own dasharray). */
+@keyframes hpArc {
+  from {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.hp-arc {
+  animation: hpArc calc(0.9s * var(--spd, 1)) cubic-bezier(0.4, 0, 0.2, 1) var(--d, 0s) both;
+}
+
+@keyframes hpRadar {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hp-radar {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: hpRadar calc(0.9s * var(--spd, 1)) cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both;
+}
+
+@keyframes hpRowIn {
+  from {
+    opacity: 0;
+    transform: translateX(-2.5cqw);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hp-row-in {
+  animation: hpRowIn calc(0.5s * var(--spd, 1)) cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both;
+}
+
+/* State swaps: rest on the finished state (out hidden, in shown). */
+@keyframes hpOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes hpIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+
+.hp-swap-out {
+  opacity: 0;
+  animation: hpOut calc(0.25s * var(--spd, 1)) ease var(--d, 0s) both;
+}
+
+.hp-swap-in {
+  animation: hpIn calc(0.35s * var(--spd, 1)) ease var(--d, 0s) both;
+}
+
+.hp-badge-in {
+  animation: hpIn calc(0.4s * var(--spd, 1)) cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0s) both;
+}
+
+/* Discovery sweep down the asset table. Invisible at rest. */
+@keyframes hpScanbar {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(32cqw); opacity: 0; }
+}
+
+.hp-scanbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2cqw;
+  z-index: 1;
+  height: 2.2cqw;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(0, 184, 219, 0.12), rgba(0, 184, 219, 0.45) 96%, transparent);
+  opacity: 0;
+  animation: hpScanbar calc(3.4s * var(--spd, 1)) linear var(--d, 0s) both;
+}
+
+@keyframes hpSpin {
+  to { transform: rotate(360deg); }
+}
+
+.hp-spin {
+  animation: hpSpin 2.4s linear infinite;
+}
+
+/* Framework bars grow from the axis. */
+@keyframes hpGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.hp-grow {
+  transform-origin: left center;
+  animation: hpGrow calc(0.9s * var(--spd, 1)) cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both;
+}
+
+/* Audit chain scene */
+.hp-btn-verify {
+  background: #00b8db;
+  color: #03121c;
+  white-space: nowrap;
+}
+
+.hp-chain-block {
+  position: relative;
+  padding: 1.2cqw 1.3cqw;
+  border-radius: 0.8cqw;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Link between two checkpoints: sits in the gap to the block's left */
+.hp-chain-link {
+  position: absolute;
+  top: 50%;
+  left: -2cqw;
+  width: 2cqw;
+  height: 2px;
+  background: rgba(0, 184, 219, 0.45);
+}
+
+.hp-chain-done {
+  display: flex;
+  align-items: center;
+  gap: 0.7cqw;
+  padding: 0.9cqw 1.2cqw;
+  border-radius: 0.7cqw;
+  font-size: 1.2cqw;
+  font-weight: 600;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+/* The Deny button is "pressed". */
+@keyframes hpPress {
+  0%, 100% { transform: none; box-shadow: none; }
+  40% { transform: scale(0.94); box-shadow: 0 0 0 0.3cqw rgba(225, 29, 72, 0.35); }
+}
+
+.hp-btn-deny {
+  animation: hpPress calc(0.4s * var(--spd, 1)) ease var(--d, 0s) both;
+}
+
+@keyframes hpBlink {
+  50% { opacity: 0; }
+}
+
+.hp-caret {
+  display: inline-block;
+  width: 0.5cqw;
+  height: 1cqw;
+  vertical-align: middle;
+  background: #94a3b8;
+  animation: hpBlink 1s steps(1) infinite;
+}
+
+.hp-rec-dot {
+  width: 0.6cqw;
+  height: 0.6cqw;
+  border-radius: 9999px;
+  background: #f43f5e;
+  animation: hpBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes hpPlay {
+  from { transform: scaleX(0.05); }
+  to { transform: scaleX(1); }
+}
+
+.hp-playhead {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: linear-gradient(90deg, #0891b2, #00b8db);
+  animation: hpPlay calc(7s * var(--spd, 1)) linear calc(0.4s * var(--spd, 1)) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-callout,
+  .hp-pop,
+  .hp-fly,
+  .hp-arc,
+  .hp-radar,
+  .hp-row-in,
+  .hp-swap-out,
+  .hp-swap-in,
+  .hp-badge-in,
+  .hp-scanbar,
+  .hp-spin,
+  .hp-grow,
+  .hp-btn-deny,
+  .hp-caret,
+  .hp-rec-dot,
+  .hp-playhead {
+    animation: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Header (components/layout/Header.tsx)
+────────────────────────────────────────────── */
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.375rem;
+  padding: 0 1rem;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #03121c;
+  background: #00b8db;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 18px -8px rgba(0, 184, 219, 0.7);
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-cta:hover {
+    background: #33c6e2;
+  }
+}
+
+.nav-cta:active {
+  transform: translateY(1px);
+}
+
+/* The highlight that slides behind the hovered top-level item. */
+.nav-pill {
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+/* One dropdown panel; its panes crossfade. */
+.nav-panel {
+  transform: translateX(-50%) translateY(-6px) scale(0.985);
+  transform-origin: top center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.25s;
+}
+
+.nav-panel.is-open {
+  transform: translateX(-50%) translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.nav-pane {
+  position: absolute;
+  inset: 0 0 auto 0;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-pane.is-on {
+  position: relative;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0.05s;
+}
+
+.nav-feature-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(0, 184, 219, 0.28), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(0, 110, 255, 0.18), transparent 70%);
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile sheet */
+.nav-sheet {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top center;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.25s;
+}
+
+.nav-sheet.is-open {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.nav-sheet-item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-sheet.is-open .nav-sheet-item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 40ms + 60ms);
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: challenges (ChallengeScroller), pinned story
+────────────────────────────────────────────── */
+
+.cs2-rail {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs2-icon {
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.12);
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.cs2-title {
+  color: #94a3b8;
+  transition: color 0.4s ease;
+}
+
+.dark .cs2-title {
+  color: #475569;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cs2-row button:hover .cs2-title {
+    color: #475569;
+  }
+
+  .dark .cs2-row button:hover .cs2-title {
+    color: #94a3b8;
+  }
+}
+
+.cs2-row.is-on .cs2-title {
+  color: #020617;
+}
+
+.dark .cs2-row.is-on .cs2-title {
+  color: #fff;
+}
+
+.cs2-row.is-on .cs2-icon {
+  color: #03121c;
+  background: #00b8db;
+}
+
+/* The active row opens: grid-rows 0fr -> 1fr. */
+.cs2-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.2s ease;
+}
+
+.cs2-row.is-on .cs2-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+
+
+.cs2-glow {
+  background: radial-gradient(ellipse 60% 55% at 50% 55%, rgba(0, 184, 219, 0.18), transparent 70%);
+  filter: blur(10px);
+}
+
+.cs2-seg {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs2-seg.is-on {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs2-rail,
+  .cs2-icon,
+  .cs2-title,
+  .cs2-detail,
+  .cs2-chip,
+  .cs2-seg {
+    transition: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: identities (IdentityPanels)
+────────────────────────────────────────────── */
+
+@media (min-width: 1024px) {
+  .ip-panel {
+    flex: 1 1 0;
+    cursor: pointer;
+    transition: flex-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ip-panel.is-on {
+    flex-grow: 2.3;
+    cursor: default;
+  }
+
+  .ip-copy {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ip-panel.is-on .ip-copy {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.25s;
+  }
+
+  .ip-img {
+    filter: saturate(0.6) brightness(0.7);
+    transition:
+      transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.6s ease;
+  }
+
+  .ip-panel.is-on .ip-img {
+    transform: scale(1.04);
+    filter: none;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: capability bento
+────────────────────────────────────────────── */
+
+.bento-line {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 0;
+}
+
+@keyframes bentoDraw {
+  from {
+    stroke-dashoffset: 400;
+  }
+}
+
+@keyframes bentoSpike {
+  0%,
+  60% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bentoRing {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.bento-spike,
+.bento-spike-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-item.revealed .bento-line {
+    animation: bentoDraw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .reveal-item.revealed .bento-spike {
+    animation: bentoSpike 1.8s ease-out both;
+  }
+
+  .reveal-item.revealed .bento-spike-ring {
+    animation: bentoRing 1.8s ease-out 1.8s infinite;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: AI-PAM band, compliance, closing CTA
+────────────────────────────────────────────── */
+
+.ai-band-grid,
+.cta-grid {
+  background-image:
+    linear-gradient(rgba(10, 22, 40, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 22, 40, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 70% 50%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 70% at 70% 50%, #000, transparent 75%);
+}
+
+.dark .ai-band-grid,
+.dark .cta-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.ai-band-glow {
+  background: radial-gradient(ellipse 45% 60% at 78% 50%, rgba(0, 184, 219, 0.12), transparent 70%);
+}
+
+.cta-glow {
+  background: radial-gradient(ellipse 50% 70% at 50% 0%, rgba(0, 184, 219, 0.14), transparent 70%);
+}
+
+.dark .ai-band-glow {
+  background:
+    radial-gradient(ellipse 45% 60% at 78% 50%, rgba(0, 184, 219, 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 70% at 10% 0%, rgba(18, 52, 98, 0.6), transparent 70%);
+}
+
+.dark .cta-glow {
+  background:
+    radial-gradient(ellipse 50% 70% at 50% 0%, rgba(0, 184, 219, 0.28), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 50% 110%, rgba(0, 90, 255, 0.2), transparent 70%);
+}
+
+.cta-grid {
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 30%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 70% at 50% 30%, #000, transparent 75%);
+}
+
+.cfw-check {
+  color: #00b8db;
+  background: rgba(0, 184, 219, 0.1);
+}
+
+@keyframes cfwCheck {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-item.revealed .cfw-check {
+    animation: cfwCheck 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0s) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-pill,
+  .nav-panel,
+  .nav-pane,
+  .nav-sheet,
+  .nav-sheet-item,
+  .ip-panel,
+  .ip-copy,
+  .ip-img {
+    transition: none !important;
+  }
+
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: control plane diagram (ControlFlow)
+────────────────────────────────────────────── */
+
+.cf2-ground {
+  background: radial-gradient(ellipse 45% 55% at 50% 62%, rgba(0, 184, 219, 0.08), transparent 70%);
+}
+
+.cf2-wire {
+  stroke: rgba(15, 23, 42, 0.2);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+}
+
+.dark .cf2-wire {
+  stroke: rgba(255, 255, 255, 0.18);
+}
+
+.cf2-block-chip {
+  fill: #fff1f2;
+  stroke: #fda4af;
+}
+
+.cf2-block-text {
+  font-size: 11px;
+  font-weight: 600;
+  fill: #e11d48;
+}
+
+.dark .cf2-block-chip {
+  fill: #2a0e16;
+  stroke: rgba(244, 63, 94, 0.5);
+}
+
+.dark .cf2-block-text {
+  fill: #fda4af;
+}
+
+.cf2-node {
+  transition: border-color 0.3s ease;
+}
+
+/* A request leaving an identity or landing on a target: one soft ring. */
+@keyframes cf2NodePulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.cf2-node-pulse {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 1px rgba(0, 184, 219, 0.7),
+    0 0 18px -2px rgba(0, 184, 219, 0.45);
+  animation: cf2NodePulse 1.4s ease-out both;
+}
+
+.cf2-node-pulse.is-deny {
+  box-shadow:
+    0 0 0 1px rgba(244, 63, 94, 0.7),
+    0 0 18px -2px rgba(244, 63, 94, 0.4);
+}
+
+/* Header decision line: each new decision rises in. */
+@keyframes cf2Decision {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cf2-decision {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: cf2Decision 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Live indicator: a real state (the engine is running), so it earns a dot. */
+.cf2-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+
+@keyframes cf2Live {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.cf2-live.is-on {
+  animation: cf2Live 1.6s ease-in-out infinite;
+}
+
+/* ── Policy core ring ── */
+.cf3-guide {
+  fill: none;
+  stroke: rgba(15, 23, 42, 0.06);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+}
+
+.dark .cf3-guide {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.cf3-track {
+  fill: none;
+  stroke: rgba(15, 23, 42, 0.07);
+  stroke-width: 10;
+}
+
+.dark .cf3-track {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.cf3-arc {
+  fill: none;
+  stroke: #00b8db;
+  stroke-width: 10;
+  stroke-linecap: butt;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.45;
+  transition: opacity 0.6s ease;
+}
+
+.cf3-arc.is-full {
+  stroke-dashoffset: 0;
+}
+
+.cf3-arc.is-active {
+  opacity: 1;
+}
+
+@keyframes cf3Fill {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* End of a cycle: the full ring fades away while Discover starts filling again. */
+@keyframes cf3Wrap {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.cf3-wrap {
+  animation: cf3Wrap 1.2s ease-out both;
+}
+
+/* Auto-stepping: the active arc fills over exactly the stage's dwell. */
+.cf3-arc.is-timed {
+  animation: cf3Fill linear both;
+}
+
+/* A request reached the ring: one soft glow, rose when refused. */
+.cf3-hit {
+  position: absolute;
+  inset: calc(50% - 43.1%);
+  border-radius: 9999px;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 2px rgba(0, 184, 219, 0.35),
+    0 0 46px 2px rgba(0, 184, 219, 0.28);
+  animation: cf2NodePulse 1.6s ease-out both;
+}
+
+.cf3-hit.is-deny {
+  box-shadow:
+    0 0 0 2px rgba(244, 63, 94, 0.35),
+    0 0 40px 0 rgba(244, 63, 94, 0.2);
+}
+
+.cf3-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #10b981;
+}
+
+.cf3-dot.is-deny {
+  background: #f43f5e;
+}
+
+/* Stage tabs under the ring */
+.cf3-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 2.25rem;
+  padding: 0 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  border: 1px solid transparent;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dark .cf3-tab {
+  color: #94a3b8;
+}
+
+.cf3-tab svg {
+  color: currentColor;
+}
+
+.cf3-tab.is-on {
+  color: #0a1628;
+  background: rgba(0, 184, 219, 0.1);
+  border-color: rgba(0, 184, 219, 0.35);
+}
+
+.dark .cf3-tab.is-on {
+  color: #fff;
+  background: rgba(0, 184, 219, 0.14);
+}
+
+.cf3-tab.is-on svg {
+  color: #00869f;
+}
+
+.dark .cf3-tab.is-on svg {
+  color: #00b8db;
+}
+
+.cf3-tab:focus-visible {
+  outline: 2px solid #00b8db;
+  outline-offset: 2px;
+}
+
+/* Stage detail: fades in, then its items are checked off in order. */
+.cf3-detail {
+  animation: cf2Decision 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.cf3-check {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: #00b8db;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16;
+  stroke-dashoffset: 0;
+}
+
+@keyframes cf3Check {
+  from {
+    stroke-dashoffset: 16;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cf3Item {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cf3-item {
+  animation: cf3Item 0.5s ease both;
+  animation-delay: calc(0.6s + var(--k, 0) * 0.7s);
+}
+
+.cf3-item .cf3-check {
+  animation: cf3Check 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-delay: calc(0.6s + var(--k, 0) * 0.7s);
+}
+
+/* Feedback loop: one turn each time Govern hands back to Discover. */
+@keyframes cf2Spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.cf2-spin-once {
+  animation: cf2Spin 1.4s cubic-bezier(0.77, 0, 0.175, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf2-live.is-on,
+  .cf2-spin-once,
+  .cf2-node-pulse,
+  .cf3-hit,
+  .cf2-decision,
+  .cf3-detail,
+  .cf3-item,
+  .cf3-item .cf3-check,
+  .cf3-arc.is-timed,
+  .cf3-wrap {
+    animation: none !important;
+  }
+
+  .cf3-arc,
+  .cf3-tab {
+    transition: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: one continuous flow (app/page.tsx)
+────────────────────────────────────────────── */
+
+/*
+ * One ground for the whole homepage, hero to FAQ: plain white, or OmniPriv
+ * navy in dark mode. No section paints its own background (including the
+ * control plane, whose markup is otherwise untouched), so there are no bands
+ * or seams; sections are told apart by spacing and by the shared surfaces
+ * below, never by a change of ground.
+ */
+.op-home {
+  background: #fff;
+}
+
+.dark .op-home {
+  background: #0a1628;
+}
+
+.op-home section {
+  background-color: transparent !important;
+  border-bottom-width: 0 !important;
+}
+
+/*
+ * Shared surfaces, used by every section:
+ *   card      white, 1px hairline, 24px radius (insights, compliance tiles)
+ *   op-panel  a tinted panel for the two feature moments (AI engine, CTA)
+ */
+.op-panel {
+  background: #f4f8fc;
+  border: 1px solid rgba(10, 22, 40, 0.06);
+}
+
+.dark .op-panel {
+  background: #0f2140;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/*
+ * Pinned challenges stage: the heading lives inside the sticky frame, so the
+ * scene is capped by the viewport height to keep heading, list and scene on
+ * one screen.
+ */
+.cs2-scene {
+  max-width: calc((100vh - 72px - 330px) * 16 / 11);
+}
+
+@media (min-width: 1024px) and (max-height: 820px) {
+  .cs2-heading {
+    font-size: 2.1rem;
+  }
+
+  .cs2-lede {
+    margin-top: 0.6rem;
+    font-size: 0.9375rem;
+  }
+
+  .cs2-stage {
+    margin-top: 1.25rem;
+  }
+
+  .cs2-scene {
+    max-width: calc((100vh - 72px - 250px) * 16 / 11);
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage rhythm and type (shared by every section)
+   One section padding, one H2 scale, one lede style, one gap between a
+   section's header and its content, one secondary button.
+────────────────────────────────────────────── */
+
+.op-sec {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .op-sec {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* For a section that is itself a panel (the closing CTA): less air around it. */
+.op-sec-tight {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .op-sec-tight {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.op-h2 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.875rem, 1.3rem + 1.7vw, 2.625rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #0a1628;
+}
+
+.dark .op-h2 {
+  color: #fff;
+}
+
+.op-h2-lg {
+  font-size: clamp(2rem, 1.3rem + 2.2vw, 3rem);
+}
+
+.op-lede {
+  margin-top: 1rem;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+@media (min-width: 640px) {
+  .op-lede {
+    font-size: 1.0625rem;
+  }
+}
+
+.dark .op-lede {
+  color: #94a3b8;
+}
+
+.op-body {
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .op-body {
+    margin-top: 3rem;
+  }
+}
+
+.op-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0a1628;
+  background: #fff;
+  border: 1px solid rgba(10, 22, 40, 0.14);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.dark .op-btn-ghost {
+  color: #e2e8f0;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .op-btn-ghost:hover {
+    border-color: rgba(0, 184, 219, 0.5);
+    background-color: rgba(0, 184, 219, 0.06);
+  }
+}
+
+.op-btn-ghost:active {
+  transform: translateY(1px);
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: PAM research and best practice (InsightsSection)
+────────────────────────────────────────────── */
+
+.ins-card {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(10, 22, 40, 0.08);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(10, 22, 40, 0.04);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.dark .ins-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: #0f2140;
+  box-shadow: none;
+}
+
+.ins-card:focus-visible {
+  outline: 2px solid #00b8db;
+  outline-offset: 3px;
+}
+
+.ins-media {
+  overflow: hidden;
+  background: #0a1628;
+}
+
+.ins-img {
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ins-cat {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #00667a;
+}
+
+.dark .ins-cat {
+  color: #00b8db;
+}
+
+.ins-title {
+  color: #0a1628;
+  transition: color 0.2s ease;
+}
+
+.dark .ins-title {
+  color: #fff;
+}
+
+.ins-cta {
+  color: #00667a;
+}
+
+.dark .ins-cta {
+  color: #00b8db;
+}
+
+.ins-arrow {
+  color: #94a3b8;
+}
+
+.ins-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.5rem;
+  padding: 0 1.1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0a1628;
+  border: 1px solid rgba(10, 22, 40, 0.14);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.dark .ins-all {
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ins-card:hover {
+    border-color: rgba(0, 184, 219, 0.4);
+    box-shadow: 0 18px 40px -22px rgba(0, 110, 200, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .ins-card:hover .ins-img {
+    transform: scale(1.04);
+  }
+
+  .ins-card:hover .ins-title {
+    color: #00667a;
+  }
+
+  .dark .ins-card:hover .ins-title {
+    color: #7fdcff;
+  }
+
+  .ins-card:hover .ins-arrow {
+    color: #00b8db;
+  }
+
+  .ins-all:hover {
+    border-color: rgba(0, 184, 219, 0.5);
+    background-color: rgba(0, 184, 219, 0.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ins-card,
+  .ins-img {
+    transition: none;
+  }
+
+  .ins-card:hover {
+    transform: none;
+  }
+
+  .ins-card:hover .ins-img {
+    transform: none;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage: challenge scenes (ChallengeVisuals)
+   Sized in cqw against the card.
+────────────────────────────────────────────── */
+
+.cv-root {
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+}
+
+.cv-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 0%, rgba(0, 184, 219, 0.16), transparent 70%),
+    linear-gradient(180deg, #10264a 0%, #0c1d38 55%, #0a1628 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 50px 120px -50px rgba(2, 40, 80, 0.6);
+  color: #cbd5e1;
+  font-size: 1.85cqw;
+  line-height: 1.35;
+}
+
+.cv-head {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  padding: 2.8cqw 3.4cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.cv-head-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5cqw;
+  height: 5cqw;
+  border-radius: 1.2cqw;
+  color: #03121c;
+  background: #00b8db;
+}
+
+.cv-head-title {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 2.1cqw;
+  font-weight: 500;
+  color: #fff;
+}
+
+.cv-chip {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6cqw 1.5cqw;
+  border-radius: 9999px;
+  font-size: 1.55cqw;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.cv-chip.is-cyan { color: #7fdcff; background: rgba(0, 184, 219, 0.12); border-color: rgba(0, 184, 219, 0.35); margin-left: 0; }
+.cv-head .cv-chip.is-cyan { margin-left: auto; }
+.cv-chip.is-rose { color: #fda4af; background: rgba(244, 63, 94, 0.12); border-color: rgba(244, 63, 94, 0.4); }
+.cv-chip.is-emerald { color: #6ee7b7; background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.4); }
+
+.cv-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5cqw;
+  padding: 2.6cqw 3.4cqw 3cqw;
+}
+
+.cv-row {
+  display: flex;
+  align-items: center;
+  gap: 1.8cqw;
+  padding: 1.5cqw 1.8cqw;
+  border-radius: 1.4cqw;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cv-row.cv-muted {
+  background: none;
+  border: 0;
+  padding-block: 0;
+  font-size: 1.45cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.cv-mono {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 1.75cqw;
+  color: #e2e8f0;
+}
+
+.cv-label {
+  font-size: 1.5cqw;
+  color: #94a3b8;
+}
+
+.cv-verdict {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  border-radius: 0.9cqw;
+  flex-shrink: 0;
+}
+
+.cv-verdict svg { width: 2cqw; height: 2cqw; }
+.cv-verdict.is-allow { color: #34d399; background: rgba(16, 185, 129, 0.15); }
+.cv-verdict.is-hold { color: #fbbf24; background: rgba(245, 158, 11, 0.15); }
+.cv-verdict.is-deny { color: #fb7185; background: rgba(244, 63, 94, 0.15); }
+
+.cv-note {
+  margin-left: auto;
+  padding: 0.45cqw 1.3cqw;
+  border-radius: 9999px;
+  font-size: 1.45cqw;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cv-note.is-allow { color: #6ee7b7; background: rgba(16, 185, 129, 0.12); }
+.cv-note.is-hold { color: #fcd34d; background: rgba(245, 158, 11, 0.12); }
+.cv-note.is-deny { color: #fda4af; background: rgba(244, 63, 94, 0.14); }
+.cv-note.is-checking { color: #94a3b8; background: rgba(148, 163, 184, 0.1); }
+
+.cv-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  font-size: 1.55cqw;
+  color: #94a3b8;
+}
+
+.cv-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4cqw;
+  padding: 1.8cqw 2cqw;
+  border-radius: 1.4cqw;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.cv-stat-v {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 4cqw;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #fff;
+}
+
+.cv-stat-l {
+  font-size: 1.45cqw;
+  color: #94a3b8;
+}
+
+.cv-chart {
+  flex: 1;
+  min-height: 0;
+  padding: 1cqw 1.4cqw;
+  border-radius: 1.4cqw;
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cv-alert {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  padding: 1.6cqw 1.8cqw;
+  border-radius: 1.4cqw;
+  font-size: 1.55cqw;
+  color: #fda4af;
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+/* Remote session */
+.cv-hops {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 1cqw;
+}
+
+.cv-hop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6cqw;
+}
+
+.cv-hop-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6cqw;
+  height: 6cqw;
+  border-radius: 1.4cqw;
+  color: #7fdcff;
+  background: rgba(0, 184, 219, 0.1);
+  border: 1px solid rgba(0, 184, 219, 0.3);
+  flex-shrink: 0;
+}
+
+.cv-hop-label {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 1.6cqw;
+  color: #fff;
+}
+
+.cv-hop-sub {
+  font-size: 1.35cqw;
+  color: #94a3b8;
+}
+
+.cv-hop-line {
+  position: relative;
+  width: 7cqw;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(0, 184, 219, 0.25);
+  margin-bottom: 4cqw;
+}
+
+.cv-hop-line > span {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: #00b8db;
+}
+
+.cv-term {
+  flex: 1;
+  min-height: 0;
+  padding: 1.8cqw 2cqw;
+  border-radius: 1.4cqw;
+  background: #07101f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 1.6cqw;
+  line-height: 1.8;
+  color: #cbd5e1;
+}
+
+@keyframes cvBlink { 50% { opacity: 0.15; } }
+
+.cv-caret {
+  display: inline-block;
+  width: 1cqw;
+  height: 2cqw;
+  margin-top: 0.4cqw;
+  background: #94a3b8;
+}
+
+/* A soft cursor blink, so the session reads as live. Off with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .cv-caret {
+    animation: cvBlink 1.1s ease-in-out 2s infinite;
+  }
+}
+
+.cv-timeline {
+  position: relative;
+  height: 0.7cqw;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes cvPlay {
+  from { transform: scaleX(0.04); }
+  to { transform: scaleX(1); }
+}
+
+.cv-timeline-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: linear-gradient(90deg, #0891b2, #00b8db);
+  transform: scaleX(0.62);
+}
+
+/* Privilege review */
+.cv-risk {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  padding: 1.3cqw 1.6cqw;
+  border-radius: 1.4cqw;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cv-meter {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.6cqw;
+}
+
+.cv-meter-track {
+  position: relative;
+  height: 1.2cqw;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cv-meter-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: linear-gradient(90deg, #f43f5e, #f59e0b);
+}
+
+/* Consolidation */
+.cv-mod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1cqw;
+  border-radius: 1.6cqw;
+  font-size: 1.55cqw;
+  font-weight: 500;
+  text-align: center;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cv-mod svg { color: #7fdcff; }
+
+.cv-mod.is-core {
+  color: #03121c;
+  background: #00b8db;
+  border-color: #00b8db;
+  box-shadow: 0 0 6cqw rgba(0, 184, 219, 0.4);
+}
+
+.cv-mod.is-core svg { color: #03121c; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-hop-line > span,
+  .cv-caret,
+  .cv-timeline-fill {
+    animation: none !important;
+  }
+}
+
+/* Short desktop screens: keep the pinned challenge index inside one screen. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .cs2-row button {
+    padding-block: 0.45rem;
+  }
+
+  .cs2-title {
+    font-size: 1.1rem;
+  }
+
+  .cs2-detail p {
+    font-size: 14px;
+  }
+}
+
+/* Type rhythm: balanced headings, no orphans in prose. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ──────────────────────────────────────────────
+   Opt-in motion guard
+────────────────────────────────────────────── */
+
+/*
+ * `[data-motion]` can only match the element carrying it, so it cannot reach
+ * a pseudo-element, and the card's shimmer sweep is a ::after. That one has
+ * to be stopped by name.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-screen-card::after {
+    animation: none !important;
+  }
+}
+
+/*
+ * Any element carrying [data-motion] stops animating entirely when the
+ * visitor asks for reduced motion. Utility-driven transitions have no class
+ * of their own to target, so they mark themselves instead. Keyframe classes
+ * keep using the per-class blocks above.
+ *
+ * Documented in .github/skills/animations/references/patterns.md as "add this
+ * once": ScreenshotLightbox is the first pattern that actually needs it.
+ */
+@media (prefers-reduced-motion: reduce) {
+  [data-motion] {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SITE-WIDE DESIGN SYSTEM (every page)
+
+   One language for the whole site, carried over from the homepage:
+   white page in light mode, OmniPriv navy (#0A1628) in dark mode, no
+   gradients or patterns behind content.
+
+     Order    heading, then subheading, then content. No eyebrow pills
+              above headings.
+     H1       .op-h1   Sora 700, 36 to 56px, line-height 1.08
+     H2       .op-h2   Sora 700, 30 to 42px, line-height 1.12
+     H3       .op-h3   Sora 700, 18 to 20px, line-height 1.3
+     Lede     .op-lede 16 to 17px, line-height 1.7, slate-600 / slate-400
+     Body     16px, line-height 1.7; small card copy 14px, line-height 1.65
+     Section  64px vertical padding, 88px from lg
+     Buttons  48px tall, 10px radius, 15px semibold. Cyan primary,
+              hairline secondary.
+     Accent   #00667A on white (AA contrast), #00B8DB on navy
+   Placed last in the file on purpose: it wins over the older rules and over
+   one-off size utilities left at call sites.
+══════════════════════════════════════════════════════════════ */
+
+/* Page surface. The body class in the layout still names the old near-black;
+   this keeps every page on navy without touching the layout. */
+.dark body.antialiased {
+  background-color: #0a1628;
+}
+
+/* Rhythm */
+.section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* Headings */
+.op-h1 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.25rem, 1.5rem + 2.6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #0a1628;
+  text-wrap: balance;
+}
+
+.dark .op-h1 {
+  color: #fff;
+}
+
+.op-h2 {
+  text-wrap: balance;
+}
+
+.op-h3 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: #0a1628;
+  text-wrap: balance;
+}
+
+@media (min-width: 1024px) {
+  .op-h3 {
+    font-size: 1.25rem;
+  }
+}
+
+.dark .op-h3 {
+  color: #fff;
+}
+
+/* Heading block: h2 then the lede, then any follow-up paragraphs. */
+.section-heading > p:not(.font-semibold) {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 44rem;
+}
+
+@media (min-width: 640px) {
+  .section-heading > p:not(.font-semibold) {
+    font-size: 1.0625rem;
+  }
+}
+
+.dark .section-heading > p:not(.font-semibold) {
+  color: #94a3b8;
+}
+
+.section-heading > p + p {
+  margin-top: 1rem;
+}
+
+.section-heading.text-center > p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Interior hero copy column */
+.op-hero-copy p:not(.font-semibold) {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 36rem;
+}
+
+.dark .op-hero-copy p:not(.font-semibold) {
+  color: #94a3b8;
+}
+
+
+/* Accent in a heading: readable on white, brand cyan on navy. */
+.text-gradient {
+  color: #00667a;
+}
+
+.dark .text-gradient {
+  color: #00b8db;
+}
+
+/* Buttons: same size, radius and colours as the homepage hero. */
+.btn-primary,
+.btn-secondary {
+  height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn-primary {
+  background: #00b8db;
+  color: #03121c;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 8px 24px -10px rgba(0, 184, 219, 0.6);
+}
+
+.btn-secondary {
+  color: #0a1628;
+  background: #fff;
+  border: 1px solid rgba(10, 22, 40, 0.14);
+}
+
+.dark .btn-secondary {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: #33c6e2;
+    transform: none;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 10px 30px -10px rgba(0, 184, 219, 0.75);
+  }
+
+  .btn-secondary:hover {
+    color: #0a1628;
+    background: #f5f8fc;
+    border-color: rgba(10, 22, 40, 0.28);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .dark .btn-secondary:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Compact variant for buttons inside cards and forms rows. */
+.btn-sm.btn-primary,
+.btn-sm.btn-secondary {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+
+/* Small label chip (pricing "Most popular" and the like). Never used as an
+   eyebrow above a heading. */
+.badge-cyan {
+  padding: 0.25rem 0.625rem;
+  background: rgba(0, 184, 219, 0.08);
+  border: 1px solid rgba(0, 121, 173, 0.25);
+  border-radius: 9999px;
+  color: #00667a;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.dark .badge-cyan {
+  color: #00b8db;
+  border-color: rgba(0, 184, 219, 0.3);
+}
+
+.badge-cyan::before {
+  display: none;
+}
+
+/* Icon tile: a flat brand tint, no gradient or glow. */
+.icon-wrapper {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 10px;
+  background: rgba(0, 184, 219, 0.08);
+  border: 1px solid rgba(0, 121, 173, 0.16);
+  color: #00667a;
+  box-shadow: none;
+}
+
+.dark .icon-wrapper {
+  background: rgba(0, 184, 219, 0.1);
+  border-color: rgba(0, 184, 219, 0.2);
+  color: #00b8db;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .icon-wrapper:hover,
+  .group:hover .icon-wrapper {
+    background: rgba(0, 184, 219, 0.14);
+    border-color: rgba(0, 184, 219, 0.4);
+    box-shadow: none;
+    color: #00667a;
+  }
+
+  .dark .icon-wrapper:hover,
+  .dark .group:hover .icon-wrapper {
+    color: #00b8db;
+  }
+}
+
+/* Image-less sections used to centre their intro column; headings now sit
+   on the left everywhere, so the column stays put. */
+.container-xl:not(:has(img)) > .max-w-3xl {
+  margin-left: 0;
+}
+
+/* Recessed band and the navy band (Section tone muted / dark). */
+.dark .op-band-muted {
+  background-color: #0c1a30;
+}
+
+.op-band-navy {
+  background-color: #0a1628;
+}
+
+html.dark .op-band-navy {
+  background-color: #0c1d38;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.container-xl:not(:has(img)) > .max-w-3xl .section-heading,
+.container-xl:not(:has(img)) > .max-w-3xl.section-heading {
+  text-align: left;
+}
+
+/* Space between a section heading and its first subheading paragraph. */
+.section-heading > :is(h2, h3) + p {
+  margin-top: 1rem;
+}
+
+/* Card title: one step below .op-h3, for titles inside grids of cards. */
+.op-card-title {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: #0a1628;
+}
+
+.dark .op-card-title {
+  color: #fff;
+}
+
+/* Card copy */
+.op-card-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #475569;
+}
+
+.dark .op-card-text {
+  color: #94a3b8;
+}
+
+/* Inline link accent */
+.op-link {
+  color: #00667a;
+}
+
+.dark .op-link {
+  color: #00b8db;
+}
+
+/* ──────────────────────────────────────────────
+   Homepage background motifs (components/home/BgMotif.tsx)
+   Thin line drawings at very low contrast in empty margins only.
+────────────────────────────────────────────── */
+.bgm {
+  color: rgba(0, 121, 173, 0.26);
+}
+
+.dark .bgm {
+  color: rgba(0, 184, 219, 0.22);
+}
+
+.bgm .bgm-acc {
+  stroke: rgba(0, 150, 215, 0.75);
+}
+
+.dark .bgm .bgm-acc {
+  stroke: rgba(0, 184, 219, 0.75);
+}
+
+.bgm .bgm-acc-fill {
+  fill: rgba(0, 150, 215, 0.75);
+}
+
+.dark .bgm .bgm-acc-fill {
+  fill: rgba(0, 184, 219, 0.75);
+}
+
+/* Soft brand-tinted fill behind a motif's focal shape. */
+.bgm .bgm-tint {
+  fill: rgba(0, 184, 219, 0.07);
+  stroke: none;
+}
+
+.dark .bgm .bgm-tint {
+  fill: rgba(0, 184, 219, 0.08);
 }

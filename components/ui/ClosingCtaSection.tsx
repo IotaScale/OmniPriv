@@ -11,12 +11,12 @@ export default function ClosingCtaSection() {
       <div className="container-xl max-w-5xl mx-auto">
         <div className="relative rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#08101e] p-8 sm:p-12 lg:p-16 overflow-hidden" data-aos="fade-up">
           {/* Subtle top border accent */}
-          <div className="absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-[#00B8FF]/40 to-transparent" />
+          <div className="absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
 
           <div className="text-center max-w-3xl mx-auto">
             {/* Small product-status accent */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 text-xs font-mono mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00B8FF] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00B8DB] animate-pulse" />
               <span>Enterprise PAM Ready &middot; AI-Native Architecture</span>
             </div>
 

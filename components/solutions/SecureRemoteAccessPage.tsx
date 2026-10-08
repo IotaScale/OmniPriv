@@ -30,7 +30,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/secure-remote-access — the destination of the
+ * Bespoke layout for /platform/secure-remote-access, the destination of the
  * "Remote Access / Secure remote & hybrid access" challenge card.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -58,7 +58,7 @@ const hero = {
         " built around identity verification, least privilege, Just-in-Time access, credential protection, and complete session visibility.",
     ] as RichText,
     kicker: [
-        "Give authorized users access to the systems they need — without giving them unrestricted privilege.",
+        "Give authorized users access to the systems they need, without giving them unrestricted privilege.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/features", label: "Browse All Capabilities" },
@@ -82,8 +82,8 @@ const surfaceSection = {
         ],
     ] as RichText[],
     image: {
-        src: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=1200&q=70",
-        alt: "Secure remote access dashboard on a laptop, showing a remote worker reaching enterprise systems without expanding the attack surface",
+        src: "/challenges/audit-governance-compliance.jpeg",
+        alt: "Laptops, servers and cloud reached through one governed access point",
     },
 };
 
@@ -189,7 +189,7 @@ const workforceSection = {
 const vendorSection = {
     title: "Secure Vendor and Third-Party Remote Access",
     lead: [
-        "Vendors often need legitimate access to sensitive infrastructure — but that should not require permanent accounts or unrestricted network access. OmniPriv helps organizations control third-party access using:",
+        "Vendors often need legitimate access to sensitive infrastructure, but that should not require permanent accounts or unrestricted network access. OmniPriv helps organizations control third-party access using:",
     ] as RichText,
     image: {
         src: "https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=1200&q=70",
@@ -275,7 +275,7 @@ const stats = [
 const keepReading = [
     { href: "/features", label: "See the full capability list" },
     { href: "/integrations", label: "Check directory and ITSM integrations" },
-    { href: "/security", label: "Security architecture and certifications" },
+    { href: "/security", label: "Security architecture and framework mappings" },
 ];
 
 const closing = {
@@ -285,7 +285,7 @@ const closing = {
         "OmniPriv brings secure remote access, identity verification, JIT privileges, credential protection, session security, and centralized auditing together in one enterprise PAM solution.",
         "Whether users connect from the office, home, another country, or a third-party environment, privileged access remains governed by the same security policies.",
     ],
-    kicker: "Give people access to what they need — not permanent access to everything.",
+    kicker: "Give people access to what they need, not permanent access to everything.",
     primary: { href: "/demo", label: "Request an OmniPriv Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
 };
@@ -343,8 +343,14 @@ export default function SecureRemoteAccessPage() {
 
             {/* ─── ATTACK SURFACE ───────────────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={surfaceSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={surfaceSection.title}>
+                <MediaSplit
+                    media={surfaceSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={surfaceSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {surfaceSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -354,15 +360,15 @@ export default function SecureRemoteAccessPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
             </Section>
 
             {/* ─── ZERO TRUST CONTROL ───────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={zeroTrustSection.title} />
+                <SectionHeading title={zeroTrustSection.title} />
 
+                <div className="max-w-3xl">
                     <SectionHeading
                         as="h3"
                         size="sm"
@@ -381,16 +387,22 @@ export default function SecureRemoteAccessPage() {
 
             {/* ─── JUST-IN-TIME ACCESS ──────────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={jitSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={jitSection.title}>
+                <MediaSplit
+                    media={jitSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={jitSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         <Prose segments={jitSection.paragraphs[0]} className="mb-4" />
                         <Prose segments={jitSection.paragraphs[1]} />
-                    </SectionHeading>
+                    </div>
 
                     <ChipList
                         items={jitSection.flow}
                         variant="accent"
-                        separator={<ArrowRight className="h-4 w-4 text-[#00B8FF]" />}
+                        separator={<ArrowRight className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]" />}
                         className="mt-8"
                     />
 
@@ -408,8 +420,9 @@ export default function SecureRemoteAccessPage() {
                     ratio="wide-last"
                     height="sm"
                     align="start"
+                    heading={<SectionHeading title={credentialsSection.title} />}
                 >
-                    <SectionHeading title={credentialsSection.title}>
+                    <div className="op-hero-copy">
                         {credentialsSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -421,7 +434,7 @@ export default function SecureRemoteAccessPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={credentialsSection.risks} className="mt-8" />
                 </MediaSplit>
@@ -433,20 +446,20 @@ export default function SecureRemoteAccessPage() {
                 the ChipList chips to their dark palette while the site is in
                 light mode. Sitting between two light bands keeps the rhythm. */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={monitorSection.title}>
-                        <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />
-                        <Prose segments={monitorSection.paragraphs[1]} />
-                    </SectionHeading>
+                <SectionHeading title={monitorSection.title}>
+                    <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />
+                    <Prose segments={monitorSection.paragraphs[1]} />
+                </SectionHeading>
 
-                    <div className="mt-10 mb-4 text-xs font-mono font-semibold uppercase tracking-[0.14em] text-[#00B8FF]">
+                <div className="max-w-3xl">
+                    <div className="mt-10 mb-4 text-xs font-mono font-semibold uppercase tracking-[0.14em] text-[#00667A] dark:text-[#00B8DB]">
                         {monitorSection.flowLabel}
                     </div>
 
                     <ChipList
                         items={monitorSection.flow}
                         variant="accent"
-                        separator={<ArrowRight className="h-4 w-4 text-[#00B8FF]" />}
+                        separator={<ArrowRight className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]" />}
                     />
 
                     <Prose segments={monitorSection.note} className="mt-8" />
@@ -455,27 +468,31 @@ export default function SecureRemoteAccessPage() {
 
             {/* ─── THE WORKFORCE ────────────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={workforceSection.title}>
-                        {workforceSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === workforceSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={workforceSection.title}>
+                    {workforceSection.paragraphs.map((paragraph, index) => (
+                        <Prose
+                            key={index}
+                            segments={paragraph}
+                            className={
+                                index === workforceSection.paragraphs.length - 1 ? "" : "mb-4"
+                            }
+                        />
+                    ))}
+                </SectionHeading>
             </Section>
 
             {/* ─── VENDORS ──────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={vendorSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={vendorSection.title}>
+                <MediaSplit
+                    media={vendorSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={vendorSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         <Prose segments={vendorSection.lead} />
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
 
                 <IconCardGrid items={vendorControls} columns={3} className="mt-12" />
@@ -483,11 +500,9 @@ export default function SecureRemoteAccessPage() {
 
             {/* ─── REMOTE ACCESS SECURITY SOLUTIONS (dark band) ── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={solutionsSection.title}>
-                        <Prose segments={solutionsSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={solutionsSection.title}>
+                    <Prose segments={solutionsSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={solutionCapabilities} columns={3} className="mt-12" />
             </Section>

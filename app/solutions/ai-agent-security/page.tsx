@@ -55,23 +55,22 @@ export default function AiAgentSecurityPage() {
 
             {/* ─── THE SHIFTED ACCESS MODEL ─────────── */}
             <Section tone="muted" border="bottom">
+                <SectionHeading title={modelSection.title}>
+                    <Prose segments={modelSection.lead} className="mb-4" />
+                    <Prose segments={modelSection.body} />
+                </SectionHeading>
+
+                <SectionHeading
+                    as="h3"
+                    size="sm"
+                    title={modelSection.subTitle}
+                    titleClassName="mb-5"
+                    className="mt-14"
+                >
+                    <Prose segments={modelSection.subLead} className="mb-6" />
+                </SectionHeading>
+
                 <div className="max-w-3xl">
-                    <SectionHeading title={modelSection.title}>
-                        <Prose segments={modelSection.lead} className="mb-4" />
-                        <Prose segments={modelSection.body} />
-                    </SectionHeading>
-                </div>
-
-                <div className="max-w-3xl mt-14">
-                    <SectionHeading
-                        as="h3"
-                        size="sm"
-                        title={modelSection.subTitle}
-                        titleClassName="mb-5"
-                    >
-                        <Prose segments={modelSection.subLead} className="mb-6" />
-                    </SectionHeading>
-
                     <CheckList items={modelSection.questions} />
 
                     <Prose segments={modelSection.subNote} className="mt-6" />
@@ -80,11 +79,17 @@ export default function AiAgentSecurityPage() {
 
             {/* ─── JUST-IN-TIME ACCESS ──────────────── */}
             <Section border="bottom">
-                <MediaSplit media={jitSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={jitSection.title}>
+                <MediaSplit
+                    media={jitSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={jitSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         <Prose segments={jitSection.lead} className="mb-4" />
                         <Prose segments={jitSection.body} />
-                    </SectionHeading>
+                    </div>
 
                     <Prose segments={[jitSection.prompt]} tone="strong" className="mt-8 mb-4" />
 
@@ -103,16 +108,12 @@ export default function AiAgentSecurityPage() {
 
             {/* ─── CREDENTIALS ──────────────────────── */}
             <Section tone="muted" border="bottom">
+                <SectionHeading title={credentialsSection.title}>
+                    <Prose segments={credentialsSection.lead} className="mb-4" />
+                    <Prose segments={credentialsSection.body} className="mb-8" />
+                </SectionHeading>
+
                 <div className="max-w-3xl">
-                    <div className="icon-wrapper mb-5">
-                        <credentialsSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={credentialsSection.title}>
-                        <Prose segments={credentialsSection.lead} className="mb-4" />
-                        <Prose segments={credentialsSection.body} className="mb-8" />
-                    </SectionHeading>
-
                     <ChipList
                         items={credentialsSection.capabilities}
                         variant="neutral"
@@ -131,76 +132,59 @@ export default function AiAgentSecurityPage() {
             <Section tone="dark" border="bottom">
                 <SectionHeading
                     title={afterAccessSection.title}
-                    className="max-w-3xl mb-14"
+                    className="mb-14"
                 />
 
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-                    <div>
-                        <div className="icon-wrapper mb-5">
-                            <afterAccessSection.monitoring.icon className="w-5 h-5" />
-                        </div>
+                <SectionHeading
+                    as="h3"
+                    size="sm"
+                    title={afterAccessSection.monitoring.title}
+                >
+                    <Prose segments={afterAccessSection.monitoring.lead} className="mb-4" />
+                    <Prose
+                        segments={afterAccessSection.monitoring.body}
+                        className="mb-4"
+                    />
+                    <Prose segments={afterAccessSection.monitoring.note} className="mb-6" />
+                </SectionHeading>
 
-                        <SectionHeading
-                            as="h3"
-                            size="sm"
-                            title={afterAccessSection.monitoring.title}
-                            titleClassName="max-w-3xl"
-                        >
-                            <Prose segments={afterAccessSection.monitoring.lead} className="mb-4" />
-                            <Prose
-                                segments={afterAccessSection.monitoring.body}
-                                className="mb-4"
-                            />
-                            <Prose segments={afterAccessSection.monitoring.note} className="mb-6" />
-                        </SectionHeading>
+                <Prose
+                    segments={[afterAccessSection.monitoring.prompt]}
+                    tone="strong"
+                    className="mb-4"
+                />
+                <CheckList items={afterAccessSection.monitoring.insights} />
 
-                        <Prose
-                            segments={[afterAccessSection.monitoring.prompt]}
-                            tone="strong"
-                            className="mb-4"
-                        />
-                        <CheckList items={afterAccessSection.monitoring.insights} />
+                <ArrowLink
+                    href={afterAccessSection.monitoring.link.href}
+                    className="mt-8"
+                >
+                    {afterAccessSection.monitoring.link.label}
+                </ArrowLink>
 
-                        <ArrowLink
-                            href={afterAccessSection.monitoring.link.href}
-                            className="mt-8"
-                        >
-                            {afterAccessSection.monitoring.link.label}
-                        </ArrowLink>
-                    </div>
+                <SectionHeading
+                    as="h3"
+                    size="sm"
+                    title={afterAccessSection.detection.title}
+                    className="mt-16"
+                >
+                    <Prose segments={afterAccessSection.detection.lead} className="mb-4" />
+                    <Prose segments={afterAccessSection.detection.body} className="mb-4" />
+                    <Prose segments={afterAccessSection.detection.note} />
+                </SectionHeading>
 
-                    <div>
-                        <div className="icon-wrapper mb-5">
-                            <afterAccessSection.detection.icon className="w-5 h-5" />
-                        </div>
-
-                        <SectionHeading
-                            as="h3"
-                            size="sm"
-                            title={afterAccessSection.detection.title}
-                            titleClassName="max-w-3xl"
-                        >
-                            <Prose segments={afterAccessSection.detection.lead} className="mb-4" />
-                            <Prose segments={afterAccessSection.detection.body} className="mb-4" />
-                            <Prose segments={afterAccessSection.detection.note} />
-                        </SectionHeading>
-
-                        <ArrowLink href={afterAccessSection.detection.link.href} className="mt-8">
-                            {afterAccessSection.detection.link.label}
-                        </ArrowLink>
-                    </div>
-                </div>
+                <ArrowLink href={afterAccessSection.detection.link.href} className="mt-8">
+                    {afterAccessSection.detection.link.label}
+                </ArrowLink>
             </Section>
 
             {/* ─── LEAST-PRIVILEGE PILLARS ──────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={pillarsSection.title} className="mb-2">
-                        <Prose segments={pillarsSection.lead} className="mb-4" />
-                        <Prose segments={pillarsSection.body} className="mb-4" />
-                        <Prose segments={[pillarsSection.prompt]} tone="strong" />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={pillarsSection.title} className="mb-2">
+                    <Prose segments={pillarsSection.lead} className="mb-4" />
+                    <Prose segments={pillarsSection.body} className="mb-4" />
+                    <Prose segments={[pillarsSection.prompt]} tone="strong" />
+                </SectionHeading>
 
                 <IconCardGrid items={pillars} columns={3} className="mt-12" />
 
@@ -209,12 +193,10 @@ export default function AiAgentSecurityPage() {
 
             {/* ─── SECURE AI WITHOUT PERMANENT PRIVILEGE ── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={finalSection.title}>
-                        <Prose segments={finalSection.lead} className="mb-4" />
-                        <Prose segments={finalSection.body} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={finalSection.title}>
+                    <Prose segments={finalSection.lead} className="mb-4" />
+                    <Prose segments={finalSection.body} />
+                </SectionHeading>
             </Section>
 
             {/* ─── CLOSING ──────────────────────────── */}

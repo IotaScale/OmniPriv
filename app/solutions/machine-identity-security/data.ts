@@ -276,7 +276,7 @@ export const closing = {
         "The result is a practical machine identity security strategy built around one fundamental principle:",
     ],
     kicker:
-        "Machines should receive the access they need—without receiving permanent, uncontrolled privilege.",
+        "Machines should receive the access they need, without receiving permanent, uncontrolled privilege.",
     primary: { href: "/demo", label: "Request an OmniPriv Demo" },
     secondary: { href: "https://omnipriv.com/platform", label: "Explore the OmniPriv PAM Platform" },
 };

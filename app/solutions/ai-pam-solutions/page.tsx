@@ -74,11 +74,11 @@ export default function AiPamSolutionsPage() {
 
             {/* ─── PRIVILEGED ACCESS HAS CHANGED IN THE AI ERA ── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={changedEraSection.title}>
-                        <Prose segments={changedEraSection.lead} className="mb-6" />
-                    </SectionHeading>
+                <SectionHeading title={changedEraSection.title}>
+                    <Prose segments={changedEraSection.lead} className="mb-6" />
+                </SectionHeading>
 
+                <div className="max-w-3xl">
                     <Prose segments={[changedEraSection.prompt]} tone="strong" className="mb-4" />
                     <CheckList items={changedEraSection.dependencies} className="mb-8" />
 
@@ -91,16 +91,16 @@ export default function AiPamSolutionsPage() {
             <Section border="bottom">
                 <SectionHeading
                     title={identityLayersSection.title}
-                    className="max-w-3xl mb-12"
+                    className="mb-12"
                 >
                     <Prose segments={identityLayersSection.lead} />
                 </SectionHeading>
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Human Identities */}
-                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8FF]/40 transition-all duration-300">
+                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
                         <div className="icon-wrapper mb-5">
-                            <identityLayersSection.human.icon className="w-5 h-5 text-[#00B8FF]" />
+                            <identityLayersSection.human.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                         </div>
                         <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
                             {identityLayersSection.human.title}
@@ -113,9 +113,9 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* Machine & Non-Human Identities */}
-                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8FF]/40 transition-all duration-300">
+                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
                         <div className="icon-wrapper mb-5">
-                            <identityLayersSection.machine.icon className="w-5 h-5 text-[#00B8FF]" />
+                            <identityLayersSection.machine.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                         </div>
                         <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
                             {identityLayersSection.machine.title}
@@ -129,9 +129,9 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* AI & Automated Identities */}
-                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8FF]/40 transition-all duration-300">
+                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
                         <div className="icon-wrapper mb-5">
-                            <identityLayersSection.ai.icon className="w-5 h-5 text-[#00B8FF]" />
+                            <identityLayersSection.ai.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                         </div>
                         <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>
                             {identityLayersSection.ai.title}
@@ -150,7 +150,7 @@ export default function AiPamSolutionsPage() {
             <Section tone="muted" border="bottom">
                 <SectionHeading
                     title={strengthenSection.title}
-                    className="max-w-3xl mb-14"
+                    className="mb-14"
                 >
                     <Prose segments={strengthenSection.lead} />
                 </SectionHeading>
@@ -161,7 +161,7 @@ export default function AiPamSolutionsPage() {
                 <div className="space-y-12 max-w-4xl mx-auto">
                     {/* 1. JIT Access & Zero Standing Privileges */}
                     <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
-                        <div className="text-xs font-mono font-bold text-[#00B8FF] uppercase tracking-widest mb-2">
+                        <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.jit.step}
                         </div>
                         <h3 className="text-2xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -171,7 +171,7 @@ export default function AiPamSolutionsPage() {
                         <Prose segments={strengthenSection.jit.body} className="mb-6" />
 
                         {/* Sub-callout: Zero Standing Privileges */}
-                        <div className="p-5 rounded-xl border border-[#00B8FF]/20 bg-[#00B8FF]/[0.05] dark:bg-[#00B8FF]/[0.04]">
+                        <div className="p-5 rounded-xl border border-[#00B8DB]/20 bg-[#00B8DB]/[0.05] dark:bg-[#00B8DB]/[0.04]">
                             <h4 className="text-base font-bold text-slate-950 dark:text-white mb-2">
                                 {strengthenSection.jit.calloutTitle}
                             </h4>
@@ -181,7 +181,7 @@ export default function AiPamSolutionsPage() {
 
                     {/* 2. Protect Credentials */}
                     <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
-                        <div className="text-xs font-mono font-bold text-[#00B8FF] uppercase tracking-widest mb-2">
+                        <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.credentials.step}
                         </div>
                         <h3 className="text-2xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -199,7 +199,7 @@ export default function AiPamSolutionsPage() {
 
                     {/* 3. Apply Policy-Based AI Agent Access Control */}
                     <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
-                        <div className="text-xs font-mono font-bold text-[#00B8FF] uppercase tracking-widest mb-2">
+                        <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.accessControl.step}
                         </div>
                         <h3 className="text-2xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -223,7 +223,7 @@ export default function AiPamSolutionsPage() {
 
                     {/* 4. Control Activity During Privileged Sessions */}
                     <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
-                        <div className="text-xs font-mono font-bold text-[#00B8FF] uppercase tracking-widest mb-2">
+                        <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.sessionMonitoring.step}
                         </div>
                         <h3 className="text-2xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -238,7 +238,7 @@ export default function AiPamSolutionsPage() {
 
                     {/* 5. Detect Risk with Intelligent Behavioral Analysis */}
                     <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
-                        <div className="text-xs font-mono font-bold text-[#00B8FF] uppercase tracking-widest mb-2">
+                        <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.behavioralAnalysis.step}
                         </div>
                         <h3 className="text-2xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
@@ -252,11 +252,17 @@ export default function AiPamSolutionsPage() {
 
             {/* ─── DESIGNED FOR AGENTIC AI SECURITY WITHOUT LOSING CONTROL ── */}
             <Section border="bottom">
-                <MediaSplit media={agenticSection.image} ratio="wide-last" height="sm" align="center">
-                    <SectionHeading title={agenticSection.title}>
+                <MediaSplit
+                    media={agenticSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="center"
+                    heading={<SectionHeading title={agenticSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         <Prose segments={agenticSection.lead} className="mb-4" />
                         <Prose segments={agenticSection.body} />
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
             </Section>
 
@@ -264,7 +270,7 @@ export default function AiPamSolutionsPage() {
             <Section tone="muted" border="bottom">
                 <SectionHeading
                     title={environmentSection.title}
-                    className="max-w-3xl mb-12"
+                    className="mb-12"
                 >
                     <Prose segments={environmentSection.lead} />
                 </SectionHeading>
@@ -273,10 +279,10 @@ export default function AiPamSolutionsPage() {
                     {environmentSection.environments.map((env) => (
                         <div
                             key={env.title}
-                            className="group flex flex-col p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:-translate-y-1 hover:border-[#00B8FF]/40 transition-all duration-300"
+                            className="group flex flex-col p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:-translate-y-1 hover:border-[#00B8DB]/40 transition-all duration-300"
                         >
                             <div className="icon-wrapper mb-5">
-                                <env.icon className="w-5 h-5 text-[#00B8FF]" />
+                                <env.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                             </div>
                             <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>
                                 {env.title}
@@ -286,7 +292,7 @@ export default function AiPamSolutionsPage() {
                             </p>
                             <Link
                                 href={env.link.href}
-                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00B8FF] hover:gap-2.5 transition-all"
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] hover:gap-2.5 transition-all"
                             >
                                 {env.link.label} <ArrowRight className="w-3.5 h-3.5" />
                             </Link>
@@ -297,12 +303,10 @@ export default function AiPamSolutionsPage() {
 
             {/* ─── WHY CHOOSE OMNIPRIV FOR AI-READY PAM? ── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={whyChooseSection.title} className="mb-2">
-                        <Prose segments={whyChooseSection.lead} className="mb-4" />
-                        <Prose segments={whyChooseSection.body} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={whyChooseSection.title} className="mb-2">
+                    <Prose segments={whyChooseSection.lead} className="mb-4" />
+                    <Prose segments={whyChooseSection.body} />
+                </SectionHeading>
 
                 <IconCardGrid items={capabilities} columns={4} className="mt-12" />
             </Section>

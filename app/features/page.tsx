@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
-  UserCheck, Lock, Key, Eye, ArrowRight,
-  Shield, Fingerprint, Building2,
+  UserCheck, Lock, ArrowRight,
+  Fingerprint, Building2,
   ShieldCheck, Link2, Radio, GitBranch,
   Users, Timer, Ban, ClipboardCheck, Terminal,
   ScanSearch, RotateCcw, KeyRound, Upload, ShieldAlert, UserPlus,
   Video, Activity, TrendingUp, ScrollText, Share2, FileCheck2,
-  Network, BarChart3,
-  AlertTriangle, Bot, Cpu, FileSearch, Zap,
+  Network,
+  AlertTriangle, Bot, FileSearch, Zap,
 } from "lucide-react";
 
+import SplitHero from "@/components/sections/SplitHero";
 import LogoMarquee from "@/components/sections/LogoMarquee";
 import FaqSection, { type FaqEntry } from "@/components/sections/FaqSection";
 
@@ -32,7 +32,7 @@ const authFeatures = [
 
 const authzFeatures = [
   { icon: Users,           title: "Role-Based Access Control (RBAC)", desc: "Fine-grained permission model with custom roles, assignable at the organization, project, or asset level." },
-  { icon: Timer,           title: "Just-In-Time (JIT) Access",        desc: "Provision time-limited access for specific tasks. Access expires automatically—no standing privileges." },
+  { icon: Timer,           title: "Just-In-Time (JIT) Access",        desc: "Provision time-limited access for specific tasks. Access expires automatically, no standing privileges." },
   { icon: Ban,             title: "IP & Time-Based ACLs",             desc: "Restrict access by source IP range, day of week, and time window to enforce least-privilege policies." },
   { icon: Building2,       title: "Multi-Tenant Architecture",        desc: "Full resource isolation with per-organization policies, users, and assets. Ideal for MSSPs and enterprises with subsidiaries." },
   { icon: ClipboardCheck,  title: "Approval Workflows",               desc: "Require manager or peer approval before sensitive access is granted. Integrate with ITSM platforms." },
@@ -40,9 +40,9 @@ const authzFeatures = [
 ];
 
 const accountFeatures = [
-  { icon: ScanSearch,  title: "Asset & Account Discovery",     desc: "Automatically discover privileged accounts across your entire infrastructure — on-prem, cloud, and hybrid." },
+  { icon: ScanSearch,  title: "Asset & Account Discovery",     desc: "Automatically discover privileged accounts across your entire infrastructure, on-prem, cloud, and hybrid." },
   { icon: RotateCcw,   title: "Credential Rotation",           desc: "Rotate passwords, SSH keys, and API tokens on a schedule or on-demand, for thousands of assets simultaneously." },
-  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials in an encrypted vault. No user ever sees raw passwords — they authenticate through OmniPriv." },
+  { icon: KeyRound,    title: "Encrypted Credential Vault",    desc: "Store credentials in an encrypted vault. No user ever sees raw passwords, they authenticate through OmniPriv." },
   { icon: Upload,      title: "Credential Push",               desc: "Push updated credentials directly to target assets after rotation. No manual steps, no outages." },
   { icon: ShieldAlert, title: "Break-Glass Access",            desc: "Emergency access procedures with mandatory approval, time limits, and full session recording." },
   { icon: UserPlus,    title: "Account Lifecycle Management",  desc: "Provision, deprovision, and modify privileged accounts across all systems from a single control plane." },
@@ -60,12 +60,12 @@ const auditFeatures = [
 const aiFeatures = [
   { icon: AlertTriangle, title: "ML Anomaly Detection",       desc: "Machine-learning behavioural scoring runs on every privileged login and session, catching lateral movement, credential harvesting and brute force in real time." },
   { icon: Fingerprint,   title: "Behavioural Analytics",      desc: "AI keystroke-dynamics and per-agent baselines flag impossible travel, off-hours access and deviation from learned behaviour." },
-  { icon: ShieldCheck,   title: "Adaptive MFA Step-Up",      desc: "Keystroke rhythm, speed and pattern are compared against the identity's baseline at login — drift triggers an MFA challenge automatically." },
-  { icon: Bot,           title: "AI Agent Governance",       desc: "Every MCP agent gets a verifiable identity, tool allowlist and data scope. More than 100 MCP tools sit under policy rather than under a borrowed human login." },
-  { icon: UserCheck,     title: "Human-in-the-Loop Approval", desc: "High-risk agent actions — drop table, delete cluster, transfer funds — pause for explicit human approval before they execute." },
+  { icon: ShieldCheck,   title: "Adaptive MFA Step-Up",      desc: "Keystroke rhythm, speed and pattern are compared against the identity's baseline at login, drift triggers an MFA challenge automatically." },
+  { icon: Bot,           title: "AI Agent Governance",       desc: "Every MCP agent gets a verifiable identity, tool allowlist and data scope. All 53 MCP tools sit under policy rather than under a borrowed human login." },
+  { icon: UserCheck,     title: "Human-in-the-Loop Approval", desc: "High-risk agent actions, drop table, delete cluster, transfer funds, pause for explicit human approval before they execute." },
   { icon: Lock,          title: "Prompt-Injection Guard",     desc: "Even when an LLM's reasoning is manipulated, every tool call is re-verified against deterministic policy before it is allowed to run." },
-  { icon: FileSearch,    title: "Agent Session Audit Trail", desc: "A full forensic trace from human to agent to MCP server to tool to resource — with decision, privilege level and duration recorded." },
-  { icon: Zap,           title: "Automated Threat Response", desc: "Each session is scored 0–1 across 39 features and escalates in tiers: dashboard alert, then admin alert, then automatic block on a 10-second sweep." },
+  { icon: FileSearch,    title: "Agent Session Audit Trail", desc: "A full forensic trace from human to agent to MCP server to tool to resource, with decision, privilege level and duration recorded." },
+  { icon: Zap,           title: "Automated Threat Response", desc: "Each session is scored 0-1 across 39 features and escalates in tiers: dashboard alert, then admin alert, then automatic block on a 10-second sweep." },
 ];
 
 const featureFaqs: FaqEntry[] = [
@@ -77,25 +77,25 @@ const featureFaqs: FaqEntry[] = [
   {
     question: "Do we need to replace our existing identity provider?",
     answer:
-      "No. OmniPriv works with the directory and identity infrastructure you already run — Active Directory and LDAP for directory sync, and SAML 2.0, OAuth 2.0 or OpenID Connect for single sign-on, with RADIUS for network devices. It adds privileged access controls on top of your identity provider rather than replacing it.",
+      "No. OmniPriv works with the directory and identity infrastructure you already run: Active Directory and LDAP for directory sync, and SAML 2.0, OAuth 2.0 or OpenID Connect for single sign-on, with RADIUS for network devices. It adds privileged access controls on top of your identity provider rather than replacing it.",
   },
   {
     question: "How does just-in-time access differ from standard RBAC?",
     answer: [
-      "RBAC decides what an identity is allowed to reach. Just-in-time access decides when — it provisions time-limited access for a specific task and revokes it automatically when the window closes.",
+      "RBAC decides what an identity is allowed to reach. Just-in-time access decides when, it provisions time-limited access for a specific task and revokes it automatically when the window closes.",
       "The result is no standing privilege: an account that is compromised outside an approved window has nothing to use.",
     ],
   },
   {
     question: "Can OmniPriv rotate credentials without manual work?",
     answer:
-      "Yes. Passwords, SSH keys and API tokens can be rotated on a schedule or on demand, and the updated values are pushed directly to the target assets. No user ever sees the raw credential — they authenticate through OmniPriv instead.",
+      "Yes. Passwords, SSH keys and API tokens can be rotated on a schedule or on demand, and the updated values are pushed directly to the target assets. No user ever sees the raw credential, they authenticate through OmniPriv instead.",
   },
   {
     question: "How are AI agents governed?",
     answer: [
       "Every MCP agent is given a verifiable identity, a tool allowlist and a data scope, so it operates under policy rather than through a borrowed human login.",
-      "High-risk actions pause for explicit human approval, and each tool call is re-verified against deterministic policy before it runs — even when the model's own reasoning has been manipulated. Every session leaves a forensic trail from human to agent to tool to resource.",
+      "High-risk actions pause for explicit human approval, and each tool call is re-verified against deterministic policy before it runs, even when the model's own reasoning has been manipulated. Every session leaves a forensic trail from human to agent to tool to resource.",
     ],
   },
   {
@@ -106,122 +106,77 @@ const featureFaqs: FaqEntry[] = [
 ];
 
 function FeatureSection({
-  id, icon: Icon, title, subtitle, description, features, reverse = false, cta,
+  id, title, description, features, reverse = false, cta,
 }: {
-  id: string; icon: React.ElementType; title: string; subtitle: string; description: string;
+  id: string; title: string; description: string;
   features: { icon: React.ElementType; title: string; desc: string }[]; reverse?: boolean;
   cta?: { href: string; label: string };
 }) {
   return (
-    <div id={id} className="scroll-mt-24 section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+    <section id={id} className="scroll-mt-24 section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
       <div className="container-xl">
-        <div className={`grid lg:grid-cols-2 gap-16 items-start ${reverse ? "lg:grid-flow-dense" : ""}`}>
+        <h2 className="op-h2 mb-6" data-aos="fade-up">{title}</h2>
+
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-start ${reverse ? "lg:grid-flow-dense" : ""}`}>
           <div className={reverse ? "lg:col-start-2" : ""} data-aos="fade-up">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="icon-wrapper w-12 h-12 rounded-xl">
-                <Icon className="w-6 h-6" />
-              </div>
-              <div className="badge-cyan">{subtitle}</div>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              {title}
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">{description}</p>
+            <p className="op-lede">{description}</p>
 
             {cta && (
               <Link
                 href={cta.href}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#00B8FF] hover:gap-3 transition-all"
+                className="op-link font-semibold mt-6 inline-flex items-center gap-2 text-sm hover:underline underline-offset-2"
               >
                 {cta.label}
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             )}
           </div>
-          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`} data-aos="fade-up" data-aos-delay="100">
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`} data-aos="fade-up">
             {features.map((f) => (
-              <div key={f.title} className="feature-card group">
-                <div className="feature-card-body p-5 flex flex-col">
-                  <div className="icon-wrapper w-11 h-11 rounded-xl mb-4">
-                    <f.icon className="w-5 h-5" />
-                  </div>
-                  <div className="text-sm font-bold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{f.title}</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{f.desc}</div>
+              <div
+                key={f.title}
+                className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] p-6 hover:border-[#00B8DB]/45 transition-colors"
+              >
+                <div className="icon-wrapper mb-4">
+                  <f.icon className="w-5 h-5" aria-hidden="true" />
                 </div>
+                <h3 className="op-card-title mb-2">{f.title}</h3>
+                <p className="op-card-text">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
 export default function FeaturesPage() {
   return (
     <>
-      {/* Hero
-          Full-bleed themed photograph behind centred copy — the same treatment as
-          the homepage hero, so the two share one hero language. The three overlay
-          layers below it are copied from that hero verbatim: a flat scrim, a
-          radial vignette behind the headline, and a top/bottom gradient. The
-          headline sits on top of all three, which is what keeps it readable over
-          an unknown photograph without dimming the image into mud. */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden bg-[#030711]">
-        <Image
-          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=60"
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-60"
-        />
+      {/* Hero: copy left, product screenshot right (shared SplitHero). */}
+      <SplitHero
+        titleLead={<>Complete <span className="text-gradient">PAM Feature Set</span> for Modern Enterprises</>}
+        primary={{ href: "/demo", label: "Talk to Sales" }}
+        media={{
+          src: "/product/dashboard.png",
+          alt: "OmniPriv dashboard showing privileged sessions, assets and access activity",
+          fit: "contain",
+        }}
+      >
+        <p>
+          Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance, in one unified platform.
+        </p>
+      </SplitHero>
 
-        {/* Overlays keep the headline readable while the photo stays visible */}
-        <div className="absolute inset-0 bg-[#030711]/30" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 68% 64% at 50% 47%, rgba(3,7,17,0.74) 0%, rgba(3,7,17,0.36) 55%, rgba(3,7,17,0) 85%)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030711]/45 via-transparent to-[#030711]/85" />
-
-        {/* `hero-reveal`, not `data-aos`: this is above the fold and sits on a dark
-            photograph, so if AOS ever failed to apply `.aos-animate` the copy would
-            be invisible on the image. `hero-reveal` is the CSS-only entrance the
-            homepage hero uses — it is `animation-fill-mode: both`, so the text is
-            painted even with no JS, and it is already reduced-motion aware. */}
-        <div className="container-xl relative z-10 text-center hero-reveal">
-          <div className="badge-cyan mb-6 inline-flex mx-auto">Platform Features</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
-            Complete <span className="text-gradient">PAM Feature Set</span> for Modern Enterprises
-          </h1>
-          <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-10">
-            Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance — in one unified platform.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
-              Talk to Sales <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Protocol & platform marquee — identical to the homepage banner,
-          only the label differs. Was 16 hand-drawn inline SVG icons in a
-          different chip style; now the real brand marks via the shared
-          component. */}
+      {/* Protocol & platform marquee, identical to the homepage banner,
+          only the label differs. */}
       <LogoMarquee label="Supported Protocols &amp; Asset Types" />
 
       {/* Authentication */}
       <FeatureSection
         id="authentication"
-        icon={UserCheck}
         title="Authentication: Verify Every Identity"
-        subtitle="01: Authentication"
         description="Block unauthorized access with enterprise-grade identity verification. OmniPriv integrates seamlessly with your existing identity infrastructure while adding layers of protection that prevent credential abuse, account takeovers, and unauthorized entry."
         features={authFeatures}
       />
@@ -229,10 +184,8 @@ export default function FeaturesPage() {
       {/* Authorization */}
       <FeatureSection
         id="authorization"
-        icon={Lock}
         title="Authorization: Enforce Least Privilege"
-        subtitle="02: Authorization"
-        description="Prevent internal misuse and privilege escalation with granular access controls. Every access decision is policy-driven, time-limited, and fully logged — giving your security team complete control over who can do what, where, and when."
+        description="Prevent internal misuse and privilege escalation with granular access controls. Every access decision is policy-driven, time-limited, and fully logged, giving your security team complete control over who can do what, where, and when."
         features={authzFeatures}
         reverse
       />
@@ -240,19 +193,15 @@ export default function FeaturesPage() {
       {/* Account Management */}
       <FeatureSection
         id="account"
-        icon={Key}
         title="Account Management: Full Credential Lifecycle"
-        subtitle="03: Account Management"
-        description="Eliminate the credential hygiene problem that plagues enterprise IT. OmniPriv automates every aspect of privileged account management — from discovery to rotation to deprovisioning — so your team focuses on security, not manual credential tasks."
+        description="Eliminate the credential hygiene problem that plagues enterprise IT. OmniPriv automates every aspect of privileged account management, from discovery to rotation to deprovisioning, so your team focuses on security, not manual credential tasks."
         features={accountFeatures}
       />
 
       {/* Audit */}
       <FeatureSection
         id="audit"
-        icon={Eye}
         title="Audit & Compliance: Full Traceability"
-        subtitle="04: Audit & Compliance"
         description="Every privileged action leaves a permanent, tamper-proof record in OmniPriv. Compliance teams can generate audit reports in minutes, security teams can investigate incidents in real time, and executives get the visibility they need to manage risk."
         features={auditFeatures}
         reverse
@@ -261,9 +210,7 @@ export default function FeaturesPage() {
       {/* AI & Automation */}
       <FeatureSection
         id="ai"
-        icon={Cpu}
         title="AI & Automation: Intelligence on Every Privileged Action"
-        subtitle="05: AI & Automation"
         description="OmniPriv's AI-PAM engine scores behaviour on every privileged action and governs autonomous agents through the same policy engine that governs people. Detection, approval and enforcement happen inside the platform, not in an analytics product bolted onto it."
         features={aiFeatures}
         cta={{ href: "/ai-pam", label: "Explore the AI-PAM engine" }}

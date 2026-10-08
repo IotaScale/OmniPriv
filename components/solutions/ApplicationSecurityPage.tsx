@@ -25,7 +25,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/application-security — the destination of
+ * Bespoke layout for /platform/application-security, the destination of
  * "Application Security" in the platform dropdown.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -47,7 +47,7 @@ const hero = {
         "OmniPriv is built on the assumption that something will eventually end up somewhere it should not. Every secret is encrypted, every component talks over mutual TLS, and every login can be made to prove more than a password.",
     ] as RichText,
     body: [
-        "Multi-factor authentication is enforced up front, hardware-backed keys protect what is stored, and cryptographic hash-chaining protects what is recorded — so integrity holds even when the storage layer underneath is not trusted.",
+        "Multi-factor authentication is enforced up front, hardware-backed keys protect what is stored, and cryptographic hash-chaining protects what is recorded, so integrity holds even when the storage layer underneath is not trusted.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform/password-credential-management", label: "See Credential Vaulting" },
@@ -81,7 +81,7 @@ const verificationCards: IconCard[] = [
         icon: UserCheck,
         eyebrow: "Role boundaries",
         title: "Isolation between administrators",
-        text: "An administrator cannot reach credentials or approve requests outside their defined role boundaries — enforced at every access layer, not only in the interface.",
+        text: "An administrator cannot reach credentials or approve requests outside their defined role boundaries, enforced at every access layer, not only in the interface.",
     },
 ];
 
@@ -115,7 +115,7 @@ const custodyPillars = [
     {
         icon: Shield,
         title: "Tamper-proof audit storage",
-        text: "Audit records are held in tamper-proof storage with cryptographic audit-chain hashing — preserving integrity and non-repudiation, not merely retaining entries.",
+        text: "Audit records are held in tamper-proof storage with cryptographic audit-chain hashing, preserving integrity and non-repudiation, not merely retaining entries.",
     },
     {
         icon: Key,
@@ -144,7 +144,7 @@ const stats = [
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/platform/password-credential-management", label: "How credentials are vaulted" },
-    { href: "/security", label: "Certifications and security posture" },
+    { href: "/security", label: "Framework mappings and security posture" },
 ];
 
 const closing = {
@@ -182,7 +182,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Does the platform itself contain any hard-coded credentials?",
         answer:
-            "No. OmniPriv contains zero hard-coded credentials — every secret it uses is vault-managed and auditable. That is a deliberate design constraint rather than a configuration option, because a hard-coded credential is one that no rotation policy can ever reach.",
+            "No. OmniPriv contains zero hard-coded credentials, every secret it uses is vault-managed and auditable. That is a deliberate design constraint rather than a configuration option, because a hard-coded credential is one that no rotation policy can ever reach.",
     },
 ];
 
@@ -203,27 +203,27 @@ export default function ApplicationSecurityPage() {
 
             {/* ─── VERIFICATION ───────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Identity Verification"
-                        title={verificationSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={verificationSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Identity Verification"
+                    title={verificationSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={verificationSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={verificationCards} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── ENCRYPTION LAYERS ──────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={encryptionSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <encryptionSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={encryptionSection.title}>
+                <MediaSplit
+                    media={encryptionSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={encryptionSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {encryptionSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -233,31 +233,25 @@ export default function ApplicationSecurityPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={encryptionSection.points} className="mt-8" />
 
                     <ArrowLink href="/security" className="mt-8">
-                        See the certifications behind it
+                        See the framework mappings behind it
                     </ArrowLink>
                 </MediaSplit>
             </Section>
 
             {/* ─── KEY CUSTODY (dark band) ────────────────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Key Custody" title={custodySection.title} className="mb-2">
-                        <Prose segments={custodySection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Key Custody" title={custodySection.title} className="mb-2">
+                    <Prose segments={custodySection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {custodyPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"

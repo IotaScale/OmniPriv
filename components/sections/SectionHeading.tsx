@@ -1,13 +1,12 @@
 import { cn } from "@/lib/utils";
-import { displayFont } from "@/lib/styles";
 
 const sizes = {
-    /** Section headings that sit above body copy. */
-    md: "text-3xl md:text-4xl mb-5",
-    /** Headings that introduce a centred block. */
-    lg: "text-3xl sm:text-4xl mb-4",
+    /** Section heading (`.op-h2`). */
+    md: "op-h2",
+    /** Same scale; kept as an alias for existing call sites. */
+    lg: "op-h2",
     /** Sub-section heading inside a section that already has an `h2`. */
-    sm: "text-xl md:text-2xl mb-4",
+    sm: "op-h3",
 } as const;
 
 export interface SectionHeadingProps {
@@ -27,43 +26,28 @@ export interface SectionHeadingProps {
 }
 
 /**
- * Badge + `h2` + intro copy — the heading rhythm shared by every section.
+ * Heading, then subheading, then content: the order every section on the
+ * site follows. Headings sit on the left everywhere, matching the homepage.
+ *
+ * `badge` and `align` are still accepted so existing call sites compile, but
+ * neither renders: eyebrow pills above headings and centred heading blocks
+ * were dropped for one consistent reading order.
  */
 export default function SectionHeading({
     title,
-    badge,
     as: Tag = "h2",
-    align = "left",
     size = "md",
     className,
     titleClassName,
     children,
 }: SectionHeadingProps) {
-    const centered = align === "center";
-
     return (
-        // `section-heading` is a stable hook for globals.css: an image-less
-        // section centres its intro column, and this is what lets the rule reach
-        // the heading without also centring the body copy and tick lists below.
+        // `section-heading` is the hook for the shared lede styles in globals.css.
         <div
-            className={cn("section-heading", centered && "text-center", className)}
+            className={cn("section-heading", className?.replace(/\bmx-auto\b/g, ""))}
             data-aos="fade-up"
         >
-            {badge && (
-                <div className={cn("badge-cyan mb-5 inline-flex", centered && "mx-auto")}>
-                    {badge}
-                </div>
-            )}
-
-            <Tag
-                className={cn(
-                    Tag === "h3" ? "font-bold" : "font-extrabold",
-                    "text-slate-950 dark:text-white tracking-tight",
-                    sizes[size],
-                    titleClassName
-                )}
-                style={displayFont}
-            >
+            <Tag className={cn(Tag === "h3" ? "op-h3" : sizes[size], titleClassName)}>
                 {title}
             </Tag>
 

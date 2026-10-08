@@ -29,7 +29,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/enterprise-integration — the destination of
+ * Bespoke layout for /platform/enterprise-integration, the destination of
  * "Enterprise & Identity Integration" in the platform dropdown.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -74,7 +74,7 @@ const ticketingCards: IconCard[] = [
         icon: FileSearch,
         eyebrow: "Six request types",
         title: "Requests shaped like the work",
-        text: "General, Asset Permission, Application, Command Confirm, Login Confirm and Login Asset Confirm — each raised as its own request type, with configurable multi-level approvals behind it.",
+        text: "General, Asset Permission, Application, Command Confirm, Login Confirm and Login Asset Confirm, each raised as its own request type, with configurable multi-level approvals behind it.",
     },
     {
         icon: Workflow,
@@ -116,7 +116,7 @@ const directorySection = {
 const telemetrySection = {
     title: "One event stream into the systems you already monitor",
     lead: [
-        "Privileged activity is only useful when it lands where your analysts are already looking — and when the access path itself carries no permanent credentials.",
+        "Privileged activity is only useful when it lands where your analysts are already looking, and when the access path itself carries no permanent credentials.",
     ] as RichText,
 };
 
@@ -134,7 +134,7 @@ const telemetryPillars = [
     {
         icon: Shield,
         title: "Vault access by privilege level",
-        text: "On top of standard proxied connections, users can reach the Password Vault itself according to their privilege level in OmniPriv — so access is scoped to the role, not the network position.",
+        text: "On top of standard proxied connections, users can reach the Password Vault itself according to their privilege level in OmniPriv, so access is scoped to the role, not the network position.",
     },
     {
         icon: Server,
@@ -164,7 +164,7 @@ const closing = {
         "Tickets gate the release, directories source the identities, and privileged events reach the monitoring you already trust.",
         "We will walk through the integration points against your ticketing, SIEM and directory systems.",
     ],
-    kicker: "Ticketing, directories and telemetry — connected, not copied.",
+    kicker: "Ticketing, directories and telemetry, connected, not copied.",
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/integrations", label: "View Integrations" },
 };
@@ -178,7 +178,7 @@ const faqs: FaqEntry[] = [
     {
         question: "How does pre-access ticket verification actually block access?",
         answer:
-            "A ticket is a mandatory prerequisite before privileged credentials are released, and its status is checked in real time at the moment of release. Pending, rejected and closed tickets block that release automatically — there is no window where an unapproved ticket still yields a credential.",
+            "A ticket is a mandatory prerequisite before privileged credentials are released, and its status is checked in real time at the moment of release. Pending, rejected and closed tickets block that release automatically, there is no window where an unapproved ticket still yields a credential.",
     },
     {
         question: "When is a ticket created automatically?",
@@ -214,27 +214,27 @@ export default function EnterpriseIntegrationPage() {
 
             {/* ─── TICKETING AS A GATE ────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Approval Workflow"
-                        title={ticketingSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={ticketingSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Approval Workflow"
+                    title={ticketingSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={ticketingSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={ticketingCards} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── DIRECTORY INTEGRATION ──────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={directorySection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <directorySection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={directorySection.title}>
+                <MediaSplit
+                    media={directorySection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={directorySection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {directorySection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -244,7 +244,7 @@ export default function EnterpriseIntegrationPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={directorySection.points} className="mt-8" />
 
@@ -256,19 +256,13 @@ export default function EnterpriseIntegrationPage() {
 
             {/* ─── TELEMETRY & ACCESS PATHS (dark band) ───────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Telemetry & Access Paths" title={telemetrySection.title} className="mb-2">
-                        <Prose segments={telemetrySection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Telemetry & Access Paths" title={telemetrySection.title} className="mb-2">
+                    <Prose segments={telemetrySection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {telemetryPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"

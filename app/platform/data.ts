@@ -39,7 +39,7 @@ export interface PlatformSpec {
 export const datasheetStats = [
     { value: "80+", label: "Requirement Points Covered", sub: "Enterprise PAM coverage" },
     { value: "9", label: "Core Capability Modules", sub: "End-to-end access lifecycle" },
-    { value: "6", label: "Compliance & Certifications", sub: "SOC 2 · ISO 27001 · HIPAA + more" },
+    { value: "6", label: "Compliance frameworks mapped", sub: "SOC 2 · ISO 27001 · HIPAA + more" },
     { value: "100%", label: "Encrypted Credential Vault", sub: "Encrypted at rest and in transit" },
 ];
 
@@ -78,11 +78,11 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
             "Strengthen AI agent security with JIT access, least privilege, credential protection, and governed access for AI-powered identities and automated workflows.",
         icon: Bot,
         features: [
-            { name: "Verifiable Agent Identity", description: "Every MCP agent is registered as its own identity with its own credentials — never a borrowed human account or a shared service account", icon: Fingerprint },
+            { name: "Verifiable Agent Identity", description: "Every MCP agent is registered as its own identity with its own credentials, never a borrowed human account or a shared service account", icon: Fingerprint },
             { name: "Tool Allowlist Enforcement", description: "An agent may call only the tools and MCP servers explicitly permitted for its task; everything else is refused at policy evaluation", icon: Shield },
             { name: "Bounded Data Scope", description: "Each agent's reach is limited to the records and resources the approved task actually requires", icon: Database },
             { name: "Human Approval on High-Risk Actions", description: "Actions classified as high risk are held for human approval before they execute, with multi-approver chains and time-based conditions", icon: UserCheck },
-            { name: "Runtime Policy Enforcement", description: "Every tool call, query and command is evaluated against policy before it runs — not once when the session opens", icon: Zap },
+            { name: "Runtime Policy Enforcement", description: "Every tool call, query and command is evaluated against policy before it runs, not once when the session opens", icon: Zap },
             { name: "Agent Session Audit Trail", description: "Every agent session is recorded in full and tied back to the identity that directed it", icon: FileSearch },
         ],
     },
@@ -93,14 +93,14 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         tagline: "Flexible on-premise deployment across any enterprise environment",
         description:
             "OmniPriv deploys on-premise across VMware, Red Hat, and OpenStack platforms. Delivered as a software appliance with multi-node clustering and granular disaster recovery.",
-        metaTitle: "Infrastructure & Deployment — OmniPriv PAM",
+        metaTitle: "Infrastructure & Deployment: OmniPriv PAM",
         metaDescription:
             "Deploy OmniPriv on-premise across VMware, Red Hat, and OpenStack with high availability, clustered nodes and granular disaster recovery.",
         icon: Server,
         features: [
             { name: "On-Premise Deployment", description: "Deploys on-premise supporting VMware, Red Hat, and OpenStack/OpenSource-based infrastructure platforms", icon: Server },
             { name: "Browser-Based GUI & CLI", description: "Full platform control via browser console (Edge, Chrome, Firefox, Safari) and powerful CLI", icon: Globe },
-            { name: "Unified Administration Console", description: "Centralized management within a single UI and central credential repository — no multi-console management", icon: Layers },
+            { name: "Unified Administration Console", description: "Centralized management within a single UI and central credential repository, no multi-console management", icon: Layers },
             { name: "Software Appliance", description: "Delivered as a software-based appliance for streamlined, hardware-agnostic enterprise deployment", icon: Cpu },
             { name: "High Availability & Redundancy", description: "Multi-node clustering with container-based health checks, auto-restart, heartbeat monitoring, database replication, and load balancing", icon: RefreshCw },
             { name: "Strict Multi-Tenancy", description: "Strict tenant isolation via org_id on every resource (schema-per-tenant), with per-organization RBAC and ROOT/DEFAULT/SYSTEM orgs", icon: Building2 },
@@ -117,21 +117,21 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         title: "Password & Credential Management",
         tagline: "Automated credential lifecycle management at enterprise scale",
         description:
-            "OmniPriv automates the full lifecycle of privileged credentials — from policy-driven rotation and validation to SSH key lifecycle and bulk onboarding — ensuring every secret stays secure, synchronized, and auditable.",
-        metaTitle: "Password & Credential Management — OmniPriv PAM",
+            "OmniPriv automates the full lifecycle of privileged credentials, from policy-driven rotation and validation to SSH key lifecycle and bulk onboarding, ensuring every secret stays secure, synchronized, and auditable.",
+        metaTitle: "Password & Credential Management: OmniPriv PAM",
         metaDescription:
             "Automate credential rotation, SSH key management, password reconciliation, and bulk onboarding with OmniPriv's enterprise credential vault.",
         icon: Key,
         features: [
             { name: "Automated Credential Rotation", description: "Policy-driven rotation with configurable recurrence, rotation period, and daily start time globally or per platform/policy", icon: RefreshCw },
-            { name: "SSH Key Management Lifecycle", description: "Full SSH key lifecycle — store, rotate, and push key pairs via Change Secret engine; private keys encrypted in vault and never exposed outside; self-service reset workflow", icon: Key },
+            { name: "SSH Key Management Lifecycle", description: "Full SSH key lifecycle, store, rotate, and push key pairs via Change Secret engine; private keys encrypted in vault and never exposed outside; self-service reset workflow", icon: Key },
             { name: "One-Time Password Enforcement", description: "Enforces single-use passwords with automatic credential rotation immediately after each use", icon: Lock },
             { name: "Credential Validation & De-sync Resolution", description: "Verify Account Secrets actively tests stored credentials against live assets; automatically pushes corrected passwords when de-sync is detected", icon: CheckCircle2 },
             { name: "Automatic Password Reconciliation", description: "Scheduled reconciliation plans detect and reconcile out-of-sync or lost passwords automatically without external utilities; MFA required to view updated credentials", icon: RefreshCw },
             { name: "Password Groups", description: "Administrators define groups where all member accounts automatically share the same password value, propagating updates instantly to all linked accounts", icon: Layers },
             { name: "Full Password History", description: "Versioned credential history maintained and accessible by approved users for a configured retention period", icon: Clock },
             { name: "Bulk Onboarding Enrollment", description: "Mass enrollment of privileged entities with automatic provisioning of all built-in accounts, privileges, rights, and permissions to organizational standards", icon: Database },
-            { name: "Mobile Client — TOTP & Vault Access", description: "Built-in mobile client accessible from any mobile browser without installation; supports TOTP 2FA, ticket approvals, and role-based vault access", icon: Monitor },
+            { name: "Mobile Client: TOTP & Vault Access", description: "Built-in mobile client accessible from any mobile browser without installation; supports TOTP 2FA, ticket approvals, and role-based vault access", icon: Monitor },
             { name: "Offline Device Credential Management", description: "Manages and maintains credentials for devices not frequently connected to the corporate network", icon: Globe },
         ],
     },
@@ -143,7 +143,7 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         tagline: "AI-powered credential protection with enterprise-grade encryption",
         description:
             "OmniPriv enforces multi-factor authentication, encryption of data at rest and in transit, hardware-backed key protection, and AI-driven keystroke behavioural anomaly detection to protect every layer of privileged access.",
-        metaTitle: "Application Security & Encryption — OmniPriv PAM",
+        metaTitle: "Application Security & Encryption: OmniPriv PAM",
         metaDescription:
             "Protect privileged access with MFA, encryption at rest and in transit, tamper-proof audit storage, and AI-powered anomaly detection.",
         icon: Shield,
@@ -152,7 +152,7 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
             { name: "Credential Encryption with Hardware Key Protection", description: "Credentials are encrypted and their keys protected by a hardware security module; all sensitive data is encrypted in transit and at rest", icon: Cpu },
             { name: "Adaptive MFA with AI Keystroke Anomaly Detection", description: "AI engine continuously analyzes keystroke dynamics during login (rhythm, speed, patterns against behavioral baseline), automatically triggering MFA on anomaly detection", icon: AlertTriangle },
             { name: "Encryption at Rest and in Transit", description: "All sensitive data is encrypted both at rest and in transit, with encryption keys protected by a hardware security module", icon: Lock },
-            { name: "Encrypted Inter-Component Communication", description: "All communication between system components is mutually authenticated and encrypted — no plaintext transmission at any layer", icon: Network },
+            { name: "Encrypted Inter-Component Communication", description: "All communication between system components is mutually authenticated and encrypted, no plaintext transmission at any layer", icon: Network },
             { name: "Encrypted Backups with Secure Key Management", description: "Fully encrypted backups with independent, secure key management ensuring backup integrity and confidentiality", icon: Database },
             { name: "Role-Based Access Isolation", description: "Administrators strictly cannot access credentials or approve requests outside their defined role boundaries enforced at every access layer", icon: UserCheck },
             { name: "Tamper-Proof Audit Storage", description: "Audit records stored in secure, tamper-proof storage with cryptographic audit-chain hashing ensuring integrity and non-repudiation", icon: Shield },
@@ -168,7 +168,7 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         tagline: "Seamless integration with your existing enterprise ecosystem",
         description:
             "OmniPriv connects natively with enterprise ticketing systems, SIEM platforms, identity management solutions, and LDAP/AD directories to ensure privileged access fits seamlessly into existing enterprise workflows.",
-        metaTitle: "Enterprise & Identity Integration — OmniPriv PAM",
+        metaTitle: "Enterprise & Identity Integration: OmniPriv PAM",
         metaDescription:
             "Integrate PAM with ticketing, SIEM, identity management, and LDAP/AD for unified privileged access governance across your enterprise.",
         icon: Building2,
@@ -206,9 +206,9 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
             { name: "Contextual & Searchable Session History", description: "Session recordings are contextual, fully indexed, and searchable after the fact for compliance review, investigation, or audit", icon: FileSearch },
             { name: "Session Controls & Automated Actions", description: "Prevents specific user actions and triggers automated responses on session events (e.g., auto-terminate on policy violation)", icon: Lock },
             { name: "Script Monitoring & Audit", description: "Every script executed during a privileged session is monitored and logged; all actions performed by scripts are captured in the audit trail", icon: FileSearch },
-            { name: "Native Client Support", description: "User experience maintained — administrators can use their preferred clients and tools without workflow disruption", icon: Monitor },
+            { name: "Native Client Support", description: "User experience maintained, administrators can use their preferred clients and tools without workflow disruption", icon: Monitor },
             { name: "Granular HTTP Session Monitoring", description: "Granular HTTP request-level monitoring and logging beyond simple video recording; stores historical sessions with detailed activity logs", icon: Network },
-            { name: "Database Query Controls & Dynamic Data Masking", description: "Query blacklist/whitelist controls and dynamic data masking for native database clients via transparent proxy — no jump server, extra hardware, or OS required", icon: Database },
+            { name: "Database Query Controls & Dynamic Data Masking", description: "Query blacklist/whitelist controls and dynamic data masking for native database clients via transparent proxy, no jump server, extra hardware, or OS required", icon: Database },
         ],
     },
 
@@ -218,8 +218,8 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         title: "Workflow & Access Control",
         tagline: "Structured, policy-driven privileged access with full approval governance",
         description:
-            "OmniPriv enforces 4-Eyes approval workflows, temporary privilege assignments, and application credential management — rotating hard-coded passwords in config files, Windows Services, and IIS App Pools.",
-        metaTitle: "Workflow & Access Control — OmniPriv PAM",
+            "OmniPriv enforces 4-Eyes approval workflows, temporary privilege assignments, and application credential management, rotating hard-coded passwords in config files, Windows Services, and IIS App Pools.",
+        metaTitle: "Workflow & Access Control: OmniPriv PAM",
         metaDescription:
             "Enforce 4-eyes approval, multi-level workflows, time-based policies, and application credential management for complete privileged access governance.",
         icon: Workflow,

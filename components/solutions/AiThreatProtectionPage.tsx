@@ -26,7 +26,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/ai-threat-protection — the destination of the
+ * Bespoke layout for /platform/ai-threat-protection, the destination of the
  * "AI Threat Defense / Defend against AI-era attacks" challenge card.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -36,7 +36,7 @@ import type { RichText } from "@/lib/rich-text";
  * URL 301s here (see next.config.js).
  *
  * Every figure quoted below is OmniPriv's own and is verifiable in this
- * repository — see app/ai-pam/page.tsx for the 39-feature model, its
+ * repository, see app/ai-pam/page.tsx for the 39-feature model, its
  * escalation tiers and the 10-second sweeper.
  */
 
@@ -68,7 +68,7 @@ const targetSection = {
             "The risk grows as enterprises introduce AI agents, automation, machine identities, cloud workloads, and increasingly connected systems.",
         ],
         [
-            "Effective identity threat protection therefore needs to control what happens after authentication — not simply verify a login.",
+            "Effective identity threat protection therefore needs to control what happens after authentication, not simply verify a login.",
         ],
         [
             "OmniPriv applies ",
@@ -77,8 +77,8 @@ const targetSection = {
         ],
     ] as RichText[],
     image: {
-        src: "https://images.unsplash.com/photo-1585079374502-415f8516dcc3?auto=format&fit=crop&w=1200&q=70",
-        alt: "AI threat protection verifying identity on a fingerprint scanner, representing the compromised identity attackers target",
+        src: "/challenges/reduce-privileged-identity-risk.jpeg",
+        alt: "A privileged identity protected while attacker paths are flagged and blocked",
     },
 };
 
@@ -138,8 +138,9 @@ const detectSection = {
         "OmniPriv's AI-PAM engine also uses machine-learning-based anomaly scoring across privileged sessions and supports automated escalation and blocking based on risk.",
     ] as RichText,
     image: {
-        src: "https://images.unsplash.com/photo-1751448555253-f39c06e29d82?auto=format&fit=crop&w=1200&q=70",
-        alt: "AI threat protection dashboard displaying live privileged access risk and anomaly status indicators",
+        src: "/product/dashboard.png",
+        alt: "OmniPriv dashboard with live risk posture and anomaly indicators",
+        fit: "contain" as const,
     },
 };
 
@@ -274,7 +275,7 @@ const stats = [
 const keepReading = [
     { href: "/ai-pam", label: "How the anomaly scoring engine works" },
     { href: "/case-studies", label: "Read the anomaly detection case study" },
-    { href: "/security", label: "Security architecture and certifications" },
+    { href: "/security", label: "Security architecture and framework mappings" },
 ];
 
 const closing = {
@@ -341,8 +342,14 @@ export default function AiThreatProtectionPage() {
 
             {/* ─── IDENTITY IS THE TARGET ───────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={targetSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={targetSection.title}>
+                <MediaSplit
+                    media={targetSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={targetSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {targetSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -352,7 +359,7 @@ export default function AiThreatProtectionPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
             </Section>
 
@@ -362,11 +369,11 @@ export default function AiThreatProtectionPage() {
                 render dark-on-dark while the site is in light mode. Sits between
                 two `muted` bands, so the rhythm reads muted → dark → muted. */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={privilegeSection.title}>
-                        <Prose segments={privilegeSection.lead} />
-                    </SectionHeading>
+                <SectionHeading title={privilegeSection.title}>
+                    <Prose segments={privilegeSection.lead} />
+                </SectionHeading>
 
+                <div className="max-w-3xl">
                     <SectionHeading
                         as="h3"
                         size="sm"
@@ -384,8 +391,14 @@ export default function AiThreatProtectionPage() {
 
             {/* ─── PROTECT THE CREDENTIALS ──────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={credentialsSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={credentialsSection.title}>
+                <MediaSplit
+                    media={credentialsSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={credentialsSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {credentialsSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -397,16 +410,22 @@ export default function AiThreatProtectionPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
             </Section>
 
             {/* ─── DETECT WITH AI AND ML ────────────── */}
             <Section border="bottom">
-                <MediaSplit media={detectSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={detectSection.title}>
+                <MediaSplit
+                    media={detectSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={detectSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         <Prose segments={detectSection.lead} />
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={detectSection.patterns} className="mt-8" />
 
@@ -417,8 +436,7 @@ export default function AiThreatProtectionPage() {
             {/* ─── OUTCOMES ───────────────────────────
                 Hardcoded dark band, matching the other dark sections on this page.
                 `tone="dark"` also wraps the section in `.dark`, which is what flips
-                `cardSurface` and the `dark:*` text inside to the dark palette —
-                without it the stat cards would be white-on-dark. */}
+                `cardSurface` and the `dark:*` text inside to the dark palette, without it the stat cards would be white-on-dark. */}
             <Section tone="dark" border="bottom">
                 <SectionHeading
                     title="AI threat protection you can point at"
@@ -466,8 +484,14 @@ export default function AiThreatProtectionPage() {
 
             {/* ─── CONTAIN THE MOVEMENT ────────────── */}
             <Section border="bottom">
-                <MediaSplit media={containSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={containSection.title}>
+                <MediaSplit
+                    media={containSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={containSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {containSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -477,26 +501,26 @@ export default function AiThreatProtectionPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
             </Section>
 
             {/* ─── MONITOR AFTER ACCESS ─────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={monitorSection.title}>
-                        <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />
-                        <Prose segments={monitorSection.paragraphs[1]} />
-                    </SectionHeading>
+                <SectionHeading title={monitorSection.title}>
+                    <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />
+                    <Prose segments={monitorSection.paragraphs[1]} />
+                </SectionHeading>
 
-                    <div className="mt-10 mb-4 text-xs font-mono font-semibold uppercase tracking-[0.14em] text-[#00B8FF]">
+                <div className="max-w-3xl">
+                    <div className="mt-10 mb-4 text-xs font-mono font-semibold uppercase tracking-[0.14em] text-[#00667A] dark:text-[#00B8DB]">
                         {monitorSection.flowLabel}
                     </div>
 
                     <ChipList
                         items={monitorSection.flow}
                         variant="accent"
-                        separator={<ArrowRight className="h-4 w-4 text-[#00B8FF]" />}
+                        separator={<ArrowRight className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]" />}
                     />
 
                     <Prose segments={monitorSection.note} className="mt-8" />
@@ -505,12 +529,12 @@ export default function AiThreatProtectionPage() {
 
             {/* ─── PROTECT AI AGENTS ────────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={agentsSection.title}>
-                        <Prose segments={agentsSection.paragraphs[0]} className="mb-4" />
-                        <Prose segments={agentsSection.paragraphs[1]} />
-                    </SectionHeading>
+                <SectionHeading title={agentsSection.title}>
+                    <Prose segments={agentsSection.paragraphs[0]} className="mb-4" />
+                    <Prose segments={agentsSection.paragraphs[1]} />
+                </SectionHeading>
 
+                <div className="max-w-3xl">
                     <CheckList items={agentsSection.capabilities} className="mt-8" />
 
                     <Prose segments={agentsSection.note} className="mt-8" />
@@ -523,11 +547,9 @@ export default function AiThreatProtectionPage() {
 
             {/* ─── ONE MODEL (dark band) ────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading title={modelSection.title}>
-                        <Prose segments={modelSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={modelSection.title}>
+                    <Prose segments={modelSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={modelSteps} columns={4} className="mt-12" />
 

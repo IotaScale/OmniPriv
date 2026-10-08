@@ -26,7 +26,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/secure-ai-agents-omnipriv — the destination of
+ * Bespoke layout for /platform/secure-ai-agents-omnipriv, the destination of
  * the "AI Governance / Govern AI agents securely" challenge card.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -78,8 +78,8 @@ const whoSection = {
     prompt: "Effective AI agent security therefore starts with a simple question:",
     question: "What should this identity be allowed to do right now?",
     image: {
-        src: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=70",
-        alt: "Secure AI agents represented by a neural network brain above enterprise systems ringed by access controls",
+        src: "/challenges/secure-ai-agents.jpeg",
+        alt: "An AI agent allowed through approved paths while out-of-policy requests are blocked",
     },
 };
 
@@ -155,8 +155,9 @@ const monitorSection = {
         ],
     ] as RichText[],
     image: {
-        src: "https://images.unsplash.com/photo-1788790716354-00a65a62bf58?auto=format&fit=crop&w=1200&q=70",
-        alt: "Secure AI agents privileged session monitoring console recording agent activity and command history on a dark screen",
+        src: "/product/dashboard.png",
+        alt: "OmniPriv dashboard recording privileged activity and risk across sessions",
+        fit: "contain" as const,
     },
 };
 
@@ -191,7 +192,7 @@ const boundaries: IconCard[] = [
     {
         icon: Fingerprint,
         title: "A unique identity",
-        text: "Not a borrowed human account — the agent has its own verifiable identity.",
+        text: "Not a borrowed human account, the agent has its own verifiable identity.",
     },
     {
         icon: Boxes,
@@ -269,15 +270,15 @@ const whySection = {
 
 const stats = [
     { value: "39", label: "ML detection features", sub: "Behavioural analytics" },
-    { value: "12", label: "Agent security pillars", sub: "Governance model" },
-    { value: "100+", label: "MCP tools governed", sub: "Allowlist and data scope" },
+    { value: "50", label: "Rows per audit-chain checkpoint", sub: "HMAC-SHA256 signed" },
+    { value: "53", label: "MCP tools governed", sub: "Allowlist and data scope" },
     { value: "10s", label: "Anomaly sweep interval", sub: "Continuous detection" },
 ];
 
 const keepReading = [
     { href: "/ai-pam", label: "How the AI-PAM engine scores a session" },
     { href: "/case-studies", label: "Read the anomaly detection case study" },
-    { href: "/security", label: "Security architecture and certifications" },
+    { href: "/security", label: "Security architecture and framework mappings" },
 ];
 
 const closing = {
@@ -342,8 +343,14 @@ export default function SecureAiAgentsPage() {
 
             {/* ─── WHO HOLDS PRIVILEGE ──────────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={whoSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={whoSection.title}>
+                <MediaSplit
+                    media={whoSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={whoSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {whoSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -353,7 +360,7 @@ export default function SecureAiAgentsPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <Prose segments={[whoSection.prompt]} tone="strong" className="mt-8 mb-3" />
                     <Prose segments={[whoSection.question]} tone="kicker" />
@@ -361,56 +368,48 @@ export default function SecureAiAgentsPage() {
             </Section>
 
             {/* ─── ZERO TRUST PAM + JIT ───────────────
-                Two TOPICS, one per column — not one topic spread across both.
-                The earlier split put the heading and its prose on the left and
-                that same heading's bullet list on the right, then began the JIT
-                heading underneath them. The eye had to jump columns mid-subject,
-                and the JIT heading read as if it belonged to the list above it.
-                The content is two distinct practices, so each column now holds
-                one complete topic: Zero Trust PAM controls on the left, JIT
-                access on the right. DOM order still matches reading order. */}
+                Two topics, each complete: Zero Trust PAM first, then JIT
+                access. Both headings span the full content width with their
+                copy underneath, the same reading order as every other
+                section. `as="h3"` keeps the document outline intact. */}
             <Section border="bottom">
-                <div className="grid lg:grid-cols-2 gap-x-16 gap-y-14 items-start">
-                    {/* Topic 1 — Zero Trust PAM: why authentication is not
-                        enough, the five controls it introduces, and what the
-                        governance model includes. */}
-                    <div>
-                        <SectionHeading title={zeroTrustSection.title}>
-                            <Prose segments={zeroTrustSection.paragraphs[0]} className="mb-4" />
-                            <Prose segments={zeroTrustSection.paragraphs[1]} />
-                        </SectionHeading>
+                <SectionHeading title={zeroTrustSection.title}>
+                    <Prose segments={zeroTrustSection.paragraphs[0]} className="mb-4" />
+                    <Prose segments={zeroTrustSection.paragraphs[1]} />
+                </SectionHeading>
 
-                        <CheckList items={zeroTrustSection.controls} className="mt-8" />
+                <CheckList items={zeroTrustSection.controls} className="mt-8" />
 
-                        <Prose segments={zeroTrustSection.closing} className="mt-8" />
-                    </div>
+                <Prose segments={zeroTrustSection.closing} className="mt-8" />
 
-                    {/* Topic 2 — JIT access, complete in its own column.
-                        `size="md"` so the two headings read as parallel topics
-                        instead of the second looking like a caption on the
-                        first; `as="h3"` keeps the document outline intact. */}
-                    <SectionHeading
-                        as="h3"
-                        size="md"
-                        title={zeroTrustSection.subheading}
-                    >
-                        {zeroTrustSection.jit.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === zeroTrustSection.jit.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    as="h3"
+                    size="md"
+                    title={zeroTrustSection.subheading}
+                    className="mt-16"
+                >
+                    {zeroTrustSection.jit.map((paragraph, index) => (
+                        <Prose
+                            key={index}
+                            segments={paragraph}
+                            className={
+                                index === zeroTrustSection.jit.length - 1 ? "" : "mb-4"
+                            }
+                        />
+                    ))}
+                </SectionHeading>
             </Section>
 
             {/* ─── CREDENTIALS ──────────────────────── */}
             <Section tone="muted" border="bottom">
-                <MediaSplit media={credentialsSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={credentialsSection.title}>
+                <MediaSplit
+                    media={credentialsSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={credentialsSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {credentialsSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -422,14 +421,20 @@ export default function SecureAiAgentsPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
                 </MediaSplit>
             </Section>
 
             {/* ─── SESSION MONITORING ───────────────── */}
             <Section border="bottom">
-                <MediaSplit media={monitorSection.image} ratio="wide-last" height="sm" align="start">
-                    <SectionHeading title={monitorSection.title}>
+                <MediaSplit
+                    media={monitorSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={monitorSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {monitorSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -441,7 +446,7 @@ export default function SecureAiAgentsPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <ArrowLink href="/ai-pam" className="mt-8">
                         See how agent sessions are scored
@@ -453,12 +458,12 @@ export default function SecureAiAgentsPage() {
                 No image, so the column is centred and the heading block with it;
                 the pattern list stays left-aligned for scannability. */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl mx-auto">
-                    <SectionHeading title={detectSection.title} align="center">
-                        <Prose segments={detectSection.paragraphs[0]} className="mb-4" />
-                        <Prose segments={detectSection.paragraphs[1]} />
-                    </SectionHeading>
+                <SectionHeading title={detectSection.title} align="center">
+                    <Prose segments={detectSection.paragraphs[0]} className="mb-4" />
+                    <Prose segments={detectSection.paragraphs[1]} />
+                </SectionHeading>
 
+                <div className="max-w-3xl mx-auto">
                     <CheckList items={detectSection.patterns} className="mt-8" />
 
                     <Prose segments={detectSection.closing} className="mt-8" />
@@ -468,11 +473,9 @@ export default function SecureAiAgentsPage() {
             {/* ─── BOUNDARIES ─────────────────────────
                 No image, so the heading block is centred. */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl mx-auto">
-                    <SectionHeading title={boundariesSection.title} align="center">
-                        <Prose segments={boundariesSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading title={boundariesSection.title} align="center">
+                    <Prose segments={boundariesSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={boundaries} columns={3} className="mt-12" />
             </Section>
@@ -480,7 +483,7 @@ export default function SecureAiAgentsPage() {
             {/* ─── ENTERPRISE INFRASTRUCTURE ──────────
                 Was a MediaSplit. That lays out as `lg:grid-cols-[1fr_1.15fr]`, so
                 a 16:9 photograph forced a 337px row while the heading and single
-                sentence beside it needed ~110px — roughly 230px of the row was
+                sentence beside it needed ~110px, roughly 230px of the row was
                 empty by construction, and the photograph was the only reason for
                 it. The section is really one heading, one introducing sentence and
                 four items, so the image is gone and the four items now run in one
@@ -493,7 +496,7 @@ export default function SecureAiAgentsPage() {
                 <SectionHeading
                     title={infraSection.title}
                     align="center"
-                    className="max-w-3xl mx-auto"
+                    className="mx-auto"
                 >
                     <Prose segments={infraSection.lead} />
                 </SectionHeading>
@@ -503,14 +506,14 @@ export default function SecureAiAgentsPage() {
 
             {/* ─── WHY OMNIPRIV ───────────────────────
                 No image, so the column is centred and the heading block with it.
-                The tick list stays left-aligned inside the centred column — a
+                The tick list stays left-aligned inside the centred column, a
                 centred list is harder to scan. */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl mx-auto">
-                    <SectionHeading title={whySection.title} align="center">
-                        <Prose segments={whySection.lead} />
-                    </SectionHeading>
+                <SectionHeading title={whySection.title} align="center">
+                    <Prose segments={whySection.lead} />
+                </SectionHeading>
 
+                <div className="max-w-3xl mx-auto">
                     <CheckList items={whySection.reasons} className="mt-8" />
 
                     <Prose segments={whySection.closing} className="mt-8" />

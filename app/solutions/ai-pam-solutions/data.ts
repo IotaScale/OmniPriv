@@ -33,7 +33,7 @@ export const meta = {
 
 export const hero = {
     intro: [
-        "AI, automation, cloud workloads, applications, and machine identities are changing how privileged access operates inside the enterprise. Security teams now need to protect more than traditional administrator accounts—they need visibility and control wherever elevated access is used.",
+        "AI, automation, cloud workloads, applications, and machine identities are changing how privileged access operates inside the enterprise. Security teams now need to protect more than traditional administrator accounts, they need visibility and control wherever elevated access is used.",
     ] as RichText,
     body: [
         "OmniPriv brings ",
@@ -114,7 +114,7 @@ export const identityLayersSection = {
             "Applications and infrastructure increasingly authenticate without human involvement.",
         ] as RichText,
         body: [
-            "Effective machine identity security must account for service accounts, workloads, APIs, SSH keys, tokens, and cloud roles that may hold sensitive privileges. OmniPriv supports service-account management, workload identities, cloud IAM integrations, dynamic secrets, API-key rotation, and short-lived DevOps credentials—helping organizations strengthen non-human identity security without relying on unmanaged long-lived secrets.",
+            "Effective machine identity security must account for service accounts, workloads, APIs, SSH keys, tokens, and cloud roles that may hold sensitive privileges. OmniPriv supports service-account management, workload identities, cloud IAM integrations, dynamic secrets, API-key rotation, and short-lived DevOps credentials, helping organizations strengthen non-human identity security without relying on unmanaged long-lived secrets.",
         ] as RichText,
         link: {
             href: "/solutions/machine-identity-security",
@@ -250,8 +250,8 @@ export const agenticSection = {
         "The answer should not be unrestricted machine privilege. Organizations need clear identity, scoped permissions, secure credentials, temporary elevation, monitoring, and traceability around privileged resources. OmniPriv brings these established PAM controls into modern AI-enabled environments so organizations can introduce automation while keeping sensitive infrastructure behind governed access.",
     ] as RichText,
     image: {
-        src: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=70",
-        alt: "Agentic AI security with governed access controls",
+        src: "/identities/ai-automated-identities.jpeg",
+        alt: "AI and automated identities governed by access controls",
     },
 };
 
@@ -351,7 +351,7 @@ export const capabilities: IconCard[] = [
 export const closing = {
     title: "Build an AI-Ready Privileged Access Strategy",
     body: [
-        "AI may change who—or what—requests access, but the security principle remains the same: No identity should receive more privilege than it needs, for longer than it needs it. OmniPriv combines Zero Trust Privileged Access Management, JIT access, credential protection, machine identity controls, intelligent monitoring, and auditable sessions to help organizations protect critical infrastructure as human and automated access continues to evolve.",
+        "AI may change who, or what, requests access, but the security principle remains the same: No identity should receive more privilege than it needs, for longer than it needs it. OmniPriv combines Zero Trust Privileged Access Management, JIT access, credential protection, machine identity controls, intelligent monitoring, and auditable sessions to help organizations protect critical infrastructure as human and automated access continues to evolve.",
     ],
     primary: { href: "/demo", label: "Request an OmniPriv Demo" },
     secondary: { href: "/platform", label: "Explore the PAM Platform" },

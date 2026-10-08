@@ -28,14 +28,14 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /ai-pam — the AI-PAM engine deep dive.
+ * /ai-pam, the AI-PAM engine deep dive.
  *
  * Laid out on the same pattern as the other interior pages: a SplitHero with
  * framing photography, alternating muted and default bands, exactly one dark
  * band, a media split and a closing band. The engine's own figures, the
- * detection lanes and the 12 agent pillars are kept in full.
+ * detection lanes are kept in full.
  *
- * No internal implementation is published here — no script or model
+ * No internal implementation is published here, no script or model
  * artefact names, no internal endpoints or authorisation library, and no
  * specific LLM vendor. Those describe how the engine is built rather than
  * what it does, and they date quickly.
@@ -44,7 +44,7 @@ import type { RichText } from "@/lib/rich-text";
 export const metadata: Metadata = {
     title: "AI-PAM Engine: ML Threat Detection & MCP Agent Governance",
     description:
-        "OmniPriv's AI-PAM engine pairs machine-learning behavioural anomaly detection with Model Context Protocol agent governance — 12 agent security pillars, 100+ MCP tools, and a 10-second auto-block sweeper.",
+        "OmniPriv's AI-PAM engine pairs machine-learning behavioural anomaly detection with Model Context Protocol agent governance: 53 governed MCP tools, a 10-second auto-block sweep and a 10-second grace window.",
 };
 
 const hero = {
@@ -55,13 +55,13 @@ const hero = {
         "Autonomous agents reach systems faster than any review process can follow. So the engine scores what happens inside a privileged session, and separately governs what an agent is allowed to reach.",
     ] as RichText,
     body: [
-        "Machine-learning anomaly detection scores every closed session across 39 behavioural features. Model Context Protocol governance gives each agent its own identity, tool allowlist and data scope — machine learning on one side, deterministic policy on the other.",
+        "Machine-learning anomaly detection scores every closed session across 39 behavioural features. Model Context Protocol governance gives each agent its own identity, tool allowlist and data scope, machine learning on one side, deterministic policy on the other.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Technical Demo" },
     secondary: { href: "/platform", label: "Explore the Platform" },
     image: {
-        src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=70",
-        alt: "Three-dimensional letters spelling AI on a dark digital background",
+        src: "/hero/pam-guardian-ai.png",
+        alt: "AI guardian head with a padlock, representing machine learning watching privileged access",
     },
 };
 
@@ -77,7 +77,7 @@ const engineCards: IconCard[] = [
         icon: Activity,
         eyebrow: "Behavioural model",
         title: "Behavioural anomaly detection",
-        text: "39 features are evaluated for every closed session and scored 0–1, with tiered escalation: dashboard alert, then admin alert, then automatic block.",
+        text: "39 features are evaluated for every closed session and scored 0-1, with tiered escalation: dashboard alert, then admin alert, then automatic block.",
     },
     {
         icon: Crosshair,
@@ -89,7 +89,7 @@ const engineCards: IconCard[] = [
         icon: RefreshCw,
         eyebrow: "Autonomous pipeline",
         title: "Model retraining in place",
-        text: "The model retrains on your own environment without a data-science project — warm-starting from the previous version and swapping the new one in without downtime.",
+        text: "The model retrains on your own environment without a data-science project, warm-starting from the previous version and swapping the new one in without downtime.",
     },
     {
         icon: FileSpreadsheet,
@@ -104,7 +104,7 @@ const threats = [
         name: "Brute force",
         tag: "Authentication lane",
         detects:
-            "Rapid failed-login patterns across protocol gateways — scored in flight and terminated at the socket.",
+            "Rapid failed-login patterns across protocol gateways, scored in flight and terminated at the socket.",
         action: "Instant IP and user auto-block",
         risk: "High",
         riskClass: "text-rose-400 bg-rose-500/10 border-rose-500/20",
@@ -159,7 +159,7 @@ const threats = [
 const agentsSection = {
     title: "One MCP transport, many first-class identities",
     lead: [
-        "An AI agent should not inherit a person's credentials. Every agent gets its own verifiable identity, its own tool policy and its own data scope — and every action traces back to the human who delegated it.",
+        "An AI agent should not inherit a person's credentials. Every agent gets its own verifiable identity, its own tool policy and its own data scope, and every action traces back to the human who delegated it.",
     ] as RichText,
     principle: "The AI can act, but it never gets unrestricted authority.",
 };
@@ -169,7 +169,7 @@ const agentPillars: IconCard[] = [
         icon: Bot,
         eyebrow: "Cryptographic attestation",
         title: "Agent identity",
-        text: "Each agent is registered with a unique name, type and hashed key — verifiable per organisation, with an auditable lifecycle.",
+        text: "Each agent is registered with a unique name, type and hashed key, verifiable per organisation, with an auditable lifecycle.",
     },
     {
         icon: Network,
@@ -181,7 +181,7 @@ const agentPillars: IconCard[] = [
         icon: Lock,
         eyebrow: "Tool allowlist",
         title: "Tool-level authorization",
-        text: "Allow, deny or require approval per MCP tool, per agent — so the same server offers different capabilities to different agents.",
+        text: "Allow, deny or require approval per MCP tool, per agent, so the same server offers different capabilities to different agents.",
     },
     {
         icon: Eye,
@@ -193,7 +193,7 @@ const agentPillars: IconCard[] = [
         icon: Network,
         eyebrow: "Server boundaries",
         title: "MCP server scoping",
-        text: "Agent-to-server allowlists — a finance agent can reach the finance server and is refused by the HR server outright.",
+        text: "Agent-to-server allowlists, a finance agent can reach the finance server and is refused by the HR server outright.",
     },
     {
         icon: RefreshCw,
@@ -205,7 +205,7 @@ const agentPillars: IconCard[] = [
         icon: Lock,
         eyebrow: "Human-in-the-loop",
         title: "Sensitive action approval",
-        text: "High-risk tools — delete cluster, refund, transfer, drop table — pause for explicit human approval before executing.",
+        text: "High-risk tools, delete cluster, refund, transfer, drop table, pause for explicit human approval before executing.",
     },
     {
         icon: Bot,
@@ -251,13 +251,13 @@ const transportCards: IconCard[] = [
         icon: Bot,
         eyebrow: "Operations assistant",
         title: "Natural-language PAM operations",
-        text: "A function-calling assistant answers operational questions — active sessions, pending approvals, session investigations — scoped strictly to the caller's own organisation.",
+        text: "A function-calling assistant answers operational questions, active sessions, pending approvals, session investigations, scoped strictly to the caller's own organisation.",
     },
     {
         icon: Network,
         eyebrow: "Transport layer",
-        title: "MCP server, 100+ tools",
-        text: "Exposes 100+ platform tools to MCP clients including Claude, GitHub Copilot and Cursor, with device-flow OAuth and scoped, auto-refreshing tokens.",
+        title: "MCP server, 53 tools",
+        text: "Exposes 53 platform tools to MCP clients including Claude, GitHub Copilot and Cursor, with device-flow OAuth and scoped, auto-refreshing tokens.",
     },
     {
         icon: Lock,
@@ -276,12 +276,13 @@ const explainSection = {
         ],
     ] as RichText[],
     image: {
-        src: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=70",
-        alt: "Monitor displaying lines of code and system output",
+        src: "/product/dashboard.png",
+        alt: "OmniPriv security dashboard with risk posture, compliance score and asset health",
+        fit: "contain" as const,
     },
     points: [
-        "Per-session indicator breakdown — which features moved the score, and by how much",
-        "Five-tier agent trace — human, agent, MCP server, tool and resource, with the decision and duration",
+        "Per-session indicator breakdown, which features moved the score, and by how much",
+        "Five-tier agent trace, human, agent, MCP server, tool and resource, with the decision and duration",
         "Held-out evaluation and threshold sweeps, exported as workbooks so thresholds can be reviewed",
         "Offender-only quarantine, so one flagged session does not disturb the others",
         "Streamed to your SIEM alongside the rest of your privileged activity",
@@ -291,8 +292,8 @@ const explainSection = {
 const stats = [
     { value: "39", label: "Features scored per session", sub: "Behavioural model" },
     { value: "10s", label: "Auto-block sweep interval", sub: "Tiered escalation" },
-    { value: "12", label: "Agent security pillars", sub: "Multi-agent architecture" },
-    { value: "100+", label: "MCP tools governed", sub: "Allowlist and data scope" },
+    { value: "50", label: "Rows per audit-chain checkpoint", sub: "HMAC-SHA256 signed" },
+    { value: "53", label: "MCP tools governed", sub: "Allowlist and data scope" },
 ];
 
 const keepReading = [
@@ -306,7 +307,7 @@ const closing = {
     body: [
         "We will walk through live anomaly scoring, MCP agent scoping and the 10-second auto-block sweeper against your environment.",
     ],
-    kicker: "Scored, explained and enforced — on your own hardware.",
+    kicker: "Scored, explained and enforced, on your own hardware.",
     primary: { href: "/demo", label: "Book a Demo" },
     secondary: { href: "/platform", label: "Explore the Platform" },
 };
@@ -315,7 +316,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What is the AI-PAM engine?",
         answer:
-            "It is the detection and enforcement layer inside OmniPriv. It scores the behaviour of every privileged session with a machine-learning model, and separately governs autonomous AI agents through the Model Context Protocol — the same policy engine that governs people, applied to non-human identities.",
+            "It is the detection and enforcement layer inside OmniPriv. It scores the behaviour of every privileged session with a machine-learning model, and separately governs autonomous AI agents through the Model Context Protocol, the same policy engine that governs people, applied to non-human identities.",
     },
     {
         question: "How does a session actually get scored?",
@@ -325,7 +326,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What happens when a session is flagged while it is still running?",
         answer:
-            "A sweeper runs every ten seconds across active sessions. Session-level threats — pivot tooling, credential harvesting, obfuscated script payloads — are detected in flight, and verified offenders are isolated with a grace period before the session is force-closed.",
+            "A sweeper runs every ten seconds across active sessions. Session-level threats, pivot tooling, credential harvesting, obfuscated script payloads, are detected in flight, and verified offenders are isolated with a grace period before the session is force-closed.",
     },
     {
         question: "What is MCP agent governance?",
@@ -356,30 +357,26 @@ export default function AiPamPage() {
 
             {/* ─── THE ML ENGINE ──────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Core ML Detection Engine"
-                        title={engineSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={engineSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Core ML Detection Engine"
+                    title={engineSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={engineSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={engineCards} columns={4} className="mt-12" />
             </Section>
 
             {/* ─── DETECTION LANES (dark band) ────────────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Live Rule Lanes" title="Real-time in-session threat detection">
-                        <Prose
-                            segments={[
-                                "The command detector scans typed commands as they happen. The script scanner flags executed scripts (.sh, .ps1, .bat) and quarantines the offender only.",
-                            ]}
-                        />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Live Rule Lanes" title="Real-time in-session threat detection">
+                    <Prose
+                        segments={[
+                            "The command detector scans typed commands as they happen. The script scanner flags executed scripts (.sh, .ps1, .bat) and quarantines the offender only.",
+                        ]}
+                    />
+                </SectionHeading>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
                     {threats.map((threat) => (
@@ -422,17 +419,17 @@ export default function AiPamPage() {
 
             {/* ─── MULTI-AGENT ARCHITECTURE ──────────────────────── */}
             <Section border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Multi-Agent AI Architecture"
-                        title={agentsSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={agentsSection.lead} />
-                    </SectionHeading>
+                <SectionHeading
+                    badge="Multi-Agent AI Architecture"
+                    title={agentsSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={agentsSection.lead} />
+                </SectionHeading>
 
-                    <div className="mt-6 inline-flex items-start gap-2 px-4 py-3 rounded-xl border border-[#00B8FF]/25 bg-[#00B8FF]/[0.06]">
-                        <Bot className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
+                <div className="max-w-3xl">
+                    <div className="mt-6 inline-flex items-start gap-2 px-4 py-3 rounded-xl border border-[#00B8DB]/25 bg-[#00B8DB]/[0.06]">
+                        <Bot className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0 mt-0.5" />
                         <p className="text-sm text-slate-700 dark:text-slate-300">
                             <strong className="text-slate-950 dark:text-white">Core principle:</strong>{" "}
                             {agentsSection.principle}
@@ -445,7 +442,7 @@ export default function AiPamPage() {
                 <div className="mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 p-5 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.05]">
                     <p className="text-sm text-slate-700 dark:text-slate-300">
                         <strong className="text-slate-950 dark:text-white">Enterprise value:</strong> agents
-                        do real work against SAP, production databases and ServiceNow — but every capability
+                        do real work against SAP, production databases and ServiceNow, but every capability
                         is scoped, every secret is transient, and every action is attributable to a human.
                     </p>
                     <Link
@@ -460,27 +457,27 @@ export default function AiPamPage() {
 
             {/* ─── TRANSPORT & INTEGRATION ────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="MCP Transport & Platform Integration"
-                        title={transportSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={transportSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="MCP Transport & Platform Integration"
+                    title={transportSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={transportSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={transportCards} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── EXPLAINABILITY ─────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={explainSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <explainSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={explainSection.title}>
+                <MediaSplit
+                    media={explainSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={explainSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {explainSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -490,7 +487,7 @@ export default function AiPamPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={explainSection.points} className="mt-8" />
 

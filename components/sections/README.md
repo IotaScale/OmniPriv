@@ -3,7 +3,7 @@
 Reusable marketing-section primitives.
 
 These exist so a page describes *what* it contains, not *how* it looks. Every
-component renders the same markup the site already used — they were extracted
+component renders the same markup the site already used, they were extracted
 from `app/solutions/human-identity-security/page.tsx` without changing a
 single class, so adopting them is not a redesign.
 
@@ -26,15 +26,15 @@ single class, so adopting them is not a redesign.
 | `Section` | The band wrapper: padding, surface tone, hairline border, `container-xl`. |
 | `SectionHeading` | `badge-cyan` eyebrow + `h2` + intro copy. |
 | `Prose` | A paragraph from data, with inline accent links. |
-| `MediaSplit` | Two columns — copy beside framed photography. |
-| `SplitHero` | Interior page hero: copy left, framed photo right. |
+| `MediaSplit` | Two columns, copy beside framed photography, optionally under a full-width heading. |
+| `SplitHero` | Interior page hero: full-width heading above copy left and framed photo right. |
 | `IconCardGrid` | Responsive grid of icon cards. |
 | `CheckList` | Accent-ticked bullet list. |
 | `ChipList` | Row of chips, optionally joined into a flow. |
 | `LogoMarquee` | **Client.** Two-row scrolling marquee of the 36 brand marks in `public/tech/`. |
 | `ArrowLink` | Standalone "Explore X →" link that closes out a section. |
 | `CtaBand` | Full-width closing CTA on the dark surface. |
-| `FaqAccordion` | **Client.** Closeable question list — the homepage accordion, shared by every page. |
+| `FaqAccordion` | **Client.** Closeable question list, the homepage accordion, shared by every page. |
 | `FaqSection` | Band + heading + `FAQPage` structured data wrapping `FaqAccordion`. |
 
 ### `Section`
@@ -42,11 +42,11 @@ single class, so adopting them is not a redesign.
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `tone` | `"default" \| "muted" \| "dark"` | `"default"` | `muted` = slate band. `dark` = `#050b16` **and** wraps itself in `.dark`. |
-| `border` | `"none" \| "bottom"` | `"none"` | Uses the shared border token. Only ever `bottom` — a top border stacks against the previous section's and reads as 2px. |
+| `border` | `"none" \| "bottom"` | `"none"` | Uses the shared border token. Only ever `bottom`, a top border stacks against the previous section's and reads as 2px. |
 | `container` | `boolean` | `true` | Renders the `container-xl` wrapper. |
-| `containerClassName` | `string` | — | e.g. `"max-w-3xl mx-auto"`. |
+| `containerClassName` | `string` |, | e.g. `"max-w-3xl mx-auto"`. |
 
-`tone="dark"` adds the `.dark` ancestor for you — that is what keeps
+`tone="dark"` adds the `.dark` ancestor for you, that is what keeps
 theme-aware text readable inside a hardcoded dark band while the site is in
 light mode. Do not hand-roll it.
 
@@ -54,13 +54,13 @@ light mode. Do not hand-roll it.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `title` | `React.ReactNode` | — | |
-| `badge` | `string` | — | Eyebrow pill above the title. |
+| `title` | `React.ReactNode` |, | |
+| `badge` | `string` |, | Eyebrow pill above the title. |
 | `as` | `"h2" \| "h3"` | `"h2"` | Use `h3` for a sub-section inside a section that already has an `h2`. Switches the weight to `font-bold`. |
 | `align` | `"left" \| "center"` | `"left"` | |
 | `size` | `"md" \| "lg" \| "sm"` | `"md"` | `sm` pairs with `as="h3"`. |
-| `titleClassName` | `string` | — | Appended to the heading, e.g. `"md:text-5xl"`. |
-| `className` | `string` | — | Wrapper, e.g. `"max-w-3xl mb-12"`. |
+| `titleClassName` | `string` |, | Appended to the heading, e.g. `"md:text-5xl"`. |
+| `className` | `string` |, | Wrapper, e.g. `"max-w-3xl mb-12"`. |
 
 ### `Prose`
 
@@ -71,17 +71,17 @@ light mode. Do not hand-roll it.
 | `className` | `string` | Size and spacing, e.g. `"text-lg mb-5"`. |
 
 `tone` exists instead of relying on class overrides because the tones carry
-different line-heights — merging `text-lg` onto the muted treatment would
+different line-heights, merging `text-lg` onto the muted treatment would
 silently change the leading of a paragraph that never had it.
 
 ## Adding a solution page
 
-1. Add an entry to `app/solutions/data.ts` (`SolutionMeta`) — slug, eyebrow,
+1. Add an entry to `app/solutions/data.ts` (`SolutionMeta`), slug, eyebrow,
    card title, summary and SEO metadata. This is what the `/solutions` index
    will read and what `app/sitemap.ts` already uses to emit URLs, so the page,
    its card and its sitemap entry cannot drift.
 2. Create `app/solutions/<slug>/data.ts` with the page copy. Keep it plain
-   data — strings, `RichText` paragraphs, `IconCard` arrays, `FaqEntry`
+   data, strings, `RichText` paragraphs, `IconCard` arrays, `FaqEntry`
    arrays. Import the shared types (`IconCard`, `FaqEntry`, `RichText`) so the
    shape stays in one place.
 3. Create `app/solutions/<slug>/page.tsx` that composes the components. Start
@@ -101,7 +101,7 @@ export const metadata: Metadata = {
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `items` | `FaqEntry[]` | — | `answer` may be a string or an array of paragraphs. |
+| `items` | `FaqEntry[]` |, | `answer` may be a string or an array of paragraphs. |
 | `initialOpen` | `number \| null` | `0` | Index open on first render. `null` starts fully collapsed. |
 | `idPrefix` | `string` | `"faq"` | Set a distinct value if two accordions share a page. |
 
@@ -120,7 +120,7 @@ The nine modules in `app/platform/data.ts` each have a bespoke page under
 
 1. Update the module in `app/platform/data.ts` (`SolutionMeta`). That entry
    drives the `/platform` index cards, the nav dropdown, `generateStaticParams`
-   and the per-page metadata — so the page, its card and its SEO tags cannot
+   and the per-page metadata, so the page, its card and its SEO tags cannot
    drift apart.
 2. Create `components/solutions/<Name>Page.tsx`. Keep the copy in plain `const`
    objects at the top of the file and compose the layout underneath, so the
@@ -134,7 +134,7 @@ The nine modules in `app/platform/data.ts` each have a bespoke page under
 ### Page rhythm
 
 Every platform page opens the same way and closes the same way, with a variable
-number of content bands in between — seven to nine sections in total, depending
+number of content bands in between, seven to nine sections in total, depending
 on how much the module needs to say.
 
 Invariants, verified across all nine pages at the time of writing:
@@ -145,7 +145,7 @@ Invariants, verified across all nine pages at the time of writing:
   hardcoded dark bands read as a different site.
 - The page ends `CtaBand` (dark) → `FaqSection` (muted).
 - Every top-level `<section>` carries **one** `border-b`. Never `border-t` or
-  `border-y` — a top border stacks against the previous section's and reads 2px.
+  `border-y`, a top border stacks against the previous section's and reads 2px.
 - No horizontal overflow at 1440×900.
 
 What is *not* fixed is the middle. Some pages run `dark → muted → default`,
@@ -156,7 +156,7 @@ bands so no two adjacent sections share a surface.
 **The one deliberate exception: `/demo`.** It has a single dark band and no
 `CtaBand`, ending on `FaqSection` instead. The form on that page *is* the call
 to action, so a closing band whose buttons point back at `/demo` would be
-circular. Do not "fix" this by adding a `CtaBand` — if the page ever needs a
+circular. Do not "fix" this by adding a `CtaBand`, if the page ever needs a
 second dark band, it should be a content band, not a CTA.
 
 Other rules that are easiest to get wrong:
@@ -166,14 +166,14 @@ Other rules that are easiest to get wrong:
   `Section`.
 - `ChipList` takes a `separator` node to express a sequence and a `variant`
   (`accent` for emphasis, `neutral` for a capability set). It is a good fit for
-  a fixed-length list — protocols, request types, control names — that would
+  a fixed-length list, protocols, request types, control names, that would
   bloat a paragraph.
 
 ### The generic template is a fallback
 
 `app/platform/[slug]/page.tsx` still renders a generic capability body for any
 slug in `data.ts` that is **not** in `bespokePages`. All nine current modules are
-bespoke, so that branch is dormant — it stays as the default for a module added
+bespoke, so that branch is dormant, it stays as the default for a module added
 before its bespoke page exists. Do not delete it.
 
 ## Not yet unified

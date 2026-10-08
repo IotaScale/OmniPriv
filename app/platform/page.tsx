@@ -19,7 +19,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /platform — the capability index.
+ * /platform, the capability index.
  *
  * Rebuilt on the shared section library so it matches the nine pages it
  * links to. The module grid is driven straight from ./data.ts, so adding a
@@ -43,17 +43,18 @@ const hero = {
         "Privileged access work usually ends up spread across a vault, a session recorder, a workflow tool and a reporting add-on. OmniPriv covers the same ground in one platform you run on your own infrastructure.",
     ] as RichText,
     body: [
-        "Each module below addresses one part of the privileged access lifecycle. They share one credential store, one policy engine and one audit trail — so an identity cannot move between them to escape a control.",
+        "Each module below addresses one part of the privileged access lifecycle. They share one credential store, one policy engine and one audit trail, so an identity cannot move between them to escape a control.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform/identity-security", label: "See How It Fits Together" },
     image: {
-        src: "https://images.unsplash.com/photo-1702478475268-aa8ef54c084e?auto=format&fit=crop&w=1200&q=70",
-        alt: "Server rack with bundled network cabling connected to patch panels",
+        src: "/product/dashboard.png",
+        alt: "OmniPriv platform dashboard with risk posture, compliance score and asset health",
+        fit: "contain" as const,
     },
 };
 
-/* Driven from ./data.ts — adding a module there adds its card here. */
+/* Driven from ./data.ts, adding a module there adds its card here. */
 const moduleCards: IconCard[] = solutions.map((solution, index) => ({
     icon: solution.icon,
     eyebrow: String(index + 1).padStart(2, "0"),
@@ -83,7 +84,7 @@ const architecturePillars = [
     {
         icon: Building2,
         title: "Strict tenant isolation",
-        text: "Isolation via org_id on every resource, with per-organization RBAC — built for MSSPs and enterprises running subsidiaries from one platform.",
+        text: "Isolation via org_id on every resource, with per-organization RBAC, built for MSSPs and enterprises running subsidiaries from one platform.",
     },
     {
         icon: ShieldCheck,
@@ -106,7 +107,7 @@ const consoleSection = {
     },
     points: [
         "Browser console across Edge, Chrome, Firefox and Safari, plus a command-line interface",
-        "A built-in mobile browser client with TOTP and approvals — no app to install",
+        "A built-in mobile browser client with TOTP and approvals, no app to install",
         "Centralised administration in a single UI with one credential repository",
         "Credentials encrypted at rest and in transit, with hardware-backed key protection",
     ],
@@ -186,7 +187,7 @@ export default function PlatformPage() {
                     title="Nine capability modules"
                     align="center"
                     size="lg"
-                    className="max-w-2xl mx-auto mb-14"
+                    className="mb-14"
                 >
                     <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                         Each one below is a working page. Read together, they are the privileged access
@@ -199,23 +200,17 @@ export default function PlatformPage() {
 
             {/* ─── ARCHITECTURE (dark band) ───────────────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Architecture"
-                        title={architectureSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={architectureSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Architecture"
+                    title={architectureSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={architectureSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {architecturePillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -231,12 +226,14 @@ export default function PlatformPage() {
 
             {/* ─── ONE CONSOLE ────────────────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={consoleSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <consoleSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={consoleSection.title}>
+                <MediaSplit
+                    media={consoleSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={consoleSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {consoleSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -246,7 +243,7 @@ export default function PlatformPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={consoleSection.points} className="mt-8" />
 
@@ -258,11 +255,9 @@ export default function PlatformPage() {
 
             {/* ─── COMPLIANCE STANDARDS ───────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Compliance" title={standardsSection.title} className="mb-6">
-                        <Prose segments={standardsSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Compliance" title={standardsSection.title} className="mb-6">
+                    <Prose segments={standardsSection.lead} />
+                </SectionHeading>
 
                 <ChipList
                     items={complianceStandards.map((standard) => standard.code)}

@@ -14,7 +14,7 @@ export const EMAILJS_PUBLIC_KEY = "yvq-HLHV4_jF259wl";
 
 export const EMAILJS_SERVICE_ID = "service_9am074m";
 
-/** Recipient emails (comma-separated) — set your EmailJS template's "To Email" field to {{to_email}} */
+/** Recipient emails (comma-separated), set your EmailJS template's "To Email" field to {{to_email}} */
 export const EMAILJS_RECIPIENT = "ahmed.raza@snskies.com,ahmediscoding@gmail.com";
 
 /**

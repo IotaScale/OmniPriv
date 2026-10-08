@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import LegalDocument from "@/components/legal/LegalDocument";
 
 export const metadata: Metadata = {
   title: { absolute: "Privacy Policy | OmniPriv" },
@@ -74,7 +74,7 @@ All third-party service providers are evaluated for security practices and contr
     content: `We retain your personal information for as long as necessary to provide our services, fulfill the purposes described in this Privacy Policy, and meet our legal obligations. Specific retention periods:
 
 - Account data: Retained for the duration of your contract and up to 5 years afterward for legal purposes.
-- Session logs and audit records: Retained for the period required by your applicable compliance framework (typically 1–7 years), configurable per your deployment.
+- Session logs and audit records: Retained for the period required by your applicable compliance framework (typically 1-7 years), configurable per your deployment.
 - Marketing data: Retained until you opt out or request deletion.
 - Cookie data: See cookie-specific retention in our Cookie Policy.
 
@@ -86,8 +86,8 @@ When data is no longer needed, we securely delete or anonymize it.`,
     content: `We implement technical and organizational security measures appropriate to the risk, including:
 
 - Encryption at rest and in transit for all data
-- SOC 2 Type II certified infrastructure
-- ISO 27001 certified information security management system
+- Infrastructure controls mapped to SOC 2 Type II
+- Information security management mapped to ISO 27001
 - Role-based access controls and least-privilege principles for our internal team
 - Regular third-party penetration testing (results summarized in our security whitepaper)
 - 24/7 security monitoring and incident response
@@ -100,8 +100,8 @@ No method of transmission over the Internet or electronic storage is 100% secure
     content: `We use cookies and similar tracking technologies to:
 
 - Keep you signed in and remember your preferences (essential cookies)
-- Analyze website usage and performance (analytics cookies — providers: Google Analytics, Mixpanel)
-- Personalize content and advertising (marketing cookies — providers: HubSpot, LinkedIn Insight Tag)
+- Analyze website usage and performance (analytics cookies, providers: Google Analytics, Mixpanel)
+- Personalize content and advertising (marketing cookies, providers: HubSpot, LinkedIn Insight Tag)
 
 You can control cookies through your browser settings or opt out of analytics tracking via our consent banner. Disabling certain cookies may affect website functionality.`,
   },
@@ -150,63 +150,22 @@ For EU/UK residents, you may also contact our EU Data Protection Representative 
 
 export default function PrivacyPolicyPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl max-w-3xl mx-auto">
-          <div className="badge-cyan mb-5">Legal</div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white mb-5" style={{ fontFamily: "var(--font-syne)" }}>
-            Privacy Policy
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400">
-            Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025
-          </p>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="grid lg:grid-cols-4 gap-10">
-
-            {/* Table of Contents */}
-            <nav className="hidden lg:block">
-              <div className="sticky top-28 space-y-1">
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
-                {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8FF] transition-colors py-1 border-l border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8FF]/40 pl-3">
-                    {s.title}
-                  </a>
-                ))}
-              </div>
-            </nav>
-
-            {/* Main Content */}
-            <article className="lg:col-span-3 space-y-12">
-              <div className="p-5 rounded-xl border border-[#00B8FF]/15 bg-[#00B8FF]/[0.03] text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                <strong className="text-slate-950 dark:text-white">Summary:</strong> OmniPriv is a B2B enterprise security company. We collect contact information when you interact with us, use it to provide our services, don&apos;t sell it, protect it with SOC 2 / ISO 27001 certified infrastructure, and honor your data rights. Questions? Email privacy@OmniPriv.com.
-              </div>
-
-              {sections.map((s) => (
-                <div key={s.id} id={s.id}>
-                  <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>{s.title}</h2>
-                  <div className="prose-dark space-y-3">
-                    {s.content.split("\n\n").map((para, i) => (
-                      <p key={i} className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">{para}</p>
-                    ))}
-                  </div>
-                  <div className="divider mt-10" />
-                </div>
-              ))}
-
-              <div className="text-sm text-slate-500 mt-8">
-                <p>Need to exercise a data right or have a privacy question?</p>
-                <a href="mailto:privacy@OmniPriv.com" className="text-[#00B8FF] hover:underline">privacy@OmniPriv.com</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </>
+    <LegalDocument
+      title="Privacy Policy"
+      updated={<>Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025</>}
+      intro={
+        <p>
+          <strong className="font-semibold text-[#0a1628] dark:text-white">Summary:</strong> OmniPriv is a B2B enterprise security company. We collect contact information when you interact with us, use it to provide our services, don&apos;t sell it, protect it with controls mapped to SOC 2 and ISO 27001, and honor your data rights. Questions? Email{" "}
+          <a href="mailto:privacy@OmniPriv.com" className="op-link font-semibold hover:underline underline-offset-2">privacy@OmniPriv.com</a>.
+        </p>
+      }
+      sections={sections}
+      footer={
+        <p>
+          Need to exercise a data right or have a privacy question?{" "}
+          <a href="mailto:privacy@OmniPriv.com" className="op-link font-semibold hover:underline underline-offset-2">privacy@OmniPriv.com</a>
+        </p>
+      }
+    />
   );
 }

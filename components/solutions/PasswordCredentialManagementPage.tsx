@@ -28,7 +28,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/password-credential-management — the
+ * Bespoke layout for /platform/password-credential-management, the
  * destination of "Credential Management" in the platform dropdown.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -47,7 +47,7 @@ const hero = {
     titleLead: "Nobody holds the secret.",
     titleAccent: "Not even the vault administrator.",
     intro: [
-        "A privileged credential is only as safe as the number of people who can read it. OmniPriv vaults every secret and hands out access to the resource — never the password itself.",
+        "A privileged credential is only as safe as the number of people who can read it. OmniPriv vaults every secret and hands out access to the resource, never the password itself.",
     ] as RichText,
     body: [
         "Rotation, validation, reconciliation and SSH key lifecycle run on a policy you configure rather than on somebody remembering. When a stored credential drifts out of step with the live asset, the platform notices and corrects it.",
@@ -55,8 +55,8 @@ const hero = {
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform/application-security", label: "See the Encryption Layer" },
     image: {
-        src: "https://images.unsplash.com/photo-1614064548237-096f735f344f?auto=format&fit=crop&w=1200&q=70",
-        alt: "Closed padlock resting on a laptop keyboard lit by light trails",
+        src: "/challenges/defend-ai-driven-threats.jpeg",
+        alt: "Privileged credentials and keys held in a governed vault",
     },
 };
 
@@ -78,13 +78,13 @@ const lifecycleCards: IconCard[] = [
         icon: KeyRound,
         eyebrow: "Vault",
         title: "Nobody reads the password",
-        text: "Secrets are stored in an encrypted vault with hardware-backed key protection. No user ever sees a raw password — they authenticate through OmniPriv.",
+        text: "Secrets are stored in an encrypted vault with hardware-backed key protection. No user ever sees a raw password, they authenticate through OmniPriv.",
     },
     {
         icon: RotateCcw,
         eyebrow: "Rotate",
         title: "On your schedule, not ours",
-        text: "Policy-driven rotation with configurable recurrence, rotation period and daily start time — applied globally, or per platform and per policy.",
+        text: "Policy-driven rotation with configurable recurrence, rotation period and daily start time, applied globally, or per platform and per policy.",
     },
     {
         icon: Upload,
@@ -107,8 +107,8 @@ const driftSection = {
         alt: "Black and silver key resting on a laptop keyboard",
     },
     points: [
-        "Credential validation — stored secrets are actively tested against the live asset rather than assumed to be correct",
-        "De-sync resolution — a corrected password is pushed automatically the moment a mismatch is found",
+        "Credential validation, stored secrets are actively tested against the live asset rather than assumed to be correct",
+        "De-sync resolution, a corrected password is pushed automatically the moment a mismatch is found",
         "Scheduled reconciliation plans detect and repair out-of-sync or lost passwords without external utilities",
         "MFA required before an updated credential can be viewed",
         "Full password history, versioned and available to approved users for a configured retention period",
@@ -136,7 +136,7 @@ const keysPillars = [
     {
         icon: Layers,
         title: "Password groups",
-        text: "Where several accounts genuinely must share one value, they are grouped — an update propagates instantly to every linked account instead of being applied one at a time.",
+        text: "Where several accounts genuinely must share one value, they are grouped, an update propagates instantly to every linked account instead of being applied one at a time.",
     },
     {
         icon: Database,
@@ -189,7 +189,7 @@ const keepReading = [
 const closing = {
     title: "Put the secrets somewhere nobody can read them",
     body: [
-        "OmniPriv vaults, rotates, validates and reconciles every privileged credential — and hands out access instead of passwords.",
+        "OmniPriv vaults, rotates, validates and reconciles every privileged credential, and hands out access instead of passwords.",
         "We will walk through rotation policy, SSH key lifecycle and de-sync handling against your environment.",
     ],
     kicker: "Vaulted. Rotated. Never handed over.",
@@ -221,7 +221,7 @@ const faqs: FaqEntry[] = [
     {
         question: "What about accounts that genuinely have to share a password?",
         answer:
-            "Those are handled as password groups. When several accounts must hold the same value, grouping them means an update propagates instantly to every linked account instead of being applied one by one — which is where shared passwords usually fall out of step.",
+            "Those are handled as password groups. When several accounts must hold the same value, grouping them means an update propagates instantly to every linked account instead of being applied one by one, which is where shared passwords usually fall out of step.",
     },
 ];
 
@@ -242,27 +242,27 @@ export default function PasswordCredentialManagementPage() {
 
             {/* ─── THE LIFECYCLE ──────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Credential Lifecycle"
-                        title={lifecycleSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={lifecycleSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Credential Lifecycle"
+                    title={lifecycleSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={lifecycleSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={lifecycleCards} columns={4} className="mt-12" />
             </Section>
 
             {/* ─── DE-SYNC AND RECONCILIATION ─────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={driftSection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <driftSection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={driftSection.title}>
+                <MediaSplit
+                    media={driftSection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={driftSection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {driftSection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -272,7 +272,7 @@ export default function PasswordCredentialManagementPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={driftSection.points} className="mt-8" />
 
@@ -284,19 +284,13 @@ export default function PasswordCredentialManagementPage() {
 
             {/* ─── KEYS AND GROUPS (dark band) ────────────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Beyond Rotation" title={keysSection.title} className="mb-2">
-                        <Prose segments={keysSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Beyond Rotation" title={keysSection.title} className="mb-2">
+                    <Prose segments={keysSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {keysPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"
@@ -312,11 +306,9 @@ export default function PasswordCredentialManagementPage() {
 
             {/* ─── REACH ──────────────────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading badge="Reach" title={reachSection.title} className="mb-2">
-                        <Prose segments={reachSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading badge="Reach" title={reachSection.title} className="mb-2">
+                    <Prose segments={reachSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={reachCards} columns={3} className="mt-12" />
             </Section>

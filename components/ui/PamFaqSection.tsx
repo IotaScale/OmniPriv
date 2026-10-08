@@ -1,6 +1,7 @@
 "use client";
 
 import FaqAccordion from "@/components/sections/FaqAccordion";
+import { EdgeMotif } from "@/components/home/BgMotif";
 
 export interface FaqItem {
   question: string;
@@ -84,33 +85,29 @@ export default function PamFaqSection() {
   };
 
   return (
-    <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-50 dark:bg-[#050a14] relative">
+    <section className="op-sec bg-white dark:bg-[#0a1628] relative overflow-hidden">
+      {/* Shield and audit chain in the gutters either side of the content. */}
+      <EdgeMotif kind="shield" side="left" size={280} aspect={380 / 320} top="16%" />
+      <EdgeMotif kind="chainv" side="right" size={210} aspect={2.2} top="40%" />
+
       {/* Schema injection */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
 
-      <div className="container-xl max-w-4xl mx-auto">
+      <div className="container-xl max-w-4xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#00B8FF]/25 bg-[#00B8FF]/[0.08] mb-5">
-            <span className="text-[#00B8FF] text-xs font-semibold uppercase tracking-wider">
-              PAM KNOWLEDGE BASE
-            </span>
-          </div>
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight mb-4"
-            style={{ fontFamily: "var(--font-syne)" }}
-          >
+        <div className="text-center mb-10 lg:mb-12" data-aos="fade-up">
+          <h2 className="op-h2">
             Frequently Asked Questions About Privileged Access Management
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="op-lede mx-auto">
             Everything enterprise security and infrastructure leaders need to know about PAM architecture, policy governance, and session audit readiness.
           </p>
         </div>
 
-        {/* Accordion list — the shared component used by every page FAQ */}
+        {/* Accordion list, the shared component used by every page FAQ */}
         <div data-aos="fade-up" data-aos-delay="80">
           <FaqAccordion items={faqs} />
         </div>

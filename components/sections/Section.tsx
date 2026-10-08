@@ -3,8 +3,8 @@ import { sectionBorder } from "@/lib/styles";
 
 const tones = {
     default: "",
-    muted: "bg-slate-50 dark:bg-[#050a14]",
-    dark: "bg-[#050b16]",
+    muted: "bg-slate-50 op-band-muted",
+    dark: "op-band-navy",
 } as const;
 
 const borders = {
@@ -36,7 +36,7 @@ export interface SectionProps {
  * The band wrapper every marketing section sits in.
  *
  * Handles the three surface tones, the shared hairline border, section
- * padding and the `container-xl` wrapper — the four things every section on
+ * padding and the `container-xl` wrapper, the four things every section on
  * the site repeats.
  */
 export default function Section({

@@ -16,7 +16,7 @@ export default function AiPamTeaser() {
             <div
                 className="absolute -top-32 right-1/4 w-[620px] h-[380px] pointer-events-none opacity-60"
                 style={{
-                    background: "radial-gradient(ellipse, rgba(0,184,255,0.09) 0%, transparent 65%)",
+                    background: "radial-gradient(ellipse, rgba(0, 184, 219,0.09) 0%, transparent 65%)",
                 }}
             />
 
@@ -55,10 +55,10 @@ export default function AiPamTeaser() {
                         {stats.map((stat) => (
                             <div
                                 key={stat.label}
-                                className="p-5 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8FF]/35 hover:shadow-[0_0_14px_rgba(0,184,255,0.04)] transition-all duration-300"
+                                className="p-5 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:border-[#00B8DB]/35 hover:shadow-[0_0_14px_rgba(0, 184, 219,0.04)] transition-all duration-300"
                             >
                                 <div
-                                    className="text-3xl lg:text-4xl font-extrabold text-[#00B8FF] mb-1.5"
+                                    className="text-3xl lg:text-4xl font-extrabold text-[#00B8DB] mb-1.5"
                                     style={{ fontFamily: "var(--font-syne)" }}
                                 >
                                     {stat.value}

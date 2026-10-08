@@ -27,7 +27,7 @@ import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/workflow-access-control — the destination of
+ * Bespoke layout for /platform/workflow-access-control, the destination of
  * "Workflow & Access Control" in the platform dropdown.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -52,13 +52,13 @@ const hero = {
         "The 4-eyes principle is the floor here, not a feature. A minimum of two independent approvers is required before privileged access is granted, and no user can approve their own request.",
     ] as RichText,
     body: [
-        "From that starting point the workflow bends to how your organisation actually approves — multi-level chains, decisions made from a phone or an email link, and rules that change with the time of day — while privileged accounts are handed out with an expiry date attached.",
+        "From that starting point the workflow bends to how your organisation actually approves, multi-level chains, decisions made from a phone or an email link, and rules that change with the time of day, while privileged accounts are handed out with an expiry date attached.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform/audit-compliance", label: "See the Audit Trail" },
     image: {
-        src: "https://images.unsplash.com/photo-1646066490241-d386dbb63539?auto=format&fit=crop&w=1200&q=70",
-        alt: "Group of colleagues seated around a wooden table in a working session",
+        src: "/identities/human-identities.jpeg",
+        alt: "Approvers reviewing access requests for governed identities",
     },
 };
 
@@ -80,7 +80,7 @@ const approvalCards: IconCard[] = [
         icon: Smartphone,
         eyebrow: "Anywhere",
         title: "Approvals from mobile or email",
-        text: "Requests, approvals and credential retrieval all work from a mobile device. Approvers can act through the web GUI, a mobile client, or an email link directly — no login into the console required.",
+        text: "Requests, approvals and credential retrieval all work from a mobile device. Approvers can act through the web GUI, a mobile client, or an email link directly, no login into the console required.",
     },
     {
         icon: Layers,
@@ -98,7 +98,7 @@ const expirySection = {
             "Standing privilege is the thing most organisations regret. OmniPriv grants account authorisation for a defined timeframe and a specific target asset, which turns revocation from an administrative task into an automatic consequence.",
         ],
         [
-            "Because the entitlement is expressed as an ACL-based mapping rather than a note on a ticket, expiry is enforced in permissions — the account reverts to its standard restricted state the moment the window closes.",
+            "Because the entitlement is expressed as an ACL-based mapping rather than a note on a ticket, expiry is enforced in permissions, the account reverts to its standard restricted state the moment the window closes.",
         ],
     ] as RichText[],
     image: {
@@ -134,7 +134,7 @@ const applicationPillars = [
     {
         icon: Shield,
         title: "Applications are authenticated too",
-        text: "Every application that requests credentials is authenticated, and protected against unauthorised changes — so the credential cannot be intercepted by tampering with the caller.",
+        text: "Every application that requests credentials is authenticated, and protected against unauthorised changes, so the credential cannot be intercepted by tampering with the caller.",
     },
     {
         icon: Network,
@@ -175,7 +175,7 @@ const keepReading = [
 const closing = {
     title: "Put two approvers between the request and the credential",
     body: [
-        "Approved by two independent people, granted for a defined window, then reverted automatically — with application secrets rotated instead of hard-coded.",
+        "Approved by two independent people, granted for a defined window, then reverted automatically, with application secrets rotated instead of hard-coded.",
         "We will walk through the approval model and the temporary assignment rules against your environment.",
     ],
     kicker: "Approved by two. Granted for a window. Reverted on expiry.",
@@ -202,7 +202,7 @@ const faqs: FaqEntry[] = [
     {
         question: "How does temporary privileged account assignment revert?",
         answer:
-            "Authorisation is granted for a specific timeframe and a specific target asset, and the mapping is ACL-based. When the window expires the account automatically reverts to its standard restricted state — the revocation is enforced in permissions, so it does not depend on anyone remembering to remove it.",
+            "Authorisation is granted for a specific timeframe and a specific target asset, and the mapping is ACL-based. When the window expires the account automatically reverts to its standard restricted state, the revocation is enforced in permissions, so it does not depend on anyone remembering to remove it.",
     },
     {
         question: "How are application credentials removed from config files and services?",
@@ -228,27 +228,27 @@ export default function WorkflowAccessControlPage() {
 
             {/* ─── APPROVAL WORKFLOW ──────────────────────────────── */}
             <Section tone="muted" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Approval Workflow"
-                        title={approvalSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={approvalSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Approval Workflow"
+                    title={approvalSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={approvalSection.lead} />
+                </SectionHeading>
 
                 <IconCardGrid items={approvalCards} columns={3} className="mt-12" />
             </Section>
 
             {/* ─── TEMPORARY ASSIGNMENT ───────────────────────────── */}
             <Section border="bottom">
-                <MediaSplit media={expirySection.image} ratio="wide-last" height="sm" align="start">
-                    <div className="icon-wrapper mb-5">
-                        <expirySection.icon className="w-5 h-5" />
-                    </div>
-
-                    <SectionHeading title={expirySection.title}>
+                <MediaSplit
+                    media={expirySection.image}
+                    ratio="wide-last"
+                    height="sm"
+                    align="start"
+                    heading={<SectionHeading title={expirySection.title} />}
+                >
+                    <div className="op-hero-copy">
                         {expirySection.paragraphs.map((paragraph, index) => (
                             <Prose
                                 key={index}
@@ -258,7 +258,7 @@ export default function WorkflowAccessControlPage() {
                                 }
                             />
                         ))}
-                    </SectionHeading>
+                    </div>
 
                     <CheckList items={expirySection.points} className="mt-8" />
 
@@ -270,23 +270,17 @@ export default function WorkflowAccessControlPage() {
 
             {/* ─── APPLICATION CREDENTIALS (dark band) ────────────── */}
             <Section tone="dark" border="bottom">
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        badge="Application Credentials"
-                        title={applicationSection.title}
-                        className="mb-2"
-                    >
-                        <Prose segments={applicationSection.lead} />
-                    </SectionHeading>
-                </div>
+                <SectionHeading
+                    badge="Application Credentials"
+                    title={applicationSection.title}
+                    className="mb-2"
+                >
+                    <Prose segments={applicationSection.lead} />
+                </SectionHeading>
 
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
                     {applicationPillars.map((pillar) => (
                         <div key={pillar.title}>
-                            <div className="icon-wrapper mb-5">
-                                <pillar.icon className="w-5 h-5" />
-                            </div>
-
                             <SectionHeading
                                 as="h3"
                                 size="sm"

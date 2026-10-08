@@ -5,6 +5,9 @@ import {
   Building2, Globe, Server, BarChart3, Headphones, Award, Star, Lock,
 } from "lucide-react";
 
+import IconCardGrid from "@/components/sections/IconCardGrid";
+import SplitHero from "@/components/sections/SplitHero";
+
 export const metadata: Metadata = {
   title: "Enterprise Plans: Pricing & Features",
   description:
@@ -95,7 +98,7 @@ const enterpriseFeatures = [
     icon: Shield,
     title: "Enterprise-Grade Security",
     description:
-      "Independently audited against SOC 2 and ISO 27001, and built with AI-native architecture. OmniPriv meets the strictest enterprise security requirements.",
+      "Controls mapped to SOC 2 and ISO 27001, and built with AI-native architecture. OmniPriv meets the strictest enterprise security requirements.",
   },
   {
     icon: Globe,
@@ -152,99 +155,80 @@ const testimonials = [
 export default function EnterprisePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#030711]" />
-        <div className="container-xl relative z-10 text-center" data-aos="fade-up">
-          <div className="badge-cyan mb-6 inline-flex mx-auto">Enterprise Plans</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white mb-6 max-w-4xl mx-auto" style={{ fontFamily: "var(--font-syne)" }}>
-            Secure Your Enterprise with <span className="text-gradient">OmniPriv</span>
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">
-            OmniPriv is a premium, enterprise-grade PAM solution. All plans include our complete security platform; pricing is tailored to your organization's size, deployment requirements, and support needs.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/demo" className="btn-primary text-base px-8 py-3.5">
-              Talk to Sales <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link href="/demo" className="btn-secondary text-base px-8 py-3.5">
-              Contact Sales
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        titleLead="Secure Your Enterprise with"
+        titleAccent="OmniPriv"
+        primary={{ href: "/demo", label: "Talk to Sales" }}
+        secondary={{ href: "/demo", label: "Contact Sales" }}
+        media={{
+          src: "/product/dashboard.png",
+          alt: "OmniPriv dashboard showing privileged access activity",
+          fit: "contain",
+        }}
+      >
+        <p>
+          OmniPriv is a premium, enterprise-grade PAM solution. All plans include our complete security platform; pricing is tailored to your organization&apos;s size, deployment requirements, and support needs.
+        </p>
+      </SplitHero>
 
       {/* Plans */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              Plans for Every Scale
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">
+          <div className="section-heading" data-aos="fade-up">
+            <h2 className="op-h2">Plans for Every Scale</h2>
+            <p className="op-lede">
               Each plan is a fully commercial, enterprise-grade offering. Contact our sales team for custom pricing.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="80">
+          <div className="op-body grid sm:grid-cols-2 xl:grid-cols-4 gap-5" data-aos="fade-up">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 ${plan.highlight
-                    ? "border-[#00B8FF]/40 bg-gradient-to-b from-[#00B8FF]/[0.08] to-slate-100/80 dark:to-[#0A1628]/80 shadow-[0_0_18px_rgba(0,184,255,0.07)]"
-                    : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100/60 dark:bg-[#0A1628]/60"
+                className={`flex flex-col rounded-2xl border bg-white dark:bg-[#0F2140] transition-colors hover:border-[#00B8DB]/45 ${plan.highlight
+                  ? "border-[#00B8DB]/45"
+                  : "border-slate-900/[0.08] dark:border-white/[0.08]"
                   }`}
               >
-                {plan.badge && (
-                  <div className="absolute top-4 right-4 badge-cyan text-[10px]">
-                    {plan.badge}
+                <div className="p-6 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <h3 className="op-h3">{plan.name}</h3>
+                    {plan.badge && <span className="badge-cyan text-[10px]">{plan.badge}</span>}
                   </div>
-                )}
-                <div className="p-7 border-b border-slate-900/[0.08] dark:border-white/[0.06]">
-                  <h3 className="text-2xl font-extrabold text-slate-950 dark:text-white mb-1" style={{ fontFamily: "var(--font-syne)" }}>
-                    {plan.name}
-                  </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">{plan.description}</p>
-                  <div className="space-y-2 text-xs">
-                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                      <Users className="w-3.5 h-3.5 text-[#00B8FF]" />
+                  <p className="op-card-text">{plan.description}</p>
+                  <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0" aria-hidden="true" />
                       {plan.seats}
-                    </div>
-                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                      <Server className="w-3.5 h-3.5 text-[#00B8FF]" />
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Server className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0" aria-hidden="true" />
                       {plan.assets}
-                    </div>
-                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                      <Zap className="w-3.5 h-3.5 text-[#00B8FF]" />
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0" aria-hidden="true" />
                       HA: {plan.ha}
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                   <div className="mt-5">
-                    <div className="text-sm font-semibold text-[#00B8FF] mb-1">Custom Pricing</div>
-                    <p className="text-xs text-slate-500">Contact us for a quote tailored to your needs.</p>
+                    <div className="text-sm font-semibold text-[#0a1628] dark:text-white">Custom Pricing</div>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Contact us for a quote tailored to your needs.</p>
                   </div>
                 </div>
 
-                <div className="p-7 flex-1">
+                <div className="p-6 flex-1">
                   <ul className="space-y-3">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-[#00B8FF] flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0 mt-0.5" aria-hidden="true" />
                         <span className="text-sm text-slate-700 dark:text-slate-300">{f}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-7 border-t border-slate-900/[0.08] dark:border-white/[0.06]">
-                  <Link
-                    href="/demo"
-                    className={`block text-center py-3 rounded-xl font-semibold text-sm transition-all ${plan.highlight
-                        ? "btn-primary w-full"
-                        : "btn-secondary w-full"
-                      }`}
-                  >
+                <div className="p-6 pt-0">
+                  <Link href="/demo" className={`${plan.highlight ? "btn-primary" : "btn-secondary"} w-full`}>
                     {plan.name === "Enterprise" ? "Contact Sales" : "Request a Demo"}
                   </Link>
                 </div>
@@ -252,54 +236,46 @@ export default function EnterprisePage() {
             ))}
           </div>
 
-          <p className="text-center text-sm text-slate-500 mt-6">
+          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
             All prices are quoted annually. Multi-year discounts available.{" "}
-            <Link href="/demo" className="text-[#00B8FF] hover:underline">Contact sales</Link> for volume licensing.
+            <Link href="/demo" className="op-link font-semibold">Contact sales</Link> for volume licensing.
           </p>
         </div>
       </section>
 
       {/* Enterprise features */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding bg-slate-50 op-band-muted">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
-            <div className="badge-cyan mb-5">Enterprise Platform</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              Built for Enterprise <span className="text-gradient">Scale & Complexity</span>
+          <div className="section-heading" data-aos="fade-up">
+            <h2 className="op-h2">
+              Built for Enterprise <span className="text-gradient">Scale &amp; Complexity</span>
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="80">
-            {enterpriseFeatures.map((f) => (
-              <div key={f.title} className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all card-shine">
-                <div className="icon-wrapper mb-5">
-                  <f.icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-2" style={{ fontFamily: "var(--font-syne)" }}>{f.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{f.description}</p>
-              </div>
-            ))}
-          </div>
+          <IconCardGrid
+            columns={3}
+            className="op-body"
+            items={enterpriseFeatures.map((f) => ({ icon: f.icon, title: f.title, text: f.description }))}
+          />
         </div>
       </section>
 
       {/* SLA */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+      <section className="section-padding">
         <div className="container-xl">
-          <div className="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
-            <div className="badge-cyan mb-5">Service Level Agreement</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-              Enterprise SLA Commitments
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+          <div className="section-heading" data-aos="fade-up">
+            <h2 className="op-h2">Enterprise SLA Commitments</h2>
+            <p className="op-lede">
               We stand behind our platform with contractual commitments on availability, support response, and service quality.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="80">
+          <div className="op-body grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up">
             {slaHighlights.map((s) => (
-              <div key={s.metric} className="text-center p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8FF]/20 transition-all">
-                <div className="stat-number mb-2">{s.metric}</div>
-                <div className="text-slate-950 dark:text-white font-semibold text-sm mb-2" style={{ fontFamily: "var(--font-syne)" }}>{s.label}</div>
-                <p className="text-xs text-slate-600 dark:text-slate-400">{s.desc}</p>
+              <div key={s.metric} className="rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] p-6 hover:border-[#00B8DB]/45 transition-colors">
+                <div className="font-display text-[2rem] font-bold leading-none tracking-[-0.03em] text-[#00667A] dark:text-[#00B8DB]">
+                  {s.metric}
+                </div>
+                <h3 className="op-card-title mt-4 mb-2">{s.label}</h3>
+                <p className="op-card-text">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -307,66 +283,68 @@ export default function EnterprisePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-slate-100/30 dark:bg-[#0A1628]/30">
+      <section className="section-padding bg-slate-50 op-band-muted">
         <div className="container-xl">
-          <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white mb-10 text-center" style={{ fontFamily: "var(--font-syne)" }} data-aos="fade-up">
-            What Enterprise Customers Say
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="80">
+          <div className="section-heading" data-aos="fade-up">
+            <h2 className="op-h2">What Enterprise Customers Say</h2>
+          </div>
+          <div className="op-body grid md:grid-cols-2 gap-5" data-aos="fade-up">
             {testimonials.map((t) => (
-              <div key={t.author} className="relative p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60">
-                <span className="quote-mark">"</span>
-                <div className="flex items-center gap-0.5 mb-4 mt-4">
+              <figure key={t.author} className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] p-6 sm:p-8">
+                <div className="flex items-center gap-0.5 mb-4" aria-label={`${t.rating} out of 5`}>
                   {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" aria-hidden="true" />
                   ))}
                 </div>
-                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4 italic">"{t.quote}"</p>
-                <div className="text-sm font-medium text-slate-600 dark:text-slate-400 border-t border-slate-900/[0.06] dark:border-white/[0.05] pt-4">{t.author}</div>
-              </div>
+                <blockquote className="flex-1 text-base leading-[1.7] text-[#0a1628] dark:text-slate-200">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6 pt-4 border-t border-slate-900/[0.06] dark:border-white/[0.06] text-sm font-medium text-slate-600 dark:text-slate-400">
+                  {t.author}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact CTA */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="relative rounded-3xl overflow-hidden border border-[#00B8FF]/15 p-10 md:p-14" data-aos="fade-up">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#030711]" />
-            <div className="absolute inset-0 bg-grid opacity-20" />
-            <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+      <div className="dark">
+        <section className="op-band-navy section-padding">
+          <div className="container-xl">
+            <h2 className="op-h2 op-h2-lg mb-8" data-aos="fade-up">Let&apos;s Build the Right Plan for Your Organization</h2>
+
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-                  Let's Build the Right Plan for Your Organization
-                </h2>
-                <p className="text-slate-600 dark:text-slate-400 text-lg mb-6">
+                <p className="op-lede">
                   Our enterprise sales team will analyze your environment, identify the right plan, and provide a custom quote with no obligation.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/demo" className="btn-primary">
-                    Schedule a Call <ArrowRight className="w-4 h-4" />
+                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                  <Link href="/demo" className="btn-primary w-full sm:w-auto">
+                    Schedule a Call
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
-
                 </div>
               </div>
-              <div className="space-y-4">
+              <ul className="space-y-3">
                 {[
                   { icon: Clock, text: "30-minute exploratory call with a PAM expert" },
                   { icon: Lock, text: "Custom architecture review for your environment" },
                   { icon: Award, text: "Proof-of-concept deployment at no cost" },
                   { icon: BarChart3, text: "ROI analysis and compliance gap report" },
                 ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-3 p-4 rounded-xl border border-slate-900/[0.06] dark:border-white/[0.05] bg-slate-900/[0.02] dark:bg-white/[0.02]">
-                    <Icon className="w-5 h-5 text-[#00B8FF] flex-shrink-0" />
-                    <span className="text-sm text-slate-700 dark:text-slate-300">{text}</span>
-                  </div>
+                  <li key={text} className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-[#0F2140] p-4">
+                    <div className="icon-wrapper flex-shrink-0">
+                      <Icon className="w-5 h-5" aria-hidden="true" />
+                    </div>
+                    <span className="text-[0.9375rem] text-slate-200">{text}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

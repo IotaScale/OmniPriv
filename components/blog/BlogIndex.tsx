@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
  * apart. Two bugs followed:
  *
  *   1. The chip was labelled "Case Studies" but every post's category is
- *      "Case Study", so selecting it filtered to nothing — an empty grid.
+ *      "Case Study", so selecting it filtered to nothing, an empty grid.
  *   2. "PAM Solutions", "Enterprise Security" and "Security Advisory" (six
  *      posts) had no chip at all and were only reachable under "All".
  *
@@ -66,7 +66,7 @@ function getTagColor(category: string) {
         "Product Updates": "bg-purple-500/10 text-purple-500 dark:text-purple-400 border-purple-500/20",
         "Compliance": "bg-orange-500/10 text-orange-500 dark:text-orange-400 border-orange-500/20",
         "DevSecOps": "bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border-cyan-500/20",
-        "PAM Solutions": "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20",
+        "PAM Solutions": "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20",
         "Enterprise Security": "bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 border-indigo-500/20",
         "Security Advisory": "bg-rose-500/10 text-rose-500 dark:text-rose-400 border-rose-500/20",
     };
@@ -89,7 +89,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
             {/* ─── FILTER BAR ─────────────────────────────────────── */}
             <section
                 className={cn(
-                    "sticky top-[72px] z-30 py-5 border-b backdrop-blur-xl bg-white/95 dark:bg-[#030711]/95",
+                    "sticky top-[72px] z-30 py-5 border-b backdrop-blur-xl bg-white/95 dark:bg-[#0A1628]/95",
                     sectionBorder,
                 )}
             >
@@ -106,8 +106,8 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                             className={cn(
                                 "flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border",
                                 activeCategory === "All"
-                                    ? "bg-[#00B8FF]/15 border-[#00B8FF]/30 text-[#00B8FF]"
-                                    : "bg-transparent border-slate-900/[0.08] dark:border-white/[0.06] text-slate-600 dark:text-slate-400 hover:border-[#00B8FF]/20 hover:text-slate-950 dark:hover:text-white",
+                                    ? "bg-[#00B8DB]/15 border-[#00B8DB]/30 text-[#00667A] dark:text-[#00B8DB]"
+                                    : "bg-transparent border-slate-900/[0.08] dark:border-white/[0.06] text-slate-600 dark:text-slate-400 hover:border-[#00B8DB]/20 hover:text-slate-950 dark:hover:text-white",
                             )}
                         >
                             All
@@ -122,8 +122,8 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                                 className={cn(
                                     "flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border",
                                     activeCategory === category.value
-                                        ? "bg-[#00B8FF]/15 border-[#00B8FF]/30 text-[#00B8FF]"
-                                        : "bg-transparent border-slate-900/[0.08] dark:border-white/[0.06] text-slate-600 dark:text-slate-400 hover:border-[#00B8FF]/20 hover:text-slate-950 dark:hover:text-white",
+                                        ? "bg-[#00B8DB]/15 border-[#00B8DB]/30 text-[#00667A] dark:text-[#00B8DB]"
+                                        : "bg-transparent border-slate-900/[0.08] dark:border-white/[0.06] text-slate-600 dark:text-slate-400 hover:border-[#00B8DB]/20 hover:text-slate-950 dark:hover:text-white",
                                 )}
                             >
                                 {category.label}
@@ -139,7 +139,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                 <Link
                     href={featured.href}
                     className={cn(
-                        "group block relative rounded-2xl border overflow-hidden transition-all duration-300 card-shine hover:border-[#00B8FF]/40",
+                        "group block relative rounded-2xl border overflow-hidden transition-all duration-300 card-shine hover:border-[#00B8DB]/40",
                         cardBorder,
                         cardSurface,
                     )}
@@ -148,7 +148,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                     <div
                         className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10 pointer-events-none z-10"
                         style={{
-                            background: "radial-gradient(circle, #00B8FF 0%, transparent 60%)",
+                            background: "radial-gradient(circle, #00B8DB 0%, transparent 60%)",
                         }}
                         aria-hidden="true"
                     />
@@ -169,7 +169,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                                 </span>
                             </div>
 
-                            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-4 leading-tight group-hover:text-[#00B8FF] transition-colors max-w-3xl">
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 dark:text-white mb-4 leading-tight group-hover:text-[#00B8DB] transition-colors max-w-3xl">
                                 {featured.title}
                             </h2>
 
@@ -187,7 +187,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
 
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8FF]/40 to-[#0060FF]/40 flex items-center justify-center text-slate-950 dark:text-white text-sm font-bold">
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00B8DB]/40 to-[#00667A]/40 flex items-center justify-center text-slate-950 dark:text-white text-sm font-bold">
                                         {featured.author.charAt(0)}
                                     </div>
                                     <div>
@@ -209,7 +209,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                                         <Clock className="w-3 h-3" aria-hidden="true" />
                                         {featured.readTime}
                                     </span>
-                                    <span className="text-[#00B8FF] font-semibold flex items-center gap-1">
+                                    <span className="text-[#00667A] dark:text-[#00B8DB] font-semibold flex items-center gap-1">
                                         Read Article
                                         <ChevronRight className="w-3 h-3" aria-hidden="true" />
                                     </span>
@@ -250,7 +250,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                                     key={post.href}
                                     href={post.href}
                                     className={cn(
-                                        "group flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 card-shine hover:border-[#00B8FF]/40 hover:-translate-y-1",
+                                        "group flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 card-shine hover:border-[#00B8DB]/40",
                                         cardBorder,
                                         cardSurface,
                                     )}
@@ -279,7 +279,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                                             </span>
                                         </div>
 
-                                        <h3 className="text-base font-bold text-slate-950 dark:text-white mb-3 group-hover:text-[#00B8FF] transition-colors line-clamp-2">
+                                        <h3 className="text-base font-bold text-slate-950 dark:text-white mb-3 group-hover:text-[#00B8DB] transition-colors line-clamp-2">
                                             {post.title}
                                         </h3>
 
@@ -297,7 +297,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
 
                                         <div className="flex items-center justify-between border-t border-slate-900/[0.06] dark:border-white/[0.05] pt-4 mt-auto">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00B8FF]/30 to-[#0060FF]/30 flex items-center justify-center text-slate-950 dark:text-white text-xs font-bold">
+                                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00B8DB]/30 to-[#00667A]/30 flex items-center justify-center text-slate-950 dark:text-white text-xs font-bold">
                                                     {post.author.charAt(0)}
                                                 </div>
                                                 <div>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-/* Rotating hero backgrounds — a consistent set of clean, bright AI-agent
+/* Rotating hero backgrounds, a consistent set of clean, bright AI-agent
    imagery, all served through Next's image optimiser. */
 const slides = [
     {

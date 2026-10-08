@@ -27,7 +27,7 @@ export const meta = {
 
 export const hero = {
     intro: [
-        "AI agents and automated workflows are becoming active participants in enterprise environments—interacting with applications, databases, cloud infrastructure and privileged resources.",
+        "AI agents and automated workflows are becoming active participants in enterprise environments, interacting with applications, databases, cloud infrastructure and privileged resources.",
     ] as RichText,
     body: [
         "That creates a new access challenge: how do you give AI-enabled systems enough privilege to perform approved tasks without creating permanent or uncontrolled access? OmniPriv strengthens AI agent security with Privileged Access Management controls built around least privilege, Just-in-Time access, credential protection, session visibility and intelligent threat detection.",
@@ -87,8 +87,8 @@ export const jitSection = {
         "This approach helps reduce persistent privilege while supporting automation.",
     ] as RichText,
     image: {
-        src: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=70",
-        alt: "Automated workflow requesting temporary privileged access under a just-in-time policy",
+        src: "/challenges/secure-ai-agents.jpeg",
+        alt: "An AI agent allowed through approved paths while out-of-policy requests are blocked",
     },
 };
 
@@ -103,7 +103,7 @@ export const credentialsSection = {
     icon: KeyRound,
     title: "Keep Privileged Credentials Away from Unnecessary Exposure",
     lead: [
-        "AI systems and automation may need to interact with databases, APIs, servers or cloud services—but that does not mean privileged passwords, SSH keys or API tokens should be embedded directly in workflows.",
+        "AI systems and automation may need to interact with databases, APIs, servers or cloud services, but that does not mean privileged passwords, SSH keys or API tokens should be embedded directly in workflows.",
     ] as RichText,
     body: [
         "OmniPriv provides automated credential lifecycle management, including password rotation, SSH key management, credential validation and secure vaulting. Its integrations also support service accounts, workload identities, dynamic secrets and short-lived tokens across cloud and DevOps environments.",
@@ -254,7 +254,7 @@ export const finalSection = {
 export const closing = {
     title: "Secure Privileged Access for the Agentic AI Era",
     body: [
-        "Control who—or what—can reach critical systems, limit privilege to approved tasks and maintain visibility over sensitive activity with OmniPriv.",
+        "Control who, or what, can reach critical systems, limit privilege to approved tasks and maintain visibility over sensitive activity with OmniPriv.",
     ],
     primary: { href: "/demo", label: "Request a Technical Demo" },
 };
