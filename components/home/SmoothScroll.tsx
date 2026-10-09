@@ -110,23 +110,26 @@ export default function SmoothScroll() {
       const tol = 6;
       const first = pos[0];
       const last = pos[pos.length - 1];
-      const reach = window.innerHeight * 0.35;
+      /* Entering the zone: no magnetic pull. The page scrolls normally and
+         simply comes to rest on the first (or, from below, the last) step
+         when this movement would have passed it. Pulling the page in early
+         made a fast jump that read as a blink. */
       if (sign > 0) {
-        if (base < first - tol) return base + dy >= first - reach ? first : null;
+        if (base < first - tol) return base + dy >= first ? first : null;
         if (base < last - tol) return pos.find((p) => p > base + tol) ?? null;
         return null;
       }
-      if (base > last + tol) return base + dy <= last + reach ? last : null;
+      if (base > last + tol) return base + dy <= last ? last : null;
       if (base > first + tol) return [...pos].reverse().find((p) => p < base - tol) ?? null;
       return null;
     };
 
     const inZone = (pos: number[], base: number) => base >= pos[0] - 6 && base <= pos[pos.length - 1] + 6;
 
-    const takeStep = (y: number) => {
+    const takeStep = (y: number, k = STEP_EASE) => {
       lastStepAt = performance.now();
       consumed = gesture;
-      glide(y, STEP_EASE);
+      glide(y, k);
     };
 
     /* True if the wheel should scroll an inner box rather than the page. */
@@ -190,6 +193,9 @@ export default function SmoothScroll() {
         } else {
           const y = stepTarget(pos, base, sign, dy);
           if (y !== null) {
+            // Arriving at the zone from outside keeps the page's own pace.
+            const arriving = !inZone(pos, base);
+            if (arriving) return takeStep(y, EASE);
             const wait = STEP_MIN_MS - (now - lastStepAt);
             if (wait <= 0) return takeStep(y);
             // Too soon after the last slide: queue this flick, do not drop it.

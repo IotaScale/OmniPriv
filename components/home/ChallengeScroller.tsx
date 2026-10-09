@@ -82,10 +82,17 @@ const GAPS = [
 const STEP_VH = 55;
 
 /* Slides change with a short crossfade: no rotation, no travel. */
+/*
+ * Scene change: the new scene fades in ON TOP of the old one, which stays
+ * fully opaque underneath until the new one has covered it. Fading both at
+ * once let the white page show through mid-crossfade, which read as a blink.
+ */
 const fade: Variants = {
-  enter: { opacity: 0 },
-  center: { opacity: 1 },
-  exit: { opacity: 0 },
+  enter: { opacity: 0, zIndex: 2 },
+  center: { opacity: 1, zIndex: 2 },
+  /* 1 -> 0.99, not 1 -> 1: an exit with nothing to animate finishes at once
+     and the old scene would vanish before the new one has covered it. */
+  exit: { opacity: 0.99, zIndex: 1, transition: { duration: 0.32 } },
 };
 
 export default function ChallengeScroller() {
@@ -102,7 +109,6 @@ export default function ChallengeScroller() {
   const zoneRef = useRef<HTMLDivElement>(null);
   /* Scenes play their story on arrival, so hold the first one until it is on screen. */
   const sceneRef = useRef<HTMLDivElement>(null);
-  const sceneSeen = useInView(sceneRef, { once: true, amount: 0.5 });
   useEffect(() => {
     let raf = 0;
     let lastY = window.scrollY;
@@ -286,20 +292,20 @@ export default function ChallengeScroller() {
                       <ChallengeVisual index={active} />
                     </div>
                   ) : (
-                    <AnimatePresence>
-                      {sceneSeen && (
-                        <motion.div
-                          key={active}
-                          variants={fade}
-                          initial="enter"
-                          animate="center"
-                          exit="exit"
-                          transition={{ duration: 0.28, ease: "easeOut" }}
-                          className="absolute inset-0"
-                        >
-                          <ChallengeVisual index={active} />
-                        </motion.div>
-                      )}
+                    /* The first scene is there from the start (no empty box
+                       while it fades in); later scenes cross over it. */
+                    <AnimatePresence initial={false}>
+                      <motion.div
+                        key={active}
+                        variants={fade}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.28, ease: "easeOut" }}
+                        className="absolute inset-0"
+                      >
+                        <ChallengeVisual index={active} />
+                      </motion.div>
                     </AnimatePresence>
                   )}
                 </div>

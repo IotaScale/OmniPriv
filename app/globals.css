@@ -3520,10 +3520,33 @@ h1, h2, h3, h4, h5, h6 {
 .ins-media {
   overflow: hidden;
   background: #0a1628;
+  container-type: size;
 }
 
 .ins-img {
   transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Whole artwork in its own shape, centred, edges feathered (InsightImage). */
+.ins-img-frame {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(100cqw, 100cqh * var(--r));
+  height: min(100cqh, 100cqw / var(--r));
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+    linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+    linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  mask-composite: intersect;
+}
+
+/* Blurred fill behind the whole artwork. */
+.ins-img-bg {
+  filter: blur(18px) saturate(1.15);
+  transform: scale(1.25);
+  opacity: 0.9;
 }
 
 .ins-cat {

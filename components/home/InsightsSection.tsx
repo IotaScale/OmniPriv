@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Clock } from "lucide-react";
 
 import { EdgeMotif } from "./BgMotif";
+import InsightImage from "./InsightImage";
 
 export interface InsightPost {
   category: string;
@@ -64,14 +64,14 @@ export default function InsightsSection({ posts }: { posts: InsightPost[] }) {
               href={p.href}
               className="ins-card group grid sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:flex lg:flex-col"
             >
-              <div className="ins-media relative aspect-[2/1] sm:aspect-auto sm:min-h-[11.25rem] lg:aspect-[2/1] lg:min-h-0">
-                <Image
+              {/*
+                The artwork is shown whole, never cropped (see InsightImage).
+              */}
+              <div className="ins-media relative aspect-[21/9] sm:aspect-auto sm:min-h-[11.25rem] lg:aspect-[21/9] lg:min-h-0">
+                <InsightImage
                   src={p.image}
                   alt={p.imageAlt ?? ""}
-                  fill
-                  priority={false}
                   sizes="(min-width: 1024px) 31vw, (min-width: 640px) 40vw, 100vw"
-                  className="ins-img object-cover"
                 />
               </div>
               <div className="flex flex-col flex-1 p-5 lg:p-6">
