@@ -55,7 +55,7 @@ const platformLinks = [
   { label: "Workflow & Access Control", description: "Approvals, JIT, policies", href: "/platform/workflow-access-control", icon: Globe },
   { label: "Application Security", description: "MFA, encryption, session control", href: "/platform/application-security", icon: Shield },
   { label: "AI Threat Protection", description: "ML detection and auto-block", href: "/platform/ai-threat-protection", icon: AlertTriangle },
-  { label: "Audit & Compliance", description: "Recordings, reports, evidence", href: "/platform/audit-compliance", icon: BarChart3 },
+  { label: "Audit & Compliance", description: "Recordings, reports, evidence", href: "/privileged-access-audit-compliance", icon: BarChart3 },
   { label: "Enterprise Integration", description: "SIEM, LDAP/AD, ticketing", href: "/platform/enterprise-integration", icon: Building2 },
   { label: "Infrastructure & Deployment", description: "On-premise, HA, clustered", href: "/platform/infrastructure-deployment", icon: Lock },
 ];

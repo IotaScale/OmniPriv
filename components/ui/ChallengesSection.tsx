@@ -71,7 +71,7 @@ const challenges: Challenge[] = [
         headline: "Audit, Governance & Compliance",
         body: "Simplify privileged access audits with centralized activity logs, policy controls, session records, and compliance-ready reporting across critical systems.",
         caption: "SOC 2 · ISO 27001",
-        href: "/platform/audit-compliance",
+        href: "/privileged-access-audit-compliance",
         icon: ScrollText,
         accent: "#34d399",
         image: "/challenges/audit-governance-compliance.jpeg",

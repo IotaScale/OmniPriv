@@ -107,7 +107,7 @@ const patterns: IconCard[] = [
         eyebrow: "Pattern 04",
         title: "Logs you cannot vouch for",
         text: "The events exist, but they sit in storage an administrator can edit, so in an investigation or an audit they prove nothing about what happened.",
-        href: "/platform/audit-compliance",
+        href: "/privileged-access-audit-compliance",
     },
     {
         icon: Eye,
@@ -275,7 +275,7 @@ export default function CaseStudiesPage() {
 
                     <CheckList items={reviewSection.points} className="mt-8" />
 
-                    <ArrowLink href="/platform/audit-compliance" className="mt-8">
+                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
                         See how the evidence is recorded
                     </ArrowLink>
                 </MediaSplit>

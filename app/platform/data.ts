@@ -16,6 +16,8 @@ export interface SolutionFeature {
 
 export interface Solution {
     slug: string;
+    /** Public URL when the page lives outside /platform/[slug]. */
+    path?: string;
     title: string;
     tagline: string;
     description: string;
@@ -239,13 +241,14 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
     // ─── 7. Audit, Governance & Compliance ────────────────────────
     {
         slug: "audit-compliance",
+        path: "/privileged-access-audit-compliance",
         title: "Audit, Governance & Compliance",
         tagline: "Complete privileged account accountability for regulatory and internal requirements",
         description:
             "Simplify privileged access audits with centralized activity logs, policy controls, session records, and compliance-ready reporting across critical systems.",
-        metaTitle: "Audit, Governance & Compliance | OmniPriv",
+        metaTitle: "Privileged Access Audit & Compliance | OmniPriv",
         metaDescription:
-            "Simplify privileged access audits with centralized activity logs, policy controls, session records, and compliance-ready reporting across critical systems.",
+            "Simplify privileged access management audits with OmniPriv. Monitor privileged sessions, strengthen governance, and automate security compliance reports.",
         icon: BarChart3,
         features: [
             { name: "Full Privileged Account Accountability", description: "Complete, tamper-proof audit trail of all privileged account usage; every action logged with user, time, asset, and outcome", icon: Shield },
@@ -277,6 +280,11 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         ],
     },
 ];
+
+/** Public URL of a platform module page. */
+export function solutionHref(solution: Pick<Solution, "slug" | "path">): string {
+    return solution.path ?? `/platform/${solution.slug}`;
+}
 
 export function getSolutionBySlug(slug: string): Solution | undefined {
     return solutions.find((s) => s.slug === slug);

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog-data";
-import { solutions } from "@/app/platform/data";
+import { solutions, solutionHref } from "@/app/platform/data";
 import { solutions as solutionRegistry } from "@/app/solutions/data";
 
 const BASE_URL = "https://omnipriv.com";
@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // ── Platform solution pages (auto-derived from data.ts) ─
   const platformPages: MetadataRoute.Sitemap = solutions.map((s) => ({
-    url: `${BASE_URL}/platform/${s.slug}`,
+    url: `${BASE_URL}${solutionHref(s)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,

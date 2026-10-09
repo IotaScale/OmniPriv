@@ -183,7 +183,7 @@ const stats = [
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/platform/workflow-access-control", label: "Application credential management" },
-    { href: "/platform/audit-compliance", label: "Proving credential hygiene" },
+    { href: "/privileged-access-audit-compliance", label: "Proving credential hygiene" },
 ];
 
 const closing = {
@@ -276,7 +276,7 @@ export default function PasswordCredentialManagementPage() {
 
                     <CheckList items={driftSection.points} className="mt-8" />
 
-                    <ArrowLink href="/platform/audit-compliance" className="mt-8">
+                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
                         See how this becomes audit evidence
                     </ArrowLink>
                 </MediaSplit>

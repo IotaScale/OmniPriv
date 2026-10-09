@@ -22,7 +22,7 @@ import Prose from "@/components/sections/Prose";
 import Section from "@/components/sections/Section";
 import SectionHeading from "@/components/sections/SectionHeading";
 import SplitHero from "@/components/sections/SplitHero";
-import { complianceStandards, solutions } from "@/app/platform/data";
+import { complianceStandards, solutions, solutionHref } from "@/app/platform/data";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
@@ -78,7 +78,7 @@ const moduleCards: IconCard[] = solutions.map((solution, index) => ({
     eyebrow: String(index + 1).padStart(2, "0"),
     title: solution.title,
     text: solution.tagline,
-    href: `/platform/${solution.slug}`,
+    href: solutionHref(solution),
 }));
 
 const buildSection = {

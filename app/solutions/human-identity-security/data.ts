@@ -182,7 +182,7 @@ export const governanceSection = {
     ] as RichText,
     note: [
         "Together, these controls help organizations manage privileged user access across cloud, on-premises, and hybrid infrastructure from a unified PAM platform, supported by ",
-        { text: "audit and compliance reporting", href: "https://omnipriv.com/platform/audit-compliance" },
+        { text: "audit and compliance reporting", href: "https://omnipriv.com/privileged-access-audit-compliance" },
         ".",
     ] as RichText,
 };

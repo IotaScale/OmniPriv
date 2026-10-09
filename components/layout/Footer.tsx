@@ -11,7 +11,7 @@ const productLinks = [
   { label: "Application Security", href: "/platform/application-security" },
   { label: "Secure Remote Access", href: "/platform/secure-remote-access" },
   { label: "Enterprise Integration", href: "/platform/enterprise-integration" },
-  { label: "Compliance & Audit", href: "/platform/audit-compliance" },
+  { label: "Compliance & Audit", href: "/privileged-access-audit-compliance" },
   { label: "AI Threat Protection", href: "/platform/ai-threat-protection" },
 ];
 

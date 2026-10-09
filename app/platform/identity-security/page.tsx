@@ -152,7 +152,7 @@ const riskAreas: IconCard[] = [
         icon: BarChart3,
         title: "Accountability & audit",
         text: "A tamper-proof trail with cryptographic hash-chaining, mapped against six regulatory frameworks out of the box.",
-        href: "/platform/audit-compliance",
+        href: "/privileged-access-audit-compliance",
     },
 ];
 

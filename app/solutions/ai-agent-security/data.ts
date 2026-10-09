@@ -196,7 +196,7 @@ export const pillarsSection = {
     prompt: "OmniPriv helps organizations apply:",
     note: [
         "OmniPriv’s ",
-        { text: "audit capabilities", href: "https://omnipriv.com/platform/audit-compliance" },
+        { text: "audit capabilities", href: "https://omnipriv.com/privileged-access-audit-compliance" },
         " record privileged account usage with the user, asset, time and outcome while supporting scheduled reporting and policy alerts.",
     ] as RichText,
 };

@@ -51,7 +51,7 @@ export const pillarsData = [
         keyword: "Audit & Compliance",
         headline: "Record every action",
         body: "Indexed session recording, command-level logs and tamper-proof evidence give auditors a complete, replayable chain of custody.",
-        href: "/platform/audit-compliance",
+        href: "/privileged-access-audit-compliance",
         cta: "Explore audit & compliance",
         icon: Eye,
         accent: "#22c3e0",

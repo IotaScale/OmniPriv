@@ -55,7 +55,7 @@ const hero = {
         "From that starting point the workflow bends to how your organisation actually approves, multi-level chains, decisions made from a phone or an email link, and rules that change with the time of day, while privileged accounts are handed out with an expiry date attached.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
-    secondary: { href: "/platform/audit-compliance", label: "See the Audit Trail" },
+    secondary: { href: "/privileged-access-audit-compliance", label: "See the Audit Trail" },
     image: {
         src: "/identities/human-identities.jpeg",
         alt: "Approvers reviewing access requests for governed identities",
@@ -169,7 +169,7 @@ const stats = [
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/platform/password-credential-management", label: "How vaulting and rotation work" },
-    { href: "/platform/audit-compliance", label: "Where approvals are recorded" },
+    { href: "/privileged-access-audit-compliance", label: "Where approvals are recorded" },
 ];
 
 const closing = {
@@ -180,7 +180,7 @@ const closing = {
     ],
     kicker: "Approved by two. Granted for a window. Reverted on expiry.",
     primary: { href: "/demo", label: "Request a Demo" },
-    secondary: { href: "/platform/audit-compliance", label: "Audit & Compliance" },
+    secondary: { href: "/privileged-access-audit-compliance", label: "Audit & Compliance" },
 };
 
 const faqs: FaqEntry[] = [
@@ -262,7 +262,7 @@ export default function WorkflowAccessControlPage() {
 
                     <CheckList items={expirySection.points} className="mt-8" />
 
-                    <ArrowLink href="/platform/audit-compliance" className="mt-8">
+                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
                         See how each assignment is evidenced
                     </ArrowLink>
                 </MediaSplit>

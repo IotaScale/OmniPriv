@@ -154,7 +154,7 @@ const stats = [
 
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
-    { href: "/platform/audit-compliance", label: "How approval evidence is recorded" },
+    { href: "/privileged-access-audit-compliance", label: "How approval evidence is recorded" },
     { href: "/integrations", label: "Full integration catalogue" },
 ];
 
@@ -248,7 +248,7 @@ export default function EnterpriseIntegrationPage() {
 
                     <CheckList items={directorySection.points} className="mt-8" />
 
-                    <ArrowLink href="/platform/audit-compliance" className="mt-8">
+                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
                         See how entitlement changes are evidenced
                     </ArrowLink>
                 </MediaSplit>

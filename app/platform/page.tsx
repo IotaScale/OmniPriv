@@ -13,7 +13,7 @@ import Section from "@/components/sections/Section";
 import SectionHeading from "@/components/sections/SectionHeading";
 import SplitHero from "@/components/sections/SplitHero";
 import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import { solutions, datasheetStats, complianceStandards } from "./data";
+import { solutions, datasheetStats, complianceStandards, solutionHref } from "./data";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
@@ -60,7 +60,7 @@ const moduleCards: IconCard[] = solutions.map((solution, index) => ({
     eyebrow: String(index + 1).padStart(2, "0"),
     title: solution.title,
     text: solution.tagline,
-    href: `/platform/${solution.slug}`,
+    href: solutionHref(solution),
 }));
 
 const architectureSection = {
@@ -265,7 +265,7 @@ export default function PlatformPage() {
                 />
 
                 <div className="mt-10">
-                    <ArrowLink href="/platform/audit-compliance">
+                    <ArrowLink href="/privileged-access-audit-compliance">
                         See how the evidence is produced
                     </ArrowLink>
                 </div>

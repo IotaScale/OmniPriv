@@ -1,17 +1,25 @@
 import {
-    ClipboardCheck,
-    KeyRound,
-    Lock,
-    RotateCcw,
-    Shield,
-    Terminal,
-    Timer,
-    Users,
+    BadgeCheck,
+    ClipboardList,
+    Eye,
+    FileBarChart,
+    FileCheck2,
+    Fingerprint,
+    Globe2,
+    HeartPulse,
+    Landmark,
+    Layers,
+    Network,
+    ScrollText,
+    ShieldAlert,
+    ShieldCheck,
+    UserCheck,
+    Workflow,
+    CreditCard,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
 import CtaBand from "@/components/sections/CtaBand";
 import FaqSection from "@/components/sections/FaqSection";
 import IconCardGrid from "@/components/sections/IconCardGrid";
@@ -20,37 +28,50 @@ import Prose from "@/components/sections/Prose";
 import Section from "@/components/sections/Section";
 import SectionHeading from "@/components/sections/SectionHeading";
 import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
+import { cardBorder, cardSurface } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/audit-compliance, the destination of the
- * "Compliance / Prove compliance with evidence" challenge card.
+ * Bespoke layout for /privileged-access-audit-compliance ("Audit, Governance &
+ * Compliance"), rendered by app/privileged-access-audit-compliance/page.tsx.
+ * SEO metadata comes from the "audit-compliance" module entry in
+ * app/platform/data.ts. The old /platform/audit-compliance URL redirects here
+ * (next.config.js).
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic capability template when the slug appears
- * in its `bespokePages` map. SEO metadata already comes from the module entry
- * in app/platform/data.ts.
- *
- * Claims are limited to what this repository states: the audit-compliance
- * module's five features, the audit capability set on app/features/page.tsx,
- * the segregation-of-duties and immutable-trail statements on
- * app/security/page.tsx, and the cryptographic audit-chain hashing and
- * 4-eyes rule in app/platform/data.ts.
+ * Copy supplied by the marketing team (October 2026). Primary keyword:
+ * privileged access management audit.
  */
 
+/* Two columns: heading on the left, copy on the right. */
+function SplitText({ title, paragraphs, strongIndex }: { title: string; paragraphs: RichText[]; strongIndex?: number }) {
+    return (
+        <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-16">
+            <SectionHeading title={title} />
+            <div className="space-y-4" data-aos="fade-up">
+                {paragraphs.map((p, i) => (
+                    <Prose key={i} segments={p} tone={i === strongIndex ? "strong" : "muted"} className="text-[1.0625rem]" />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+/* ─── Content ────────────────────────────────────────────────────────── */
+
 const hero = {
-    badge: "Audit, Governance & Compliance",
-    titleLead: "When the auditor asks,",
-    titleAccent: "the answer should already exist.",
-    intro: [
-        "Compliance is rarely short of controls. It is short of evidence, the kind that can be produced months later, in the format somebody else asks for.",
-    ] as RichText,
-    body: [
-        "OmniPriv records every privileged action in a tamper-proof audit trail, enforces segregation of duties rather than merely recommending it, and maps that evidence against six regulatory frameworks out of the box.",
-    ] as RichText,
+    titleLead: "Simplify Privileged Access Management",
+    titleAccent: "Audit & Compliance",
+    paragraphs: [
+        [
+            "Gain complete visibility into privileged activities, strengthen access governance, and simplify security compliance audits with OmniPriv. Monitor sensitive sessions, track user actions, and maintain reliable audit records across your critical IT infrastructure.",
+        ],
+        [
+            "OmniPriv brings Privileged Access Management, real-time monitoring, and centralized compliance reporting together, helping security teams reduce risks and demonstrate accountability without complex manual processes.",
+        ],
+    ] as RichText[],
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
     image: {
@@ -60,316 +81,329 @@ const hero = {
     },
 };
 
-const framingSection = {
-    title: "Most audits fail on evidence, not on controls",
-    lead: [
-        "Three requirements turn up in nearly every framework, and each one is easy to claim and hard to prove.",
-    ] as RichText,
-};
-
-const framingCards: IconCard[] = [
-    {
-        icon: KeyRound,
-        title: "Credential hygiene",
-        text: "Frameworks require privileged passwords to be complex, rotated regularly and stored securely. Left to manual effort, that requirement quietly stops being true.",
-    },
-    {
-        icon: Lock,
-        title: "Granular access limits",
-        text: "Unknown, unmanaged and unprotected privileged accounts are a violation on their own. An inventory you cannot produce is a finding waiting to be written up.",
-    },
-    {
-        icon: Users,
-        title: "Individual accountability",
-        text: "Frameworks expect privileged accounts tied to individual users rather than shared. A shared login can never answer who actually did it.",
-    },
-];
-
-const trailSection = {
-    icon: Shield,
-    title: "Accountability that survives an investigation",
+const simpler = {
+    title: "Make Security Audits Simpler with Centralized Privileged Access Visibility",
     paragraphs: [
-        [
-            "Every privileged action is written to a complete audit trail, the user, the time, the asset and the outcome, held in tamper-proof storage with cryptographic audit-chain hashing, so integrity and non-repudiation hold up under examination instead of resting on trust.",
-        ],
-        [
-            "Segregation of duties is enforced by the platform rather than agreed in a policy document. Administrators cannot reach the audit logs or alter session recordings they might appear in, and security and operations roles stay separated.",
-        ],
+        ["Preparing for a security compliance audit shouldn't mean spending days collecting logs, reviewing spreadsheets, and investigating who accessed critical systems."],
+        ["As organizations grow, privileged access spreads across servers, databases, cloud platforms, and third-party environments. Without centralized visibility, tracking administrative activity and demonstrating compliance becomes increasingly difficult."],
+        ["OmniPriv simplifies the process by bringing privileged access controls, activity records, and audit reporting into one platform. Security and compliance teams can review access history, investigate suspicious actions, and gather relevant evidence with less manual effort."],
+        ["Whether preparing for an internal security audit or meeting external regulatory requirements, OmniPriv helps organizations maintain better oversight of privileged operations."],
     ] as RichText[],
-    points: [
-        "Complete audit trail, every privileged action logged with user, time, asset and outcome",
-        "Cryptographic audit-chain hashing, integrity and non-repudiation, not just retention",
-        "Segregation of duties, roles separated, with audit logs out of reach of the administrators they record",
-        "Exclusive session access, accounts can be limited to a single concurrent session, so a shared credential cannot be used in parallel",
-        "Immutable session recordings and command history, replayable from any point in time",
-    ],
 };
 
-const standardsSection = {
-    title: "Six frameworks, mapped out of the box",
-    lead: [
-        "Mappings are pre-configured rather than assembled by hand, and the reports already arrive in the shape an auditor expects.",
-    ] as RichText,
-    standards: [
-        "SOC 2",
-        "ISO 27001",
-        "NIST SP 800-53",
-        "HIPAA",
-        "PCI DSS",
-        "SOX 404",
-    ],
-    points: [
-        "One-click reports pre-formatted for SOC 2, ISO 27001, PCI DSS and HIPAA",
-        "Detailed reporting across entitlements, user activity, asset inventory and compliance posture",
-        "Scheduled generation, evidence produced on a timetable rather than under deadline pressure",
-        "Policy compliance alerts when a privileged account drifts outside its credential policy",
-    ],
+const strengthen = {
+    title: "Strengthen Audit, Governance & Compliance with OmniPriv",
+    cards: [
+        {
+            icon: ClipboardList,
+            title: "Privileged Access Management Audit",
+            text: "Know exactly who accessed your critical systems, when access occurred, and what actions were performed. OmniPriv maintains detailed, tamper-resistant audit trails that support accountability, incident investigations, and compliance reviews.",
+        },
+        {
+            icon: Eye,
+            title: "Privileged Session Monitoring",
+            text: "Gain visibility into administrator and vendor sessions through real-time monitoring, secure session recordings, and searchable activity history. Review privileged operations and respond to suspicious behavior before it creates additional risk.",
+        },
+        {
+            icon: UserCheck,
+            title: "Privileged Access Governance",
+            text: "Bring greater control to privileged permissions with role-based policies, approval workflows, and Just-in-Time access. Limit unnecessary administrative privileges and keep sensitive access aligned with business requirements.",
+        },
+        {
+            icon: FileBarChart,
+            title: "Automated Compliance Reporting",
+            text: "Reduce manual reporting with centralized audit records and scheduled compliance reports. Give auditors and security stakeholders access to relevant evidence, access history, and policy compliance information.",
+        },
+        {
+            icon: ShieldAlert,
+            title: "Security Policy Enforcement",
+            text: "Strengthen security controls with credential policies, access restrictions, and alerts for non-compliant privileged accounts. Identify policy violations and address potential security gaps before they become larger problems.",
+        },
+        {
+            icon: ScrollText,
+            title: "Centralized Security Audit Logs",
+            text: "Maintain a consistent record of privileged activity across connected systems. Bring user actions, access events, and session details into one place to support ongoing monitoring and more effective investigations.",
+        },
+    ] as IconCard[],
 };
 
-const leastPrivilegeSection = {
-    title: "Least privilege, demonstrated rather than asserted",
-    lead: [
-        "A framework can mandate least privilege. Only the access model can show it was actually enforced.",
-    ] as RichText,
-};
-
-const leastPrivilegePillars = [
-    {
-        icon: Timer,
-        title: "Nothing standing",
-        text: "Just-in-time access is time-boxed to the task and expires automatically, so the standing privilege an auditor objects to never accumulates in the first place.",
-    },
-    {
-        icon: ClipboardCheck,
-        title: "Approval with 4-eyes",
-        text: "Sensitive grants require a minimum of two independent approvers, no requester may approve their own request, and requests can be driven from an ITSM ticket.",
-    },
-    {
-        icon: Users,
-        title: "Granular by role and asset",
-        text: "Role-based access control with custom roles assignable at the organization, project or asset level, alongside IP-range and time-window restrictions.",
-    },
-    {
-        icon: Terminal,
-        title: "Enforced inside the session",
-        text: "Command-level controls whitelist or blacklist specific shell commands, and database query controls do the same for SQL, scope holds after the session opens, not just at login.",
-    },
-];
-
-const rotationSection = {
-    icon: RotateCcw,
-    title: "The password requirements nobody keeps up with by hand",
+const sessions = {
+    title: "Monitor Every Privileged Session with Greater Confidence",
     paragraphs: [
-        [
-            "Rotation on a calendar, complexity rules, secure storage, every framework asks for them, and every manual process eventually drifts. Automation is the only version of this that stays true a year later.",
-        ],
+        ["Privileged accounts can make significant changes to enterprise systems. Without proper oversight, unauthorized commands, configuration changes, and risky administrative actions may go unnoticed."],
+        ["OmniPriv provides privileged session monitoring to help security teams understand what happens during sensitive access sessions."],
+        ["From live session visibility to recorded activity and command history, teams can investigate incidents, review administrator actions, and maintain a clearer picture of privileged behavior."],
+    ] as RichText[],
+    listLead: "Session monitoring capabilities help organizations:",
+    points: [
+        "Track administrative activity across critical assets.",
+        "Record privileged sessions for investigation and review.",
+        "Search historical sessions to examine specific actions.",
+        "Identify unusual behavior and policy violations.",
+        "Terminate suspicious sessions when intervention is necessary.",
+    ],
+    closing: "With session-level visibility, organizations can improve security accountability while supporting internal audit and compliance requirements.",
+    image: {
+        src: "/product/dashboard.png",
+        alt: "OmniPriv console showing privileged session activity and risk posture",
+        fit: "contain" as const,
+    },
+};
+
+const governance = {
+    title: "Take Control of Privileged Access Governance",
+    paragraphs: [
+        ["Effective privileged access governance requires more than knowing who has administrator permissions. Organizations also need to understand why those permissions are granted, how long they remain active, and whether they follow internal security policies."],
+        ["OmniPriv helps security teams establish consistent access controls through role-based permissions, Just-in-Time access, and approval workflows."],
+        ["Instead of maintaining unnecessary standing privileges, organizations can provide access for defined tasks and durations. Sensitive operations can require authorization before access is granted, helping reduce the risk of excessive privileges and unauthorized changes."],
+        ["By combining least privilege principles with centralized policy enforcement, OmniPriv supports stronger governance without creating unnecessary obstacles for IT operations."],
+    ] as RichText[],
+};
+
+const dataAudit = {
+    title: "Improve Data Security Audit Readiness with Detailed Access Records",
+    paragraphs: [
+        ["A successful data security audit depends on reliable evidence showing how sensitive systems are accessed, managed, and protected."],
+        ["Incomplete logs and uncontrolled privileged credentials can make it difficult to demonstrate whether security policies are being followed."],
+        ["OmniPriv helps organizations maintain detailed records of privileged activity, including user identity, access time, target assets, and session actions. Centralized reporting makes it easier to examine privileged access to systems that store or process sensitive business information."],
+        ["With searchable session histories and tamper-resistant logs, security teams can identify access patterns, investigate incidents, and provide relevant evidence during audit reviews."],
+        ["This visibility supports a more consistent approach to data protection and compliance across enterprise environments."],
     ] as RichText[],
     image: {
-        src: "/challenges/secure-remote-hybrid-access.jpeg",
-        alt: "Audit evidence and compliance reports checked and gathered in one place",
+        src: "/product/asset.png",
+        alt: "OmniPriv asset inventory with privileged accounts and access records",
+        fit: "contain" as const,
     },
-    points: [
-        "Encrypted credential vault, and no user ever sees a raw password",
-        "Automated rotation of passwords, SSH keys and API tokens on a schedule or on demand, across thousands of assets at once",
-        "Credential push to target assets after rotation, no manual step and no outage window",
-        "Asset and account discovery across on-prem, cloud and hybrid, so the inventory is generated rather than assembled",
-        "Account lifecycle management, provisioning, modification and deprovisioning from one control plane",
+};
+
+const regulatory = {
+    title: "Support Regulatory Compliance with Stronger PAM Controls",
+    paragraphs: [
+        ["Security regulations and industry standards require organizations to implement appropriate access controls, maintain activity records, and protect sensitive systems."],
+        ["OmniPriv helps organizations align privileged access practices with applicable security and compliance frameworks."],
+    ] as RichText[],
+    cards: [
+        {
+            icon: BadgeCheck,
+            title: "ISO 27001",
+            text: "Support information security management requirements with controlled privileged access, access accountability, and traceable security activity.",
+        },
+        {
+            icon: FileCheck2,
+            title: "SOC 2",
+            text: "Strengthen evidence collection for relevant security and access controls through privileged session records, monitoring, and compliance reporting.",
+        },
+        {
+            icon: CreditCard,
+            title: "PCI DSS",
+            text: "Help protect systems within the cardholder data environment by restricting administrative access, monitoring sensitive activity, and maintaining access records.",
+        },
+        {
+            icon: HeartPulse,
+            title: "HIPAA",
+            text: "Support safeguards for systems containing electronic protected health information through controlled administrative permissions and privileged activity auditing.",
+        },
+        {
+            icon: Landmark,
+            title: "NIST 800-53",
+            text: "Align privileged access practices with access control, audit logging, accountability, and security monitoring control families.",
+        },
+        {
+            icon: Globe2,
+            title: "GDPR",
+            text: "Support appropriate security measures for systems handling personal data with privileged access restrictions, user accountability, and activity monitoring.",
+        },
+    ] as IconCard[],
+    note: "OmniPriv also provides compliance mappings for frameworks including SOX, Basel II, MAS TRM, and NERC CIP. These capabilities support control implementation and audit evidence collection; regulatory compliance still depends on the organization's wider security program.",
+};
+
+const reporting = {
+    title: "Reduce Manual Security Audit Work with Automated Reporting",
+    paragraphs: [
+        ["When audit evidence is stored across multiple systems, preparing reports can consume valuable time and resources."],
+        ["OmniPriv simplifies compliance management by centralizing privileged access information and supporting automated report generation."],
+        ["Security teams can review account entitlements, privileged activity, asset inventories, and policy compliance information without manually assembling records from disconnected tools."],
+        ["Scheduled reports help organizations maintain ongoing visibility into access controls instead of collecting evidence only when an audit approaches."],
+        ["This approach reduces administrative effort, improves reporting consistency, and gives security teams more time to address meaningful risks."],
+    ] as RichText[],
+};
+
+const whyChoose: { title: string; items: { icon: LucideIcon; title: string; text: string }[] } = {
+    title: "Why Choose OmniPriv for Audit, Governance & Compliance?",
+    items: [
+        { icon: Layers, title: "Centralized Privileged Access Visibility", text: "Bring privileged activity, session records, and access information together for easier security oversight." },
+        { icon: Fingerprint, title: "Stronger Access Accountability", text: "Maintain traceable records of sensitive administrative actions to support investigations and compliance reviews." },
+        { icon: ShieldCheck, title: "Reduced Privileged Access Risk", text: "Apply least privilege, access approvals, and time-limited permissions to minimize unnecessary administrative exposure." },
+        { icon: Workflow, title: "Simplified Compliance Operations", text: "Use centralized records, scheduled reports, and regulatory control mappings to streamline recurring audit preparation." },
+        { icon: Network, title: "Security Across Hybrid Environments", text: "Maintain consistent privileged access controls and monitoring across connected on-premises, cloud, and hybrid infrastructure." },
     ],
 };
 
-const stats = [
-    { value: "6", label: "Regulatory frameworks mapped", sub: "SOC 2 through SOX 404" },
-    { value: "4", label: "Report formats pre-built", sub: "SOC 2 · ISO 27001 · PCI DSS · HIPAA" },
-    { value: "SOC 2", label: "Type II controls mapped", sub: "Trust Services Criteria" },
-    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
-];
-
-const keepReading = [
-    { href: "/security", label: "Framework mappings and security posture" },
-    { href: "/case-studies", label: "How customers approached their audits" },
-    { href: "/features", label: "See the full capability list" },
-];
-
 const closing = {
-    title: "Pass the audit, then get back to work",
+    title: "Turn Privileged Access Visibility into Audit Confidence",
     body: [
-        "OmniPriv turns privileged activity into evidence, logged, hash-chained and mapped to the framework you report against.",
-        "Most of the effort in an audit goes into reconstructing what already happened. That work only exists because nobody captured it at the time.",
+        "Security audits become easier when privileged activity is continuously monitored, governed, and documented.",
+        "With OmniPriv, organizations can move beyond manual log collection and build a more proactive approach to privileged access security. Strengthen accountability, reduce unnecessary access, and keep relevant audit evidence within reach.",
     ],
-    kicker: "Logged. Hashed. Mapped. Ready.",
+    kicker: "See how OmniPriv helps your organization simplify privileged access management audit and compliance.",
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
 };
 
 const faqs: FaqEntry[] = [
     {
-        question: "Which regulatory frameworks does OmniPriv map to?",
+        question: "What is a privileged access management audit?",
         answer:
-            "OmniPriv ships pre-configured compliance mappings for six frameworks: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Reporting templates are available pre-formatted for each of them.",
+            "A privileged access management audit evaluates how an organization controls, monitors, and records access to sensitive systems through privileged accounts. It helps identify excessive permissions, unauthorized activity, security policy gaps, and weaknesses in administrative access controls.",
     },
     {
-        question: "How is the audit trail tamper-proof?",
+        question: "How does Privileged Access Management help with security compliance audits?",
         answer:
-            "Audit records are held in tamper-proof storage with cryptographic audit-chain hashing, which preserves integrity and non-repudiation rather than simply retaining the entries. Session recordings and command history are immutable, and can be replayed from any point in time.",
+            "Privileged Access Management helps organizations enforce least privilege, monitor administrative sessions, protect sensitive credentials, and maintain detailed access records. These controls provide supporting evidence for a security compliance audit and improve visibility into activities that may affect regulatory requirements.",
     },
     {
-        question: "Does OmniPriv support segregation of duties?",
+        question: "Why is privileged session monitoring important for compliance?",
         answer:
-            "Yes, and it is enforced by the platform rather than left to policy. Administrators cannot access the audit logs or modify session recordings they might appear in, and security and operations roles are kept separate. Sensitive grants additionally follow a 4-eyes rule with a minimum of two independent approvers.",
+            "Privileged session monitoring allows security teams to observe and record actions performed during administrative access. These records help establish user accountability, investigate security incidents, and provide evidence of privileged activity during compliance reviews.",
     },
     {
-        question: "How do we prove who did what if accounts are shared?",
+        question: "What is privileged access governance?",
         answer:
-            "Shared access is the problem the audit trail is designed to remove. Actions tie back to an authenticated identity rather than a shared login, accounts can be restricted to one concurrent session so a credential cannot be used in parallel, and the full session recording captures what happened inside it.",
+            "Privileged access governance refers to the policies and processes used to manage elevated permissions throughout their lifecycle. It includes defining access rights, approving sensitive requests, applying least privilege, and reviewing whether permissions remain appropriate for users and systems.",
     },
     {
-        question: "How much effort does producing audit evidence take?",
+        question: "How does OmniPriv support a data security audit?",
         answer:
-            "Reports are generated from data that was captured as the work happened, not reconstructed afterwards. Detailed reports cover entitlements, user activity, asset inventory and compliance posture, they can be scheduled to run automatically, and the one-click formats for the common frameworks are ready to hand over.",
+            "OmniPriv supports a data security audit by maintaining privileged access logs, session recordings, user activity history, and centralized reports for connected systems. This helps organizations review how administrative access to sensitive environments is controlled and documented.",
+    },
+    {
+        question: "Can OmniPriv help automate security audit reporting?",
+        answer:
+            "Yes. OmniPriv provides centralized audit records and scheduled reporting capabilities covering privileged activities, access entitlements, assets, and compliance information. These features help reduce manual evidence collection and improve audit preparation.",
+    },
+    {
+        question: "Which security compliance standards does OmniPriv support?",
+        answer:
+            "OmniPriv provides controls and reporting capabilities that help organizations align privileged access practices with frameworks such as ISO 27001, PCI DSS, HIPAA, NIST 800-53, SOX, GDPR, and others. Specific compliance obligations depend on the organization's industry, environment, and applicable regulations.",
+    },
+    {
+        question: "How can organizations improve privileged access audit readiness?",
+        answer:
+            "Organizations can improve audit readiness by enforcing least privilege, using approval workflows, monitoring privileged sessions, retaining reliable activity logs, and regularly reviewing access permissions. A centralized PAM platform such as OmniPriv makes these practices easier to manage and document.",
     },
 ];
+
+/* ─── Page ───────────────────────────────────────────────────────────── */
 
 export default function AuditCompliancePage() {
     return (
         <>
             <SplitHero
-                badge={hero.badge}
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
                 primary={hero.primary}
                 secondary={hero.secondary}
                 media={hero.image}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
+                {hero.paragraphs.map((p, i) => (
+                    <Prose key={i} segments={p} className="text-[1.0625rem]" />
+                ))}
             </SplitHero>
 
-            {/* ─── WHY EVIDENCE IS THE GAP ──────────── */}
+            {/* ─── SIMPLER AUDITS ───────────────────── */}
             <Section tone="muted" border="bottom">
-                <SectionHeading title={framingSection.title} className="mb-2">
-                    <Prose segments={framingSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={framingCards} columns={3} className="mt-12" />
+                <SplitText title={simpler.title} paragraphs={simpler.paragraphs} />
             </Section>
 
-            {/* ─── THE AUDIT TRAIL ──────────────────── */}
+            {/* ─── SIX CAPABILITIES ─────────────────── */}
             <Section border="bottom">
-                <SectionHeading title={trailSection.title}>
-                    {trailSection.paragraphs.map((paragraph, index) => (
-                        <Prose
-                            key={index}
-                            segments={paragraph}
-                            className={
-                                index === trailSection.paragraphs.length - 1 ? "" : "mb-4"
-                            }
-                        />
-                    ))}
-                </SectionHeading>
-
-                <CheckList items={trailSection.points} className="mt-10 max-w-3xl" />
+                <SectionHeading title={strengthen.title} />
+                <IconCardGrid items={strengthen.cards} columns={3} className="mt-12" />
             </Section>
 
-            {/* ─── THE SIX FRAMEWORKS ──────────────── */}
+            {/* ─── SESSION MONITORING ───────────────── */}
             <Section tone="muted" border="bottom">
-                <SectionHeading title={standardsSection.title} className="mb-6">
-                    <Prose segments={standardsSection.lead} />
-                </SectionHeading>
-
-                <ChipList items={standardsSection.standards} variant="accent" />
-
-                <CheckList items={standardsSection.points} className="mt-10 max-w-3xl" />
-            </Section>
-
-            {/* ─── LEAST PRIVILEGE (dark band) ──────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={leastPrivilegeSection.title} className="mb-2">
-                    <Prose segments={leastPrivilegeSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {leastPrivilegePillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
-                        </div>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── CREDENTIAL HYGIENE ───────────────── */}
-            <Section border="bottom">
                 <MediaSplit
-                    media={rotationSection.image}
+                    media={sessions.image}
                     ratio="wide-last"
-                    height="sm"
                     align="start"
-                    heading={<SectionHeading title={rotationSection.title} />}
+                    heading={<SectionHeading title={sessions.title} />}
                 >
-                    <div className="op-hero-copy">
-                        {rotationSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === rotationSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
+                    <div className="op-hero-copy space-y-4">
+                        {sessions.paragraphs.map((p, i) => (
+                            <Prose key={i} segments={p} />
                         ))}
                     </div>
-
-                    <CheckList items={rotationSection.points} className="mt-8" />
-
-                    <ArrowLink href="/platform/password-credential-management" className="mt-8">
-                        See how credentials are vaulted and rotated
-                    </ArrowLink>
+                    <Prose segments={[sessions.listLead]} tone="strong" className="mt-6" />
+                    <CheckList items={sessions.points} className="mt-4" />
+                    <Prose segments={[sessions.closing]} className="mt-6" />
                 </MediaSplit>
             </Section>
 
-            {/* ─── OUTCOMES ─────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Compliance you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
+            {/* ─── GOVERNANCE (dark band) ───────────── */}
+            <Section tone="dark" border="bottom">
+                <SplitText title={governance.title} paragraphs={governance.paragraphs} />
+            </Section>
+
+            {/* ─── DATA SECURITY AUDIT ──────────────── */}
+            <Section border="bottom">
+                <MediaSplit
+                    media={dataAudit.image}
+                    ratio="wide-last"
+                    align="start"
+                    heading={<SectionHeading title={dataAudit.title} />}
                 >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a policy binder. These are the controls and mappings behind the reports.
-                    </p>
-                </SectionHeading>
+                    <div className="op-hero-copy space-y-4">
+                        {dataAudit.paragraphs.map((p, i) => (
+                            <Prose key={i} segments={p} />
+                        ))}
+                    </div>
+                </MediaSplit>
+            </Section>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
-                        </div>
+            {/* ─── FRAMEWORKS ───────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <SectionHeading title={regulatory.title}>
+                    {regulatory.paragraphs.map((p, i) => (
+                        <Prose key={i} segments={p} />
                     ))}
-                </div>
+                </SectionHeading>
+                <IconCardGrid items={regulatory.cards} columns={3} className="mt-12" />
+                <p
+                    className="mt-8 max-w-4xl text-[0.9375rem] leading-[1.7] text-slate-600 dark:text-slate-400"
+                    data-aos="fade-up"
+                >
+                    {regulatory.note}
+                </p>
+            </Section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
+            {/* ─── AUTOMATED REPORTING ──────────────── */}
+            <Section border="bottom">
+                <SplitText title={reporting.title} paragraphs={reporting.paragraphs} />
+            </Section>
+
+            {/* ─── WHY OMNIPRIV ─────────────────────── */}
+            <Section tone="muted" border="bottom">
+                <SectionHeading title={whyChoose.title} />
+                {/* 3 + 2: the first row in thirds, the second in halves, so five cards leave no hole. */}
+                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6" data-aos="fade-up">
+                    {whyChoose.items.map((item, i) => (
+                        <div
+                            key={item.title}
+                            className={cn(
+                                "flex flex-col rounded-2xl border p-6",
+                                cardBorder,
+                                cardSurface,
+                                i < 3 ? "lg:col-span-2" : "lg:col-span-3",
+                                i === 4 && "sm:col-span-2 lg:col-span-3"
+                            )}
+                        >
+                            <div className="icon-wrapper mb-5">
+                                <item.icon className="w-5 h-5" aria-hidden="true" />
+                            </div>
+                            <h3 className="op-card-title mb-2">{item.title}</h3>
+                            <p className="op-card-text">{item.text}</p>
+                        </div>
                     ))}
                 </div>
             </Section>
@@ -384,11 +418,7 @@ export default function AuditCompliancePage() {
             />
 
             {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about audit trails, segregation of duties and regulatory reporting under privileged access management."
-                items={faqs}
-            />
+            <FaqSection title="Frequently Asked Questions About Audit, Governance & Compliance" items={faqs} />
         </>
     );
 }

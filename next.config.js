@@ -46,6 +46,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Audit, Governance & Compliance moved to its SEO URL (October 2026).
+      {
+        source: '/platform/audit-compliance',
+        destination: '/privileged-access-audit-compliance',
+        permanent: true,
+      },
       // The Identity Security hub was briefly served from the top level.
       {
         source: '/identity-security',

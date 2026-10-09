@@ -54,7 +54,7 @@ export default function ComplianceFrameworks() {
               ))}
             </div>
             <Link
-              href="/platform/audit-compliance"
+              href="/privileged-access-audit-compliance"
               className="group mt-10 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00869f] dark:text-[#00B8DB]"
             >
               Audit and compliance module

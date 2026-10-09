@@ -40,7 +40,9 @@ const bespokePages: Record<string, ComponentType> = {
 
 /* ── Static params for all 9 slugs ─────────────────────────── */
 export function generateStaticParams() {
-    return solutions.map((s) => ({ slug: s.slug }));
+    // Modules with their own top-level URL (see `path` in data.ts) are
+    // served there; next.config.js redirects the old /platform address.
+    return solutions.filter((s) => !s.path).map((s) => ({ slug: s.slug }));
 }
 
 /* ── Dynamic metadata per page ─────────────────────────────── */

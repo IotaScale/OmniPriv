@@ -42,7 +42,7 @@ const GAPS = [
     headline: "Audit, governance and compliance",
     body: "Centralised activity logs, policy controls, session records and compliance-ready reporting across every critical system.",
     chips: ["Immutable session logs", "Mapped controls", "One-click reports"],
-    href: "/platform/audit-compliance",
+    href: "/privileged-access-audit-compliance",
     icon: ScrollText,
   },
   {
