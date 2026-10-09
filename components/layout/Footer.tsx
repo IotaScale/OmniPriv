@@ -21,8 +21,12 @@ const resourceLinks = [
   { label: "Security Center", href: "/security" },
 ];
 
+const portalUrl = process.env.NEXT_PUBLIC_PORTAL_URL || "https://portal.omnipriv.com";
+
 const companyLinks = [
   { label: "About OmniPriv", href: "/about" },
+  { label: "Partner Directory", href: "/partners" },
+  { label: "Partner Portal", href: `${portalUrl}/sign-in` },
   { label: "Contact Sales", href: "/demo" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms" },

@@ -192,13 +192,19 @@ export default function PublicPartnersPage() {
             Expand your cybersecurity portfolio with high-margin enterprise PAM, AI governance, and cloud bastion solutions designed for resellers and MSPs.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/partners/apply" className="btn-primary text-xs px-5 py-2.5 rounded-lg inline-flex items-center gap-1.5 w-full sm:w-auto justify-center">
+            <a
+              href={`${process.env.NEXT_PUBLIC_PORTAL_URL || "https://portal.omnipriv.com"}/sign-up`}
+              className="btn-primary text-xs px-5 py-2.5 rounded-lg inline-flex items-center gap-1.5 w-full sm:w-auto justify-center"
+            >
               Apply for Partnership
               <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
-            <Link href="/sign-in" className="btn-secondary text-xs px-5 py-2.5 rounded-lg inline-flex items-center gap-1.5 w-full sm:w-auto justify-center">
+            </a>
+            <a
+              href={`${process.env.NEXT_PUBLIC_PORTAL_URL || "https://portal.omnipriv.com"}/sign-in`}
+              className="btn-secondary text-xs px-5 py-2.5 rounded-lg inline-flex items-center gap-1.5 w-full sm:w-auto justify-center"
+            >
               Partner Workspace Sign In
-            </Link>
+            </a>
           </div>
         </div>
       </div>

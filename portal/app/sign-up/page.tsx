@@ -514,11 +514,21 @@ export default function SignUpPage() {
               </button>
             </div>
 
-            <div className="text-center text-xs text-slate-500">
-              Already registered your organization?{" "}
-              <Link href="/sign-in" className="text-cyan-500 hover:underline font-semibold">
-                Sign in to Partner Portal
-              </Link>
+            <div className="text-center text-xs text-slate-500 space-y-2 pt-2 border-t border-slate-200 dark:border-white/[0.08]">
+              <div>
+                Already registered your organization?{" "}
+                <Link href="/sign-in" className="text-cyan-500 hover:underline font-semibold">
+                  Sign in to Partner Portal
+                </Link>
+              </div>
+              <div>
+                <a
+                  href={process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://omnipriv.com"}
+                  className="text-slate-400 hover:text-cyan-500 transition-colors inline-flex items-center gap-1"
+                >
+                  &larr; Return to OmniPriv.com
+                </a>
+              </div>
             </div>
           </form>
         </div>

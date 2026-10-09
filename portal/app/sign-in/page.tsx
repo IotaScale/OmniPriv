@@ -178,14 +178,24 @@ function SignInContent() {
         </div>
 
         {/* Dedicated Channel Admin link */}
-        <div className="mt-6 text-center">
-          <Link
-            href="/channel-admin/login"
-            className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors inline-flex items-center gap-1.5"
-          >
-            <ShieldCheck className="w-3.5 h-3.5 text-cyan-500" />
-            <span>OmniPriv Internal Team? Go to Channel Admin Console</span>
-          </Link>
+        <div className="mt-6 text-center space-y-2">
+          <div>
+            <Link
+              href="/channel-admin/login"
+              className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors inline-flex items-center gap-1.5"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-500" />
+              <span>OmniPriv Internal Team? Go to Channel Admin Console</span>
+            </Link>
+          </div>
+          <div>
+            <a
+              href={process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://omnipriv.com"}
+              className="text-xs text-slate-400 hover:text-cyan-500 transition-colors inline-flex items-center gap-1"
+            >
+              &larr; Return to OmniPriv.com
+            </a>
+          </div>
         </div>
       </div>
     </section>

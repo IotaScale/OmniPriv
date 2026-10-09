@@ -102,14 +102,15 @@ export default function LocatorPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/partners"
+          <a
+            href={`${process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://omnipriv.com"}/partners`}
             target="_blank"
+            rel="noreferrer"
             className="btn-secondary text-sm px-3.5 py-2 rounded-lg flex items-center gap-1.5"
           >
             <Eye className="w-4 h-4" />
             View Public Directory
-          </Link>
+          </a>
           {can("channel.locator.manage_own") && !isEditing && (
             <button
               onClick={() => setIsEditing(true)}

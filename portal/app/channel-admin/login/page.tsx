@@ -192,11 +192,21 @@ function ChannelAdminLoginForm() {
         </form>
 
         {/* Footer Navigation */}
-        <div className="mt-6 pt-4 border-t border-slate-100 dark:border-white/[0.06] text-center text-xs text-slate-500 dark:text-slate-400">
-          Not an OmniPriv channel administrator?{" "}
-          <Link href="/sign-in" className="text-[#00B8FF] hover:underline font-medium">
-            Standard Partner Sign In
-          </Link>
+        <div className="mt-6 pt-4 border-t border-slate-100 dark:border-white/[0.06] text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
+          <div>
+            Not an OmniPriv channel administrator?{" "}
+            <Link href="/sign-in" className="text-[#00B8FF] hover:underline font-medium">
+              Standard Partner Sign In
+            </Link>
+          </div>
+          <div>
+            <a
+              href={process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://omnipriv.com"}
+              className="text-slate-400 hover:text-cyan-400 transition-colors inline-flex items-center gap-1"
+            >
+              &larr; Return to OmniPriv.com
+            </a>
+          </div>
         </div>
       </div>
     </div>

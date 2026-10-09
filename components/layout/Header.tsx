@@ -269,12 +269,12 @@ export default function Header() {
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-2">
             <ThemeToggle />
-            <Link
-              href="/sign-in"
+            <a
+              href={`${process.env.NEXT_PUBLIC_PORTAL_URL || "https://portal.omnipriv.com"}/sign-in`}
               className="px-3 h-9 inline-flex items-center text-[14px] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
             >
               Partner Portal
-            </Link>
+            </a>
             <Link href="/demo" className="nav-cta group">
               Request a Demo
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
@@ -516,12 +516,12 @@ export default function Header() {
               Request a Demo
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link
-              href="/sign-in"
+            <a
+              href={`${process.env.NEXT_PUBLIC_PORTAL_URL || "https://portal.omnipriv.com"}/sign-in`}
               className="h-12 inline-flex items-center justify-center rounded-xl border border-slate-900/[0.12] dark:border-white/[0.12] text-sm font-semibold text-slate-800 dark:text-slate-200"
             >
               Partner Portal
-            </Link>
+            </a>
           </div>
         </div>
       </div>

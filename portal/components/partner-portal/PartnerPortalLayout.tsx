@@ -250,14 +250,15 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
           </div>
 
           <div className="pt-4 border-t border-slate-200 dark:border-white/[0.08] mt-4 px-2 space-y-2">
-            <Link
-              href="/partners"
+            <a
+              href={`${process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://omnipriv.com"}/partners`}
               target="_blank"
+              rel="noreferrer"
               className="flex items-center justify-between text-xs text-slate-500 hover:text-cyan-500 transition-colors"
             >
               <span>Public Directory</span>
               <ExternalLink className="w-3.5 h-3.5" />
-            </Link>
+            </a>
             <div className="text-[10px] font-mono text-emerald-500 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>PostgreSQL Production Sync</span>
