@@ -4,8 +4,7 @@ import FlowSection from "@/components/home/FlowSection";
 import LogoMarquee from "@/components/sections/LogoMarquee";
 import ChallengeScroller from "@/components/home/ChallengeScroller";
 import ControlFlow from "@/components/home/ControlFlow";
-import IdentityPanels from "@/components/home/IdentityPanels";
-import SmoothScroll from "@/components/home/SmoothScroll";
+import IdentitySwitcher from "@/components/home/identity/IdentitySwitcher";
 import InsightsSection from "@/components/home/InsightsSection";
 import ClosingCta from "@/components/home/ClosingCta";
 import PamFaqSection from "@/components/ui/PamFaqSection";
@@ -93,7 +92,7 @@ export default function HomePage() {
           <LogoMarquee label="Works across your entire stack" />
         </FlowSection>
         <FlowSection>
-          <IdentityPanels />
+          <IdentitySwitcher visual="zsp2" />
         </FlowSection>
 
         <FlowSection>
@@ -110,8 +109,6 @@ export default function HomePage() {
           <PamFaqSection />
         </FlowSection>
       </div>
-
-      <SmoothScroll />
     </>
   );
 }

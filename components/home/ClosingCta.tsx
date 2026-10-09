@@ -19,8 +19,8 @@ export default function ClosingCta() {
           <div className="cta-glow pointer-events-none absolute inset-0" aria-hidden="true" />
           <div className="cta-grid pointer-events-none absolute inset-0" aria-hidden="true" />
           {/* Credential rotation on the left, verified identity on the right */}
-          <BgMotif kind="key" className="left-8 2xl:left-14 top-1/2 -translate-y-1/2 w-[170px] h-[170px]" />
-          <BgMotif kind="fingerprint" className="right-8 2xl:right-14 top-1/2 -translate-y-1/2 w-[170px] h-[170px]" />
+          <BgMotif kind="key" className="left-8 2xl:left-14 top-1/2 -translate-y-1/2 w-[10.625rem] h-[10.625rem]" />
+          <BgMotif kind="fingerprint" className="right-8 2xl:right-14 top-1/2 -translate-y-1/2 w-[10.625rem] h-[10.625rem]" />
 
           <div className="relative max-w-3xl mx-auto">
             <h2

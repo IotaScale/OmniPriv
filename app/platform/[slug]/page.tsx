@@ -80,7 +80,7 @@ export default async function SolutionPage({
             {/* Hero */}
             <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04] overflow-hidden">
                 <div className="absolute inset-0 bg-grid opacity-50" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#0A1628]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#0B0C0E]" />
                 <div className="container-xl relative z-10">
                     {/* Breadcrumb */}
                     <Link
@@ -136,7 +136,7 @@ export default async function SolutionPage({
                         {solution.features.map((feature) => (
                             <div
                                 key={feature.name}
-                                className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0A1628]/60 hover:border-[#00B8DB]/20 transition-all duration-300 group card-shine"
+                                className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/60 dark:bg-[#0B0C0E]/60 hover:border-[#00B8DB]/20 transition-all duration-300 group card-shine"
                             >
                                 <div className="icon-wrapper w-10 h-10 rounded-lg mb-4 group-hover:scale-110 transition-transform duration-300">
                                     <feature.icon className="w-5 h-5" />
@@ -160,9 +160,9 @@ export default async function SolutionPage({
             <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
                 <div className="container-xl">
                     <div className="relative rounded-3xl overflow-hidden border border-[#00B8DB]/15 p-10 md:p-16 text-center">
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0A1628] to-white dark:to-[#0A1628]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 dark:from-[#0B0C0E] to-white dark:to-[#0B0C0E]" />
                         <div className="absolute inset-0 bg-grid opacity-20" />
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[37.5rem] h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
                         <div className="relative z-10">
                             <h2
                                 className="text-3xl md:text-4xl font-extrabold text-slate-950 dark:text-white mb-4"

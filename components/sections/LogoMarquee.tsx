@@ -114,7 +114,7 @@ function MarqueeRow({
                 {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
                     <div
                         key={`${logo.name}-${i}`}
-                        className="flex-shrink-0 flex items-center gap-3 pl-2.5 pr-6 py-2.5 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0A1628]/40 hover:border-[#00B8DB]/30 hover:bg-slate-100/80 dark:hover:bg-[#0A1628]/80 transition-all duration-300 group cursor-default select-none"
+                        className="flex-shrink-0 flex items-center gap-3 pl-2.5 pr-6 py-2.5 mx-2 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/40 dark:bg-[#0B0C0E]/40 hover:border-[#00B8DB]/30 hover:bg-slate-100/80 dark:hover:bg-[#0B0C0E]/80 transition-all duration-300 group cursor-default select-none"
                     >
                         {/* Light tile keeps dark brand wordmarks legible in dark mode */}
                         <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white border border-slate-900/[0.06] dark:border-white/[0.08]">
@@ -125,7 +125,7 @@ function MarqueeRow({
                                 height={26}
                                 unoptimized
                                 loading="eager"
-                                className="h-[26px] w-[26px] object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                                className="h-[1.625rem] w-[1.625rem] object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                             />
                         </span>
                         <span className="text-slate-600 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white text-sm font-semibold tracking-wide transition-colors whitespace-nowrap">

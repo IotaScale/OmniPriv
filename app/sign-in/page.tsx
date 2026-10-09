@@ -54,7 +54,7 @@ function SignInContent() {
     <section className="relative min-h-screen flex items-center justify-center py-16 px-4 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/60 dark:from-[#030711]/60 via-white/85 dark:via-[#030711]/85 to-white dark:to-[#030711]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/60 dark:from-[#0B0C0E]/60 via-white/85 dark:via-[#0B0C0E]/85 to-white dark:to-[#0B0C0E]" />
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(ellipse, rgba(0,184,255,0.09) 0%, transparent 65%)" }}
@@ -75,7 +75,7 @@ function SignInContent() {
         </Link>
 
         {/* Card */}
-        <div className="w-full rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100/90 dark:bg-[#0A1628]/90 backdrop-blur-xl p-8 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
+        <div className="w-full rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100/90 dark:bg-[#0B0C0E]/90 backdrop-blur-xl p-8 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
           <div className="text-center mb-6">
             <div className="badge-cyan mx-auto mb-3">Partner Portal</div>
             <h1

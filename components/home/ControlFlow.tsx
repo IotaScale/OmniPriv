@@ -297,7 +297,7 @@ export default function ControlFlow() {
   }, [hit]);
 
   return (
-    <section className="relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.05] bg-slate-50 dark:bg-[#04070e]">
+    <section className="relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.05] bg-slate-50 dark:bg-[#0b0c0e]">
       {/* Verified identity in the left gutter */}
       <EdgeMotif kind="fingerprint" side="left" size={300} top="34%" />
       <div className="cf2-ground pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -413,7 +413,7 @@ export default function ControlFlow() {
           
           {/* ── The plane: an open ring around the OmniPriv core ── */}
           <div className="relative z-10 order-3 lg:order-none flex flex-col items-center">
-            <div ref={planeRef} className="cf3-core relative w-full max-w-[340px] aspect-square">
+            <div ref={planeRef} className="cf3-core relative w-full max-w-[21.25rem] aspect-square">
               <svg viewBox="0 0 320 320" className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true">
                 {/* faint inner guide */}
                 <circle cx="160" cy="160" r={RING_R - 22} className="cf3-guide" />
@@ -462,19 +462,19 @@ export default function ControlFlow() {
                   alt="OmniPriv"
                   width={835}
                   height={175}
-                  className="w-[64%] max-w-[150px] h-auto dark:hidden"
+                  className="w-[64%] max-w-[9.375rem] h-auto dark:hidden"
                 />
                 <Image
                   src="/omniprivdark.png"
                   alt="OmniPriv"
                   width={835}
                   height={175}
-                  className="w-[64%] max-w-[150px] h-auto hidden dark:block"
+                  className="w-[64%] max-w-[9.375rem] h-auto hidden dark:block"
                 />
-                <span className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                <span className="mt-2 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                   Control plane
                 </span>
-                <span className="mt-2.5 min-h-[2.6rem] flex items-start justify-center text-[11.5px] leading-snug text-slate-500 dark:text-slate-400">
+                <span className="mt-2.5 min-h-[2.6rem] flex items-start justify-center text-[0.7188rem] leading-snug text-slate-500 dark:text-slate-400">
                   {animate && decision ? (
                     <span key={decision.n} className="cf2-decision flex flex-col items-center">
                       <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
@@ -536,7 +536,7 @@ export default function ControlFlow() {
             {/* Active stage detail: open text, no container */}
             <div className="mt-5 w-full max-w-md text-center min-h-[8.5rem]" role="tabpanel">
               <div key={`${active}-${round}`} className="cf3-detail">
-                <p className="text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">{STAGES[active].lead}</p>
+                <p className="text-[0.9375rem] text-slate-600 dark:text-slate-300 leading-relaxed">{STAGES[active].lead}</p>
                 <ul className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2.5">
                   {STAGES[active].items.map((it, k) => (
                     <li key={it} className="cf3-item inline-flex items-center gap-2 text-sm text-slate-800 dark:text-slate-200" style={{ ["--k" as string]: k }}>
@@ -595,7 +595,7 @@ const Node = forwardRef<
   return (
     <div
       ref={ref}
-      className={`cf2-node relative flex items-center gap-3 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0a101c] px-3 py-2.5 ${
+      className={`cf2-node relative flex items-center gap-3 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0b0c0e] px-3 py-2.5 ${
         right ? "lg:flex-row-reverse lg:text-right" : ""
       }`}
     >

@@ -22,7 +22,7 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main className="pt-[72px]">{children}</main>
+      <main className="pt-[4.5rem]">{children}</main>
       <Footer />
     </>
   );

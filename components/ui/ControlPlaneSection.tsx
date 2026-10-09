@@ -55,7 +55,7 @@ function Rail({
   items: { label: string; icon: ElementType }[];
 }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-[#00B8DB]/15 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-4 lg:py-7">
+    <div className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-[#00B8DB]/15 bg-gradient-to-b from-slate-100 to-white dark:from-[#0B0C0E] dark:to-[#0b0c0e] p-4 lg:py-7">
       <div className="text-center text-sm font-bold text-slate-950 dark:text-white mb-4 lg:mb-7 leading-tight">
         {title}
       </div>
@@ -65,7 +65,7 @@ function Rail({
             <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-full border border-[#00B8DB]/30 bg-[#00B8DB]/[0.06] flex items-center justify-center">
               <item.icon className="w-5 h-5 text-[#00B8DB]" />
             </div>
-            <span className="text-[11px] lg:text-xs text-slate-600 dark:text-slate-400 text-center leading-tight max-w-[70px]">
+            <span className="text-[0.6875rem] lg:text-xs text-slate-600 dark:text-slate-400 text-center leading-tight max-w-[4.375rem]">
               {item.label}
             </span>
           </div>
@@ -77,10 +77,10 @@ function Rail({
 
 export default function ControlPlaneSection() {
   return (
-    <section className="relative section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711] overflow-hidden">
+    <section className="relative section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#0B0C0E] overflow-hidden">
       {/* Top ambient glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[420px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[56.25rem] h-[26.25rem] pointer-events-none"
         style={{
           background: "radial-gradient(ellipse, rgba(0, 184, 219,0.08) 0%, transparent 65%)",
         }}
@@ -129,13 +129,13 @@ export default function ControlPlaneSection() {
           {stages.map((stage) => (
             <div
               key={stage.title}
-              className="group relative flex flex-col rounded-2xl border border-[#00B8DB]/20 bg-gradient-to-b from-slate-100 to-white dark:from-[#0A1628] dark:to-[#050a14] p-6 pt-12 overflow-hidden shadow-[0_0_20px_rgba(0, 184, 219,0.03)] transition-all duration-300 hover:border-[#00B8DB]/45 hover:shadow-[0_10px_24px_rgba(0, 184, 219,0.06)] hover:-translate-y-1"
+              className="group relative flex flex-col rounded-2xl border border-[#00B8DB]/20 bg-gradient-to-b from-slate-100 to-white dark:from-[#0B0C0E] dark:to-[#0b0c0e] p-6 pt-12 overflow-hidden shadow-[0_0_20px_rgba(0, 184, 219,0.03)] transition-all duration-300 hover:border-[#00B8DB]/45 hover:shadow-[0_10px_24px_rgba(0, 184, 219,0.06)] hover:-translate-y-1"
             >
               <div className="relative flex flex-col flex-1">
                 {/* Icon with scan rings centred on it */}
                 <div className="relative mx-auto w-14 h-14 mb-6">
                   <svg
-                    className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[210px] h-[210px]"
+                    className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[13.125rem] h-[13.125rem]"
                     viewBox="0 0 210 210"
                     fill="none"
                     aria-hidden="true"
@@ -188,7 +188,7 @@ export default function ControlPlaneSection() {
                       key={item}
                       className="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300"
                     >
-                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#00B8DB] flex-shrink-0" />
+                      <span className="mt-[0.4375rem] w-1.5 h-1.5 rounded-full bg-[#00B8DB] flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}

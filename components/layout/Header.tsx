@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import SmoothScroll from "@/components/home/SmoothScroll";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -191,9 +192,11 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-4 pt-3">
+      {/* Smooth wheel scrolling for every page (no output) */}
+      <SmoothScroll />
       <div
         ref={navRef}
-        className="relative mx-auto max-w-[1240px]"
+        className="relative mx-auto max-w-[77.5rem]"
         onMouseLeave={() => {
           if (fine()) {
             scheduleClose();
@@ -203,10 +206,10 @@ export default function Header() {
       >
         <nav
           aria-label="Main"
-          className={`nav-bar relative flex items-center justify-between h-[58px] pl-4 pr-2 rounded-2xl border backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300 ${
+          className={`nav-bar relative flex items-center justify-between h-[3.625rem] pl-4 pr-2 rounded-2xl border backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300 ${
             scrolled || open
-              ? "bg-white/85 dark:bg-[#0a101c]/85 border-slate-900/[0.08] dark:border-white/[0.08] shadow-[0_12px_40px_-16px_rgba(15,23,42,0.35)]"
-              : "bg-white/70 dark:bg-[#0a101c]/60 border-slate-900/[0.06] dark:border-white/[0.07] shadow-[0_8px_30px_-18px_rgba(15,23,42,0.3)]"
+              ? "bg-white/85 dark:bg-[#0b0c0e]/85 border-slate-900/[0.08] dark:border-white/[0.08] shadow-[0_12px_40px_-16px_rgba(15,23,42,0.35)]"
+              : "bg-white/70 dark:bg-[#0b0c0e]/60 border-slate-900/[0.06] dark:border-white/[0.07] shadow-[0_8px_30px_-18px_rgba(15,23,42,0.3)]"
           }`}
         >
           {/* Logo */}
@@ -239,7 +242,7 @@ export default function Header() {
                   }}
                   onFocus={(e) => movePill(e.currentTarget)}
                   onClick={() => setOpen((o) => (o === item.key ? null : item.key))}
-                  className={`relative z-10 flex items-center gap-1 px-3.5 h-9 text-[14px] font-medium rounded-lg transition-colors duration-200 ${
+                  className={`relative z-10 flex items-center gap-1 px-3.5 h-9 text-[0.875rem] font-medium rounded-lg transition-colors duration-200 ${
                     open === item.key ? "text-slate-950 dark:text-white" : "text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white"
                   }`}
                 >
@@ -255,7 +258,7 @@ export default function Header() {
                     if (fine()) scheduleClose();
                   }}
                   onFocus={(e) => movePill(e.currentTarget)}
-                  className={`relative z-10 flex items-center gap-1.5 px-3.5 h-9 text-[14px] font-medium rounded-lg transition-colors duration-200 ${
+                  className={`relative z-10 flex items-center gap-1.5 px-3.5 h-9 text-[0.875rem] font-medium rounded-lg transition-colors duration-200 ${
                     isActive(item.href) ? "text-slate-950 dark:text-white" : "text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white"
                   }`}
                 >
@@ -271,7 +274,7 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/sign-in"
-              className="px-3 h-9 inline-flex items-center text-[14px] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
+              className="px-3 h-9 inline-flex items-center text-[0.875rem] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
             >
               Partner Portal
             </Link>
@@ -284,7 +287,7 @@ export default function Header() {
           {/* Mobile toggle */}
           <div className="flex lg:hidden items-center gap-1.5">
             <span className="hidden min-[380px]:inline-flex">
-              <Link href="/demo" className="nav-cta !h-9 !px-3.5 !text-[13px]">
+              <Link href="/demo" className="nav-cta !h-9 !px-3.5 !text-[0.8125rem]">
                 Request a Demo
               </Link>
             </span>
@@ -304,7 +307,7 @@ export default function Header() {
         <div
           id="nav-panel"
           onMouseEnter={cancelClose}
-          className={`nav-panel absolute left-1/2 top-[calc(100%+10px)] w-[min(880px,calc(100vw-2rem))] rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#0a101c]/95 backdrop-blur-xl shadow-[0_30px_80px_-24px_rgba(15,23,42,0.45)] hidden lg:block ${
+          className={`nav-panel absolute left-1/2 top-[calc(100%+0.625rem)] w-[min(55rem,calc(100vw-2rem))] rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#0b0c0e]/95 backdrop-blur-xl shadow-[0_30px_80px_-24px_rgba(15,23,42,0.45)] hidden lg:block ${
             open ? "is-open" : ""
           }`}
           role="region"
@@ -433,7 +436,7 @@ export default function Header() {
 
       {/* ── Mobile sheet ── */}
       <div
-        className={`nav-sheet lg:hidden fixed inset-x-3 top-[82px] bottom-3 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#0a101c]/95 backdrop-blur-xl overflow-y-auto ${
+        className={`nav-sheet lg:hidden fixed inset-x-3 top-[5.125rem] bottom-3 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#0b0c0e]/95 backdrop-blur-xl overflow-y-auto ${
           mobileOpen ? "is-open" : ""
         }`}
         aria-hidden={!mobileOpen}
@@ -455,7 +458,7 @@ export default function Header() {
                 type="button"
                 onClick={() => setMobileSection((s) => (s === group.key ? null : group.key))}
                 aria-expanded={mobileSection === group.key}
-                className="w-full flex items-center justify-between px-3 py-3.5 text-[15px] font-semibold text-slate-950 dark:text-white rounded-xl"
+                className="w-full flex items-center justify-between px-3 py-3.5 text-[0.9375rem] font-semibold text-slate-950 dark:text-white rounded-xl"
               >
                 {group.label}
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileSection === group.key ? "rotate-180" : ""}`} />
@@ -486,7 +489,7 @@ export default function Header() {
             <Link
               key={l.label}
               href={l.href}
-              className="nav-sheet-item block px-3 py-3.5 text-[15px] font-semibold text-slate-950 dark:text-white rounded-xl"
+              className="nav-sheet-item block px-3 py-3.5 text-[0.9375rem] font-semibold text-slate-950 dark:text-white rounded-xl"
               style={{ ["--i" as string]: i + 2 }}
             >
               {l.label}
@@ -499,7 +502,7 @@ export default function Header() {
               downloadDatasheets();
               setMobileOpen(false);
             }}
-            className="nav-sheet-item w-full flex items-center justify-between px-3 py-3.5 text-[15px] font-semibold text-slate-950 dark:text-white rounded-xl"
+            className="nav-sheet-item w-full flex items-center justify-between px-3 py-3.5 text-[0.9375rem] font-semibold text-slate-950 dark:text-white rounded-xl"
             style={{ ["--i" as string]: 6 }}
           >
             Data sheet

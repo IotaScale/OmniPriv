@@ -93,7 +93,7 @@ function renderArticle(markdown: string): React.ReactNode[] {
       nodes.push(
         <pre
           key={key}
-          className="mt-6 first:mt-0 overflow-x-auto rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#0F2140] p-4 font-mono text-sm leading-[1.7] text-[#0a1628] dark:text-slate-200"
+          className="mt-6 first:mt-0 overflow-x-auto rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#15171A] p-4 font-mono text-sm leading-[1.7] text-[#0a1628] dark:text-slate-200"
         >
           <code>{code.join("\n")}</code>
         </pre>
@@ -292,7 +292,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] text-slate-600 dark:text-slate-400"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] text-slate-600 dark:text-slate-400"
                   >
                     <Tag className="w-3 h-3" aria-hidden="true" /> {tag}
                   </span>

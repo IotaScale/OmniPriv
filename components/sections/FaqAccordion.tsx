@@ -51,8 +51,8 @@ export default function FaqAccordion({
                         key={faq.question}
                         className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                             isOpen
-                                ? "border-[#00B8DB]/35 bg-slate-100 dark:bg-[#0F2140] shadow-[0_4px_24px_rgba(0, 184, 219,0.04)]"
-                                : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100 dark:bg-[#070e1a] hover:border-slate-900/[0.16] dark:hover:border-white/[0.14] hover:bg-slate-100 dark:hover:bg-[#08101d]"
+                                ? "border-[#00B8DB]/35 bg-slate-100 dark:bg-[#15171A] shadow-[0_4px_24px_rgba(0, 184, 219,0.04)]"
+                                : "border-slate-900/[0.09] dark:border-white/[0.07] bg-slate-100 dark:bg-[#0b0c0e] hover:border-slate-900/[0.16] dark:hover:border-white/[0.14] hover:bg-slate-100 dark:hover:bg-[#0b0c0e]"
                         }`}
                     >
                         <button

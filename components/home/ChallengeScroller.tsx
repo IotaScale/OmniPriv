@@ -23,7 +23,8 @@ import BgMotif, { EdgeMotif } from "./BgMotif";
  * the next one. Scenes are drawn in their finished state.
  *
  * Scenes are live product slices (ChallengeVisuals), not stock artwork.
- * Below lg: stacked cards. Reduced motion: slides swap without the fade.
+ * Below lg, or on screens under 520px tall: stacked cards. On shorter desktop
+ * screens the pinned stage is zoomed to fit, so it looks like the 1080p layout. Reduced motion: slides swap without the fade.
  */
 
 const GAPS = [
@@ -135,12 +136,50 @@ export default function ChallengeScroller() {
     };
   }, []);
 
+  /*
+   * Fit the pinned stage to the screen height. On a short screen (a 720p
+   * laptop) the stage is zoomed down as one piece, so it keeps exactly the
+   * 1080p composition with breathing room, instead of its parts squeezing.
+   */
+  const pinRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const pin = pinRef.current;
+    const el = fitRef.current;
+    if (!pin || !el) return;
+    let raf = 0;
+    const fit = () => {
+      raf = 0;
+      el.style.zoom = "";
+      if (!pin.offsetParent && getComputedStyle(pin).position !== "sticky") return;
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
+      const avail = pin.clientHeight - 3 * rem;
+      const h = el.offsetHeight;
+      if (!h || !avail) return;
+      const z = Math.max(0.6, Math.min(1, avail / h));
+      if (z < 0.995) el.style.zoom = String(z);
+    };
+    const onResize = () => {
+      if (!raf) raf = requestAnimationFrame(fit);
+    };
+    fit();
+    const ro = new ResizeObserver(onResize);
+    ro.observe(pin);
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
   /* Jump to a step, through SmoothScroll so the glide matches the page */
   const jump = (i: number) => {
     const wrap = zoneRef.current;
     if (!wrap) return;
     const top = wrap.getBoundingClientRect().top + window.scrollY;
-    const y = i === 0 ? top - 72 : top + (i * STEP_VH * window.innerHeight) / 100;
+    const header = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
+    const y = i === 0 ? top - header : top + (i * STEP_VH * window.innerHeight) / 100;
     if (reduce) {
       window.scrollTo(0, y);
       return;
@@ -155,24 +194,24 @@ export default function ChallengeScroller() {
   return (
     <section ref={sectionRef} className="relative">
       {/* Heading (phones and tablets; on desktop it sits inside the pinned stage) */}
-      <div className="lg:hidden container-xl pt-16">
+      <div className="[@media(min-width:1024px)_and_(min-height:520px)]:hidden container-xl !max-w-3xl pt-16">
         <Heading />
       </div>
 
       {/* Desktop: pinned story */}
       <div
         ref={zoneRef}
-        className="hidden lg:block relative"
+        className="hidden [@media(min-width:1024px)_and_(min-height:520px)]:block relative"
         data-scroll-steps={GAPS.length}
         data-step-vh={STEP_VH}
         style={{ height: `calc(100vh + ${(GAPS.length - 1) * STEP_VH}vh)` }}
       >
-        <div className="sticky top-[72px] h-[calc(100vh-72px)] flex items-center">
+        <div ref={pinRef} className="sticky top-[4.5rem] h-[calc(100vh-4.5rem)] flex items-center">
           {/* Anomaly radar in the left gutter, outside the content column */}
           <EdgeMotif kind="radar" side="left" size={380} top="22%" />
-          <div className="container-xl w-full relative">
+          <div ref={fitRef} className="container-xl w-full relative">
             {/* Control-point drawing in the space to the right of the heading */}
-            <BgMotif kind="network" className="top-0 right-6 w-[340px] h-[155px]" />
+            <BgMotif kind="network" className="top-0 right-6 w-[21.25rem] h-[9.6875rem]" />
 
             {/* Heading stays with the six gaps for the whole pinned story */}
             <Heading compact />
@@ -199,7 +238,7 @@ export default function ChallengeScroller() {
                           className="group w-full flex items-center gap-4 py-2 text-left"
                         >
                           <span className="cs2-icon inline-flex items-center justify-center w-9 h-9 rounded-lg shrink-0">
-                            <g.icon className="w-[18px] h-[18px]" aria-hidden="true" />
+                            <g.icon className="w-[1.125rem] h-[1.125rem]" aria-hidden="true" />
                           </span>
                           <span
                             className="cs2-title text-lg xl:text-xl font-semibold tracking-[-0.025em]"
@@ -212,7 +251,7 @@ export default function ChallengeScroller() {
                         <div className="cs2-detail" {...(on ? {} : ({ inert: "" } as Record<string, string>))}>
                           <div className="overflow-hidden">
                             <div className="pl-[3.25rem] pb-4">
-                              <p className="text-[15px] text-slate-600 dark:text-slate-400 leading-relaxed max-w-md">{g.body}</p>
+                              <p className="text-[0.9375rem] text-slate-600 dark:text-slate-400 leading-relaxed max-w-md">{g.body}</p>
                               <ul className="mt-4 flex flex-wrap gap-2">
                                 {g.chips.map((c) => (
                                   <li
@@ -279,7 +318,7 @@ export default function ChallengeScroller() {
       </div>
 
       {/* Mobile and tablet: stacked */}
-      <div className="lg:hidden container-xl op-body pb-16 space-y-6">
+      <div className="[@media(min-width:1024px)_and_(min-height:520px)]:hidden container-xl !max-w-3xl op-body pb-16 space-y-6">
         {GAPS.map((g, i) => (
           <MobileCard key={g.id} gap={g} index={i} />
         ))}
@@ -310,7 +349,7 @@ function MobileCard({ gap: g, index }: { gap: (typeof GAPS)[number]; index: numb
   const ref = useRef<HTMLDivElement>(null);
   const seen = useInView(ref, { once: true, amount: 0.35 });
   return (
-    <article className="overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#0f2140]">
+    <article className="overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#15171a]">
       <div ref={ref} className="relative aspect-[16/11] p-3">
         {seen && <ChallengeVisual index={index} />}
       </div>

@@ -25,10 +25,10 @@ export const proseStrong = "text-[#0a1628] dark:text-slate-200 font-semibold";
 export const proseKicker = "text-[#0a1628] dark:text-white font-semibold";
 
 /** Card surface that lifts off a white page and a near-black one. */
-export const cardSurface = "bg-white dark:bg-[#0f2140]";
+export const cardSurface = "bg-white dark:bg-[#15171a]";
 
 /** Recessed band surface (`bg-slate-50` in light). */
-export const mutedSurface = "bg-slate-50 dark:bg-[#0c1a30]";
+export const mutedSurface = "bg-slate-50 dark:bg-[#111214]";
 
 /**
  * Hardcoded dark band. Must be solid, a slash-opacity value lets the page

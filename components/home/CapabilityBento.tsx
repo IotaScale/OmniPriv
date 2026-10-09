@@ -56,11 +56,11 @@ const SMALL = [
 ];
 
 const card =
-  "h-full p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0a101c] hover:border-[#00B8DB]/35 transition-colors duration-300";
+  "h-full p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0b0c0e] hover:border-[#00B8DB]/35 transition-colors duration-300";
 
 function Title({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-[17px] font-semibold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
+    <h3 className="text-[1.0625rem] font-semibold text-slate-950 dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
       {children}
     </h3>
   );
@@ -68,7 +68,7 @@ function Title({ children }: { children: React.ReactNode }) {
 
 export default function CapabilityBento() {
   return (
-    <section className="relative border-b border-slate-900/[0.05] dark:border-white/[0.05] bg-slate-50 dark:bg-[#04070e]">
+    <section className="relative border-b border-slate-900/[0.05] dark:border-white/[0.05] bg-slate-50 dark:bg-[#0b0c0e]">
       <div className="container-xl py-24 lg:py-32">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-aos="fade-up">
           <div className="max-w-2xl">
@@ -106,11 +106,11 @@ export default function CapabilityBento() {
               </div>
 
               {/* live policy check */}
-              <RevealScope className="relative mt-8 flex-1 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#05080f] p-4 font-mono text-[12.5px]">
+              <RevealScope className="relative mt-8 flex-1 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#0b0c0e] p-4 font-mono text-[0.7812rem]">
                 <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
                   <Bot className="w-3.5 h-3.5 text-[#00B8DB]" aria-hidden="true" />
                   ai-agent-07
-                  <span className="ml-auto text-[11px]">policy: finance-readonly</span>
+                  <span className="ml-auto text-[0.6875rem]">policy: finance-readonly</span>
                 </div>
                 {[
                   { call: "crm.read_customers", verdict: "allow", note: "in scope" },
@@ -134,7 +134,7 @@ export default function CapabilityBento() {
                       {r.verdict === "allow" ? <Check className="w-3 h-3" /> : r.verdict === "hold" ? <Clock className="w-3 h-3" /> : <X className="w-3 h-3" />}
                     </span>
                     <span className="text-slate-800 dark:text-slate-200">{r.call}</span>
-                    <span className="ml-auto text-[11px] text-slate-500">{r.note}</span>
+                    <span className="ml-auto text-[0.6875rem] text-slate-500">{r.note}</span>
                   </div>
                 ))}
               </RevealScope>

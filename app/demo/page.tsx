@@ -196,7 +196,7 @@ export default function DemoPage() {
                     </div>
 
                     <div className="lg:col-span-2 space-y-8">
-                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0F2140]">
+                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#15171A]">
                             <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
                                 Prefer to talk directly?
                             </h3>
@@ -213,7 +213,7 @@ export default function DemoPage() {
                             </p>
                         </div>
 
-                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0F2140]">
+                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#15171A]">
                             <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
                                 What we will not do
                             </h3>

@@ -92,7 +92,7 @@ export default function ChallengeGrid() {
 
         <ul className="cg-grid mt-10 lg:mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-3xl overflow-hidden border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-900/[0.08] dark:bg-white/[0.08]">
           {GAPS.map((g) => (
-            <li key={g.id} className="cg-cell relative flex flex-col bg-white dark:bg-[#0f2140] p-6 xl:p-7">
+            <li key={g.id} className="cg-cell relative flex flex-col bg-white dark:bg-[#15171a] p-6 xl:p-7">
               <span className="cg-icon inline-flex items-center justify-center w-10 h-10 rounded-xl">
                 <g.icon className="w-5 h-5" aria-hidden="true" />
               </span>
@@ -102,7 +102,7 @@ export default function ChallengeGrid() {
               >
                 {g.headline}
               </h3>
-              <p className="mt-2.5 text-[15px] text-slate-600 dark:text-slate-400 leading-relaxed">{g.body}</p>
+              <p className="mt-2.5 text-[0.9375rem] text-slate-600 dark:text-slate-400 leading-relaxed">{g.body}</p>
               <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${g.headline}: key capabilities`}>
                 {g.chips.map((c) => (
                   <li

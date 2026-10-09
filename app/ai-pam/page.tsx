@@ -385,11 +385,11 @@ export default function AiPamPage() {
                             className={`p-5 rounded-2xl border ${cardBorder} ${cardSurface}`}
                         >
                             <div className="flex items-start justify-between gap-3 mb-3">
-                                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500">
+                                <span className="text-[0.6875rem] font-mono uppercase tracking-wider text-slate-500">
                                     {threat.tag}
                                 </span>
                                 <span
-                                    className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${threat.riskClass}`}
+                                    className={`text-[0.625rem] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${threat.riskClass}`}
                                 >
                                     {threat.risk}
                                 </span>

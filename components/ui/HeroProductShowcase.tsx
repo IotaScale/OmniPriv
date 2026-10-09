@@ -285,7 +285,7 @@ export default function HeroProductShowcase() {
               of the console, so they stay readable. A link runs from each one down to
               the console element it describes. */}
           <div key={`c-${round}`} className="hidden lg:block" aria-hidden="true">
-            <div className="absolute bottom-[calc(100%+16px)] left-0 right-0 z-30 flex items-end justify-between gap-4">
+            <div className="absolute bottom-[calc(100%+1rem)] left-0 right-0 z-30 flex items-end justify-between gap-4">
               <Callout k={0} className="" {...scene.callouts[0]} />
               <Callout k={1} className="" {...scene.callouts[1]} />
             </div>
@@ -309,13 +309,13 @@ export default function HeroProductShowcase() {
             <span data-motion className="hp-sheen" aria-hidden="true" />
 
             {/* Browser bar */}
-            <div className="flex items-center gap-3 h-9 sm:h-10 px-3 sm:px-4 border-b border-white/[0.07] bg-[#0d1d35] rounded-t-[14px]">
+            <div className="flex items-center gap-3 h-9 sm:h-10 px-3 sm:px-4 border-b border-white/[0.07] bg-[#1c1e23] rounded-t-[0.875rem]">
               <div className="hidden sm:flex gap-1.5" aria-hidden="true">
                 <span className="w-2.5 h-2.5 rounded-full bg-white/[0.12]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-white/[0.12]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-white/[0.12]" />
               </div>
-              <div className="mx-auto flex items-center gap-1.5 min-w-0 max-w-[70%] rounded-md bg-white/[0.04] border border-white/[0.06] px-3 py-1 text-[11px] sm:text-xs text-slate-400 font-mono">
+              <div className="mx-auto flex items-center gap-1.5 min-w-0 max-w-[70%] rounded-md bg-white/[0.04] border border-white/[0.06] px-3 py-1 text-[0.6875rem] sm:text-xs text-slate-400 font-mono">
                 <Lock className="w-3 h-3 shrink-0 text-slate-500" aria-hidden="true" />
                 <span className="truncate">
                   app.omnipriv.com/
@@ -324,7 +324,7 @@ export default function HeroProductShowcase() {
                   </span>
                 </span>
               </div>
-              <div className="hidden sm:block w-[46px]" aria-hidden="true" />
+              <div className="hidden sm:block w-[2.875rem]" aria-hidden="true" />
             </div>
 
             {/* The console */}
@@ -474,11 +474,11 @@ function Callout({
   return (
     <div data-motion data-callout={k} className={`hp-callout relative ${className}`} style={d(at)}>
       <span className="hp-callout-icon">
-        <Icon className="w-[18px] h-[18px]" />
+        <Icon className="w-[1.125rem] h-[1.125rem]" />
       </span>
       <span className="min-w-0">
-        <span className="block text-[14.5px] font-semibold text-white leading-tight whitespace-nowrap">{text}</span>
-        <span className="block mt-0.5 text-[12px] text-slate-300/85 whitespace-nowrap">{sub}</span>
+        <span className="block text-[0.9062rem] font-semibold text-white leading-tight whitespace-nowrap">{text}</span>
+        <span className="block mt-0.5 text-[0.75rem] text-slate-300/85 whitespace-nowrap">{sub}</span>
       </span>
     </div>
   );

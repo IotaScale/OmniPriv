@@ -85,7 +85,7 @@ export default function PamFaqSection() {
   };
 
   return (
-    <section className="op-sec bg-white dark:bg-[#0a1628] relative overflow-hidden">
+    <section className="op-sec bg-white dark:bg-[#0b0c0e] relative overflow-hidden">
       {/* Shield and audit chain in the gutters either side of the content. */}
       <EdgeMotif kind="shield" side="left" size={280} aspect={380 / 320} top="16%" />
       <EdgeMotif kind="chainv" side="right" size={210} aspect={2.2} top="40%" />

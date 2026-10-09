@@ -36,7 +36,7 @@ export default function InsightsSection({ posts }: { posts: InsightPost[] }) {
   return (
     <section className="relative overflow-x-clip">
       {/* Session recording in the right gutter */}
-      <EdgeMotif kind="terminal" side="right" size={340} aspect={260 / 360} top="34%" />
+      <EdgeMotif kind="guide" side="right" size={300} aspect={300 / 360} top="34%" />
       <div className="container-xl op-sec">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6" data-aos="fade-up">
           <div className="max-w-2xl">
@@ -64,7 +64,7 @@ export default function InsightsSection({ posts }: { posts: InsightPost[] }) {
               href={p.href}
               className="ins-card group grid sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:flex lg:flex-col"
             >
-              <div className="ins-media relative aspect-[2/1] sm:aspect-auto sm:min-h-[180px] lg:aspect-[2/1] lg:min-h-0">
+              <div className="ins-media relative aspect-[2/1] sm:aspect-auto sm:min-h-[11.25rem] lg:aspect-[2/1] lg:min-h-0">
                 <Image
                   src={p.image}
                   alt={p.imageAlt ?? ""}
@@ -77,7 +77,7 @@ export default function InsightsSection({ posts }: { posts: InsightPost[] }) {
               <div className="flex flex-col flex-1 p-5 lg:p-6">
                 <span className="ins-cat">{p.category}</span>
                 <h3
-                  className="ins-title mt-2 text-[17px] lg:text-lg font-bold tracking-[-0.015em] leading-snug line-clamp-3"
+                  className="ins-title mt-2 text-[1.0625rem] lg:text-lg font-bold tracking-[-0.015em] leading-snug line-clamp-3"
                   style={{ fontFamily: "var(--font-syne)" }}
                 >
                   {p.title}
@@ -110,7 +110,7 @@ function Meta({ post, cta }: { post: InsightPost; cta?: string }) {
         </span>
       ) : (
         <ArrowUpRight
-          className="ins-arrow w-[18px] h-[18px] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          className="ins-arrow w-[1.125rem] h-[1.125rem] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
           aria-hidden="true"
         />
       )}

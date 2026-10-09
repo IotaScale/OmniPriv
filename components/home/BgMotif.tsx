@@ -8,6 +8,7 @@
  *   network      one control point governing identities and targets
  *   key          a credential with its rotation cycle
  *   fingerprint  a verified identity
+ *   guide        research and best practice (open guide, checklist, lens)
  * They sit in the empty margins of a few sections only, never behind text,
  * and they do not move.
  *
@@ -16,7 +17,7 @@
  * (`.bgm`, `.bgm-acc` in app/globals.css) so light and dark are handled there.
  */
 
-type MotifKind = "vault" | "shield" | "chain" | "chainv" | "network" | "key" | "fingerprint" | "radar" | "terminal";
+type MotifKind = "vault" | "shield" | "chain" | "chainv" | "network" | "key" | "fingerprint" | "radar" | "terminal" | "guide";
 
 function Drawing({ kind }: { kind: MotifKind }) {
   return (
@@ -30,6 +31,7 @@ function Drawing({ kind }: { kind: MotifKind }) {
       {kind === "fingerprint" && <Fingerprint />}
       {kind === "radar" && <Radar />}
       {kind === "terminal" && <Terminal />}
+      {kind === "guide" && <Guide />}
     </>
   );
 }
@@ -58,11 +60,13 @@ export function EdgeMotif({
   /** CSS top, e.g. "120px" or "35%" */
   top: string;
 }) {
-  const offset = `min(0px, calc(max(56px, (100vw - 1280px) / 2 + 8px) - ${size}px))`;
+  /* rem, so the motif and the gutter maths follow the site's fluid scale */
+  const rem = (px: number) => `${px / 16}rem`;
+  const offset = `min(0px, calc(max(3.5rem, (100vw - 80rem) / 2 + 0.5rem) - ${rem(size)}))`;
   return (
     <div
       className="bgm pointer-events-none select-none absolute hidden min-[1360px]:block"
-      style={{ width: size, height: Math.round(size * aspect), top, [side]: offset }}
+      style={{ width: rem(size), height: rem(Math.round(size * aspect)), top, [side]: offset }}
       aria-hidden="true"
     >
       <Drawing kind={kind} />
@@ -364,6 +368,46 @@ function Terminal() {
       <path d="M34 152 H200" />
       <path className="bgm-acc" d="M34 184 l10 8 l-10 8 M56 200 H140" strokeWidth={1.75} />
       <path d="M150 200 H160" strokeWidth={3} />
+    </svg>
+  );
+}
+
+/* Research and best practice: an open guide, a checklist on the right page
+   with one item verified, and a lens over it. */
+function Guide() {
+  return (
+    <svg viewBox="0 0 360 300" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      {/* pages */}
+      <path className="bgm-tint" d="M180 58 C150 40 92 36 30 46 V246 C92 236 150 240 180 258 C210 240 268 236 330 246 V46 C268 36 210 40 180 58 Z" />
+      <path d="M180 58 C150 40 92 36 30 46 V246 C92 236 150 240 180 258" />
+      <path d="M180 58 C210 40 268 36 330 46 V246 C268 236 210 240 180 258" />
+      <path d="M180 58 V258" />
+      {/* page edges underneath */}
+      <path d="M30 246 V258 C92 248 150 252 180 270 C210 252 268 248 330 258 V246" strokeDasharray="2 7" />
+      {/* left page: text */}
+      <path d="M56 84 H150" strokeWidth={2.2} />
+      <path d="M56 108 H156 M56 126 H146 M56 144 H154 M56 162 H128" />
+      <path d="M56 192 H150 M56 210 H136" />
+      {/* right page: checklist */}
+      <g>
+        <rect x={206} y={80} width={14} height={14} rx={3.5} />
+        <path d="M232 87 H300" />
+        <rect x={206} y={112} width={14} height={14} rx={3.5} />
+        <path d="M232 119 H292" />
+      </g>
+      <g className="bgm-acc">
+        <rect x={206} y={144} width={14} height={14} rx={3.5} strokeWidth={1.75} />
+        <path d="M209.5 151 l3 3 l5 -6" strokeWidth={1.75} />
+        <path d="M232 151 H304" strokeWidth={1.75} />
+      </g>
+      <rect x={206} y={176} width={14} height={14} rx={3.5} />
+      <path d="M232 183 H286" />
+      {/* lens */}
+      <g className="bgm-acc">
+        <circle cx={286} cy={214} r={30} strokeWidth={1.75} />
+        <path d="M307 235 L334 262" strokeWidth={4} />
+      </g>
+      <circle cx={286} cy={214} r={22} strokeDasharray="2 6" />
     </svg>
   );
 }

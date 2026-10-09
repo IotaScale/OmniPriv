@@ -32,7 +32,7 @@ export default function HeroScene() {
   const glowOpacity = useTransform(p, [0, 0.8], [1, 0.25]);
 
   return (
-    <section ref={ref} className="hp-hero relative overflow-hidden bg-white dark:bg-[#0a1628] -mt-[72px] pt-[72px]">
+    <section ref={ref} className="hp-hero relative overflow-hidden bg-white dark:bg-[#0b0c0e] -mt-[4.5rem] pt-[4.5rem]">
       {/* Ground: OmniPriv navy with one soft light behind the product */}
       <motion.div
         className="hp-ground pointer-events-none absolute inset-0"
@@ -42,13 +42,13 @@ export default function HeroScene() {
       <div className="hp-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="container-xl relative">
-        <div className="grid lg:grid-cols-12 gap-14 lg:gap-10 items-center min-h-[calc(100dvh-72px)] pt-16 pb-16 lg:pt-12 lg:pb-12">
+        <div className="grid lg:grid-cols-12 gap-14 lg:gap-10 items-center min-h-[calc(100dvh-4.5rem)] pt-16 pb-16 lg:py-20">
           {/* Copy */}
           <motion.div
             className="lg:col-span-6 max-w-2xl"
             style={reduce ? undefined : { y: copyY, opacity: copyOpacity, filter: copyBlur }}
           >
-            <p className="hp-fade flex items-center gap-3 text-[10.5px] sm:text-[13px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.16em] text-[#00667a] dark:text-[#00B8DB] font-mono">
+            <p className="hp-fade flex items-center gap-3 text-[0.6562rem] sm:text-[0.8125rem] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.16em] text-[#00667a] dark:text-[#00B8DB] font-mono">
               <span data-motion className="hp-rule block w-8 h-px bg-[#00B8DB]" aria-hidden="true" />
               AI-Powered Privileged Access Management
             </p>

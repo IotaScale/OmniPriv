@@ -135,7 +135,7 @@ function FeatureSection({
             {features.map((f) => (
               <div
                 key={f.title}
-                className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] p-6 hover:border-[#00B8DB]/45 transition-colors"
+                className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 hover:border-[#00B8DB]/45 transition-colors"
               >
                 <div className="icon-wrapper mb-4">
                   <f.icon className="w-5 h-5" aria-hidden="true" />

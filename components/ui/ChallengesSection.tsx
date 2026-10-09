@@ -120,7 +120,7 @@ function ChallengeImage({
     accent: string;
 }) {
     return (
-        <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl border border-slate-900/[0.06] dark:border-white/[0.06] bg-white dark:bg-[#060b14]">
+        <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl border border-slate-900/[0.06] dark:border-white/[0.06] bg-white dark:bg-[#0b0c0e]">
             <Image
                 src={src}
                 alt={alt}
@@ -134,7 +134,7 @@ function ChallengeImage({
 
             {/* Caption */}
             <div
-                className="absolute inset-x-0 bottom-2 text-center font-mono text-[10px] font-semibold tracking-[0.14em]"
+                className="absolute inset-x-0 bottom-2 text-center font-mono text-[0.625rem] font-semibold tracking-[0.14em]"
                 style={{ color: accent }}
             >
                 {caption}
@@ -156,7 +156,7 @@ function ChallengeVisual({
     caption: string;
 }) {
     return (
-        <div className="relative h-[164px] w-full overflow-hidden rounded-xl border border-slate-900/[0.06] dark:border-white/[0.06] bg-white dark:bg-[#060b14]">
+        <div className="relative h-[10.25rem] w-full overflow-hidden rounded-xl border border-slate-900/[0.06] dark:border-white/[0.06] bg-white dark:bg-[#0b0c0e]">
             {/* Accent tint */}
             <div
                 className="absolute inset-0"
@@ -169,7 +169,7 @@ function ChallengeVisual({
             <svg
                 viewBox="0 0 200 200"
                 aria-hidden="true"
-                className="absolute left-1/2 top-1/2 h-[186px] w-[186px] -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 h-[11.625rem] w-[11.625rem] -translate-x-1/2 -translate-y-1/2"
             >
                 <circle
                     cx="100"
@@ -216,7 +216,7 @@ function ChallengeVisual({
 
             {/* Caption */}
             <div
-                className="absolute inset-x-0 bottom-3 text-center font-mono text-[10px] font-semibold tracking-[0.14em]"
+                className="absolute inset-x-0 bottom-3 text-center font-mono text-[0.625rem] font-semibold tracking-[0.14em]"
                 style={{ color: accent }}
             >
                 {caption}
@@ -230,9 +230,9 @@ function ChallengeVisual({
 ───────────────────────────────────────────────────────────── */
 export default function ChallengesSection() {
     return (
-        <section className="section-padding relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
+        <section className="section-padding relative overflow-hidden border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#0B0C0E]">
             <div
-                className="absolute -top-24 left-1/2 h-[420px] w-[820px] -translate-x-1/2 pointer-events-none opacity-60"
+                className="absolute -top-24 left-1/2 h-[26.25rem] w-[51.25rem] -translate-x-1/2 pointer-events-none opacity-60"
                 style={{
                     background:
                         "radial-gradient(ellipse, rgba(0, 184, 219, 0.07) 0%, transparent 65%)",
@@ -263,7 +263,7 @@ export default function ChallengesSection() {
                         <Link
                             key={challenge.id}
                             href={challenge.href}
-                            className="group flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#070e1c] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#00B8DB]/40 hover:bg-white dark:hover:bg-[#0b1424] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
+                            className="group flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-slate-50 dark:bg-[#0b0c0e] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#00B8DB]/40 hover:bg-white dark:hover:bg-[#0b0c0e] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
                         >
                             {challenge.image ? (
                                 <ChallengeImage

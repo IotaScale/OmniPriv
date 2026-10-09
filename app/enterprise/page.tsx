@@ -185,7 +185,7 @@ export default function EnterprisePage() {
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`flex flex-col rounded-2xl border bg-white dark:bg-[#0F2140] transition-colors hover:border-[#00B8DB]/45 ${plan.highlight
+                className={`flex flex-col rounded-2xl border bg-white dark:bg-[#15171A] transition-colors hover:border-[#00B8DB]/45 ${plan.highlight
                   ? "border-[#00B8DB]/45"
                   : "border-slate-900/[0.08] dark:border-white/[0.08]"
                   }`}
@@ -193,7 +193,7 @@ export default function EnterprisePage() {
                 <div className="p-6 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <h3 className="op-h3">{plan.name}</h3>
-                    {plan.badge && <span className="badge-cyan text-[10px]">{plan.badge}</span>}
+                    {plan.badge && <span className="badge-cyan text-[0.625rem]">{plan.badge}</span>}
                   </div>
                   <p className="op-card-text">{plan.description}</p>
                   <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400">
@@ -270,7 +270,7 @@ export default function EnterprisePage() {
           </div>
           <div className="op-body grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up">
             {slaHighlights.map((s) => (
-              <div key={s.metric} className="rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] p-6 hover:border-[#00B8DB]/45 transition-colors">
+              <div key={s.metric} className="rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 hover:border-[#00B8DB]/45 transition-colors">
                 <div className="font-display text-[2rem] font-bold leading-none tracking-[-0.03em] text-[#00667A] dark:text-[#00B8DB]">
                   {s.metric}
                 </div>
@@ -290,7 +290,7 @@ export default function EnterprisePage() {
           </div>
           <div className="op-body grid md:grid-cols-2 gap-5" data-aos="fade-up">
             {testimonials.map((t) => (
-              <figure key={t.author} className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] p-6 sm:p-8">
+              <figure key={t.author} className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 sm:p-8">
                 <div className="flex items-center gap-0.5 mb-4" aria-label={`${t.rating} out of 5`}>
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" aria-hidden="true" />

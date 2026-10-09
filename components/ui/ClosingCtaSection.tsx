@@ -7,9 +7,9 @@ import LightBeamButton from "@/components/ui/LightBeamButton";
 
 export default function ClosingCtaSection() {
   return (
-    <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#030711]">
+    <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04] bg-white dark:bg-[#0B0C0E]">
       <div className="container-xl max-w-5xl mx-auto">
-        <div className="relative rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#08101e] p-8 sm:p-12 lg:p-16 overflow-hidden" data-aos="fade-up">
+        <div className="relative rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-slate-100 dark:bg-[#0b0c0e] p-8 sm:p-12 lg:p-16 overflow-hidden" data-aos="fade-up">
           {/* Subtle top border accent */}
           <div className="absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
 

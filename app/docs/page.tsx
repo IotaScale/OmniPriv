@@ -119,7 +119,7 @@ const quickLinks = [
 ];
 
 const cardClass =
-  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140]";
+  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A]";
 
 export default function DocsPage() {
   return (

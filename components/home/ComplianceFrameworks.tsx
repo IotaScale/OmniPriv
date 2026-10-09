@@ -66,7 +66,7 @@ export default function ComplianceFrameworks() {
             {FRAMEWORKS.map((f, i) => (
               <div
                 key={f.name}
-                className="reveal-item cfw-tile relative bg-white dark:bg-[#0f2140] p-6 sm:p-7 min-h-[170px] flex flex-col justify-between"
+                className="reveal-item cfw-tile relative bg-white dark:bg-[#15171a] p-6 sm:p-7 min-h-[10.625rem] flex flex-col justify-between"
                 style={{ transitionDelay: `${i * 110}ms` }}
               >
                 <span className="cfw-check inline-flex items-center justify-center w-8 h-8 rounded-full" style={{ ["--d" as string]: `${0.5 + i * 0.11}s` }}>

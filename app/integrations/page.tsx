@@ -110,7 +110,7 @@ const featuredLogos = [
 ];
 
 const cardClass =
-  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] hover:border-[#00B8DB]/45 transition-colors";
+  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/45 transition-colors";
 
 export default function IntegrationsPage() {
   return (
@@ -138,7 +138,7 @@ export default function IntegrationsPage() {
             {featuredLogos.map((logo) => (
               <div
                 key={logo}
-                className="px-5 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0F2140] text-sm font-medium text-slate-700 dark:text-slate-300"
+                className="px-5 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] text-sm font-medium text-slate-700 dark:text-slate-300"
               >
                 {logo}
               </div>
@@ -185,7 +185,7 @@ export default function IntegrationsPage() {
                   <div key={intg.name} className={`${cardClass} p-5`}>
                     <div className="flex items-center gap-3 mb-3">
                       <div
-                        className="icon-wrapper flex-shrink-0 flex items-center justify-center text-[9px] font-bold leading-none text-center"
+                        className="icon-wrapper flex-shrink-0 flex items-center justify-center text-[0.5625rem] font-bold leading-none text-center"
                         aria-hidden="true"
                       >
                         {intg.name.substring(0, 3).toUpperCase()}

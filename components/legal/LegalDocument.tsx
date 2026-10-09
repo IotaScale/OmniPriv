@@ -157,7 +157,7 @@ export default function LegalDocument({ title, updated, intro, sections, footer 
               <p className="text-sm text-slate-500 dark:text-slate-400">{updated}</p>
               {intro && (
                 <div
-                  className={`mt-5 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#0F2140] p-6 ${bodyText}`}
+                  className={`mt-5 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#15171A] p-6 ${bodyText}`}
                 >
                   {intro}
                 </div>

@@ -98,7 +98,7 @@ export default function AiPamSolutionsPage() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Human Identities */}
-                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
+                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
                         <div className="icon-wrapper mb-5">
                             <identityLayersSection.human.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                         </div>
@@ -113,7 +113,7 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* Machine & Non-Human Identities */}
-                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
+                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
                         <div className="icon-wrapper mb-5">
                             <identityLayersSection.machine.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                         </div>
@@ -129,7 +129,7 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* AI & Automated Identities */}
-                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
+                    <div className="flex flex-col p-7 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/40 shadow-sm hover:border-[#00B8DB]/40 transition-all duration-300">
                         <div className="icon-wrapper mb-5">
                             <identityLayersSection.ai.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
                         </div>
@@ -160,7 +160,7 @@ export default function AiPamSolutionsPage() {
                     Only `.max-w-3xl` columns are centred by the rule in globals.css. */}
                 <div className="space-y-12 max-w-4xl mx-auto">
                     {/* 1. JIT Access & Zero Standing Privileges */}
-                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
+                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/60">
                         <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.jit.step}
                         </div>
@@ -180,7 +180,7 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* 2. Protect Credentials */}
-                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
+                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/60">
                         <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.credentials.step}
                         </div>
@@ -198,7 +198,7 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* 3. Apply Policy-Based AI Agent Access Control */}
-                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
+                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/60">
                         <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.accessControl.step}
                         </div>
@@ -222,7 +222,7 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* 4. Control Activity During Privileged Sessions */}
-                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
+                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/60">
                         <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.sessionMonitoring.step}
                         </div>
@@ -237,7 +237,7 @@ export default function AiPamSolutionsPage() {
                     </div>
 
                     {/* 5. Detect Risk with Intelligent Behavioral Analysis */}
-                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/60">
+                    <div className="p-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/60">
                         <div className="text-xs font-mono font-bold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-widest mb-2">
                             Pillar {strengthenSection.behavioralAnalysis.step}
                         </div>
@@ -279,7 +279,7 @@ export default function AiPamSolutionsPage() {
                     {environmentSection.environments.map((env) => (
                         <div
                             key={env.title}
-                            className="group flex flex-col p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0A1628]/40 hover:-translate-y-1 hover:border-[#00B8DB]/40 transition-all duration-300"
+                            className="group flex flex-col p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#0B0C0E]/40 hover:-translate-y-1 hover:border-[#00B8DB]/40 transition-all duration-300"
                         >
                             <div className="icon-wrapper mb-5">
                                 <env.icon className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />

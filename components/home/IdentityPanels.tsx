@@ -52,7 +52,7 @@ export default function IdentityPanels() {
   return (
     <section className="relative overflow-hidden">
       {/* A large vault dial peeking in from the top-right corner, beside the heading. */}
-      <BgMotif kind="vault" className="w-[460px] h-[460px] -top-[150px] -right-[90px]" />
+      <BgMotif kind="vault" className="w-[28.75rem] h-[28.75rem] -top-[9.375rem] -right-[5.625rem]" />
 
       <div className="container-xl op-sec relative z-10">
         <div className="max-w-2xl" data-aos="fade-up">
@@ -66,7 +66,7 @@ export default function IdentityPanels() {
           </p>
         </div>
 
-        <div className="op-body flex flex-col lg:flex-row gap-4 lg:h-[480px]" data-aos="fade-up" data-aos-delay="100">
+        <div className="op-body flex flex-col lg:flex-row gap-4 lg:h-[30rem]" data-aos="fade-up" data-aos-delay="100">
           {IDENTITIES.map((id, i) => {
             const on = i === active;
             return (
@@ -75,7 +75,7 @@ export default function IdentityPanels() {
                 onMouseEnter={() => setActive(i)}
                 onFocusCapture={() => setActive(i)}
                 onClick={() => setActive(i)}
-                className={`ip-panel group relative overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-[#0a1628] min-h-[440px] lg:min-h-0 ${
+                className={`ip-panel group relative overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-[#0b0c0e] min-h-[27.5rem] lg:min-h-0 ${
                   on ? "is-on" : ""
                 }`}
               >
@@ -86,7 +86,7 @@ export default function IdentityPanels() {
                   sizes="(min-width: 1024px) 60vw, 100vw"
                   className="ip-img object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-[#0a1628]/60 to-[#0a1628]/0" aria-hidden="true" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c0e] via-[#0b0c0e]/60 to-[#0b0c0e]/0" aria-hidden="true" />
 
                 <div className="relative h-full flex flex-col justify-end p-7 lg:p-8">
                   <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 border border-white/15 text-white backdrop-blur-sm">
@@ -99,7 +99,7 @@ export default function IdentityPanels() {
                     {id.title}
                   </h3>
                   <div className="ip-copy">
-                    <p className="mt-3 text-[15px] text-slate-300 leading-relaxed max-w-md">{id.body}</p>
+                    <p className="mt-3 text-[0.9375rem] text-slate-300 leading-relaxed max-w-md">{id.body}</p>
                     <Link
                       href={id.href}
                       className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00B8DB]"

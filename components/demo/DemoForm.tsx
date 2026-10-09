@@ -144,7 +144,7 @@ export default function DemoForm() {
     }
 
     return (
-        <div className="p-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-white dark:bg-[#0F2140]">
+        <div className="p-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.06] bg-white dark:bg-[#15171A]">
             <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6">
                 Tell Us About Your Needs
             </h2>
@@ -323,7 +323,7 @@ export default function DemoForm() {
                         name="agree"
                         checked={formData.agree}
                         onChange={handleChange}
-                        className="mt-1 w-4 h-4 rounded border-slate-300 dark:border-white/20 bg-slate-200 dark:bg-[#0F1E35] accent-[#00B8DB]"
+                        className="mt-1 w-4 h-4 rounded border-slate-300 dark:border-white/20 bg-slate-200 dark:bg-[#15171A] accent-[#00B8DB]"
                     />
                     <label
                         htmlFor="demo-agree"

@@ -40,13 +40,13 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-white dark:bg-[#0a1628] border-t border-slate-900/[0.08] dark:border-white/[0.06] overflow-hidden">
+    <footer className="relative bg-white dark:bg-[#0b0c0e] border-t border-slate-900/[0.08] dark:border-white/[0.06] overflow-hidden">
       {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[37.5rem] h-px bg-gradient-to-r from-transparent via-[#00B8DB]/40 to-transparent" />
 
       {/* Newsletter bar: follows the theme, so the page ground runs on unbroken */}
       <div>
-        <div className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/50 dark:bg-[#0A1628]">
+        <div className="border-b border-slate-900/[0.08] dark:border-white/[0.06] bg-slate-100/50 dark:bg-[#0B0C0E]">
           <div className="container-xl py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>

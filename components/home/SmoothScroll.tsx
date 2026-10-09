@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /*
- * Homepage scroll controller. No dependency; one wheel listener.
+ * Site-wide scroll controller (mounted once from the Header, so every
+ * marketing page gets it). No dependency; one wheel listener.
  *
  * 1. Smooth scrolling: wheel input moves a target, and the page eases towards
  *    it every frame, so the whole page from hero to footer glides at one
@@ -22,16 +24,29 @@ import { useEffect } from "react";
  * Only for fine pointers (mouse, trackpad). Touch keeps native scrolling, and
  * keyboard / scrollbar input is native too; the controller re-syncs to it.
  * Reduced motion: does nothing at all.
+ *
+ * Left native on purpose: the partner portal and admin apps (their own
+ * scroll panes), anything inside a scrollable box that can still scroll
+ * (menus, code blocks, dialogs, text areas), horizontal / shift scrolling,
+ * and while the page is scroll-locked (an open dialog or mobile menu).
  */
+
+/* App areas with their own scroll panes keep native scrolling. */
+const NATIVE_ROUTES = ["/partner-portal", "/channel-admin", "/portal-admin"];
 
 const EASE = 0.1; // share of the remaining distance covered per frame
 const STEP_EASE = 0.17; // faster settle when moving between slides
 const STEP_MIN_MS = 420; // shortest time between two slides
 const GESTURE_GAP_MS = 140; // a pause this long starts a new gesture
-const HEADER = 72;
+/* Fixed header offset: 4.5rem, read live so it follows the site's fluid scale. */
+const headerPx = () => 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
 
 export default function SmoothScroll() {
+  const pathname = usePathname() || "/";
+  const native = NATIVE_ROUTES.some((r) => pathname === r || pathname.startsWith(r + "/"));
+
   useEffect(() => {
+    if (native) return;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduced) return;
@@ -87,7 +102,7 @@ export default function SmoothScroll() {
       const n = Number(el.dataset.scrollSteps);
       const stepPx = (Number(el.dataset.stepVh) * window.innerHeight) / 100;
       const top = el.getBoundingClientRect().top + window.scrollY;
-      return Array.from({ length: n }, (_, i) => (i === 0 ? top - HEADER : top + i * stepPx));
+      return Array.from({ length: n }, (_, i) => (i === 0 ? top - headerPx() : top + i * stepPx));
     };
 
     /* Where one step in direction `sign` lands from `base`, or null if outside the zone. */
@@ -114,15 +129,34 @@ export default function SmoothScroll() {
       glide(y, STEP_EASE);
     };
 
+    /* True if the wheel should scroll an inner box rather than the page. */
+    const innerScrolls = (from: HTMLElement | null, dy: number) => {
+      for (let n = from; n && n !== document.body && n !== root; n = n.parentElement) {
+        if (n.tagName === "TEXTAREA" || n.tagName === "SELECT") return true;
+        const oy = getComputedStyle(n).overflowY;
+        if ((oy === "auto" || oy === "scroll" || oy === "overlay") && n.scrollHeight > n.clientHeight + 1) {
+          if (dy > 0 ? n.scrollTop + n.clientHeight < n.scrollHeight - 1 : n.scrollTop > 0) return true;
+        }
+      }
+      return false;
+    };
+    const locked = () => {
+      const b = getComputedStyle(document.body).overflowY;
+      const h = getComputedStyle(root).overflowY;
+      return b === "hidden" || h === "hidden";
+    };
+
     const onWheel = (e: WheelEvent) => {
-      if (e.ctrlKey) return; // pinch / browser zoom
+      if (e.ctrlKey || e.shiftKey) return; // pinch / browser zoom, sideways
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // horizontal swipe
       const t = e.target as HTMLElement | null;
-      if (t?.closest("[data-native-scroll], .nav-panel, .nav-sheet")) return;
+      if (t?.closest("[data-native-scroll], .nav-panel, .nav-sheet, [role=dialog], [aria-modal=true]")) return;
 
       let dy = e.deltaY;
       if (e.deltaMode === 1) dy *= 16;
       else if (e.deltaMode === 2) dy *= window.innerHeight;
       if (dy === 0) return;
+      if (locked() || innerScrolls(t, dy)) return;
       e.preventDefault();
 
       const now = performance.now();
@@ -218,7 +252,8 @@ export default function SmoothScroll() {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("op:scrollto", onScrollTo);
     };
-  }, []);
+    // Re-arm on every route change: the new page starts from its own position.
+  }, [native, pathname]);
 
   return null;
 }

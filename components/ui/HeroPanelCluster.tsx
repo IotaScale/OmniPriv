@@ -234,7 +234,7 @@ export default function HeroPanelCluster() {
           className="pointer-events-none absolute inset-0 flex items-center justify-center"
           aria-hidden="true"
         >
-          <div data-motion className="hero-pulse-soft h-[520px] w-[520px] rounded-full bg-[#00B8DB]/15 blur-3xl" />
+          <div data-motion className="hero-pulse-soft h-[32.5rem] w-[32.5rem] rounded-full bg-[#00B8DB]/15 blur-3xl" />
           <div data-motion className="hero-screen-glow absolute" />
         </div>
 

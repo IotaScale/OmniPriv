@@ -89,7 +89,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
             {/* ─── FILTER BAR ─────────────────────────────────────── */}
             <section
                 className={cn(
-                    "sticky top-[72px] z-30 py-5 border-b backdrop-blur-xl bg-white/95 dark:bg-[#0A1628]/95",
+                    "sticky top-[4.5rem] z-30 py-5 border-b backdrop-blur-xl bg-white/95 dark:bg-[#0B0C0E]/95",
                     sectionBorder,
                 )}
             >
@@ -146,7 +146,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                 >
                     <div className="absolute inset-0 bg-grid opacity-20" aria-hidden="true" />
                     <div
-                        className="absolute top-0 right-0 w-[400px] h-[400px] opacity-10 pointer-events-none z-10"
+                        className="absolute top-0 right-0 w-[25rem] h-[25rem] opacity-10 pointer-events-none z-10"
                         style={{
                             background: "radial-gradient(circle, #00B8DB 0%, transparent 60%)",
                         }}
@@ -218,7 +218,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                         </div>
 
                         {featured.image && (
-                            <div className="relative h-56 lg:h-auto lg:min-h-[320px] order-1 lg:order-2">
+                            <div className="relative h-56 lg:h-auto lg:min-h-[20rem] order-1 lg:order-2">
                                 <Image
                                     src={featured.image.src}
                                     alt={featured.image.alt}
@@ -289,7 +289,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
 
                                         <div className="flex flex-wrap gap-1.5 mb-4">
                                             {post.tags.slice(0, 2).map((tag) => (
-                                                <span key={tag} className="tag text-[11px]">
+                                                <span key={tag} className="tag text-[0.6875rem]">
                                                     {tag}
                                                 </span>
                                             ))}
@@ -304,7 +304,7 @@ export default function BlogIndex({ featured, posts, categories }: BlogIndexProp
                                                     <div className="text-xs text-slate-950 dark:text-white font-medium leading-tight">
                                                         {post.author}
                                                     </div>
-                                                    <div className="text-[10px] text-slate-500">
+                                                    <div className="text-[0.625rem] text-slate-500">
                                                         {post.readTime}
                                                     </div>
                                                 </div>
