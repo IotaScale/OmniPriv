@@ -32,15 +32,30 @@ let dbPool: Pool | null = null;
 
 export function getPool(): Pool {
   if (!dbPool) {
-    dbPool = new Pool({
-      host: process.env.PGHOST || "127.0.0.1",
-      port: parseInt(process.env.PGPORT || "5432", 10),
-      user: process.env.PGUSER || "postgres",
-      password: process.env.PGPASSWORD || "",
-      database: process.env.PGDATABASE || "webomni",
-      max: 10,
-      idleTimeoutMillis: 30000,
-    });
+    const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+
+    if (connectionString) {
+      const isLocal = connectionString.includes("127.0.0.1") || connectionString.includes("localhost");
+      dbPool = new Pool({
+        connectionString,
+        ssl: isLocal ? false : { rejectUnauthorized: false },
+        max: 10,
+        idleTimeoutMillis: 30000,
+      });
+    } else {
+      const host = process.env.PGHOST || "127.0.0.1";
+      const isLocal = host === "127.0.0.1" || host === "localhost";
+      dbPool = new Pool({
+        host,
+        port: parseInt(process.env.PGPORT || "5432", 10),
+        user: process.env.PGUSER || "postgres",
+        password: process.env.PGPASSWORD || "",
+        database: process.env.PGDATABASE || "webomni",
+        ssl: isLocal ? false : { rejectUnauthorized: false },
+        max: 10,
+        idleTimeoutMillis: 30000,
+      });
+    }
   }
   return dbPool;
 }

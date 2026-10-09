@@ -2,8 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { bootstrapChannelAdmin } from "../lib/partner-portal/bootstrap";
 
-// Auto-load .env.local or .env if present
-for (const envFile of [".env.local", ".env"]) {
+// Auto-load .env.local or .env if present (checking current and parent directory)
+for (const envFile of [".env.local", ".env", "../.env.local", "../.env"]) {
   const envPath = path.resolve(process.cwd(), envFile);
   if (fs.existsSync(envPath)) {
     const lines = fs.readFileSync(envPath, "utf8").split("\n");

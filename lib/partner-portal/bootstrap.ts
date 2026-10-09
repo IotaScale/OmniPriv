@@ -83,19 +83,30 @@ export async function bootstrapChannelAdmin(
   if (clientOverride) {
     client = clientOverride;
   } else {
-    const host = env.PGHOST || "127.0.0.1";
-    const port = parseInt(env.PGPORT || "5432", 10);
-    const user = env.PGUSER || "postgres";
-    const password = env.PGPASSWORD || "";
-    const database = env.PGDATABASE || "webomni";
+    const connectionString = env.DATABASE_URL || env.POSTGRES_URL;
+    if (connectionString) {
+      const isLocal = connectionString.includes("127.0.0.1") || connectionString.includes("localhost");
+      client = new Client({
+        connectionString,
+        ssl: isLocal ? false : { rejectUnauthorized: false },
+      });
+    } else {
+      const host = env.PGHOST || "127.0.0.1";
+      const isLocal = host === "127.0.0.1" || host === "localhost";
+      const port = parseInt(env.PGPORT || "5432", 10);
+      const user = env.PGUSER || "postgres";
+      const password = env.PGPASSWORD || "";
+      const database = env.PGDATABASE || "webomni";
 
-    client = new Client({
-      host,
-      port,
-      user,
-      password,
-      database,
-    });
+      client = new Client({
+        host,
+        port,
+        user,
+        password,
+        database,
+        ssl: isLocal ? false : { rejectUnauthorized: false },
+      });
+    }
     await client.connect();
     closeClient = true;
   }
