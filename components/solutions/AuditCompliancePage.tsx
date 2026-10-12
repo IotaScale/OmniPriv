@@ -1,6 +1,7 @@
 import {
     BadgeCheck,
     ClipboardList,
+    CreditCard,
     Eye,
     FileBarChart,
     FileCheck2,
@@ -15,22 +16,19 @@ import {
     ShieldCheck,
     UserCheck,
     Workflow,
-    CreditCard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import AuditHero from "@/components/audit/AuditHero";
+import { GrantTimeline, RecordTable, ReportVisual, SessionPlayer, SourcesVisual } from "@/components/audit/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface } from "@/lib/styles";
 import { cn } from "@/lib/utils";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
@@ -42,22 +40,9 @@ import type { RichText } from "@/lib/rich-text";
  * (next.config.js).
  *
  * Copy supplied by the marketing team (October 2026). Primary keyword:
- * privileged access management audit.
+ * privileged access management audit. Built from the shared page kit
+ * (components/pageui); sample values in illustrations are illustrative.
  */
-
-/* Two columns: heading on the left, copy on the right. */
-function SplitText({ title, paragraphs, strongIndex }: { title: string; paragraphs: RichText[]; strongIndex?: number }) {
-    return (
-        <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-16">
-            <SectionHeading title={title} />
-            <div className="space-y-4" data-aos="fade-up">
-                {paragraphs.map((p, i) => (
-                    <Prose key={i} segments={p} tone={i === strongIndex ? "strong" : "muted"} className="text-[1.0625rem]" />
-                ))}
-            </div>
-        </div>
-    );
-}
 
 /* ─── Content ────────────────────────────────────────────────────────── */
 
@@ -293,132 +278,223 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const keepReading = [
+    { href: "/platform/secure-remote-access", label: "How privileged sessions are brokered and recorded" },
+    { href: "/platform/workflow-access-control", label: "Approval workflows and Just-in-Time access" },
+    { href: "/security", label: "Framework mappings and security posture" },
+];
+
+const NAV = [
+    { id: "ac-visibility", label: "Visibility" },
+    { id: "ac-capabilities", label: "Capabilities" },
+    { id: "ac-sessions", label: "Sessions" },
+    { id: "ac-governance", label: "Governance" },
+    { id: "ac-records", label: "Access records" },
+    { id: "ac-frameworks", label: "Frameworks" },
+    { id: "ac-reporting", label: "Reporting" },
+    { id: "ac-faq", label: "FAQ" },
+];
+
+/* Verified figures only: app/platform/data.ts and the audit-trail design. */
+const FACTS = [
+    { value: 6, label: "compliance frameworks mapped, from SOC 2 to SOX 404" },
+    { value: 50, label: "audit rows per HMAC-SHA256 integrity checkpoint" },
+    { value: 5, suffix: " min", label: "between automatic audit-chain verifications" },
+    { value: 1, label: "platform for access controls, session records and reports" },
+];
+
 /* ─── Page ───────────────────────────────────────────────────────────── */
 
 export default function AuditCompliancePage() {
     return (
-        <>
-            <SplitHero
+        <div className="aip">
+            <SectionNav items={NAV} startId="ac-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="ac-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={hero.paragraphs}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<AuditHero />}
             >
-                {hero.paragraphs.map((p, i) => (
-                    <Prose key={i} segments={p} className="text-[1.0625rem]" />
-                ))}
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── SIMPLER AUDITS ───────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SplitText title={simpler.title} paragraphs={simpler.paragraphs} />
-            </Section>
+            <section id="ac-visibility" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Heading title={simpler.title} />
+                            <div className="mt-10" data-aos="fade-up" data-aos-delay="100">
+                                <SourcesVisual />
+                            </div>
+                        </div>
+                        <div className="min-w-0 lg:pt-2" data-aos="fade-up">
+                            <Paras items={simpler.paragraphs} />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── SIX CAPABILITIES ─────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={strengthen.title} />
-                <IconCardGrid items={strengthen.cards} columns={3} className="mt-12" />
-            </Section>
+            <section id="ac-capabilities" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <Heading title={strengthen.title} />
+                    <div className="op-body grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                        {strengthen.cards.map((c, i) => (
+                            <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                <span className="icon-wrapper">
+                                    <c.icon className="w-5 h-5" aria-hidden="true" />
+                                </span>
+                                <h3 className="op-card-title mt-5">{c.title}</h3>
+                                <p className="op-card-text mt-2">{c.text}</p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* ─── SESSION MONITORING ───────────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={sessions.image}
-                    ratio="wide-last"
-                    align="start"
-                    heading={<SectionHeading title={sessions.title} />}
-                >
-                    <div className="op-hero-copy space-y-4">
-                        {sessions.paragraphs.map((p, i) => (
-                            <Prose key={i} segments={p} />
-                        ))}
+            <section id="ac-sessions" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Heading title={sessions.title} />
+                            <Paras items={sessions.paragraphs} className="mt-6" />
+                            <Prose segments={[sessions.listLead]} tone="strong" className="mt-7" />
+                            <CheckList items={sessions.points} className="mt-4" />
+                            <Prose segments={[sessions.closing]} className="mt-6" />
+                        </div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <SessionPlayer />
+                        </div>
                     </div>
-                    <Prose segments={[sessions.listLead]} tone="strong" className="mt-6" />
-                    <CheckList items={sessions.points} className="mt-4" />
-                    <Prose segments={[sessions.closing]} className="mt-6" />
-                </MediaSplit>
-            </Section>
+                </div>
+            </section>
 
             {/* ─── GOVERNANCE (dark band) ───────────── */}
-            <Section tone="dark" border="bottom">
-                <SplitText title={governance.title} paragraphs={governance.paragraphs} />
-            </Section>
+            <div className="dark">
+                <section id="ac-governance" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0">
+                                <Heading title={governance.title} />
+                                <Paras items={governance.paragraphs} className="mt-6" />
+                            </div>
+                            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                                <GrantTimeline />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
             {/* ─── DATA SECURITY AUDIT ──────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={dataAudit.image}
-                    ratio="wide-last"
-                    align="start"
-                    heading={<SectionHeading title={dataAudit.title} />}
-                >
-                    <div className="op-hero-copy space-y-4">
-                        {dataAudit.paragraphs.map((p, i) => (
-                            <Prose key={i} segments={p} />
-                        ))}
+            <section id="ac-records" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0 order-2 lg:order-1 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <RecordTable />
+                        </div>
+                        <div className="min-w-0 order-1 lg:order-2">
+                            <Heading title={dataAudit.title} />
+                            <Paras items={dataAudit.paragraphs} className="mt-6" />
+                        </div>
                     </div>
-                </MediaSplit>
-            </Section>
+                </div>
+            </section>
 
             {/* ─── FRAMEWORKS ───────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={regulatory.title}>
-                    {regulatory.paragraphs.map((p, i) => (
-                        <Prose key={i} segments={p} />
-                    ))}
-                </SectionHeading>
-                <IconCardGrid items={regulatory.cards} columns={3} className="mt-12" />
-                <p
-                    className="mt-8 max-w-4xl text-[0.9375rem] leading-[1.7] text-slate-600 dark:text-slate-400"
-                    data-aos="fade-up"
-                >
-                    {regulatory.note}
-                </p>
-            </Section>
+            <section id="ac-frameworks" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={regulatory.title}>
+                        {regulatory.paragraphs.map((p, i) => (
+                            <Prose key={i} segments={p} className="text-[1.0625rem]" />
+                        ))}
+                    </Heading>
+                    <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {regulatory.cards.map((c, i) => (
+                            <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                <div className="flex items-center gap-3">
+                                    <span className="icon-wrapper">
+                                        <c.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="op-card-title">{c.title}</h3>
+                                </div>
+                                <p className="op-card-text mt-4">{c.text}</p>
+                            </article>
+                        ))}
+                    </div>
+                    <p className="mt-8 max-w-4xl text-[0.9375rem] leading-[1.7] text-slate-600 dark:text-slate-400" data-aos="fade-up">
+                        {regulatory.note}
+                    </p>
+                </div>
+            </section>
 
             {/* ─── AUTOMATED REPORTING ──────────────── */}
-            <Section border="bottom">
-                <SplitText title={reporting.title} paragraphs={reporting.paragraphs} />
-            </Section>
+            <section id="ac-reporting" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Heading title={reporting.title} />
+                            <Paras items={reporting.paragraphs} className="mt-6" />
+                        </div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <ReportVisual />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── WHY OMNIPRIV ─────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={whyChoose.title} />
-                {/* 3 + 2: the first row in thirds, the second in halves, so five cards leave no hole. */}
-                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6" data-aos="fade-up">
-                    {whyChoose.items.map((item, i) => (
-                        <div
-                            key={item.title}
-                            className={cn(
-                                "flex flex-col rounded-2xl border p-6",
-                                cardBorder,
-                                cardSurface,
-                                i < 3 ? "lg:col-span-2" : "lg:col-span-3",
-                                i === 4 && "sm:col-span-2 lg:col-span-3"
-                            )}
-                        >
-                            <div className="icon-wrapper mb-5">
-                                <item.icon className="w-5 h-5" aria-hidden="true" />
-                            </div>
-                            <h3 className="op-card-title mb-2">{item.title}</h3>
-                            <p className="op-card-text">{item.text}</p>
-                        </div>
-                    ))}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={whyChoose.title} />
+                    {/* 3 + 2: the first row in thirds, the second in halves, so five cards leave no hole. */}
+                    <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+                        {whyChoose.items.map((item, i) => (
+                            <article
+                                key={item.title}
+                                className={cn("aip-card min-w-0 rounded-3xl border p-6", i < 3 ? "lg:col-span-2" : "lg:col-span-3", i === 4 && "sm:col-span-2 lg:col-span-3")}
+                                data-aos="fade-up"
+                                data-aos-delay={String((i % 3) * 70)}
+                            >
+                                <span className="icon-wrapper">
+                                    <item.icon className="w-5 h-5" aria-hidden="true" />
+                                </span>
+                                <h3 className="op-card-title mt-5">{item.title}</h3>
+                                <p className="op-card-text mt-2">{item.text}</p>
+                            </article>
+                        ))}
+                    </div>
                 </div>
-            </Section>
+            </section>
+
+            {/* ─── KEEP READING ─────────────────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
+                </div>
+            </section>
 
             {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Monitored", "Governed"]} outcome="Documented" />}
+                lead={closing.body[0]}
+                body={[...closing.body.slice(1), closing.kicker]}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
             {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection title="Frequently Asked Questions About Audit, Governance & Compliance" items={faqs} />
-        </>
+            <FaqSplit id="ac-faq" title="Frequently Asked Questions About Audit, Governance & Compliance" items={faqs} />
+        </div>
     );
 }

@@ -1,6 +1,5 @@
 import {
     Activity,
-    ArrowRight,
     ClipboardCheck,
     Clock,
     Eye,
@@ -13,36 +12,28 @@ import {
     Timer,
 } from "lucide-react";
 
-import ArrowLink from "@/components/sections/ArrowLink";
-import CheckList from "@/components/sections/CheckList";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import RemoteHero from "@/components/remote/RemoteHero";
+import { AccessTrack, BrokerDiagram, Personas, RisksCard, SessionRecord } from "@/components/remote/Visuals";
 import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/secure-remote-access, the destination of the
- * "Remote Access / Secure remote & hybrid access" challenge card.
+ * Bespoke layout for /platform/secure-remote-access ("Secure Remote & Hybrid
+ * Access"). Routing belongs to app/platform/[slug]/page.tsx; SEO metadata
+ * comes from the module entry in app/platform/data.ts. The former
+ * /platform/session-management URL 301s here (next.config.js).
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic capability template when the slug appears
- * in its `bespokePages` map. SEO metadata continues to come from the module
- * entry in app/platform/data.ts. The former /platform/session-management URL
- * 301s here (see next.config.js).
- *
- * Claims here are limited to what this repository already states: the
- * protocol and asset coverage in app/features/page.tsx and app/platform/data.ts,
- * the no-inbound-port model, 4-eyes approval, and the
- * 9 mapped regulatory standards.
+ * Copy is the marketing team's, kept verbatim with its links. Layout uses the
+ * shared page kit (components/pageui) so it matches /ai-pam and the
+ * credentials page. Sample values in the illustrations are illustrative.
  */
 
 const hero = {
@@ -265,13 +256,6 @@ const solutionCapabilities: IconCard[] = [
     },
 ];
 
-const stats = [
-    { value: "16", label: "Protocols and platforms", sub: "SSH through Kubernetes" },
-    { value: "0", label: "Standing privileges", sub: "Access expires with the task" },
-    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
-    { value: "6", label: "Regulatory standards mapped", sub: "SOC 2 through SOX 404" },
-];
-
 const keepReading = [
     { href: "/features", label: "See the full capability list" },
     { href: "/integrations", label: "Check directory and ITSM integrations" },
@@ -323,247 +307,215 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+
+const NAV = [
+    { id: "sra-surface", label: "Attack surface" },
+    { id: "sra-zero-trust", label: "Zero Trust" },
+    { id: "sra-jit", label: "JIT access" },
+    { id: "sra-credentials", label: "Credentials" },
+    { id: "sra-sessions", label: "Sessions" },
+    { id: "sra-vendors", label: "Vendors" },
+    { id: "sra-solutions", label: "Solutions" },
+    { id: "sra-faq", label: "FAQ" },
+];
+
+const FACTS = [
+    { value: 7, label: "resource types: SSH, RDP, VNC, Kubernetes, databases, web apps, cloud" },
+    { value: 5, label: "steps to every grant: verify, approve, grant, monitor, revoke" },
+    { value: 0, label: "standing privileges left once the approved task ends" },
+    { value: 6, label: "remote identity types governed, from admins to vendors" },
+];
+
+const PROTOCOLS = ["SSH", "RDP", "VNC", "Kubernetes", "Databases", "Web applications", "Cloud environments"];
+
+function CardGrid({ items, cols = "lg:grid-cols-3" }: { items: IconCard[]; cols?: string }) {
+    return (
+        <div className={cn("op-body grid gap-5 sm:grid-cols-2", cols)}>
+            {items.map((c, i) => (
+                <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                    <span className="icon-wrapper">
+                        <c.icon className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                    <h3 className="op-card-title mt-5">{c.title}</h3>
+                    <p className="op-card-text mt-2">{c.text}</p>
+                </article>
+            ))}
+        </div>
+    );
+}
+
 export default function SecureRemoteAccessPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="sra-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="sra-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                tagline={hero.kicker[0] as string}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
-                ratio="wide-last"
-                height="video"
+                visual={<RemoteHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-5" />
-                <Prose segments={hero.kicker} tone="kicker" className="mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
-            {/* ─── ATTACK SURFACE ───────────────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={surfaceSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={surfaceSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {surfaceSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === surfaceSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
-                    </div>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── ZERO TRUST CONTROL ───────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={zeroTrustSection.title} />
-
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        as="h3"
-                        size="sm"
-                        title={zeroTrustSection.subheading}
-                        className="mt-10 mb-4"
-                    >
-                        <Prose segments={zeroTrustSection.lead} className="mb-4" />
-                        <Prose segments={zeroTrustSection.body} />
-                    </SectionHeading>
-
-                    <CheckList items={zeroTrustSection.personas} className="mt-6" />
-
-                    <Prose segments={zeroTrustSection.note} className="mt-8" />
-                </div>
-            </Section>
-
-            {/* ─── JUST-IN-TIME ACCESS ──────────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={jitSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={jitSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        <Prose segments={jitSection.paragraphs[0]} className="mb-4" />
-                        <Prose segments={jitSection.paragraphs[1]} />
-                    </div>
-
-                    <ChipList
-                        items={jitSection.flow}
-                        variant="accent"
-                        separator={<ArrowRight className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]" />}
-                        className="mt-8"
-                    />
-
-                    <Prose segments={jitSection.note} className="mt-8" />
-                </MediaSplit>
-            </Section>
-
-            {/* ─── CREDENTIALS ──────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={{
-                        src: "https://images.unsplash.com/photo-1667372283496-893f0b1e7c16?auto=format&fit=crop&w=1200&q=70",
-                        alt: "Secure remote access protecting privileged credentials inside an encrypted vault",
-                    }}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={credentialsSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {credentialsSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === credentialsSection.paragraphs.length - 1
-                                        ? ""
-                                        : "mb-4"
-                                }
-                            />
-                        ))}
-                    </div>
-
-                    <CheckList items={credentialsSection.risks} className="mt-8" />
-                </MediaSplit>
-            </Section>
-
-            {/* ─── SESSION MONITORING ─────────────────
-                Hardcoded dark band. `tone="dark"` also wraps the section in a
-                `.dark` ancestor, which is what switches the `Prose` body copy and
-                the ChipList chips to their dark palette while the site is in
-                light mode. Sitting between two light bands keeps the rhythm. */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={monitorSection.title}>
-                    <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />
-                    <Prose segments={monitorSection.paragraphs[1]} />
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <div className="mt-10 mb-4 text-xs font-mono font-semibold uppercase tracking-[0.14em] text-[#00667A] dark:text-[#00B8DB]">
-                        {monitorSection.flowLabel}
-                    </div>
-
-                    <ChipList
-                        items={monitorSection.flow}
-                        variant="accent"
-                        separator={<ArrowRight className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]" />}
-                    />
-
-                    <Prose segments={monitorSection.note} className="mt-8" />
-                </div>
-            </Section>
-
-            {/* ─── THE WORKFORCE ────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={workforceSection.title}>
-                    {workforceSection.paragraphs.map((paragraph, index) => (
-                        <Prose
-                            key={index}
-                            segments={paragraph}
-                            className={
-                                index === workforceSection.paragraphs.length - 1 ? "" : "mb-4"
-                            }
-                        />
-                    ))}
-                </SectionHeading>
-            </Section>
-
-            {/* ─── VENDORS ──────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={vendorSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={vendorSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        <Prose segments={vendorSection.lead} />
-                    </div>
-                </MediaSplit>
-
-                <IconCardGrid items={vendorControls} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── REMOTE ACCESS SECURITY SOLUTIONS (dark band) ── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={solutionsSection.title}>
-                    <Prose segments={solutionsSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={solutionCapabilities} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── OUTCOMES ─────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Secure remote access you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a policy document. These are the controls standing behind remote access.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
+            {/* ─── ATTACK SURFACE ─────────────────────────────────── */}
+            <section id="sra-surface" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={surfaceSection.title} />
+                            <Paras items={surfaceSection.paragraphs} className="mt-6" />
                         </div>
-                    ))}
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <BrokerDiagram />
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── ZERO TRUST ─────────────────────────────────────── */}
+            <section id="sra-zero-trust" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0 lg:sticky lg:top-40">
+                            <Heading title={zeroTrustSection.title} />
+                            <h3 className="op-h3 mt-8" data-aos="fade-up">{zeroTrustSection.subheading}</h3>
+                            <Prose segments={zeroTrustSection.lead} tone="strong" className="mt-3 text-[1.0625rem]" />
+                            <Prose segments={zeroTrustSection.body} className="mt-4 text-[1.0156rem]" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <Personas items={zeroTrustSection.personas} />
+                            <p className="mt-6 pl-4 border-l-2 border-[#00B8DB] text-[1.0625rem] font-semibold text-[#0a1628] dark:text-white">
+                                {zeroTrustSection.note[0] as string}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            {/* ─── JIT (dark band) ────────────────────────────────── */}
+            <div className="dark">
+                <section id="sra-jit" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <Heading title={jitSection.title}>
+                            {jitSection.paragraphs.map((p, i) => (
+                                <Prose key={i} segments={p} className="text-[1.0625rem]" />
+                            ))}
+                        </Heading>
+                        <div className="mt-14">
+                            <AccessTrack steps={jitSection.flow} />
+                        </div>
+                        <p className="mt-12 text-[1.1875rem] font-semibold text-white" data-aos="fade-up">
+                            {jitSection.note[0] as string}
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── CREDENTIALS ────────────────────────────────────── */}
+            <section id="sra-credentials" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={credentialsSection.title} />
+                            <Paras items={credentialsSection.paragraphs} className="mt-6" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <RisksCard risks={credentialsSection.risks} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── SESSIONS ───────────────────────────────────────── */}
+            <section id="sra-sessions" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Heading title={monitorSection.title} />
+                            <Paras items={monitorSection.paragraphs} className="mt-6" />
+                            <div className="mt-6" data-aos="fade-up">
+                                <ChipList items={PROTOCOLS} variant="accent" />
+                            </div>
+                            <Prose segments={monitorSection.note} tone="strong" className="mt-6 text-[1.0156rem]" />
+                        </div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <p className="mb-3 text-[0.9375rem] font-semibold text-[#0a1628] dark:text-white">{monitorSection.flowLabel}:</p>
+                            <SessionRecord labels={monitorSection.flow} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── WORKFORCE ──────────────────────────────────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-16">
+                        <Heading title={workforceSection.title} />
+                        <div data-aos="fade-up">
+                            <Paras items={workforceSection.paragraphs} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── VENDORS ────────────────────────────────────────── */}
+            <section id="sra-vendors" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={vendorSection.title}>
+                        <Prose segments={vendorSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    {/* 3 + 2, no hole */}
+                    <div className="op-body grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+                        {vendorControls.map((c, i) => (
+                            <article key={c.title} className={cn("aip-card min-w-0 rounded-3xl border p-6 lg:p-7 flex items-start gap-4", i < 3 ? "lg:col-span-2" : "lg:col-span-3", i === 4 && "sm:col-span-2 lg:col-span-3")} data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-[#00B8DB] text-[#03121c] shrink-0">
+                                    <c.icon className="w-5 h-5" aria-hidden="true" />
+                                </span>
+                                <span className="min-w-0">
+                                    <span className="block op-card-title">{c.title}</span>
+                                    <span className="block op-card-text mt-1">{c.text}</span>
+                                </span>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── SOLUTIONS ──────────────────────────────────────── */}
+            <section id="sra-solutions" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <Heading title={solutionsSection.title}>
+                        <Prose segments={solutionsSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <CardGrid items={solutionCapabilities} />
+                </div>
+            </section>
+
+            {/* ─── KEEP READING ───────────────────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
+                </div>
+            </section>
+
+            <ClosingBand
                 title={closing.title}
+                accent={<CheckChips steps={["Verified", "Approved", "Recorded"]} outcome="Revoked on time" />}
+                lead={closing.kicker}
                 body={closing.body}
-                kicker={closing.kicker}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about secure remote access, privileged remote access and controlling third-party access."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="sra-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

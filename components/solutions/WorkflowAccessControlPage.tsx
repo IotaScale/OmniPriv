@@ -1,47 +1,31 @@
-import {
-    Clock,
-    Key,
-    Layers,
-    Lock,
-    Network,
-    Shield,
-    Smartphone,
-    Users,
-    Zap,
-} from "lucide-react";
+import { Clock, Key, Layers, Lock, Network, Shield, Smartphone, Users, Zap } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
 import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import ApprovalFlow from "@/components/workflow/ApprovalFlow";
+import { AnywhereVisual, ChainVisual, ConfigVisual, ExpiryVisual, FourEyesVisual } from "@/components/workflow/Visuals";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/workflow-access-control, the destination of
- * "Workflow & Access Control" in the platform dropdown.
+ * Bespoke layout for /platform/workflow-access-control ("Workflow & Access
+ * Control"). Routing belongs to app/platform/[slug]/page.tsx; SEO metadata
+ * comes from the module entry in app/platform/data.ts.
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic template when the slug appears in its
- * `bespokePages` map.
- *
- * All nine features from ../data.ts are represented: the 4-eyes approval
- * principle with no self-approval, mobile and email approvals, multi-level
- * flexible workflows, time-based workflow conditions, temporary privileged
- * account assignment with ACL auto-revert, application credential management
- * across config files / databases / registries / Windows Services /
- * scheduled tasks / IIS App Pools, zero-latency credential handling,
- * application authentication and protection, and the API rate and access
- * controls (RPS, IP/CIDR allowlist, time limit, usage limit).
+ * All nine features of the module are represented (4-eyes with no
+ * self-approval, mobile and email approvals, multi-level workflows,
+ * time-based conditions, temporary assignment with ACL auto-revert,
+ * application credential management, zero-latency retrieval, application
+ * authentication, API rate and access controls). Built from the shared page
+ * kit (components/pageui). Sample values in illustrations are illustrative.
  */
 
 const hero = {
@@ -159,13 +143,6 @@ const apiControls = [
     "Usage limit",
 ];
 
-const stats = [
-    { value: "2", label: "Independent approvers, minimum", sub: "4-eyes enforced on every request" },
-    { value: "0", label: "Self-approvals possible", sub: "Requester excluded from the chain" },
-    { value: "6", label: "Credential locations cleaned", sub: "Config files to IIS App Pools" },
-    { value: "4", label: "API access controls", sub: "RPS, IP/CIDR, time and usage limits" },
-];
-
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/platform/password-credential-management", label: "How vaulting and rotation work" },
@@ -211,168 +188,147 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+
+const NAV = [
+    { id: "wac-approval", label: "Approval" },
+    { id: "wac-expiry", label: "Expiry" },
+    { id: "wac-apps", label: "Application credentials" },
+    { id: "wac-faq", label: "FAQ" },
+];
+
+const FACTS = [
+    { value: 2, label: "independent approvers, minimum, on every request" },
+    { value: 0, label: "self-approvals possible: the requester is excluded" },
+    { value: 6, label: "credential locations cleaned, config files to IIS App Pools" },
+    { value: 4, label: "API access controls: RPS, IP/CIDR, time and usage limits" },
+];
+
+const APPROVAL_VISUAL = [FourEyesVisual, AnywhereVisual, ChainVisual];
+
 export default function WorkflowAccessControlPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="wac-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="wac-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<ApprovalFlow />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
-            {/* ─── APPROVAL WORKFLOW ──────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Approval Workflow"
-                    title={approvalSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={approvalSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={approvalCards} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── TEMPORARY ASSIGNMENT ───────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={expirySection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={expirySection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {expirySection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === expirySection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
+            {/* ─── APPROVAL ───────────────────────────────────────── */}
+            <section id="wac-approval" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={approvalSection.title}>
+                        <Prose segments={approvalSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-5 md:grid-cols-3">
+                        {approvalCards.map((c, i) => {
+                            const V = APPROVAL_VISUAL[i];
+                            return (
+                                <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col gap-5" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="icon-wrapper">
+                                                <c.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <span className="text-[0.8125rem] font-semibold op-link">{c.eyebrow}</span>
+                                        </div>
+                                        <h3 className="op-card-title mt-5">{c.title}</h3>
+                                        <p className="op-card-text mt-2">{c.text}</p>
+                                    </div>
+                                    <div className="mt-auto">
+                                        <V />
+                                    </div>
+                                </article>
+                            );
+                        })}
                     </div>
+                </div>
+            </section>
 
-                    <CheckList items={expirySection.points} className="mt-8" />
-
-                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
-                        See how each assignment is evidenced
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
+            {/* ─── EXPIRY ─────────────────────────────────────────── */}
+            <section id="wac-expiry" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={expirySection.title} />
+                            <Paras items={expirySection.paragraphs} className="mt-6" />
+                            <CheckList items={expirySection.points} className="mt-8" />
+                            <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
+                                See how each assignment is evidenced
+                            </ArrowLink>
+                        </div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <ExpiryVisual />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── APPLICATION CREDENTIALS (dark band) ────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Application Credentials"
-                    title={applicationSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={applicationSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {applicationPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-14">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
-                        Credentials removed from
-                    </p>
-                    <ChipList
-                        items={credentialTargets}
-                        variant="accent"
-                        separator={<span className="text-slate-500 text-sm">·</span>}
-                    />
-                </div>
-
-                <div className="mt-10">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
-                        Applied to every token request
-                    </p>
-                    <ChipList
-                        items={apiControls}
-                        variant="neutral"
-                        separator={<span className="text-slate-500 text-sm">·</span>}
-                    />
-                </div>
-            </Section>
-
-            {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Controls you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a policy statement. These are the rules the platform enforces.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
+            <div className="dark">
+                <section id="wac-apps" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0">
+                                <Heading title={applicationSection.title}>
+                                    <Prose segments={applicationSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-8" data-aos="fade-up">
+                                    <p className="text-[0.875rem] font-semibold text-slate-300 mb-3">Credentials removed from</p>
+                                    <ChipList items={credentialTargets} variant="accent" />
+                                </div>
+                                <div className="mt-6" data-aos="fade-up">
+                                    <p className="text-[0.875rem] font-semibold text-slate-300 mb-3">Applied to every token request</p>
+                                    <ChipList items={apiControls} variant="neutral" />
+                                </div>
                             </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
+                            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                                <ConfigVisual />
                             </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
                         </div>
-                    ))}
-                </div>
+                        <div className="op-body grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                            {applicationPillars.map((p, i) => (
+                                <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String(i * 70)}>
+                                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                        <p.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="op-card-title mt-5">{p.title}</h3>
+                                    <p className="op-card-text mt-2">{p.text}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </div>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── KEEP READING ───────────────────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Approved by two", "Granted for a window"]} outcome="Reverted on expiry" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about approvals, temporary assignment and application credentials."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="wac-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

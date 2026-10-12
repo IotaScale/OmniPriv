@@ -1,43 +1,28 @@
-import {
-    ArrowRight,
-    Eye,
-    Fingerprint,
-    KeyRound,
-    ScanSearch,
-    ScrollText,
-    Timer,
-    Zap,
-} from "lucide-react";
+import { Eye, Fingerprint, KeyRound, ScanSearch, ScrollText, Timer, Zap } from "lucide-react";
 
-import ArrowLink from "@/components/sections/ArrowLink";
-import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { VaultVisual } from "@/components/aipam/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { RisksCard, SessionRecord } from "@/components/remote/Visuals";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import ThreatHero from "@/components/threat/ThreatHero";
+import { AgentGuard, BlastRadius, ContainVisual, PatternScan } from "@/components/threat/Visuals";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/ai-threat-protection, the destination of the
- * "AI Threat Defense / Defend against AI-era attacks" challenge card.
+ * Bespoke layout for /platform/ai-threat-protection ("Defend Against
+ * AI-Driven Threats"). Routing belongs to app/platform/[slug]/page.tsx; SEO
+ * metadata comes from the module entry in app/platform/data.ts. The former
+ * /platform/threat-detection URL 301s here (next.config.js).
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic capability template when the slug appears
- * in its `bespokePages` map. The SEO metadata continues to come from the
- * module entry in app/platform/data.ts. The former /platform/threat-detection
- * URL 301s here (see next.config.js).
- *
- * Every figure quoted below is OmniPriv's own and is verifiable in this
- * repository, see app/ai-pam/page.tsx for the 39-feature model, its
- * escalation tiers and the 10-second sweeper.
+ * Copy is the marketing team's, kept verbatim with its links. Figures are
+ * OmniPriv's own (39-feature model, 10-second sweep and grace). Built from the
+ * shared page kit (components/pageui). Illustration values are illustrative.
  */
 
 const hero = {
@@ -265,13 +250,6 @@ const modelSteps: IconCard[] = [
     },
 ];
 
-const stats = [
-    { value: "39", label: "ML features scored per session", sub: "Behavioural model" },
-    { value: "10s", label: "Auto-block sweep interval", sub: "Tiered escalation" },
-    { value: "0", label: "Standing privileges", sub: "Access expires with the task" },
-    { value: "9", label: "Regulatory standards mapped", sub: "SOX through ISO 27001" },
-];
-
 const keepReading = [
     { href: "/ai-pam", label: "How the anomaly scoring engine works" },
     { href: "/case-studies", label: "Read the anomaly detection case study" },
@@ -323,254 +301,220 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+
+const NAV = [
+    { id: "atp-target", label: "Identity as target" },
+    { id: "atp-privilege", label: "Zero standing privilege" },
+    { id: "atp-credentials", label: "Credentials" },
+    { id: "atp-detect", label: "Detect" },
+    { id: "atp-contain", label: "Contain" },
+    { id: "atp-agents", label: "AI agents" },
+    { id: "atp-model", label: "One model" },
+    { id: "atp-faq", label: "FAQ" },
+];
+
+const FACTS = [
+    { value: 39, label: "behavioral features scored per privileged session" },
+    { value: 10, suffix: "s", label: "sweep across active sessions, then a 10s grace window" },
+    { value: 7, label: "threat patterns detected, from unusual commands to PAM bypass" },
+    { value: 0, label: "standing privileges left for a compromised identity to use" },
+];
+
+const MONITOR_VALUES = [
+    "svc-deploy · token verified",
+    "Ran 18 commands on linux_prod_01",
+    "02:14, outside the learned baseline",
+    "Risk 0.86: lateral movement flagged",
+    "Blocked by the sweep, closed after grace",
+];
+
 export default function AiThreatProtectionPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="atp-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="atp-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
-                ratio="wide-last"
-                height="video"
+                visual={<ThreatHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
-            {/* ─── IDENTITY IS THE TARGET ───────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={targetSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={targetSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {targetSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === targetSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
-                    </div>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── REDUCE THE PRIVILEGE ───────────────
-                Hardcoded dark band. `tone="dark"` also wraps the section in a
-                `.dark` ancestor, without which the theme-aware text inside would
-                render dark-on-dark while the site is in light mode. Sits between
-                two `muted` bands, so the rhythm reads muted → dark → muted. */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={privilegeSection.title}>
-                    <Prose segments={privilegeSection.lead} />
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <SectionHeading
-                        as="h3"
-                        size="sm"
-                        title={privilegeSection.subheading}
-                        className="mt-12 mb-4"
-                    >
-                        <Prose segments={privilegeSection.body} />
-                    </SectionHeading>
-
-                    <CheckList items={privilegeSection.reduces} className="mt-6" />
-
-                    <Prose segments={privilegeSection.note} className="mt-8" />
-                </div>
-            </Section>
-
-            {/* ─── PROTECT THE CREDENTIALS ──────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={credentialsSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={credentialsSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {credentialsSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === credentialsSection.paragraphs.length - 1
-                                        ? ""
-                                        : "mb-4"
-                                }
-                            />
-                        ))}
-                    </div>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── DETECT WITH AI AND ML ────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={detectSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={detectSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        <Prose segments={detectSection.lead} />
-                    </div>
-
-                    <CheckList items={detectSection.patterns} className="mt-8" />
-
-                    <Prose segments={detectSection.note} className="mt-8" />
-                </MediaSplit>
-            </Section>
-
-            {/* ─── OUTCOMES ───────────────────────────
-                Hardcoded dark band, matching the other dark sections on this page.
-                `tone="dark"` also wraps the section in `.dark`, which is what flips
-                `cardSurface` and the `dark:*` text inside to the dark palette, without it the stat cards would be white-on-dark. */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    title="AI threat protection you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Detection is not a dashboard screenshot. These are the controls running
-                        behind it.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            {/* `dark:` variant is required now this band is dark:
-                                plain slate-500 on the dark card is 4.05:1, under
-                                the 4.5:1 minimum for 12px text. */}
-                            <div className="text-xs text-slate-500 dark:text-slate-400">{stat.sub}</div>
+            {/* ─── IDENTITY IS THE TARGET ─────────────────────────── */}
+            <section id="atp-target" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={targetSection.title} />
+                            <Paras items={targetSection.paragraphs} className="mt-6" />
                         </div>
-                    ))}
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <BlastRadius />
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── ZERO STANDING PRIVILEGE (dark band) ────────────── */}
+            <div className="dark">
+                <section id="atp-privilege" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0">
+                                <Heading title={privilegeSection.title}>
+                                    <Prose segments={privilegeSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <h3 className="op-h3 mt-10" data-aos="fade-up">{privilegeSection.subheading}</h3>
+                                <Prose segments={privilegeSection.body} className="mt-3 text-[1.0156rem]" />
+                                <Prose segments={privilegeSection.note} tone="strong" className="mt-6 text-[1.0156rem]" />
+                            </div>
+                            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                                <RisksCard risks={privilegeSection.reduces} title="Privilege an attacker could inherit" badge="Zero standing privilege" done="Removed" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── CREDENTIALS ────────────────────────────────────── */}
+            <section id="atp-credentials" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={credentialsSection.title} />
+                            <Paras items={credentialsSection.paragraphs} className="mt-6" />
+                        </div>
+                        <div className="min-w-0 aip-card rounded-3xl border p-6" data-aos="fade-up" data-aos-delay="100">
+                            <div className="flex items-center justify-between gap-3">
+                                <span className="op-card-title">Rotated on schedule or after each session</span>
+                                <span className="text-[0.75rem] font-mono text-slate-500 shrink-0">illustrative</span>
+                            </div>
+                            <div className="mt-4">
+                                <VaultVisual />
+                            </div>
+                            <p className="mt-4 text-[0.875rem] text-slate-600 dark:text-slate-400">A stolen secret stops working at the next rotation.</p>
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CONTAIN THE MOVEMENT ────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={containSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={containSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {containSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === containSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
+            {/* ─── DETECT ─────────────────────────────────────────── */}
+            <section id="atp-detect" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={detectSection.title}>
+                                <Prose segments={detectSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                            <Prose segments={detectSection.note} tone="strong" className="mt-6 text-[1.0156rem]" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <PatternScan patterns={detectSection.patterns} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── CONTAIN ────────────────────────────────────────── */}
+            <section id="atp-contain" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0 lg:order-2">
+                            <Heading title={containSection.title} />
+                            <Paras items={containSection.paragraphs} className="mt-6" />
+                        </div>
+                        <div className="min-w-0 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                            <ContainVisual />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── MONITOR ────────────────────────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Heading title={monitorSection.title} />
+                            <Paras items={monitorSection.paragraphs} className="mt-6" />
+                            <Prose segments={monitorSection.note} tone="strong" className="mt-6 text-[1.0156rem]" />
+                        </div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <p className="mb-3 text-[0.9375rem] font-semibold text-[#0a1628] dark:text-white">{monitorSection.flowLabel}:</p>
+                            <SessionRecord labels={monitorSection.flow} values={MONITOR_VALUES} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── AI AGENTS ──────────────────────────────────────── */}
+            <section id="atp-agents" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={agentsSection.title} />
+                            <Paras items={agentsSection.paragraphs} className="mt-6" />
+                            <p className="mt-6 pl-4 border-l-2 border-[#00B8DB] text-[1.0625rem] font-semibold text-[#0a1628] dark:text-white" data-aos="fade-up">
+                                {agentsSection.note[0] as string}
+                            </p>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <AgentGuard capabilities={agentsSection.capabilities} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── ONE MODEL ──────────────────────────────────────── */}
+            <section id="atp-model" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={modelSection.title}>
+                        <Prose segments={modelSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <ol className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        {modelSteps.map((c, i) => (
+                            <li key={c.title} className={cn("aip-card min-w-0 rounded-3xl border p-6", i === 6 && "lg:col-span-1")} data-aos="fade-up" data-aos-delay={String((i % 4) * 60)}>
+                                <div className="flex items-center gap-3">
+                                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-[#00B8DB] text-[#03121c] shrink-0">
+                                        <c.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <span className="text-[0.8125rem] font-semibold op-link">Step {i + 1}</span>
+                                </div>
+                                <h3 className="op-card-title mt-5">{c.title}</h3>
+                                <p className="op-card-text mt-2">{c.text}</p>
+                            </li>
                         ))}
-                    </div>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── MONITOR AFTER ACCESS ─────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={monitorSection.title}>
-                    <Prose segments={monitorSection.paragraphs[0]} className="mb-4" />
-                    <Prose segments={monitorSection.paragraphs[1]} />
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <div className="mt-10 mb-4 text-xs font-mono font-semibold uppercase tracking-[0.14em] text-[#00667A] dark:text-[#00B8DB]">
-                        {monitorSection.flowLabel}
-                    </div>
-
-                    <ChipList
-                        items={monitorSection.flow}
-                        variant="accent"
-                        separator={<ArrowRight className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]" />}
-                    />
-
-                    <Prose segments={monitorSection.note} className="mt-8" />
+                        <li className="min-w-0 rounded-3xl border border-[#00B8DB]/30 bg-[#00B8DB]/[0.07] p-6 flex flex-col justify-center" data-aos="fade-up">
+                            <Prose segments={modelSection.note} className="text-[1rem]" />
+                        </li>
+                    </ol>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── PROTECT AI AGENTS ────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={agentsSection.title}>
-                    <Prose segments={agentsSection.paragraphs[0]} className="mb-4" />
-                    <Prose segments={agentsSection.paragraphs[1]} />
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <CheckList items={agentsSection.capabilities} className="mt-8" />
-
-                    <Prose segments={agentsSection.note} className="mt-8" />
-
-                    <ArrowLink href="/ai-pam" className="mt-8">
-                        See how AI-PAM governs agent privilege
-                    </ArrowLink>
+            {/* ─── KEEP READING ───────────────────────────────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── ONE MODEL (dark band) ────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={modelSection.title}>
-                    <Prose segments={modelSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={modelSteps} columns={4} className="mt-12" />
-
-                <Prose segments={modelSection.note} className="mt-10" />
-            </Section>
-
-            {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
+                accent={<CheckChips steps={["Reduce standing privilege", "Detect abnormal behavior", "Contain risky access"]} outcome="Complete accountability" />}
                 body={closing.body}
-                kicker={closing.kicker}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about AI threat protection, privileged access threat detection and containing AI-driven attacks."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="atp-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

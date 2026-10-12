@@ -1,27 +1,17 @@
-import {
-    Building2,
-    Cpu,
-    Globe,
-    Key,
-    Layers,
-    Lock,
-    RefreshCw,
-    Zap,
-} from "lucide-react";
+import { Building2, Cpu, Globe, Key, Layers, Lock, RefreshCw, Zap } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import DeployHero from "@/components/infra/DeployHero";
+import { BrowserCliVisual, ConsoleVisual, EstateVisual, FailoverVisual, HypervisorVisual, TenantVisual } from "@/components/infra/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface } from "@/lib/styles";
 import { platformSpecs } from "@/app/platform/data";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
@@ -29,15 +19,13 @@ import type { RichText } from "@/lib/rich-text";
  * Bespoke layout for /platform/infrastructure-deployment, the destination
  * of the "Infrastructure & Deployment" entry in the platform dropdown.
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic template when the slug appears in its
- * `bespokePages` map.
+ * Routing belongs to app/platform/[slug]/page.tsx; SEO metadata comes from
+ * the module entry in app/platform/data.ts.
  *
  * This page is also the natural home for `platformSpecs` from
  * app/platform/data.ts, which the /platform index no longer renders.
- *
- * Every figure quoted comes from that data file: the twelve infrastructure
- * features, the platform specifications and the datasheet figures.
+ * Every figure quoted comes from that data file. Built from the shared page
+ * kit (components/pageui); sample values in illustrations are illustrative.
  */
 
 const hero = {
@@ -189,133 +177,163 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const keepReading = [
+    { href: "/platform", label: "Browse all nine capabilities" },
+    { href: "/platform/secure-remote-access", label: "How privileged sessions are brokered" },
+    { href: "/enterprise", label: "Enterprise deployment" },
+];
+
+const NAV = [
+    { id: "id-posture", label: "Deployment posture" },
+    { id: "id-availability", label: "High availability" },
+    { id: "id-isolation", label: "Tenants & emergency access" },
+    { id: "id-specs", label: "Specifications" },
+    { id: "id-faq", label: "FAQ" },
+];
+
+/* Verified figures only: app/platform/data.ts and the FAQ below. */
+const FACTS = [
+    { value: 3, label: "platform families: VMware, Red Hat and OpenStack" },
+    { value: 3, label: "topologies: standalone, active-standby or full HA cluster" },
+    { value: 4, label: "supported browsers, plus a full command-line CLI" },
+    { value: 0, label: "inbound ports to open on managed target systems" },
+];
+
+const POSTURE_VISUAL = [EstateVisual, HypervisorVisual, ConsoleVisual, BrowserCliVisual];
+
 export default function InfrastructureDeploymentPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="id-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="id-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<DeployHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── DEPLOYMENT POSTURE ─────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Deployment Posture"
-                    title={postureSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={postureSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={postureCards} columns={4} className="mt-12" />
-            </Section>
+            <section id="id-posture" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={postureSection.title}>
+                        <Prose segments={postureSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+                        {postureCards.map((c, i) => {
+                            const V = POSTURE_VISUAL[i];
+                            return (
+                                <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 flex flex-col gap-5" data-aos="fade-up" data-aos-delay={String(i * 70)}>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="icon-wrapper">
+                                                <c.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <span className="text-[0.8125rem] font-semibold op-link">{c.eyebrow}</span>
+                                        </div>
+                                        <h3 className="op-card-title mt-5">{c.title}</h3>
+                                        <p className="op-card-text mt-2">{c.text}</p>
+                                    </div>
+                                    <div className="mt-auto">
+                                        <V />
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
 
             {/* ─── AVAILABILITY ───────────────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={availabilitySection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={availabilitySection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {availabilitySection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === availabilitySection.paragraphs.length - 1
-                                        ? ""
-                                        : "mb-4"
-                                }
-                            />
-                        ))}
+            <section id="id-availability" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={availabilitySection.title} />
+                            <Paras items={availabilitySection.paragraphs} className="mt-6" />
+                            <CheckList items={availabilitySection.points} className="mt-8" />
+                            <ArrowLink href="/platform/secure-remote-access" className="mt-8">
+                                See how privileged sessions are brokered
+                            </ArrowLink>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <FailoverVisual />
+                        </div>
                     </div>
-
-                    <CheckList items={availabilitySection.points} className="mt-8" />
-
-                    <ArrowLink href="/platform/secure-remote-access" className="mt-8">
-                        See how privileged sessions are brokered
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
+                </div>
+            </section>
 
             {/* ─── TENANTS AND RECOVERY (dark band) ───────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Isolation & Recovery"
-                    title={isolationSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={isolationSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {isolationPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
+            <div className="dark">
+                <section id="id-isolation" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0">
+                                <Heading title={isolationSection.title}>
+                                    <Prose segments={isolationSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-10 grid sm:grid-cols-2 gap-4">
+                                    {isolationPillars.map((p, i) => (
+                                        <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <h3 className="op-card-title mt-5">{p.title}</h3>
+                                            <p className="op-card-text mt-2">{p.text}</p>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                                <TenantVisual />
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </Section>
+                    </div>
+                </section>
+            </div>
 
             {/* ─── SPECIFICATIONS ─────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Technical Specifications"
-                    title={specsSection.title}
-                    className="mb-6"
-                >
-                    <Prose segments={specsSection.lead} />
-                </SectionHeading>
-
-                <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
-                    {platformSpecs.map((spec) => (
-                        <div
-                            key={spec.label}
-                            className={`p-5 rounded-2xl border flex flex-col justify-between ${cardBorder} ${cardSurface}`}
-                        >
-                            <span className="text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] uppercase tracking-wider mb-1.5">
-                                {spec.label}
-                            </span>
-                            <span className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                                {spec.value}
-                            </span>
-                        </div>
-                    ))}
+            <section id="id-specs" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={specsSection.title}>
+                        <Prose segments={specsSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <dl className="op-body grid md:grid-cols-2 gap-x-10 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171a] px-6 lg:px-8 py-2" data-aos="fade-up">
+                        {platformSpecs.map((spec) => (
+                            <div key={spec.label} className="grid grid-cols-1 sm:grid-cols-[11rem_minmax(0,1fr)] gap-1 sm:gap-4 py-4 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
+                                <dt className="text-[0.8125rem] font-semibold op-link">{spec.label}</dt>
+                                <dd className="text-[0.9375rem] leading-relaxed text-slate-700 dark:text-slate-300">{spec.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            {/* ─── KEEP READING ───────────────────────────────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
+                </div>
+            </section>
+
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Your infrastructure", "Your keys"]} outcome="Your topology" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about deployment targets, clustering and tenant isolation."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="id-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

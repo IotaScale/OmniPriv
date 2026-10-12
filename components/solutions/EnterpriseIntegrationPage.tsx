@@ -1,30 +1,16 @@
-import {
-    CheckCircle2,
-    FileSearch,
-    Globe,
-    Monitor,
-    Network,
-    Radar,
-    Server,
-    Shield,
-    UserCheck,
-    Users,
-    Workflow,
-} from "lucide-react";
+import { CheckCircle2, FileSearch, Monitor, Radar, Server, Shield, Users, Workflow } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import IntegrationHero from "@/components/integration/IntegrationHero";
+import { AutoTicket, DirectorySync, IntegrationMap, RequestTypes, SiemStream, StatusGate } from "@/components/integration/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
@@ -32,16 +18,17 @@ import type { RichText } from "@/lib/rich-text";
  * Bespoke layout for /platform/enterprise-integration, the destination of
  * "Enterprise & Identity Integration" in the platform dropdown.
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic template when the slug appears in its
- * `bespokePages` map.
+ * Routing belongs to app/platform/[slug]/page.tsx; SEO metadata comes from
+ * the module entry in app/platform/data.ts.
  *
  * All seven features from ../data.ts are represented: six built-in ticket
  * request types with multi-level approvals, pre-access ticket verification,
  * automatic ticket creation on credential retrieval, real-time SIEM
  * forwarding, Identity Management lifecycle integration, bidirectional
  * LDAP/AD sync with entitlement management, and the RDP/SSH/VNC/HTTP
- * proxies that carry vault access by privilege level.
+ * proxies that carry vault access by privilege level. Built from the shared
+ * page kit (components/pageui); sample values in illustrations are
+ * illustrative.
  */
 
 const hero = {
@@ -143,15 +130,6 @@ const telemetryPillars = [
     },
 ];
 
-const protocols = ["RDP", "SSH", "VNC", "HTTP"];
-
-const stats = [
-    { value: "6", label: "Built-in request types", sub: "Each with multi-level approvals" },
-    { value: "AD / LDAP", label: "Bidirectional sync", sub: "Users, groups and entitlements" },
-    { value: "Real time", label: "SIEM event forwarding", sub: "No batch exports" },
-    { value: "4", label: "Protocol proxies", sub: "RDP, SSH, VNC and HTTP" },
-];
-
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/privileged-access-audit-compliance", label: "How approval evidence is recorded" },
@@ -197,149 +175,148 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const NAV = [
+    { id: "ei-ticketing", label: "Ticketing" },
+    { id: "ei-directory", label: "Directories" },
+    { id: "ei-telemetry", label: "Telemetry & access paths" },
+    { id: "ei-map", label: "Integration map" },
+    { id: "ei-faq", label: "FAQ" },
+];
+
+/* The four figures the old outcomes row carried, now in the hero strip. */
+const FACTS = [
+    { value: 6, label: "built-in request types, each with multi-level approvals" },
+    { value: "2-way", label: "LDAP and Active Directory sync for users, groups and entitlements" },
+    { value: "Live", label: "SIEM event forwarding, no batch exports" },
+    { value: 4, label: "protocol proxies: RDP, SSH, VNC and HTTP" },
+];
+
+const TICKET_VISUAL = [RequestTypes, AutoTicket, StatusGate];
+
 export default function EnterpriseIntegrationPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="ei-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="ei-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<IntegrationHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── TICKETING AS A GATE ────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Approval Workflow"
-                    title={ticketingSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={ticketingSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={ticketingCards} columns={3} className="mt-12" />
-            </Section>
+            <section id="ei-ticketing" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={ticketingSection.title}>
+                        <Prose segments={ticketingSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-5 md:grid-cols-3">
+                        {ticketingCards.map((c, i) => {
+                            const V = TICKET_VISUAL[i];
+                            return (
+                                <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col gap-5" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="icon-wrapper">
+                                                <c.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <span className="text-[0.8125rem] font-semibold op-link">{c.eyebrow}</span>
+                                        </div>
+                                        <h3 className="op-card-title mt-5">{c.title}</h3>
+                                        <p className="op-card-text mt-2">{c.text}</p>
+                                    </div>
+                                    <div className="mt-auto">
+                                        <V />
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
 
             {/* ─── DIRECTORY INTEGRATION ──────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={directorySection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={directorySection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {directorySection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === directorySection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
+            <section id="ei-directory" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={directorySection.title} />
+                            <Paras items={directorySection.paragraphs} className="mt-6" />
+                            <CheckList items={directorySection.points} className="mt-8" />
+                            <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
+                                See how entitlement changes are evidenced
+                            </ArrowLink>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <DirectorySync />
+                        </div>
                     </div>
-
-                    <CheckList items={directorySection.points} className="mt-8" />
-
-                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
-                        See how entitlement changes are evidenced
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
+                </div>
+            </section>
 
             {/* ─── TELEMETRY & ACCESS PATHS (dark band) ───────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading badge="Telemetry & Access Paths" title={telemetrySection.title} className="mb-2">
-                    <Prose segments={telemetrySection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {telemetryPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
-                        </div>
-                    ))}
-                </div>
-
-                <ChipList
-                    items={protocols}
-                    variant="accent"
-                    separator={<span className="text-slate-500 dark:text-slate-500 text-sm">/</span>}
-                    className="mt-14"
-                />
-            </Section>
-
-            {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Integrations you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Every connection listed here is built in, not a professional-services project.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
+            <div className="dark">
+                <section id="ei-telemetry" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0">
+                                <Heading title={telemetrySection.title}>
+                                    <Prose segments={telemetrySection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-10 grid sm:grid-cols-2 gap-4">
+                                    {telemetryPillars.map((p, i) => (
+                                        <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <h3 className="op-card-title mt-5">{p.title}</h3>
+                                            <p className="op-card-text mt-2">{p.text}</p>
+                                        </article>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
+                            <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                                <SiemStream />
                             </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                </section>
+            </div>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── INTEGRATIONS YOU CAN POINT AT ──────────────────── */}
+            <section id="ei-map" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title="Integrations you can point at">
+                        <p>Every connection listed here is built in, not a professional-services project.</p>
+                    </Heading>
+                    <div className="op-body" data-aos="fade-up" data-aos-delay="80">
+                        <IntegrationMap />
+                    </div>
+                    <div className="mt-14">
+                        <h3 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h3>
+                        <KeepReading links={keepReading} />
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Ticketing", "Directories", "Telemetry"]} outcome="Connected, not copied" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about ticketing, directory synchronisation and event forwarding."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="ei-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

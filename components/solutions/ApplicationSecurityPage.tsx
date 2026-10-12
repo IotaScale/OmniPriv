@@ -1,42 +1,27 @@
-import {
-    AlertTriangle,
-    Database,
-    Fingerprint,
-    Key,
-    Lock,
-    Network,
-    Shield,
-    UserCheck,
-} from "lucide-react";
+import { AlertTriangle, Database, Fingerprint, Key, Lock, Shield, UserCheck } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import EnvelopeHero from "@/components/appsec/EnvelopeHero";
+import { ChainVisual, IsolationVisual, KeystrokeVisual, MfaVisual, PathVisual } from "@/components/appsec/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/application-security, the destination of
- * "Application Security" in the platform dropdown.
+ * Bespoke layout for /platform/application-security ("Application Security &
+ * Encryption"). Routing belongs to app/platform/[slug]/page.tsx; SEO metadata
+ * comes from the module entry in app/platform/data.ts.
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic template when the slug appears in its
- * `bespokePages` map.
- *
- * All ten features from ../data.ts are represented: MFA, hardware-backed key
- * protection, adaptive MFA, encryption at rest and in transit, mutually
- * encrypted component traffic, encrypted backups, role-based access isolation,
- * tamper-proof audit storage, zero hard-coded credentials and independent key
- * custody.
+ * All ten features of the module are represented. Built from the shared
+ * page kit (components/pageui). Sample values in illustrations are
+ * illustrative.
  */
 
 const hero = {
@@ -134,13 +119,6 @@ const custodyPillars = [
     },
 ];
 
-const stats = [
-    { value: "100%", label: "Envelope encryption", sub: "At rest and in transit" },
-    { value: "Hardware", label: "Root-of-trust key protection", sub: "Keys held in a security module" },
-    { value: "Mutual", label: "Authentication between components", sub: "No plaintext on the wire" },
-    { value: "0", label: "Hard-coded credentials", sub: "Every secret vault-managed" },
-];
-
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/platform/password-credential-management", label: "How credentials are vaulted" },
@@ -186,142 +164,139 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+
+const NAV = [
+    { id: "as-verify", label: "Verification" },
+    { id: "as-encrypt", label: "Encryption" },
+    { id: "as-custody", label: "Integrity & key custody" },
+    { id: "as-faq", label: "FAQ" },
+];
+
+const FACTS = [
+    { value: 3, suffix: "-tier", label: "key hierarchy: KEK, DEK and SEK" },
+    { value: 5, label: "second-factor methods, from biometrics to email codes" },
+    { value: 50, label: "audit rows per HMAC-SHA256 checkpoint, verified every 5 minutes" },
+    { value: 0, label: "hard-coded credentials inside the platform" },
+];
+
+const VERIFY_VISUAL = [MfaVisual, KeystrokeVisual, IsolationVisual];
+
 export default function ApplicationSecurityPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="as-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="as-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<EnvelopeHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── VERIFICATION ───────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Identity Verification"
-                    title={verificationSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={verificationSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={verificationCards} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── ENCRYPTION LAYERS ──────────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={encryptionSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={encryptionSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {encryptionSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === encryptionSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
+            <section id="as-verify" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={verificationSection.title}>
+                        <Prose segments={verificationSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-5 md:grid-cols-3">
+                        {verificationCards.map((c, i) => {
+                            const V = VERIFY_VISUAL[i];
+                            return (
+                                <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col gap-5" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="icon-wrapper">
+                                                <c.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <span className="text-[0.8125rem] font-semibold op-link">{c.eyebrow}</span>
+                                        </div>
+                                        <h3 className="op-card-title mt-5">{c.title}</h3>
+                                        <p className="op-card-text mt-2">{c.text}</p>
+                                    </div>
+                                    <div className="mt-auto">
+                                        <V />
+                                    </div>
+                                </article>
+                            );
+                        })}
                     </div>
+                </div>
+            </section>
 
-                    <CheckList items={encryptionSection.points} className="mt-8" />
-
-                    <ArrowLink href="/security" className="mt-8">
-                        See the framework mappings behind it
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
+            {/* ─── ENCRYPTION ─────────────────────────────────────── */}
+            <section id="as-encrypt" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={encryptionSection.title} />
+                            <Paras items={encryptionSection.paragraphs} className="mt-6" />
+                            <CheckList items={encryptionSection.points} className="mt-8" />
+                            <ArrowLink href="/security" className="mt-8">
+                                See the framework mappings behind it
+                            </ArrowLink>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <PathVisual />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── KEY CUSTODY (dark band) ────────────────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading badge="Key Custody" title={custodySection.title} className="mb-2">
-                    <Prose segments={custodySection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {custodyPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
-                        </div>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Encryption you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a trust statement. These are the mechanisms standing behind it.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
+            <div className="dark">
+                <section id="as-custody" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0">
+                                <Heading title={custodySection.title}>
+                                    <Prose segments={custodySection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-10 grid sm:grid-cols-2 gap-4">
+                                    {custodyPillars.map((p, i) => (
+                                        <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <h3 className="op-card-title mt-5">{p.title}</h3>
+                                            <p className="op-card-text mt-2">{p.text}</p>
+                                        </article>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
+                            <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                                <ChainVisual />
                             </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                </section>
+            </div>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── KEEP READING ───────────────────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Encrypted in transit", "Encrypted at rest"]} outcome="Hash-chained throughout" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about authentication factors, encryption and key custody."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="as-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

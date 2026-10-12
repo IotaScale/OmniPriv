@@ -1,29 +1,15 @@
-import {
-    Database,
-    Globe,
-    Key,
-    KeyRound,
-    Layers,
-    Lock,
-    Monitor,
-    RefreshCw,
-    RotateCcw,
-    ScanSearch,
-    Upload,
-} from "lucide-react";
+import { Database, Globe, Key, KeyRound, Layers, Lock, Monitor, RefreshCw, RotateCcw, ScanSearch, Upload } from "lucide-react";
 
-import ArrowLink from "@/components/sections/ArrowLink";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import VaultFlow from "@/components/credentials/VaultFlow";
+import { BulkVisual, DriftVisual, GroupVisual, OtpVisual, SshVisual } from "@/components/credentials/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
@@ -31,15 +17,14 @@ import type { RichText } from "@/lib/rich-text";
  * Bespoke layout for /platform/password-credential-management, the
  * destination of "Credential Management" in the platform dropdown.
  *
- * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
- * component instead of the generic template when the slug appears in its
- * `bespokePages` map.
+ * Routing belongs to app/platform/[slug]/page.tsx; SEO metadata comes from
+ * the module entry in app/platform/data.ts.
  *
- * All ten features from ../data.ts are represented: rotation, SSH key
- * lifecycle, one-time passwords, validation and de-sync resolution,
- * reconciliation, password groups, history, bulk onboarding, the mobile
- * client and offline device credentials. Figures come from that file and
- * from app/features/page.tsx.
+ * Built from the shared page kit (components/pageui) so it matches /ai-pam:
+ * live hero visual, figures strip, on-this-page bar, bento cards with small
+ * product illustrations, one dark band, the closing band and the split FAQ.
+ * All ten features of the module are covered. Sample values in the
+ * illustrations are illustrative.
  */
 
 const hero = {
@@ -173,13 +158,6 @@ const reachCards: IconCard[] = [
     },
 ];
 
-const stats = [
-    { value: "100%", label: "Credential vault encryption", sub: "Encrypted at rest and in transit" },
-    { value: "0", label: "Users who see a raw password", sub: "Access is brokered" },
-    { value: "10", label: "Credential lifecycle controls", sub: "This capability module" },
-    { value: "9", label: "Regulatory frameworks mapped", sub: "SOX through ISO 27001" },
-];
-
 const keepReading = [
     { href: "/platform", label: "Browse all nine capabilities" },
     { href: "/platform/workflow-access-control", label: "Application credential management" },
@@ -225,151 +203,157 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+
+const NAV = [
+    { id: "pcm-lifecycle", label: "Lifecycle" },
+    { id: "pcm-drift", label: "Validation & reconciliation" },
+    { id: "pcm-keys", label: "Keys, OTP & groups" },
+    { id: "pcm-reach", label: "Anywhere access" },
+    { id: "pcm-faq", label: "FAQ" },
+];
+
+const FACTS = [
+    { value: 0, label: "users who ever see a raw privileged password" },
+    { value: 4, label: "lifecycle stages automated: discover, vault, rotate, push" },
+    { value: 10, label: "credential lifecycle controls in this module" },
+    { value: 3, suffix: "-tier", label: "encryption key hierarchy: KEK, DEK and SEK" },
+];
+
+const KEY_VISUAL = [SshVisual, OtpVisual, GroupVisual, BulkVisual];
+
 export default function PasswordCredentialManagementPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="pcm-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="pcm-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<VaultFlow />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
-            {/* ─── THE LIFECYCLE ──────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Credential Lifecycle"
-                    title={lifecycleSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={lifecycleSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={lifecycleCards} columns={4} className="mt-12" />
-            </Section>
-
-            {/* ─── DE-SYNC AND RECONCILIATION ─────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={driftSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={driftSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {driftSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === driftSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
+            {/* ─── LIFECYCLE ─────────────────────────────────────── */}
+            <section id="pcm-lifecycle" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={lifecycleSection.title}>
+                        <Prose segments={lifecycleSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body relative">
+                        <ol className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                            {lifecycleCards.map((c, i) => (
+                                <li key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 flex flex-col" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                    <div className="flex items-center gap-3">
+                                        <span className="relative z-10 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-[#00B8DB] text-[#03121c] shadow-[0_0_0_6px_rgba(0,184,219,0.1)]">
+                                            <c.icon className="w-5 h-5" aria-hidden="true" />
+                                        </span>
+                                        <span className="text-[0.8125rem] font-semibold op-link">
+                                            {i + 1}. {c.eyebrow}
+                                        </span>
+                                    </div>
+                                    <h3 className="op-card-title mt-5">{c.title}</h3>
+                                    <p className="op-card-text mt-2">{c.text}</p>
+                                </li>
+                            ))}
+                        </ol>
                     </div>
+                </div>
+            </section>
 
-                    <CheckList items={driftSection.points} className="mt-8" />
-
-                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
-                        See how this becomes audit evidence
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── KEYS AND GROUPS (dark band) ────────────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading badge="Beyond Rotation" title={keysSection.title} className="mb-2">
-                    <Prose segments={keysSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {keysPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
+            {/* ─── VALIDATION & RECONCILIATION ───────────────────── */}
+            <section id="pcm-drift" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={driftSection.title} />
+                            <Paras items={driftSection.paragraphs} className="mt-6" />
+                            <CheckList items={driftSection.points} className="mt-8" />
                         </div>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── REACH ──────────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading badge="Reach" title={reachSection.title} className="mb-2">
-                    <Prose segments={reachSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={reachCards} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title="Credential hygiene you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a policy statement. These are the controls standing behind the vault.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <DriftVisual />
                         </div>
-                    ))}
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── KEYS, OTP, GROUPS, BULK (bento) ──────────────── */}
+            <section id="pcm-keys" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={keysSection.title}>
+                        <Prose segments={keysSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-5 sm:grid-cols-2">
+                        {keysPillars.map((p, i) => {
+                            const V = KEY_VISUAL[i];
+                            return (
+                                <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col gap-5" data-aos="fade-up" data-aos-delay={String((i % 2) * 80)}>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="icon-wrapper">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <h3 className="op-card-title">{p.title}</h3>
+                                        </div>
+                                        <p className="op-card-text mt-4">{p.text}</p>
+                                    </div>
+                                    <div className="mt-auto">
+                                        <V />
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            {/* ─── ANYWHERE ACCESS (dark band) ──────────────────── */}
+            <div className="dark">
+                <section id="pcm-reach" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <Heading title={reachSection.title}>
+                            <Prose segments={reachSection.lead} className="text-[1.0625rem]" />
+                        </Heading>
+                        <div className="op-body grid gap-5 md:grid-cols-3">
+                            {reachCards.map((c, i) => (
+                                <article key={c.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                        <c.icon className="w-6 h-6" aria-hidden="true" />
+                                    </span>
+                                    <div className="mt-5 text-[0.8125rem] font-semibold text-[#7FD9EA]">{c.eyebrow}</div>
+                                    <h3 className="op-card-title mt-1 text-[1.1875rem]">{c.title}</h3>
+                                    <p className="op-card-text mt-2">{c.text}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── KEEP READING ─────────────────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
+                </div>
+            </section>
+
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Vaulted", "Rotated", "Validated"]} outcome="Never handed over" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about rotation, de-sync resolution, SSH keys and shared credentials."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="pcm-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

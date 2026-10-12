@@ -4879,3 +4879,31 @@ main.pt-\[72px\] {
     display: none;
   }
 }
+
+/* Credential page illustrations */
+@keyframes aip-strike {
+  0%, 35% { text-decoration-color: transparent; opacity: 1; }
+  55%, 100% { text-decoration-color: rgba(244, 63, 94, 0.7); opacity: 0.55; }
+}
+
+.aip-otp-used {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  animation: aip-strike 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes aip-sync {
+  0%, 60%, 100% { transform: scale(1); opacity: 0.6; }
+  70% { transform: scale(1.8); opacity: 1; }
+}
+
+.aip-sync {
+  animation: aip-sync 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aip-otp-used,
+  .aip-sync {
+    animation: none;
+  }
+}
