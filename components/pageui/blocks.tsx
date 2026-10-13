@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import CountUp from "@/components/home/CountUp";
+import Breadcrumbs from "@/components/pageui/Breadcrumbs";
 import FaqAccordion, { type FaqEntry } from "@/components/sections/FaqAccordion";
 import Prose from "@/components/sections/Prose";
 import { cn } from "@/lib/utils";
@@ -70,6 +71,7 @@ export function PageHero({
             <div className="container-xl relative pt-14 pb-12 lg:pt-20 lg:pb-16">
                 <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] gap-12 lg:gap-14 items-center">
                     <div className="min-w-0">
+                        <Breadcrumbs />
                         <h1 className="op-h1 aip-h1" data-aos="fade-up">
                             {titleLead} {titleAccent && <span className="text-gradient">{titleAccent}</span>}
                         </h1>
@@ -180,7 +182,7 @@ export function ClosingBand({
 }
 
 /* FAQ: sticky heading + contact card left, accordion right, FAQPage schema. */
-export function FaqSplit({ id = "page-faq", title, items }: { id?: string; title: string; items: FaqEntry[] }) {
+export function FaqSplit({ id = "page-faq", title, lead, items }: { id?: string; title: string; lead?: string; items: FaqEntry[] }) {
     return (
         <section id={id} className={sectionLine}>
             <script
@@ -201,6 +203,7 @@ export function FaqSplit({ id = "page-faq", title, items }: { id?: string; title
                 <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
                     <div className="lg:sticky lg:top-40" data-aos="fade-up">
                         <h2 className="op-h2">{title}</h2>
+                        {lead && <p className="mt-4 text-[1.0156rem] leading-relaxed text-slate-600 dark:text-slate-400">{lead}</p>}
                         <div className="mt-8 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-50 dark:bg-[#15171a] p-6">
                             <div className="op-card-title">Have a question that is not here?</div>
                             <p className="mt-2 text-[0.9375rem] text-slate-600 dark:text-slate-400">Talk to the OmniPriv team about your identities, systems and AI agents.</p>

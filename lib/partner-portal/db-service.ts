@@ -684,6 +684,8 @@ export const dbService = {
     return result.rows[0] || null;
   },
 
+  // Listings are auto-approved for now (no channel-admin review before they go
+  // public). To bring review back, insert FALSE and drop `admin_approved = TRUE`.
   async updatePartnerLocatorProfile(orgId: string, data: any) {
     const pool = getPool();
     const query = `
@@ -691,7 +693,7 @@ export const dbService = {
         id, partner_org_id, display_name, headquarters, service_regions,
         specializations, certifications_summary, public_description,
         public_contact_email, public_website, is_active_listing, admin_approved
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, FALSE)
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, TRUE)
       ON CONFLICT (id) DO UPDATE SET
         display_name = EXCLUDED.display_name,
         headquarters = EXCLUDED.headquarters,
@@ -700,6 +702,7 @@ export const dbService = {
         public_contact_email = EXCLUDED.public_contact_email,
         public_website = EXCLUDED.public_website,
         is_active_listing = EXCLUDED.is_active_listing,
+        admin_approved = TRUE,
         updated_at = NOW()
       RETURNING *;
     `;

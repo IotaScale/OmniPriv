@@ -12,8 +12,7 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
   const isPrivateOperationalSurface =
     pathname.startsWith("/partner-portal") ||
     pathname.startsWith("/channel-admin") ||
-    pathname.startsWith("/portal-admin") ||
-    pathname === "/sign-in";
+    pathname.startsWith("/portal-admin");
 
   if (isPrivateOperationalSurface) {
     return <>{children}</>;

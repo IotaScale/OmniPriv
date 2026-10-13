@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
     Activity,
     AlertTriangle,
+    ArrowRight,
     BarChart3,
     Bot,
     Building2,
@@ -14,16 +16,14 @@ import {
     Users,
 } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { GapsVisual, IdentityHero, LifecycleStrip, OneTrail, StandingChart } from "@/components/identity/Visuals";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
@@ -44,6 +44,10 @@ import type { RichText } from "@/lib/rich-text";
  * It is also the destination of the "Reduce Privileged Identity Risk"
  * challenge card, which previously pointed at a single credential module
  * that did not describe it.
+ *
+ * Built from the shared page kit (components/pageui) so it matches the
+ * other redesigned pages. Copy is unchanged; values inside illustrations
+ * are illustrative.
  *
  * The four identity classes come from app/solutions/ai-agent-security/data.ts:
  * "human, machine, vendor, and AI/automated identities". Every destination
@@ -245,145 +249,178 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const NAV = [
+    { id: "is-classes", label: "Identity classes" },
+    { id: "is-areas", label: "Where risk builds" },
+    { id: "is-model", label: "Operating model" },
+    { id: "is-governance", label: "Governance" },
+    { id: "is-faq", label: "FAQ" },
+];
+
+/* The four figures this page already states, in the shared figures strip. */
+const FACTS = stats.map((s) => ({ value: s.value === "0" ? "0" : Number(s.value), label: `${s.label} · ${s.sub}` }));
+
+function LinkCard({ item, delay, step }: { item: IconCard; delay: number; step?: string }) {
+    const Icon = item.icon;
+    return (
+        <li className="min-w-0" data-aos="fade-up" data-aos-delay={String(delay)}>
+            <Link href={item.href ?? "#"} className="aip-card group flex h-full flex-col rounded-2xl border p-5 lg:p-6">
+                <div className="flex items-center gap-3">
+                    <span className="icon-wrapper shrink-0">
+                        <Icon className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                    {step && <span className="ml-auto text-[0.75rem] font-semibold tabular-nums text-slate-500 dark:text-slate-400">{step}</span>}
+                </div>
+                <h3 className="op-card-title mt-4">{item.title}</h3>
+                <p className="op-card-text mt-2 flex-1">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-[0.875rem] font-semibold op-link">
+                    Learn more
+                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
+            </Link>
+        </li>
+    );
+}
+
 export default function IdentitySecurityPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="is-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="is-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<IdentityHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── FOUR IDENTITY CLASSES ────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={classesSection.title} className="mb-2">
-                    <Prose segments={classesSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={identityClasses} columns={4} className="mt-12" />
-            </Section>
+            <section id="is-classes" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={classesSection.title}>
+                                <Prose segments={classesSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <GapsVisual />
+                        </div>
+                    </div>
+                    <ul className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        {identityClasses.map((c, k) => (
+                            <LinkCard key={c.title} item={c} delay={k * 60} />
+                        ))}
+                    </ul>
+                </div>
+            </section>
 
             {/* ─── SIX AREAS OF RISK ────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={areasSection.title} className="mb-2">
-                    <Prose segments={areasSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={riskAreas} columns={3} className="mt-12" />
-            </Section>
+            <section id="is-areas" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={areasSection.title}>
+                                <Prose segments={areasSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <LifecycleStrip />
+                        </div>
+                    </div>
+                    <ul className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {riskAreas.map((a, k) => (
+                            <LinkCard key={a.title} item={a} delay={(k % 3) * 60} step={`${k + 1} of ${riskAreas.length}`} />
+                        ))}
+                    </ul>
+                </div>
+            </section>
 
             {/* ─── OPERATING MODEL (dark band) ──────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={operatingSection.title} className="mb-2">
-                    <Prose segments={operatingSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {operatingPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
+            <div className="dark">
+                <section id="is-model" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0">
+                                <Heading title={operatingSection.title}>
+                                    <Prose segments={operatingSection.lead} className="text-[1.0625rem] text-slate-600 dark:text-slate-400" />
+                                </Heading>
+                            </div>
+                            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                                <StandingChart />
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </Section>
+                        <ul className="op-body grid gap-4 sm:grid-cols-2">
+                            {operatingPillars.map((p, k) => (
+                                <li key={p.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7" data-aos="fade-up" data-aos-delay={String((k % 2) * 70)}>
+                                    <div className="flex items-center gap-3">
+                                        <span className="icon-wrapper shrink-0">
+                                            <p.icon className="w-5 h-5" aria-hidden="true" />
+                                        </span>
+                                        <h3 className="op-card-title">{p.title}</h3>
+                                    </div>
+                                    <p className="op-card-text mt-4">{p.text}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            </div>
 
             {/* ─── GOVERNANCE ACROSS CLASSES ────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title="Governance that does not stop at the boundary of a tool"
-                    className="mb-6"
-                >
-                    <Prose
-                        segments={[
-                            "Most identity programmes break where one system hands off to another. These are the controls that keep the classes inside a single model, and they stay server-side and policy-driven rather than depending on people remembering a process.",
-                        ]}
-                    />
-                </SectionHeading>
-
-                <CheckList items={governancePoints} className="max-w-3xl" />
-
-                {/* Centred: the heading and tick list above are centred, so a
-                    trailing link left-hugging the container reads as a mistake.
-                    `ArrowLink` renders an inline-flex anchor, so it follows the
-                    parent's text alignment, a plain wrapper is not enough. */}
-                <div className="mt-10 flex justify-center">
-                    <ArrowLink href="/enterprise">
-                        See how OmniPriv runs in enterprise environments
-                    </ArrowLink>
-                </div>
-            </Section>
-
-            {/* ─── OUTCOMES ─────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Identity security you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a diagram of a future state. These are the controls running behind one
-                        policy engine today.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
+            <section id="is-governance" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                            <OneTrail />
                         </div>
-                    ))}
+                        <div className="min-w-0 order-1 lg:order-2">
+                            <Heading title="Governance that does not stop at the boundary of a tool">
+                                <Prose
+                                    segments={[
+                                        "Most identity programmes break where one system hands off to another. These are the controls that keep the classes inside a single model, and they stay server-side and policy-driven rather than depending on people remembering a process.",
+                                    ]}
+                                    className="text-[1.0625rem]"
+                                />
+                            </Heading>
+                            <CheckList items={governancePoints} className="mt-7" />
+                            <ArrowLink href="/enterprise" className="mt-7">
+                                See how OmniPriv runs in enterprise environments
+                            </ArrowLink>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── IDENTITY SECURITY YOU CAN POINT AT / KEEP READING ── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2" data-aos="fade-up">
+                        <h2 className="op-h3">Identity security you can point at</h2>
+                        <p className="max-w-xl text-[0.9375rem] text-slate-600 dark:text-slate-400">
+                            Not a diagram of a future state. These are the controls running behind one policy engine today.
+                        </p>
+                    </div>
+                    <KeepReading links={keepReading} />
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
+                lead={closing.kicker}
                 body={closing.body}
-                kicker={closing.kicker}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about governing human, machine, vendor and AI identities under one privileged access model."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="is-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

@@ -129,7 +129,7 @@ export default function LocatorPage() {
       {loading ? (
         <LoadingSkeleton />
       ) : !isEditing && locator ? (
-        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 p-6 space-y-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 p-6 space-y-6 shadow-sm">
           <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-white/[0.05]">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -162,7 +162,7 @@ export default function LocatorPage() {
               <div className="font-semibold text-slate-900 dark:text-white mb-1.5">Verified Specializations</div>
               <div className="flex flex-wrap gap-1.5">
                 {locator.specializations.map((s, i) => (
-                  <span key={i} className="bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded text-[11px]">
+                  <span key={i} className="bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] border border-[#00B8DB]/20 px-2 py-0.5 rounded text-[11px]">
                     {s}
                   </span>
                 ))}
@@ -171,7 +171,7 @@ export default function LocatorPage() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 p-6 space-y-4 text-xs">
+        <form onSubmit={handleSubmit} className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 p-6 space-y-4 text-xs">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white">Edit Public Locator Listing</h2>
 
           <div>
@@ -229,7 +229,7 @@ export default function LocatorPage() {
               disabled={submitting}
               className="btn-primary text-xs px-4 py-2 rounded-lg"
             >
-              {submitting ? "Saving..." : "Submit for Approval"}
+              {submitting ? "Saving..." : "Save and publish"}
             </button>
           </div>
         </form>

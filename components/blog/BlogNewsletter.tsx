@@ -67,7 +67,7 @@ export default function BlogNewsletter() {
 
     return (
         <>
-            <form className="flex gap-3 max-w-md mx-auto" onSubmit={handleSubmit}>
+            <form className="flex flex-col sm:flex-row gap-2.5 w-full" onSubmit={handleSubmit}>
                 <label htmlFor="blog-newsletter-email" className="sr-only">
                     Work email address
                 </label>
@@ -79,12 +79,12 @@ export default function BlogNewsletter() {
                     placeholder="Work email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="input-dark flex-1"
+                    className="min-w-0 flex-1 rounded-xl border border-slate-900/[0.1] dark:border-white/[0.12] bg-white dark:bg-[#0b0c0e] px-4 py-3 text-[0.9375rem] text-slate-900 dark:text-white placeholder:text-slate-400 outline-none focus:border-[#00B8DB]/60 focus:ring-2 focus:ring-[#00B8DB]/20"
                 />
                 <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="btn-primary whitespace-nowrap disabled:opacity-60"
+                    className="hp-btn-primary whitespace-nowrap disabled:opacity-60"
                 >
                     {status === "loading" ? "Subscribing..." : "Subscribe"}
                 </button>

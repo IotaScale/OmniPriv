@@ -41,7 +41,7 @@ export interface PlatformSpec {
 export const datasheetStats = [
     { value: "80+", label: "Requirement Points Covered", sub: "Enterprise PAM coverage" },
     { value: "9", label: "Core Capability Modules", sub: "End-to-end access lifecycle" },
-    { value: "6", label: "Compliance frameworks mapped", sub: "SOC 2 · ISO 27001 · HIPAA + more" },
+    { value: "6", label: "Compliance frameworks mapped", sub: "SOC 2 · ISO 27001 · NIST SP 800-53 · HIPAA · PCI DSS · SOX 404" },
     { value: "100%", label: "Encrypted Credential Vault", sub: "Encrypted at rest and in transit" },
 ];
 
@@ -61,7 +61,6 @@ export const platformSpecs: PlatformSpec[] = [
     { label: "High Availability", value: "Multi-node clustering, container health checks, heartbeat monitoring & DB replication" },
     { label: "Multi-Tenancy", value: "Strict org_id isolation per resource (schema-per-tenant), ROOT/DEFAULT/SYSTEM orgs" },
     { label: "Encryption", value: "All sensitive data encrypted at rest and in transit" },
-    { label: "Hardware Security", value: "Hardware security module integration for root-of-trust key protection" },
     { label: "Supported Protocols", value: "SSH, RDP, VNC, HTTP, Database (Native DB clients via transparent proxy)" },
     { label: "Approval Principle", value: "4-Eyes principle (minimum 2 independent approvers, no self-approval)" },
     { label: "AI & Threat Analytics", value: "AI keystroke dynamics anomaly detection & real-time behavioral analytics" },
@@ -70,7 +69,7 @@ export const platformSpecs: PlatformSpec[] = [
 
 export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-first: intentionally listed first) ─
     {
-        slug: "secure-ai-agents-omnipriv",
+        slug: "secure-ai-agents",
         title: "Secure AI Agents",
         tagline: "Scoped privilege, tool allowlists and recorded sessions for every AI agent",
         description:
@@ -144,16 +143,16 @@ export const solutions: Solution[] = [    // ─── AI Agent Governance (AI-f
         title: "Application Security & Encryption",
         tagline: "AI-powered credential protection with enterprise-grade encryption",
         description:
-            "OmniPriv enforces multi-factor authentication, encryption of data at rest and in transit, hardware-backed key protection, and AI-driven keystroke behavioural anomaly detection to protect every layer of privileged access.",
+            "OmniPriv enforces multi-factor authentication, encryption of data at rest and in transit, layered key protection, and AI-driven keystroke behavioural anomaly detection to protect every layer of privileged access.",
         metaTitle: "Application Security & Encryption: OmniPriv PAM",
         metaDescription:
             "Protect privileged access with MFA, encryption at rest and in transit, tamper-proof audit storage, and AI-powered anomaly detection.",
         icon: Shield,
         features: [
             { name: "Multi-Factor Authentication (MFA)", description: "Integrates with MFA for strong authentication including Biometric, Hardware Token, TOTP, SMS-based 2FA, and Email-based OTP", icon: Fingerprint },
-            { name: "Credential Encryption with Hardware Key Protection", description: "Credentials are encrypted and their keys protected by a hardware security module; all sensitive data is encrypted in transit and at rest", icon: Cpu },
+            { name: "Credential Encryption with Layered Key Protection", description: "Credentials are encrypted under a layered key hierarchy (KEK, DEK, SEK); all sensitive data is encrypted in transit and at rest", icon: Cpu },
             { name: "Adaptive MFA with AI Keystroke Anomaly Detection", description: "AI engine continuously analyzes keystroke dynamics during login (rhythm, speed, patterns against behavioral baseline), automatically triggering MFA on anomaly detection", icon: AlertTriangle },
-            { name: "Encryption at Rest and in Transit", description: "All sensitive data is encrypted both at rest and in transit, with encryption keys protected by a hardware security module", icon: Lock },
+            { name: "Encryption at Rest and in Transit", description: "All sensitive data is encrypted both at rest and in transit, with encryption keys protected by a layered key hierarchy", icon: Lock },
             { name: "Encrypted Inter-Component Communication", description: "All communication between system components is mutually authenticated and encrypted, no plaintext transmission at any layer", icon: Network },
             { name: "Encrypted Backups with Secure Key Management", description: "Fully encrypted backups with independent, secure key management ensuring backup integrity and confidentiality", icon: Database },
             { name: "Role-Based Access Isolation", description: "Administrators strictly cannot access credentials or approve requests outside their defined role boundaries enforced at every access layer", icon: UserCheck },

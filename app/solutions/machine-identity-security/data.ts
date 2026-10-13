@@ -40,7 +40,7 @@ export const hero = {
         "OmniPriv currently supports cloud secrets and service-account management, Azure and GCP workload identities, Kubernetes service accounts, dynamic secrets through HashiCorp Vault and short-lived credentials across CI/CD integrations.",
     ] as RichText,
     primary: { href: "/demo", label: "Request an OmniPriv Demo" },
-    secondary: { href: "https://omnipriv.com/platform", label: "Explore the OmniPriv PAM Platform" },
+    secondary: { href: "/platform", label: "Explore the OmniPriv PAM Platform" },
     image: {
         src: "/identities/machine-identities.jpeg",
         alt: "Robot presenting a holographic key panel, surrounded by padlocked platforms representing cloud, server, database and application identities",
@@ -96,7 +96,7 @@ export const risksSection = {
     ],
     note: [
         "OmniPriv automatically rotates passwords, SSH keys and API tokens and provides secure credential storage as part of its ",
-        { text: "security architecture", href: "https://omnipriv.com/security" },
+        { text: "security architecture", href: "/security" },
         ".",
     ] as RichText,
 };
@@ -120,7 +120,7 @@ export const credentialsSection = {
         ],
         [
             "OmniPriv integrates with cloud secret stores, Kubernetes, HashiCorp Vault and ",
-            { text: "CI/CD platforms", href: "https://omnipriv.com/integrations" },
+            { text: "CI/CD platforms", href: "/integrations" },
             " to help organizations reduce hard-coded credentials and manage machine access within existing workflows. GitHub Actions, for example, is documented with OIDC-based short-lived token injection, while Jenkins supports dynamic credential injection.",
         ],
         [
@@ -151,7 +151,7 @@ export const capabilityBlocks: CapabilityBlock[] = [
             ],
             [
                 "OmniPriv supports ",
-                { text: "workload identity integrations", href: "https://omnipriv.com/integrations" },
+                { text: "workload identity integrations", href: "/integrations" },
                 " for Azure and Google Cloud alongside AWS IAM and native secret-management services.",
             ],
         ],
@@ -165,7 +165,7 @@ export const capabilityBlocks: CapabilityBlock[] = [
             ],
             [
                 "OmniPriv ",
-                { text: "integrations", href: "https://omnipriv.com/integrations" },
+                { text: "integrations", href: "/integrations" },
                 " support short-lived tokens, dynamic secrets and credential injection, reducing the need to place sensitive privileged secrets directly inside pipeline configurations.",
             ],
         ],
@@ -185,7 +185,7 @@ export const leastPrivilegeSection = {
         ],
         [
             "OmniPriv’s ",
-            { text: "PAM platform", href: "https://omnipriv.com/platform" },
+            { text: "PAM platform", href: "/platform" },
             " is designed around policy-driven privileged access, credential management, workflow controls, monitoring and threat detection.",
         ],
         [
@@ -212,7 +212,7 @@ export const intelligenceSection = {
         ],
         [
             "OmniPriv uses ",
-            { text: "machine-learning-based behavioral analysis", href: "https://omnipriv.com/security" },
+            { text: "machine-learning-based behavioral analysis", href: "/security" },
             " to detect unusual command patterns, abnormal access times and unexpected data volumes. When suspicious activity is identified, the platform can trigger alerts and session termination.",
         ],
         [
@@ -233,7 +233,7 @@ export const monitoringSection = {
         ],
         [
             "OmniPriv provides ",
-            { text: "privileged session recording", href: "https://omnipriv.com/platform/secure-remote-access" },
+            { text: "privileged session recording", href: "/platform/secure-remote-access" },
             ", isolation, searchable histories, script monitoring, HTTP monitoring and database query controls across supported access protocols.",
         ],
         [
@@ -253,7 +253,7 @@ export const infrastructureSection = {
         ["Machine identities exist everywhere modern enterprises operate."],
         [
             "OmniPriv supports machine-access use cases across AWS, Azure, GCP, Kubernetes, HashiCorp Vault, GitHub, GitLab, Jenkins, Terraform, databases and other enterprise systems. Its ",
-            { text: "integrations", href: "https://omnipriv.com/integrations" },
+            { text: "integrations", href: "/integrations" },
             " include cloud secret management, service accounts, workload identities, dynamic secrets and automated credential injection.",
         ],
     ] as RichText[],
@@ -278,7 +278,7 @@ export const closing = {
     kicker:
         "Machines should receive the access they need, without receiving permanent, uncontrolled privilege.",
     primary: { href: "/demo", label: "Request an OmniPriv Demo" },
-    secondary: { href: "https://omnipriv.com/platform", label: "Explore the OmniPriv PAM Platform" },
+    secondary: { href: "/platform", label: "Explore the OmniPriv PAM Platform" },
 };
 
 export const faqSection = {

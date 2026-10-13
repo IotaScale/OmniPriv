@@ -20,7 +20,7 @@ export default function CheckChips({ steps, outcome, label }: { steps: string[];
                     key={s}
                     variants={{ hide: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
                     transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#00B8DB]/30 bg-[#00B8DB]/[0.08] px-3 py-1.5 text-[0.8125rem] font-medium text-[#7FE3F2]"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#00B8DB]/30 bg-[#00B8DB]/[0.08] px-3 py-1.5 text-[0.8125rem] font-medium text-[#00667A] dark:text-[#7FE3F2]"
                 >
                     <Check className="w-3.5 h-3.5" strokeWidth={3} aria-hidden="true" />
                     {s}

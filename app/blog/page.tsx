@@ -1,42 +1,30 @@
 import type { Metadata } from "next";
-import {
-    BookOpen,
-    ClipboardCheck,
-    Compass,
-    ShieldCheck,
-    Terminal,
-    Timer,
-} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, BookOpen, ClipboardCheck, Clock, Compass, ShieldCheck, Terminal, Timer } from "lucide-react";
 
-import ArrowLink from "@/components/sections/ArrowLink";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import BlogIndex from "@/components/blog/BlogIndex";
+import Spotlight from "@/components/aipam/Spotlight";
+import BlogExplorer from "@/components/blog/BlogExplorer";
 import BlogNewsletter from "@/components/blog/BlogNewsletter";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import Prose from "@/components/sections/Prose";
 import { getCover } from "@/lib/blog-covers";
 import { posts } from "@/lib/blog-data";
+import { cn } from "@/lib/utils";
 import type { BlogCard, BlogCategory } from "@/components/blog/BlogIndex";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /blog, the article index.
+ * /blog, the article index. Server component; the search, topic filter and
+ * grid live in components/blog/BlogExplorer.tsx and the signup in
+ * BlogNewsletter.tsx. Built from the shared page kit (components/pageui) so
+ * it matches the redesigned pages.
  *
- * Previously a single "use client" page with five hand-rolled sections, which
- * blocked the shared section library. The filter/grid now live in
- * components/blog/BlogIndex.tsx and the signup in BlogNewsletter.tsx, so this
- * file is a server component and composes the same primitives as the rest of
- * the site. The hero had no imagery; that is fixed below.
- *
- * The category list is derived from the posts themselves rather than a
- * hardcoded array. See BlogIndex.tsx for the two filter bugs that drift caused.
+ * The category list and every figure on the page are derived from the posts
+ * themselves rather than hardcoded, so nothing drifts when posts change.
  */
 
 export const metadata: Metadata = {
@@ -225,109 +213,236 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+/* Total reading time across every article, derived from the posts. */
+const totalMinutes = allEntries.reduce((a, [, p]) => a + (parseInt(p.readTime, 10) || 0), 0);
+
+const FACTS = [
+    { value: allEntries.length, label: "articles, from explainers to deployment detail" },
+    { value: categories.length, label: "topics, from best practice to security research" },
+    { value: totalMinutes, suffix: " min", label: "of reading across the whole library" },
+    { value: 6, label: "compliance frameworks referenced by their actual control sets" },
+];
+
+/* Every post, newest first, for the explorer (the featured one included). */
+const allPosts = byNewest.map(([slug, post]) => toCard(slug, post));
+
+/* Latest three after the featured post, for the hero rail. */
+const latest = gridPosts.slice(0, 3);
+
+const fmt = (d: string) => {
+    const t = new Date(d);
+    return Number.isNaN(t.getTime()) ? d : t.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+};
+
 export default function BlogPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
-                titleLead={hero.titleLead}
-                titleAccent={hero.titleAccent}
-                primary={hero.primary}
-                secondary={hero.secondary}
-                media={hero.image}
-            >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+        <div className="aip">
+            <Spotlight />
 
-            {/* ─── FILTER + FEATURED + GRID ───────────────────────── */}
-            <BlogIndex featured={featured} posts={gridPosts} categories={categories} />
+            {/* ─── HERO: copy + featured article ─────────────────── */}
+            <section id="bl-hero" className={cn("relative overflow-hidden", sectionLine)}>
+                <div className="aip-hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+                <div className="container-xl relative pt-14 pb-12 lg:pt-20 lg:pb-16">
+                    <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-12 lg:gap-14 items-start">
+                        <div className="min-w-0">
+                            <h1 className="op-h1 aip-h1" data-aos="fade-up">
+                                {hero.titleLead} <span className="text-gradient">{hero.titleAccent}</span>
+                            </h1>
+                            <div className="mt-6 max-w-[38rem]" data-aos="fade-up" data-aos-delay="120">
+                                <Paras items={[hero.intro, hero.body]} />
+                            </div>
+                            <div className="mt-9 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="180">
+                                <Link href="#bl-articles" className="hp-btn-primary group">
+                                    Browse the articles
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                </Link>
+                                <Link href={hero.primary.href} className="hp-btn-secondary">
+                                    {hero.primary.label}
+                                </Link>
+                            </div>
 
-            {/* ─── WHERE TO START ─────────────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading badge="Editor's Picks" title={picksSection.title} className="mb-2">
-                    <Prose segments={picksSection.lead} />
-                </SectionHeading>
+                            {/* latest rail */}
+                            <div className="mt-10" data-aos="fade-up" data-aos-delay="220">
+                                <div className="text-[0.8125rem] font-semibold text-slate-500">Latest</div>
+                                <ul className="mt-3 divide-y divide-slate-900/[0.06] dark:divide-white/[0.06] border-y border-slate-900/[0.06] dark:border-white/[0.06]">
+                                    {latest.map((p) => (
+                                        <li key={p.href}>
+                                            <Link href={p.href} className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3">
+                                                <span className="min-w-0">
+                                                    <span className="block truncate text-[0.9375rem] font-semibold text-slate-800 dark:text-slate-100 transition-colors group-hover:text-[#00667A] dark:group-hover:text-[#7FE3F2]">{p.title}</span>
+                                                    <span className="block text-[0.75rem] text-slate-500">
+                                                        {CATEGORY_LABELS[p.category] ?? p.category} · {p.readTime}
+                                                    </span>
+                                                </span>
+                                                <ArrowRight className="w-4 h-4 shrink-0 op-link transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
 
-                <IconCardGrid items={picks} columns={4} className="mt-12" />
-
-                <div className="mt-12">
-                    <ArrowLink href="/platform">Browse the platform capabilities instead</ArrowLink>
+                        {/* featured */}
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="120">
+                            <Link href={featured.href} className="aip-card group block overflow-hidden rounded-3xl border">
+                                {featured.image && (
+                                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-[#15171a]">
+                                        <Image src={featured.image.src} alt={featured.image.alt} fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/70 via-transparent to-transparent" aria-hidden="true" />
+                                        <span className="absolute left-4 top-4 rounded-full bg-[#00B8DB] px-3 py-1 text-[0.75rem] font-semibold text-[#03121c]">Featured</span>
+                                        <span className="absolute left-4 bottom-4 rounded-full bg-white/90 dark:bg-[#0b0c0e]/85 backdrop-blur px-3 py-1 text-[0.75rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]">
+                                            {CATEGORY_LABELS[featured.category] ?? featured.category}
+                                        </span>
+                                    </div>
+                                )}
+                                <div className="p-6 lg:p-8">
+                                    <div className="flex flex-wrap items-center gap-3 text-[0.8125rem] text-slate-500">
+                                        <span>{fmt(featured.date)}</span>
+                                        <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-600" aria-hidden="true" />
+                                        <span className="inline-flex items-center gap-1">
+                                            <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                                            {featured.readTime}
+                                        </span>
+                                    </div>
+                                    <h2 className="mt-3 text-[1.5rem] lg:text-[1.75rem] font-bold leading-[1.15] tracking-[-0.02em] text-[#0a1628] dark:text-white transition-colors group-hover:text-[#00667A] dark:group-hover:text-[#7FE3F2]" style={{ fontFamily: "var(--font-syne)" }}>
+                                        {featured.title}
+                                    </h2>
+                                    <p className="op-card-text mt-3 line-clamp-3">{featured.excerpt}</p>
+                                    <div className="mt-5 flex flex-wrap gap-1.5">
+                                        {featured.tags.slice(0, 4).map((t) => (
+                                            <span key={t} className="rounded-lg border border-slate-900/[0.08] dark:border-white/[0.08] px-2.5 py-1 text-[0.75rem] text-slate-600 dark:text-slate-400">
+                                                {t}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <span className="mt-6 inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold op-link">
+                                        Read the guide
+                                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                    </span>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                    <FactsStrip facts={FACTS} />
                 </div>
-            </Section>
+            </section>
+
+            {/* ─── ARTICLES ─────────────────────────────────────── */}
+            <section id="bl-articles" className={cn(mutedBand, sectionLine, "scroll-mt-24")}>
+                <div className="container-xl op-sec">
+                    <Heading title="Every article" className="mb-8">
+                        <p>Search the library, or narrow it to one topic.</p>
+                    </Heading>
+                    <BlogExplorer posts={allPosts} categories={categories} />
+                </div>
+            </section>
+
+            {/* ─── WHERE TO START: a reading path ───────────────── */}
+            <section id="bl-start" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <Heading title={picksSection.title}>
+                        <Prose segments={picksSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <ol className="op-body relative grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                        <span className="hidden xl:block absolute left-[12%] right-[12%] top-[2.1rem] h-px bg-gradient-to-r from-[#00B8DB]/10 via-[#00B8DB]/60 to-[#00B8DB]/10" aria-hidden="true" />
+                        {picks.map((p, i) => (
+                            <li key={p.title} className="relative min-w-0" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                <Link href={p.href ?? "/blog"} className="aip-card group flex h-full flex-col rounded-3xl border p-6">
+                                    <span className="relative z-10 inline-flex w-11 h-11 items-center justify-center rounded-2xl bg-[#00B8DB] text-[#03121c] shadow-[0_0_0_6px_rgba(0,184,219,0.12)]">
+                                        <p.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <span className="mt-5 text-[0.75rem] font-semibold op-link">{p.eyebrow}</span>
+                                    <h3 className="op-card-title mt-1.5">{p.title}</h3>
+                                    <p className="op-card-text mt-2">{p.text}</p>
+                                    <span className="mt-auto pt-5 inline-flex items-center gap-1.5 text-[0.875rem] font-semibold op-link">
+                                        {i === 0 ? "Start reading" : "Read next"}
+                                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                    </span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ol>
+                    <div className="mt-8" data-aos="fade-up">
+                        <Link href="/platform" className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold op-link group">
+                            Browse the platform capabilities instead
+                            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── EDITORIAL POLICY (dark band) ───────────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Editorial Policy"
-                    title={editorialSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={editorialSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {editorialPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
+            <div className="dark">
+                <section id="bl-policy" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0 lg:sticky lg:top-32">
+                                <Heading title={editorialSection.title}>
+                                    <Prose segments={editorialSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-8" data-aos="fade-up">
+                                    <div className="text-[0.8125rem] font-semibold text-slate-400">Topics covered</div>
+                                    <ul className="mt-3 flex flex-wrap gap-2">
+                                        {categories.map((c) => (
+                                            <li key={c.value} className="rounded-lg border border-[#00B8DB]/30 bg-[#00B8DB]/[0.07] px-2.5 py-1 text-[0.75rem] font-semibold text-[#7FE3F2]">
+                                                {c.label} <span className="opacity-60 tabular-nums">{c.count}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="min-w-0 grid sm:grid-cols-2 gap-4">
+                                {editorialPillars.map((p, i) => (
+                                    <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                        <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                            <p.icon className="w-5 h-5" aria-hidden="true" />
+                                        </span>
+                                        <h3 className="op-card-title mt-5">{p.title}</h3>
+                                        <p className="op-card-text mt-2">{p.text}</p>
+                                    </article>
+                                ))}
+                            </div>
                         </div>
-                    ))}
-                </div>
-
-                <div className="mt-14">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
-                        Topics covered
-                    </p>
-                    <ChipList
-                        items={categories.map((category) => category.label)}
-                        variant="accent"
-                        separator={<span className="text-slate-500 text-sm">·</span>}
-                    />
-                </div>
-            </Section>
+                    </div>
+                </section>
+            </div>
 
             {/* ─── NEWSLETTER ─────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Newsletter"
-                    title="Get PAM insights in your inbox"
-                    align="center"
-                    size="lg"
-                    className="mb-7"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        New articles, plus product updates when a release changes something
-                        documented here. No spam, and you can unsubscribe at any time.
-                    </p>
-                </SectionHeading>
-
-                <div className="max-w-2xl mx-auto text-center">
-                    <BlogNewsletter />
+            <section id="bl-newsletter" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="relative overflow-hidden rounded-[2rem] border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171a] p-8 lg:p-12" data-aos="fade-up">
+                        <div className="pointer-events-none absolute -right-24 -top-24 w-80 h-80 rounded-full bg-[radial-gradient(circle,rgba(0,184,219,0.18),transparent_65%)]" aria-hidden="true" />
+                        <div className="relative grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:gap-14 items-center">
+                            <div className="min-w-0">
+                                <h2 className="op-h2">Get PAM insights in your inbox</h2>
+                                <p className="mt-4 text-[1.0156rem] leading-[1.7] text-slate-600 dark:text-slate-400">
+                                    New articles, plus product updates when a release changes something documented here. No spam, and you can unsubscribe at any time.
+                                </p>
+                            </div>
+                            <div className="min-w-0">
+                                <BlogNewsletter />
+                                <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-[0.8125rem] text-slate-500">
+                                    <li>New articles</li>
+                                    <li>Release notes that change guidance</li>
+                                    <li>Unsubscribe any time</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
+                accent={<CheckChips steps={["Read the deep dives"]} outcome="Test the claims" />}
+                lead={closing.kicker}
                 body={closing.body}
-                kicker={closing.kicker}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about the articles, attribution and where to begin."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="bl-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

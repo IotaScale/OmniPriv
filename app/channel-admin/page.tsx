@@ -53,7 +53,7 @@ function TierInfoTooltip({ align = "left" }: { align?: "left" | "right" | "cente
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-4 h-4 rounded-full bg-cyan-500/15 hover:bg-cyan-500/30 text-[#00B8FF] flex items-center justify-center transition-colors focus:outline-none"
+        className="w-4 h-4 rounded-full bg-[#00B8DB]/15 hover:bg-[#00B8DB]/30 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center transition-colors focus:outline-none"
         aria-label="Tier margin information"
       >
         <Info className="w-3 h-3" />
@@ -63,10 +63,10 @@ function TierInfoTooltip({ align = "left" }: { align?: "left" | "right" | "cente
         <div
           className={`absolute bottom-full mb-2 ${
             align === "right" ? "right-0" : align === "center" ? "left-1/2 -translate-x-1/2" : "left-0"
-          } w-80 sm:w-96 p-3.5 rounded-xl border border-cyan-500/30 bg-[#070E1B] text-slate-100 shadow-2xl z-50 text-left pointer-events-none backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150`}
+          } w-80 sm:w-96 p-3.5 rounded-xl border border-[#00B8DB]/30 bg-[#111214] text-slate-100 shadow-2xl z-50 text-left pointer-events-none backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150`}
         >
           <div className="flex items-center gap-2 mb-2 pb-2 border-b border-white/[0.08]">
-            <div className="w-2 h-2 rounded-full bg-[#00B8FF] animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-[#00B8DB] animate-pulse" />
             <h4 className="text-[11px] font-bold text-white tracking-wide uppercase">
               Commercial Margin & Deal Registration Discounts
             </h4>
@@ -79,7 +79,7 @@ function TierInfoTooltip({ align = "left" }: { align?: "left" | "right" | "cente
                   <th className="py-1.5 px-2.5">Partner Tier</th>
                   <th className="py-1.5 px-2 text-center">Base Reseller Margin</th>
                   <th className="py-1.5 px-2 text-center">Deal Reg Rebate</th>
-                  <th className="py-1.5 px-2.5 text-right font-bold text-[#00B8FF]">Total Effective Margin</th>
+                  <th className="py-1.5 px-2.5 text-right font-bold text-[#00667A] dark:text-[#00B8DB]">Total Effective Margin</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.05]">
@@ -102,10 +102,10 @@ function TierInfoTooltip({ align = "left" }: { align?: "left" | "right" | "cente
                   <td className="py-1.5 px-2.5 text-right font-mono font-bold text-emerald-400">35%</td>
                 </tr>
                 <tr className="hover:bg-white/[0.02]">
-                  <td className="py-1.5 px-2.5 font-medium text-cyan-400 font-semibold">Platinum</td>
+                  <td className="py-1.5 px-2.5 font-medium text-[#00B8DB] font-semibold">Platinum</td>
                   <td className="py-1.5 px-2 text-center font-mono">30%</td>
                   <td className="py-1.5 px-2 text-center font-mono text-emerald-400">+12%</td>
-                  <td className="py-1.5 px-2.5 text-right font-mono font-bold text-cyan-300">42%</td>
+                  <td className="py-1.5 px-2.5 text-right font-mono font-bold text-[#7FE3F2]">42%</td>
                 </tr>
               </tbody>
             </table>
@@ -485,7 +485,7 @@ export default function ChannelAdminPage() {
   if (isForbidden) {
     return (
       <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-[#0A1628] border border-rose-500/30 rounded-2xl p-8 text-center space-y-4 shadow-2xl">
+        <div className="max-w-md w-full bg-[#15171A] border border-rose-500/30 rounded-2xl p-8 text-center space-y-4 shadow-2xl">
           <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-500 flex items-center justify-center mx-auto">
             <ShieldAlert className="w-8 h-8" />
           </div>
@@ -508,7 +508,7 @@ export default function ChannelAdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#030711] text-slate-900 dark:text-slate-100 p-6 md:p-10 pt-20 max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0B0C0E] text-slate-900 dark:text-slate-100 p-6 md:p-10 pt-20 max-w-7xl mx-auto space-y-6">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-white/[0.08] pb-6">
         <div>
@@ -528,7 +528,7 @@ export default function ChannelAdminPage() {
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/[0.04] text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
-            <Shield className="w-3.5 h-3.5 text-cyan-500" />
+            <Shield className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
             <span>Channel Admin Session</span>
           </div>
           <button
@@ -547,7 +547,7 @@ export default function ChannelAdminPage() {
           { id: "overview", label: "Overview", icon: Layers, badge: null },
           { id: "organizations", label: "Partner Organizations", icon: Building, badge: organizations.length || null },
           { id: "deals", label: "Deal Reviews", icon: Briefcase, badge: pendingDealsCount > 0 ? `${pendingDealsCount} pending` : null, badgeColor: "bg-amber-500/20 text-amber-400 border border-amber-500/30" },
-          { id: "leads", label: "Lead Routing", icon: Target, badge: unassignedLeadsCount > 0 ? `${unassignedLeadsCount} unrouted` : null, badgeColor: "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30" },
+          { id: "leads", label: "Lead Routing", icon: Target, badge: unassignedLeadsCount > 0 ? `${unassignedLeadsCount} unrouted` : null, badgeColor: "bg-[#00B8DB]/20 text-[#00B8DB] border border-[#00B8DB]/30" },
           { id: "audit", label: "Immutable Audit Log", icon: Activity, badge: null },
         ].map((tab) => {
           const Icon = tab.icon;
@@ -558,7 +558,7 @@ export default function ChannelAdminPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold transition-all shrink-0 ${
                 active
-                  ? "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 shadow-sm"
+                  ? "bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] border border-[#00B8DB]/20 shadow-sm"
                   : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
@@ -587,10 +587,10 @@ export default function ChannelAdminPage() {
             <>
               {/* Metrics Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] shadow-sm">
+                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] shadow-sm">
                   <div className="flex items-center justify-between text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">
                     <span>Total Partners</span>
-                    <Building className="w-4 h-4 text-cyan-500" />
+                    <Building className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                   </div>
                   <div className="text-2xl font-black text-slate-950 dark:text-white mt-1">
                     {overview?.partnersTotal ?? organizations.length}
@@ -600,7 +600,7 @@ export default function ChannelAdminPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] shadow-sm">
+                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] shadow-sm">
                   <div className="flex items-center justify-between text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">
                     <span>Deals Awaiting Review</span>
                     <Clock className="w-4 h-4 text-amber-500" />
@@ -613,7 +613,7 @@ export default function ChannelAdminPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] shadow-sm">
+                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] shadow-sm">
                   <div className="flex items-center justify-between text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">
                     <span>Protected Pipeline</span>
                     <ShieldCheck className="w-4 h-4 text-emerald-500" />
@@ -626,7 +626,7 @@ export default function ChannelAdminPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] shadow-sm">
+                <div className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] shadow-sm">
                   <div className="flex items-center justify-between text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">
                     <span>Leads Needing Action</span>
                     <Target className="w-4 h-4 text-rose-500" />
@@ -662,17 +662,17 @@ export default function ChannelAdminPage() {
               )}
 
               {/* Recent Deals Table on Overview */}
-              <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+              <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
                 <div className="p-4 border-b border-slate-200 dark:border-white/[0.08] flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4 text-[#00B8FF]" />
+                    <Briefcase className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                     <h2 className="text-sm font-bold text-slate-900 dark:text-white">
                       Recent Deal Registrations & Queue ({deals.length})
                     </h2>
                   </div>
                   <button
                     onClick={() => setActiveTab("deals")}
-                    className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
+                    className="text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] hover:underline flex items-center gap-1"
                   >
                     View All {deals.length} Deals &rarr;
                   </button>
@@ -698,7 +698,7 @@ export default function ChannelAdminPage() {
                             <div className="flex items-center gap-1.5 text-slate-400 mt-0.5 text-[11px]">
                               <span>{deal.customer_name}</span>
                               <span>•</span>
-                              <span className="font-mono text-cyan-600 dark:text-cyan-400">{deal.customer_domain}</span>
+                              <span className="font-mono text-[#00667A] dark:text-[#00B8DB]">{deal.customer_domain}</span>
                             </div>
                           </td>
                           <td className="py-3 px-4">
@@ -770,7 +770,7 @@ export default function ChannelAdminPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-                <Building className="w-4 h-4 text-cyan-500" />
+                <Building className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                 <span>Authorized Partner Companies & Tiers</span>
                 <TierInfoTooltip align="left" />
               </h2>
@@ -787,8 +787,8 @@ export default function ChannelAdminPage() {
                   onClick={() => setOrgTierFilter(t)}
                   className={`px-2.5 py-1 rounded-lg font-medium transition-colors ${
                     orgTierFilter.toLowerCase() === t.toLowerCase()
-                      ? "bg-cyan-500 text-slate-950 font-bold"
-                      : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-cyan-500/30"
+                      ? "bg-[#00B8DB] text-slate-950 font-bold"
+                      : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8DB]/30"
                   }`}
                 >
                   {t === "all" ? "All Tiers" : t}
@@ -805,18 +805,18 @@ export default function ChannelAdminPage() {
               placeholder="Search partner companies, contacts, managers, country..."
               value={orgSearchQuery}
               onChange={(e) => setOrgSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#00B8DB]"
             />
           </div>
 
           {loading ? (
             <LoadingSkeleton rows={5} />
           ) : filteredOrgs.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#0A1628] rounded-xl border border-slate-200 dark:border-white/[0.08]">
+            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#15171A] rounded-xl border border-slate-200 dark:border-white/[0.08]">
               No partner organizations matching filter.
             </div>
           ) : (
-            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 uppercase font-semibold text-[11px]">
@@ -848,12 +848,12 @@ export default function ChannelAdminPage() {
                             <span
                               className={`font-bold px-2.5 py-1 rounded-md text-xs uppercase tracking-wider ${
                                 tier === "Platinum"
-                                  ? "bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+                                  ? "bg-gradient-to-r from-purple-500/20 to-[#00B8DB]/20 text-[#7FE3F2] border border-[#00B8DB]/30"
                                   : tier === "Gold"
                                   ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
                                   : tier === "Silver"
                                   ? "bg-slate-700/50 text-slate-300 border border-slate-600"
-                                  : "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                                  : "bg-[#00B8DB]/10 text-[#00B8DB] border border-[#00B8DB]/20"
                               }`}
                             >
                               {tier}
@@ -907,7 +907,7 @@ export default function ChannelAdminPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-                <Briefcase className="w-4 h-4 text-cyan-500" />
+                <Briefcase className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                 <span>Cross-Channel Deal Review & Protection Arbitration Queue</span>
               </h2>
               <p className="text-xs text-slate-500 mt-0.5">
@@ -921,8 +921,8 @@ export default function ChannelAdminPage() {
                 onClick={() => setDealStatusFilter("all")}
                 className={`px-2.5 py-1 rounded-lg font-medium transition-colors ${
                   dealStatusFilter === "all"
-                    ? "bg-cyan-500 text-slate-950 font-bold"
-                    : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300"
+                    ? "bg-[#00B8DB] text-slate-950 font-bold"
+                    : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300"
                 }`}
               >
                 All ({deals.length})
@@ -932,7 +932,7 @@ export default function ChannelAdminPage() {
                 className={`px-2.5 py-1 rounded-lg font-medium transition-colors flex items-center gap-1 ${
                   dealStatusFilter === "awaiting_approval"
                     ? "bg-amber-500 text-slate-950 font-bold"
-                    : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-amber-500"
+                    : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-amber-500"
                 }`}
               >
                 <Clock className="w-3 h-3" />
@@ -943,7 +943,7 @@ export default function ChannelAdminPage() {
                 className={`px-2.5 py-1 rounded-lg font-medium transition-colors flex items-center gap-1 ${
                   dealStatusFilter === "conflict"
                     ? "bg-rose-500 text-white font-bold"
-                    : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-rose-500"
+                    : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-rose-500"
                 }`}
               >
                 <AlertTriangle className="w-3 h-3" />
@@ -954,7 +954,7 @@ export default function ChannelAdminPage() {
                 className={`px-2.5 py-1 rounded-lg font-medium transition-colors flex items-center gap-1 ${
                   dealStatusFilter === "approved"
                     ? "bg-emerald-500 text-slate-950 font-bold"
-                    : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-emerald-500"
+                    : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-emerald-500"
                 }`}
               >
                 <ShieldCheck className="w-3 h-3" />
@@ -971,18 +971,18 @@ export default function ChannelAdminPage() {
               placeholder="Search by opportunity, customer, domain, deal code, partner company..."
               value={dealSearchQuery}
               onChange={(e) => setDealSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#00B8DB]"
             />
           </div>
 
           {loading ? (
             <LoadingSkeleton rows={5} />
           ) : filteredDeals.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#0A1628] rounded-xl border border-slate-200 dark:border-white/[0.08]">
+            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#15171A] rounded-xl border border-slate-200 dark:border-white/[0.08]">
               No registered deals match the criteria.
             </div>
           ) : (
-            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 uppercase font-semibold text-[11px]">
@@ -1004,7 +1004,7 @@ export default function ChannelAdminPage() {
                           <div className="flex items-center gap-1.5 text-slate-400 mt-0.5">
                             <span className="font-medium text-slate-700 dark:text-slate-300">{deal.customer_name}</span>
                             <span>•</span>
-                            <span className="font-mono text-cyan-600 dark:text-cyan-400">{deal.customer_domain}</span>
+                            <span className="font-mono text-[#00667A] dark:text-[#00B8DB]">{deal.customer_domain}</span>
                             <span>•</span>
                             <button
                               type="button"
@@ -1116,7 +1116,7 @@ export default function ChannelAdminPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-                <Target className="w-4 h-4 text-cyan-500" />
+                <Target className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                 <span>Inbound Enterprise PAM Leads Pool</span>
               </h2>
               <p className="text-xs text-slate-500 mt-0.5">
@@ -1129,7 +1129,7 @@ export default function ChannelAdminPage() {
                 <button
                   onClick={() => setLeadStatusFilter("all")}
                   className={`px-2.5 py-1 rounded-lg font-medium ${
-                    leadStatusFilter === "all" ? "bg-cyan-500 text-slate-950 font-bold" : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08]"
+                    leadStatusFilter === "all" ? "bg-[#00B8DB] text-slate-950 font-bold" : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08]"
                   }`}
                 >
                   All ({leads.length})
@@ -1137,7 +1137,7 @@ export default function ChannelAdminPage() {
                 <button
                   onClick={() => setLeadStatusFilter("unassigned")}
                   className={`px-2.5 py-1 rounded-lg font-medium ${
-                    leadStatusFilter === "unassigned" ? "bg-amber-500 text-slate-950 font-bold" : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08]"
+                    leadStatusFilter === "unassigned" ? "bg-amber-500 text-slate-950 font-bold" : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08]"
                   }`}
                 >
                   Unassigned ({unassignedLeadsCount})
@@ -1146,7 +1146,7 @@ export default function ChannelAdminPage() {
 
               <button
                 onClick={() => setCreateLeadModal(true)}
-                className="btn-primary text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 font-bold shadow-md shadow-cyan-500/10"
+                className="btn-primary text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 font-bold shadow-md shadow-[#00B8DB]/10"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Create Lead</span>
@@ -1162,18 +1162,18 @@ export default function ChannelAdminPage() {
               placeholder="Search leads by prospect company, contact, country..."
               value={leadSearchQuery}
               onChange={(e) => setLeadSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              className="w-full pl-9 pr-3 py-2 bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#00B8DB]"
             />
           </div>
 
           {loading ? (
             <LoadingSkeleton rows={5} />
           ) : filteredLeads.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#0A1628] rounded-xl border border-slate-200 dark:border-white/[0.08]">
+            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#15171A] rounded-xl border border-slate-200 dark:border-white/[0.08]">
               No channel leads match the selected criteria.
             </div>
           ) : (
-            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 uppercase font-semibold text-[11px]">
@@ -1228,7 +1228,7 @@ export default function ChannelAdminPage() {
                             }}
                             className="btn-secondary text-xs px-3 py-1.5 rounded-lg inline-flex items-center gap-1 font-semibold"
                           >
-                            <Send className="w-3 h-3 text-cyan-500" />
+                            <Send className="w-3 h-3 text-[#00667A] dark:text-[#00B8DB]" />
                             <span>{lead.assigned_partner_org_id ? "Re-Route" : "Dispatch to Partner"}</span>
                           </button>
                         </td>
@@ -1247,7 +1247,7 @@ export default function ChannelAdminPage() {
         <div className="space-y-4">
           <div>
             <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-              <Activity className="w-4 h-4 text-cyan-500" />
+              <Activity className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
               <span>Immutable Channel Operations Audit Stream (PostgreSQL)</span>
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -1258,11 +1258,11 @@ export default function ChannelAdminPage() {
           {loading ? (
             <LoadingSkeleton rows={6} />
           ) : auditEvents.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#0A1628] rounded-xl border border-slate-200 dark:border-white/[0.08]">
+            <div className="p-8 text-center text-slate-500 text-xs bg-white dark:bg-[#15171A] rounded-xl border border-slate-200 dark:border-white/[0.08]">
               No audit events logged yet.
             </div>
           ) : (
-            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+            <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs font-mono">
                   <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 uppercase font-semibold text-[11px]">
@@ -1283,7 +1283,7 @@ export default function ChannelAdminPage() {
                         <td className="py-3 px-4 text-slate-800 dark:text-slate-200 whitespace-nowrap">
                           <strong>{evt.actor_name}</strong> ({evt.actor_role})
                         </td>
-                        <td className="py-3 px-4 text-cyan-600 dark:text-cyan-400 font-semibold whitespace-nowrap">
+                        <td className="py-3 px-4 text-[#00667A] dark:text-[#00B8DB] font-semibold whitespace-nowrap">
                           {evt.action}
                         </td>
                         <td className="py-3 px-4 text-slate-600 dark:text-slate-300 whitespace-nowrap">
@@ -1305,7 +1305,7 @@ export default function ChannelAdminPage() {
       {/* MODAL: Adjust Partner Org Tier & Manager */}
       {editOrgModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-3">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white">
@@ -1331,10 +1331,10 @@ export default function ChannelAdminPage() {
                   onChange={(e) => setOrgTier(e.target.value as any)}
                   className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-slate-900 dark:text-white"
                 >
-                  <option value="Registered" className="bg-white dark:bg-[#0A1628]">Registered Tier (20% margin)</option>
-                  <option value="Silver" className="bg-white dark:bg-[#0A1628]">Silver Tier (28% margin)</option>
-                  <option value="Gold" className="bg-white dark:bg-[#0A1628]">Gold Tier (35% margin)</option>
-                  <option value="Platinum" className="bg-white dark:bg-[#0A1628]">Platinum Tier (42% margin)</option>
+                  <option value="Registered" className="bg-white dark:bg-[#15171A]">Registered Tier (20% margin)</option>
+                  <option value="Silver" className="bg-white dark:bg-[#15171A]">Silver Tier (28% margin)</option>
+                  <option value="Gold" className="bg-white dark:bg-[#15171A]">Gold Tier (35% margin)</option>
+                  <option value="Platinum" className="bg-white dark:bg-[#15171A]">Platinum Tier (42% margin)</option>
                 </select>
               </div>
 
@@ -1374,7 +1374,7 @@ export default function ChannelAdminPage() {
       {/* MODAL: Deal Decision (Approve / Decline) */}
       {dealDecisionModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-3">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
@@ -1450,7 +1450,7 @@ export default function ChannelAdminPage() {
       {/* MODAL: Extend Deal Protection */}
       {extendDealModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-3">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white">
@@ -1473,9 +1473,9 @@ export default function ChannelAdminPage() {
                   onChange={(e) => setExtendDays(e.target.value)}
                   className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-slate-900 dark:text-white"
                 >
-                  <option value="30" className="bg-white dark:bg-[#0A1628]">+30 Days (Active POC In Progress)</option>
-                  <option value="60" className="bg-white dark:bg-[#0A1628]">+60 Days (Procurement In Legal Review)</option>
-                  <option value="90" className="bg-white dark:bg-[#0A1628]">+90 Days (Enterprise Budget Cycle Alignment)</option>
+                  <option value="30" className="bg-white dark:bg-[#15171A]">+30 Days (Active POC In Progress)</option>
+                  <option value="60" className="bg-white dark:bg-[#15171A]">+60 Days (Procurement In Legal Review)</option>
+                  <option value="90" className="bg-white dark:bg-[#15171A]">+90 Days (Enterprise Budget Cycle Alignment)</option>
                 </select>
               </div>
 
@@ -1515,7 +1515,7 @@ export default function ChannelAdminPage() {
       {/* MODAL: Close Outcome */}
       {closeDealModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-3">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white">
@@ -1565,7 +1565,7 @@ export default function ChannelAdminPage() {
       {/* MODAL: Route Lead to Partner */}
       {routeLeadModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-3">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white">
@@ -1592,7 +1592,7 @@ export default function ChannelAdminPage() {
                   className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-slate-900 dark:text-white"
                 >
                   {organizations.map((org) => (
-                    <option key={org.partner_org_id} value={org.partner_org_id} className="bg-white dark:bg-[#0A1628]">
+                    <option key={org.partner_org_id} value={org.partner_org_id} className="bg-white dark:bg-[#15171A]">
                       {org.company_name} ({org.current_tier} Tier • {org.region})
                     </option>
                   ))}
@@ -1625,7 +1625,7 @@ export default function ChannelAdminPage() {
       {/* MODAL: Create Inbound Lead */}
       {createLeadModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-lg w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-lg w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-3">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white">

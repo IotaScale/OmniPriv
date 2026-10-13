@@ -162,7 +162,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <section className="relative min-h-screen py-16 px-4 overflow-hidden bg-slate-50 dark:bg-[#030711] text-slate-900 dark:text-slate-100">
+    <section className="relative min-h-screen py-16 px-4 overflow-hidden bg-slate-50 dark:bg-[#0B0C0E] text-slate-900 dark:text-slate-100">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div
@@ -175,7 +175,7 @@ export default function SignUpPage() {
         <div className="flex flex-col items-center text-center mb-10">
           <Link href="/" className="flex items-center gap-2.5 mb-6">
             <div className="icon-wrapper w-10 h-10 rounded-xl">
-              <Shield className="w-5 h-5 text-[#00B8FF]" />
+              <Shield className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB]" />
             </div>
             <span
               className="text-xl font-extrabold text-slate-950 dark:text-white tracking-tight"
@@ -199,7 +199,7 @@ export default function SignUpPage() {
         </div>
 
         {/* Card Form */}
-        <div className="rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/95 backdrop-blur-xl p-6 sm:p-10 shadow-xl">
+        <div className="rounded-2xl border border-slate-900/[0.1] dark:border-white/[0.08] bg-white dark:bg-[#15171A]/95 backdrop-blur-xl p-6 sm:p-10 shadow-xl">
           {error && (
             <div className="mb-8 flex items-start gap-3 p-4 rounded-xl border border-red-500/30 bg-red-500/10 text-red-500 text-xs sm:text-sm">
               <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -211,7 +211,7 @@ export default function SignUpPage() {
             {/* 1. Company Information */}
             <div>
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200 dark:border-white/[0.08]">
-                <Building className="w-4 h-4 text-cyan-500" />
+                <Building className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                 <h2 className="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
                   1. Company & Entity Information
                 </h2>
@@ -228,7 +228,7 @@ export default function SignUpPage() {
                     value={formData.company_name}
                     onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
                     placeholder="e.g. CyberShield Technologies"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
 
@@ -241,7 +241,7 @@ export default function SignUpPage() {
                     value={formData.legal_name}
                     onChange={(e) => setFormData({ ...formData, legal_name: e.target.value })}
                     placeholder="e.g. CyberShield Tech Ltd / LLC (defaults to operating name)"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
 
@@ -256,7 +256,7 @@ export default function SignUpPage() {
                       value={formData.website}
                       onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                       placeholder="e.g. cybershield.com"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                 </div>
@@ -268,10 +268,10 @@ export default function SignUpPage() {
                   <select
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   >
                     {countries.map((c) => (
-                      <option key={c} value={c} className="bg-white dark:bg-[#0A1628] text-slate-900 dark:text-white">
+                      <option key={c} value={c} className="bg-white dark:bg-[#15171A] text-slate-900 dark:text-white">
                         {c}
                       </option>
                     ))}
@@ -293,13 +293,13 @@ export default function SignUpPage() {
                         onClick={() => setFormData({ ...formData, company_type: t.id })}
                         className={`p-3 rounded-xl border cursor-pointer transition-all ${
                           isSelected
-                            ? "border-cyan-500 bg-cyan-500/10 text-slate-900 dark:text-white"
+                            ? "border-[#00B8DB] bg-[#00B8DB]/10 text-slate-900 dark:text-white"
                             : "border-slate-200 dark:border-white/[0.08] bg-slate-50/50 dark:bg-white/[0.02] text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-white/[0.2]"
                         }`}
                       >
                         <div className="flex items-center justify-between text-xs font-bold text-slate-900 dark:text-white">
                           <span>{t.label}</span>
-                          {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500" />}
+                          {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />}
                         </div>
                         <p className="text-[11px] text-slate-500 mt-1 leading-normal">{t.desc}</p>
                       </div>
@@ -317,7 +317,7 @@ export default function SignUpPage() {
                   value={formData.primary_vertical}
                   onChange={(e) => setFormData({ ...formData, primary_vertical: e.target.value })}
                   placeholder="e.g. Financial Services, Healthcare, Energy & Utilities, Public Sector"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 />
               </div>
 
@@ -330,7 +330,7 @@ export default function SignUpPage() {
                   value={formData.company_profile}
                   onChange={(e) => setFormData({ ...formData, company_profile: e.target.value })}
                   placeholder="Brief overview of security practice, geographic coverage, and customer base..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all resize-none"
                 />
               </div>
             </div>
@@ -338,7 +338,7 @@ export default function SignUpPage() {
             {/* 2. Primary Account Owner */}
             <div>
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200 dark:border-white/[0.08]">
-                <User className="w-4 h-4 text-cyan-500" />
+                <User className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                 <h2 className="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
                   2. Primary Partner Owner Account
                 </h2>
@@ -357,7 +357,7 @@ export default function SignUpPage() {
                       value={formData.contact_name}
                       onChange={(e) => setFormData({ ...formData, contact_name: e.target.value })}
                       placeholder="e.g. Marcus Vance"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                 </div>
@@ -374,7 +374,7 @@ export default function SignUpPage() {
                       value={formData.contact_email}
                       onChange={(e) => setFormData({ ...formData, contact_email: e.target.value })}
                       placeholder="marcus.v@cybershield.com"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                 </div>
@@ -390,7 +390,7 @@ export default function SignUpPage() {
                       value={formData.contact_phone}
                       onChange={(e) => setFormData({ ...formData, contact_phone: e.target.value })}
                       placeholder="+1 (555) 019-2834"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                 </div>
@@ -407,7 +407,7 @@ export default function SignUpPage() {
                       value={formData.contact_role}
                       onChange={(e) => setFormData({ ...formData, contact_role: e.target.value })}
                       placeholder="Managing Director / Channel Lead"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                 </div>
@@ -417,7 +417,7 @@ export default function SignUpPage() {
             {/* 3. Security Credentials */}
             <div>
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200 dark:border-white/[0.08]">
-                <Lock className="w-4 h-4 text-cyan-500" />
+                <Lock className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
                 <h2 className="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
                   3. Security Credentials
                 </h2>
@@ -436,7 +436,7 @@ export default function SignUpPage() {
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       placeholder="••••••••••••"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                   <div className="text-[11px] text-slate-500 mt-1">
@@ -462,7 +462,7 @@ export default function SignUpPage() {
                       value={formData.confirm_password}
                       onChange={(e) => setFormData({ ...formData, confirm_password: e.target.value })}
                       placeholder="••••••••••••"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                     />
                   </div>
                 </div>
@@ -477,7 +477,7 @@ export default function SignUpPage() {
                   required
                   checked={formData.terms_agreed}
                   onChange={(e) => setFormData({ ...formData, terms_agreed: e.target.checked })}
-                  className="mt-1 rounded border-slate-300 text-cyan-500 focus:ring-cyan-500"
+                  className="mt-1 rounded border-slate-300 text-[#00667A] dark:text-[#00B8DB] focus:ring-[#00B8DB]"
                 />
                 <span className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   I certify on behalf of <strong>{formData.company_name || "our company"}</strong> that I am an authorized corporate officer. 
@@ -516,7 +516,7 @@ export default function SignUpPage() {
 
             <div className="text-center text-xs text-slate-500">
               Already registered your organization?{" "}
-              <Link href="/sign-in" className="text-cyan-500 hover:underline font-semibold">
+              <Link href="/sign-in" className="text-[#00667A] dark:text-[#00B8DB] hover:underline font-semibold">
                 Sign in to Partner Portal
               </Link>
             </div>

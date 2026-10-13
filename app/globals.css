@@ -2739,21 +2739,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cs2-title {
-  color: #94a3b8;
+  color: #64748b;
   transition: color 0.4s ease;
 }
 
 .dark .cs2-title {
-  color: #475569;
+  color: #8a94a6;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cs2-row button:hover .cs2-title {
-    color: #475569;
+    color: #334155;
   }
 
   .dark .cs2-row button:hover .cs2-title {
-    color: #94a3b8;
+    color: #cbd5e1;
   }
 }
 
@@ -4906,4 +4906,16 @@ main.pt-\[72px\] {
   .aip-sync {
     animation: none;
   }
+}
+
+/* ─── Contrast floor for secondary text (site audit, Oct 13) ───────────────
+ * slate-500 (#64748B) reads at ~3.8–4.2:1 on the charcoal dark surfaces and
+ * inside the always-dark product windows, under the 4.5:1 minimum for body
+ * text. One lighter grey for both, defined once here instead of per file.
+ * Plain (unlayered) CSS, so it wins over the Tailwind utility of the same
+ * specificity; elements with an explicit dark: colour keep a passing grey. */
+.dark .text-slate-500,
+.aip-console .text-slate-500,
+.dark .op-band-navy .text-slate-500 {
+  color: #8a94a6;
 }

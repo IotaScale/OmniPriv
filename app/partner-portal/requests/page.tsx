@@ -104,7 +104,7 @@ export default function RequestsPage() {
           onAction={() => setModalOpen(true)}
         />
       ) : (
-        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 overflow-hidden shadow-sm">
+        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 dark:text-slate-400 uppercase font-semibold">
@@ -125,7 +125,7 @@ export default function RequestsPage() {
                       <div className="font-semibold text-slate-900 dark:text-white uppercase text-[11px] bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded inline-block mb-1">
                         {r.request_type}
                       </div>
-                      <div className="font-mono text-cyan-600 dark:text-cyan-400">{r.request_code}</div>
+                      <div className="font-mono text-[#00667A] dark:text-[#00B8DB]">{r.request_code}</div>
                     </td>
                     <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">
                       {r.product_edition}
@@ -157,7 +157,7 @@ export default function RequestsPage() {
       {/* Request Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
+          <div className="bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
             <div className="flex items-center justify-between p-5 border-b border-slate-200 dark:border-white/[0.08]">
               <h2 className="text-base font-bold text-slate-900 dark:text-white">New Entitlement Request</h2>
               <button onClick={() => setModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-white">

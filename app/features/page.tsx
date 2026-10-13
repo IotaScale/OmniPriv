@@ -11,9 +11,19 @@ import {
   AlertTriangle, Bot, FileSearch, Zap,
 } from "lucide-react";
 
-import SplitHero from "@/components/sections/SplitHero";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { FeaturesHero, JitTerminal, LiveAudit, LoginLayers, RotationRun, ScoreTiers } from "@/components/features/Visuals";
+import { FactsStrip, FaqSplit, Heading, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import LogoMarquee from "@/components/sections/LogoMarquee";
-import FaqSection, { type FaqEntry } from "@/components/sections/FaqSection";
+import { type FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+
+/*
+ * /features. Built from the shared page kit (components/pageui) so it matches
+ * the other redesigned pages. Copy is unchanged; values inside illustrations
+ * are illustrative.
+ */
 
 export const metadata: Metadata = {
   title: "Features: Complete PAM Capabilities",
@@ -105,47 +115,74 @@ const featureFaqs: FaqEntry[] = [
   },
 ];
 
+type Feature = { icon: React.ElementType; title: string; desc: string };
+
+const NAV = [
+  { id: "authentication", label: "Authentication" },
+  { id: "authorization", label: "Authorization" },
+  { id: "account", label: "Accounts" },
+  { id: "audit", label: "Audit" },
+  { id: "ai", label: "AI & automation" },
+  { id: "features-faq", label: "FAQ" },
+];
+
+const ALL = [authFeatures, authzFeatures, accountFeatures, auditFeatures, aiFeatures];
+
+/* Counts come from this page; 6 frameworks and 39 features from its copy. */
+const FACTS = [
+  { value: ALL.length, label: "capability areas in one platform" },
+  { value: ALL.reduce((s, g) => s + g.length, 0), label: "features across authentication, access, accounts, audit and AI" },
+  { value: 6, label: "compliance frameworks in one-click audit reports" },
+  { value: 39, label: "behavioural features scored on every session" },
+];
+
+function FeatureCards({ features, cols = 3 }: { features: Feature[]; cols?: 3 | 4 }) {
+  return (
+    <ul className={cn("op-body grid gap-4 sm:grid-cols-2", cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3")}>
+      {features.map((f, k) => (
+        <li key={f.title} className="aip-card min-w-0 rounded-2xl border p-5 lg:p-6" data-aos="fade-up" data-aos-delay={String((k % cols) * 60)}>
+          <span className="icon-wrapper">
+            <f.icon className="w-5 h-5" aria-hidden="true" />
+          </span>
+          <h3 className="op-card-title mt-4">{f.title}</h3>
+          <p className="op-card-text mt-2">{f.desc}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function FeatureSection({
-  id, title, description, features, reverse = false, cta,
+  id, title, description, features, visual, reverse = false, muted = false, cols = 3, cta,
 }: {
-  id: string; title: string; description: string;
-  features: { icon: React.ElementType; title: string; desc: string }[]; reverse?: boolean;
-  cta?: { href: string; label: string };
+  id: string; title: string; description: string; features: Feature[]; visual: React.ReactNode;
+  reverse?: boolean; muted?: boolean; cols?: 3 | 4; cta?: { href: string; label: string };
 }) {
   return (
-    <section id={id} className="scroll-mt-24 section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-      <div className="container-xl">
-        <h2 className="op-h2 mb-6" data-aos="fade-up">{title}</h2>
-
-        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-start ${reverse ? "lg:grid-flow-dense" : ""}`}>
-          <div className={reverse ? "lg:col-start-2" : ""} data-aos="fade-up">
-            <p className="op-lede">{description}</p>
-
+    <section id={id} className={cn(muted && mutedBand, sectionLine)}>
+      <div className="container-xl op-sec">
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+          <div className={cn("min-w-0", reverse && "lg:order-2")}>
+            <Heading title={title}>
+              <p className="text-[1.0625rem] text-slate-600 dark:text-slate-400">{description}</p>
+            </Heading>
+            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#00B8DB]/30 bg-[#00B8DB]/[0.07] px-3 py-1 text-[0.8125rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]" data-aos="fade-up">
+              {features.length} features
+            </span>
             {cta && (
-              <Link
-                href={cta.href}
-                className="op-link font-semibold mt-6 inline-flex items-center gap-2 text-sm hover:underline underline-offset-2"
-              >
-                {cta.label}
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
+              <div className="mt-6" data-aos="fade-up">
+                <Link href={cta.href} className="op-link inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold group">
+                  {cta.label}
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              </div>
             )}
           </div>
-          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${reverse ? "lg:col-start-1 lg:row-start-1" : ""}`} data-aos="fade-up">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 hover:border-[#00B8DB]/45 transition-colors"
-              >
-                <div className="icon-wrapper mb-4">
-                  <f.icon className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <h3 className="op-card-title mb-2">{f.title}</h3>
-                <p className="op-card-text">{f.desc}</p>
-              </div>
-            ))}
+          <div className={cn("min-w-0", reverse && "lg:order-1")} data-aos="fade-up" data-aos-delay="100">
+            {visual}
           </div>
         </div>
+        <FeatureCards features={features} cols={cols} />
       </div>
     </section>
   );
@@ -153,81 +190,79 @@ function FeatureSection({
 
 export default function FeaturesPage() {
   return (
-    <>
-      {/* Hero: copy left, product screenshot right (shared SplitHero). */}
-      <SplitHero
+    <div className="aip">
+      <SectionNav items={NAV} startId="features-hero" />
+      <Spotlight />
+
+      <PageHero
+        id="features-hero"
         titleLead={<>Complete <span className="text-gradient">PAM Feature Set</span> for Modern Enterprises</>}
+        paragraphs={[["Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance, in one unified platform."]]}
         primary={{ href: "/demo", label: "Talk to Sales" }}
-        media={{
-          src: "/product/dashboard.png",
-          alt: "OmniPriv dashboard showing privileged sessions, assets and access activity",
-          fit: "contain",
-        }}
+        visual={<FeaturesHero />}
       >
-        <p>
-          Every capability your security team needs to manage privileged access, protect sensitive systems, and maintain continuous compliance, in one unified platform.
-        </p>
-      </SplitHero>
+        <FactsStrip facts={FACTS} />
+      </PageHero>
 
       {/* Protocol & platform marquee, identical to the homepage banner,
           only the label differs. */}
       <LogoMarquee label="Supported Protocols &amp; Asset Types" />
 
-      {/* Authentication */}
       <FeatureSection
         id="authentication"
         title="Authentication: Verify Every Identity"
         description="Block unauthorized access with enterprise-grade identity verification. OmniPriv integrates seamlessly with your existing identity infrastructure while adding layers of protection that prevent credential abuse, account takeovers, and unauthorized entry."
         features={authFeatures}
+        visual={<LoginLayers />}
+        muted
       />
 
-      {/* Authorization */}
       <FeatureSection
         id="authorization"
         title="Authorization: Enforce Least Privilege"
         description="Prevent internal misuse and privilege escalation with granular access controls. Every access decision is policy-driven, time-limited, and fully logged, giving your security team complete control over who can do what, where, and when."
         features={authzFeatures}
+        visual={<JitTerminal />}
         reverse
       />
 
-      {/* Account Management */}
       <FeatureSection
         id="account"
         title="Account Management: Full Credential Lifecycle"
         description="Eliminate the credential hygiene problem that plagues enterprise IT. OmniPriv automates every aspect of privileged account management, from discovery to rotation to deprovisioning, so your team focuses on security, not manual credential tasks."
         features={accountFeatures}
+        visual={<RotationRun />}
+        muted
       />
 
-      {/* Audit */}
       <FeatureSection
         id="audit"
         title="Audit & Compliance: Full Traceability"
         description="Every privileged action leaves a permanent, tamper-proof record in OmniPriv. Compliance teams can generate audit reports in minutes, security teams can investigate incidents in real time, and executives get the visibility they need to manage risk."
         features={auditFeatures}
+        visual={<LiveAudit />}
         reverse
       />
 
-      {/* AI & Automation */}
-      <FeatureSection
-        id="ai"
-        title="AI & Automation: Intelligence on Every Privileged Action"
-        description="OmniPriv's AI-PAM engine scores behaviour on every privileged action and governs autonomous agents through the same policy engine that governs people. Detection, approval and enforcement happen inside the platform, not in an analytics product bolted onto it."
-        features={aiFeatures}
-        cta={{ href: "/ai-pam", label: "Explore the AI-PAM engine" }}
-      />
+      {/* AI & Automation (dark band) */}
+      <div className="dark">
+        <div className="relative overflow-hidden op-band-navy">
+          <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+          <div className="relative">
+            <FeatureSection
+              id="ai"
+              title="AI & Automation: Intelligence on Every Privileged Action"
+              description="OmniPriv's AI-PAM engine scores behaviour on every privileged action and governs autonomous agents through the same policy engine that governs people. Detection, approval and enforcement happen inside the platform, not in an analytics product bolted onto it."
+              features={aiFeatures}
+              visual={<ScoreTiers />}
+              cols={4}
+              cta={{ href: "/ai-pam", label: "Explore the AI-PAM engine" }}
+            />
+          </div>
+        </div>
+      </div>
 
-      {/* FAQ
-          Closes the page. `FaqSection` rather than `FaqAccordion` so the band,
-          the centred heading and the FAQPage structured data all come from the
-          shared component and stay server-rendered. `tone="muted"` is set by
-          the component itself, which keeps it alternating against the default
-          surface of the AI section above. */}
-      <FaqSection
-        title="Frequently Asked Questions"
-        subtitle="Common questions about deploying and running OmniPriv."
-        items={featureFaqs}
-      />
-
-    </>  
+      <FaqSplit id="features-faq" title="Frequently Asked Questions" items={featureFaqs} />
+    </div>
   );
-} 
+}

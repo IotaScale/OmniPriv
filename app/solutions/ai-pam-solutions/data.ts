@@ -37,7 +37,7 @@ export const hero = {
     ] as RichText,
     body: [
         "OmniPriv brings ",
-        { text: "Privileged Access Management", href: "https://omnipriv.com/platform" },
+        { text: "Privileged Access Management", href: "/platform" },
         " into this new environment with centralized identity verification, least-privilege authorization, Just-in-Time access, credential protection, session monitoring, and intelligent threat detection. Our AI PAM solutions help organizations secure privileged access across human users, service accounts, machine identities, automated workflows, and AI-enabled systems without introducing unnecessary operational friction.",
     ] as RichText,
     primary: { href: "/demo", label: "Secure Your Privileged Access" },
@@ -74,7 +74,7 @@ export const changedEraSection = {
     ] as RichText,
     zeroTrustBody: [
         "This is where AI privileged access management becomes important. Rather than creating permanent trust around an identity, OmniPriv applies Zero Trust principles so privileged access can be verified, restricted, monitored, and audited throughout its lifecycle. OmniPriv currently supports identity integrations, service-account management, workload identities, dynamic secrets, and short-lived credentials across ",
-        { text: "cloud and DevOps environments", href: "https://omnipriv.com/integrations" },
+        { text: "cloud and DevOps environments", href: "/integrations" },
         ".",
     ] as RichText,
 };
@@ -154,7 +154,7 @@ export const strengthenSection = {
         ] as RichText,
         body: [
             "OmniPriv's JIT model grants task-specific, time-limited privileged access and automatically removes it when the approved window expires. Approval workflows can also be integrated with existing ",
-            { text: "ITSM processes", href: "https://omnipriv.com/blog/jit-access-guide" },
+            { text: "ITSM processes", href: "/blog/jit-access-guide" },
             ". For organizations considering just-in-time access for AI agents, the same core principle applies: privileged access should exist only when a legitimate workflow requires it.",
         ] as RichText,
         calloutTitle: "Move Toward Zero Standing Privileges",
@@ -170,7 +170,7 @@ export const strengthenSection = {
         ] as RichText,
         body: [
             "OmniPriv centralizes privileged credential management and supports automated rotation of passwords, SSH keys, and API tokens. Cloud and DevOps integrations can also provide dynamic or short-lived credentials rather than hardcoded secrets via the ",
-            { text: "OmniPriv Platform", href: "https://omnipriv.com/" },
+            { text: "OmniPriv Platform", href: "/" },
             ". This creates a stronger foundation for AI credential security while reducing dependence on long-lived authentication material.",
         ] as RichText,
         chips: [
@@ -210,7 +210,7 @@ export const strengthenSection = {
         ] as RichText,
         body: [
             "OmniPriv provides ",
-            { text: "privileged session monitoring", href: "https://omnipriv.com/platform/secure-remote-access" },
+            { text: "privileged session monitoring", href: "/platform/secure-remote-access" },
             " across SSH, RDP, VNC, HTTP, and database connections, with recording, isolation, searchable session history, script monitoring, session controls, and real-time intervention. For governed sessions, runtime access control can restrict specific actions and trigger responses when predefined security conditions are detected.",
         ] as RichText,
         prompt: "Security teams gain visibility into:",
@@ -231,7 +231,7 @@ export const strengthenSection = {
         ] as RichText,
         body: [
             "OmniPriv uses machine-learning-based behavioral analysis to identify unusual command patterns, abnormal access times, and unexpected data volumes. Security teams can receive alerts and terminate suspicious sessions when required through OmniPriv's ",
-            { text: "security intelligence engine", href: "https://omnipriv.com/security" },
+            { text: "security intelligence engine", href: "/security" },
             ". This intelligence helps AI PAM solutions move beyond static permissions toward more context-aware privileged security.",
         ] as RichText,
     },
@@ -269,19 +269,19 @@ export const environmentSection = {
             icon: Cloud,
             title: "Cloud & Multi-Cloud",
             text: "Control privileged access across AWS, Azure, GCP, Kubernetes, cloud IAM roles, vaults, and workload identities from a centralized security model.",
-            link: { href: "https://omnipriv.com/integrations", label: "Cloud Integrations" },
+            link: { href: "/integrations", label: "Cloud Integrations" },
         },
         {
             icon: GitBranch,
             title: "DevOps & Automation",
             text: "Reduce hardcoded credentials in CI/CD pipelines with short-lived tokens, vault integrations, dynamic secrets, and controlled privileged access for deployment workflows.",
-            link: { href: "https://omnipriv.com/integrations", label: "DevOps Connectors" },
+            link: { href: "/integrations", label: "DevOps Connectors" },
         },
         {
             icon: Database,
             title: "Databases",
             text: "Secure access to production databases with credential rotation, session recording, query auditing, and policy-based controls.",
-            link: { href: "https://omnipriv.com/integrations", label: "Database Security" },
+            link: { href: "/integrations", label: "Database Security" },
         },
         {
             icon: Network,

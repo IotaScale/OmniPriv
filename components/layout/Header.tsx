@@ -28,6 +28,8 @@ import {
   FileText,
   ShieldCheck,
   BrainCircuit,
+  Bot,
+  Handshake,
 } from "lucide-react";
 
 /*
@@ -50,6 +52,7 @@ import {
  */
 
 const platformLinks = [
+  { label: "Secure AI Agents", description: "Agent identity, tool scope, approvals", href: "/platform/secure-ai-agents", icon: Bot },
   { label: "Credential Management", description: "Vault, rotation, SSH keys", href: "/platform/password-credential-management", icon: Key },
   { label: "Secure Remote Access", description: "VPN-free privileged sessions", href: "/platform/secure-remote-access", icon: Eye },
   { label: "Workflow & Access Control", description: "Approvals, JIT, policies", href: "/platform/workflow-access-control", icon: Globe },
@@ -65,6 +68,8 @@ const resourceLinks = [
   { label: "Case Studies", description: "How teams deploy OmniPriv", href: "/case-studies", icon: Users },
   { label: "Documentation", description: "Guides and references", href: "/docs", icon: FileText },
   { label: "Security Center", description: "How we secure OmniPriv", href: "/security", icon: ShieldCheck },
+  { label: "Enterprise Plans", description: "Plans, SLAs and support", href: "/enterprise", icon: Building2 },
+  { label: "Partner Directory", description: "Find an authorized partner", href: "/partners", icon: Handshake },
 ];
 
 const datasheetFiles: { url: string; downloadName: string }[] = [
@@ -276,7 +281,7 @@ export default function Header() {
               href="/sign-in"
               className="px-3 h-9 inline-flex items-center text-[0.875rem] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
             >
-              Partner Portal
+              Partner sign-in
             </Link>
             <Link href="/demo" className="nav-cta group">
               Request a Demo
@@ -357,9 +362,17 @@ export default function Header() {
               </div>
               <div className="flex items-center justify-between px-5 py-3 border-t border-slate-900/[0.06] dark:border-white/[0.06]">
                 <span className="text-xs text-slate-500">Nine modules, one privileged access platform.</span>
-                <Link href="/platform" className="inline-flex items-center gap-1 text-xs font-semibold text-[#00B8DB] hover:underline">
-                  View all capabilities <ArrowRight className="w-3 h-3" />
-                </Link>
+                <span className="flex items-center gap-4">
+                  <Link href="/features" className="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-[#00B8DB] transition-colors">
+                    All features
+                  </Link>
+                  <Link href="/integrations" className="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-[#00B8DB] transition-colors">
+                    Integrations
+                  </Link>
+                  <Link href="/platform" className="inline-flex items-center gap-1 text-xs font-semibold text-[#00B8DB] hover:underline">
+                    View all capabilities <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </span>
               </div>
             </div>
 
@@ -383,6 +396,17 @@ export default function Header() {
                       </span>
                     </Link>
                   ))}
+              </div>
+              <div className="flex items-center justify-between px-5 py-3 border-t border-slate-900/[0.06] dark:border-white/[0.06]">
+                <span className="text-xs text-slate-500">Every identity under one model.</span>
+                <span className="flex items-center gap-4">
+                  <Link href="/platform/identity-security" className="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-[#00B8DB] transition-colors">
+                    Identity security overview
+                  </Link>
+                  <Link href="/platform/consolidation" className="inline-flex items-center gap-1 text-xs font-semibold text-[#00B8DB] hover:underline">
+                    Consolidate your PAM stack <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </span>
               </div>
             </div>
 
@@ -482,8 +506,13 @@ export default function Header() {
 
           {[
             { label: "AI-PAM Engine", href: "/ai-pam" },
+            { label: "Features", href: "/features" },
+            { label: "Integrations", href: "/integrations" },
             { label: "Blog", href: "/blog" },
             { label: "Case Studies", href: "/case-studies" },
+            { label: "Documentation", href: "/docs" },
+            { label: "Enterprise", href: "/enterprise" },
+            { label: "Partners", href: "/partners" },
             { label: "About", href: "/about" },
           ].map((l, i) => (
             <Link
@@ -523,7 +552,7 @@ export default function Header() {
               href="/sign-in"
               className="h-12 inline-flex items-center justify-center rounded-xl border border-slate-900/[0.12] dark:border-white/[0.12] text-sm font-semibold text-slate-800 dark:text-slate-200"
             >
-              Partner Portal
+              Partner sign-in
             </Link>
           </div>
         </div>

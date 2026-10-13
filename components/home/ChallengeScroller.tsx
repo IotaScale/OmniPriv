@@ -33,7 +33,7 @@ const GAPS = [
     headline: "Secure AI agents",
     body: "Give AI agents and automated workflows JIT access, least privilege, protected credentials and governed access, like any other privileged identity.",
     chips: ["MCP agent identity", "Tool-level authorization", "Prompt-injection guard"],
-    href: "/platform/secure-ai-agents-omnipriv",
+    href: "/platform/secure-ai-agents",
     icon: Bot,
   },
   {

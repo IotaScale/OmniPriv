@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /partner-portal
+Disallow: /channel-admin
+Disallow: /portal-admin
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /api/
 
 Sitemap: https://omnipriv.com/sitemap.xml

@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { Layers, Server, ShieldCheck } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { ConsolidationHero, RetireMap, RunLoad, TopologyVisual } from "@/components/consolidation/Visuals";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
@@ -23,6 +21,10 @@ import type { RichText } from "@/lib/rich-text";
  * reason as its sibling /platform/identity-security: a static segment takes
  * precedence over the neighbouring [slug] route, so this needs no module
  * entry in ../data.ts and the capability count stays at nine.
+ *
+ * Built from the shared page kit (components/pageui) so it matches the
+ * other redesigned pages. Copy is unchanged; values inside illustrations
+ * are illustrative.
  *
  * Every figure below is OmniPriv's own, taken from ../data.ts: the nine
  * modules, 80+ requirement points and the compliance mappings
@@ -159,128 +161,133 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const NAV = [
+    { id: "co-benefits", label: "Fewer tools" },
+    { id: "co-retire", label: "What you retire" },
+    { id: "co-ownership", label: "Your infrastructure" },
+    { id: "co-faq", label: "FAQ" },
+];
+
+/* The four figures this page already states, in the shared figures strip. */
+const FACTS = [
+    { value: 9, label: `${stats[0].label} · ${stats[0].sub}` },
+    { value: 6, label: `${stats[1].label} · ${stats[1].sub}` },
+    { value: 80, suffix: "+", label: `${stats[2].label} · ${stats[2].sub}` },
+    { value: 100, suffix: "%", label: `${stats[3].label} · ${stats[3].sub}` },
+];
+
 export default function ConsolidationPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="co-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="co-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<ConsolidationHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── FEWER TOOLS ──────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title={benefitsSection.title}
-                    align="center"
-                    size="lg"
-                    className="mb-14"
-                >
-                    <Prose segments={benefitsSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={benefits} columns={3} />
-            </Section>
+            <section id="co-benefits" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={benefitsSection.title}>
+                                <Prose segments={benefitsSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <RunLoad />
+                        </div>
+                    </div>
+                    <ul className="op-body grid gap-4 md:grid-cols-3">
+                        {benefits.map((b, k) => (
+                            <li key={b.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7" data-aos="fade-up" data-aos-delay={String(k * 70)}>
+                                <div className="flex items-center gap-3">
+                                    <span className="icon-wrapper shrink-0">
+                                        <b.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="op-card-title">{b.title}</h3>
+                                </div>
+                                <p className="op-card-text mt-4">{b.text}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </section>
 
             {/* ─── WHAT YOU RETIRE ──────────────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title={retireSection.title}
-                    align="center"
-                    size="lg"
-                    className="mb-12"
-                >
-                    <Prose segments={retireSection.lead} />
-                </SectionHeading>
-
-                <CheckList items={retiredTools} className="max-w-3xl mx-auto" />
-
-                <div className="text-center mt-10">
-                    <ArrowLink href="/platform">See what replaces each one</ArrowLink>
-                </div>
-            </Section>
-
-            {/* ─── OWNERSHIP ────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title={ownershipSection.title}
-                    align="center"
-                    size="lg"
-                    className="mb-12"
-                >
-                    <Prose segments={ownershipSection.lead} />
-                </SectionHeading>
-
-                <CheckList items={ownershipSection.points} className="max-w-3xl mx-auto" />
-
-                <div className="text-center mt-10">
-                    <ArrowLink href="/enterprise">See enterprise deployment options</ArrowLink>
-                </div>
-            </Section>
-
-            {/* ─── OUTCOMES ─────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title="Consolidation you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a slide about reducing tool count. These are the numbers behind it.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
+            <section id="co-retire" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={retireSection.title}>
+                                <Prose segments={retireSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                            <CheckList items={retiredTools} className="mt-7" />
+                            <ArrowLink href="/platform" className="mt-7">
+                                See what replaces each one
+                            </ArrowLink>
                         </div>
-                    ))}
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <RetireMap />
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── OWNERSHIP (dark band) ────────────── */}
+            <div className="dark">
+                <section id="co-ownership" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                                <TopologyVisual />
+                            </div>
+                            <div className="min-w-0 order-1 lg:order-2">
+                                <Heading title={ownershipSection.title}>
+                                    <Prose segments={ownershipSection.lead} className="text-[1.0625rem] text-slate-600 dark:text-slate-400" />
+                                </Heading>
+                                <CheckList items={ownershipSection.points} className="mt-7" />
+                                <ArrowLink href="/enterprise" className="mt-7">
+                                    See enterprise deployment options
+                                </ArrowLink>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── CONSOLIDATION YOU CAN POINT AT / KEEP READING ── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2" data-aos="fade-up">
+                        <h2 className="op-h3">Consolidation you can point at</h2>
+                        <p className="max-w-xl text-[0.9375rem] text-slate-600 dark:text-slate-400">
+                            Not a slide about reducing tool count. These are the numbers behind it.
+                        </p>
+                    </div>
+                    <KeepReading links={keepReading} />
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
+                lead={closing.kicker}
                 body={closing.body}
-                kicker={closing.kicker}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about replacing fragmented privileged access tools with a single platform."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="co-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

@@ -32,8 +32,8 @@ export const hero = {
     body: [
         "That creates a new access challenge: how do you give AI-enabled systems enough privilege to perform approved tasks without creating permanent or uncontrolled access? OmniPriv strengthens AI agent security with Privileged Access Management controls built around least privilege, Just-in-Time access, credential protection, session visibility and intelligent threat detection.",
     ] as RichText,
-    primary: { href: "/demo", label: "Request a Technical Demo" },
-    secondary: { href: "https://omnipriv.com/platform", label: "Explore the OmniPriv PAM Platform" },
+    primary: { href: "/demo?intent=ai", label: "Request a Technical Demo" },
+    secondary: { href: "/platform", label: "Explore the OmniPriv PAM Platform" },
     image: {
         src: "/identities/ai-automated-identities.jpeg",
         alt: "Neural network brain above a lit platform ringed by security padlocks, representing AI agents accessing privileged enterprise systems",
@@ -51,7 +51,7 @@ export const modelSection = {
     ] as RichText,
     body: [
         "OmniPriv’s ",
-        { text: "Privileged Access Control Plane", href: "https://omnipriv.com/" },
+        { text: "Privileged Access Control Plane", href: "/" },
         " is designed to secure human, machine, vendor, and AI/automated identities while applying MFA, JIT access, Zero Standing Privileges and session security across cloud, SaaS, on-premises systems and databases.",
     ] as RichText,
     subTitle: "Control Privilege, Not Just Identity",
@@ -122,7 +122,7 @@ export const credentialsSection = {
         "This provides a stronger way to secure AI workflows that depend on privileged resources while reducing long-lived credential exposure.",
     ] as RichText,
     link: {
-        href: "https://omnipriv.com/platform/password-credential-management",
+        href: "/platform/password-credential-management",
         label: "Explore Privileged Credential Management",
     },
 };
@@ -141,7 +141,7 @@ export const afterAccessSection = {
         ] as RichText,
         body: [
             "OmniPriv provides full ",
-            { text: "privileged session recording and monitoring", href: "https://omnipriv.com/platform/secure-remote-access" },
+            { text: "privileged session recording and monitoring", href: "/platform/secure-remote-access" },
             " across SSH, RDP, VNC, HTTP and database sessions. Security teams can use searchable session history, script monitoring, HTTP-level visibility and automated controls to investigate sensitive activity.",
         ] as RichText,
         note: [
@@ -156,7 +156,7 @@ export const afterAccessSection = {
             "Whether the session required intervention",
         ],
         link: {
-            href: "https://omnipriv.com/platform/secure-remote-access",
+            href: "/platform/secure-remote-access",
             label: "Explore Secure Remote Access",
         },
     },
@@ -168,14 +168,14 @@ export const afterAccessSection = {
         ] as RichText,
         body: [
             "OmniPriv uses machine-learning-based behavioral analysis to detect unusual commands, abnormal access times and unexpected data volumes. Its ",
-            { text: "threat-detection capabilities", href: "https://omnipriv.com/security" },
+            { text: "threat-detection capabilities", href: "/security" },
             " also identify privilege abuse, credential harvesting, lateral movement and attempts to bypass PAM controls, with automated alerting and response.",
         ] as RichText,
         note: [
             "This adds behavioral context to identity security, helping teams identify suspicious privileged activity even when the identity itself appears legitimate.",
         ] as RichText,
         link: {
-            href: "https://omnipriv.com/platform/ai-threat-protection",
+            href: "/platform/ai-threat-protection",
             label: "Explore AI Threat Protection",
         },
     },
@@ -196,7 +196,7 @@ export const pillarsSection = {
     prompt: "OmniPriv helps organizations apply:",
     note: [
         "OmniPriv’s ",
-        { text: "audit capabilities", href: "https://omnipriv.com/privileged-access-audit-compliance" },
+        { text: "audit capabilities", href: "/privileged-access-audit-compliance" },
         " record privileged account usage with the user, asset, time and outcome while supporting scheduled reporting and policy alerts.",
     ] as RichText,
 };
@@ -246,7 +246,7 @@ export const finalSection = {
     ] as RichText,
     body: [
         "OmniPriv brings PAM, Zero Trust principles, JIT access, credential security, session monitoring and intelligent threat detection together so organizations can secure AI, automation, human users and machine identities through a unified privileged-access model. OmniPriv currently positions its platform for ",
-        { text: "human, machine, vendor and AI/automated identities", href: "https://omnipriv.com/" },
+        { text: "human, machine, vendor and AI/automated identities", href: "/" },
         ".",
     ] as RichText,
 };
@@ -256,7 +256,7 @@ export const closing = {
     body: [
         "Control who, or what, can reach critical systems, limit privilege to approved tasks and maintain visibility over sensitive activity with OmniPriv.",
     ],
-    primary: { href: "/demo", label: "Request a Technical Demo" },
+    primary: { href: "/demo?intent=ai", label: "Request a Technical Demo" },
 };
 
 export const faqSection = {

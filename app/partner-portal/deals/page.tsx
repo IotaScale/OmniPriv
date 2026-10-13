@@ -121,7 +121,7 @@ export default function MyDealsPage() {
             <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               My Deals
             </h1>
-            <span className="text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+            <span className="text-xs font-mono font-semibold bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] px-2.5 py-0.5 rounded-full border border-[#00B8DB]/20">
               {metrics.totalCount} Registered Opportunities
             </span>
           </div>
@@ -137,7 +137,7 @@ export default function MyDealsPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/partner-portal/deals/new"
-            className="btn-primary text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 font-semibold shadow-md shadow-cyan-500/10 hover:shadow-cyan-500/20 transition-all"
+            className="btn-primary text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 font-semibold shadow-md shadow-[#00B8DB]/10 hover:shadow-[#00B8DB]/20 transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Register a Deal</span>
@@ -147,10 +147,10 @@ export default function MyDealsPage() {
 
       {/* Pipeline Metric Ribbon */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Total Pipeline ARR</span>
-            <DollarSign className="w-4 h-4 text-cyan-500" />
+            <DollarSign className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
             ${metrics.totalArr.toLocaleString()}
@@ -160,7 +160,7 @@ export default function MyDealsPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Active Protection</span>
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
@@ -173,7 +173,7 @@ export default function MyDealsPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Awaiting Review</span>
             <Clock className="w-4 h-4 text-amber-500" />
@@ -186,12 +186,12 @@ export default function MyDealsPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Closed Won ARR</span>
-            <TrendingUp className="w-4 h-4 text-[#00B8FF]" />
+            <TrendingUp className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
           </div>
-          <div className="text-xl sm:text-2xl font-black text-[#00B8FF]">
+          <div className="text-xl sm:text-2xl font-black text-[#00667A] dark:text-[#00B8DB]">
             ${metrics.wonArr.toLocaleString()}
           </div>
           <div className="text-[11px] text-slate-400 mt-1">
@@ -208,8 +208,8 @@ export default function MyDealsPage() {
             onClick={() => setStatusFilter("all")}
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "all"
-                ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-cyan-500/40"
+                ? "bg-[#00B8DB] text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8DB]/40"
             }`}
           >
             <span>All Deals</span>
@@ -220,7 +220,7 @@ export default function MyDealsPage() {
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "awaiting_approval"
                 ? "bg-amber-500 text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-amber-500/40"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-amber-500/40"
             }`}
           >
             <Clock className="w-3 h-3 text-amber-500" />
@@ -232,7 +232,7 @@ export default function MyDealsPage() {
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "approved"
                 ? "bg-emerald-500 text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-emerald-500/40"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-emerald-500/40"
             }`}
           >
             <ShieldCheck className="w-3 h-3 text-emerald-500" />
@@ -243,8 +243,8 @@ export default function MyDealsPage() {
             onClick={() => setStatusFilter("closed_won")}
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "closed_won"
-                ? "bg-[#00B8FF] text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8FF]/40"
+                ? "bg-[#00B8DB] text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8DB]/40"
             }`}
           >
             <span>Closed Won</span>
@@ -255,7 +255,7 @@ export default function MyDealsPage() {
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 ${
               statusFilter === "declined"
                 ? "bg-rose-500 text-white font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-rose-500/40"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-rose-500/40"
             }`}
           >
             Declined
@@ -263,7 +263,7 @@ export default function MyDealsPage() {
         </div>
 
         {/* Search Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#0A1628] p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#15171A] p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -271,7 +271,7 @@ export default function MyDealsPage() {
               placeholder="Search by customer, deal reference code (DR-...), or opportunity title..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-all"
+              className="w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#00B8DB] transition-all"
             />
             {searchQuery && (
               <button
@@ -284,9 +284,9 @@ export default function MyDealsPage() {
           </div>
 
           <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
-            <Percent className="w-3.5 h-3.5 text-cyan-500" />
+            <Percent className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
             <span>Your Effective Tier Margin:</span>
-            <span className="font-bold text-slate-900 dark:text-white font-mono bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20">
+            <span className="font-bold text-slate-900 dark:text-white font-mono bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] px-2 py-0.5 rounded border border-[#00B8DB]/20">
               {margins.total}% ({margins.base}% base + {margins.rebate}% deal reg)
             </span>
           </div>
@@ -315,7 +315,7 @@ export default function MyDealsPage() {
           }}
         />
       ) : (
-        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 dark:text-slate-400 uppercase font-semibold text-[11px] tracking-wider">
@@ -345,7 +345,7 @@ export default function MyDealsPage() {
                       className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer group"
                     >
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5 group-hover:text-cyan-500 transition-colors">
+                        <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5 group-hover:text-[#00667A] dark:group-hover:text-[#00B8DB] transition-colors">
                           <span>{deal.opportunity_name}</span>
                           {deal.conflict_detected && (
                             <span
@@ -369,7 +369,7 @@ export default function MyDealsPage() {
                           <button
                             type="button"
                             onClick={(e) => copyToClipboard(deal.deal_code, e)}
-                            className="font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-300 flex items-center gap-1 bg-cyan-500/10 px-1.5 py-0.5 rounded transition-all"
+                            className="font-mono text-[#00667A] dark:text-[#00B8DB] hover:text-[#7FE3F2] flex items-center gap-1 bg-[#00B8DB]/10 px-1.5 py-0.5 rounded transition-all"
                             title="Click to copy Deal Reference Code"
                           >
                             <span>{deal.deal_code}</span>
@@ -438,7 +438,7 @@ export default function MyDealsPage() {
                       <td className="py-3.5 px-4 text-right">
                         <button
                           onClick={() => setSelectedDeal(deal)}
-                          className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-300 group-hover:translate-x-0.5 transition-all inline-flex items-center gap-1"
+                          className="text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] hover:text-[#7FE3F2] group-hover:translate-x-0.5 transition-all inline-flex items-center gap-1"
                         >
                           <span>View Details</span>
                           <ChevronRight className="w-3.5 h-3.5" />
@@ -456,12 +456,12 @@ export default function MyDealsPage() {
       {/* Upgraded Deal Detail Inspection Modal */}
       {selectedDeal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 sm:p-7 max-w-2xl w-full shadow-2xl space-y-5 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 sm:p-7 max-w-2xl w-full shadow-2xl space-y-5 text-xs animate-in fade-in zoom-in-95 duration-150">
             {/* Modal Header */}
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="font-mono text-xs font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20">
+                  <span className="font-mono text-xs font-bold bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] px-2 py-0.5 rounded border border-[#00B8DB]/20">
                     {selectedDeal.deal_code}
                   </span>
                   <StatusChip status={selectedDeal.status} />
@@ -525,7 +525,7 @@ export default function MyDealsPage() {
                     : "text-slate-500 dark:text-slate-400 hover:text-white"
                 }`}
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-[#00B8FF]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
                 <span>Protection Status</span>
               </button>
             </div>
@@ -567,7 +567,7 @@ export default function MyDealsPage() {
                 {/* Customer Contact Card */}
                 <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
                   <div className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-cyan-500" />
+                    <User className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
                     <span>Customer Decision Maker / Point of Contact</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-slate-600 dark:text-slate-300">
@@ -579,7 +579,7 @@ export default function MyDealsPage() {
                     </div>
                     <div>
                       <span className="text-slate-400">Email:</span>{" "}
-                      <span className="font-mono text-cyan-600 dark:text-cyan-400">
+                      <span className="font-mono text-[#00667A] dark:text-[#00B8DB]">
                         {selectedDeal.customer_contact_email || "Not specified"}
                       </span>
                     </div>
@@ -599,7 +599,7 @@ export default function MyDealsPage() {
             {/* Tab 2: Commercial & Margin */}
             {activeModalTab === "commercial" && (
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-transparent border border-emerald-500/20">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 via-[#00B8DB]/5 to-transparent border border-emerald-500/20">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-slate-400 uppercase tracking-wider text-[10px] font-bold">
                       Calculated Commercial Return ({margins.label} Tier)

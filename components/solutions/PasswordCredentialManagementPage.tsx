@@ -63,7 +63,7 @@ const lifecycleCards: IconCard[] = [
         icon: KeyRound,
         eyebrow: "Vault",
         title: "Nobody reads the password",
-        text: "Secrets are stored in an encrypted vault with hardware-backed key protection. No user ever sees a raw password, they authenticate through OmniPriv.",
+        text: "Secrets are stored in an encrypted vault with layered key protection. No user ever sees a raw password, they authenticate through OmniPriv.",
     },
     {
         icon: RotateCcw,
@@ -189,7 +189,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Do administrators ever see the actual password?",
         answer:
-            "No. Credentials are held in an encrypted vault with HSM-backed key protection, and users authenticate through OmniPriv rather than being shown the secret. Where a credential has been updated, viewing it requires MFA first, and history is versioned for a configured retention period.",
+            "No. Credentials are held in an encrypted vault with layered key protection, and users authenticate through OmniPriv rather than being shown the secret. Where a credential has been updated, viewing it requires MFA first, and history is versioned for a configured retention period.",
     },
     {
         question: "How are SSH keys handled differently from passwords?",

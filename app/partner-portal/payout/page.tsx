@@ -96,8 +96,8 @@ export default function PayoutProfilePage() {
       </div>
 
       {/* Security notice */}
-      <div className="p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/[0.06] text-sm text-slate-700 dark:text-slate-300 flex items-start gap-3">
-        <Lock className="w-5 h-5 text-[#00B8FF] shrink-0 mt-0.5" />
+      <div className="p-4 rounded-xl border border-[#00B8DB]/20 bg-[#00B8DB]/[0.06] text-sm text-slate-700 dark:text-slate-300 flex items-start gap-3">
+        <Lock className="w-5 h-5 text-[#00667A] dark:text-[#00B8DB] shrink-0 mt-0.5" />
         <div>
           <div className="font-semibold text-slate-900 dark:text-white mb-0.5">Hardware Vault & KMS Tokenization Active</div>
           <p className="text-slate-500 dark:text-slate-400">
@@ -116,11 +116,11 @@ export default function PayoutProfilePage() {
           onAction={() => setIsEditing(true)}
         />
       ) : (
-        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 p-6 space-y-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 p-6 space-y-6 shadow-sm">
           {/* Header Status */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-white/[0.05]">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center">
                 <CreditCard className="w-5 h-5" />
               </div>
               <div>

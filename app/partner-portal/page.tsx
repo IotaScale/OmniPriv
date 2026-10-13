@@ -79,9 +79,9 @@ function PartnerDashboardContent() {
     <div className="space-y-8">
       {/* Welcome Banner for Newly Registered Organizations */}
       {isWelcome && (
-        <div className="p-6 rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-cyan-500/10 via-cyan-500/5 to-transparent text-cyan-950 dark:text-cyan-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg backdrop-blur-xl">
+        <div className="p-6 rounded-2xl border border-[#00B8DB]/30 bg-gradient-to-r from-[#00B8DB]/10 via-[#00B8DB]/5 to-transparent text-[#03121C] dark:text-[#7FE3F2] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg backdrop-blur-xl">
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-[#00B8FF] flex items-center justify-center shrink-0 mt-0.5 shadow-inner">
+            <div className="w-10 h-10 rounded-xl bg-[#00B8DB]/20 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center shrink-0 mt-0.5 shadow-inner">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
@@ -105,15 +105,15 @@ function PartnerDashboardContent() {
 
       {/* Channel Admin Notice */}
       {(user?.role === "Channel Admin" || user?.role === "Partner Manager") && (
-        <div className="p-5 rounded-2xl border border-cyan-500/40 bg-gradient-to-r from-cyan-950/80 via-slate-900 to-cyan-950/80 border-l-4 border-l-[#00B8FF] text-cyan-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
+        <div className="p-5 rounded-2xl border border-[#00B8DB]/40 bg-gradient-to-r from-[#0B2A31]/80 via-slate-900 to-[#0B2A31]/80 border-l-4 border-l-[#00B8DB] text-[#7FE3F2] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-[#00B8FF] flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 rounded-xl bg-[#00B8DB]/20 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center shrink-0 mt-0.5">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-sm font-bold text-white">OmniPriv Channel Administration</h2>
-                <span className="text-[10px] font-mono uppercase bg-cyan-500/20 text-[#00B8FF] px-2 py-0.5 rounded font-semibold border border-cyan-500/30">
+                <span className="text-[10px] font-mono uppercase bg-[#00B8DB]/20 text-[#00667A] dark:text-[#00B8DB] px-2 py-0.5 rounded font-semibold border border-[#00B8DB]/30">
                   Internal Purview
                 </span>
               </div>
@@ -151,7 +151,7 @@ function PartnerDashboardContent() {
         <div className="flex items-center gap-3">
           <Link
             href="/partner-portal/deals/new"
-            className="btn-primary text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-lg shadow-cyan-500/20 font-bold"
+            className="btn-primary text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-lg shadow-[#00B8DB]/20 font-bold"
           >
             <PlusCircle className="w-4 h-4" />
             Register a Deal
@@ -162,7 +162,7 @@ function PartnerDashboardContent() {
       {/* Live Operational Metrics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {/* Metric 1: Total Pipeline ARR */}
-        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] shadow-md hover:shadow-cyan-500/10 hover:border-cyan-500/30 transition-all group">
+        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] shadow-md hover:shadow-[#00B8DB]/10 hover:border-[#00B8DB]/30 transition-all group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Pipeline</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
@@ -178,10 +178,10 @@ function PartnerDashboardContent() {
         </div>
 
         {/* Metric 2: Open Deals */}
-        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] shadow-md hover:shadow-cyan-500/10 hover:border-cyan-500/30 transition-all group">
+        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] shadow-md hover:shadow-[#00B8DB]/10 hover:border-[#00B8DB]/30 transition-all group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active Deals</span>
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 text-[#00B8FF] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center">
               <Briefcase className="w-4 h-4" />
             </div>
           </div>
@@ -192,7 +192,7 @@ function PartnerDashboardContent() {
         </div>
 
         {/* Metric 3: Deals Awaiting Review */}
-        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] shadow-md hover:shadow-amber-500/10 hover:border-amber-500/30 transition-all group">
+        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] shadow-md hover:shadow-amber-500/10 hover:border-amber-500/30 transition-all group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Under Review</span>
             <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center">
@@ -206,7 +206,7 @@ function PartnerDashboardContent() {
         </div>
 
         {/* Metric 4: Approved / Protected Deals */}
-        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] shadow-md hover:shadow-emerald-500/10 hover:border-emerald-500/30 transition-all group">
+        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] shadow-md hover:shadow-emerald-500/10 hover:border-emerald-500/30 transition-all group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Protected Locks</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
@@ -220,7 +220,7 @@ function PartnerDashboardContent() {
         </div>
 
         {/* Metric 5: Assigned Leads */}
-        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] shadow-md hover:shadow-rose-500/10 hover:border-rose-500/30 transition-all group">
+        <div className="relative overflow-hidden p-5 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] shadow-md hover:shadow-rose-500/10 hover:border-rose-500/30 transition-all group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Assigned Leads</span>
             <div className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-500 flex items-center justify-center">
@@ -236,7 +236,7 @@ function PartnerDashboardContent() {
 
       {/* Action Required Feed (Real Data Only) */}
       {(actionLeads.length > 0 || reviewDeals.length > 0) && (
-        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] p-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 shadow-sm">
           <h2 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-500" />
             Action Required
@@ -249,7 +249,7 @@ function PartnerDashboardContent() {
                 className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border border-slate-100 dark:border-white/[0.05] bg-slate-50/70 dark:bg-white/[0.02] gap-3"
               >
                 <div className="flex items-start gap-3">
-                  <Target className="w-4 h-4 text-cyan-500 mt-1 shrink-0" />
+                  <Target className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] mt-1 shrink-0" />
                   <div>
                     <h3 className="text-xs font-bold text-slate-900 dark:text-white">
                       Lead Acceptance SLA: {lead.prospect_company}
@@ -300,10 +300,10 @@ function PartnerDashboardContent() {
 
       {/* Recent Opportunities Table (When Deals Exist) */}
       {deals.length > 0 && (
-        <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] overflow-hidden shadow-md">
+        <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] overflow-hidden shadow-md">
           <div className="p-5 border-b border-slate-200 dark:border-white/[0.08] flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 text-[#00B8FF] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center">
                 <Briefcase className="w-4 h-4" />
               </div>
               <div>
@@ -315,7 +315,7 @@ function PartnerDashboardContent() {
             </div>
             <Link
               href="/partner-portal/deals"
-              className="text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
+              className="text-xs font-bold text-[#00667A] dark:text-[#00B8DB] hover:underline flex items-center gap-1"
             >
               View All Deals ({deals.length}) &rarr;
             </Link>
@@ -341,7 +341,7 @@ function PartnerDashboardContent() {
                       <div className="flex items-center gap-1.5 text-slate-400 mt-0.5 text-[11px]">
                         <span>{deal.customer_name}</span>
                         <span>•</span>
-                        <span className="font-mono text-cyan-600 dark:text-cyan-400">{deal.customer_domain}</span>
+                        <span className="font-mono text-[#00667A] dark:text-[#00B8DB]">{deal.customer_domain}</span>
                       </div>
                     </td>
                     <td className="py-3 px-4 font-mono text-[11px] text-slate-500 dark:text-slate-400">
@@ -370,7 +370,7 @@ function PartnerDashboardContent() {
                     <td className="py-3 px-4 text-right">
                       <Link
                         href="/partner-portal/deals"
-                        className="btn-secondary text-[11px] px-2.5 py-1 rounded-lg font-semibold inline-flex items-center gap-1 hover:border-cyan-500/40"
+                        className="btn-secondary text-[11px] px-2.5 py-1 rounded-lg font-semibold inline-flex items-center gap-1 hover:border-[#00B8DB]/40"
                       >
                         Details <ArrowRight className="w-3 h-3" />
                       </Link>
@@ -409,9 +409,9 @@ function PartnerDashboardContent() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           href="/partner-portal/deals/new"
-          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] hover:border-cyan-500/50 transition-all shadow-sm group"
+          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/50 transition-all shadow-sm group"
         >
-          <div className="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-lg bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center mb-3">
             <PlusCircle className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">Register a Deal</h3>
@@ -420,7 +420,7 @@ function PartnerDashboardContent() {
 
         <Link
           href="/partner-portal/deals"
-          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] hover:border-cyan-500/50 transition-all shadow-sm group"
+          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/50 transition-all shadow-sm group"
         >
           <div className="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3">
             <Briefcase className="w-4 h-4" />
@@ -431,7 +431,7 @@ function PartnerDashboardContent() {
 
         <Link
           href="/partner-portal/leads"
-          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] hover:border-cyan-500/50 transition-all shadow-sm group"
+          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/50 transition-all shadow-sm group"
         >
           <div className="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3">
             <Target className="w-4 h-4" />
@@ -442,7 +442,7 @@ function PartnerDashboardContent() {
 
         <Link
           href="/partner-portal/resources"
-          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] hover:border-cyan-500/50 transition-all shadow-sm group"
+          className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/50 transition-all shadow-sm group"
         >
           <div className="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-3">
             <FileText className="w-4 h-4" />

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
+    ArrowRight,
     ClipboardCheck,
     Clock,
     Eye,
@@ -12,39 +14,29 @@ import {
     UserCheck,
 } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { EvidenceBundle, PatternsHero, ReviewVisual } from "@/components/patterns/Visuals";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /case-studies
+ * /case-studies, framed as problem patterns rather than customer stories.
  *
- * Rebuilt on the shared section library, and reframed from customer stories
- * to problem patterns.
- *
- * The previous version presented nine anonymous organisations as real
- * customers, "Global Investment Bank", "Regional Health System", "Federal
- * Defense Agency", each with precise metrics ("68% reduction in privilege
- * account attack surface", "2,400 privileged accounts brought under
- * management", "Zero privilege-related incidents"). None of it was real, and
- * given that no customer is named, none of it was checkable either. It also
- * ran a filter bar that looked interactive but had no handler.
- *
- * This version describes the problem shapes privileged access programmes
- * actually run into and the platform controls that address them. Every
- * capability referenced below comes from app/platform/data.ts. There are no
- * invented customers, no invented percentages, and no implied testimonials.
+ * The earlier version presented nine anonymous "customers" with precise,
+ * uncheckable metrics; none of it was real. This page describes the problem
+ * shapes privileged access programmes run into and the platform controls
+ * that address them. Every capability referenced comes from
+ * app/platform/data.ts: no invented customers, percentages or testimonials.
+ * Built from the shared page kit (components/pageui); findings shown in
+ * illustrations are illustrative.
  */
 
 export const metadata: Metadata = {
@@ -220,141 +212,163 @@ const faqs: FaqEntry[] = [
     {
         question: "Who owns the audit data and the encryption keys?",
         answer:
-            "You do, on both counts. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys, and the installation key is generated at installation and stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted, including by an administrator.",
+            "You do, on both counts. Data is encrypted at rest and in transit, with a layered key hierarchy protecting stored keys, and the installation key is generated at installation and stored externally and independently of the platform. Audit records are hash-chained in tamper-proof storage, so they cannot be altered or deleted, including by an administrator.",
     },
+];
+
+/* The module that resolves each pattern, by its link. */
+const MODULE_NAME: Record<string, string> = {
+    "/platform/consolidation": "PAM Consolidation",
+    "/platform/workflow-access-control": "Workflow & Access Control",
+    "/platform/password-credential-management": "Password & Credential Management",
+    "/privileged-access-audit-compliance": "Audit, Governance & Compliance",
+    "/platform/secure-remote-access": "Secure Remote & Hybrid Access",
+    "/platform/enterprise-integration": "Enterprise & Identity Integration",
+};
+
+const NAV = [
+    { id: "cs-patterns", label: "The six patterns" },
+    { id: "cs-review", label: "The review" },
+    { id: "cs-outputs", label: "What it produces" },
+    { id: "cs-deeper", label: "Go deeper" },
+    { id: "cs-faq", label: "FAQ" },
+];
+
+/* From this page's own copy. */
+const FACTS = [
+    { value: patterns.length, label: "problem patterns, repeated across industries and sizes" },
+    { value: protocols.length, label: "session protocols recorded: SSH, RDP, VNC, HTTP, database" },
+    { value: 2, label: "independent approvers minimum, never the requester" },
+    { value: 6, label: "regulatory frameworks mapped out of the box" },
 ];
 
 export default function CaseStudiesPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="cs-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="cs-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<PatternsHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── THE PATTERNS ───────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Problem Patterns"
-                    title={patternsSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={patternsSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={patterns} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── THE REVIEW ─────────────────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={reviewSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={reviewSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {reviewSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === reviewSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
+            <section id="cs-patterns" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={patternsSection.title}>
+                        <Prose segments={patternsSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {patterns.map((p, i) => (
+                            <Link key={p.title} href={p.href ?? "/platform"} className="aip-card group min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                <span className="inline-flex w-11 h-11 items-center justify-center rounded-2xl bg-amber-400/10 text-amber-600 dark:text-amber-300 transition-colors duration-200 group-hover:bg-[#00B8DB] group-hover:text-[#03121c]">
+                                    <p.icon className="w-5 h-5" aria-hidden="true" />
+                                </span>
+                                <h3 className="op-card-title mt-5">{p.title}</h3>
+                                <p className="op-card-text mt-2">{p.text}</p>
+                                <div className="mt-auto pt-6">
+                                    <div className="border-t border-slate-900/[0.06] dark:border-white/[0.06] pt-4 flex items-center gap-3">
+                                        <span className="min-w-0">
+                                            <span className="block text-[0.6875rem] font-semibold text-slate-500">Resolved by</span>
+                                            <span className="block truncate text-[0.875rem] font-semibold op-link">{MODULE_NAME[p.href ?? ""] ?? "The platform"}</span>
+                                        </span>
+                                        <ArrowRight className="ml-auto w-4 h-4 shrink-0 op-link transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                    </div>
+                                </div>
+                            </Link>
                         ))}
                     </div>
+                </div>
+            </section>
 
-                    <CheckList items={reviewSection.points} className="mt-8" />
-
-                    <ArrowLink href="/privileged-access-audit-compliance" className="mt-8">
-                        See how the evidence is recorded
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
+            {/* ─── THE REVIEW ─────────────────────────────────────── */}
+            <section id="cs-review" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={reviewSection.title} />
+                            <Paras items={reviewSection.paragraphs} className="mt-6" />
+                            <CheckList items={reviewSection.points} className="mt-7" />
+                            <ArrowLink href="/privileged-access-audit-compliance" className="mt-7">
+                                See how the evidence is recorded
+                            </ArrowLink>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <ReviewVisual />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── WHAT THE PLATFORM PRODUCES (dark band) ─────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Concrete Outputs"
-                    title={outputSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={outputSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {outputPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
+            <div className="dark">
+                <section id="cs-outputs" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0">
+                                <Heading title={outputSection.title}>
+                                    <Prose segments={outputSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-10 grid sm:grid-cols-2 gap-4">
+                                    {outputPillars.map((p, i) => (
+                                        <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <h3 className="op-card-title mt-5">{p.title}</h3>
+                                            <p className="op-card-text mt-2">{p.text}</p>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="min-w-0 lg:sticky lg:top-40 space-y-4" data-aos="fade-up" data-aos-delay="100">
+                                <EvidenceBundle />
+                                <div>
+                                    <div className="text-[0.8125rem] font-semibold text-slate-400">Session protocols covered</div>
+                                    <ul className="mt-3 flex flex-wrap gap-2">
+                                        {protocols.map((p) => (
+                                            <li key={p} className="rounded-lg border border-[#00B8DB]/30 bg-[#00B8DB]/[0.07] px-3 py-1.5 text-[0.8125rem] font-semibold text-[#7FE3F2]">
+                                                {p}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    ))}
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── GO DEEPER ──────────────────────────────────────── */}
+            <section id="cs-deeper" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-14">
+                    <div data-aos="fade-up">
+                        <h2 className="op-h3">Go deeper</h2>
+                        <p className="mt-2 mb-6 text-[0.9844rem] text-slate-600 dark:text-slate-400">Two long-form write-ups, plus the full capability set.</p>
+                    </div>
+                    <KeepReading links={deepDives} />
                 </div>
+            </section>
 
-                <div className="mt-14">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
-                        Session protocols covered
-                    </p>
-                    <ChipList
-                        items={protocols}
-                        variant="accent"
-                        separator={<span className="text-slate-500 text-sm">·</span>}
-                    />
-                </div>
-            </Section>
-
-            {/* ─── DEEP DIVES ─────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    title="Go deeper"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Two long-form write-ups, plus the full capability set.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-3 gap-6">
-                    {deepDives.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Name your pattern", "See the controls"]} outcome="Decide on evidence" />}
+                lead={closing.body[0]}
+                body={[...closing.body.slice(1), closing.kicker]}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about deployment, evaluation and data ownership."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="cs-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

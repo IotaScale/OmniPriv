@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
     ClipboardCheck,
     FlaskConical,
@@ -9,38 +10,25 @@ import {
     PhoneCall,
     Server,
     UserCheck,
+    X,
 } from "lucide-react";
 
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
+import Spotlight from "@/components/aipam/Spotlight";
 import DemoForm from "@/components/demo/DemoForm";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import ExpectLine from "@/components/demo/ExpectLine";
+import Walkthrough from "@/components/demo/Walkthrough";
+import { FaqSplit, Heading, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import Prose from "@/components/sections/Prose";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /demo
- *
- * Previously a single "use client" page: a hand-rolled centred hero plus one
- * grid holding the form. That blocked the shared section library, since
- * SplitHero, Section and FaqSection are server components.
- *
- * The form now lives in components/demo/DemoForm.tsx and this file is a
- * server component, so the page composes the same primitives as the rest of
- * the site. Metadata moved back here from app/demo/layout.tsx, which existed
- * only because a client page cannot export it.
- *
- * Removed: the commented-out "Trusted By Security Leaders" block and its
- * `trustStats` array, which claimed "100+ Enterprise Customers" and a
- * "99.99% Uptime SLA". Neither figure traced to anything the site publishes.
- *
- * No CtaBand: the form is the call to action, so a closing band pointing at
- * /demo would be circular. This page therefore has one content dark band
- * rather than the usual two, see components/sections/README.md.
+ * /demo. Server component; the form lives in components/demo/DemoForm.tsx
+ * (EmailJS payload unchanged). The form now sits in the hero beside the copy,
+ * because it is the page's call to action. Built from the shared page kit
+ * (components/pageui). No invented customer counts or SLAs.
  */
 
 export const metadata: Metadata = {
@@ -151,7 +139,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Where does the platform run, and who holds the keys?",
         answer:
-            "On-premise, on infrastructure you control. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys. The installation key is generated at installation and stored externally and independently of the platform, so a compromise of our storage is not a compromise of yours.",
+            "On-premise, on infrastructure you control. Data is encrypted at rest and in transit, with a layered key hierarchy protecting stored keys. The installation key is generated at installation and stored externally and independently of the platform, so a compromise of our storage is not a compromise of yours.",
     },
     {
         question: "What happens to the information I submit?",
@@ -160,105 +148,132 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const FACTS = [
+    { v: "30 min", l: "introductory call to start" },
+    { v: String(whatToExpect.length), l: "steps, and you can stop after any of them" },
+    { v: "30 days", l: "optional proof-of-concept in your environment" },
+    { v: "0", l: "charged at any stage, including the PoC" },
+];
+
+const PROMISES = ["No discovering a \u201cspecial price\u201d that expires today.", "No passing your details to a partner network.", "No renewal pressure on a free proof-of-concept."];
+
 export default function DemoPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
-                titleLead={hero.titleLead}
-                titleAccent={hero.titleAccent}
-                primary={hero.primary}
-                secondary={hero.secondary}
-                media={hero.image}
-            >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+        <div className="aip">
+            <Spotlight />
 
-            {/* ─── WHAT TO EXPECT ─────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="The Process"
-                    title={expectationsSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={expectationsSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={whatToExpect} columns={4} className="mt-12" />
-            </Section>
-
-            {/* ─── THE FORM ───────────────────────────────────────── */}
-            <Section border="bottom">
-                <div id="demo-form" className="grid lg:grid-cols-5 gap-14 items-start">
-                    <div className="lg:col-span-3 scroll-mt-28">
-                        <DemoForm />
-                    </div>
-
-                    <div className="lg:col-span-2 space-y-8">
-                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#15171A]">
-                            <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
-                                Prefer to talk directly?
-                            </h3>
-                            <a
-                                href="mailto:info@omnipriv.com"
-                                className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors"
-                            >
-                                <Mail className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" aria-hidden="true" />
-                                info@omnipriv.com
-                            </a>
-                            <p className="mt-4 text-xs text-slate-500 leading-relaxed">
-                                Email us with the systems that matter and we will scope the session
-                                around them.
-                            </p>
+            {/* ─── HERO: copy + the form ─────────────────────────── */}
+            <section id="dm-hero" className={cn("relative overflow-hidden", sectionLine)}>
+                <div className="aip-hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+                <div className="container-xl relative pt-14 pb-14 lg:pt-20 lg:pb-20">
+                    <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-12 lg:gap-14 items-start">
+                        <div className="min-w-0 lg:sticky lg:top-28">
+                            <h1 className="op-h1 aip-h1" data-aos="fade-up">
+                                {hero.titleLead} <span className="text-gradient">{hero.titleAccent}</span>
+                            </h1>
+                            <div className="mt-6 max-w-[38rem]" data-aos="fade-up" data-aos-delay="120">
+                                <Paras items={[hero.intro, hero.body]} />
+                            </div>
+                            <dl className="mt-9 grid grid-cols-2 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.02]" data-aos="fade-up" data-aos-delay="160">
+                                {FACTS.map((f, k) => (
+                                    <div key={f.l} className={cn("px-5 py-4", k % 2 === 1 && "border-l border-slate-900/[0.08] dark:border-white/[0.08]", k > 1 && "border-t border-slate-900/[0.08] dark:border-white/[0.08]")}>
+                                        <dt className="sr-only">{f.l}</dt>
+                                        <dd>
+                                            <span className="block text-[1.625rem] font-bold leading-none tracking-[-0.03em] text-[#0a1628] dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
+                                                {f.v}
+                                            </span>
+                                            <span className="mt-1.5 block text-[0.8125rem] leading-snug text-slate-600 dark:text-slate-400">{f.l}</span>
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+                            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.875rem]" data-aos="fade-up" data-aos-delay="200">
+                                <a href="mailto:info@omnipriv.com" className="inline-flex items-center gap-1.5 font-semibold op-link hover:underline">
+                                    <Mail className="w-4 h-4" aria-hidden="true" /> info@omnipriv.com
+                                </a>
+                                <Link href={hero.secondary.href} className="font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                                    {hero.secondary.label}
+                                </Link>
+                            </div>
                         </div>
+                        <div id="demo-form" className="min-w-0 scroll-mt-28" data-aos="fade-up" data-aos-delay="120">
+                            <DemoForm />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                        <div className="p-6 rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.07] bg-white dark:bg-[#15171A]">
-                            <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-4">
-                                What we will not do
-                            </h3>
-                            <ul className="space-y-2.5 text-xs text-slate-500 leading-relaxed">
-                                <li>No discovering a &ldquo;special price&rdquo; that expires today.</li>
-                                <li>No passing your details to a partner network.</li>
-                                <li>No renewal pressure on a free proof-of-concept.</li>
+            {/* ─── WHAT TO EXPECT ─────────────────────────────── */}
+            <section id="dm-expect" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={expectationsSection.title}>
+                        <Prose segments={expectationsSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <ol className="op-body relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <ExpectLine />
+                        {whatToExpect.map((s, i) => (
+                            <li key={s.title} className="relative min-w-0" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                <div className="aip-card h-full rounded-3xl border p-6">
+                                    <span className="relative z-10 inline-flex w-11 h-11 items-center justify-center rounded-2xl bg-[#00B8DB] text-[#03121c] shadow-[0_0_0_6px_rgba(0,184,219,0.12)]">
+                                        <s.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="op-card-title mt-5">{s.title}</h3>
+                                    <p className="op-card-text mt-2">{s.text}</p>
+                                    {i < whatToExpect.length - 1 && (
+                                        <span className="mt-4 inline-flex rounded-full bg-slate-900/[0.05] dark:bg-white/[0.06] px-2.5 py-1 text-[0.6875rem] font-semibold text-slate-600 dark:text-slate-300">Free, stop any time</span>
+                                    )}
+                                    {i === whatToExpect.length - 1 && (
+                                        <span className="mt-4 inline-flex rounded-full bg-[#00B8DB]/10 px-2.5 py-1 text-[0.6875rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]">Optional</span>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            </section>
+
+            {/* ─── WHAT WE'LL WALK THROUGH (dark band) ────────── */}
+            <div className="dark">
+                <section id="dm-agenda" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <Heading title={walkthroughSection.title}>
+                            <Prose segments={walkthroughSection.lead} className="text-[1.0625rem]" />
+                        </Heading>
+                        <div className="op-body" data-aos="fade-up">
+                            <Walkthrough topics={walkthroughPillars.map((p) => ({ title: p.title, text: p.text }))} />
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── TALK DIRECTLY + WHAT WE WON'T DO ───────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-16">
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <div className="aip-card rounded-3xl border p-6 lg:p-8" data-aos="fade-up">
+                            <h2 className="op-h3">Prefer to talk directly?</h2>
+                            <a href="mailto:info@omnipriv.com" className="mt-4 inline-flex items-center gap-2 text-[1rem] font-semibold op-link hover:underline">
+                                <Mail className="w-4 h-4" aria-hidden="true" /> info@omnipriv.com
+                            </a>
+                            <p className="mt-3 text-[0.9375rem] text-slate-600 dark:text-slate-400">Email us with the systems that matter and we will scope the session around them.</p>
+                        </div>
+                        <div className="aip-card rounded-3xl border p-6 lg:p-8" data-aos="fade-up" data-aos-delay="80">
+                            <h2 className="op-h3">What we will not do</h2>
+                            <ul className="mt-4 space-y-2.5">
+                                {PROMISES.map((p) => (
+                                    <li key={p} className="flex items-start gap-2.5 text-[0.9375rem] text-slate-700 dark:text-slate-300">
+                                        <X className="w-4 h-4 mt-0.5 shrink-0 text-rose-500" aria-hidden="true" />
+                                        {p}
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── WHAT WE'LL WALK THROUGH (dark band) ────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Session Agenda"
-                    title={walkthroughSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={walkthroughSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {walkthroughPillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
-                        </div>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about the demo process, evaluation and data handling."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="dm-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

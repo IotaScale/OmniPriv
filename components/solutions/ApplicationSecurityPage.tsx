@@ -32,7 +32,7 @@ const hero = {
         "OmniPriv is built on the assumption that something will eventually end up somewhere it should not. Every secret is encrypted, every component talks over mutual TLS, and every login can be made to prove more than a password.",
     ] as RichText,
     body: [
-        "Multi-factor authentication is enforced up front, hardware-backed keys protect what is stored, and cryptographic hash-chaining protects what is recorded, so integrity holds even when the storage layer underneath is not trusted.",
+        "Multi-factor authentication is enforced up front, a layered key hierarchy protects what is stored, and cryptographic hash-chaining protects what is recorded, so integrity holds even when the storage layer underneath is not trusted.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
     secondary: { href: "/platform/password-credential-management", label: "See Credential Vaulting" },
@@ -83,7 +83,7 @@ const encryptionSection = {
         alt: "Printed circuit board showing intricate gold conductive pathways and solder points",
     },
     points: [
-        "A hardware security module provides root-of-trust protection for stored keys",
+        "A layered key hierarchy (KEK, DEK, SEK) protects stored keys",
         "Envelope encryption covering data at rest and in transit",
         "Mutual authentication between platform components, so nothing crosses the wire in plaintext at any layer",
     ],
@@ -128,7 +128,7 @@ const keepReading = [
 const closing = {
     title: "Put the encryption where the risk actually is",
     body: [
-        "MFA at the front, hardware-backed keys behind it, mutual authentication between every component and hash-chained records underneath.",
+        "MFA at the front, layered keys behind it, mutual authentication between every component and hash-chained records underneath.",
         "We will walk through the encryption model and the key custody arrangements against your environment.",
     ],
     kicker: "Encrypted in transit. Encrypted at rest. Hash-chained throughout.",
@@ -150,7 +150,7 @@ const faqs: FaqEntry[] = [
     {
         question: "How is data encrypted at rest and in transit?",
         answer:
-            "Sensitive data is encrypted both at rest and in transit, with a hardware security module providing root-of-trust key protection. Traffic between the platform's own components is mutually authenticated and encrypted, so there is no plaintext layer inside the stack.",
+            "Sensitive data is encrypted both at rest and in transit, with a layered key hierarchy (KEK, DEK, SEK) protecting the keys. Traffic between the platform's own components is mutually authenticated and encrypted, so there is no plaintext layer inside the stack.",
     },
     {
         question: "What is the installation key and why does it need separate storage?",

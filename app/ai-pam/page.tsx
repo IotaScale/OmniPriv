@@ -34,6 +34,7 @@ import IdentityTabs, { type IdentityTab } from "@/components/aipam/IdentityTabs"
 import { AgentVisual, AuditVisual, BehaviorVisual, JitVisual, SessionVisual, VaultVisual } from "@/components/aipam/Visuals";
 import BgMotif from "@/components/home/BgMotif";
 import Prose from "@/components/sections/Prose";
+import { KeepReading } from "@/components/pageui/blocks";
 import { cn } from "@/lib/utils";
 import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { RichText } from "@/lib/rich-text";
@@ -60,9 +61,10 @@ import type { RichText } from "@/lib/rich-text";
 
 export const metadata: Metadata = {
     // Absolute: the root layout's "%s | OmniPriv" template would repeat the brand.
-    title: { absolute: "AI PAM & Privileged Access Management | OmniPriv" },
+    title: { absolute: "OmniPriv AI-PAM Engine | AI Privileged Access Management" },
     description:
-        "Secure human, machine and AI identities with OmniPriv AI PAM solution. Enforce JIT access, protect credentials and detect privileged threats in real time.",
+        "How the OmniPriv AI-PAM engine works: behavioural scoring on every privileged session, AI agent governance and automated response, inside one PAM platform.",
+    alternates: { canonical: "/ai-pam" },
 };
 
 interface RichCard {
@@ -87,7 +89,7 @@ const hero = {
         ],
         [
             "OmniPriv delivers an intelligent ",
-            { text: "AI PAM solution", href: "https://omnipriv.com/blog/ai-pam-solutions" },
+            { text: "AI PAM solution", href: "/blog/ai-pam-solutions" },
             " that combines Zero Trust security, Just-in-Time (JIT) access, privileged credential management, AI-powered threat detection, and continuous session visibility.",
         ],
         [
@@ -124,7 +126,7 @@ const whatIs = {
     title: "What Is AI PAM and How Does It Improve Security?",
     paragraphs: [
         [
-            { text: "AI Privileged Access Management", href: "https://omnipriv.com/" },
+            { text: "AI Privileged Access Management", href: "/" },
             " (AI PAM) combines traditional privileged access controls with artificial intelligence, behavioral analytics, and governance for automated identities.",
         ],
         [
@@ -165,7 +167,7 @@ const identities = {
             controls: ["Agent-specific identities", "Scoped permissions", "Tool-level authorization", "Human approval for sensitive actions", "Auditable activity"],
             paragraphs: [
                 [
-                    { text: "AI agents", href: "https://omnipriv.com/platform/secure-ai-agents-omnipriv" },
+                    { text: "AI agents", href: "/platform/secure-ai-agents" },
                     " can interact with databases, enterprise applications, APIs, and automation tools. Without clear authorization boundaries, these interactions can create new paths to sensitive information.",
                 ],
                 ["OmniPriv supports agent-specific identities, scoped permissions, tool-level authorization, human approval for sensitive actions, and auditable activity. This enables businesses to adopt agentic AI without granting unrestricted privileged access."],
@@ -243,7 +245,7 @@ const capabilities = {
                 ["OmniPriv uses machine-learning behavioral analysis to identify unusual privileged activity, including abnormal commands, unexpected access patterns, and potential privilege misuse."],
                 [
                     "Its ",
-                    { text: "AI-PAM engine", href: "https://omnipriv.com/" },
+                    { text: "AI-PAM engine", href: "/" },
                     " combines behavioral scoring with live threat detection and response controls, helping security teams investigate and contain risky activity.",
                 ],
             ],
@@ -861,6 +863,22 @@ export default function AiPamPage() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ─── KEEP READING ─────────────────────────────────── */}
+            {/* The three AI PAM pages each have their own job and link to each other:
+                this one (the engine), the buyer-facing solution page and the guide. */}
+            <section className="border-b border-slate-900/[0.05] dark:border-white/[0.04]">
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading
+                        links={[
+                            { href: "/solutions/ai-pam-solutions", label: "AI PAM solutions for your estate" },
+                            { href: "/blog/ai-pam-solutions", label: "Guide: AI PAM explained" },
+                            { href: "/platform/secure-ai-agents", label: "Secure AI Agents module" },
+                        ]}
+                    />
                 </div>
             </section>
 

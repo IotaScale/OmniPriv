@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Plug, CheckCircle2, Puzzle } from "lucide-react";
+import { Plug, CheckCircle2, Puzzle } from "lucide-react";
 
-import CtaBand from "@/components/sections/CtaBand";
-import SplitHero from "@/components/sections/SplitHero";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { ApiConsole, IntegrationExplorer, IntegrationsHero, type Integration } from "@/components/integrations/Visuals";
+import { ClosingBand, FactsStrip, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { cn } from "@/lib/utils";
+
+/*
+ * /integrations. Built from the shared page kit (components/pageui) so it
+ * matches the other redesigned pages. Copy and the integration list are
+ * unchanged; the directory adds search and category filters on top of it.
+ * Values inside illustrations are illustrative.
+ */
 
 export const metadata: Metadata = {
   title: "Integrations: Connect OmniPriv to Your Stack",
   description:
     "OmniPriv integrates with 250+ enterprise tools, from identity providers and SIEM platforms to cloud services and ITSM systems, so privileged access management fits naturally into your existing workflows.",
-};
-
-type Integration = {
-  name: string;
-  desc: string;
-  category: string;
 };
 
 const categories: { label: string; description: string; integrations: Integration[] }[] = [
@@ -109,110 +112,107 @@ const featuredLogos = [
   "SailPoint", "Ping", "Kubernetes", "HashiCorp", "GitHub", "Terraform",
 ];
 
-const cardClass =
-  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/45 transition-colors";
+const NAV = [
+  { id: "int-featured", label: "Featured" },
+  { id: "int-api", label: "API & SDK" },
+  { id: "int-directory", label: "Directory" },
+];
+
+const API_POINTS = [
+  { icon: Plug, title: "REST API", desc: "Fully documented REST API for custom integrations, automation, and SIEM data streaming. Every platform action is API-accessible." },
+  { icon: CheckCircle2, title: "Tested Integrations", desc: "Every integration is tested and validated with each OmniPriv platform release, so upgrades do not break the tools you rely on." },
+  { icon: Puzzle, title: "Custom Connectors", desc: "Build custom connectors using our open SDK or request a connector from our engineering team. No vendor lock-in." },
+];
+
+/* Counted from the list on this page. */
+const LISTED = categories.reduce((s, c) => s + c.integrations.length, 0);
+const FACTS = [
+  { value: categories.length, label: "integration categories, from identity to databases" },
+  { value: LISTED, label: "integrations listed and searchable on this page" },
+  { value: 3, label: "ways to connect: REST API, tested integrations, open SDK" },
+  { value: "REST", label: "every platform action is API-accessible" },
+];
 
 export default function IntegrationsPage() {
   return (
-    <>
-      <SplitHero
+    <div className="aip">
+      <SectionNav items={NAV} startId="int-hero" />
+      <Spotlight />
+
+      <PageHero
+        id="int-hero"
         titleLead="Fits Seamlessly Into"
         titleAccent="Your Stack"
-        primary={{ href: "/demo", label: "See a Live Integration Demo" }}
-        media={{
-          src: "/product/asset.png",
-          alt: "OmniPriv asset management view for connected enterprise systems",
-          fit: "contain",
-        }}
+        paragraphs={[["OmniPriv connects natively with 250+ enterprise tools, identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them."]]}
+        primary={{ href: "/demo?intent=integration", label: "See a Live Integration Demo" }}
+        visual={<IntegrationsHero />}
       >
-        <p>
-          OmniPriv connects natively with 250+ enterprise tools, identity providers, SIEM platforms, ITSM systems, cloud services, and development pipelines. PAM that works with your existing workflows, not against them.
-        </p>
-      </SplitHero>
+        <FactsStrip facts={FACTS} />
+      </PageHero>
 
-      {/* Featured integrations */}
-      <section className="py-12 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-        <div className="container-xl">
-          <p className="text-sm font-semibold text-[#0a1628] dark:text-white mb-5">Integrations include</p>
-          <div className="flex flex-wrap gap-3" data-aos="fade-up">
-            {featuredLogos.map((logo) => (
-              <div
-                key={logo}
-                className="px-5 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] text-sm font-medium text-slate-700 dark:text-slate-300"
-              >
-                {logo}
-              </div>
-            ))}
-            <div className="px-5 py-2.5 rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] text-sm font-medium text-slate-500 dark:text-slate-400">
-              + 238 more
-            </div>
+      {/* ─── FEATURED ─────────────────────────── */}
+      <section id="int-featured" className={cn(mutedBand, sectionLine)}>
+        <div className="container-xl py-12 lg:py-14">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8">
+            <p className="shrink-0 text-[0.9375rem] font-semibold text-[#0a1628] dark:text-white">Integrations include</p>
+            <ul className="flex flex-wrap gap-2.5" data-aos="fade-up">
+              {featuredLogos.map((logo) => (
+                <li key={logo} className="rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] px-4 py-2 text-[0.875rem] font-medium text-slate-700 dark:text-slate-300">
+                  {logo}
+                </li>
+              ))}
+              <li>
+                <a href="#int-directory" className="inline-flex rounded-xl border border-dashed border-[#00B8DB]/45 px-4 py-2 text-[0.875rem] font-semibold text-[#00667A] dark:text-[#7FE3F2] hover:bg-[#00B8DB]/[0.06] transition-colors">
+                  + 238 more
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* API-first callout */}
-      <section className="section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-        <div className="container-xl">
-          <div className="grid gap-5 lg:grid-cols-3" data-aos="fade-up">
-            {[
-              { icon: Plug, title: "REST API", desc: "Fully documented REST API for custom integrations, automation, and SIEM data streaming. Every platform action is API-accessible." },
-              { icon: CheckCircle2, title: "Tested Integrations", desc: "Every integration is tested and validated with each OmniPriv platform release, so upgrades do not break the tools you rely on." },
-              { icon: Puzzle, title: "Custom Connectors", desc: "Build custom connectors using our open SDK or request a connector from our engineering team. No vendor lock-in." },
-            ].map((item) => (
-              <div key={item.title} className={`${cardClass} p-6`}>
-                <div className="icon-wrapper mb-4">
-                  <item.icon className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <h3 className="op-card-title mb-2">{item.title}</h3>
-                <p className="op-card-text">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Category sections */}
-      <section className="section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-        <div className="container-xl space-y-16 lg:space-y-20">
-          {categories.map((cat) => (
-            <div key={cat.label}>
-              <div className="section-heading" data-aos="fade-up">
-                <h2 className="op-h2">{cat.label}</h2>
-                <p className="op-lede">{cat.description}</p>
-              </div>
-              <div className="op-body grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-aos="fade-up">
-                {cat.integrations.map((intg) => (
-                  <div key={intg.name} className={`${cardClass} p-5`}>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div
-                        className="icon-wrapper flex-shrink-0 flex items-center justify-center text-[0.5625rem] font-bold leading-none text-center"
-                        aria-hidden="true"
-                      >
-                        {intg.name.substring(0, 3).toUpperCase()}
-                      </div>
-                      <div>
-                        <h3 className="op-card-title text-[0.9375rem] leading-tight">{intg.name}</h3>
-                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{intg.category}</div>
-                      </div>
+      {/* ─── API-FIRST (dark band) ────────────── */}
+      <div className="dark">
+        <section id="int-api" className="relative overflow-hidden op-band-navy">
+          <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+          <div className="container-xl op-sec relative">
+            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+              <ul className="min-w-0 space-y-3">
+                {API_POINTS.map((item, k) => (
+                  <li key={item.title} className="aip-card rounded-2xl border p-5 lg:p-6" data-aos="fade-up" data-aos-delay={String(k * 70)}>
+                    <div className="flex items-center gap-3">
+                      <span className="icon-wrapper shrink-0">
+                        <item.icon className="w-5 h-5" aria-hidden="true" />
+                      </span>
+                      <h2 className="op-card-title">{item.title}</h2>
                     </div>
-                    <p className="op-card-text text-sm">{intg.desc}</p>
-                  </div>
+                    <p className="op-card-text mt-3">{item.desc}</p>
+                  </li>
                 ))}
+              </ul>
+              <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                <ApiConsole />
               </div>
             </div>
-          ))}
+          </div>
+        </section>
+      </div>
+
+      {/* ─── DIRECTORY ────────────────────────── */}
+      <section id="int-directory" className={sectionLine}>
+        <div className="container-xl op-sec">
+          <IntegrationExplorer categories={categories} />
         </div>
       </section>
 
-      {/* Closing CTA */}
-      <CtaBand
+      <ClosingBand
         title="Don't See Your Tool?"
         body={[
           "Contact our integration team. We support custom connectors and can prioritize new integrations based on customer demand.",
         ]}
-        primary={{ href: "/demo", label: "Request an Integration Demo" }}
+        primary={{ href: "/demo?intent=integration", label: "Request an Integration Demo" }}
         secondary={{ href: "mailto:integrations@OmniPriv.com", label: "Contact Integration Team" }}
       />
-    </>
+    </div>
   );
 }

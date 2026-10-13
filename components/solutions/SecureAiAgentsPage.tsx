@@ -10,23 +10,20 @@ import {
     Workflow,
 } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { AgentPassport, CredentialBroker, IdentityShift, InfraReach, PolicyCard, RiskScore, SecureHero, SessionReplay, StandingVsJit, WhyStack } from "@/components/secureagents/Visuals";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import type { FaqEntry } from "@/components/sections/FaqSection";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * Bespoke layout for /platform/secure-ai-agents-omnipriv, the destination of
+ * Bespoke layout for /platform/secure-ai-agents, the destination of
  * the "AI Governance / Govern AI agents securely" challenge card.
  *
  * Routing still belongs to app/platform/[slug]/page.tsx, which renders this
@@ -34,6 +31,10 @@ import type { RichText } from "@/lib/rich-text";
  * in its `bespokePages` map. SEO metadata continues to come from the module
  * entry in app/platform/data.ts. The former /platform/ai-agent-governance URL
  * 301s here (see next.config.js).
+ *
+ * Built from the shared page kit (components/pageui) so it matches the other
+ * redesigned pages. Copy below is unchanged; values inside illustrations are
+ * illustrative.
  *
  * Claims here are limited to what this repository already states: the agent
  * governance model (per-agent identity, tool allowlist, bounded data scope,
@@ -54,7 +55,7 @@ const hero = {
     kicker: [
         "Control what AI agents can access, how much privilege they receive, how long that privilege lasts, and what happens after access is granted.",
     ] as RichText,
-    primary: { href: "/demo", label: "Request a Demo" },
+    primary: { href: "/demo?intent=ai", label: "Request a Demo" },
     secondary: { href: "/ai-pam", label: "Explore AI-PAM" },
     image: {
         src: "/challenges/ai-govern.jpg",
@@ -288,7 +289,7 @@ const closing = {
         "OmniPriv helps organizations secure AI agents with Privileged Access Management, JIT privileges, credential protection, AI-agent governance, behavioral threat detection, and complete session accountability.",
     ],
     kicker: "Every identity verified. Every privilege scoped. Every sensitive action visible.",
-    primary: { href: "/demo", label: "Request a Demo" },
+    primary: { href: "/demo?intent=ai", label: "Request a Demo" },
     secondary: { href: "/ai-pam", label: "Explore AI-PAM" },
 };
 
@@ -325,259 +326,273 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const NAV = [
+    { id: "sa-who", label: "Who holds privilege" },
+    { id: "sa-zero-trust", label: "Zero Trust & JIT" },
+    { id: "sa-credentials", label: "Credentials" },
+    { id: "sa-monitor", label: "Sessions" },
+    { id: "sa-detect", label: "Detection" },
+    { id: "sa-boundaries", label: "Boundaries" },
+    { id: "sa-faq", label: "FAQ" },
+];
+
+/* The four figures this page already states, in the shared figures strip. */
+const FACTS = [
+    { value: 39, label: `${stats[0].label} · ${stats[0].sub.toLowerCase()}` },
+    { value: 53, label: `${stats[2].label} · ${stats[2].sub.toLowerCase()}` },
+    { value: 50, label: `${stats[1].label} · ${stats[1].sub}` },
+    { value: "10s", label: `${stats[3].label} · ${stats[3].sub.toLowerCase()}` },
+];
+
+function Card({ item, delay }: { item: IconCard; delay: number }) {
+    const Icon = item.icon;
+    return (
+        <li className="aip-card min-w-0 rounded-2xl border p-5" data-aos="fade-up" data-aos-delay={String(delay)}>
+            <div className="flex items-center gap-3">
+                <span className="icon-wrapper shrink-0">
+                    <Icon className="w-5 h-5" aria-hidden="true" />
+                </span>
+                <h3 className="op-card-title text-[0.9844rem]">{item.title}</h3>
+            </div>
+            <p className="op-card-text mt-3">{item.text}</p>
+        </li>
+    );
+}
+
 export default function SecureAiAgentsPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="sa-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="sa-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<SecureHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-5" />
-                <Prose segments={hero.kicker} tone="kicker" className="mb-8" />
-            </SplitHero>
+                <div className="mt-8 flex max-w-3xl items-center gap-3" data-aos="fade-up">
+                    <span className="hidden sm:block h-px w-10 shrink-0 bg-[#00B8DB]" aria-hidden="true" />
+                    <Prose segments={hero.kicker} tone="strong" className="text-[1.0625rem]" />
+                </div>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── WHO HOLDS PRIVILEGE ──────────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={whoSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={whoSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {whoSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === whoSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
-                        ))}
+            <section id="sa-who" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={whoSection.title} />
+                            <div className="mt-6 space-y-4">
+                                {whoSection.paragraphs.map((p, k) => (
+                                    <Prose key={k} segments={p} className="text-[1.0156rem]" />
+                                ))}
+                            </div>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <IdentityShift />
+                        </div>
+                    </div>
+                    <div className="mt-14 lg:mt-16 rounded-3xl border border-[#00B8DB]/25 bg-white dark:bg-[#15171a] px-6 py-8 sm:px-10 sm:py-10" data-aos="fade-up">
+                        <Prose segments={[whoSection.prompt]} className="text-[1.0156rem]" />
+                        <p className="mt-3 text-[1.5rem] sm:text-[1.875rem] leading-tight font-bold tracking-[-0.02em] text-[#0a1628] dark:text-white [text-wrap:balance]" style={{ fontFamily: "var(--font-syne)" }}>
+                            {whoSection.question}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── ZERO TRUST PAM + JIT ─────────────── */}
+            <section id="sa-zero-trust" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                            <PolicyCard />
+                        </div>
+                        <div className="min-w-0 order-1 lg:order-2">
+                            <Heading title={zeroTrustSection.title} />
+                            <div className="mt-6 space-y-4">
+                                {zeroTrustSection.paragraphs.map((p, k) => (
+                                    <Prose key={k} segments={p} className="text-[1.0156rem]" />
+                                ))}
+                            </div>
+                            <CheckList items={zeroTrustSection.controls} className="mt-6" />
+                            <Prose segments={zeroTrustSection.closing} className="mt-6 text-[1.0156rem]" />
+                        </div>
                     </div>
 
-                    <Prose segments={[whoSection.prompt]} tone="strong" className="mt-8 mb-3" />
-                    <Prose segments={[whoSection.question]} tone="kicker" />
-                </MediaSplit>
-            </Section>
-
-            {/* ─── ZERO TRUST PAM + JIT ───────────────
-                Two topics, each complete: Zero Trust PAM first, then JIT
-                access. Both headings span the full content width with their
-                copy underneath, the same reading order as every other
-                section. `as="h3"` keeps the document outline intact. */}
-            <Section border="bottom">
-                <SectionHeading title={zeroTrustSection.title}>
-                    <Prose segments={zeroTrustSection.paragraphs[0]} className="mb-4" />
-                    <Prose segments={zeroTrustSection.paragraphs[1]} />
-                </SectionHeading>
-
-                <CheckList items={zeroTrustSection.controls} className="mt-8" />
-
-                <Prose segments={zeroTrustSection.closing} className="mt-8" />
-
-                <SectionHeading
-                    as="h3"
-                    size="md"
-                    title={zeroTrustSection.subheading}
-                    className="mt-16"
-                >
-                    {zeroTrustSection.jit.map((paragraph, index) => (
-                        <Prose
-                            key={index}
-                            segments={paragraph}
-                            className={
-                                index === zeroTrustSection.jit.length - 1 ? "" : "mb-4"
-                            }
-                        />
-                    ))}
-                </SectionHeading>
-            </Section>
+                    <div className="mt-20 lg:mt-24 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading as="h3" title={zeroTrustSection.subheading} />
+                            <div className="mt-6 space-y-4">
+                                {zeroTrustSection.jit.map((p, k) => (
+                                    <Prose key={k} segments={p} className="text-[1.0156rem]" />
+                                ))}
+                            </div>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <StandingVsJit />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── CREDENTIALS ──────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <MediaSplit
-                    media={credentialsSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={credentialsSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {credentialsSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === credentialsSection.paragraphs.length - 1
-                                        ? ""
-                                        : "mb-4"
-                                }
-                            />
-                        ))}
+            <section id="sa-credentials" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={credentialsSection.title} />
+                            <div className="mt-6 space-y-4">
+                                {credentialsSection.paragraphs.map((p, k) => (
+                                    <Prose key={k} segments={p} className="text-[1.0156rem]" />
+                                ))}
+                            </div>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <CredentialBroker />
+                        </div>
                     </div>
-                </MediaSplit>
-            </Section>
+                </div>
+            </section>
 
             {/* ─── SESSION MONITORING ───────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={monitorSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={monitorSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {monitorSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === monitorSection.paragraphs.length - 1
-                                        ? ""
-                                        : "mb-4"
-                                }
-                            />
-                        ))}
-                    </div>
-
-                    <ArrowLink href="/ai-pam" className="mt-8">
-                        See how agent sessions are scored
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── DETECT (dark band) ─────────────────
-                No image, so the column is centred and the heading block with it;
-                the pattern list stays left-aligned for scannability. */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={detectSection.title} align="center">
-                    <Prose segments={detectSection.paragraphs[0]} className="mb-4" />
-                    <Prose segments={detectSection.paragraphs[1]} />
-                </SectionHeading>
-
-                <div className="max-w-3xl mx-auto">
-                    <CheckList items={detectSection.patterns} className="mt-8" />
-
-                    <Prose segments={detectSection.closing} className="mt-8" />
-                </div>
-            </Section>
-
-            {/* ─── BOUNDARIES ─────────────────────────
-                No image, so the heading block is centred. */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={boundariesSection.title} align="center">
-                    <Prose segments={boundariesSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={boundaries} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── ENTERPRISE INFRASTRUCTURE ──────────
-                Was a MediaSplit. That lays out as `lg:grid-cols-[1fr_1.15fr]`, so
-                a 16:9 photograph forced a 337px row while the heading and single
-                sentence beside it needed ~110px, roughly 230px of the row was
-                empty by construction, and the photograph was the only reason for
-                it. The section is really one heading, one introducing sentence and
-                four items, so the image is gone and the four items now run in one
-                row instead of two.
-
-                With no image beside it the heading block is centred, matching
-                the other image-less sections and "Governance you can point at"
-                further down the page. */}
-            <Section border="bottom">
-                <SectionHeading
-                    title={infraSection.title}
-                    align="center"
-                    className="mx-auto"
-                >
-                    <Prose segments={infraSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={infraAreas} columns={4} className="mt-10" />
-            </Section>
-
-            {/* ─── WHY OMNIPRIV ───────────────────────
-                No image, so the column is centred and the heading block with it.
-                The tick list stays left-aligned inside the centred column, a
-                centred list is harder to scan. */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={whySection.title} align="center">
-                    <Prose segments={whySection.lead} />
-                </SectionHeading>
-
-                <div className="max-w-3xl mx-auto">
-                    <CheckList items={whySection.reasons} className="mt-8" />
-
-                    <Prose segments={whySection.closing} className="mt-8" />
-                </div>
-            </Section>
-
-            {/* ─── OUTCOMES ─────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title="Governance you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Agent security is not a policy document. These are the controls running
-                        behind it.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {stats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
+            <section id="sa-monitor" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                            <SessionReplay />
                         </div>
-                    ))}
+                        <div className="min-w-0 order-1 lg:order-2">
+                            <Heading title={monitorSection.title} />
+                            <div className="mt-6 space-y-4">
+                                {monitorSection.paragraphs.map((p, k) => (
+                                    <Prose key={k} segments={p} className="text-[1.0156rem]" />
+                                ))}
+                            </div>
+                            <ArrowLink href="/ai-pam" className="mt-7">
+                                See how agent sessions are scored
+                            </ArrowLink>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
+            {/* ─── DETECT (dark band) ───────────────── */}
+            <div className="dark">
+                <section id="sa-detect" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0">
+                                <Heading title={detectSection.title} />
+                                <div className="mt-6 space-y-4">
+                                    {detectSection.paragraphs.map((p, k) => (
+                                        <Prose key={k} segments={p} className="text-[1.0156rem] text-slate-600 dark:text-slate-400" />
+                                    ))}
+                                </div>
+                                <CheckList items={detectSection.patterns} className="mt-6" />
+                                <div className="mt-7 flex items-center gap-3">
+                                    <span className="hidden sm:block h-px w-10 shrink-0 bg-[#00B8DB]" aria-hidden="true" />
+                                    <Prose segments={detectSection.closing} tone="strong" className="text-[1.0625rem]" />
+                                </div>
+                            </div>
+                            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                                <RiskScore />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── BOUNDARIES ───────────────────────── */}
+            <section id="sa-boundaries" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Heading title={boundariesSection.title}>
+                                <Prose segments={boundariesSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                                {boundaries.map((b, k) => (
+                                    <Card key={b.title} item={b} delay={(k % 2) * 70} />
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <AgentPassport />
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            {/* ─── ENTERPRISE INFRASTRUCTURE ────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={infraSection.title}>
+                                <Prose segments={infraSection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <InfraReach />
+                        </div>
+                    </div>
+                    <ul className="op-body grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                        {infraAreas.map((a, k) => (
+                            <Card key={a.title} item={a} delay={k * 60} />
+                        ))}
+                    </ul>
+                </div>
+            </section>
+
+            {/* ─── WHY OMNIPRIV ─────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={whySection.title}>
+                                <Prose segments={whySection.lead} className="text-[1.0625rem]" />
+                            </Heading>
+                            <div className="mt-7 flex items-center gap-3" data-aos="fade-up">
+                                <span className="hidden sm:block h-px w-10 shrink-0 bg-[#00B8DB]" aria-hidden="true" />
+                                <Prose segments={whySection.closing} tone="strong" className="text-[1.0625rem]" />
+                            </div>
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <WhyStack reasons={whySection.reasons} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── GOVERNANCE YOU CAN POINT AT / KEEP READING ── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2" data-aos="fade-up">
+                        <h2 className="op-h3">Governance you can point at</h2>
+                        <p className="text-[0.9375rem] text-slate-600 dark:text-slate-400">
+                            Agent security is not a policy document. These are the controls running behind it.
+                        </p>
+                    </div>
+                    <KeepReading links={keepReading} />
+                </div>
+            </section>
+
+            <ClosingBand
                 title={closing.title}
+                lead={closing.kicker}
                 body={closing.body}
-                kicker={closing.kicker}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about securing AI agents, agentic identity security and governing privileged AI access."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="sa-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

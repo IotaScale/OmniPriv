@@ -59,7 +59,7 @@ export const blogCovers: Record<string, BlogCover> = {
         src: url("photo-1663524789637-9ed898d79611"),
         alt: "Developer working at a laptop",
     },
-    "OmniPriv-4-release": {
+    "omnipriv-4-release": {
         src: url("photo-1668092548351-a90526eefb7e"),
         alt: "Colleagues working together in a modern office",
     },

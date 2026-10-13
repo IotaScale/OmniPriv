@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Onest, Sora, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import AppChrome from "@/components/layout/AppChrome";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import AosProvider from "@/components/ui/AosProvider";
 
@@ -137,6 +136,15 @@ export default function RootLayout({
                 contactType: "sales",
                 email: "sales@OmniPriv.com",
               },
+              address: {
+                "@type": "PostalAddress",
+                name: "Omnipriv US Office",
+                streetAddress: "4301 Independence St.",
+                addressLocality: "Rockville",
+                addressRegion: "MD",
+                postalCode: "20853",
+                addressCountry: "US",
+              },
               sameAs: ["https://www.linkedin.com/company/OmniPriv"],
             }),
           }}
@@ -150,7 +158,7 @@ export default function RootLayout({
           <style>{`[data-aos]{opacity:1!important;transform:none!important;transition:none!important}`}</style>
         </noscript>
       </head>
-      <body className="bg-white text-slate-900 dark:bg-[#060b17] dark:text-slate-200 antialiased" suppressHydrationWarning>
+      <body className="bg-white text-slate-900 dark:bg-[#0b0c0e] dark:text-slate-200 antialiased" suppressHydrationWarning>
         <AosProvider />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W5FJSLJRGE"
@@ -165,9 +173,7 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
-          <Header />
-          <main className="pt-[72px]">{children}</main>
-          <Footer />
+          <AppChrome>{children}</AppChrome>
         </ThemeProvider>
       </body>
     </html>

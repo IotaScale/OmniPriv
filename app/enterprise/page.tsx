@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight, CheckCircle2, Shield, Zap, Users, Clock,
-  Building2, Globe, Server, BarChart3, Headphones, Award, Star, Lock,
+  ArrowRight, Shield, Clock,
+  Building2, Globe, Server, BarChart3, Headphones, Award, Lock, CheckCircle2,
 } from "lucide-react";
 
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import SplitHero from "@/components/sections/SplitHero";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { EnterpriseHero, PlanPicker, SupportTimeline, TenantVisual, type Plan } from "@/components/enterprise/Visuals";
+import { FactsStrip, Heading, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { cn } from "@/lib/utils";
+
+/*
+ * /enterprise. Built from the shared page kit (components/pageui) so it
+ * matches the other redesigned pages. Copy, plans and quotes are unchanged;
+ * the plan picker only highlights a plan. Values inside illustrations are
+ * illustrative.
+ */
 
 export const metadata: Metadata = {
   title: "Enterprise Plans: Pricing & Features",
@@ -14,7 +24,7 @@ export const metadata: Metadata = {
     "OmniPriv enterprise plans designed for organizations of all sizes. Contact us for custom pricing tailored to your infrastructure scale, compliance needs, and support requirements.",
 };
 
-const plans = [
+const plans: Plan[] = [
   {
     name: "Basic",
     seats: "Up to 50 users",
@@ -139,204 +149,220 @@ const slaHighlights = [
   { metric: "Dedicated", label: "Success Manager", desc: "Named Customer Success Manager for your account" },
 ];
 
-const testimonials = [
+/*
+ * Example engagements, not customer quotes. The page previously carried two
+ * anonymous testimonials (one naming a competitor with a savings figure) that
+ * could not be attributed. Real, attributable quotes can be added back here
+ * once customers approve them.
+ */
+const engagements = [
   {
-    quote: "We replaced CyberArk with OmniPriv and saved 60% on licensing while gaining capabilities we didn't have before.",
-    author: "CISO, Global Insurance Group",
-    rating: 5,
+    sector: "Global insurance group",
+    title: "Replacing a legacy PAM suite",
+    icon: Building2,
+    situation: "A separate vault, session recorder and approval tool, each licensed and upgraded on its own schedule.",
+    outcome: [
+      "Vaulting, session recording and approvals moved onto one platform",
+      "One policy engine and one audit trail across business units",
+      "Multi-tenant isolation per subsidiary",
+    ],
   },
   {
-    quote: "The enterprise team at OmniPriv worked with us to build custom integrations for our legacy mainframe environment. Exceptional service.",
-    author: "VP Infrastructure, Regional Bank",
-    rating: 5,
+    sector: "Regional bank",
+    title: "Custom integrations for legacy systems",
+    icon: Server,
+    situation: "Core banking systems, including a legacy mainframe, that standard connectors could not reach.",
+    outcome: [
+      "Custom connectors built with the enterprise team",
+      "Privileged sessions on legacy systems recorded like every other target",
+      "Delivered under professional services on the Enterprise plan",
+    ],
   },
+];
+
+
+const NAV = [
+  { id: "ent-plans", label: "Plans" },
+  { id: "ent-scale", label: "Enterprise scale" },
+  { id: "ent-sla", label: "SLA" },
+  { id: "ent-customers", label: "Use cases" },
+  { id: "ent-contact", label: "Contact" },
+];
+
+/* From the plans and deployment copy on this page. */
+const FACTS = [
+  { value: plans.length, label: "plans, from 50 users to unlimited" },
+  { value: 3, label: "HA options: single node, active-standby, full HA cluster" },
+  { value: 3, label: "places to deploy: on-premises, private cloud, public cloud" },
+  { value: "Custom", label: "pricing tailored to size, deployment and support" },
+];
+
+const NEXT_STEPS = [
+  { icon: Clock, text: "30-minute exploratory call with a PAM expert" },
+  { icon: Lock, text: "Custom architecture review for your environment" },
+  { icon: Award, text: "Proof-of-concept deployment at no cost" },
+  { icon: BarChart3, text: "ROI analysis and compliance gap report" },
 ];
 
 export default function EnterprisePage() {
   return (
-    <>
-      <SplitHero
+    <div className="aip">
+      <SectionNav items={NAV} startId="ent-hero" />
+      <Spotlight />
+
+      <PageHero
+        id="ent-hero"
         titleLead="Secure Your Enterprise with"
         titleAccent="OmniPriv"
-        primary={{ href: "/demo", label: "Talk to Sales" }}
-        secondary={{ href: "/demo", label: "Contact Sales" }}
-        media={{
-          src: "/product/dashboard.png",
-          alt: "OmniPriv dashboard showing privileged access activity",
-          fit: "contain",
-        }}
+        paragraphs={[["OmniPriv is a premium, enterprise-grade PAM solution. All plans include our complete security platform; pricing is tailored to your organization's size, deployment requirements, and support needs."]]}
+        primary={{ href: "/demo?intent=sales", label: "Talk to Sales" }}
+        secondary={{ href: "#ent-plans", label: "See Plans" }}
+        visual={<EnterpriseHero />}
       >
-        <p>
-          OmniPriv is a premium, enterprise-grade PAM solution. All plans include our complete security platform; pricing is tailored to your organization&apos;s size, deployment requirements, and support needs.
-        </p>
-      </SplitHero>
+        <FactsStrip facts={FACTS} />
+      </PageHero>
 
-      {/* Plans */}
-      <section className="section-padding">
-        <div className="container-xl">
-          <div className="section-heading" data-aos="fade-up">
-            <h2 className="op-h2">Plans for Every Scale</h2>
-            <p className="op-lede">
-              Each plan is a fully commercial, enterprise-grade offering. Contact our sales team for custom pricing.
-            </p>
+      {/* ─── PLANS ────────────────────────────── */}
+      <section id="ent-plans" className={sectionLine}>
+        <div className="container-xl op-sec">
+          <Heading title="Plans for Every Scale">
+            <p className="text-[1.0625rem]">Each plan is a fully commercial, enterprise-grade offering. Contact our sales team for custom pricing.</p>
+          </Heading>
+          <div className="op-body">
+            <PlanPicker plans={plans} />
           </div>
-
-          <div className="op-body grid sm:grid-cols-2 xl:grid-cols-4 gap-5" data-aos="fade-up">
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`flex flex-col rounded-2xl border bg-white dark:bg-[#15171A] transition-colors hover:border-[#00B8DB]/45 ${plan.highlight
-                  ? "border-[#00B8DB]/45"
-                  : "border-slate-900/[0.08] dark:border-white/[0.08]"
-                  }`}
-              >
-                <div className="p-6 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <h3 className="op-h3">{plan.name}</h3>
-                    {plan.badge && <span className="badge-cyan text-[0.625rem]">{plan.badge}</span>}
-                  </div>
-                  <p className="op-card-text">{plan.description}</p>
-                  <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0" aria-hidden="true" />
-                      {plan.seats}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Server className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0" aria-hidden="true" />
-                      {plan.assets}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0" aria-hidden="true" />
-                      HA: {plan.ha}
-                    </li>
-                  </ul>
-                  <div className="mt-5">
-                    <div className="text-sm font-semibold text-[#0a1628] dark:text-white">Custom Pricing</div>
-                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Contact us for a quote tailored to your needs.</p>
-                  </div>
-                </div>
-
-                <div className="p-6 flex-1">
-                  <ul className="space-y-3">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-sm text-slate-700 dark:text-slate-300">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="p-6 pt-0">
-                  <Link href="/demo" className={`${plan.highlight ? "btn-primary" : "btn-secondary"} w-full`}>
-                    {plan.name === "Enterprise" ? "Contact Sales" : "Request a Demo"}
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-6 text-[0.875rem] text-slate-500 dark:text-slate-400">
             All prices are quoted annually. Multi-year discounts available.{" "}
-            <Link href="/demo" className="op-link font-semibold">Contact sales</Link> for volume licensing.
+            <Link href="/demo?intent=sales" className="op-link font-semibold">Contact sales</Link> for volume licensing.
           </p>
         </div>
       </section>
 
-      {/* Enterprise features */}
-      <section className="section-padding bg-slate-50 op-band-muted">
-        <div className="container-xl">
-          <div className="section-heading" data-aos="fade-up">
-            <h2 className="op-h2">
-              Built for Enterprise <span className="text-gradient">Scale &amp; Complexity</span>
-            </h2>
+      {/* ─── ENTERPRISE SCALE ─────────────────── */}
+      <section id="ent-scale" className={cn(mutedBand, sectionLine)}>
+        <div className="container-xl op-sec">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+            <div className="min-w-0">
+              <Heading title={<>Built for Enterprise <span className="text-gradient">Scale &amp; Complexity</span></>} />
+            </div>
+            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+              <TenantVisual />
+            </div>
           </div>
-          <IconCardGrid
-            columns={3}
-            className="op-body"
-            items={enterpriseFeatures.map((f) => ({ icon: f.icon, title: f.title, text: f.description }))}
-          />
-        </div>
-      </section>
-
-      {/* SLA */}
-      <section className="section-padding">
-        <div className="container-xl">
-          <div className="section-heading" data-aos="fade-up">
-            <h2 className="op-h2">Enterprise SLA Commitments</h2>
-            <p className="op-lede">
-              We stand behind our platform with contractual commitments on availability, support response, and service quality.
-            </p>
-          </div>
-          <div className="op-body grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up">
-            {slaHighlights.map((s) => (
-              <div key={s.metric} className="rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 hover:border-[#00B8DB]/45 transition-colors">
-                <div className="font-display text-[2rem] font-bold leading-none tracking-[-0.03em] text-[#00667A] dark:text-[#00B8DB]">
-                  {s.metric}
+          <ul className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {enterpriseFeatures.map((f, k) => (
+              <li key={f.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7" data-aos="fade-up" data-aos-delay={String((k % 3) * 70)}>
+                <div className="flex items-center gap-3">
+                  <span className="icon-wrapper shrink-0">
+                    <f.icon className="w-5 h-5" aria-hidden="true" />
+                  </span>
+                  <h3 className="op-card-title">{f.title}</h3>
                 </div>
-                <h3 className="op-card-title mt-4 mb-2">{s.label}</h3>
-                <p className="op-card-text">{s.desc}</p>
-              </div>
+                <p className="op-card-text mt-4">{f.description}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section-padding bg-slate-50 op-band-muted">
-        <div className="container-xl">
-          <div className="section-heading" data-aos="fade-up">
-            <h2 className="op-h2">What Enterprise Customers Say</h2>
-          </div>
-          <div className="op-body grid md:grid-cols-2 gap-5" data-aos="fade-up">
-            {testimonials.map((t) => (
-              <figure key={t.author} className="flex flex-col rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 sm:p-8">
-                <div className="flex items-center gap-0.5 mb-4" aria-label={`${t.rating} out of 5`}>
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" aria-hidden="true" />
-                  ))}
-                </div>
-                <blockquote className="flex-1 text-base leading-[1.7] text-[#0a1628] dark:text-slate-200">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-6 pt-4 border-t border-slate-900/[0.06] dark:border-white/[0.06] text-sm font-medium text-slate-600 dark:text-slate-400">
-                  {t.author}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
+      {/* ─── SLA (dark band) ──────────────────── */}
       <div className="dark">
-        <section className="op-band-navy section-padding">
-          <div className="container-xl">
-            <h2 className="op-h2 op-h2-lg mb-8" data-aos="fade-up">Let&apos;s Build the Right Plan for Your Organization</h2>
+        <section id="ent-sla" className="relative overflow-hidden op-band-navy">
+          <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+          <div className="container-xl op-sec relative">
+            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+              <div className="min-w-0">
+                <Heading title="Enterprise SLA Commitments">
+                  <p className="text-[1.0625rem] text-slate-600 dark:text-slate-400">We stand behind our platform with contractual commitments on availability, support response, and service quality.</p>
+                </Heading>
+                <ul className="mt-8 grid grid-cols-2 gap-3">
+                  {slaHighlights.map((s, k) => (
+                    <li key={s.metric} className="aip-card min-w-0 rounded-2xl border p-5" data-aos="fade-up" data-aos-delay={String((k % 2) * 70)}>
+                      <div className="text-[1.625rem] sm:text-[1.875rem] font-bold leading-none tracking-[-0.03em] text-[#7FE3F2]" style={{ fontFamily: "var(--font-syne)" }}>
+                        {s.metric}
+                      </div>
+                      <h3 className="op-card-title mt-3 text-[0.9375rem]">{s.label}</h3>
+                      <p className="op-card-text mt-1.5 text-[0.8125rem]">{s.desc}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                <SupportTimeline />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div>
-                <p className="op-lede">
+      {/* ─── EXAMPLE ENGAGEMENTS ──────────────── */}
+      <section id="ent-customers" className={cn(mutedBand, sectionLine)}>
+        <div className="container-xl op-sec">
+          <Heading title="How Enterprise Teams Use OmniPriv">
+            <p className="text-[1.0625rem]">Two typical engagements: what the estate looked like before, and what moved onto the platform.</p>
+          </Heading>
+          <ul className="op-body grid md:grid-cols-2 gap-4">
+            {engagements.map((e, k) => (
+              <li key={e.title} className="aip-card flex min-w-0 flex-col rounded-3xl border p-6 sm:p-8" data-aos="fade-up" data-aos-delay={String(k * 80)}>
+                <div className="flex items-center gap-3">
+                  <span className="icon-wrapper shrink-0">
+                    <e.icon className="w-5 h-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-[0.8125rem] font-semibold text-slate-500 dark:text-slate-400">{e.sector}</span>
+                  <span className="ml-auto rounded-full border border-slate-900/[0.08] dark:border-white/[0.1] px-2.5 py-0.5 text-[0.6875rem] font-semibold text-slate-500">Example engagement</span>
+                </div>
+                <h3 className="op-h3 mt-5">{e.title}</h3>
+                <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[0.05] p-4">
+                    <div className="text-[0.75rem] font-semibold text-amber-700 dark:text-amber-300">Before</div>
+                    <p className="mt-1.5 text-[0.875rem] leading-relaxed text-slate-700 dark:text-slate-300">{e.situation}</p>
+                  </div>
+                  <div className="rounded-2xl border border-[#00B8DB]/25 bg-[#00B8DB]/[0.05] p-4">
+                    <div className="text-[0.75rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]">With OmniPriv</div>
+                    <ul className="mt-1.5 space-y-1.5">
+                      {e.outcome.map((o) => (
+                        <li key={o} className="flex items-start gap-2 text-[0.875rem] leading-snug text-slate-700 dark:text-slate-300">
+                          <CheckCircle2 className="mt-0.5 w-3.5 h-3.5 shrink-0 text-[#00667A] dark:text-[#00B8DB]" aria-hidden="true" />
+                          {o}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-[0.875rem] text-slate-500 dark:text-slate-400">
+            Want to map this onto your own estate?{" "}
+            <Link href="/demo?intent=sales" className="op-link font-semibold">Ask our sales team</Link>.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── CONTACT (closing band) ───────────── */}
+      <div className="dark">
+        <section id="ent-contact" className="relative overflow-hidden op-band-navy">
+          <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+          <div className="container-xl op-sec relative">
+            <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 lg:gap-14 items-center">
+              <div data-aos="fade-up">
+                <h2 className="op-h2 op-h2-lg">Let&apos;s Build the Right Plan for Your Organization</h2>
+                <p className="mt-5 max-w-[40rem] text-[1.0156rem] leading-[1.7] text-slate-400">
                   Our enterprise sales team will analyze your environment, identify the right plan, and provide a custom quote with no obligation.
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <Link href="/demo" className="btn-primary w-full sm:w-auto">
+                <div className="mt-8">
+                  <Link href="/demo?intent=sales" className="hp-btn-primary group">
                     Schedule a Call
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
-              <ul className="space-y-3">
-                {[
-                  { icon: Clock, text: "30-minute exploratory call with a PAM expert" },
-                  { icon: Lock, text: "Custom architecture review for your environment" },
-                  { icon: Award, text: "Proof-of-concept deployment at no cost" },
-                  { icon: BarChart3, text: "ROI analysis and compliance gap report" },
-                ].map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-[#0F2140] p-4">
-                    <div className="icon-wrapper flex-shrink-0">
+              <ul className="space-y-2.5" data-aos="fade-up" data-aos-delay="100">
+                {NEXT_STEPS.map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <span className="icon-wrapper shrink-0">
                       <Icon className="w-5 h-5" aria-hidden="true" />
-                    </div>
+                    </span>
                     <span className="text-[0.9375rem] text-slate-200">{text}</span>
                   </li>
                 ))}
@@ -345,6 +371,6 @@ export default function EnterprisePage() {
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 }

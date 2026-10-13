@@ -162,7 +162,7 @@ export default function AssignedLeadsPage() {
     const diffDays = Math.ceil(diffHours / 24);
     return (
       <span className="font-mono text-[11px] font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.04] px-2 py-0.5 rounded-full inline-flex items-center gap-1">
-        <Clock className="w-3 h-3 text-cyan-500" />
+        <Clock className="w-3 h-3 text-[#00667A] dark:text-[#00B8DB]" />
         <span>{diffDays}d remaining</span>
       </span>
     );
@@ -202,7 +202,7 @@ export default function AssignedLeadsPage() {
             <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               Assigned Leads
             </h1>
-            <span className="text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+            <span className="text-xs font-mono font-semibold bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] px-2.5 py-0.5 rounded-full border border-[#00B8DB]/20">
               {metrics.total} Inbound Dispatches
             </span>
           </div>
@@ -226,10 +226,10 @@ export default function AssignedLeadsPage() {
 
       {/* Metrics Ribbon */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Total Assigned</span>
-            <Target className="w-4 h-4 text-cyan-500" />
+            <Target className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
             {metrics.total}
@@ -237,7 +237,7 @@ export default function AssignedLeadsPage() {
           <div className="text-[11px] text-slate-400 mt-1">Vendor inbound routing</div>
         </div>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Needs Acceptance</span>
             <Clock className="w-4 h-4 text-amber-500" />
@@ -250,18 +250,18 @@ export default function AssignedLeadsPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>In Engagement</span>
-            <MessageSquare className="w-4 h-4 text-[#00B8FF]" />
+            <MessageSquare className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
           </div>
-          <div className="text-xl sm:text-2xl font-black text-[#00B8FF]">
+          <div className="text-xl sm:text-2xl font-black text-[#00667A] dark:text-[#00B8DB]">
             {metrics.activeWorking}
           </div>
           <div className="text-[11px] text-slate-400 mt-1">Active customer outreach</div>
         </div>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
             <span>Converted to Deals</span>
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
@@ -282,8 +282,8 @@ export default function AssignedLeadsPage() {
             onClick={() => setStatusFilter("all")}
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "all"
-                ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-cyan-500/40"
+                ? "bg-[#00B8DB] text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8DB]/40"
             }`}
           >
             <span>All Leads</span>
@@ -294,7 +294,7 @@ export default function AssignedLeadsPage() {
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "assigned"
                 ? "bg-amber-500 text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-amber-500/40"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-amber-500/40"
             }`}
           >
             <Clock className="w-3 h-3 text-amber-500" />
@@ -305,8 +305,8 @@ export default function AssignedLeadsPage() {
             onClick={() => setStatusFilter("accepted")}
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "accepted"
-                ? "bg-[#00B8FF] text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8FF]/40"
+                ? "bg-[#00B8DB] text-slate-950 font-bold shadow-sm"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-[#00B8DB]/40"
             }`}
           >
             <span>Working</span>
@@ -317,7 +317,7 @@ export default function AssignedLeadsPage() {
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               statusFilter === "converted"
                 ? "bg-emerald-500 text-slate-950 font-bold shadow-sm"
-                : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-emerald-500/40"
+                : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-emerald-500/40"
             }`}
           >
             <span>Converted</span>
@@ -325,7 +325,7 @@ export default function AssignedLeadsPage() {
           </button>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#0A1628] p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-[#15171A] p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-sm">
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -333,7 +333,7 @@ export default function AssignedLeadsPage() {
               placeholder="Search by prospect company, contact person, or evaluation scope..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-all"
+              className="w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#00B8DB] transition-all"
             />
             {searchQuery && (
               <button
@@ -365,7 +365,7 @@ export default function AssignedLeadsPage() {
           }}
         />
       ) : (
-        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] overflow-hidden shadow-sm">
+        <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead className="bg-slate-50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/[0.08] text-slate-500 dark:text-slate-400 uppercase font-semibold text-[11px] tracking-wider">
@@ -387,8 +387,8 @@ export default function AssignedLeadsPage() {
                     className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer group"
                   >
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2 group-hover:text-cyan-500 transition-colors">
-                        <Building2 className="w-4 h-4 text-cyan-500 shrink-0" />
+                      <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2 group-hover:text-[#00667A] dark:group-hover:text-[#00B8DB] transition-colors">
+                        <Building2 className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] shrink-0" />
                         <span>{lead.prospect_company}</span>
                       </div>
                       <div className="text-[11px] text-slate-400 mt-0.5">
@@ -491,7 +491,7 @@ export default function AssignedLeadsPage() {
       {/* Lead Detail Inspection Modal */}
       {selectedLead && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 sm:p-7 max-w-lg w-full shadow-2xl space-y-5 text-xs animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 sm:p-7 max-w-lg w-full shadow-2xl space-y-5 text-xs animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between border-b border-slate-100 dark:border-white/[0.08] pb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
@@ -514,7 +514,7 @@ export default function AssignedLeadsPage() {
             <div className="space-y-3">
               <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05] space-y-2">
                 <div className="font-semibold text-slate-900 dark:text-white flex items-center gap-1.5 mb-2">
-                  <User className="w-3.5 h-3.5 text-cyan-500" />
+                  <User className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
                   <span>Key Prospect Contact</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-slate-700 dark:text-slate-300">
@@ -523,7 +523,7 @@ export default function AssignedLeadsPage() {
                   </div>
                   <div>
                     <span className="text-slate-400">Email:</span>{" "}
-                    <span className="font-mono text-cyan-600 dark:text-cyan-400">{selectedLead.prospect_contact_email}</span>
+                    <span className="font-mono text-[#00667A] dark:text-[#00B8DB]">{selectedLead.prospect_contact_email}</span>
                   </div>
                   <div>
                     <span className="text-slate-400">Country:</span> {selectedLead.prospect_country || "United States"}
@@ -537,7 +537,7 @@ export default function AssignedLeadsPage() {
 
               <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.05]">
                 <div className="font-semibold text-slate-900 dark:text-white mb-1.5 flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-cyan-500" />
+                  <FileText className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
                   <span>Evaluation Scope & Notes</span>
                 </div>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -582,7 +582,7 @@ export default function AssignedLeadsPage() {
                 {(selectedLead.status === "accepted" || selectedLead.status === "working") && (
                   <button
                     onClick={() => handleConvertToDeal(selectedLead)}
-                    className="btn-primary text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 font-bold shadow-md shadow-cyan-500/20"
+                    className="btn-primary text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 font-bold shadow-md shadow-[#00B8DB]/20"
                   >
                     <Briefcase className="w-3.5 h-3.5" />
                     <span>Convert to Protected Deal</span>
@@ -597,7 +597,7 @@ export default function AssignedLeadsPage() {
       {/* Decline Reason Modal */}
       {declineModalLead && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#070E1B] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs">
+          <div className="bg-white dark:bg-[#111214] rounded-2xl border border-slate-200 dark:border-white/10 p-6 max-w-md w-full shadow-2xl space-y-4 text-xs">
             <div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">
                 Decline Lead Assignment
@@ -616,7 +616,7 @@ export default function AssignedLeadsPage() {
                   value={declineReason}
                   onChange={(e) => setDeclineReason(e.target.value)}
                   placeholder="e.g. Outside our vertical focus, capacity constraints, customer conflict..."
-                  className="w-full h-24 p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white text-xs focus:ring-1 focus:ring-cyan-500 focus:outline-none"
+                  className="w-full h-24 p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white text-xs focus:ring-1 focus:ring-[#00B8DB] focus:outline-none"
                 />
               </div>
 

@@ -64,8 +64,8 @@ export default function CompanyPage() {
       </div>
 
       {/* Security boundary card */}
-      <div className="p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/[0.06] text-xs text-slate-700 dark:text-slate-300 flex items-start gap-3">
-        <Lock className="w-4 h-4 text-[#00B8FF] shrink-0 mt-0.5" />
+      <div className="p-4 rounded-xl border border-[#00B8DB]/20 bg-[#00B8DB]/[0.06] text-xs text-slate-700 dark:text-slate-300 flex items-start gap-3">
+        <Lock className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB] shrink-0 mt-0.5" />
         <div>
           <span className="font-semibold text-slate-900 dark:text-white">Strict Tenant Isolation:</span>
           {" "}Partner portal roles grant commercial channel privileges only. A partner user is never a member of any customer PAM tenant, and cannot access customer vaults, servers, or session recordings.
@@ -73,10 +73,10 @@ export default function CompanyPage() {
       </div>
 
       {/* Company Profile Details */}
-      <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 p-6 shadow-sm">
+      <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 p-6 shadow-sm">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-white/[0.05] mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center">
               <Building className="w-5 h-5" />
             </div>
             <div>
@@ -104,7 +104,7 @@ export default function CompanyPage() {
               href={profile?.website || "https://apexcybersolutions.com"}
               target="_blank"
               rel="noreferrer"
-              className="text-cyan-500 hover:underline"
+              className="text-[#00667A] dark:text-[#00B8DB] hover:underline"
             >
               {profile?.website || "https://apexcybersolutions.com"}
             </a>
@@ -119,7 +119,7 @@ export default function CompanyPage() {
       </div>
 
       {/* Team Roster */}
-      <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 overflow-hidden shadow-sm">
+      <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 overflow-hidden shadow-sm">
         <div className="p-4 border-b border-slate-200 dark:border-white/[0.08] font-bold text-sm text-slate-900 dark:text-white">
           Active Team Members & Assigned Channel Roles
         </div>
@@ -139,7 +139,7 @@ export default function CompanyPage() {
                   <div className="font-semibold text-slate-900 dark:text-white">{member.name}</div>
                   <div className="text-[11px] text-slate-400">{member.email}</div>
                 </td>
-                <td className="py-3 px-4 font-semibold text-cyan-600 dark:text-cyan-400">
+                <td className="py-3 px-4 font-semibold text-[#00667A] dark:text-[#00B8DB]">
                   {member.role}
                 </td>
                 <td className="py-3 px-4 text-slate-600 dark:text-slate-400 max-w-md">

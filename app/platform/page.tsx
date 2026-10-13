@@ -1,32 +1,31 @@
 import type { Metadata } from "next";
-import { Building2, Layers, Server, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Building2, Layers, Server, ShieldCheck, Zap } from "lucide-react";
+import Link from "next/link";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import CountUp from "@/components/home/CountUp";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import PlatformHero from "@/components/platform/PlatformHero";
+import { ConsoleMock, CoreStack } from "@/components/platform/Visuals";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
-import { cardBorder, cardSurface, displayFont } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import { solutions, datasheetStats, complianceStandards, solutionHref } from "./data";
-import type { FaqEntry } from "@/components/sections/FaqSection";
-import type { IconCard } from "@/components/sections/IconCardGrid";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { RichText } from "@/lib/rich-text";
 
 /*
  * /platform, the capability index.
  *
- * Rebuilt on the shared section library so it matches the nine pages it
- * links to. The module grid is driven straight from ./data.ts, so adding a
- * module there adds its card here with no code change.
+ * Built from the shared page kit (components/pageui) so it matches the nine
+ * module pages it links to. The module grid is driven straight from
+ * ./data.ts, so adding a module there adds its card here with no code change.
  *
- * Everything quoted comes from ./data.ts: the module list, datasheetStats,
- * complianceStandards and platformSpecs. Nothing new is asserted.
+ * Everything quoted comes from ./data.ts: the module list, datasheetStats
+ * and complianceStandards. Sample values in illustrations are illustrative.
  */
 
 export const metadata: Metadata = {
@@ -53,15 +52,6 @@ const hero = {
         fit: "contain" as const,
     },
 };
-
-/* Driven from ./data.ts, adding a module there adds its card here. */
-const moduleCards: IconCard[] = solutions.map((solution, index) => ({
-    icon: solution.icon,
-    eyebrow: String(index + 1).padStart(2, "0"),
-    title: solution.title,
-    text: solution.tagline,
-    href: solutionHref(solution),
-}));
 
 const architectureSection = {
     title: "One platform, on your own infrastructure",
@@ -109,7 +99,7 @@ const consoleSection = {
         "Browser console across Edge, Chrome, Firefox and Safari, plus a command-line interface",
         "A built-in mobile browser client with TOTP and approvals, no app to install",
         "Centralised administration in a single UI with one credential repository",
-        "Credentials encrypted at rest and in transit, with hardware-backed key protection",
+        "Credentials encrypted at rest and in transit, with a layered key hierarchy",
     ],
 };
 
@@ -165,169 +155,201 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const NAV = [
+    { id: "pl-modules", label: "Modules" },
+    { id: "pl-architecture", label: "Architecture" },
+    { id: "pl-console", label: "One console" },
+    { id: "pl-compliance", label: "Compliance" },
+    { id: "pl-figures", label: "Figures" },
+    { id: "pl-faq", label: "FAQ" },
+];
+
+/* Taken from the copy on this page: one store, one engine, one trail, no inbound ports. */
+const FACTS = [
+    { value: 1, label: "credential store shared by every module" },
+    { value: 1, label: "policy engine deciding every request" },
+    { value: 1, label: "audit trail, tamper-proof and hash-chained" },
+    { value: 0, label: "inbound ports to open on managed systems" },
+];
+
+/* "80+" → 80 with a "+" suffix, "100%" → 100 with "%", so the figures count up. */
+const parseStat = (v: string) => {
+    const m = v.match(/^(\d+)(.*)$/);
+    return m ? { n: Number(m[1]), suffix: m[2] } : null;
+};
+
 export default function PlatformPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="pl-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="pl-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<PlatformHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── THE NINE MODULES ───────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="Core Capabilities"
-                    title="Nine capability modules"
-                    align="center"
-                    size="lg"
-                    className="mb-14"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Each one below is a working page. Read together, they are the privileged access
-                        lifecycle from discovery and credentials through to sessions, workflow and audit.
-                    </p>
-                </SectionHeading>
-
-                <IconCardGrid items={moduleCards} columns={3} />
-            </Section>
-
-            {/* ─── ARCHITECTURE (dark band) ───────────────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Architecture"
-                    title={architectureSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={architectureSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {architecturePillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
+            <section id="pl-modules" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title="Nine capability modules">
+                        <p>
+                            Each one below is a working page. Read together, they are the privileged access lifecycle from discovery and credentials through to sessions, workflow and audit.
+                        </p>
+                    </Heading>
+                    <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {solutions.map((s, i) => (
+                            <Link
+                                key={s.slug}
+                                href={solutionHref(s)}
+                                className="aip-card group min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col"
+                                data-aos="fade-up"
+                                data-aos-delay={String((i % 3) * 70)}
                             >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
-                        </div>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── ONE CONSOLE ────────────────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={consoleSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={consoleSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {consoleSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === consoleSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
+                                <div className="flex items-center justify-between gap-3">
+                                    <span className="icon-wrapper transition-colors duration-200 group-hover:bg-[#00B8DB] group-hover:text-[#03121c]">
+                                        <s.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <span className="rounded-full border border-slate-900/[0.08] dark:border-white/[0.08] px-2.5 py-1 text-[0.6875rem] font-semibold text-slate-500 dark:text-slate-400">
+                                        {s.features.length} capabilities
+                                    </span>
+                                </div>
+                                <h3 className="op-card-title mt-5">{s.title}</h3>
+                                <p className="op-card-text mt-2">{s.tagline}</p>
+                                <span className="mt-auto pt-6 inline-flex items-center gap-1.5 text-[0.875rem] font-semibold op-link">
+                                    Explore
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                </span>
+                            </Link>
                         ))}
                     </div>
+                </div>
+            </section>
 
-                    <CheckList items={consoleSection.points} className="mt-8" />
+            {/* ─── ARCHITECTURE (dark band) ───────────────────────── */}
+            <div className="dark">
+                <section id="pl-architecture" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0">
+                                <Heading title={architectureSection.title}>
+                                    <Prose segments={architectureSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-10 grid sm:grid-cols-2 gap-4">
+                                    {architecturePillars.map((p, i) => (
+                                        <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <h3 className="op-card-title mt-5">{p.title}</h3>
+                                            <p className="op-card-text mt-2">{p.text}</p>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="min-w-0 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                                <CoreStack />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
-                    <ArrowLink href="/platform/infrastructure-deployment" className="mt-8">
-                        See the deployment specifications
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
+            {/* ─── ONE CONSOLE ────────────────────────────────────── */}
+            <section id="pl-console" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={consoleSection.title} />
+                            <Paras items={consoleSection.paragraphs} className="mt-6" />
+                            <CheckList items={consoleSection.points} className="mt-8" />
+                            <ArrowLink href="/platform/infrastructure-deployment" className="mt-8">
+                                See the deployment specifications
+                            </ArrowLink>
+                        </div>
+                        <div className="min-w-0 sm:pb-16" data-aos="fade-up" data-aos-delay="100">
+                            <ConsoleMock />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── COMPLIANCE STANDARDS ───────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading badge="Compliance" title={standardsSection.title} className="mb-6">
-                    <Prose segments={standardsSection.lead} />
-                </SectionHeading>
-
-                <ChipList
-                    items={complianceStandards.map((standard) => standard.code)}
-                    variant="accent"
-                />
-
-                <div className="mt-10">
-                    <ArrowLink href="/privileged-access-audit-compliance">
-                        See how the evidence is produced
-                    </ArrowLink>
+            <section id="pl-compliance" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={standardsSection.title}>
+                        <Prose segments={standardsSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {complianceStandards.map((c, i) => (
+                            <article key={c.code} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                <div className="flex items-center justify-between gap-3">
+                                    <span className="text-[1.375rem] font-bold tracking-[-0.02em] text-[#0a1628] dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
+                                        {c.code}
+                                    </span>
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-[#00B8DB]/10 px-2.5 py-1 text-[0.6875rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]">
+                                        <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" /> Mapped
+                                    </span>
+                                </div>
+                                <div className="mt-3 text-[0.8125rem] font-semibold text-slate-700 dark:text-slate-300">{c.fullName}</div>
+                                <p className="op-card-text mt-1.5">{c.applicability}</p>
+                            </article>
+                        ))}
+                    </div>
+                    <div className="mt-10" data-aos="fade-up">
+                        <ArrowLink href="/privileged-access-audit-compliance">See how the evidence is produced</ArrowLink>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── OUTCOMES ───────────────────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading
-                    title="Platform figures you can point at"
-                    align="center"
-                    size="lg"
-                    className="mb-12 sm:mb-16"
-                >
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Not a capability slide. These are the numbers the platform is specified against.
-                    </p>
-                </SectionHeading>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {datasheetStats.map((stat) => (
-                        <div
-                            key={stat.label}
-                            className={`p-6 rounded-2xl border text-center ${cardBorder} ${cardSurface}`}
-                        >
-                            <div
-                                className="text-3xl font-extrabold text-slate-950 dark:text-white mb-1"
-                                style={displayFont}
-                            >
-                                {stat.value}
-                            </div>
-                            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                                {stat.label}
-                            </div>
-                            <div className="text-xs text-slate-500">{stat.sub}</div>
-                        </div>
-                    ))}
+            {/* ─── FIGURES ────────────────────────────────────────── */}
+            <section id="pl-figures" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <Heading title="Platform figures you can point at">
+                        <p>Not a capability slide. These are the numbers the platform is specified against.</p>
+                    </Heading>
+                    <dl className="op-body grid grid-cols-2 lg:grid-cols-4 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.02]" data-aos="fade-up">
+                        {datasheetStats.map((stat) => {
+                            const p = parseStat(stat.value);
+                            return (
+                                <div key={stat.label} className="aip-fact px-6 py-7 lg:px-8 lg:py-9">
+                                    <dt className="sr-only">{stat.label}</dt>
+                                    <dd>
+                                        <span className="block text-[2.75rem] leading-none font-bold tracking-[-0.03em] text-[#0a1628] dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
+                                            {p ? <CountUp to={p.n} suffix={p.suffix} /> : stat.value}
+                                        </span>
+                                        <span className="mt-3 block text-[0.9375rem] font-semibold text-slate-800 dark:text-slate-200">{stat.label}</span>
+                                        <span className="mt-1 block text-[0.8125rem] text-slate-500">{stat.sub}</span>
+                                    </dd>
+                                </div>
+                            );
+                        })}
+                    </dl>
+                    <div className="mt-12">
+                        <h3 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h3>
+                        <KeepReading links={keepReading} />
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-12 grid sm:grid-cols-3 gap-6">
-                    {keepReading.map((link) => (
-                        <ArrowLink key={link.href} href={link.href}>
-                            {link.label}
-                        </ArrowLink>
-                    ))}
-                </div>
-            </Section>
-
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Nine capabilities", "One credential store"]} outcome="One audit trail" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about the platform, its modules and how it is deployed."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="pl-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

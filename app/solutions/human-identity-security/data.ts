@@ -36,7 +36,7 @@ export const hero = {
     ] as RichText,
     body: [
         "OmniPriv delivers human identity security through enterprise ",
-        { text: "Privileged Access Management", href: "https://omnipriv.com/" },
+        { text: "Privileged Access Management", href: "/" },
         ", combining identity verification, least privilege, Just-in-Time access, credential protection, session monitoring, and intelligent threat detection.",
     ] as RichText,
     primary: { href: "/demo", label: "Request a Demo" },
@@ -125,7 +125,7 @@ export const credentials = {
     ] as RichText,
     body: [
         "OmniPriv combines privileged credential management with secure storage and automated secret rotation. Its ",
-        { text: "security architecture", href: "https://omnipriv.com/security" },
+        { text: "security architecture", href: "/security" },
         " supports automatic rotation of passwords, SSH keys, and API tokens.",
     ] as RichText,
     note: [
@@ -139,7 +139,7 @@ export const sessions = {
     lead: ["Authentication is only the beginning."] as RichText,
     body: [
         "OmniPriv ",
-        { text: "Privileged Session Management", href: "https://omnipriv.com/platform/secure-remote-access" },
+        { text: "Privileged Session Management", href: "/platform/secure-remote-access" },
         " records, isolates, and monitors privileged activity across supported environments. Security teams gain searchable session histories, script monitoring, session controls, and the ability to intervene when required.",
     ] as RichText,
     prompt: "This gives organizations visibility into:",
@@ -169,7 +169,7 @@ export const aiSection = {
     ] as RichText,
     note: [
         "This AI-assisted approach strengthens ",
-        { text: "identity risk management", href: "https://omnipriv.com/blog/one-identity-privileged-access-management" },
+        { text: "identity risk management", href: "/blog/one-identity-privileged-access-management" },
         " by helping detect situations where a valid identity begins behaving unexpectedly.",
     ] as RichText,
 };
@@ -182,7 +182,7 @@ export const governanceSection = {
     ] as RichText,
     note: [
         "Together, these controls help organizations manage privileged user access across cloud, on-premises, and hybrid infrastructure from a unified PAM platform, supported by ",
-        { text: "audit and compliance reporting", href: "https://omnipriv.com/privileged-access-audit-compliance" },
+        { text: "audit and compliance reporting", href: "/privileged-access-audit-compliance" },
         ".",
     ] as RichText,
 };

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "check:links": "node scripts/check-links.mjs",
     "test:partner": "npx tsx scripts/test-partner-portal.ts",
     "migrate": "npx tsx scripts/migrate.ts",
     "bootstrap:admin": "npx tsx scripts/bootstrap-channel-admin.ts"

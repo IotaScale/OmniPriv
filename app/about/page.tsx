@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
+    ArrowRight,
     Award,
     CreditCard,
     Eye,
@@ -11,37 +13,27 @@ import {
     Target,
 } from "lucide-react";
 
+import AboutHero from "@/components/about/AboutHero";
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { CoreStack } from "@/components/platform/Visuals";
 import ArrowLink from "@/components/sections/ArrowLink";
 import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
-import IconCardGrid from "@/components/sections/IconCardGrid";
-import MediaSplit from "@/components/sections/MediaSplit";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
 import { complianceStandards, solutions, solutionHref } from "@/app/platform/data";
-import type { FaqEntry } from "@/components/sections/FaqSection";
+import { cn } from "@/lib/utils";
+import type { FaqEntry } from "@/components/sections/FaqAccordion";
 import type { IconCard } from "@/components/sections/IconCardGrid";
 import type { RichText } from "@/lib/rich-text";
 
 /*
- * /about
- *
- * Rebuilt on the shared section library. Everything asserted here traces to
- * something the site already publishes: the module list, platformSpecs and
- * complianceStandards in app/platform/data.ts, and the certifications on
- * app/security/page.tsx.
- *
- * Deliberately removed from the previous version: an invented headcount,
- * office count and customer count ("500+ employees", "10+ countries",
- * "100+ enterprise customers", "over 3,000 organizations across six
- * continents"), and a leadership grid of six invented people whose bios
- * cited real employers. None of it was verifiable, and the bios in
- * particular attributed fabricated employment histories to named
- * individuals at named companies.
+ * /about. Everything asserted here traces to something the site already
+ * publishes: the module list and complianceStandards in
+ * app/platform/data.ts, and the security page. No invented headcount,
+ * offices, customers or leadership bios. Built from the shared page kit
+ * (components/pageui); values in illustrations are illustrative.
  */
 
 export const metadata: Metadata = {
@@ -71,16 +63,6 @@ const hero = {
     },
 };
 
-/* Driven from app/platform/data.ts, the /about grid can never drift from
-   the module list the platform index and sitemap are built from. */
-const moduleCards: IconCard[] = solutions.map((solution, index) => ({
-    icon: solution.icon,
-    eyebrow: String(index + 1).padStart(2, "0"),
-    title: solution.title,
-    text: solution.tagline,
-    href: solutionHref(solution),
-}));
-
 const buildSection = {
     title: "What we build",
     lead: [
@@ -104,7 +86,7 @@ const deploymentSection = {
         "On-premise deployment across VMware, Red Hat and OpenStack as a hardware-agnostic appliance",
         "Multi-node clustering with container health checks, heartbeat monitoring and database replication",
         "Strict multi-tenancy through org_id isolation on every resource, schema-per-tenant",
-        "Hardware-backed key protection, with an external installation key you hold",
+        "Layered key protection, with an external installation key you hold",
         "Break-glass emergency procedure and granular credential restore without a full system restore",
     ],
 };
@@ -201,7 +183,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Who holds the encryption keys?",
         answer:
-            "You do. Data is encrypted at rest and in transit, with hardware-backed protection for stored keys. The installation key is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
+            "You do. Data is encrypted at rest and in transit, with a layered key hierarchy protecting stored keys. The installation key is generated at installation and must be stored externally and independently of the platform, then carried forward across upgrades and migrations.",
     },
     {
         question: "Where can I see the full technical specification?",
@@ -210,128 +192,170 @@ const faqs: FaqEntry[] = [
     },
 ];
 
+const NAV = [
+    { id: "ab-build", label: "What we build" },
+    { id: "ab-deploy", label: "Deployment" },
+    { id: "ab-assurance", label: "Frameworks" },
+    { id: "ab-principles", label: "Principles" },
+    { id: "ab-faq", label: "FAQ" },
+];
+
+/* From app/platform/data.ts and this page's own copy. */
+const FACTS = [
+    { value: solutions.length, label: "capability modules over one policy engine" },
+    { value: frameworks.length, label: "compliance frameworks mapped out of the box" },
+    { value: 0, label: "hard-coded credentials inside the platform" },
+    { value: 0, label: "inbound ports to open on managed systems" },
+];
+
 export default function AboutPage() {
     return (
-        <>
-            <SplitHero
-                badge={hero.badge}
+        <div className="aip">
+            <SectionNav items={NAV} startId="ab-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="ab-hero"
                 titleLead={hero.titleLead}
                 titleAccent={hero.titleAccent}
+                paragraphs={[hero.intro, hero.body]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<AboutHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
-            {/* ─── WHAT WE BUILD ──────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="The Platform"
-                    title={buildSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={buildSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={moduleCards} columns={3} className="mt-12" />
-            </Section>
-
-            {/* ─── DEPLOYMENT MODEL ───────────────────────────────── */}
-            <Section border="bottom">
-                <MediaSplit
-                    media={deploymentSection.image}
-                    ratio="wide-last"
-                    height="sm"
-                    align="start"
-                    heading={<SectionHeading title={deploymentSection.title} />}
-                >
-                    <div className="op-hero-copy">
-                        {deploymentSection.paragraphs.map((paragraph, index) => (
-                            <Prose
-                                key={index}
-                                segments={paragraph}
-                                className={
-                                    index === deploymentSection.paragraphs.length - 1 ? "" : "mb-4"
-                                }
-                            />
+            {/* ─── WHAT WE BUILD ──────────────────────────────── */}
+            <section id="ab-build" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={buildSection.title}>
+                        <Prose segments={buildSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {solutions.map((s, i) => (
+                            <Link key={s.slug} href={solutionHref(s)} className="aip-card group min-w-0 rounded-3xl border p-6 flex flex-col" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                <div className="flex items-center justify-between gap-3">
+                                    <span className="icon-wrapper transition-colors duration-200 group-hover:bg-[#00B8DB] group-hover:text-[#03121c]">
+                                        <s.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <span className="rounded-full border border-slate-900/[0.08] dark:border-white/[0.08] px-2.5 py-1 text-[0.6875rem] font-semibold text-slate-500 dark:text-slate-400">
+                                        {s.features.length} capabilities
+                                    </span>
+                                </div>
+                                <h3 className="op-card-title mt-5">{s.title}</h3>
+                                <p className="op-card-text mt-2">{s.tagline}</p>
+                                <span className="mt-auto pt-6 inline-flex items-center gap-1.5 text-[0.875rem] font-semibold op-link">
+                                    Explore
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                </span>
+                            </Link>
                         ))}
                     </div>
+                </div>
+            </section>
 
-                    <CheckList items={deploymentSection.points} className="mt-8" />
-
-                    <ArrowLink href="/platform" className="mt-8">
-                        See the full specification
-                    </ArrowLink>
-                </MediaSplit>
-            </Section>
-
-            {/* ─── INDEPENDENT ASSURANCE (dark band) ──────────────── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading
-                    badge="Independent Assurance"
-                    title={assuranceSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={assuranceSection.lead} />
-                </SectionHeading>
-
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-14">
-                    {assurancePillars.map((pillar) => (
-                        <div key={pillar.title}>
-                            <SectionHeading
-                                as="h3"
-                                size="sm"
-                                title={pillar.title}
-                                titleClassName="max-w-3xl"
-                            >
-                                <Prose segments={[pillar.text]} />
-                            </SectionHeading>
+            {/* ─── DEPLOYMENT MODEL ───────────────────────────── */}
+            <section id="ab-deploy" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={deploymentSection.title} />
+                            <Paras items={deploymentSection.paragraphs} className="mt-6" />
+                            <CheckList items={deploymentSection.points} className="mt-7" />
+                            <ArrowLink href="/platform/infrastructure-deployment" className="mt-7">
+                                See the full specification
+                            </ArrowLink>
                         </div>
-                    ))}
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <CoreStack />
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="mt-14">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
-                        Controls mapped out of the box
-                    </p>
-                    <ChipList
-                        items={frameworks}
-                        variant="accent"
-                        separator={<span className="text-slate-500 text-sm">·</span>}
-                    />
+            {/* ─── FRAMEWORKS (dark band) ─────────────────────── */}
+            <div className="dark">
+                <section id="ab-assurance" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <div className="grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-start">
+                            <div className="min-w-0 lg:sticky lg:top-40">
+                                <Heading title={assuranceSection.title}>
+                                    <Prose segments={assuranceSection.lead} className="text-[1.0625rem]" />
+                                </Heading>
+                                <div className="mt-8" data-aos="fade-up">
+                                    <div className="text-[0.8125rem] font-semibold text-slate-400">Controls mapped out of the box</div>
+                                    <ul className="mt-3 flex flex-wrap gap-2">
+                                        {frameworks.map((f) => (
+                                            <li key={f} className="rounded-lg border border-[#00B8DB]/30 bg-[#00B8DB]/[0.07] px-3 py-1.5 text-[0.8125rem] font-semibold text-[#7FE3F2]">
+                                                {f}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <ArrowLink href="/security" className="mt-6">
+                                        Security posture and framework detail
+                                    </ArrowLink>
+                                </div>
+                            </div>
+                            <div className="min-w-0 grid sm:grid-cols-2 gap-4">
+                                {assurancePillars.map((p, i) => (
+                                    <article key={p.title} className="aip-card min-w-0 rounded-3xl border p-6" data-aos="fade-up" data-aos-delay={String((i % 2) * 70)}>
+                                        <div className="flex items-center justify-between gap-3">
+                                            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                                <p.icon className="w-5 h-5" aria-hidden="true" />
+                                            </span>
+                                            <span className="inline-flex items-center gap-1 rounded-full bg-[#00B8DB]/10 px-2.5 py-1 text-[0.6875rem] font-semibold text-[#7FE3F2]">
+                                                <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" /> Mapped
+                                            </span>
+                                        </div>
+                                        <h3 className="mt-5 text-[1.25rem] font-bold tracking-[-0.02em] text-white" style={{ fontFamily: "var(--font-syne)" }}>
+                                            {p.title}
+                                        </h3>
+                                        <p className="op-card-text mt-2">{p.text}</p>
+                                    </article>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── PRINCIPLES ─────────────────────────────────── */}
+            <section id="ab-principles" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={principlesSection.title}>
+                        <Prose segments={principlesSection.lead} className="text-[1.0625rem]" />
+                    </Heading>
+                    <ul className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        {principles.map((p, i) => (
+                            <li key={p.title} className="aip-card relative min-w-0 overflow-hidden rounded-3xl border p-6 lg:p-7 flex flex-col" data-aos="fade-up" data-aos-delay={String(i * 70)}>
+                                <span className="pointer-events-none absolute -right-6 -top-6 text-[#00B8DB]/[0.07]" aria-hidden="true">
+                                    <p.icon className="w-28 h-28" strokeWidth={1.2} />
+                                </span>
+                                <span className="relative icon-wrapper">
+                                    <p.icon className="w-5 h-5" aria-hidden="true" />
+                                </span>
+                                <h3 className="relative mt-5 text-[1.125rem] font-bold leading-snug tracking-[-0.01em] text-[#0a1628] dark:text-white" style={{ fontFamily: "var(--font-syne)" }}>
+                                    {p.title}
+                                </h3>
+                                <p className="relative op-card-text mt-2">{p.text}</p>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── PRINCIPLES ─────────────────────────────────────── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading
-                    badge="How We Work"
-                    title={principlesSection.title}
-                    className="mb-2"
-                >
-                    <Prose segments={principlesSection.lead} />
-                </SectionHeading>
-
-                <IconCardGrid items={principles} columns={4} className="mt-12" />
-            </Section>
-
-            {/* ─── CLOSING ────────────────────────────────────────── */}
-            <CtaBand
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["On-premise", "Mapped to your frameworks"]} outcome="Yours to run" />}
+                lead={closing.body[0]}
+                body={closing.body.slice(1)}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ────────────────────────────────────────────── */}
-            <FaqSection
-                title="Frequently Asked Questions"
-                subtitle="Common questions about the platform, its deployment model and its framework mappings."
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="ab-faq" title="Frequently Asked Questions" items={faqs} />
+        </div>
     );
 }

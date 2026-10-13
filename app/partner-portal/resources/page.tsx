@@ -70,8 +70,8 @@ export default function ResourcesPage() {
               onClick={() => setCategory(c.value)}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                 category === c.value
-                  ? "bg-[#00B8FF] text-slate-950 font-bold"
-                  : "bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.05]"
+                  ? "bg-[#00B8DB] text-slate-950 font-bold"
+                  : "bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.05]"
               }`}
             >
               {c.label}
@@ -86,7 +86,7 @@ export default function ResourcesPage() {
             placeholder="Search documents..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+            className="w-full pl-9 pr-3 py-1.5 bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#00B8DB]"
           />
         </div>
       </div>
@@ -103,11 +103,11 @@ export default function ResourcesPage() {
           {filtered.map((item) => (
             <div
               key={item.id}
-              className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 p-5 flex flex-col justify-between hover:border-cyan-500/40 transition-colors shadow-sm"
+              className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 p-5 flex flex-col justify-between hover:border-[#00B8DB]/40 transition-colors shadow-sm"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#00667A] dark:text-[#00B8DB] bg-[#00B8DB]/10 px-2 py-0.5 rounded">
                     {item.category}
                   </span>
                   <span className="text-[11px] text-slate-400">

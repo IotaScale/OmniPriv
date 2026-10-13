@@ -37,15 +37,32 @@ const nextConfig = {
     ],
   },
   async headers() {
+    // Signed-in and admin areas must never appear in search results. This
+    // header works even where a page cannot export metadata (client layouts),
+    // and robots.txt disallows the same paths.
+    const noindex = [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }];
+    const privatePaths = [
+      '/partner-portal', '/partner-portal/:path*',
+      '/channel-admin', '/channel-admin/:path*',
+      '/portal-admin', '/portal-admin/:path*',
+      '/sign-in', '/sign-up',
+    ];
     return [
       {
         source: '/(.*)',
         headers: securityHeaders,
       },
+      ...privatePaths.map((source) => ({ source, headers: noindex })),
     ];
   },
   async redirects() {
     return [
+      // Module URL shortened (October 2026): the brand name added nothing.
+      {
+        source: '/platform/secure-ai-agents-omnipriv',
+        destination: '/platform/secure-ai-agents',
+        permanent: true,
+      },
       // Audit, Governance & Compliance moved to its SEO URL (October 2026).
       {
         source: '/platform/audit-compliance',
@@ -73,7 +90,7 @@ const nextConfig = {
       // AI Agent Governance was renamed to Secure AI Agents.
       {
         source: '/platform/ai-agent-governance',
-        destination: '/platform/secure-ai-agents-omnipriv',
+        destination: '/platform/secure-ai-agents',
         permanent: true,
       },
     ];

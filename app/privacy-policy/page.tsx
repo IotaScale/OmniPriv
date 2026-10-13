@@ -89,7 +89,6 @@ When data is no longer needed, we securely delete or anonymize it.`,
 - Infrastructure controls mapped to SOC 2 Type II
 - Information security management mapped to ISO 27001
 - Role-based access controls and least-privilege principles for our internal team
-- Regular third-party penetration testing (results summarized in our security whitepaper)
 - 24/7 security monitoring and incident response
 
 No method of transmission over the Internet or electronic storage is 100% secure. While we strive to protect your data, we cannot guarantee absolute security. If you believe your data has been compromised, contact security@OmniPriv.com immediately.`,
@@ -142,7 +141,7 @@ To exercise any right, email privacy@OmniPriv.com. We respond to all requests wi
 
 OmniPriv Privacy Team
 Email: privacy@OmniPriv.com
-Address: OmniPriv, Inc., 1 Market Street, Suite 2500, San Francisco, CA 94105, USA
+Address: Omnipriv US Office, 4301 Independence St., Rockville MD 20853, USA
 
 For EU/UK residents, you may also contact our EU Data Protection Representative at dpa@OmniPriv.eu, or lodge a complaint with your local supervisory authority.`,
   },
@@ -152,6 +151,8 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalDocument
       title="Privacy Policy"
+      kind="privacy"
+      contact="privacy@OmniPriv.com"
       updated={<>Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025</>}
       intro={
         <p>

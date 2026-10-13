@@ -97,7 +97,7 @@ export default function OnboardingPage() {
       </div>
 
       {/* Progress banner */}
-      <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] p-6 shadow-sm">
+      <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
             <h2 className="text-base font-bold text-slate-900 dark:text-white">
@@ -112,7 +112,7 @@ export default function OnboardingPage() {
 
         <div className="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
           <div
-            className="bg-[#00B8FF] h-full rounded-full transition-all duration-500"
+            className="bg-[#00B8DB] h-full rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -123,7 +123,7 @@ export default function OnboardingPage() {
         {steps.map((step, idx) => (
           <div
             key={step.id}
-            className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] hover:border-cyan-500/40 transition-colors gap-4 shadow-sm"
+            className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] hover:border-[#00B8DB]/40 transition-colors gap-4 shadow-sm"
           >
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 font-bold text-xs text-slate-700 dark:text-slate-300">
@@ -150,7 +150,7 @@ export default function OnboardingPage() {
               ) : (
                 <Link
                   href={step.href}
-                  className="text-xs font-semibold text-[#00B8FF] hover:underline flex items-center gap-1"
+                  className="text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] hover:underline flex items-center gap-1"
                 >
                   <span>{step.ctaText}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

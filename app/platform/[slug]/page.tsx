@@ -33,7 +33,7 @@ const bespokePages: Record<string, ComponentType> = {
     "enterprise-integration": EnterpriseIntegrationPage,
     "infrastructure-deployment": InfrastructureDeploymentPage,
     "password-credential-management": PasswordCredentialManagementPage,
-    "secure-ai-agents-omnipriv": SecureAiAgentsPage,
+    "secure-ai-agents": SecureAiAgentsPage,
     "secure-remote-access": SecureRemoteAccessPage,
     "workflow-access-control": WorkflowAccessControlPage,
 };

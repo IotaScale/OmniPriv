@@ -1,35 +1,31 @@
 import type { Metadata } from "next";
-import {
-  Code, Server, Zap, Shield,
-  ChevronRight, FileText, Database, Network, Cpu, Lock, Globe,
-  Play, Terminal, Settings, Users,
-} from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Clock, Code, Cpu, Database, FileText, Globe, Lock, Mail, Network, Settings, Terminal, Users } from "lucide-react";
 
-import CtaBand from "@/components/sections/CtaBand";
-import SplitHero from "@/components/sections/SplitHero";
+import Spotlight from "@/components/aipam/Spotlight";
+import { DocsBrowser, DocsHero, type DocSection } from "@/components/docs/DocsBrowser";
+import { SUPPORT, ask } from "@/components/docs/support";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, Heading, KeepReading, PageHero, mutedBand, sectionLine } from "@/components/pageui/blocks";
+import { cn } from "@/lib/utils";
 
 /*
  * Documentation index.
  *
- * None of the destinations advertised here exist yet, app/docs/ contains only
- * this page, so every /docs/<section>/<article> URL below would 404. The
- * article lists are therefore rendered as inert text with a "coming soon"
- * treatment rather than as links, and the fabricated view counts that used to
- * sit on the popular-article cards have been removed.
- *
- * The `href` values are deliberately kept as the intended route map. Once a
- * section is actually built, swap the wrapping <div> back to a <Link> and drop
- * the aria-disabled/opacity styling.
+ * None of the guide destinations exist yet (app/docs/ contains only this
+ * page), so no /docs/<section>/<article> URL is linked: each would 404. Guides
+ * are shown with a "coming soon" status and a pre-addressed email to support,
+ * which is the real way to get that answer today. The `href` values are kept
+ * as the intended route map; once a section is built, link to it and drop the
+ * status chip. Built from the shared page kit (components/pageui).
  */
 export const metadata: Metadata = {
-  title: { absolute: "Documentation | OmniPriv PAM Guides & API Reference" },
-  description:
-    "Installation, administration, security, API and deployment guides for the OmniPriv privileged access management platform.",
+    title: { absolute: "Documentation | OmniPriv PAM Guides & API Reference" },
+    description: "Installation, administration, security, API and deployment guides for the OmniPriv privileged access management platform.",
 };
 
-const docCategories = [
+const docCategories: DocSection[] = [
   {
-    icon: Play,
     title: "Quick Start",
     description: "Get OmniPriv running in your environment in under 30 minutes.",
     articles: [
@@ -41,7 +37,6 @@ const docCategories = [
     ],
   },
   {
-    icon: Settings,
     title: "Administration",
     description: "Configure and manage every aspect of your OmniPriv deployment.",
     articles: [
@@ -53,7 +48,6 @@ const docCategories = [
     ],
   },
   {
-    icon: Shield,
     title: "Security & Compliance",
     description: "Configure security policies, audit settings, and compliance controls.",
     articles: [
@@ -65,7 +59,6 @@ const docCategories = [
     ],
   },
   {
-    icon: Code,
     title: "API Reference",
     description: "REST and GraphQL APIs for integrating OmniPriv into your workflows.",
     articles: [
@@ -77,7 +70,6 @@ const docCategories = [
     ],
   },
   {
-    icon: Zap,
     title: "Integrations",
     description: "Connect OmniPriv with your existing security and DevOps toolchain.",
     articles: [
@@ -89,7 +81,6 @@ const docCategories = [
     ],
   },
   {
-    icon: Server,
     title: "Deployment",
     description: "Deployment guides for every topology, from single node to global HA cluster.",
     articles: [
@@ -118,116 +109,133 @@ const quickLinks = [
   { label: "Troubleshooting Guide", href: "/docs/troubleshoot", icon: Settings },
 ];
 
-const cardClass =
-  "rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171A]";
+/* Pages on the site that already document the platform. */
+const availableNow = [
+    { href: "/platform/infrastructure-deployment", label: "Platform specifications and deployment topologies" },
+    { href: "/integrations", label: "Integrations catalogue" },
+    { href: "/security", label: "Security architecture and framework mappings" },
+];
+
+const guideCount = docCategories.reduce((a, c) => a + c.articles.length, 0);
+
+const FACTS = [
+    { value: docCategories.length, label: "documentation sections, from quick start to deployment" },
+    { value: guideCount, label: "guides being written across those sections" },
+    { value: popularDocs.length, label: "how-to guides most often requested" },
+    { value: quickLinks.length, label: "reference documents on the way" },
+];
 
 export default function DocsPage() {
-  return (
-    <>
-      <SplitHero
-        titleLead="OmniPriv"
-        titleAccent="Documentation"
-        media={{
-          src: "/product/dashboard.png",
-          alt: "OmniPriv platform dashboard",
-          fit: "contain",
-        }}
-      >
-        <p>
-          Everything you need to deploy, configure, and operate OmniPriv in your enterprise environment.
-        </p>
-      </SplitHero>
+    return (
+        <div className="aip">
+            <Spotlight />
 
-      {/* Quick links */}
-      <section className="py-8 border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-        <div className="container-xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" data-aos="fade-up">
-            {quickLinks.map((link) => (
-              <div
-                key={link.label}
-                aria-disabled="true"
-                className={`${cardClass} flex items-center gap-3 p-4`}
-              >
-                <link.icon className="w-4 h-4 op-link flex-shrink-0" aria-hidden="true" />
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{link.label}</span>
-                <span className="ml-auto text-xs font-semibold text-slate-500 dark:text-slate-400 flex-shrink-0">Soon</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            <PageHero
+                id="dc-hero"
+                titleLead="OmniPriv"
+                titleAccent="Documentation"
+                paragraphs={[["Everything you need to deploy, configure, and operate OmniPriv in your enterprise environment."]]}
+                primary={{ href: "#dc-browse", label: "Browse the sections" }}
+                secondary={{ href: `mailto:${SUPPORT}`, label: "Contact Support" }}
+                visual={<DocsHero sections={docCategories} />}
+            >
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
-      {/* Documentation categories */}
-      <section className="section-padding border-b border-slate-900/[0.06] dark:border-white/[0.06]">
-        <div className="container-xl">
-          <div className="section-heading" data-aos="fade-up">
-            <h2 className="op-h2">Browse by Category</h2>
-            <p className="op-lede">
-              The guide titles below outline what is being written. They are not yet
-              published, so they are listed for reference rather than as links. In the
-              meantime, our support team can answer any of these directly.
-            </p>
-          </div>
-          <div className="op-body grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-aos="fade-up">
-            {docCategories.map((cat) => (
-              <div key={cat.title} className={`${cardClass} p-6`}>
-                <div className="icon-wrapper mb-4">
-                  <cat.icon className="w-5 h-5" aria-hidden="true" />
+            {/* ─── STATUS + QUICK LINKS ─────────────────────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-10 lg:py-12 space-y-6">
+                    <div className="flex flex-col md:flex-row md:items-center gap-4 rounded-2xl border border-amber-400/30 bg-amber-400/[0.06] px-5 py-4" data-aos="fade-up">
+                        <span className="inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-amber-700 dark:text-amber-300">
+                            <Clock className="w-5 h-5" aria-hidden="true" />
+                        </span>
+                        <p className="text-[0.9375rem] leading-relaxed text-slate-700 dark:text-slate-300">
+                            The guide titles below outline what is being written. They are not yet published, so they are listed for reference rather than as links. In the meantime, our support team can answer any of these directly.
+                        </p>
+                        <a href={`mailto:${SUPPORT}`} className="hp-btn-secondary md:ml-auto shrink-0">
+                            <Mail className="w-4 h-4" aria-hidden="true" /> Email support
+                        </a>
+                    </div>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" data-aos="fade-up">
+                        {quickLinks.map((l) => (
+                            <li key={l.label} aria-disabled="true" className="aip-card flex items-center gap-3 rounded-2xl border p-4">
+                                <span className="icon-wrapper shrink-0">
+                                    <l.icon className="w-4 h-4" aria-hidden="true" />
+                                </span>
+                                <span className="text-[0.875rem] font-semibold text-slate-700 dark:text-slate-300">{l.label}</span>
+                                <span className="ml-auto shrink-0 rounded-full bg-slate-900/[0.05] dark:bg-white/[0.06] px-2 py-0.5 text-[0.6875rem] font-semibold text-slate-600 dark:text-slate-300">Soon</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <h3 className="op-card-title mb-2">{cat.title}</h3>
-                <p className="op-card-text mb-5">{cat.description}</p>
-                <ul className="space-y-2.5">
-                  {cat.articles.map((article) => (
-                    <li
-                      key={article.title}
-                      className="flex items-start gap-2 text-sm leading-snug text-slate-600 dark:text-slate-400"
-                    >
-                      <ChevronRight className="w-3.5 h-3.5 mt-0.5 op-link flex-shrink-0" aria-hidden="true" />
-                      {article.title}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Popular articles */}
-      <section className="section-padding">
-        <div className="container-xl">
-          <div className="section-heading" data-aos="fade-up">
-            <h2 className="op-h2">Most Popular Articles</h2>
-          </div>
-          <div className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-aos="fade-up">
-            {popularDocs.map((doc) => (
-              <div
-                key={doc.title}
-                aria-disabled="true"
-                className={`${cardClass} flex items-start gap-4 p-6`}
-              >
-                <div className="icon-wrapper flex-shrink-0">
-                  <doc.icon className="w-5 h-5" aria-hidden="true" />
+            {/* ─── BROWSE BY SECTION ─────────────────────────────── */}
+            <section id="dc-browse" className={cn(mutedBand, sectionLine, "scroll-mt-24")}>
+                <div className="container-xl op-sec">
+                    <Heading title="Browse by Category">
+                        <p className="text-slate-600 dark:text-slate-400">Pick a section to see the guides planned for it. Any of them can be answered by support today.</p>
+                    </Heading>
+                    <div className="op-body" data-aos="fade-up">
+                        <DocsBrowser sections={docCategories} />
+                    </div>
                 </div>
-                <div>
-                  <h3 className="op-card-title text-[0.9375rem] mb-1">{doc.title}</h3>
-                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Coming soon</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Support CTA */}
-      <CtaBand
-        title="Can't find what you need?"
-        body={[
-          "Our support team and dedicated Customer Success managers are available to help you with any technical questions.",
-        ]}
-        primary={{ href: "mailto:support@OmniPriv.com", label: "Contact Support" }}
-        secondary={{ href: "/demo", label: "Request a Training Session" }}
-      />
-    </>
-  );
+            {/* ─── MOST REQUESTED (dark band) ────────────────────── */}
+            <div className="dark">
+                <section className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative">
+                        <Heading title="Most requested how-to guides">
+                            <p className="text-slate-600 dark:text-slate-400">The questions we answer most often. Each guide is on its way; until then, ask and we will walk you through it.</p>
+                        </Heading>
+                        <ul className="op-body grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {popularDocs.map((d, i) => (
+                                <li key={d.title} className="aip-card min-w-0 rounded-3xl border p-6 flex flex-col" data-aos="fade-up" data-aos-delay={String((i % 3) * 70)}>
+                                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl border border-[#00B8DB]/40 bg-[#0b0c0e] text-[#00B8DB]">
+                                        <d.icon className="w-5 h-5" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="op-card-title mt-5">{d.title}</h3>
+                                    <div className="mt-auto pt-5 flex items-center gap-3">
+                                        <span className="inline-flex items-center gap-1 rounded-full bg-amber-400/10 px-2.5 py-1 text-[0.6875rem] font-semibold text-amber-300">
+                                            <Clock className="w-3 h-3" aria-hidden="true" /> Coming soon
+                                        </span>
+                                        <a href={ask(d.title)} className="ml-auto inline-flex items-center gap-1 text-[0.8125rem] font-semibold text-[#7FE3F2] hover:underline">
+                                            Ask now <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                                        </a>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            {/* ─── AVAILABLE NOW ─────────────────────────────────── */}
+            <section className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl py-12 lg:py-14">
+                    <div data-aos="fade-up">
+                        <h2 className="op-h3">Available now</h2>
+                        <p className="mt-2 mb-6 text-[0.9844rem] text-slate-600 dark:text-slate-400">Pages on this site that already document how the platform works.</p>
+                    </div>
+                    <KeepReading links={availableNow} />
+                    <div className="mt-6" data-aos="fade-up">
+                        <Link href="/blog" className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold op-link group">
+                            Guides and explainers on the blog
+                            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            <ClosingBand
+                title="Can't find what you need?"
+                accent={<CheckChips steps={["Email support", "Get an answer"]} outcome="Or book a training session" />}
+                body={["Our support team and dedicated Customer Success managers are available to help you with any technical questions."]}
+                primary={{ href: `mailto:${SUPPORT}`, label: "Contact Support" }}
+                secondary={{ href: "/demo", label: "Request a Training Session" }}
+            />
+        </div>
+    );
 }

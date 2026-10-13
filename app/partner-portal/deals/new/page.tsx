@@ -220,7 +220,7 @@ function DealRegistrationContent() {
   if (submittedDeal) {
     return (
       <div className="max-w-2xl mx-auto py-10 px-4 text-center space-y-6">
-        <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/10 animate-in zoom-in-95 duration-200">
+        <div className="w-16 h-16 rounded-2xl bg-[#00B8DB]/10 border border-[#00B8DB]/30 text-[#00B8DB] flex items-center justify-center mx-auto shadow-lg shadow-[#00B8DB]/10 animate-in zoom-in-95 duration-200">
           <FileCheck2 className="w-8 h-8" />
         </div>
 
@@ -238,12 +238,12 @@ function DealRegistrationContent() {
           </p>
         </div>
 
-        <div className="p-6 rounded-2xl bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/[0.08] text-left space-y-3.5 text-xs max-w-md mx-auto shadow-sm">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/[0.08] text-left space-y-3.5 text-xs max-w-md mx-auto shadow-sm">
           <div className="flex justify-between items-center py-1.5 border-b border-slate-100 dark:border-white/[0.05]">
             <span className="text-slate-500">Deal Reference Code:</span>
             <button
               onClick={() => copyDealCode(submittedDeal.deal_code)}
-              className="font-mono font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-1.5 bg-cyan-500/10 px-2 py-0.5 rounded hover:bg-cyan-500/20 transition-colors"
+              className="font-mono font-bold text-[#00667A] dark:text-[#00B8DB] flex items-center gap-1.5 bg-[#00B8DB]/10 px-2 py-0.5 rounded hover:bg-[#00B8DB]/20 transition-colors"
               title="Click to copy code"
             >
               <span>{submittedDeal.deal_code}</span>
@@ -281,7 +281,7 @@ function DealRegistrationContent() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-          <Link href="/partner-portal/deals" className="btn-primary text-xs px-5 py-2.5 rounded-xl font-bold flex items-center justify-center gap-1.5 shadow-md shadow-cyan-500/20">
+          <Link href="/partner-portal/deals" className="btn-primary text-xs px-5 py-2.5 rounded-xl font-bold flex items-center justify-center gap-1.5 shadow-md shadow-[#00B8DB]/20">
             <span>View in My Deals</span> <ArrowRight className="w-3.5 h-3.5" />
           </Link>
           <button
@@ -315,7 +315,7 @@ function DealRegistrationContent() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-white/[0.08] pb-6">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
-            <Link href="/partner-portal/deals" className="hover:text-cyan-500 transition-colors">
+            <Link href="/partner-portal/deals" className="hover:text-[#00667A] dark:hover:text-[#00B8DB] transition-colors">
               My Deals
             </Link>
             <span>/</span>
@@ -330,7 +330,7 @@ function DealRegistrationContent() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-600 dark:text-cyan-400 font-semibold">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#00B8DB]/10 border border-[#00B8DB]/20 text-xs text-[#00667A] dark:text-[#00B8DB] font-semibold">
             <Percent className="w-3.5 h-3.5" />
             <span>{margins.label} Tier: {margins.total}% Effective Margin</span>
           </div>
@@ -363,14 +363,14 @@ function DealRegistrationContent() {
               }}
               className={`p-3.5 rounded-xl border text-left transition-all relative overflow-hidden ${
                 isActive
-                  ? "border-cyan-500 bg-cyan-500/10 text-slate-900 dark:text-white shadow-md shadow-cyan-500/5"
+                  ? "border-[#00B8DB] bg-[#00B8DB]/10 text-slate-900 dark:text-white shadow-md shadow-[#00B8DB]/5"
                   : isDone
                   ? "border-emerald-500/30 bg-emerald-500/5 text-slate-700 dark:text-slate-300"
-                  : "border-slate-200 dark:border-white/[0.06] bg-white dark:bg-[#0A1628]/40 text-slate-400"
+                  : "border-slate-200 dark:border-white/[0.06] bg-white dark:bg-[#15171A]/40 text-slate-400"
               }`}
             >
               <div className="flex items-center justify-between mb-1">
-                <span className={`text-xs font-bold ${isActive ? "text-cyan-600 dark:text-cyan-400" : ""}`}>
+                <span className={`text-xs font-bold ${isActive ? "text-[#00667A] dark:text-[#00B8DB]" : ""}`}>
                   {s.title}
                 </span>
                 {isDone ? (
@@ -379,7 +379,7 @@ function DealRegistrationContent() {
                   <span
                     className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-mono font-bold ${
                       isActive
-                        ? "bg-cyan-500 text-slate-950"
+                        ? "bg-[#00B8DB] text-slate-950"
                         : "bg-slate-200 dark:bg-white/10 text-slate-400"
                     }`}
                   >
@@ -402,12 +402,12 @@ function DealRegistrationContent() {
       )}
 
       {/* Step Content Container */}
-      <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628] p-6 sm:p-8 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A] p-6 sm:p-8 shadow-sm">
         {/* STEP 1: Customer Details */}
         {step === 1 && (
           <div className="space-y-6">
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-white/[0.06]">
-              <Building2 className="w-4 h-4 text-cyan-500" />
+              <Building2 className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                 Prospect Organization & Key Stakeholder
               </h2>
@@ -424,7 +424,7 @@ function DealRegistrationContent() {
                   value={formData.customer_name}
                   onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
                   placeholder="e.g. Standard Chartered Bank"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 />
               </div>
 
@@ -440,11 +440,11 @@ function DealRegistrationContent() {
                     value={formData.customer_domain}
                     onChange={(e) => setFormData({ ...formData, customer_domain: e.target.value })}
                     placeholder="sc.com"
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
                 {cleanDomain && (
-                  <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-cyan-600 dark:text-cyan-400 font-mono">
+                  <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-[#00667A] dark:text-[#00B8DB] font-mono">
                     <ShieldCheck className="w-3 h-3" />
                     <span>Domain: <strong>{cleanDomain}</strong> (will be checked against 90-day active locks)</span>
                   </div>
@@ -461,7 +461,7 @@ function DealRegistrationContent() {
                   value={formData.customer_country}
                   onChange={(e) => setFormData({ ...formData, customer_country: e.target.value })}
                   placeholder="e.g. United Kingdom"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 />
               </div>
 
@@ -472,10 +472,10 @@ function DealRegistrationContent() {
                 <select
                   value={formData.customer_industry}
                   onChange={(e) => setFormData({ ...formData, customer_industry: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 >
                   {industries.map((ind) => (
-                    <option key={ind} value={ind} className="bg-white dark:bg-[#0A1628]">
+                    <option key={ind} value={ind} className="bg-white dark:bg-[#15171A]">
                       {ind}
                     </option>
                   ))}
@@ -494,7 +494,7 @@ function DealRegistrationContent() {
                     value={formData.customer_contact_name}
                     onChange={(e) => setFormData({ ...formData, customer_contact_name: e.target.value })}
                     placeholder="e.g. David Miller (CISO)"
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
               </div>
@@ -511,7 +511,7 @@ function DealRegistrationContent() {
                     value={formData.customer_contact_email}
                     onChange={(e) => setFormData({ ...formData, customer_contact_email: e.target.value })}
                     placeholder="d.miller@sc.com"
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
               </div>
@@ -527,7 +527,7 @@ function DealRegistrationContent() {
                     value={formData.customer_contact_phone}
                     onChange={(e) => setFormData({ ...formData, customer_contact_phone: e.target.value })}
                     placeholder="+44 20 7946 0991"
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
               </div>
@@ -539,7 +539,7 @@ function DealRegistrationContent() {
                 onClick={() => {
                   if (validateStep1()) setStep(2);
                 }}
-                className="btn-primary text-xs px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-md shadow-cyan-500/10"
+                className="btn-primary text-xs px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-md shadow-[#00B8DB]/10"
               >
                 <span>Proceed to Opportunity Details</span> <ArrowRight className="w-3.5 h-3.5" />
               </button>
@@ -551,7 +551,7 @@ function DealRegistrationContent() {
         {step === 2 && (
           <div className="space-y-6">
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-white/[0.06]">
-              <Briefcase className="w-4 h-4 text-cyan-500" />
+              <Briefcase className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                 Commercial Opportunity & OmniPriv PAM Scope
               </h2>
@@ -568,7 +568,7 @@ function DealRegistrationContent() {
                   value={formData.opportunity_name}
                   onChange={(e) => setFormData({ ...formData, opportunity_name: e.target.value })}
                   placeholder="e.g. Standard Chartered - Tier-0 PAM Bastion Replacement"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 />
               </div>
 
@@ -579,10 +579,10 @@ function DealRegistrationContent() {
                 <select
                   value={formData.product_type}
                   onChange={(e) => setFormData({ ...formData, product_type: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 >
                   {products.map((p) => (
-                    <option key={p} value={p} className="bg-white dark:bg-[#0A1628]">
+                    <option key={p} value={p} className="bg-white dark:bg-[#15171A]">
                       {p}
                     </option>
                   ))}
@@ -596,11 +596,11 @@ function DealRegistrationContent() {
                 <select
                   value={formData.license_model}
                   onChange={(e) => setFormData({ ...formData, license_model: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 >
-                  <option value="Annual Subscription" className="bg-white dark:bg-[#0A1628]">Annual Subscription</option>
-                  <option value="Perpetual" className="bg-white dark:bg-[#0A1628]">Perpetual with Annual Maintenance</option>
-                  <option value="MSP Consumption" className="bg-white dark:bg-[#0A1628]">MSP Consumption / Utility Billing</option>
+                  <option value="Annual Subscription" className="bg-white dark:bg-[#15171A]">Annual Subscription</option>
+                  <option value="Perpetual" className="bg-white dark:bg-[#15171A]">Perpetual with Annual Maintenance</option>
+                  <option value="MSP Consumption" className="bg-white dark:bg-[#15171A]">MSP Consumption / Utility Billing</option>
                 </select>
               </div>
 
@@ -616,7 +616,7 @@ function DealRegistrationContent() {
                     value={formData.estimated_value_usd}
                     onChange={(e) => setFormData({ ...formData, estimated_value_usd: e.target.value })}
                     placeholder="75000"
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
               </div>
@@ -631,7 +631,7 @@ function DealRegistrationContent() {
                   value={formData.estimated_seats}
                   onChange={(e) => setFormData({ ...formData, estimated_seats: e.target.value })}
                   placeholder="100"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 />
               </div>
 
@@ -646,7 +646,7 @@ function DealRegistrationContent() {
                     required
                     value={formData.estimated_close_date}
                     onChange={(e) => setFormData({ ...formData, estimated_close_date: e.target.value })}
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                   />
                 </div>
               </div>
@@ -658,10 +658,10 @@ function DealRegistrationContent() {
                 <select
                   value={formData.deployment_timeline}
                   onChange={(e) => setFormData({ ...formData, deployment_timeline: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 >
                   {deploymentTimelines.map((dt) => (
-                    <option key={dt} value={dt} className="bg-white dark:bg-[#0A1628]">
+                    <option key={dt} value={dt} className="bg-white dark:bg-[#15171A]">
                       {dt}
                     </option>
                   ))}
@@ -677,7 +677,7 @@ function DealRegistrationContent() {
                   value={formData.opportunity_source}
                   onChange={(e) => setFormData({ ...formData, opportunity_source: e.target.value })}
                   placeholder="e.g. Existing Customer Expansion, RFP, Security Audit Finding"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all"
                 />
               </div>
 
@@ -690,15 +690,15 @@ function DealRegistrationContent() {
                   value={formData.partner_notes}
                   onChange={(e) => setFormData({ ...formData, partner_notes: e.target.value })}
                   placeholder="Key customer requirements, incumbent solutions being displaced, compliance mandates..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 transition-all resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.1] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00B8DB] transition-all resize-none"
                 />
               </div>
             </div>
 
             {/* Live Tier Margin Return Preview Widget */}
-            <div className="p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-transparent border border-cyan-500/20 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="p-4 rounded-xl bg-gradient-to-r from-[#00B8DB]/10 via-emerald-500/10 to-transparent border border-[#00B8DB]/20 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#00B8DB]/20 text-[#00B8DB] flex items-center justify-center shrink-0">
                   <Percent className="w-5 h-5" />
                 </div>
                 <div>
@@ -741,7 +741,7 @@ function DealRegistrationContent() {
         {step === 3 && (
           <form onSubmit={handleFinalSubmit} className="space-y-6">
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-white/[0.06]">
-              <ShieldCheck className="w-4 h-4 text-cyan-500" />
+              <ShieldCheck className="w-4 h-4 text-[#00667A] dark:text-[#00B8DB]" />
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                 Review Opportunity Summary & Confirm
               </h2>
@@ -751,11 +751,11 @@ function DealRegistrationContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               <div className="p-4 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-slate-50/70 dark:bg-white/[0.02] space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white mb-2 pb-1 border-b border-slate-200 dark:border-white/[0.06] flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-cyan-500" />
+                  <Building2 className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
                   <span>Customer & Key Stakeholder</span>
                 </div>
                 <div><span className="text-slate-500">Customer:</span> <strong className="text-slate-900 dark:text-white ml-1">{formData.customer_name}</strong></div>
-                <div><span className="text-slate-500">Corporate Domain:</span> <span className="font-mono text-cyan-600 dark:text-cyan-400 font-bold ml-1">{cleanDomain}</span></div>
+                <div><span className="text-slate-500">Corporate Domain:</span> <span className="font-mono text-[#00667A] dark:text-[#00B8DB] font-bold ml-1">{cleanDomain}</span></div>
                 <div><span className="text-slate-500">Industry:</span> <span className="text-slate-700 dark:text-slate-300 ml-1">{formData.customer_industry}</span></div>
                 <div><span className="text-slate-500">Region:</span> <span className="text-slate-700 dark:text-slate-300 ml-1">{formData.customer_country}</span></div>
                 <div><span className="text-slate-500">Contact:</span> <span className="text-slate-700 dark:text-slate-300 ml-1">{formData.customer_contact_name} ({formData.customer_contact_email})</span></div>
@@ -763,7 +763,7 @@ function DealRegistrationContent() {
 
               <div className="p-4 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-slate-50/70 dark:bg-white/[0.02] space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white mb-2 pb-1 border-b border-slate-200 dark:border-white/[0.06] flex items-center gap-1.5">
-                  <Briefcase className="w-3.5 h-3.5 text-cyan-500" />
+                  <Briefcase className="w-3.5 h-3.5 text-[#00667A] dark:text-[#00B8DB]" />
                   <span>Opportunity Scope & Margin</span>
                 </div>
                 <div><span className="text-slate-500">Opportunity:</span> <strong className="text-slate-900 dark:text-white ml-1">{formData.opportunity_name}</strong></div>
@@ -776,14 +776,14 @@ function DealRegistrationContent() {
             </div>
 
             {/* Declaration Checkbox */}
-            <div className="p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/5">
+            <div className="p-4 rounded-xl border border-[#00B8DB]/20 bg-[#00B8DB]/5">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   required
                   checked={formData.declaration_agreed}
                   onChange={(e) => setFormData({ ...formData, declaration_agreed: e.target.checked })}
-                  className="mt-1 rounded border-slate-300 text-cyan-500 focus:ring-cyan-500 w-4 h-4"
+                  className="mt-1 rounded border-slate-300 text-[#00667A] dark:text-[#00B8DB] focus:ring-[#00B8DB] w-4 h-4"
                 />
                 <span className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                   I certify that our partner organization has direct, qualified commercial engagement with this customer prospect. 
@@ -804,7 +804,7 @@ function DealRegistrationContent() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="btn-primary text-xs px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-md shadow-cyan-500/20 disabled:opacity-60"
+                className="btn-primary text-xs px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-md shadow-[#00B8DB]/20 disabled:opacity-60"
               >
                 {submitting ? (
                   <>

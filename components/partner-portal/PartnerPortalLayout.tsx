@@ -64,20 +64,20 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   return (
-    <div className="partner-portal-app min-h-screen bg-slate-100/70 dark:bg-[#030711] text-slate-900 dark:text-slate-100 flex flex-col font-sans">
+    <div className="partner-portal-app min-h-screen bg-slate-100/70 dark:bg-[#0B0C0E] text-slate-900 dark:text-slate-100 flex flex-col font-sans">
       {/* Top Banner for Channel Administrators */}
       {(user?.role === "Channel Admin" || user?.role === "Partner Manager") && (
-        <div className="bg-gradient-to-r from-cyan-950 via-slate-900 to-cyan-950 border-b border-cyan-500/30 px-4 sm:px-6 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 text-cyan-200">
+        <div className="bg-gradient-to-r from-[#0B2A31] via-slate-900 to-[#0B2A31] border-b border-[#00B8DB]/30 px-4 sm:px-6 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 text-[#7FE3F2]">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#00B8DB] animate-pulse" />
             <span className="font-bold text-white">Channel Administrator Session:</span>
-            <span className="text-cyan-300">
+            <span className="text-[#7FE3F2]">
               You are currently viewing a partner workspace. All registered deals across all companies are arbitrated in the Admin Console.
             </span>
           </div>
           <Link
             href="/channel-admin"
-            className="px-3.5 py-1.5 bg-[#00B8FF] hover:bg-cyan-400 text-slate-950 font-bold rounded-lg transition-all text-xs flex items-center gap-1.5 shrink-0 shadow"
+            className="px-3.5 py-1.5 bg-[#00B8DB] hover:bg-[#00B8DB] text-slate-950 font-bold rounded-lg transition-all text-xs flex items-center gap-1.5 shrink-0 shadow"
           >
             <Shield className="w-3.5 h-3.5" />
             Switch to Channel Admin Console &rarr;
@@ -86,7 +86,7 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
       )}
 
       {/* Top Enterprise Product Header (Zero Public Marketing Links) */}
-      <header className="h-16 bg-white dark:bg-[#0A1628] border-b border-slate-200 dark:border-white/[0.08] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40">
+      <header className="h-16 bg-white dark:bg-[#15171A] border-b border-slate-200 dark:border-white/[0.08] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-4">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -97,14 +97,14 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
           </button>
 
           <Link href="/partner-portal" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-[#00B8FF] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#00B8DB]/10 border border-[#00B8DB]/20 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center">
               <Shield className="w-4 h-4" />
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-extrabold text-base tracking-tight text-slate-950 dark:text-white">
                 OmniPriv
               </span>
-              <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">
+              <span className="text-xs font-semibold text-[#00667A] dark:text-[#00B8DB] bg-[#00B8DB]/10 px-2 py-0.5 rounded">
                 Partner Portal
               </span>
             </div>
@@ -117,12 +117,12 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
             </span>
             <span className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] uppercase tracking-wider ${
               (tierInfo?.tier || profile?.current_tier) === "Platinum"
-                ? "bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+                ? "bg-gradient-to-r from-purple-500/20 to-[#00B8DB]/20 text-[#7FE3F2] border border-[#00B8DB]/30"
                 : (tierInfo?.tier || profile?.current_tier) === "Gold"
                 ? "bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30"
                 : (tierInfo?.tier || profile?.current_tier) === "Silver"
                 ? "bg-slate-200 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600"
-                : "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20"
+                : "bg-[#00B8DB]/10 text-[#00667A] dark:text-[#00B8DB] border border-[#00B8DB]/20"
             }`}>
               {tierInfo?.tier || profile?.current_tier || "Registered"} Tier
             </span>
@@ -133,7 +133,7 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
           {(user?.role === "Channel Admin" || user?.role === "Partner Manager") && (
             <Link
               href="/channel-admin"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-[#00B8FF] border border-cyan-500/30 text-xs font-bold transition-all shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00B8DB]/10 hover:bg-[#00B8DB]/20 text-[#00667A] dark:text-[#00B8DB] border border-[#00B8DB]/30 text-xs font-bold transition-all shadow-sm"
             >
               <Shield className="w-3.5 h-3.5" />
               <span>Admin Console</span>
@@ -148,7 +148,7 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
               onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
               className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-colors"
             >
-              <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-[#00B8FF] flex items-center justify-center font-bold text-xs shadow-inner">
+              <div className="w-8 h-8 rounded-full bg-[#00B8DB]/20 border border-[#00B8DB]/40 text-[#00667A] dark:text-[#00B8DB] flex items-center justify-center font-bold text-xs shadow-inner">
                 {user?.name ? user.name.charAt(0) : "U"}
               </div>
               <div className="hidden sm:block text-left">
@@ -163,18 +163,18 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
             </button>
 
             {profileDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#0A1628] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl py-2 z-50 text-xs backdrop-blur-xl animate-in fade-in zoom-in-95 duration-100">
+              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#15171A] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl py-2 z-50 text-xs backdrop-blur-xl animate-in fade-in zoom-in-95 duration-100">
                 <div className="px-4 py-2.5 border-b border-slate-100 dark:border-white/[0.06]">
                   <div className="font-bold text-slate-900 dark:text-white">{user?.name}</div>
                   <div className="text-slate-500 truncate">{user?.email}</div>
-                  <div className="text-[11px] text-[#00B8FF] font-semibold mt-1">{user?.orgName}</div>
+                  <div className="text-[11px] text-[#00667A] dark:text-[#00B8DB] font-semibold mt-1">{user?.orgName}</div>
                 </div>
 
                 {(user?.role === "Channel Admin" || user?.role === "Partner Manager") && (
                   <Link
                     href="/channel-admin"
                     onClick={() => setProfileDropdownOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2.5 text-[#00B8FF] font-bold hover:bg-cyan-500/10 border-b border-slate-100 dark:border-white/[0.06]"
+                    className="flex items-center gap-2 px-4 py-2.5 text-[#00667A] dark:text-[#00B8DB] font-bold hover:bg-[#00B8DB]/10 border-b border-slate-100 dark:border-white/[0.06]"
                   >
                     <Shield className="w-3.5 h-3.5" />
                     <span>Channel Admin Console</span>
@@ -209,12 +209,12 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
       {/* Main Container with Sidebar Navigation */}
       <div className="flex-1 flex">
         {/* Desktop Left Rail Navigation */}
-        <aside className="hidden lg:flex flex-col w-64 border-r border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#070D18] p-4 shrink-0">
+        <aside className="hidden lg:flex flex-col w-64 border-r border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111214] p-4 shrink-0">
           {/* Quick Register Deal Button */}
           <div className="mb-4">
             <Link
               href="/partner-portal/deals/new"
-              className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#00B8FF] to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 transition-all active:scale-[0.98]"
+              className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#00B8DB] to-[#00667A] hover:from-[#00B8DB] hover:to-[#00B8DB] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-[#00B8DB]/20 transition-all active:scale-[0.98]"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Register New Deal</span>
@@ -236,11 +236,11 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
                       href={item.href}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${
                         isActive
-                          ? "bg-gradient-to-r from-cyan-500/15 via-cyan-500/5 to-transparent text-[#00B8FF] border-l-2 border-[#00B8FF] shadow-[0_0_15px_rgba(0,184,255,0.06)]"
+                          ? "bg-gradient-to-r from-[#00B8DB]/15 via-[#00B8DB]/5 to-transparent text-[#00667A] border-l-2 border-[#00B8DB] shadow-[0_0_15px_rgba(0,184,255,0.06)]"
                           : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04]"
                       }`}
                     >
-                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#00B8FF]" : "text-slate-400"}`} />
+                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#00667A] dark:text-[#00B8DB]" : "text-slate-400"}`} />
                       <span>{item.label}</span>
                     </Link>
                   );
@@ -253,7 +253,7 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
             <Link
               href="/partners"
               target="_blank"
-              className="flex items-center justify-between text-xs text-slate-500 hover:text-cyan-500 transition-colors"
+              className="flex items-center justify-between text-xs text-slate-500 hover:text-[#00667A] dark:hover:text-[#00B8DB] transition-colors"
             >
               <span>Public Directory</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -268,7 +268,7 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
           <div className="lg:hidden fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm flex">
-            <div className="w-72 bg-white dark:bg-[#0A1628] h-full p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
+            <div className="w-72 bg-white dark:bg-[#15171A] h-full p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
               <div className="space-y-6">
                 <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/[0.08] pb-4">
                   <div className="font-bold text-sm text-slate-900 dark:text-white">Navigation</div>
@@ -292,7 +292,7 @@ export default function PartnerPortalLayout({ children }: { children: React.Reac
                           onClick={() => setMobileMenuOpen(false)}
                           className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium ${
                             isActive
-                              ? "bg-cyan-500/10 text-cyan-600 font-semibold"
+                              ? "bg-[#00B8DB]/10 text-[#00667A] font-semibold"
                               : "text-slate-600 dark:text-slate-300"
                           }`}
                         >

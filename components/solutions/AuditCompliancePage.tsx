@@ -57,7 +57,7 @@ const hero = {
             "OmniPriv brings Privileged Access Management, real-time monitoring, and centralized compliance reporting together, helping security teams reduce risks and demonstrate accountability without complex manual processes.",
         ],
     ] as RichText[],
-    primary: { href: "/demo", label: "Request a Demo" },
+    primary: { href: "/demo?intent=compliance", label: "Request a Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
     image: {
         src: "/product/compliance.png",
@@ -190,16 +190,16 @@ const regulatory = {
         },
         {
             icon: Landmark,
-            title: "NIST 800-53",
+            title: "NIST SP 800-53",
             text: "Align privileged access practices with access control, audit logging, accountability, and security monitoring control families.",
         },
         {
             icon: Globe2,
-            title: "GDPR",
-            text: "Support appropriate security measures for systems handling personal data with privileged access restrictions, user accountability, and activity monitoring.",
+            title: "SOX 404",
+            text: "Support IT general controls for financial reporting systems with governed administrative access, separation of duties, and auditable privileged activity.",
         },
     ] as IconCard[],
-    note: "OmniPriv also provides compliance mappings for frameworks including SOX, Basel II, MAS TRM, and NERC CIP. These capabilities support control implementation and audit evidence collection; regulatory compliance still depends on the organization's wider security program.",
+    note: "These six are the frameworks OmniPriv maps its controls to: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. The mappings support control implementation and audit evidence collection; regulatory compliance still depends on the organization's wider security program.",
 };
 
 const reporting = {
@@ -231,7 +231,7 @@ const closing = {
         "With OmniPriv, organizations can move beyond manual log collection and build a more proactive approach to privileged access security. Strengthen accountability, reduce unnecessary access, and keep relevant audit evidence within reach.",
     ],
     kicker: "See how OmniPriv helps your organization simplify privileged access management audit and compliance.",
-    primary: { href: "/demo", label: "Request a Demo" },
+    primary: { href: "/demo?intent=compliance", label: "Request a Demo" },
     secondary: { href: "/case-studies", label: "Read the Case Studies" },
 };
 
@@ -269,7 +269,7 @@ const faqs: FaqEntry[] = [
     {
         question: "Which security compliance standards does OmniPriv support?",
         answer:
-            "OmniPriv provides controls and reporting capabilities that help organizations align privileged access practices with frameworks such as ISO 27001, PCI DSS, HIPAA, NIST 800-53, SOX, GDPR, and others. Specific compliance obligations depend on the organization's industry, environment, and applicable regulations.",
+            "OmniPriv maps its privileged access controls and reporting to six frameworks: SOC 2, ISO 27001, NIST SP 800-53, HIPAA, PCI DSS and SOX 404. Specific compliance obligations depend on the organization's industry, environment, and applicable regulations.",
     },
     {
         question: "How can organizations improve privileged access audit readiness?",

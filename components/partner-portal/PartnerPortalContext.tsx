@@ -152,7 +152,7 @@ export function EmptyState({
   onAction?: () => void;
 }) {
   return (
-    <div className="rounded-xl border border-dashed border-slate-300 dark:border-white/15 bg-slate-50/70 dark:bg-[#0A1628]/40 p-10 text-center my-6">
+    <div className="rounded-xl border border-dashed border-slate-300 dark:border-white/15 bg-slate-50/70 dark:bg-[#15171A]/40 p-10 text-center my-6">
       <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-1.5">{title}</h3>
       <p className="text-sm text-slate-500 dark:text-slate-400 max-w-lg mx-auto mb-5 leading-relaxed">{description}</p>
       {actionLabel && onAction && (
@@ -166,7 +166,7 @@ export function EmptyState({
 
 export function LoadingSkeleton({ rows = 4 }: { rows?: number }) {
   return (
-    <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0A1628] p-6 space-y-4 animate-pulse">
+    <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#15171A] p-6 space-y-4 animate-pulse">
       <div className="h-5 bg-slate-200 dark:bg-slate-800 rounded w-1/4"></div>
       <div className="space-y-3 pt-2">
         {Array.from({ length: rows }).map((_, i) => (

@@ -113,7 +113,7 @@ export default function JbpPage() {
           {jbps.map((plan) => (
             <div
               key={plan.id}
-              className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#0A1628]/80 p-6 shadow-sm"
+              className="rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#15171A]/80 p-6 shadow-sm"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-white/[0.05] pb-4 mb-4">
                 <div>
@@ -162,7 +162,7 @@ export default function JbpPage() {
       {/* JBP Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-[#0A1628] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
+          <div className="bg-white dark:bg-[#15171A] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
             <div className="flex items-center justify-between p-5 border-b border-slate-200 dark:border-white/[0.08]">
               <h2 className="text-base font-bold text-slate-900 dark:text-white">Create Joint Business Plan</h2>
               <button onClick={() => setModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-white">

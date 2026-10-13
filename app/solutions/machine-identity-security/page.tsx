@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 
+import SectionNav from "@/components/aipam/SectionNav";
+import Spotlight from "@/components/aipam/Spotlight";
+import { ThreatResponse } from "@/components/agent/Visuals";
+import MachineHero from "@/components/machine/MachineHero";
+import { IdentityAnatomy, MachineSessions, PipelineVisual, RiskControlMap, ScopeVisual } from "@/components/machine/Visuals";
+import CheckChips from "@/components/pageui/CheckChips";
+import { ClosingBand, FactsStrip, FaqSplit, Heading, KeepReading, PageHero, Paras, mutedBand, sectionLine } from "@/components/pageui/blocks";
 import CheckList from "@/components/sections/CheckList";
-import ChipList from "@/components/sections/ChipList";
-import CtaBand from "@/components/sections/CtaBand";
-import FaqSection from "@/components/sections/FaqSection";
 import Prose from "@/components/sections/Prose";
-import Section from "@/components/sections/Section";
-import SectionHeading from "@/components/sections/SectionHeading";
-import SplitHero from "@/components/sections/SplitHero";
+import { cn } from "@/lib/utils";
 
 import { requireSolution } from "../data";
 import {
@@ -27,6 +29,13 @@ import {
     risksSection,
 } from "./data";
 
+/*
+ * /solutions/machine-identity-security. Copy lives in ./data.ts; this file is
+ * layout only, built from the shared page kit (components/pageui) so it
+ * matches the redesigned platform pages. Sample values in illustrations are
+ * illustrative.
+ */
+
 /** Single source of truth for the slug, eyebrow and SEO metadata. */
 const solution = requireSolution("machine-identity-security");
 
@@ -35,168 +44,231 @@ export const metadata: Metadata = {
     description: solution.metaDescription,
 };
 
+const NAV = [
+    { id: "mi-what", label: "What it is" },
+    { id: "mi-risks", label: "Risks" },
+    { id: "mi-credentials", label: "Credentials" },
+    { id: "mi-least", label: "Least privilege" },
+    { id: "mi-intel", label: "Detection & monitoring" },
+    { id: "mi-coverage", label: "Coverage" },
+    { id: "mi-faq", label: "FAQ" },
+];
+
+/* From this page's copy, plus the verified 39-feature behavioral model. */
+const FACTS = [
+    { value: 3, label: "credential types rotated automatically: passwords, SSH keys, API tokens" },
+    { value: 9, label: "named platforms, from AWS and Kubernetes to Terraform" },
+    { value: 6, label: "environments under one strategy, cloud to hybrid" },
+    { value: 39, label: "behavioral features scored on privileged activity" },
+];
+
+/* What each capability card names, as a footer row. */
+const CAP_TAGS = [
+    ["Central credential control", "Secret rotation"],
+    ["Azure", "Google Cloud", "AWS IAM", "Native secret managers"],
+    ["Short-lived tokens", "Dynamic secrets", "Credential injection"],
+];
+
+/* The four parts of the least-privilege principle sentence. */
+const PRINCIPLE = ["Grant only the access required", "Protect the credential", "Monitor sensitive activity"];
+
+const PLATFORMS = ["AWS", "Azure", "GCP", "Kubernetes", "HashiCorp Vault", "GitHub", "GitLab", "Jenkins", "Terraform", "Databases"];
+
+const keepReading = [
+    { href: "/platform/password-credential-management", label: "Credential rotation and vaulting" },
+    { href: "/solutions/ai-agent-security", label: "AI agent security" },
+    { href: "/solutions/human-identity-security", label: "Human identity security" },
+];
+
 export default function MachineIdentitySecurityPage() {
     return (
-        <>
-            <SplitHero
-                badge={solution.eyebrow}
+        <div className="aip">
+            <SectionNav items={NAV} startId="mi-hero" />
+            <Spotlight />
+
+            <PageHero
+                id="mi-hero"
                 titleLead={meta.titleLead}
                 titleAccent={meta.titleAccent}
+                paragraphs={[hero.intro, hero.body, hero.note]}
                 primary={hero.primary}
                 secondary={hero.secondary}
-                media={hero.image}
+                visual={<MachineHero />}
             >
-                <Prose segments={hero.intro} className="text-lg mb-5" />
-                <Prose segments={hero.body} className="text-lg mb-5" />
-                <Prose segments={hero.note} className="text-lg mb-8" />
-            </SplitHero>
+                <FactsStrip facts={FACTS} />
+            </PageHero>
 
             {/* ─── WHAT IS MACHINE IDENTITY MANAGEMENT ── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={definitionSection.title}>
-                    {definitionSection.paragraphs.map((paragraph, index) => (
-                        <Prose
-                            key={index}
-                            segments={paragraph}
-                            className={index === definitionSection.paragraphs.length - 1 ? "" : "mb-4"}
-                        />
-                    ))}
-                </SectionHeading>
-            </Section>
+            <section id="mi-what" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={definitionSection.title} />
+                            <Paras items={definitionSection.paragraphs} className="mt-6" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <IdentityAnatomy />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── RISKS ────────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={risksSection.title}>
-                    {risksSection.paragraphs.map((paragraph, index) => (
-                        <Prose key={index} segments={paragraph} className="mb-4" />
-                    ))}
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <CheckList items={risksSection.controls} className="mb-8" />
-
-                    <Prose segments={risksSection.note} />
-                </div>
-            </Section>
-
-            {/* ─── CREDENTIALS + CAPABILITY BLOCKS ──── */}
-            <Section tone="muted" border="bottom">
-                <SectionHeading title={credentialsSection.title}>
-                    {credentialsSection.paragraphs.map((paragraph, index) => (
-                        <Prose key={index} segments={paragraph} className="mb-4" />
-                    ))}
-                </SectionHeading>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 mt-14">
-                    {capabilityBlocks.map((block) => (
-                        <div key={block.title}>
-                            <SectionHeading as="h3" size="sm" title={block.title}>
-                                {block.paragraphs.map((paragraph, index) => (
-                                    <Prose
-                                        key={index}
-                                        segments={paragraph}
-                                        className={
-                                            index === block.paragraphs.length - 1 ? "" : "mb-3"
-                                        }
-                                    />
-                                ))}
-                            </SectionHeading>
+            <section id="mi-risks" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0 order-2 lg:order-1 lg:sticky lg:top-40" data-aos="fade-up" data-aos-delay="100">
+                            <RiskControlMap />
                         </div>
-                    ))}
+                        <div className="min-w-0 order-1 lg:order-2">
+                            <Heading title={risksSection.title} />
+                            <Paras items={risksSection.paragraphs} className="mt-6" />
+                            <CheckList items={risksSection.controls} className="mt-6" />
+                            <Prose segments={risksSection.note} className="mt-6 text-[1.0156rem]" />
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
+
+            {/* ─── CREDENTIALS WITHOUT SLOWING AUTOMATION ── */}
+            <section id="mi-credentials" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={credentialsSection.title} />
+                            <Paras items={credentialsSection.paragraphs} className="mt-6" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <PipelineVisual />
+                        </div>
+                    </div>
+                    <div className="mt-16 grid gap-4 md:grid-cols-3">
+                        {capabilityBlocks.map((b, i) => (
+                            <article key={b.title} className="aip-card min-w-0 rounded-3xl border p-6 lg:p-7 flex flex-col" data-aos="fade-up" data-aos-delay={String(i * 80)}>
+                                <span className="icon-wrapper">
+                                    <b.icon className="w-5 h-5" aria-hidden="true" />
+                                </span>
+                                <h3 className="op-card-title mt-5">{b.title}</h3>
+                                <div className="mt-2 space-y-2">
+                                    {b.paragraphs.map((p, k) => (
+                                        <Prose key={k} segments={p} className="op-card-text" />
+                                    ))}
+                                </div>
+                                <ul className="mt-auto pt-5 flex flex-wrap gap-1.5">
+                                    {CAP_TAGS[i].map((t) => (
+                                        <li key={t} className="rounded-lg border border-[#00B8DB]/25 bg-[#00B8DB]/[0.06] px-2.5 py-1 text-[0.6875rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]">
+                                            {t}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* ─── LEAST PRIVILEGE ──────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={leastPrivilegeSection.title}>
-                    {leastPrivilegeSection.paragraphs.map((paragraph, index) => (
-                        <Prose key={index} segments={paragraph} className="mb-4" />
-                    ))}
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <p className="text-slate-950 dark:text-white font-semibold text-lg mb-6">
-                        {leastPrivilegeSection.principle}
-                    </p>
-
-                    <Prose segments={leastPrivilegeSection.note} />
+            <section id="mi-least" className={sectionLine}>
+                <div className="container-xl op-sec">
+                    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                        <div className="min-w-0">
+                            <Heading title={leastPrivilegeSection.title} />
+                            <Paras items={leastPrivilegeSection.paragraphs} className="mt-6" />
+                            <blockquote className="mt-6 rounded-2xl border border-[#00B8DB]/30 bg-[#00B8DB]/[0.06] px-5 py-4 text-[1.0625rem] font-semibold leading-snug text-[#0a1628] dark:text-white" data-aos="fade-up">
+                                {leastPrivilegeSection.principle}
+                            </blockquote>
+                            <div className="mt-5" aria-hidden="true">
+                                <CheckChips steps={PRINCIPLE} outcome="Remove unnecessary privilege" />
+                            </div>
+                            <Prose segments={leastPrivilegeSection.note} className="mt-6 text-[1.0156rem]" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <ScopeVisual />
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
             {/* ─── INTELLIGENCE + MONITORING (dark band) ── */}
-            <Section tone="dark" border="bottom">
-                <SectionHeading title={intelligenceSection.title}>
-                    {intelligenceSection.paragraphs.map((paragraph, index) => (
-                        <Prose
-                            key={index}
-                            segments={paragraph}
-                            className={
-                                index === intelligenceSection.paragraphs.length - 1
-                                    ? ""
-                                    : "mb-4"
-                            }
-                        />
-                    ))}
-                </SectionHeading>
-
-                <SectionHeading title={monitoringSection.title} className="mt-16">
-                    {monitoringSection.paragraphs.map((paragraph, index) => (
-                        <Prose
-                            key={index}
-                            segments={paragraph}
-                            className={
-                                index === monitoringSection.paragraphs.length - 1
-                                    ? ""
-                                    : "mb-4"
-                            }
-                        />
-                    ))}
-                </SectionHeading>
-            </Section>
+            <div className="dark">
+                <section id="mi-intel" className="relative overflow-hidden op-band-navy">
+                    <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+                    <div className="container-xl op-sec relative space-y-20 lg:space-y-24">
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0">
+                                <Heading title={intelligenceSection.title} />
+                                <Paras items={intelligenceSection.paragraphs} className="mt-6" />
+                            </div>
+                            <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                                <ThreatResponse />
+                            </div>
+                        </div>
+                        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+                            <div className="min-w-0 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="100">
+                                <MachineSessions />
+                            </div>
+                            <div className="min-w-0 order-1 lg:order-2">
+                                <Heading title={monitoringSection.title} />
+                                <Paras items={monitoringSection.paragraphs} className="mt-6" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
             {/* ─── COVERAGE ─────────────────────────── */}
-            <Section border="bottom">
-                <SectionHeading title={infrastructureSection.title}>
-                    {infrastructureSection.paragraphs.map((paragraph, index) => (
-                        <Prose key={index} segments={paragraph} className="mb-4" />
-                    ))}
-                    <Prose
-                        segments={[infrastructureSection.prompt]}
-                        tone="strong"
-                        className="mb-5"
-                    />
-                </SectionHeading>
-
-                <div className="max-w-3xl">
-                    <ChipList
-                        items={infrastructureSection.flow}
-                        variant="accent"
-                        align="center"
-                        className="mb-5"
-                        separator={
-                            <ArrowRight className="w-4 h-4 text-slate-400 dark:text-slate-500 flex-shrink-0" />
-                        }
-                    />
-
-                    <Prose segments={infrastructureSection.note} />
+            <section id="mi-coverage" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title={infrastructureSection.title} />
+                    <div className="op-body grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
+                        <div className="min-w-0">
+                            <Paras items={infrastructureSection.paragraphs} />
+                            <Prose segments={[infrastructureSection.prompt]} tone="strong" className="mt-7" />
+                            <ol className="mt-4 flex flex-wrap items-center gap-2" data-aos="fade-up">
+                                {infrastructureSection.flow.map((f, k) => (
+                                    <li key={f} className="flex items-center gap-2">
+                                        <span className="rounded-lg border border-[#00B8DB]/30 bg-[#00B8DB]/[0.07] px-3 py-1.5 text-[0.8125rem] font-semibold text-[#00667A] dark:text-[#7FE3F2]">{f}</span>
+                                        {k < infrastructureSection.flow.length - 1 && <ArrowRight className="w-3.5 h-3.5 text-slate-400" aria-hidden="true" />}
+                                    </li>
+                                ))}
+                            </ol>
+                            <Prose segments={infrastructureSection.note} className="mt-5 text-[1.0156rem]" />
+                        </div>
+                        <div className="min-w-0" data-aos="fade-up" data-aos-delay="100">
+                            <div className="rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#15171a] p-6">
+                                <div className="text-[0.8125rem] font-semibold text-slate-500">Machine-access use cases across</div>
+                                <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                    {PLATFORMS.map((p) => (
+                                        <li key={p} className="aip-card rounded-xl border px-3 py-3 text-center text-[0.875rem] font-semibold text-slate-800 dark:text-slate-200">
+                                            {p}
+                                        </li>
+                                    ))}
+                                    <li className="rounded-xl border border-dashed border-slate-900/[0.12] dark:border-white/[0.12] px-3 py-3 text-center text-[0.8125rem] text-slate-500">and other enterprise systems</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </section>
 
-            {/* ─── CLOSING ──────────────────────────── */}
-            <CtaBand
+            {/* ─── KEEP READING ─────────────────────── */}
+            <section className={sectionLine}>
+                <div className="container-xl py-12 lg:py-14">
+                    <h2 className="op-h3 mb-6" data-aos="fade-up">Keep reading</h2>
+                    <KeepReading links={keepReading} />
+                </div>
+            </section>
+
+            <ClosingBand
                 title={closing.title}
-                body={closing.body}
-                kicker={closing.kicker}
+                accent={<CheckChips steps={["Rotated", "Scoped", "Monitored"]} outcome="No permanent privilege" />}
+                lead={closing.body[0]}
+                body={[...closing.body.slice(1), closing.kicker]}
                 primary={closing.primary}
                 secondary={closing.secondary}
             />
 
-            {/* ─── FAQ ──────────────────────────────── */}
-            <FaqSection
-                title={faqSection.title}
-                subtitle={faqSection.subtitle}
-                items={faqs}
-            />
-        </>
+            <FaqSplit id="mi-faq" title={faqSection.title} items={faqs} />
+        </div>
     );
 }

@@ -4,12 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+import {
+  EMAILJS_NEWSLETTER_TEMPLATE_ID,
+  EMAILJS_PUBLIC_KEY,
+  EMAILJS_RECIPIENT,
+  EMAILJS_SERVICE_ID,
+} from "@/lib/emailjs";
 
 const productLinks = [
+  { label: "Secure AI Agents", href: "/platform/secure-ai-agents" },
   { label: "Infrastructure Deployment", href: "/platform/infrastructure-deployment" },
   { label: "Credential Management", href: "/platform/password-credential-management" },
   { label: "Application Security", href: "/platform/application-security" },
   { label: "Secure Remote Access", href: "/platform/secure-remote-access" },
+  { label: "Workflow & Access Control", href: "/platform/workflow-access-control" },
   { label: "Enterprise Integration", href: "/platform/enterprise-integration" },
   { label: "Compliance & Audit", href: "/privileged-access-audit-compliance" },
   { label: "AI Threat Protection", href: "/platform/ai-threat-protection" },
@@ -18,11 +28,16 @@ const productLinks = [
 const resourceLinks = [
   { label: "Blog & Insights", href: "/blog" },
   { label: "Case Studies", href: "/case-studies" },
+  { label: "Documentation", href: "/docs" },
+  { label: "Features", href: "/features" },
+  { label: "Integrations", href: "/integrations" },
   { label: "Security Center", href: "/security" },
 ];
 
 const companyLinks = [
   { label: "About OmniPriv", href: "/about" },
+  { label: "Enterprise Plans", href: "/enterprise" },
+  { label: "Partner Program", href: "/partners" },
   { label: "Contact Sales", href: "/demo" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms" },
@@ -30,13 +45,28 @@ const companyLinks = [
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  function handleSubscribe(e: React.FormEvent) {
+  /* Same EmailJS route as the blog newsletter (components/blog/BlogNewsletter.tsx).
+   * Until EMAILJS_NEWSLETTER_TEMPLATE_ID in lib/emailjs.ts holds a real template
+   * id, the send fails and the error message shows: it no longer claims success
+   * without sending anything. */
+  async function handleSubscribe(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
-    setStatus("success");
-    setEmail("");
+    setStatus("loading");
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_NEWSLETTER_TEMPLATE_ID,
+        { to_email: EMAILJS_RECIPIENT, subscriber_email: email },
+        EMAILJS_PUBLIC_KEY,
+      );
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -66,6 +96,7 @@ export default function Footer() {
                 <span className="text-lg">✓</span> You&apos;re subscribed! Welcome aboard.
               </p>
             ) : (
+              <div className="w-full md:w-auto">
               <form className="flex gap-3 w-full md:w-auto" onSubmit={handleSubscribe}>
                 <label htmlFor="footer-newsletter-email" className="sr-only">
                   Work email address
@@ -80,10 +111,14 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <button type="submit" className="btn-primary whitespace-nowrap">
-                  Subscribe
+                <button type="submit" disabled={status === "loading"} className="btn-primary whitespace-nowrap disabled:opacity-60">
+                  {status === "loading" ? "Subscribing..." : "Subscribe"}
                 </button>
               </form>
+              <p role="status" aria-live="polite" className="mt-2 min-h-[1.25rem] text-[0.8125rem] text-rose-600 dark:text-rose-400">
+                {status === "error" ? "Something went wrong. Please try again, or email info@omnipriv.com." : ""}
+              </p>
+              </div>
             )}
           </div>
         </div>

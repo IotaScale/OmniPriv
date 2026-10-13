@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MediaSplit from "@/components/sections/MediaSplit";
+import LegalDocument from "@/components/legal/LegalDocument";
 
 export const metadata: Metadata = {
   title: { absolute: "Terms of Service | OmniPriv" },
@@ -145,80 +145,30 @@ Force Majeure: Neither party will be liable for delays caused by circumstances b
 
 OmniPriv Legal Team
 Email: legal@OmniPriv.com
-Address: OmniPriv, Inc., 1 Market Street, Suite 2500, San Francisco, CA 94105, USA`,
+Address: Omnipriv US Office, 4301 Independence St., Rockville MD 20853, USA`,
   },
 ];
 
 export default function TermsPage() {
   return (
-    <>
-      {/* Header */}
-      <section className="relative pt-16 pb-20 border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="badge-cyan mb-5">Legal</div>
-          <h1 className="op-h1 mb-8">Terms of Service</h1>
-          <MediaSplit
-            media={{
-              src: "/product/compliance.png",
-              alt: "OmniPriv compliance dashboard showing security controls",
-              fit: "contain",
-            }}
-            ratio="wide-last"
-            height="md"
-          >
-            <p className="text-slate-600 dark:text-slate-400">
-              Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025
-            </p>
-            <p className="mt-4 text-slate-600 dark:text-slate-400">
-              These Terms explain the conditions for using the OmniPriv website, documentation, APIs, and services.
-            </p>
-          </MediaSplit>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="section-padding border-b border-slate-900/[0.05] dark:border-white/[0.04]">
-        <div className="container-xl">
-          <div className="grid lg:grid-cols-4 gap-10">
-
-            {/* Table of Contents */}
-            <nav className="hidden lg:block">
-              <div className="sticky top-28 space-y-1">
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Contents</p>
-                {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-sm text-slate-600 dark:text-slate-400 hover:text-[#00B8DB] transition-colors py-0.5 border-l border-slate-900/[0.08] dark:border-white/[0.06] hover:border-[#00B8DB]/40 pl-3">
-                    {s.title}
-                  </a>
-                ))}
-              </div>
-            </nav>
-
-            {/* Main Content */}
-            <article className="lg:col-span-3 space-y-10">
-              <div className="p-5 rounded-xl border border-yellow-500/20 bg-yellow-500/[0.03] text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                <strong className="text-slate-950 dark:text-white">Note:</strong> These Terms of Service apply to OmniPriv&apos;s website and software-as-a-service platform. Enterprise customers with custom contracts should refer to their signed Order Form and Master Subscription Agreement, which supersede these Terms where they conflict.
-              </div>
-
-              {sections.map((s) => (
-                <div key={s.id} id={s.id}>
-                  <h2 className="text-lg font-bold text-slate-950 dark:text-white mb-3" style={{ fontFamily: "var(--font-syne)" }}>{s.title}</h2>
-                  <div className="space-y-3">
-                    {s.content.split("\n\n").map((para, i) => (
-                      <p key={i} className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">{para}</p>
-                    ))}
-                  </div>
-                  <div className="divider mt-8" />
-                </div>
-              ))}
-
-              <p className="text-xs text-slate-500 mt-6">
-                For legal inquiries:{" "}
-                <a href="mailto:legal@OmniPriv.com" className="text-[#00B8DB] hover:underline">legal@OmniPriv.com</a>
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-    </>
+    <LegalDocument
+      title="Terms of Service"
+      kind="terms"
+      contact="legal@OmniPriv.com"
+      updated={<>Effective Date: January 1, 2025 &bull; Last Updated: January 1, 2025</>}
+      intro={<p>These Terms explain the conditions for using the OmniPriv website, documentation, APIs, and services.</p>}
+      note={
+        <>
+          <strong className="text-slate-950 dark:text-white">Note:</strong> These Terms of Service apply to OmniPriv&apos;s website and software-as-a-service platform. Enterprise customers with custom contracts should refer to their signed Order Form and Master Subscription Agreement, which supersede these Terms where they conflict.
+        </>
+      }
+      sections={sections}
+      footer={
+        <p>
+          For legal inquiries:{" "}
+          <a href="mailto:legal@OmniPriv.com" className="op-link font-semibold hover:underline underline-offset-2">legal@OmniPriv.com</a>
+        </p>
+      }
+    />
   );
 }
