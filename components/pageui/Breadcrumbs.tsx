@@ -41,6 +41,8 @@ const LABELS: Record<string, string> = {
     "/case-studies": "Case Studies",
     "/docs": "Documentation",
     "/demo": "Request a Demo",
+    "/events": "Events",
+    "/events/black-hat-mea-2026": "Black Hat MEA 2026",
     "/partners": "Partners",
     "/partners/apply": "Apply",
 };
@@ -51,7 +53,7 @@ const PARENT: Record<string, string> = {
 };
 
 /* Segments with no page of their own: shown as text, not a link. */
-const NO_PAGE = new Set(["/solutions"]);
+const NO_PAGE = new Set(["/solutions", "/events"]);
 
 const titleCase = (s: string) => s.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 

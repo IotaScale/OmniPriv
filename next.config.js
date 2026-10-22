@@ -57,6 +57,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // There is one event page; /events is the stable entry point.
+      {
+        source: '/events',
+        destination: '/events/black-hat-mea-2026',
+        permanent: false,
+      },
       // Module URL shortened (October 2026): the brand name added nothing.
       {
         source: '/platform/secure-ai-agents-omnipriv',

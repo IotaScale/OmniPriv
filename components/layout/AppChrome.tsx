@@ -2,6 +2,7 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
+import EventPopup from "@/components/events/EventPopup";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -23,6 +24,7 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
       <Header />
       <main className="pt-[4.5rem]">{children}</main>
       <Footer />
+      <EventPopup />
     </>
   );
 }

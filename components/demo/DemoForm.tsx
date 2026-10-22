@@ -12,6 +12,7 @@ import {
     EMAILJS_DEMO_TEMPLATE_ID,
     EMAILJS_RECIPIENT,
 } from "@/lib/emailjs";
+import { fieldClass, labelClass } from "@/lib/form-styles";
 
 /*
  * The interactive half of /demo.
@@ -70,10 +71,6 @@ export const INTENTS: Record<string, { label: string; useCase?: string }> = {
     compliance: { label: "Compliance and audit", useCase: "Compliance & Audit Reporting" },
     partner: { label: "Partner enquiry" },
 };
-
-const labelClass = "block text-[0.8125rem] font-semibold text-slate-700 dark:text-slate-300 mb-1.5";
-const fieldClass = "w-full rounded-xl border border-slate-900/[0.12] dark:border-white/[0.12] bg-white dark:bg-[#0b0c0e] px-4 py-3 text-[0.9375rem] text-slate-950 dark:text-white placeholder:text-slate-400 outline-none transition-colors focus:border-[#00B8DB]/70 focus:ring-2 focus:ring-[#00B8DB]/20";
-
 
 export default function DemoForm() {
     const [formData, setFormData] = useState({

@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/enterprise`,     lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/about`,          lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/demo`,           lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/events/black-hat-mea-2026`, lastModified: SITE_UPDATED, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/blog`,           lastModified: SITE_UPDATED, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${BASE_URL}/case-studies`,   lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/docs`,           lastModified: SITE_UPDATED, changeFrequency: "weekly",  priority: 0.7 },

@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ArrowRight } from "lucide-react";
+import { CalendarDays, Mail, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
+import { EVENT } from "@/components/events/event";
 import {
   EMAILJS_NEWSLETTER_TEMPLATE_ID,
   EMAILJS_PUBLIC_KEY,
@@ -39,6 +40,7 @@ const companyLinks = [
   { label: "Enterprise Plans", href: "/enterprise" },
   { label: "Partner Program", href: "/partners" },
   { label: "Contact Sales", href: "/demo" },
+  { label: "Black Hat MEA 2026", href: "/events/black-hat-mea-2026" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms" },
 ];
@@ -245,12 +247,21 @@ export default function Footer() {
               Talk to our PAM experts and get a personalized demo.
             </p>
           </div>
-          <Link
-            href="/demo"
-            className="btn-primary whitespace-nowrap flex-shrink-0"
-          >
-            Request a Demo <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex w-full flex-col gap-3 sm:flex-row md:w-auto">
+            <Link
+              href={EVENT.href}
+              className="btn-secondary whitespace-nowrap flex-shrink-0 justify-center"
+            >
+              <CalendarDays className="w-4 h-4" aria-hidden="true" />
+              Meet us at Black Hat MEA
+            </Link>
+            <Link
+              href="/demo"
+              className="btn-primary whitespace-nowrap flex-shrink-0 justify-center"
+            >
+              Request a Demo <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </div>
 
