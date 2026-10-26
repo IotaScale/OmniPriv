@@ -87,6 +87,19 @@ export default function EventForm() {
     const [submitted, setSubmitted] = useState(false);
     const successRef = useRef<HTMLDivElement>(null);
 
+    /* Preselect the day from the day cards on the page (an "omnipriv:event-day"
+       event with the day index) or from a link such as ?day=2#meeting. */
+    useEffect(() => {
+        const choose = (k: number) => {
+            if (k >= 0 && k < DAYS.length) setForm((prev) => ({ ...prev, day: DAYS[k] }));
+        };
+        const fromUrl = Number(new URLSearchParams(window.location.search).get("day"));
+        if (fromUrl >= 1 && fromUrl <= 3) choose(fromUrl - 1);
+        const onPick = (e: Event) => choose(Number((e as CustomEvent<number>).detail));
+        window.addEventListener("omnipriv:event-day", onPick);
+        return () => window.removeEventListener("omnipriv:event-day", onPick);
+    }, []);
+
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
     const missing = {
         firstName: !form.firstName.trim(),

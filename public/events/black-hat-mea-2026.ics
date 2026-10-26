@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OmniPriv//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:black-hat-mea-2026@omnipriv.com
+DTSTAMP:20261026T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261204
+SUMMARY:Meet OmniPriv at Black Hat MEA 2026
+LOCATION:Riyadh\, Saudi Arabia
+DESCRIPTION:Book a meeting with the OmniPriv team: https://omnipriv.com/events/black-hat-mea-2026#meeting
+URL:https://omnipriv.com/events/black-hat-mea-2026
+END:VEVENT
+END:VCALENDAR

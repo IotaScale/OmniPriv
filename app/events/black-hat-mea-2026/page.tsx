@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bot, CalendarCheck, ClipboardCheck, KeyRound, MapPin, UserCheck } from "lucide-react";
+import { ArrowRight, CalendarCheck, CalendarPlus, FlaskConical, MapPin, Navigation, Network, Server, Target, Timer } from "lucide-react";
 
 import EventForm from "@/components/events/EventForm";
 import EventPoster from "@/components/events/EventPoster";
@@ -14,8 +14,9 @@ import {
     mutedBand,
     sectionLine,
 } from "@/components/pageui/blocks";
-import CheckList from "@/components/sections/CheckList";
-import IconCardGrid, { type IconCard } from "@/components/sections/IconCardGrid";
+import Countdown from "@/components/events/Countdown";
+import DayPicker from "@/components/events/DayPicker";
+import DemoStations, { type Station } from "@/components/events/DemoStations";
 import Prose from "@/components/sections/Prose";
 import { cn } from "@/lib/utils";
 import type { FaqEntry } from "@/components/sections/FaqAccordion";
@@ -58,30 +59,30 @@ const showingLead: RichText = [
     "The demonstration follows the platform's nine modules rather than a slide deck. These are the four conversations most teams want to have at the show, and each links to the capability behind it.",
 ];
 
-const showing: IconCard[] = [
+const showing: Station[] = [
     {
-        icon: Bot,
+        key: "ai",
         eyebrow: "AI agents",
         title: "Agent identity and tool scope",
         text: "How autonomous agents get their own identity, a scoped allowlist of tools and an approval path, instead of borrowing a human credential.",
         href: "/platform/secure-ai-agents",
     },
     {
-        icon: KeyRound,
+        key: "secrets",
         eyebrow: "Secrets",
         title: "Vaulting and rotation",
         text: "Where secrets sit today in configuration files, databases, registries and services, and what moving them into a vault with automated rotation involves.",
         href: "/platform/password-credential-management",
     },
     {
-        icon: UserCheck,
+        key: "access",
         eyebrow: "Access",
         title: "Just-in-time privilege",
         text: "How access is requested, approved under the 4-eyes principle and expires on its own, so standing privilege stops accumulating.",
         href: "/platform/workflow-access-control",
     },
     {
-        icon: ClipboardCheck,
+        key: "evidence",
         eyebrow: "Evidence",
         title: "An audit you can hand over",
         text: "Session recordings, hash-chained audit records and entitlement reports mapped to the frameworks that apply to you.",
@@ -94,10 +95,26 @@ const meetingIntro: RichText = [
 ];
 
 const meetingPoints = [
-    "Which systems, clouds and agent workloads hold privileged access in your estate today.",
-    "The control that matters most to you: vaulting, JIT access, approval workflow or audit evidence.",
-    "How the platform deploys in your environment, on-premise or as a hardware-agnostic appliance.",
-    "What a proof-of-concept would look like if you want to test it after the show.",
+    {
+        icon: Network,
+        title: "Your estate",
+        text: "Which systems, clouds and agent workloads hold privileged access in your estate today.",
+    },
+    {
+        icon: Target,
+        title: "Your priority",
+        text: "The control that matters most to you: vaulting, JIT access, approval workflow or audit evidence.",
+    },
+    {
+        icon: Server,
+        title: "How it deploys",
+        text: "How the platform deploys in your environment, on-premise or as a hardware-agnostic appliance.",
+    },
+    {
+        icon: FlaskConical,
+        title: "After the show",
+        text: "What a proof-of-concept would look like if you want to test it after the show.",
+    },
 ];
 
 const STEPS = [
@@ -172,10 +189,7 @@ export default function BlackHatMeaPage() {
                 primary={{ href: "#meeting", label: "Book a meeting" }}
                 secondary={{ href: "/platform", label: "See what we will show" }}
                 visual={
-                    <EventPoster
-                        meta
-                        className="rounded-3xl border border-slate-900/[0.08] shadow-[0_40px_90px_-50px_rgba(10,22,40,0.6)] dark:border-white/[0.08]"
-                    />
+                    <EventPoster />
                 }
             >
                 <FactsStrip facts={FACTS} />
@@ -187,66 +201,104 @@ export default function BlackHatMeaPage() {
                     <Heading title="What we're showing">
                         <Prose segments={showingLead} className="text-[1.0625rem]" />
                     </Heading>
-                    <IconCardGrid items={showing} columns={4} className="op-body" />
+                    <div className="op-body">
+                        <DemoStations stations={showing} />
+                    </div>
                 </div>
             </section>
 
             {/* ─── THE MEETING + WHERE TO FIND US ────────────────── */}
-            <section className={sectionLine}>
+            <section id="bh-meeting-agenda" className={sectionLine}>
                 <div className="container-xl op-sec">
-                    <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-                        <div data-aos="fade-up">
+                    <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+                        <div className="min-w-0" data-aos="fade-up">
                             <Heading title="A conversation, not a slide deck" />
                             <Paras items={[meetingIntro]} className="mt-6" />
-                            <CheckList items={meetingPoints} className="mt-7" />
+                            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                                <a href="#meeting" className="hp-btn-primary group">
+                                    Book a meeting
+                                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                </a>
+                                <a
+                                    href="/events/black-hat-mea-2026.ics"
+                                    download
+                                    className="inline-flex items-center gap-2 text-[0.9375rem] font-semibold op-link hover:underline"
+                                >
+                                    <CalendarPlus className="h-4 w-4" aria-hidden="true" />
+                                    Add the dates to your calendar
+                                </a>
+                            </div>
                         </div>
 
-                        <div
-                            className="rounded-3xl border border-slate-900/[0.08] bg-white p-7 dark:border-white/[0.08] dark:bg-[#15171a] sm:p-8"
-                            data-aos="fade-up"
-                            data-aos-delay="80"
-                        >
-                            <div className="flex items-center gap-3">
-                                <CalendarCheck
-                                    className="h-5 w-5 text-[#00667A] dark:text-[#00B8DB]"
+                        {/* What the meeting covers, as a run of four topics */}
+                        <div className="aip-card min-w-0 rounded-3xl border p-6 sm:p-8" data-aos="fade-up" data-aos-delay="80">
+                            <div className="flex items-center justify-between gap-3">
+                                <h3 className="op-card-title">What we cover together</h3>
+                                <span className="shrink-0 whitespace-nowrap rounded-full bg-[#00B8DB]/10 px-2.5 py-1 font-mono text-[0.625rem] font-semibold uppercase tracking-[0.16em] text-[#00667A] dark:text-[#7FE3F2]">
+                                    1:1 meeting
+                                </span>
+                            </div>
+                            <ol className="relative mt-6 space-y-5">
+                                <span
+                                    className="absolute bottom-5 left-[1.1875rem] top-5 w-px bg-gradient-to-b from-[#00B8DB]/60 via-[#00B8DB]/25 to-transparent"
                                     aria-hidden="true"
                                 />
-                                <h2 className="op-card-title">Where to find us</h2>
-                            </div>
-                            <dl className="mt-5 space-y-4">
-                                <div>
-                                    <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                        Dates
-                                    </dt>
-                                    <dd className="mt-1 text-[0.9375rem] font-semibold text-[#0a1628] dark:text-white">
-                                        {EVENT.dates}
-                                    </dd>
-                                </div>
-                                <div>
-                                    <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                        Location
-                                    </dt>
-                                    <dd className="mt-1 flex items-center gap-2 text-[0.9375rem] font-semibold text-[#0a1628] dark:text-white">
-                                        <MapPin
-                                            className="h-4 w-4 text-[#00667A] dark:text-[#00B8DB]"
-                                            aria-hidden="true"
-                                        />
-                                        {EVENT.location}
-                                    </dd>
-                                </div>
-                            </dl>
-                            <p className="mt-6 text-[0.875rem] leading-relaxed text-slate-600 dark:text-slate-400">
-                                Show floors are large. Book a slot and we will send the exact meeting point
-                                with your confirmation.
-                            </p>
+                                {meetingPoints.map((m) => (
+                                    <li key={m.title} className="relative grid grid-cols-[auto_minmax(0,1fr)] gap-4">
+                                        <span className="relative z-[1] inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#00B8DB]/25 bg-white text-[#00667A] dark:bg-[#111214] dark:text-[#7FE3F2]">
+                                            <m.icon className="h-[1.125rem] w-[1.125rem]" aria-hidden="true" />
+                                        </span>
+                                        <span className="min-w-0 pt-0.5">
+                                            <span className="block text-[1rem] font-semibold text-[#0A1628] dark:text-white">{m.title}</span>
+                                            <span className="mt-1 block text-[0.9375rem] leading-[1.6] text-slate-600 dark:text-slate-400">
+                                                {m.text}
+                                            </span>
+                                        </span>
+                                    </li>
+                                ))}
+                            </ol>
                         </div>
+                    </div>
+
+                    {/* Where to find us: one strip of facts under the meeting */}
+                    <dl className="mt-12 grid overflow-hidden rounded-3xl border border-slate-900/[0.08] bg-slate-900/[0.08] dark:border-white/[0.08] dark:bg-white/[0.08] sm:grid-cols-2 lg:grid-cols-4 gap-px" data-aos="fade-up">
+                        {[
+                            { icon: CalendarCheck, k: "Dates", v: <>{EVENT.dates}</> },
+                            { icon: MapPin, k: "Location", v: <>{EVENT.location}</> },
+                            { icon: Timer, k: "Doors open in", v: <Countdown variant="compact" /> },
+                            { icon: Navigation, k: "Meeting point", v: <>Sent with your confirmation</> },
+                        ].map((f) => (
+                            <div key={f.k} className="flex min-w-0 items-start gap-3.5 bg-white p-5 dark:bg-[#15171a] sm:p-6">
+                                <f.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#00667A] dark:text-[#00B8DB]" aria-hidden="true" />
+                                <div className="min-w-0">
+                                    <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-slate-500">{f.k}</dt>
+                                    <dd className="mt-1 text-[0.9375rem] font-semibold text-[#0a1628] dark:text-white">{f.v}</dd>
+                                </div>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </section>
+
+            {/* ─── PICK YOUR DAY ─────────────────────────────────── */}
+            <section id="bh-days" className={cn(mutedBand, sectionLine)}>
+                <div className="container-xl op-sec">
+                    <Heading title="Three days. Pick yours.">
+                        <p className="text-[1.0625rem]">
+                            We take meetings on all three days of the show. Choose one and it is filled in on the
+                            form below.
+                        </p>
+                    </Heading>
+                    <div className="op-body">
+                        <DayPicker />
                     </div>
                 </div>
             </section>
 
             {/* ─── BOOK A MEETING ────────────────────────────────── */}
-            <section id="meeting" className={cn("relative overflow-hidden scroll-mt-24", sectionLine)}>
-                <div className="aip-hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+            <div className="dark">
+            <section id="meeting" className="relative overflow-hidden scroll-mt-24 op-band-navy">
+                <div className="aip-engine-glow pointer-events-none absolute inset-0" aria-hidden="true" />
                 <div className="container-xl relative op-sec">
                     <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
                         <div className="min-w-0 lg:sticky lg:top-28" data-aos="fade-up">
@@ -290,6 +342,7 @@ export default function BlackHatMeaPage() {
                     </div>
                 </div>
             </section>
+            </div>
 
             <FaqSplit id="bh-faq" title="Black Hat MEA, answered" items={faqs} />
 
