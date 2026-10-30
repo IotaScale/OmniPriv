@@ -74,7 +74,6 @@ const resourceLinks = [
 
 const datasheetFiles: { url: string; downloadName: string }[] = [
   { url: "/OmniPriv_PAM_datasheet.pdf", downloadName: "OmniPriv PAM Datasheet.pdf" },
-  { url: "/OmniPriv_PAM_Product_Specification.pdf", downloadName: "OmniPriv PAM Product Specification.pdf" },
 ];
 
 function downloadDatasheets() {
@@ -444,7 +443,7 @@ export default function Header() {
                     </span>
                     <span className="block text-base font-semibold text-slate-950 dark:text-white">Data sheet</span>
                     <span className="block text-sm text-slate-500 dark:text-slate-400 mt-1.5">
-                      Product datasheet and full specification, as PDF.
+                      Product datasheet, as PDF.
                     </span>
                   </span>
                   <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00B8DB] mt-6">
