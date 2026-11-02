@@ -24,7 +24,7 @@ import {
   Zap,
   BarChart3,
   AlertTriangle,
-  Download,
+  // Download, // datasheet download hidden for now
   FileText,
   ShieldCheck,
   BrainCircuit,
@@ -72,6 +72,10 @@ const resourceLinks = [
   { label: "Partner Directory", description: "Find an authorized partner", href: "/partners", icon: Handshake },
 ];
 
+/* Datasheet download: hidden for now. To bring it back, restore this block,
+   the `Download` import and the two "Datasheet download" buttons below,
+   and the Resources grid classes noted there.
+
 const datasheetFiles: { url: string; downloadName: string }[] = [
   { url: "/OmniPriv_PAM_datasheet.pdf", downloadName: "OmniPriv PAM Datasheet.pdf" },
 ];
@@ -89,6 +93,7 @@ function downloadDatasheets() {
     }, i * 200);
   });
 }
+*/
 
 /** React 18 has no `inert` prop type; set the attribute directly. */
 const inertIf = (on: boolean): Record<string, string> => (on ? { inert: "" } : {});
@@ -411,8 +416,9 @@ export default function Header() {
 
             {/* Resources */}
             <div className={`nav-pane ${open === "resources" ? "is-on" : ""}`} {...inertIf(open !== "resources")}>
-              <div className="grid grid-cols-[1fr_260px] gap-2 p-2">
-                <div className="grid grid-cols-2 gap-1 p-1">
+              {/* With the datasheet card: grid-cols-[1fr_260px] here, grid-cols-2 below. */}
+              <div className="grid gap-2 p-2">
+                <div className="grid grid-cols-3 gap-1 p-1">
                   {resourceLinks.map((item) => (
                     <Link
                       key={item.label}
@@ -429,6 +435,7 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
+                {/* Datasheet download: hidden for now.
                 <button
                   type="button"
                   onClick={() => {
@@ -451,6 +458,7 @@ export default function Header() {
                     <Download className="w-4 h-4 transition-transform duration-200 group-hover/feat:translate-y-0.5" />
                   </span>
                 </button>
+                */}
               </div>
             </div>
           </div>
@@ -524,6 +532,7 @@ export default function Header() {
             </Link>
           ))}
 
+          {/* Datasheet download: hidden for now.
           <button
             type="button"
             onClick={() => {
@@ -536,6 +545,7 @@ export default function Header() {
             Data sheet
             <Download className="w-4 h-4 text-[#00B8DB]" />
           </button>
+          */}
 
           <div className="nav-sheet-item flex items-center justify-between px-3 py-3" style={{ ["--i" as string]: 7 }}>
             <span className="text-sm text-slate-600 dark:text-slate-400">Theme</span>
