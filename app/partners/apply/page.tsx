@@ -76,8 +76,8 @@ export default function PartnerApplyPage() {
                 titleLead="Apply to the OmniPriv"
                 titleAccent="Partner Program"
                 paragraphs={[["Expand your cybersecurity portfolio with high-margin enterprise PAM, AI governance, and cloud bastion solutions designed for resellers and MSPs."]]}
-                primary={{ href: "/sign-up", label: "Start your application" }}
-                secondary={{ href: "/sign-in", label: "Already a partner? Sign in" }}
+                primary={{ href: "https://partner.omnipriv.com/sign-up", label: "Start your application" }}
+                secondary={{ href: "https://partner.omnipriv.com/sign-in", label: "Already a partner? Sign in" }}
                 visual={<StepsCard />}
             />
 
@@ -119,7 +119,7 @@ export default function PartnerApplyPage() {
                             <h2 className="op-h3">Ready to apply?</h2>
                             <p className="mt-3 text-[1rem] leading-relaxed text-slate-600 dark:text-slate-400">Start the application now, or look at the partners already listed in your region.</p>
                             <div className="mt-6 flex flex-col gap-3">
-                                <Link href="/sign-up" className="hp-btn-primary group">
+                                <Link href="https://partner.omnipriv.com/sign-up" className="hp-btn-primary group">
                                     Start your application
                                     <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
                                 </Link>

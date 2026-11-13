@@ -57,6 +57,15 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Partner accounts live only in the Partner Portal (partner.omnipriv.com),
+      // which shares its credentials with support.omnipriv.com. The legacy
+      // on-site partner portal is retired; send every entry point there.
+      { source: '/sign-in', destination: 'https://partner.omnipriv.com/sign-in', permanent: false },
+      { source: '/sign-up', destination: 'https://partner.omnipriv.com/sign-up', permanent: false },
+      { source: '/partner-portal/:path*', destination: 'https://partner.omnipriv.com/partner-portal', permanent: false },
+      { source: '/channel-admin/:path*', destination: 'https://partner.omnipriv.com/channel-admin/login', permanent: false },
+      { source: '/portal-admin/:path*', destination: 'https://partner.omnipriv.com/channel-admin/login', permanent: false },
+      { source: '/support', destination: 'https://support.omnipriv.com', permanent: false },
       // There is one event page; /events is the stable entry point.
       {
         source: '/events',

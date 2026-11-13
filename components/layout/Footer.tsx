@@ -39,6 +39,8 @@ const companyLinks = [
   { label: "About OmniPriv", href: "/about" },
   { label: "Enterprise Plans", href: "/enterprise" },
   { label: "Partner Program", href: "/partners" },
+  { label: "Partner Portal", href: "https://partner.omnipriv.com" },
+  { label: "Customer Support", href: "https://support.omnipriv.com" },
   { label: "Contact Sales", href: "/demo" },
   { label: "Black Hat MEA 2026", href: "/events/black-hat-mea-2026" },
   { label: "Privacy Policy", href: "/privacy-policy" },

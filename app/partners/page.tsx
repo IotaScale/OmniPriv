@@ -41,7 +41,7 @@ export default function PublicPartnersPage() {
         tagline="Global Channel Ecosystem"
         paragraphs={[["Connect with certified privileged access security specialists, authorized resellers, and MSSPs equipped to design, deploy, and manage OmniPriv in your enterprise."]]}
         primary={{ href: "/partners/apply", label: "Apply for Partnership" }}
-        secondary={{ href: "/sign-in", label: "Partner Workspace Sign In" }}
+        secondary={{ href: "https://partner.omnipriv.com/sign-in", label: "Partner Workspace Sign In" }}
         visual={<PartnerHero />}
       >
         <FactsStrip facts={FACTS} />
@@ -86,7 +86,7 @@ export default function PublicPartnersPage() {
                   Apply for Partnership
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
-                <Link href="/sign-in" className="hp-btn-secondary">
+                <Link href="https://partner.omnipriv.com/sign-in" className="hp-btn-secondary">
                   Partner Workspace Sign In
                 </Link>
               </div>

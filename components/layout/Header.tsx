@@ -282,7 +282,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-2">
             <ThemeToggle />
             <Link
-              href="/sign-in"
+              href="https://partner.omnipriv.com/sign-in"
               className="px-3 h-9 inline-flex items-center text-[0.875rem] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors"
             >
               Partner sign-in
@@ -558,7 +558,7 @@ export default function Header() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/sign-in"
+              href="https://partner.omnipriv.com/sign-in"
               className="h-12 inline-flex items-center justify-center rounded-xl border border-slate-900/[0.12] dark:border-white/[0.12] text-sm font-semibold text-slate-800 dark:text-slate-200"
             >
               Partner sign-in

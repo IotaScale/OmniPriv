@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionFromRequest, getSafeReturnUrl } from "@/lib/partner-portal/auth";
 
+// The legacy on-site partner portal is retired in favour of partner.omnipriv.com.
+// Its APIs trusted an unsigned (forgeable) session cookie, so they are closed.
+const RETIRED_API_PREFIXES = ["/api/partner", "/api/channel-admin", "/api/auth"];
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (RETIRED_API_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))) {
+    return NextResponse.json(
+      { error: "The partner workspace has moved to https://partner.omnipriv.com." },
+      { status: 410 }
+    );
+  }
 
   // Protect Private Partner Portal UI Routes
   if (pathname.startsWith("/partner-portal")) {
@@ -98,5 +109,6 @@ export const config = {
     "/portal-admin/:path*",
     "/api/partner/:path*",
     "/api/channel-admin/:path*",
+    "/api/auth/:path*",
   ],
 };
